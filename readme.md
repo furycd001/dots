@@ -11,7 +11,7 @@
 ## Lipstick Left.
 ![alt text](http://i.imgur.com/Is7pdzz.png "Lipstick Left")
 
-## Samantha
+## Samantha.
 ![alt text](http://i.imgur.com/hlK3txb.png "Samantha")
 
 ---

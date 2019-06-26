@@ -3,20 +3,18 @@
 
 ---
 
-
 # [ XFWM ]
 
 ## Empty.
 ![alt text](http://i.imgur.com/U9rW8M4.png "Empty")
 
-## Samantha.
+## Lipstick Left.
 ![alt text](http://i.imgur.com/Is7pdzz.png "Lipstick Left")
 
-## Lipstick Left.
+## Samantha
 ![alt text](http://i.imgur.com/hlK3txb.png "Samantha")
 
 ---
-
 
 # [ XFCE4-TERMINAL ]
 

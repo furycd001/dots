@@ -1,5 +1,5 @@
 # Linux dotfiles....
-### This repo mainly contains xfce4-terminal themes & scripts that I use. I don't really play with conky all that much as I have it pretty much how I like it. If you use a terminal other than xfce4-terminal you can use [terminal.sexy](https://terminal.sexy/) to convert the themes.
+#### This repo mainly contains xfce4-terminal themes & scripts that I use. I don't really play with conky all that much as I have it pretty much how I like it. If you use a terminal other than xfce4-terminal you can use [terminal.sexy](https://terminal.sexy/) to convert the themes.
 ---
 
 ## Nord.

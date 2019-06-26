@@ -26,3 +26,39 @@
 
 ## Autmn.
 ![alt text](http://i.imgur.com/QQCvzp0.png "Autmn")
+
+## Washed Out.
+![alt text](http://i.imgur.com/BE30M6L.png "Washed Out")
+
+## Colourful.
+![alt text](http://i.imgur.com/lo3Kjxn.png "Colourful")
+
+## Rainbow Candy.
+![alt text](http://i.imgur.com/nQuCF0J.png "Rainbow Candy")
+
+## The Great Outdoors.
+![alt text](http://i.imgur.com/BCQTcvK.png "The Great Outdoors")
+
+## Colourful Bright.
+![alt text](http://i.imgur.com/Ve3SZR2.png "Colourful Bright")
+
+## Colourful Bright V1.
+![alt text](http://i.imgur.com/5fSg1fO.png "Colourful Bright V1")
+
+## Old TV.
+![alt text](http://i.imgur.com/vuiCDqk.png "Old TV")
+
+## Vintage.
+![alt text](http://i.imgur.com/YOaLsC8.png "Vintage")
+
+## Simplicity.
+![alt text](http://i.imgur.com/PVWdwQa.png "Simplicity")
+
+## Fields.
+![alt text](http://i.imgur.com/erNkYG1.png "Fields")
+
+## Bright Lights.
+![alt text](http://i.imgur.com/BcDKlLp.png "Bright Lights")
+
+## Pretty Vintage.
+![alt text](http://i.imgur.com/cMsCJK5.png "Pretty Vintage")

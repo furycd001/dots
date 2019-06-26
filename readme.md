@@ -3,6 +3,7 @@
 
 ---
 
+
 # [ XFWM ]
 
 ## Empty.
@@ -15,6 +16,7 @@
 ![alt text](http://i.imgur.com/hlK3txb.png "Samantha")
 
 ---
+
 
 # [ XFCE4-TERMINAL ]
 

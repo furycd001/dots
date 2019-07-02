@@ -1,8 +1,7 @@
 # Linux dotfiles....
 #### This repo mainly contains xfce4-terminal & xfwm themes, along with scripts that I use. I don't really play with conky all that much as I have it pretty much how I like it. If you use a terminal other than xfce4-terminal you can use [terminal.sexy](https://terminal.sexy/) to convert the themes.
 
-#### Background color for terminal windows is [#2E3440](https://www.colorhexa.com/2e3440)
-![alt text](https://i.imgur.com/UiswLj7.jpg "#2E3440")
+#### Background color for terminal windows is [#2E3440](https://www.colorhexa.com/2e3440) ![alt text](https://i.imgur.com/UiswLj7.jpg "#2E3440")
 
 ---
 

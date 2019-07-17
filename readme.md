@@ -19,6 +19,16 @@
 
 ---
 
+# [ XFCE4-NOTIFYD ]
+
+## Arcnotify.
+#### Notification
+![alt text](http://i.imgur.com/N3uSoG8.png "Notification")
+#### Notification Hover
+![alt text](http://i.imgur.com/N3uSoG8.png "Notification Hover")
+
+---
+
 # [ XFCE4-TERMINAL ]
 
 ## Nord.

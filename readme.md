@@ -23,11 +23,11 @@
 
 ## Arcnotify.
 #### Notification
-![alt text](https://i.imgur.com/kJUZBOz.png "Notification")
+![alt text](https://i.imgur.com/kJUZBOz.png "Notification")  
 [Alt full desktop screenshot....](http://i.imgur.com/N3uSoG8.png)
 
 #### Notification Hover
-![alt text](https://i.imgur.com/k1VwKdS.png "Notification Hover")
+![alt text](https://i.imgur.com/k1VwKdS.png "Notification Hover")  
 [Alt hover full desktop screenshot....](http://i.imgur.com/M5teAy2.png)
 
 ---

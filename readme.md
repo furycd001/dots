@@ -22,10 +22,13 @@
 # [ XFCE4-NOTIFYD ]
 
 ## Arcnotify.
-#### Notification ![alt text](https://i.imgur.com/kJUZBOz.png "Notification")
-#### Notification Hover ![alt text](https://i.imgur.com/k1VwKdS.png "Notification Hover")
+#### Notification
+![alt text](https://i.imgur.com/kJUZBOz.png "Notification")
+[Alt full desktop screenshot....](http://i.imgur.com/N3uSoG8.png)
 
-[Alternative full desktop screenshot](http://i.imgur.com/N3uSoG8.png) && [alternative full desktop hover screenshot.](http://i.imgur.com/M5teAy2.png)
+#### Notification Hover
+![alt text](https://i.imgur.com/k1VwKdS.png "Notification Hover")
+[Alt hover full desktop screenshot....](http://i.imgur.com/M5teAy2.png)
 
 ---
 

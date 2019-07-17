@@ -1,0 +1,23 @@
+style "arc-window"
+{
+    bg[NORMAL] = "#2f343f"
+    XfceNotifyWindow::border-color = "#2f343f"
+    XfceNotifyWindow::border-radius = 0
+    XfceNotifyWindow::border-width = 0
+}
+class "XfceNotifyWindow" style "arc-window"
+
+style "arc-text"
+{
+    font_name = "Ubuntu Light"
+    fg[NORMAL] = "#f2f2f2"
+    GtkWidget::link-color = "#ffffff"
+}
+widget_class "XfceNotifyWindow.*.<GtkLabel>" style "arc-text"
+
+style "arc-btn"
+{
+    bg[NORMAL] = "#2f343f"
+    bg[PRELIGHT] = "#2f343f"
+}
+widget "XfceNotifyWindow.*.GtkButton" style "arc-btn"

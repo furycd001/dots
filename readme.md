@@ -32,6 +32,13 @@
 
 ---
 
+# [ WATERFOX USERCHROME CSS ]
+
+## Minimal Arc.
+![alt text](http://i.imgur.com/ussqXjr.png "Minimal Arc")
+
+---
+
 # [ XFCE4-TERMINAL ]
 
 ## Nord.

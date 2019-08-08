@@ -1,0 +1,87 @@
+.tabbrowser-tab::before, .tabbrowser-tab::after {
+	visibility: collapse;
+}
+
+#TabsToolbar {
+	background-color: var(--chrome-secondary-background-color) !important;
+}
+
+#nav-bar {
+	border: none !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+
+
+#navigator-toolbox {
+	--tabs-border-color: transparent !important;
+}
+
+#navigator-toolbox{ background-color: rgb(39, 43, 53)}
+#nav-bar,
+#PersonalToolbar,
+#urlbar{
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+:root:not([uidensity="compact"]):not([chromehidden~="toolbar"]) #PanelUI-button {
+
+border-inline-start: none !important;
+
+}
+
+#page-action-buttons > :not([hidden]) ~ #pageActionSeparator {
+
+visibility: hidden !important;
+
+}
+
+.tabbrowser-tab:hover .tab-content{background-color:#5675b9}
+
+#reload-button {
+border-left: none !important;
+}
+
+#back-button:not(:hover),
+#back-button:not(:hover) > .toolbarbutton-icon {
+background: transparent !important;
+border: none !important;
+border-color: transparent !important;
+box-shadow: none !important;
+}
+
+#back-button:hover,
+#back-button:hover > .toolbarbutton-icon {
+background: transparent !important;
+border: none !important;
+border-color: transparent !important;
+box-shadow: none !important;
+}
+
+#tabs-newtab-button:hover {
+background-color: #2e303f !important;
+}
+
+#new-tab-button:not(:hover) {
+background-color: rgb(39, 43, 53)
+}
+
+#alltabs-button:not(:hover) {
+background-color: rgb(39, 43, 53)
+}
+
+.scrollbutton-down:hover {
+background: transparent !important;
+border: none !important;
+border-color: transparent !important;
+box-shadow: none !important;
+}
+
+.scrollbutton-up:hover {
+	background: transparent !important;
+	border: none !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+}

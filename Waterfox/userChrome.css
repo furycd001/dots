@@ -24,21 +24,34 @@
   background-color: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
+	border: none !important;
 }
+
+#navigator-toolbox::after{ display:none !important }
 
 :root:not([uidensity="compact"]):not([chromehidden~="toolbar"]) #PanelUI-button {
 
 border-inline-start: none !important;
+background-color: transparent !important;
 
 }
 
 #page-action-buttons > :not([hidden]) ~ #pageActionSeparator {
-
 visibility: hidden !important;
-
 }
 
-.tabbrowser-tab:hover .tab-content{background-color:#5675b9}
+.tabbrowser-tab:hover .tab-content {
+	background-color: #5675b9 !important;
+}
+
+.tabs-newtab-button > .toolbarbutton-icon,
+#PanelUI-menu-button > .toolbarbutton-badge-stack {
+	background: none !important;
+	border: none !important;
+	border-color: transparent !important;
+}
+
+.tab-line { display: inherit !important; }
 
 #reload-button {
 border-left: none !important;
@@ -60,16 +73,40 @@ border-color: transparent !important;
 box-shadow: none !important;
 }
 
+#forward-button:not(:hover),
+#forward-button:not(:hover) > .toolbarbutton-icon {
+background: transparent !important;
+border: none !important;
+border-color: transparent !important;
+box-shadow: none !important;
+}
+
+#forward-button:hover,
+#forward-button:hover > .toolbarbutton-icon {
+background: transparent !important;
+border: none !important;
+border-color: transparent !important;
+box-shadow: none !important;
+}
+
 #tabs-newtab-button:hover {
-background-color: #2e303f !important;
+background-color: #272b35 !important;
 }
 
 #new-tab-button:not(:hover) {
-background-color: rgb(39, 43, 53)
+background-color: #272b35 !important;
+}
+
+#new-tab-button:hover {
+background-color: #272b35 !important;
 }
 
 #alltabs-button:not(:hover) {
-background-color: rgb(39, 43, 53)
+background-color: #272b35 !important;
+}
+
+#alltabs-button:hover {
+background-color: #272b35 !important;
 }
 
 .scrollbutton-down:hover {

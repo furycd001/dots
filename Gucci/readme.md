@@ -1,6 +1,6 @@
 # [ SCRIPTS ]
 
----
+
 Here you'll find a collection of scripts that I use.
 
 + **atom** >> Resizes & moves atom whenever I open a specific file....

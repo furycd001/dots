@@ -1,14 +1,4 @@
-#!/usr/bin/env bash
-# Custom suspend
-#
-# (That 'zsh' up there can be switched to 'bash', or
-# pretty much any shell - this doesn't do anything too fancy.)
-#
-# Dependencies are mostly xfce stuff:
-#
-#   xbacklight
-#   xflock4
-#   xfce4-session-logout
+#!/bin/bash
 
 # Set how dim we want the screen to go (percentage, out of 100)
 dim=4

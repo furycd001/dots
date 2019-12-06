@@ -3,7 +3,7 @@ Description=Lock screen before suspend
 Before=sleep.target
 
 [Service]
-User=johan
+User=furycd001
 Type=forking
 Environment=DISPLAY=:0
 ExecStart=/home/furycd001/Dots/Gucci/i3lock.sh

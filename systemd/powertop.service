@@ -1,0 +1,11 @@
+[Unit]
+Description=Powertop tunings
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/sbin/powertop --auto-tune
+Environment="TERM=xterm"
+
+[Install]
+WantedBy=multi-user.target

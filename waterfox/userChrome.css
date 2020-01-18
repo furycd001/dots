@@ -6,6 +6,12 @@
 	background-color: var(--chrome-secondary-background-color) !important;
 }
 
+.titlebar-spacer[type="pre-tabs"],
+.titlebar-spacer[type="post-tabs"]
+{
+	display: none !important;
+}
+
 #nav-bar {
 	border: none !important;
 	border-color: transparent !important;
@@ -56,7 +62,11 @@ background-color: transparent !important;
 }
 
 #reload-button {
-	border-left: none !important;
+	border: none !important;
+}
+
+#stop-button {
+	border: none !important;
 }
 
 #back-button:not(:hover),
@@ -99,7 +109,7 @@ background-color: transparent !important;
 }
 
 #new-tab-button:hover {
-	background-color: #272b35 !important;
+	background-color: transparent !important;
 	border: none !important;
 	border-color: transparent !important;
 	box-shadow: none !important;
@@ -113,13 +123,27 @@ background-color: transparent !important;
 }
 
 #alltabs-button:hover {
-	background-color: #272b35 !important;
+	background-color: transparent !important;
+	border: none !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+
+.scrollbutton-down:not(:hover) {
+	background: transparent !important;
 	border: none !important;
 	border-color: transparent !important;
 	box-shadow: none !important;
 }
 
 .scrollbutton-down:hover {
+	background: transparent !important;
+	border: none !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+}
+
+.scrollbutton-up:not(:hover) {
 	background: transparent !important;
 	border: none !important;
 	border-color: transparent !important;
@@ -157,3 +181,11 @@ background-color: transparent !important;
   margin-left: -2px !important;
   margin-right: 4px !important;
 }
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+       border-left: none !important;
+       border-right: none !important;
+ }
+
+.scrollbutton-up[orient="horizontal"]~spacer{ border-width: 0px; opacity: 0 }

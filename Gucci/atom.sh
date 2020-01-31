@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run the command and fork it into the background, after grabbing its PID
-atom /home/furycd001/Sites/Lacey\ Laney/Markdown.md
+atom /home/furycd001/Markdown/Markdown.md
 
 # Poll until the command spawned a window, then get its window ID
 for ((;;)); {

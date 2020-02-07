@@ -6,7 +6,7 @@ This is my Waterfox userchrome.css. It's based on the ever popular [**arc theme*
 > PLEASE NOTE THAT FOR THIS TO FULLY WORK YOU MUST BE USING COMPACT DARK AS THE THEME IN WATERFOX. TO ENABLE CLICK ON ≡ AND THEN AT THE BOTTOM CHNAGE THE THEME TO BE COMPACT DARK..
 
 ## Minimal Arc.
-![alt text](https://i.imgur.com/hTEyoQg.gif "Minimal Arc gif")
+![alt text](https://i.imgur.com/EpFUl4N.gif "Minimal Arc gif")
 
 ## Urlbar set to autohide.
 ![alt text](https://i.imgur.com/oNIz90h.png "Urlbar set to autohide")
@@ -18,4 +18,4 @@ This is my Waterfox userchrome.css. It's based on the ever popular [**arc theme*
 ![alt text](https://i.imgur.com/xEyUiqQ.png "Entering url")
 
 ## Close button hidden inside favicon.
-![alt text](https://i.imgur.com/mrmB6sS.png "Close Button")
+![alt text](https://i.imgur.com/vW7nq7r.png "Close Button")

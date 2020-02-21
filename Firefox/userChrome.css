@@ -1,0 +1,195 @@
+/*@import "scrollbars.css";*/
+
+/* New Tab Flash */
+:root{--newtab-textbox-background-color:#272b35;}
+
+#browser vbox#appcontent tabbrowser,
+#content,
+#tabbrowser-tabpanels,
+browser[type=content-primary],
+browser[type=content] > html{
+    background: #272b35 !important
+}
+
+.tab-line {
+display : none !important;
+}
+
+/* Toolbar buttons */
+.toolbarbutton-1 {
+    fill: #f2f2f2 !important;
+    background-color: #272b35 !important;
+}
+
+/* Remove border under navbar */
+#navigator-toolbox::after {
+  border-bottom: 0px !important;
+}
+
+/* remove some borders */
+#navigator-toolbox {
+  border: none !important;
+}
+
+#titlebar {
+  border: none !important;
+}
+
+#tabbrowser-tabs {
+background-color: #272b35 !important;
+}
+
+/* remove lines */
+
+#navigator-toolbox::after {
+  display: none !important;
+}
+
+#nav-bar, #TabsToolbar {
+  border: none !important;
+}
+
+.tabbrowser-tab::before,
+.tabbrowser-tab::after{
+  display: none !important;
+
+}
+tab
+{
+    background-color: #272b35 !important;
+    font-weight: thin !important;
+    color : #f2f2f2 !important;
+}
+
+
+.tab-content[selected="true"]
+{
+    background-color: #272b35 !important;
+    font-weight: thin !important;
+    color : #f2f2f2 !important;
+}
+
+#nav-bar-customization-target {
+	background-color: #272b35 !important;
+}
+
+
+.tabbrowser-tab{ opacity: 0.5 }
+.tabbrowser-tab:hover{ opacity: 0.75 }
+.tabbrowser-tab[selected]{ opacity: 1 }
+
+#urlbar{
+	box-shadow: none !important;
+	background-color: #272b35 !important;
+	background: none !important;
+	border: none !important;
+	color : #f2f2f2 !important;
+	font-weight: thin !important;
+  text-align: center;
+}
+
+#urlbar-container {
+  color: #a0a2a6 !important;
+}
+
+#urlbar:hover{
+  box-shadow: none !important;
+}
+
+#tracking-protection-icon-container,#pageActionSeparator{ border-inline-width: 0px !important; }
+.urlbar-icon,
+.urlbar-icon-wrapper,
+#tabbrowser-tabs toolbarbutton,
+toolbar toolbarbutton > .toolbarbutton-icon,
+toolbar toolbarbutton > .toolbarbutton-badge-stack,
+.titlebar-button,
+#identity-box,
+#tracking-protection-icon-container,
+.findbar-textbox~toolbarbutton { background-color: transparent !important;}
+
+.tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"]):not([multiselected]){ background-color: transparent !important }
+
+toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
+  background-color: transparent !important;
+  color: #a0a2a6 !important;
+  fill: #a0a2a6 !important;
+}
+
+#TabsToolbar .toolbarbutton-1, .tabbrowser-arrowscrollbox::part(scrollbutton-up), .tabbrowser-arrowscrollbox::part(scrollbutton-down) {
+	margin: 0 !important;
+  color: #a0a2a6 !important;
+  fill: #a0a2a6 !important;
+}
+
+/*Tabs below nav bar*/
+#nav-bar {
+  -moz-box-ordinal-group: 1 !important;
+}
+#PersonalToolbar {
+  -moz-box-ordinal-group: 2 !important;
+}
+#titlebar {
+  -moz-box-ordinal-group: 3 !important;
+}
+
+#navigator-toolbox{
+  margin-top: 0px;
+  padding-top:0px !important;
+}
+#toolbar-menubar{
+  position: fixed;
+  top: 0px;
+}
+/*#navigator-toolbox { --tabs-border-color: transparent !important; }*//* remove weird line*/
+
+
+
+/*Hide tabs bar if one tab is opened*/
+#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox {
+  min-height: 0 !important;
+}
+
+#tabbrowser-tabs tab[first-visible-tab="true"][last-visible-tab="true"] {
+  visibility: collapse !important;
+}
+
+
+/* Set color of visible button */
+
+#home-button, #reload-button, #library-button, #sidebar-button, #fxa-toolbar-menu-button, #PanelUI-menu-button, #tabs-newtab-button, #bookmarks-menu-button, #history-panelmenu, #privatebrowsing-button, #downloads-button {
+  color: #a0a2a6 !important;
+  fill: #a0a2a6 !important;
+}
+
+
+/* Replace favicon on tabs with close button on hover */
+
+.tabbrowser-tab:not(:hover) .tab-close-button{ display:none; }
+.tabbrowser-tab:not([pinned]):hover .tab-close-button{ display:block !important; }
+
+
+.tabbrowser-tab:not([pinned]):hover  .tab-icon-image {
+  display: none !important;
+}
+
+.tabbrowser-tab:hover  .tab-throbber,
+.tabbrowser-tab:hover  .tab-icon-image,
+.tabbrowser-tab:hover .tab-sharing-icon-overlay,
+.tabbrowser-tab:hover  .tab-icon-overlay,
+.tabbrowser-tab:hover  .tab-label-container,
+.tabbrowser-tab:hover  .tab-icon-sound {
+  -moz-box-ordinal-group: 2 !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+  margin-left: -2px !important;
+  margin-right: 4px !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+       border-left: none !important;
+       border-right: none !important;
+ }
+
+.scrollbutton-up[orient="horizontal"]~spacer{ border-width: 0px; opacity: 0 }

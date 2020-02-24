@@ -11,8 +11,17 @@ browser[type=content] > html{
     background: #272b35 !important
 }
 
+.tab-label-container {
+mask-image: linear-gradient(to left, transparent, black 0em) !important; /*Default is 2em*/
+}
+
 .tab-line {
 display : none !important;
+}
+
+/* Set minimum tab width */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  min-width: 88px !important;
 }
 
 /* Toolbar buttons */

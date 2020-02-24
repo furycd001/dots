@@ -22,5 +22,3 @@ Just add the code below to your userContent.css file. It's that simple.
     }
 }
 ```
-
-> NOTE: You may need to create this file, but it may already exist....

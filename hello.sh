@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git add --all && git commit -m "Initial commit" && git push -u origin master
+git add --all && git commit -m "Commit.." && git push -u origin master

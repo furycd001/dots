@@ -81,8 +81,8 @@ tab
 }
 
 
-.tabbrowser-tab{ opacity: 0.5 }
-.tabbrowser-tab:hover{ opacity: 0.75 }
+.tabbrowser-tab{ opacity: 0.4 }
+.tabbrowser-tab:hover{ opacity: 0.88 }
 .tabbrowser-tab[selected]{ opacity: 1 }
 
 #urlbar{
@@ -195,6 +195,10 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
 .tabbrowser-tab .tab-close-button {
   margin-left: -2px !important;
   margin-right: 4px !important;
+}
+
+.tab-close-button:hover {
+	fill-opacity: 0 !important;
 }
 
 .tabbrowser-tab::after,

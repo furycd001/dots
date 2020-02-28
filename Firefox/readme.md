@@ -7,7 +7,7 @@ This is my Firefox usercChrome.css. It's based on the ever popular [**arc theme*
 ![alt text](http://i.imgur.com/fFigFVK.png "Firefox Arc")
 
 ## Close buttons are hidden inside favicons.
-![alt text](http://i.imgur.com/YnTRBWo.png "Close Button")
+![alt text](http://i.imgur.com/xgocffH.png "Close Button")
 
 
 #### Changing the background color of new tabs.

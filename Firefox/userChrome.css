@@ -10,7 +10,7 @@ browser[type=content] > html{
 }
 
 .tab-label-container {
-mask-image: linear-gradient(to left, transparent, black 0em) !important; /*Default is 2em*/
+mask-image: linear-gradient(to left, transparent, black 0em) !important; /
 }
 
 .tab-line {
@@ -47,30 +47,27 @@ background-color: #272b35 !important;
 }
 
 /* remove lines */
-
 #navigator-toolbox::after {
   display: none !important;
 }
 
-#nav-bar, #TabsToolbar {
+#TabsToolbar {
   border: none !important;
 }
 
 .tabbrowser-tab::before,
 .tabbrowser-tab::after{
   display: none !important;
-
 }
-tab
-{
+
+tab {
     background-color: #272b35 !important;
     font-weight: thin !important;
     color : #f2f2f2 !important;
 }
 
 
-.tab-content[selected="true"]
-{
+.tab-content[selected="true"] {
     background-color: #272b35 !important;
     font-weight: thin !important;
     color : #f2f2f2 !important;
@@ -79,7 +76,6 @@ tab
 #nav-bar-customization-target {
 	background-color: #272b35 !important;
 }
-
 
 .tabbrowser-tab{ opacity: 0.4 }
 .tabbrowser-tab:hover{ opacity: 0.88 }
@@ -103,11 +99,11 @@ tab
   color: #a0a2a6 !important;
 }
 
-#urlbar:hover{
+#urlbar:hover {
   box-shadow: none !important;
 }
 
-#tracking-protection-icon-container,#pageActionSeparator{ border-inline-width: 0px !important; }
+#tracking-protection-icon-container,#pageActionSeparator { border-inline-width: 0px !important; }
 .urlbar-icon,
 .urlbar-icon-wrapper,
 #tabbrowser-tabs toolbarbutton,
@@ -150,10 +146,10 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
 #toolbar-menubar{
   position: fixed;
   top: 0px;
+  background-color: #272b35 !important;
+  color: #f2f2f2 !important;
 }
-/*#navigator-toolbox { --tabs-border-color: transparent !important; }*//* remove weird line*/
-
-
+#navigator-toolbox { --tabs-border-color: transparent !important; }
 
 /*Hide tabs bar if one tab is opened*/
 #tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox {
@@ -164,9 +160,7 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
   visibility: collapse !important;
 }
 
-
 /* Set color of visible button */
-
 #home-button, #reload-button, #library-button, #sidebar-button, #fxa-toolbar-menu-button, #PanelUI-menu-button, #tabs-newtab-button, #bookmarks-menu-button, #history-panelmenu, #privatebrowsing-button, #downloads-button {
   color: #a0a2a6 !important;
   fill: #a0a2a6 !important;
@@ -174,7 +168,6 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
 
 
 /* Replace favicon on tabs with close button on hover */
-
 .tabbrowser-tab:not(:hover) .tab-close-button{ display:none; }
 .tabbrowser-tab:not([pinned]):hover .tab-close-button{ display:block !important; }
 

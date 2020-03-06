@@ -1,0 +1,3 @@
+# [ FEDORA ]
+
+A simple minimal openbox install script for fedora. It's pretty dirty & was wrote very quickly....

@@ -1,7 +1,6 @@
 # [ XFCE4-TERMINAL ]
 
-
-A collection of xfce4-terminal color schemes that I switch between....  
+Here you'll find my collection of xfce4-terminal color schemes that I randomly switch between from time to time....  
 
 > Background color for terminal windows is [#2E3440](https://www.colorhexa.com/2e3440)
 ![alt text](https://i.imgur.com/UiswLj7.jpg "#2E3440")![alt text](https://i.imgur.com/UiswLj7.jpg "#2E3440")

@@ -1,7 +1,6 @@
 # [ SCRIPTS ]
 
-
-Here you'll find a collection of scripts that I use.
+Here you'll find a collection of scripts that I use in my setup.
 
 + **atom** >> Resizes & moves atom whenever I open a specific file....
 + **batteryfull** >> Displays a notification whenever my batter is fully charged....

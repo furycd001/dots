@@ -1,7 +1,6 @@
 # [ XFWM ]
 
-
-A collection of xfwm & xfce4-notifyd themes that I have created....
+This is my collection of xfwm & xfce4-notifyd themes that I have created....
 
 
 ## Empty.

@@ -26,6 +26,7 @@ display : none !important;
 .toolbarbutton-1 {
     fill: #f2f2f2 !important;
     background-color: #272b35 !important;
+    border: none !important;
 }
 
 /* Remove border under navbar */
@@ -103,6 +104,15 @@ tab {
   box-shadow: none !important;
 }
 
+/* Urlbar buttons */
+#pageActionButton, #pocket-button {
+  visibility: collapse !important;
+}
+
+.urlbar-history-dropmarker {
+  visibility: collapse !important;
+}
+
 #tracking-protection-icon-container,#pageActionSeparator { border-inline-width: 0px !important; }
 .urlbar-icon,
 .urlbar-icon-wrapper,
@@ -148,6 +158,7 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
   top: 0px;
   background-color: #272b35 !important;
   color: #f2f2f2 !important;
+  border: none !important;
 }
 #navigator-toolbox { --tabs-border-color: transparent !important; }
 

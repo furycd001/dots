@@ -8,7 +8,7 @@ This is a single line that is set to output to console. The output is then piped
 
 > Conky piped to xfce4-panel using awk & xfce4-genmon-plugin.
 
-![alt text](http://i.imgur.com/AmfVWRi.png "Conky displayed inside xfce4-panel")
+![alt text](http://i.imgur.com/4wr1XXm.png "Conky displayed inside xfce4-panel")
 
 #### How to set up....  
 
@@ -34,6 +34,8 @@ The final step is to add xfce4-genmon-plugin to your panel and then use awk to p
 > awk 'END{print}' /tmp/conky.txt
 
 That's it. You should now have conky displaying within your panel. If not then start from the top and double check everything.
+
+###### [ PLEASE NOTE THAT FOR THE UPDATES PART TO WORK YOU MUST GIVE "UPDATES.SH" ROOT ACCESS ]
 
 ----
 

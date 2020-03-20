@@ -8,7 +8,7 @@ This is a single line that is set to output to console. The output is then piped
 
 > Conky piped to xfce4-panel using awk & xfce4-genmon-plugin.
 
-![alt text](http://i.imgur.com/y7w5Mdo.png "Conky displayed inside xfce4-panel")
+![alt text](http://i.imgur.com/NkfXEK0.png "Conky displayed inside xfce4-panel")
 
 #### How to set up....  
 

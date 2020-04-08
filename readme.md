@@ -4,6 +4,7 @@
 + **Firefox.**
 + **Scripts.**
 + **Conky.**
++ **Gtk-3.0**
 + **Ncmpcpp.**
 + **Waterfox userchrome.css.**
 + **xfce4-terminal.**

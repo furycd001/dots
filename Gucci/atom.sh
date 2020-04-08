@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run the command and fork it into the background, after grabbing its PID
-atom /home/furycd001/Markdown/Markdown.md
+atom
 
 # Poll until the command spawned a window, then get its window ID
 for ((;;)); {
@@ -9,10 +9,10 @@ for ((;;)); {
 
 # Resize known windows
 for wID in $wIDs; {
-    xdotool windowsize $wID 800 400
+    xdotool windowsize $wID 800 440
 }
 
 # Moves known windows
 for wID in $wIDs; {
-    xdotool windowmove $wID 1090 480
+    xdotool windowmove $wID 1088 80
 }

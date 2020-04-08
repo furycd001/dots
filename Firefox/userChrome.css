@@ -104,6 +104,19 @@ tab {
   box-shadow: none !important;
 }
 
+.urlbarView-body-outer, .urlbarView-body-inner, .search-one-offs, #urlbar-results {
+  box-shadow: none !important;
+  background-color: #272b35 !important;
+  border: none !important;
+}
+
+#urlbar:not(.megabar):-moz-lwtheme, #urlbar.megabar:-moz-lwtheme > #urlbar-background, #navigator-toolbox #searchbar:not(:focus-within):-moz-lwtheme {
+  box-shadow: none !important;
+	background-color: #272b35 !important;
+	background: none !important;
+	border: none !important;
+}
+
 /* Urlbar buttons */
 #pageActionButton, #pocket-button {
   visibility: collapse !important;

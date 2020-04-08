@@ -3,7 +3,7 @@
 > **I NO LONGER USE WATERFOX AND HAVE SWITCHED TO FIREFOX.  
 THIS THEME WILL NO LONGER BE UPDATED.  
 HOWEVER.. I HAVE CONVERTED THIS THEME TO WORK WITH FIREFOX.  
-PLEASE ["CLICK HERE"](https://github.com/furycd001/dots/tree/master/waterfox) TO CHECK IT OUT.**
+PLEASE ["CLICK HERE"](https://github.com/furycd001/dots/tree/master/waterfox) TO CHECK IT OUT..**
 
 
 This is my Waterfox userchrome.css. It's based on the ever popular [**arc theme**](https://github.com/horst3180/Arc-theme) & has been made with minimal looks in mind. There's still a few things that I need to work on, but it's pretty complete as it is now. I'll eventually complete everything, but for now I'm happy with what I have...

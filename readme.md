@@ -6,6 +6,6 @@
 + **Conky.**
 + **Gtk-3.0**
 + **Ncmpcpp.**
-+ **Waterfox. [NO LONGER MAINTAINED. SWITCHED TO FIREFOX]**
++ **Waterfox.**
 + **xfce4-terminal.**
 + **xfwm & xfce4-notifyd themes.**

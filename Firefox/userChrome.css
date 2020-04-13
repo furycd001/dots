@@ -22,6 +22,25 @@ display : none !important;
   min-width: 88px !important;
 }
 
+/* Bookmarks bar */
+#PersonalToolbar{
+  background-color: #272b35 !important;
+  color: #f2f2f2 !important;
+}
+
+/* Menu */
+#appMenu-popup .panel-arrow {
+  background-color: #272b35 !important;
+  fill: #f2f2f2 !important;
+  color: #f2f2f2 !important;
+}
+
+/* Bookmark dropdowns */
+#PlacesToolbarItems menupopup > hbox {
+  color: #f2f2f2 !important;
+  background: #272b35 !important;
+}
+
 /* Toolbar buttons */
 .toolbarbutton-1 {
     fill: #f2f2f2 !important;

@@ -28,11 +28,17 @@ display : none !important;
   color: #f2f2f2 !important;
 }
 
-/* Menu */
-#appMenu-popup .panel-arrow {
-  background-color: #272b35 !important;
-  fill: #f2f2f2 !important;
+/* Menus */
+.PanelUI-subView {
+  --arrowpanel-background: #272b35 !important;
+  --arrowpanel-color: #f2f2f2 !important;
+  --lwt-accent-color: #f2f2f2 !important;
+  --lwt-text-color: #f2f2f2 !important;
   color: #f2f2f2 !important;
+}
+
+#context-navigation {
+  background-color: #272b35 !important;
 }
 
 /* Bookmark dropdowns */

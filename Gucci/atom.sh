@@ -9,10 +9,10 @@ for ((;;)); {
 
 # Resize known windows
 for wID in $wIDs; {
-    xdotool windowsize $wID 800 440
+    xdotool windowsize $wID 880 600
 }
 
 # Moves known windows
 for wID in $wIDs; {
-    xdotool windowmove $wID 1088 80
+    xdotool windowmove $wID 980 80
 }

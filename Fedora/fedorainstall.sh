@@ -16,11 +16,16 @@ cd dwm-6.2 && make && sudo make install && cd .. &&
 cd st-0.8.3 && make && sudo make install && cd .. && \
 cd dmenu-4.9 && make && sudo make install && cd .. && \
 cd slock-1.4 && make && sudo make install && cd .. && \
-touch ~/.xinitrc && echo 'exec dwm' >> ~/.xinitrc && \
-sudo dnf install lpf-spotify-client -y && \
-lpf approve spotify-client -y && \
-sudo -u pkg-build lpf build spotify-client && \
-sudo dnf install /var/lib/lpf/rpms/spotify-client/spotify-client-*.rpm -y && \
+cd /home/furycd001/ && \
+mkdir Pictures/ && \
+wget https://i.imgur.com/nIP3YDW.jpg && \
+cp nIP3YDW.jpg Coffee.jpg && \
+cd /home/furycd001/ ** \
+feh --bg-fill '/home/furycd001/Pictures/Coffee.jpg' && \
+touch ~/.xinitrc && \
+echo ~/.fehbg & >> ~/.xinitrc && \
+echo (conky | while read LINE; do xsetroot -name "$LINE"; done) & >> ~/.xinitrc && \
+echo 'exec dwm' >> ~/.xinitrc && \
 sudo dnf install cups -y && \
 systemctl start cups && \
 reboot

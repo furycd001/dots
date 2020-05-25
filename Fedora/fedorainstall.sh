@@ -26,5 +26,5 @@ touch ~/.xinitrc && \
 echo ~/.fehbg & >> ~/.xinitrc && \
 echo (conky | while read LINE; do xsetroot -name "$LINE"; done) & >> ~/.xinitrc && \
 echo 'exec dwm' >> ~/.xinitrc && \
-systemctl enable cups && systemctl enable tlp && systemctl enable thermald \
+systemctl enable cups && systemctl enable tlp && systemctl enable thermald && \
 reboot

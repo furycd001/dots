@@ -7,8 +7,8 @@ do
     echo $battery
   if [[ $battery -eq 100 ]]; then
         notify-send -i "/usr/share/icons/Arc-X-P/panel/22/battery-full-charged.svg" "Battery Charged" "Level: ${battery}%"
-      elif [[ $battery -le 22 ]]; then
-        yad --no-buttons --center --borders=22 --timeout=22 --title="BATTERY LOW. PLEASE PLUG IN CHARGER...." --image /home/furycd001/Terminal/Selena\ Gomez/batterylow.jpg
+      elif [[ $battery -le 23 ]]; then
+        yad --no-buttons --center --borders=22 --timeout=22 --title="BATTERY LOW.." --image /home/furycd001/Terminal/Selena\ Gomez/batterylow.jpg
       fi
     sleep 2m
 done

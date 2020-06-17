@@ -18,9 +18,6 @@ This is my collection of xfwm & xfce4-notifyd themes that I have created....
 
 ## Arcnotify.
 #### Notification
-![alt text](https://i.imgur.com/kJUZBOz.png "Notification")  
-[Full desktop screenshot....](http://i.imgur.com/N3uSoG8.png)
-
-#### Notification Hover
-![alt text](https://i.imgur.com/k1VwKdS.png "Notification Hover")  
-[Hover full desktop screenshot....](http://i.imgur.com/M5teAy2.png)
+![alt text](https://i.imgur.com/yBiGyYg.png "Notification")  
+#### Full desktop
+![alt text](https://i.imgur.com/lW8SKdG.jpg "Notification")

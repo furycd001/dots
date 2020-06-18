@@ -1,6 +1,6 @@
-# [ CONKY CONFIG ]
+# [ CONKY ]
 
-My conky config is usually very simple / minimal. I also don't chnage it very often, but when I do you'll find it here....
+My conky config's are usually simple & minimal. I don't really change my config very often, but when I do you'll be able to find it here....
 
 ## Single line pipe..
 

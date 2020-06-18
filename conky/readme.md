@@ -51,7 +51,7 @@ There's no setup required for this one. Just run conky as normal....
 
 ----
 
-## Arc external..
+## External..
 
 A minimal theme that's set to display on my external monitor..
 

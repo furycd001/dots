@@ -279,3 +279,8 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
  }
 
 .scrollbutton-up[orient="horizontal"]~spacer{ border-width: 0px; opacity: 0 }
+
+/* Hide right click menu items */
+#context-bookmarklink, #context-savelinktopocket, #context-searchselect, #context-sendimage {
+  display: none !important;
+}

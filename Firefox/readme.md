@@ -27,3 +27,7 @@ Just add the code below to your userContent.css file. It's that simple.
     }
 }
 ```
+
+----
+
+[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)

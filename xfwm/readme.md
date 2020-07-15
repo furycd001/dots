@@ -21,3 +21,7 @@ This is my collection of xfwm & xfce4-notifyd themes that I have created....
 ![alt text](https://i.imgur.com/yBiGyYg.png "Notification")  
 #### Full desktop
 ![alt text](https://i.imgur.com/lW8SKdG.jpg "Notification")
+
+----
+
+[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)

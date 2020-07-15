@@ -52,3 +52,7 @@ Here you'll find my collection of xfce4-terminal color schemes that I randomly s
 
 ## Washed Out.
 ![alt text](http://i.imgur.com/BE30M6L.png "Washed Out")
+
+----
+
+[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)

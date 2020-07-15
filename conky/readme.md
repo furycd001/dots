@@ -60,3 +60,7 @@ A minimal theme that's set to display on my external monitor..
 ![alt text](http://i.imgur.com/mbmIF8d.png "Conky displaying top-right of screen")
 
 The only setup required for this one is to change **"xinerama_head"** to whatever number your monitor is....
+
+----
+
+[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)

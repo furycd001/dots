@@ -24,3 +24,7 @@ This is my Waterfox userchrome.css. It's based on the ever popular [**arc theme*
 
 ## Close button hidden inside favicon.
 ![alt text](https://i.imgur.com/vW7nq7r.png "Close Button")
+
+----
+
+[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)

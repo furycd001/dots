@@ -30,4 +30,4 @@ Just add the code below to your userContent.css file. It's that simple.
 
 ----
 
-[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)
+## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)

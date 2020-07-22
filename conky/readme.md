@@ -63,4 +63,4 @@ The only setup required for this one is to change **"xinerama_head"** to whateve
 
 ----
 
-[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)
+## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)

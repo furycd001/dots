@@ -15,4 +15,4 @@ Here you'll find a collection of scripts that I use in my setup.
 
 ----
 
-[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)
+## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)

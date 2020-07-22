@@ -55,4 +55,4 @@ Here you'll find my collection of xfce4-terminal color schemes that I randomly s
 
 ----
 
-[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)
+## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)

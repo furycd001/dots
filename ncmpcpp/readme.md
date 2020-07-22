@@ -6,4 +6,4 @@ This is my super minimal ncmpcpp config. I usually just have a playlist playing 
 
 ----
 
-[![ko-fi](https://i.imgur.com/VVbaKK2.png)](https://ko-fi.com/furycd001)
+## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)

@@ -7,4 +7,11 @@ VirtualBox virtualbox-guest-additions file-roller && \
 cd /etc/conky/ && sudo wget https://raw.githubusercontent.com/furycd001/dots/master/conky/output-bar.conf && \
 cd &&  cd /.src && \
 git clone https://github.com/JLErvin/berry && cd /berry && make && sudo make install && \
-cd /usr/share/xsessions && sudo wget 
+cd /usr/share/xsessions && sudo wget https://raw.githubusercontent.com/furycd001/dots/master/fedora/berry.desktop && \
+cd /home/furycd001/Pictures && \
+wget https://i.imgur.com/MXo2UpZ.jpg && mv MXo2UpZ.jpg tsq.jpg && rm MXo2UpZ.jpg && \
+feh --bg-fill /home/furycd001/Pictures/tsq.jpg && \
+echo ~/.fehbg & >> .xinitrc && \
+echo conky & >> .xinitrc && \
+echo exec berry >> .xinitrc && \
+sudo reboot

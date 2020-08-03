@@ -1,6 +1,5 @@
 # [ LINUX DOTFILES ]
 
-+ **Fedora.**
 + **Firefox.**
 + **Scripts.**
 + **Conky.**

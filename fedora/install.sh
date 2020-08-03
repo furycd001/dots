@@ -12,4 +12,4 @@ feh --bg-fill /home/furycd001/Pictures/tsq.jpg && \
 echo ~/.fehbg & >> .xinitrc && \
 echo conky & >> .xinitrc && \
 echo exec berry >> .xinitrc && \
-sudo reboot
+echo INSTALL HAS FINISHED. PLEASE REBOOT NOW !!!!

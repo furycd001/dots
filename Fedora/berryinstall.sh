@@ -9,7 +9,7 @@ cd /home/furycd001/ && \
 mkdir -p Pictures/ Documents/ Downloads/ Sites/ Music/ Videos/ Terminal/ .font/ && \
 cd Pictures/
 wget https://i.imgur.com/nIP3YDW.jpg && \
-cp nIP3YDW.jpg Coffee.jpg && \
+cp nIP3YDW.jpg Coffee.jpg && rm nIP3YDW.jpg && \
 cd /home/furycd001/ && \
 feh --bg-fill '/home/Pictures/Coffee.jpg' && \
 touch ~/.xinitrc && \

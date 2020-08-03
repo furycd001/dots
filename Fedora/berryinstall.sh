@@ -15,7 +15,7 @@ feh --bg-fill '/home/Pictures/Coffee.jpg' && \
 touch ~/.xinitrc && \
 echo ~/.fehbg & >> ~/.xinitrc && \
 echo conky & ~/.xinitrc && \
-echo 'exec dwm' >> ~/.xinitrc && \
+echo 'exec berry' >> ~/.xinitrc && \
 cd .fonts && \
 wget https://assets.ubuntu.com/v1/fad7939b-ubuntu-font-family-0.83.zip && \
 unzip fad7939b-ubuntu-font-family-0.83.zip && \
@@ -27,5 +27,5 @@ git clone https://github.com/JLErvin/berry && cd berry && make && sudo make inst
 mkdir /home/furycd001/.config/berry && \
 cp examples/sxhkdrc /home/furycd001/.config/berry/sxhkdrc && \
 cp examples/autostart /home/furycd001/.config/berry/autostart && /
-cd /usr/share/xsessions && wget
+cd /usr/share/xsessions && wget https://raw.githubusercontent.com/furycd001/dots/master/Fedora/berry.desktop && cd && \
 reboot

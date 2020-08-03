@@ -27,5 +27,5 @@ git clone https://github.com/JLErvin/berry && cd berry && make && sudo make inst
 mkdir /home/furycd001/.config/berry && \
 cp examples/sxhkdrc /home/furycd001/.config/berry/sxhkdrc && \
 cp examples/autostart /home/furycd001/.config/berry/autostart && /
-cd /usr/share/xsessions && wget https://raw.githubusercontent.com/furycd001/dots/master/Fedora/berry.desktop && cd && \
+cd /usr/share/xsessions && sudo wget https://raw.githubusercontent.com/furycd001/dots/master/Fedora/berry.desktop && cd && \
 reboot

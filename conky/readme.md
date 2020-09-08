@@ -45,7 +45,7 @@ A minimal theme that's set to the top-right of the screen..
 
 > Minimal conky showing at the top-right of screen.
 
-![alt text](http://i.imgur.com/YSZHyy5.png "Conky displaying top-right of screen")
+![alt text](https://i.imgur.com/PDn8ClK.jpg "Conky displaying top-right of screen")
 
 There's no setup required for this one. Just run conky as normal....
 

@@ -63,13 +63,13 @@ The only setup required for this one is to change **"xinerama_head"** to whateve
 
 ## Notify..
 
-A minimal theme that's set to display on my external monitor..
+A minimal theme that will display conky inside a notification..
 
 > Minimal conky displaying inside a notification.
 
 ![alt text](https://i.imgur.com/CQT1itM.jpg "Conky piped into a notification")
 
-The only setup required for this one is to bind the script to a keyboard shortcut....
+The only setup required for this one is to make sure that notify-send is installed & to bind the script to a keyboard shortcut....
 
 ----
 

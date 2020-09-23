@@ -61,6 +61,16 @@ A minimal theme that's set to display on my external monitor..
 
 The only setup required for this one is to change **"xinerama_head"** to whatever number your monitor is....
 
+## Notify..
+
+A minimal theme that's set to display on my external monitor..
+
+> Minimal conky displaying inside a notification.
+
+![alt text](https://i.imgur.com/CQT1itM.jpg "Conky piped into a notification")
+
+The only setup required for this one is to bind the script to a keyboard shortcut....
+
 ----
 
 ## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)

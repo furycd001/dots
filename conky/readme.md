@@ -39,11 +39,11 @@ That's it. You should now have conky displaying within your panel. If not then s
 
 ----
 
-## Minimal top-right..
+## Top-right..
 
-A minimal theme that's set to the top-right of the screen..
+A minimal conky that sit's at the top-right of the screen..
 
-> Minimal conky showing at the top-right of screen.
+> Conky showing at the top-right of screen.
 
 ![alt text](https://i.imgur.com/GxUPFMA.jpg "Conky displaying top-right of screen")
 
@@ -53,9 +53,9 @@ There's no setup required for this one. Just run conky as normal....
 
 ## External..
 
-A minimal theme that's set to display on my external monitor..
+Similar to top right only set to display on my external monitor & also show top 4 processes..
 
-> Minimal conky displaying on external monitor.
+> Conky displaying on external monitor.
 
 ![alt text](http://i.imgur.com/mbmIF8d.png "Conky displaying top-right of screen")
 
@@ -63,13 +63,23 @@ The only setup required for this one is to change **"xinerama_head"** to whateve
 
 ## Notify..
 
-A minimal theme that will display conky inside a notification..
+Displaying conky inside a notification..
 
-> Minimal conky displaying inside a notification.
+> Conky displaying inside a notification.
 
 ![alt text](https://i.imgur.com/CQT1itM.jpg "Conky piped into a notification")
 
 The only setup required for this one is to make sure that notify-send is installed & to bind the script to a keyboard shortcut....
+
+## Terminal..
+
+Running conky once inside a terminal..
+
+> Minimal conky displaying inside a notification.
+
+![alt text](https://i.imgur.com/Jyw5gv1.jpg "Conky displaying inside a terminal window")
+
+This conky is super simple & also super useful. Add it to a bash_alias & easily access conky from anywhere, be it x or tty....
 
 ----
 

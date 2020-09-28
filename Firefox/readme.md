@@ -3,16 +3,16 @@
 These are Firefox usercChrome.css that I have created. They are meant to be minimal & with the colors being based on the ever popular [**arc theme.**](https://github.com/horst3180/Arc-theme)
 
 ## Arc..
-![alt text](http://i.imgur.com/zIsnM5k.png "Arc")
+![alt text](https://i.imgur.com/2RUYodQ.jpg "Arc")
 
 #### Close buttons are hidden inside favicons.
-![alt text](http://i.imgur.com/WnG65Pq.png "Close Button")
+![alt text](https://i.imgur.com/WYLxKFN.jpg "Close Button")
 
 #### New Tab background color changed with the css posted at the bottom of the page.
-![alt text](http://i.imgur.com/H0sWd2z.png "New Tab Page")
+![alt text](https://i.imgur.com/wQtjAzZ.jpg "New Tab Page")
 
 #### Tabs are hidden if there is only one tab open.
-![alt text](http://i.imgur.com/6UOp1SJ.png "Tabs Hidden")
+![alt text](https://i.imgur.com/19ZPHS6.jpg "Tabs Hidden")
 
 #### Changing the background color of new tabs.
 

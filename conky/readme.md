@@ -77,9 +77,13 @@ Running conky once inside a terminal..
 
 > Minimal conky displaying inside a notification.
 
-![alt text](https://i.imgur.com/Jyw5gv1.jpg "Conky displaying inside a terminal window")
+![alt text](https://i.imgur.com/Bz7TYzp.jpg "Conky displaying inside a terminal window")
 
-This conky is super simple & also super useful. Add it to a bash_alias & easily access conky from anywhere, be it x or tty....
+This conky is super simple & also super useful. Add it to a bash_alias & easily run it from anywhere, be it x or tty. You can also download my _"conkyterminal"_ script & combine it with a keybinding & the command below....
+
+```bash
+xfce4-terminal -H --hide-menubar --geometry=38x7 --execute /home/furycd001/Dots/Gucci/conkyterminal.sh &
+```
 
 ----
 

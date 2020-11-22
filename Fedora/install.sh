@@ -17,8 +17,10 @@ cd dwm-6.2 && make && sudo make install && cd .. &&
 cd st-0.8.3 && make && sudo make install && cd .. && \
 cd dmenu-4.9 && make && sudo make install && cd .. && \
 cd slock-1.4 && make && sudo make install && cd .. && \
-touch ~/.xinitrc && echo 'exec dwm' >> ~/.xinitrc && \
+touch ~/.xinitrc && echo '~/.fehbg &'>> .xinitrc  && echo 'exec dwm' >> ~/.xinitrc && \
 sudo dnf install cups -y && \
 systemctl start cups && \
 cd /home/furycd001/Pictures && wget https://i.imgur.com/QunpJwK.jpg && mv QunpJwK.jpg Ariel.jpg && \
+feh --bg-fill /home/furycd001/Pictures/Ariel.jpg && \
+sudo loadkeys us && \
 reboot

@@ -244,11 +244,9 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
   fill: #a0a2a6 !important;
 }
 
-
 /* Replace favicon on tabs with close button on hover */
 .tabbrowser-tab:not(:hover) .tab-close-button{ display:none; }
 .tabbrowser-tab:not([pinned]):hover .tab-close-button{ display:block !important; }
-
 
 .tabbrowser-tab:not([pinned]):hover  .tab-icon-image {
   display: none !important;
@@ -281,6 +279,6 @@ toolbarbutton.scrollbutton-up, toolbarbutton.scrollbutton-down {
 .scrollbutton-up[orient="horizontal"]~spacer{ border-width: 0px; opacity: 0 }
 
 /* Hide right click menu items */
-#context-bookmarklink, #context-savelinktopocket, #context-searchselect, #context-sendimage {
+#context-bookmarklink, #context-savelinktopocket, #context-searchselect, #context-sendimage, #context-back, #context-forward, #context-reload, #context-bookmarkpage, #context-sep-navigation, #context-viewimageinfo, #inspect-separator, #context-inspect-a11y  {
   display: none !important;
 }

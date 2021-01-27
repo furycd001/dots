@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Set how dim we want the screen to go (percentage, out of 100)
 dim=4

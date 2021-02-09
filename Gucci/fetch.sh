@@ -1,32 +1,63 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-os=$(lsb_release -ds)
-kr=$(uname -r)
-up=$(uptime -p)
-sh=$(echo $SHELL)
-rs=$(xdpyinfo | awk '/dimensions/{print $2}')
+while [ ! "$term" ]; do
+	while IFS=':	' read -r key val; do
+		case $key in
+			PPid) ppid=$val; break;;
+		esac
+	done < "/proc/${ppid:-$PPID}/status"
 
-echo -ne ${bold}OS:${normal} && echo $os
-echo -ne ${bold}KR:${normal} && echo $kr
-echo -ne ${bold}UP:${normal} && echo $up
-echo -ne ${bold}SH:${normal} && echo $sh
-echo -ne ${bold}RS:${normal} && echo $rs
-
-f=3 b=4 g=9
-for j in f b g; do
-  for i in {0..16}; do
-    printf -v $j$i %b "\e[${!j}${i}m"
-  done
+	read -r name < "/proc/$ppid/comm"
+	case $name in
+		*sh) ;;
+		"${0##*/}") ;;
+		*[Ll]ogin*|*init*) term=linux;;
+		*) term="$name";;
+	esac
 done
-d=$'\e[1m'
-t=$'\e[0m'
-v=$'\e[7m'
 
 
-cat << EOF
 
- $f1███$d$g1▄$t  $f2███$d$g2▄$t  $f3███$d$g3▄$t  $f4███$d$g4▄$t  $f5███$d$g5▄$t  $f6███$d$g6▄$t  $f7███$d$g7▄$t
- $f1███$d$g1█$t  $f2███$d$g2█$t  $f3███$d$g3█$t  $f4███$d$g4█$t  $f5███$d$g5█$t  $f6███$d$g6█$t  $f7███$d$g7█$t
- $f1███$d$g1█$t  $f2███$d$g2█$t  $f3███$d$g3█$t  $f4███$d$g4█$t  $f5███$d$g5█$t  $f6███$d$g6█$t  $f7███$d$g7█$t
- $d$g1 ▀▀▀   $g2▀▀▀   $g3▀▀▀   $g4▀▀▀   $g5▀▀▀   $g6▀▀▀   $g7▀▀▀
+## WM Name
+id_bloat=$(xprop -root _NET_SUPPORTING_WM_CHECK)
+id=${id_bloat##* }
+wm_bloat=$(xprop -id "$id" _NET_WM_NAME)
+
+## Get system info
+#user="${USER}@$(hostname)"
+distro=$(. /etc/lsb-release ; echo $DISTRIB_DESCRIPTION)
+kernel="$(uname -sr | sed 's/-.*//')"
+uptime="$(uptime -p | sed 's/up //')"
+shell="$(basename ${SHELL})"
+packages="$(dpkg --list | wc --lines)"
+wm="$(echo $wm_bloat | cut -d'"' -f 2)"
+
+
+
+bold="$(tput bold)"
+white="$(tput setaf 7)"
+yellow="$(tput setaf 12)"
+red="$(tput setaf 1)"
+blue="$(tput setaf 4)"
+green="$(tput setaf 2)"
+orange="$(tput setaf 8)"
+violet="$(tput setaf 5)"
+cyan="$(tput setaf 6)"
+reset="$(tput sgr0)"
+cbg="${reset}${bold}${bgaccent}${white}"
+cr="${reset}"
+c0="${reset}${bold}"
+c1="${reset}${accent}"
+
+## Output
+
+cat <<EOF
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} OS: ${reset}${c0}${blue}  ${cr}${white}${distro}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} KR: ${reset}${c0}${blue}  ${cr}${white}${kernel}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} WM: ${reset}${c0}${blue}  ${cr}${white}${wm}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} TM: ${reset}${c0}${blue}  ${cr}${white}${term}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} SH: ${reset}${c0}${blue}  ${cr}${white}${shell}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} PK: ${reset}${c0}${blue}  ${cr}${white}${packages}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} UP: ${reset}${c0}${blue}  ${cr}${white}${uptime}${reset}
+
 EOF

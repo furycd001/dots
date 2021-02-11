@@ -60,4 +60,4 @@ ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} SH:
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} PK: ${reset}${c0}${blue}  ${cr}${white}${packages}${reset}
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} UP: ${reset}${c0}${blue}  ${cr}${white}${uptime}${reset}
 EOF
-echo  
+echo

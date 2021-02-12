@@ -290,3 +290,19 @@ spacer {
 #appMenu-zoom-controls, #appMenu-edit-controls {
   padding: 4px 12px;
 }
+
+/* Private window */
+.toolbar-items {
+	background-color: #272B35 !important;
+}
+
+/* Color private browsing window */
+#main-window[privatebrowsingmode="temporary"] #TabsToolbar {
+  background-color: #272B35 !important;
+  -moz-appearance: none !important;
+}
+
+/* Keep unselected tabs visible */
+#main-window[privatebrowsingmode="temporary"] .tab-background:not([selected]) {
+    background-color: var(--toolbar-bgcolor) !important;
+}

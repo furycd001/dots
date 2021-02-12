@@ -14,6 +14,9 @@ Here you'll find my collection of xfce4-terminal color schemes that I randomly s
 ## Candy.
 ![alt text](http://i.imgur.com/BWN9Of5.png "Candy")
 
+## Coffee.
+![alt text](https://imgur.com/1m1yvkw.png "Coffee")
+
 ## Colourful.
 ![alt text](http://i.imgur.com/lo3Kjxn.png "Colourful")
 

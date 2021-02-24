@@ -35,8 +35,6 @@ The final step is to add xfce4-genmon-plugin to your panel and then use awk to p
 
 That's it. You should now have conky displaying within your panel. If not then start from the top and double check everything.
 
-###### [ PLEASE NOTE THAT FOR THE UPDATES PART TO WORK YOU MUST GIVE "UPDATES.SH" ROOT ACCESS ]
-
 ----
 
 ## Top-right..
@@ -57,19 +55,11 @@ Similar to top right only set to display on my external monitor & also show top 
 
 > Conky displaying on external monitor.
 
-![alt text](http://i.imgur.com/mbmIF8d.png "Conky displaying top-right of screen")
+![alt text](https://imgur.com/1ETzCQ3.png "Conky displaying top-right of screen")
 
 The only setup required for this one is to change **"xinerama_head"** to whatever number your monitor is....
 
-## Notify..
-
-Displaying conky inside a notification..
-
-> Conky displaying inside a notification.
-
-![alt text](https://i.imgur.com/CQT1itM.jpg "Conky piped into a notification")
-
-The only setup required for this one is to make sure that notify-send is installed & to bind the script to a keyboard shortcut....
+----
 
 ## Terminal..
 
@@ -84,6 +74,18 @@ This conky is super simple & also super useful. Add it to a bash_alias & easily 
 ```bash
 xfce4-terminal -H --hide-menubar --geometry=38x7 --execute /home/furycd001/Dots/Gucci/conkyterminal.sh &
 ```
+
+----
+
+## Lock..
+
+Similar to top right only set to display on my external monitor & also show top 4 processes..
+
+> Conky displaying on external monitor.
+
+![alt text](https://i.imgur.com/fAjpvS3.png "Conky displaying in center of external monitor")
+
+Originaly created to use with a lockscreen, but never got it working. Still like this config though so kept it. Again using **"xinerama_head"** for the external monitor....
 
 ----
 

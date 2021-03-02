@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
   if xrandr | grep -q 'HDMI-1-1 connected' ; then
-      conky -c '/home/furycd001/Dots/conky/externalbar.conf'
+      conky -c '/home/furycd001/Dots/conky/external.conf'
   fi

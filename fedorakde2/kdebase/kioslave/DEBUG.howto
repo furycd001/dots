@@ -1,0 +1,43 @@
+This document describes how you can debug an io-slave with gdb.
+
+How does an io-slave get started?
+
+Your application request 'klauncher' via DCOP for a slave. If 'klauncher' does 
+not have an idle slave ready, it will ask kdeinit to start a new one.
+kdeinit forks and dlopens the library that contains the io-slave.
+Then it calls kdemain() or, if that is not present, main() in the library.
+
+Due to the above sequence it is rather hard to get an io-slave in your
+debugger. But wait there is hope. You can start klauncher in such a way
+that slaves for a certain protocol are started in debug mode.
+
+E.g. to start all 'http' slaves in debug mode, you type:
+
+	KDE_SLAVE_DEBUG_WAIT=http kdeinit
+
+This will restart 'kdeinit' and 'klauncher'.
+
+When your application now requests a http slave, the slave will be started
+by kdeinit, but before it calls kdemain() (cq. main()) it will suspend the
+slave by sending it a SIGSTOP signal.
+
+In the terminal from which you started kdeinit you will get the following
+message:
+
+kdeinit: Suspending process
+kdeinit: 'gdb kdeinit 16779' to debug
+kdeinit: 'kill -SIGCONT 16779' to continue
+
+You can now debug your slave by typing (or pasting) 'gdb kdeinit 16779' in
+a terminal. If you don't want to debug a slave you can let it continue by
+sending it a SIGCONT by typing 'kill -SIGCONT 16779'.
+
+Be aware that slaves will not be killed while they are suspended.
+
+Once you have started gdb, you can set e.g. breakpoints and then resume the 
+slave by typing 'continue'. The debugger will return immediate with a message 
+that a SIGSTOP has been received so you will have to type 'continue' a second 
+time.
+
+Happy debugging.
+

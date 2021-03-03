@@ -1,0 +1,357 @@
+<!DOCTYPE UI><UI>
+<class>KCMEmailBase</class>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>KCMEmailBase</cstring>
+    </property>
+    <property stdset="1">
+        <name>enabled</name>
+        <bool>true</bool>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>572</width>
+            <height>564</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Email</string>
+    </property>
+    <property>
+        <name>layoutMargin</name>
+    </property>
+    <property>
+        <name>layoutSpacing</name>
+    </property>
+    <vbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget>
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout5</cstring>
+            </property>
+            <property stdset="1">
+                <name>enabled</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>layoutSpacing</name>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblCurrentProfile</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>C&amp;urrent Profile:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>cmbCurProfile</cstring>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QComboBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>cmbCurProfile</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>btnNewProfile</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;New Profile...</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget>
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpUserInfo</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>User Information</string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="3"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtReplyTo</cstring>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>You can set a reply address if you want replies to your email messages to go to a different address than the email address above. Most likely, you should leave the reply address blank, so replies go to the email address you entered above.&lt;p&gt;&lt;em&gt; Please note:&lt;/em&gt; &lt;ul&gt;&lt;li&gt;You do not need to enter the same email address as above.&lt;/li&gt;&lt;li&gt;You should not use a reply address if you frequently use discussion mailing lists.&lt;/li&gt;&lt;/ul&gt;</string>
+                    </property>
+                </widget>
+                <widget row="2"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtEMailAddr</cstring>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Enter your email address here, e.g. "john@doe.com" (without the quotation marks). This information is mandatory if you want to use email.&lt;p&gt;
+Do &lt;em&gt;not&lt;/em&gt; enter something like John Doe &amp;lt;john@doe.com&amp;gt;", just a plain email address. Your email address must not contain any blank spaces.</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblOrganization</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Organi&amp;zation:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>txtOrganization</cstring>
+                    </property>
+                </widget>
+                <widget row="3"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblReplyTo</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Reply-&amp;To Address:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>txtReplyTo</cstring>
+                    </property>
+                </widget>
+                <widget row="1"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtOrganization</cstring>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Here you can enter the name of your organization, company or university. This field is &lt;em&gt;optional&lt;/em&gt;. However, if you are using a business account and communicate with persons working for other companies, providing the name of your organization is recommended.</string>
+                    </property>
+                </widget>
+                <widget row="2"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lbl_EMailAddr</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Email Address:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>txtEMailAddr</cstring>
+                    </property>
+                </widget>
+                <widget row="0"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtFullName</cstring>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Enter your full name here, e.g. "John Doe" (without the quotation
+marks).  Some people like to provide a nick name only. You can leave this field blank and still use email. However, providing your full name is &lt;em&gt;recommended&lt;/em&gt; as this makes it much easier for your recipient to browse his or her email.</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblFullName</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Full Name:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>txtFullName</cstring>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget>
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>grpPrefClient</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>Preferred Email Client</string>
+            </property>
+            <property>
+                <name>whatsThis</name>
+                <string>Enter the path to your preferred email client (KMail, Mutt, etc.) here or choose it with the &lt;em&gt;Browse...&lt;/em&gt; button. If no client is specified here, KMail will be used (if available) instead.&lt;p/&gt; You can also use several placeholders which will be replaced with the following values:&lt;p/&gt;&lt;ul&gt;&lt;li&gt;%s: Subject&lt;/li&gt;&lt;li&gt;%c: Carbon Copy (CC)&lt;/li&gt;&lt;li&gt;%b: Blind Carbon Copy&lt;/li&gt;&lt;li&gt;%B: Body template&lt;/li&gt;&lt;li&gt;%t: Recipient's address&lt;/li&gt;&lt;/ul&gt;</string>
+            </property>
+            <vbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>KURLRequester</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtEMailClient</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>5</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>minimumSize</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Press this button to select your favorite email client. Please note that the file you select has to have the executable attribute set in order to be accepted.&lt;br&gt; You can also use several placeholders which will be replaced with the actual values when the email client is called:&lt;ul&gt; &lt;li&gt;%t: Recipient's address&lt;/li&gt; &lt;li&gt;%s: Subject&lt;/li&gt; &lt;li&gt;%c: Carbon Copy (CC)&lt;/li&gt; &lt;li&gt;%b: Blind Carbon Copy (BCC)&lt;/li&gt; &lt;li&gt;%B: Template body text&lt;/li&gt; &lt;li&gt;%A: Attachment &lt;/li&gt; &lt;/ul&gt;</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>chkRunTerminal</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Run In Terminal</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Activate this option if you want the selected email client to be executed in a terminal (e.g. &lt;em&gt;Konsole&lt;/em&gt;).</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <spacer>
+            <property>
+                <name>name</name>
+                <cstring>Spacer21</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Expanding</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+    </vbox>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>KURLRequester</class>
+        <header location="global">kurlrequester.h</header>
+        <sizehint>
+            <width>-1</width>
+            <height>-1</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>5</hordata>
+            <verdata>5</verdata>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <signal>textChanged(const QString &amp;)</signal>
+        <signal>returnPressed()</signal>
+        <signal>returnPressed(const QString &amp;)</signal>
+        <signal>openFileDialog(KURLRequester *)</signal>
+        <signal>urlSelected(const QString &amp;)</signal>
+        <slot access="public">slotEnabled(bool)</slot>
+    </customwidget>
+</customwidgets>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="45">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523250004143a55a6b2e0026630c4f</data>
+    </image>
+</images>
+<tabstops>
+    <tabstop>cmbCurProfile</tabstop>
+    <tabstop>btnNewProfile</tabstop>
+    <tabstop>txtFullName</tabstop>
+    <tabstop>txtOrganization</tabstop>
+    <tabstop>txtEMailAddr</tabstop>
+    <tabstop>txtReplyTo</tabstop>
+    <tabstop>chkRunTerminal</tabstop>
+</tabstops>
+</UI>

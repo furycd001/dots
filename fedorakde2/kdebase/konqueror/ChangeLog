@@ -1,0 +1,433 @@
+2001-05-10  Mark Deneen <deneen@bucknell.edu>
+
+	* Implemented header of vertical toggle views, with support for
+	a caption text and a close-button
+
+2001-05-05  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.cc: Set WDestructiveClose again when going
+	to fullscreen mode (Qt bug), to prevent Alt+F4 from crashing.
+	* konq_misc.cc: Only abort full-screen mode for windows on the
+	current desktop.
+
+2001-05-01  Simon Hausmann  <simon@kde.org>
+
+	* konq_mainwindow.cc : moved the connect and disconnect calls
+	to/from the highlighting signals of the actioncollections into
+	two separate methods, for cleanup, and use the qt child deletion
+	mechanism to delete the bookmark actioncollection
+
+2001-04-28  Simon Hausmann  <simon@kde.org>
+
+	* konq_actions.h (class KonqGoURLAction): new class, derived
+	from KAction, used for the 'go url' action. when plugging the
+	action into a toolbar make sure to align the button right.
+	Otherwise the toolbar layout completely fucks up and QToolBar
+	starts flickering like mad, when the window width is getting
+	small than the lenght of the url in the combobox.
+	
+	* konq_mainwindow.cc (initActions): use KonqGoURLAction
+
+2001-04-27  Simon Hausmann  <simon@kde.org>
+
+	* konq_mainwindow.cc (goURL): new slot, sending a fake key
+	event to the lineedit, acting like the user pressing return
+	(initActions): allocate a "Go" action and connect it to the
+	new goURL slot
+
+	* konqueror.rc: inserted go action into the locationbar
+
+2001-04-07  Simon Hausmann  <simon@kde.org>
+
+	* konq_mainwindow.cc (slotReload): call m_currentView->lockHistory(),
+	to fix #23818
+	* konq_view.cc/h (reload): removed obsolete method
+
+2001-03-31  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.cc(slotRunFinished): Stop wheel animation when a 
+	konqrun fails and we have no view.
+
+2001-03-25  Simon Hausmann  <simon@kde.org>
+
+	* iconview/konq_iconview.cc (KonqKfmIconView): specify a status text for
+	some actions. Likewise for some actions in KonqDirPart. Also call
+	setHighlightingEnabled in the KonqDirPart constructor
+
+	* konq_mainwindow.cc (slotShowMenuBar): call saveMainWindowSettings and
+	KGlobal::config()->sync() after toggling the visiblity of the menubar,
+	just like it is done for toolbars.
+	(slotPartActivated): connect and disconnect to/from the actionStatusText
+	and clearStatusText signals of the part's actioncollection
+
+2001-03-02  Simon Hausmann  <simon@kde.org>
+
+	* konq_view.cc, konq_browseriface.cc/h: Utilize and implement the newly
+	  added KParts::BrowserInterface
+
+2001-02-06  Simon Hausmann  <simon@kde.org>
+	
+	* konq_mainwindow.cc (openBookmarkURL): Patch by 
+	Marco Krohn <Marco.Krohn@stud.uni-hannover.de> to call openFilteredURL
+	instead of openURL. Allows environment variables in bookmarks and
+	other sugar.
+
+2001-01-28  Stephan Kulow  <coolo@kde.org>
+
+	* konq_mainwindow.cc (initActions): Plug the actions into a KAccel to
+	fix short cuts in full screen mode
+
+2001-01-16  Simon Hausmann  <simon@kde.org>
+
+	* konq_actions.cc (fillHistoryPopup),
+	  libkonq/kbookmarkmenu.cc (fillBookmarkMenu): When a Website has
+	"&" in the Title, make sure to transform it into "&&" before
+	inserting it into a QPopupMenu (for history or for bookmarks) , to
+	avoid QPopupMenu interpreting it as accelerator.
+
+
+2001-01-15  David Faure  <faure@kde.org>
+
+	* konq_aboutpage.cc, konq_mainwindow.cc: Support for "about:konqueror".
+	Credits to Simon for the part, and Torsten for the icons.
+
+2001-01-14  David Faure  <faure@kde.org>
+
+	* konq_viewmgr.cc (loadItem): Use openView instead of view->openURL,
+	so that "view-follows-view" is also applied on startup. Fixes #17679.
+
+	* konq_mainwindow.cc etc.: Lock to current location doesn't make the
+	view passive anymore. This allows to e.g. change the view mode.
+
+	* konq_frame.cc: Added Lock / Unlock to view statusbar's popupmenu.
+
+2001-01-13  David Faure  <faure@kde.org>
+
+	* konq_dirpart.cc etc.: Always paste to current directory, even
+	when an item is selected.
+
+2001-01-12  David Faure  <faure@kde.org>
+
+	* konq_viewmgr.cc (loadViewProfile): Set active part before loading
+	URL, so that the URL appears in the location bar.
+
+	* konq_mainwindow.cc, konq_dirpart.cc: Store find part into history,
+	in order to restore it when pressing back.
+
+2001-01-11  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.*, konq_view.*: Store caption in the view,
+	fixes caption when switching parts or removing one.
+
+2001-01-11  Carsten Pfeiffer <pfeiffer@kde.org>
+
+	* konq_historymgr.*: KonqHistoryManager now implements the new 
+	HistoryProvider (from KParts)
+
+2001-01-09  Alexander Neundorf <neundorf@kde.org>
+
+	* konq_mainwindow.*, konq_dirpart.*: Copy (F7) and move (F8) are now
+	available as soon as some files are selected in a directory view.
+	A dialog asks for the destination.
+
+2001-01-08  Simon Hausmann  <simon@kde.org>
+
+	* KonquerorIface.cc (openBrowserWindow),
+	(createNewWindow),
+	(createNewWindow), 
+	(createBrowserWindowFromProfile),
+	(createBrowserWindowFromProfile), 
+	(createBrowserWindowFromProfileAndURL),
+	(createBrowserWindowFromProfileAndURL): changed return type from void
+	to DCOPRef
+
+2001-01-07  David Faure <faure@kde.org>
+
+	* konq_mainwindow.*: One KonqRun per view (del the old one in setRun),
+	only one with no view associated (KonqMainWindow::m_initialKonqRun).
+	This fixes "clicking on two bookmarks very fast opens both URLs,
+	splitting the view".
+	
+2000-12-28  Simon Hausmann  <simon@kde.org>
+
+	* konq_viewmgr.cc (loadViewProfile): When loading an empty profile
+	(in particular the webbrowsing one) , activate the clear_location
+	action. This gives the focus to the location bar -> the user can
+	type in an url right away when loading the webbrowsing profile
+
+2000-12-27  Simon Hausmann  <simon@kde.org>
+
+	* konq_mainwindow.cc (enableAllActions): for iterating over all actions
+	don't use the action( int index ) method of KActionCollection but instead
+	retrieve a QValueList<KAction *> and iterate over that, as the =+(int)
+	operator of QDictIterator isn't really fast
+
+	          ----- KDE 2.1 BETA 1 RELEASE ----
+	
+2000-12-12  David Faure  <faure@kde.org>
+
+	* konq_viewmgr.cc: Fixed saving of profiles containing views
+	"locked to their current location". The attribute was missing from 
+	the profile.
+
+	* konq_mainwindow.cc: Save and restore the preferred service in for 
+	each toolbar 'viewmode' button.
+
+2000-12-10  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.cc, konq_view.*, browserextension.*: Fixed
+	the initial state of the common actions (cut,copy,paste etc.).
+	Had to move all the handling of the action states to browserextension.
+
+2000-12-10  Simon Hausmann  <simon@kde.org>
+
+	* konqview_example.tar.gz: removed outdated example.
+
+	* konq_frame.h, konq_view.{cc,h},
+	  konq_factory.{cc,h}, konq_mainwindow.{cc,h} : Code cleanups,
+	added missing const's here and there, removed some old unused
+	code.
+
+2000-12-09  Simon Hausmann  <simon@kde.org>
+
+	* konq_actions.{cc,h}: Added KonqViewModeAction, a KRadioAction
+	with an additional delayed popupmenu
+
+	* konq_mainwindow.{cc,h}: Changed the toolbar viewmode buttons to
+	show the available viewmodes grouped. For directories they are
+	grouped by iconview and listview. This way one can quickly
+	switch between the favourite list and iconview while still having
+	the complete choice of viewmodes via delayed popupmenus
+	(idea by Torsten and David)
+	
+
+2000-12-08  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.cc (openURL): Support for about:blank
+	Fix for severe problems with the activation of the standard actions.
+	The state of the action is now stored in each KonqView.
+	
+2000-12-08  Malte Starostik <malte.starostik@t-online.de>
+	
+	* libkonq/, iconview/: Preview for HTML files implemented.
+
+2000-12-08  David Faure  <faure@kde.org> and Carsten Pfeiffer <pfeiffer@kde.org>
+
+	* dirtree/*: Major rewrite of the directory tree, to make it generic.
+	It can now handle toplevel items over to specific modules. Current
+	modules available are the dirtree module (directory listing) and the
+	history module (for a way to visualize the persistent history).
+
+2000-12-06  Matthias Elter <elter@kde.org>
+
+	* konq_mainwindow.cc: Turned the Configure submenu into a single dialog.
+
+2000-12-02  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.cc (slotToolFind): "Find Files" now embeds the kfind
+	part, and the result of the search is connected to the current directory
+	part. "Close" or opening any other URL closes the 'find' part.
+	Thanks to Eric Coquelle for the kfind classes, and to jpmartin for 
+	pushing us to do this :)
+
+	* konq_viewmgr.cc: Support for suicidal passive views, more arguments 
+	to splitView and splitWindow.
+
+	* konq_guiclients.cc: Duplicated code removed, uses splitWindow now.
+
+2000-11-30  David Faure  <faure@kde.org>
+
+	* konq_mainwindow.cc: Use current profile in "New Window" to fix #16283.
+
+2000-11-28  David Faure  <faure@kde.org>
+
+	* konq_actions.cc: Accel (Alt+O in English) to give focus to location bar,
+	shown by the label.
+
+	* konq_profiledlg.cc: Ported to KListView to fix problems with selection.
+
+2000-11-26  David Faure  <faure@kde.org>
+
+	* konq_misc.cc, kfmclient.cc, KonquerorIface.cc: Speed up for URLs opened
+	from another process using KRun (e.g. kdesktop's Minicli), by passing the
+	mimetype through to konqueror.
+
+2000-11-25  David Faure  <faure@kde.org>
+
+	* konq_misc.cc: Fixed location bar not showing the URL asap.
+	
+	* konq_mainwindow.cc : Icons for the configure submenu.
+
+	* konq_actions.cc : KonqHistoryAction turned into KToolBarPopupAction.
+	Drag the "Location" label to start a drag with the current URL.
+
+2000-11-25  Simon Hausmann  <simon@kde.org>
+
+	* konq_view.cc (connectPart): Install new url event filter for plain
+	krops and for browserviews with the enableURLDropHandling property enabled
+	(eventFilter): New eventfilter which listens for url drop events
+
+Sat Nov 25 17:38:27 2000  Carsten Pfeiffer  <pfeiffer@kde.org>
+
+	* konq_mainwindow.cc: Completion handling overhauled. We have
+	one KonqHistoryManager, which holds a KCompletion object and syncs
+	the history with the completion.
+
+	* konq_view.cc: 
+	set m_bAborted before calling slotCompleted in 	slotCanceled()
+	feed the history manager
+
+	* konq_actions.cc: use KonqHistoryCombo that doesn't mess with the
+	competion-object, we do our own synchronization now.
+	
+	* libkonq/ added konq_history*
+	
+2000-11-22  David Faure  <faure@kde.org>
+
+	* konq_listview.cc: Added "Default" Icon Size, which corresponds to 
+	KIcon::Small (but when switching to icon view, it becomes whatever's 
+	configured for the "Desktop" group).
+
+2000-11-21  David Faure  <faure@kde.org>
+
+	* konq_listview.cc: Case Insensitive Sort option, on by default.
+
+	* Views: Major rework of the "delayed mimetypes determination" feature,
+	to make it available to the list view. This makes the list view
+	MUCH faster in big directories.
+	This also showed a bug in the listview background painting -> fixed.
+
+2000-11-19  David Faure  <faure@kde.org>
+
+	* Views: Implemented in-place renaming of items ("Rename" in menus, F2)
+
+2000-11-17  David Faure  <faure@kde.org>
+
+	* konq_profiledlg.cc: Made checkbox states persistent (saved to config)
+
+	* konq_run.cc: Check that when we call KRun from KonqRun, it's not going
+	to launch another konqueror.
+	* konq_guiclients.cc: Build toggle-view actions in the actioncollection 
+	of the mainwindow, so that it's possible to assign them a shortcut.
+
+2000-11-16  David Faure  <faure@kde.org>
+
+	* konq_viewmgr.cc: Patch by Keunwoo Lee <klee@cs.washington.edu> to
+	implement dynamic accels for the profile submenu.
+
+2000-11-15  David Faure  <faure@kde.org>
+
+	* konq_drag.cc: Export URLs as text/plain as well.
+
+	* konq_mainwindow.cc: Implemented auto-saving of toolbars (KMainWindow),
+	removed "Save Settings".
+	Fixed "clicking on directory in dirtree uses wrong view mode for dirs".
+	* konq_iconview.cc: Added +/- buttons for changing the icon size.
+
+2000-11-06  David Faure  <faure@kde.org>
+
+	* konq_operations.cc: statURL, calls a slot when it stat'ed
+	the url and created a kfileitem for it.
+	Used in doDrop when the destination's kfileitem is unknown. Fixes #14739.
+	Also, KPropsDlg now does a similar thing when called with a KURL.
+
+2000-11-05  David Faure  <faure@kde.org>
+
+	* konqueror.rc: Moved the "open with" actions to the Location menu,
+	and added a separator to the action list.
+
+	* konq_view.cc (connectPart): moved call to setSaveViewPropertiesLocally
+	(used to be in various places in KonqMW) so that the flag is
+	also correct when switching views.
+
+	* konq_dirpart.cc and directory views: apply background color and pixmap
+	to the viewport(), and updated konq_iconview to do the same. This fixes
+	many inconsistencies, and makes resizing a window much faster & smoother.
+	Note that it has to be the viewport and not the widget, otherwise in the
+	listview, the box between the scrollbars appears colored/pixmap-ed.
+
+	* konq_mainwindow.cc: action renamed View Properties Saved In Directory
+
+2000-11-04  David Faure  <faure@kde.org>
+
+	* konq_viewmgr.cc: now takes care of enableAllActions.
+	Show led and active statusbar even in the tree+icon configuration
+	(the rule is now "more than one view", not "more than one activeable 
+	view"). This should remove some confusion.
+
+	* konq_frame.cc: "Remove View" in RMB on statusbar.
+	Don't try to activate passive views when clicking statusbar.
+	Different background color on statusbar for active view.
+
+	* konq_mainwindow.cc: Fixes for "Remove Active View" enabling,
+	to avoid ending up with a lonely embedded konsole, and some
+	cleanup of code for enabling other view-related actions.
+	Introducing updateViewActions for common code between enableAllActions
+	and slotPartActivated. Fixes a few glitches in action activation.
+
+2000-10-31  Carsten Pfeiffer  <pfeiffer@kde.org>
+
+	* libkonq: Implemented "Text preview" functionality
+
+2000-10-26  David Faure  <faure@kde.org>
+
+	* keditbookmarks/*: Finally, a bookmark editor for konqueror.
+	
+	* kbookmarkmanager.*: Separated from kbookmark.* after dcopidl dying on
+	"mutable" :). Implemented DCOP notifications between processes.
+	Implemented "internal bookmark address". KonqBookmarkManager is no more.
+
+	* kbookmarkbar.*: Update for XML bookmarks, fill in aboutToShow, update
+	sub-menus upon changed() signal, enabled "Add Bookmark" and "New Folder"
+
+2000-10-24  David Faure  <faure@kde.org>
+
+	* kbookmark*: Reimplemented the bookmarks, they are now saved in XML.
+	Desktop files are imported if the XML file doesn't exist (it's
+	immediately saved, so this should happen only once).
+
+2000-10-22  Simon Hausmann  <simon@kde.org>
+
+	* konq_view.{cc,h} : changed part->child( 0, "KParts::BE" ) calls to
+	  use the new childObject method in BrowserExtension
+
+2000-10-22  David Faure  <faure@kde.org>
+
+	* dirtree/konq_dirtree.cc: Fixed support for devices in the directory 
+	tree. It currently requires MountPoint in the device desktop file.
+
+	* listview/konq_textviewwidget.cc: Only the Name column is now
+	selected, and used as a drop area - like in other listviews.
+	This requires the fix in KListView to work properly.
+
+2000-10-21  David Faure  <faure@kde.org>
+
+	* Fix for linked views saved in profile, introducing isLoadingProfile().
+
+2000-10-20  David Faure  <faure@kde.org>
+
+	* konq_misc.cc: Use webbrowsing profile for *.html *.htm as well.
+
+2000-10-20  Simon Hausmann  <hausmann@kde.org>
+
+	* Duplicate window duplicates the history as well.
+
+[...... long period of development up to KDE 2.0 ommitted .....]
+	
+1999-03-15  Michael Reiher <michael.reiher@gmx.de>
+
+	* Implemented an ActiveViewIndicator : KonqFrame
+
+1999-02-28  Simon Hausmann <tronical@gmx.net>
+
+	* Rewrite from scratch, with completely new IDL
+
+1999-02-09  David Faure  <faure@kde.org>
+
+	* Source imported in kdebase/konqueror
+
+1999-01-25  Torben Weis  <weis@kde.org>
+	
+	* Initial import of kfmIII in corba/kfm
+	
+

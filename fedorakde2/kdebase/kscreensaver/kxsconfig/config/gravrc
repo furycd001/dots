@@ -1,0 +1,19 @@
+[Arg0]
+Label=Count:
+Maximum=20
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=5
+[Arg1]
+Label=Trails
+SwitchOn=-trail
+SwitchOff=
+Type=Check
+Value=false
+[Arg2]
+Label=Decay
+SwitchOn=-decay
+SwitchOff=-no-decay
+Type=Check
+Value=false

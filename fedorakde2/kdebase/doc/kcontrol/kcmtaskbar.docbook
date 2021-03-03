@@ -1,0 +1,73 @@
+<sect1 id="taskbar">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>taskbar</keyword>
+<keyword>configure</keyword>
+</keywordset>
+</sect1info>
+
+<title>Taskbar</title>
+
+<para>The taskbar, is a quick way to switch between applications.  The taskbar
+can be located in the panel (default), or outside the panel on the
+desktop.</para>
+
+<para>This module has options to control how the taskbar operates:</para>
+
+<para>The top option, labeled <guilabel>Show all windows</guilabel>,
+determines if all open windows are included in the taskbar or not.  By
+default, the taskbar only shows the open windows <emphasis>on the
+current desktop</emphasis>.  If this option is enabled, the taskbar will
+show all open windows <emphasis>on all desktops</emphasis>.</para>
+
+<para>Using the <guilabel>Show windows list button</guilabel> option,
+you can enable a little button to be shown in the taskbar: this button
+will open a popup menu offering access to applications on other desktops
+as well as some useful actions, like <guilabel>Unclutter
+Windows</guilabel>.</para>
+
+<para>The next option, <guilabel>Group similar tasks</guilabel> allows
+you to save some space on your taskbar, by only showing one icon for
+each running application, no matter how many windows are shown.  You can
+click on the icon to display a menu of all the windows that are
+available.  This is most useful when you have enabled <guilabel>Show all
+windows</guilabel>.</para>
+
+<para><guilabel>Sort tasks by virtual desktop</guilabel> changes the
+sorted order of the icons on the taskbar, so that windows on virtual
+desktop 1 are shown first (to the left, or at the top) of the taskbar,
+and next windows that are on virtual desktop 2, and so on.</para>
+
+<para>Finally, you can disable the application icons, and show just the
+text.  You might want to do this to save space on your taskbar, for
+example.</para>
+
+<!-- What option was this? <note><para>Currently the second option does
+not have any affect. The next generation of the taskbar, will allow the user to
+seperate the taskbar from the panel, and place it anywhere on the
+desktop.</para></note> -->
+
+<sect2 id="taskbar-author">
+<title>Section Author</title>
+
+<para>This section written by Mike McBride <email>mpmcbride7@yahoo.com</email>
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

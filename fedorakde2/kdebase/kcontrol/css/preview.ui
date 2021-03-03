@@ -1,0 +1,110 @@
+<!DOCTYPE UI><UI>
+<class>PreviewDialog</class>
+<include location="global">kseparator.h</include>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>PreviewDialog</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>558</width>
+            <height>349</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Preview</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="1"  column="0"  rowspan="1"  colspan="2" >
+            <class>KSeparator</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Line1</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <spacer row="2"  column="0" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer1</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Expanding</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget row="0"  column="0"  rowspan="1"  colspan="2" >
+            <class>QTextBrowser</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>preview</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&lt;qt&gt;
+
+&lt;h1&gt;Heading 1&lt;/h1&gt;&lt;br/&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;&lt;br/&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;&lt;br/&gt;
+
+&lt;p&gt;User defined stylesheets allow increased
+accessibility for visually handicapped
+people.&lt;/p&gt;
+
+&lt;/qt&gt;</string>
+            </property>
+        </widget>
+        <widget row="2"  column="1" >
+            <class>QPushButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>PushButton2</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&amp;Ok</string>
+            </property>
+            <property stdset="1">
+                <name>default</name>
+                <bool>true</bool>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>PushButton2</sender>
+        <signal>clicked()</signal>
+        <receiver>PreviewDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+</UI>

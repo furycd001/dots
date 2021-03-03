@@ -1,0 +1,81 @@
+<sect1 id="interrupts">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>IRQ</keyword>
+<keyword>interrupts</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+<title>Interrupt Request (<abbrev>IRQ</abbrev>) Lines in Use</title>
+
+<para>This page displays information about the Interrupt Request
+Lines in use, and the devices that use them.</para>
+
+<para>An <acronym>IRQ</acronym> is a hardware line used in a
+<acronym>PC</acronym> by (<acronym>ISA</acronym> bus) devices like
+keyboards, modems, sound cards, &etc;, to send interrupt signals to the
+processor to tell it that the device is ready to send or accept data.
+Unfortunately, there are  only sixteen <acronym>IRQ</acronym>'s (0-15)
+available in the i386 (<acronym>PC</acronym>) architecture for sharing among
+the  <acronym>ISA</acronym> various devices.</para>
+
+<para>Many hardware problems are the result of <acronym>IRQ</acronym>
+conflicts, when two devices try to use the same <acronym>IRQ</acronym>, or
+software is misconfigured to use a different <acronym>IRQ</acronym> from the
+one a device is actually configured for.</para>
+
+<note><para>The exact information displayed is system-dependent.  On some
+systems, <acronym>IRQ</acronym> information cannot be displayed
+ yet.</para></note>
+
+<para>On Linux, this information is read from
+<filename class="directory">/proc/interrupts</filename>, which is only
+available if the <filename class="directory">/proc</filename>
+pseudo-filesystem is compiled into the  kernel.</para>
+
+<para>The first column, is the <acronym>IRQ</acronym> number.  The second
+column, is the number of interrupts that have been received since the last
+reboot.  The third column shows the type of interrupt.  The fourth,
+identifies the device assigned to that interrupt.</para>
+
+<para>The user cannot modify any settings on this page.</para>
+
+<sect2 id="interupt-author">
+<title>Section Authors</title>
+
+<para> Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, Helge Deller
+<email>helge.deller@ruhruni-bochum.de</email>, Duncan Haldane
+<email>duncan@kde.org</email>,and Michael McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2> 
+</sect1>
+

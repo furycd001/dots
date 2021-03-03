@@ -1,0 +1,2164 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"> 
+]>
+
+<!-- The language must NOT be changed here. -->
+
+<book lang="&language;">
+
+<bookinfo>
+<title>The &kicker; Handbook</title>
+
+<authorgroup>
+<author>
+<firstname>Dirk</firstname>
+<surname>Doerflinger</surname>
+<affiliation>
+<address><email>ddoerflinger@web.de</email></address>
+</affiliation>
+</author>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+</authorgroup>
+
+<copyright>
+<year>2001</year>
+<holder>Dirk Doerflinger</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2001-06-24</date>
+<releaseinfo>1.10.00</releaseinfo>
+
+<abstract>
+<para>
+&kicker; is the &kde; application starter panel and is also capable of
+some useful applets and extensions. It usually resides on the bottom of
+the desktop.
+</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>Kicker</keyword>
+<keyword>kdebase</keyword>
+<keyword>panel</keyword>
+<keyword>application</keyword>
+<keyword>starter</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+
+<para>
+&kicker; is the application launcher panel of the K Desktop Environment.
+Besides the <guimenu>K</guimenu> Menu, where you can start applications,
+&kicker; is also capable of running docked applets like the pager, the
+taskbar or the clock, and extensions, such as child panels.
+</para>
+
+<para>
+&kicker; usually resides on the bottom of the desktop, but it can also
+be moved to any other border.  Please report any problems or feature
+requests to the &kde; mailing lists.
+</para>
+
+</chapter>
+
+<chapter id="using-kicker">
+<title>Using &kicker;</title>
+
+<para>
+This is what you see on a freshly installed &kde;. If you are using
+lower resolution, some of the icons may not appear immediately. To cater
+for those smaller resolutions, the screenshot below is divided in two
+parts.
+</para>
+
+<screenshot>
+<screeninfo>Here's a screenshot of the left side of &kicker;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="screenshot_left.png" format="PNG"/></imageobject>
+<textobject>
+<phrase>Screenshot Left</phrase>
+</textobject>
+<caption>
+<para>
+Here's a screenshot of the left side of &kicker;
+</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>And here's the right side</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="screenshot_right.png" format="PNG"/></imageobject>
+<textobject>
+<phrase>Screenshot Right</phrase>
+</textobject>
+<caption>
+<para>
+And here's the right side
+</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+<para>
+Of course, this is only one way &kicker; might appear on the
+screen. There are many more configurations available.
+</para>
+
+<sect1 id="newbie">
+<title>A quick tour for new &kde; users</title>
+
+<para>
+If you are experienced with this kind of application launcher, you can
+ignore this chapter and move on to <link linkend="basics">&kicker;
+basics</link>.
+</para>
+
+<para>
+Of course, the main use of &kicker; is starting applications. This is
+done by clicking icons, either from the panel or from the
+<guimenu>K</guimenu> Menu. &kicker; shows some more things too, so let's
+see.
+</para>
+
+<para>
+Having a look at the screenshots above, there are from left to right:
+</para>
+
+<variablelist>
+
+<varlistentry>
+<term>The <guimenu>K</guimenu> Menu</term>
+<listitem>
+<para>
+It is used for launching applications and some other useful
+things. Refer to <link linkend="k-menu">The <guimenu>K</guimenu> Menu
+</link>for more information.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Application start icons</term>
+<listitem>
+<para>
+Here are some icons of commonly used applications. They can be moved and
+removed and others can be added. Some of them have a special meaning,
+which you can read more about in <link linkend="basics">&kicker;
+basics</link>. Resting the mouse over an icon without clicking shows the
+name and the description of that application, if you have set that in
+the <link linkend="configuring">Settings Dialog</link>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The Pager applet</term>
+<listitem>
+<para>
+This displays a small view of the virtual desktops. Clicking one section
+of it will activate that desktop. Please refer to <link
+linkend="applets">Applets</link>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The Taskbar</term>
+<listitem>
+<para>
+All running applications are displayed as buttons in the
+taskbar. Clicking an application's button will bring this application on
+top. If it was on top before, it will be iconized. As always, more
+information in <link linkend="applets">Applets</link>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>System Tray</term>
+<listitem>
+<para>
+The systemtray is able to swallow some kind of applications like - in
+this case - &klipper;.  There are also more useful apps for the
+systemtay. You can click the applications either with the
+<mousebutton>left</mousebutton> or the <mousebutton>right</mousebutton>
+mousebutton and see what's happening. It also contains two small
+buttons. The one with the luggage lock on it locks your screen if you
+ever leave your &kde; and want nobody else seeing or using it, the other
+one shuts down &kde; and the X-Server.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term>Clock</term>
+<listitem>
+<para>
+The Clock applet is - of course - a small, useful clock. It can have
+various styles, have a look at the <link
+linkend="applets">applets</link> section for more information.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The <guibutton>hide</guibutton> button</term>
+<listitem>
+<para>
+This button - which can also be configured to appear at the right side -
+lets you fade out &kicker; for having more space on the screen. When
+&kicker; is faded out, only the <guibutton>hide</guibutton> button will
+remain in order to fade in &kicker; again.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>
+This was only the description of &kicker; on it's initial launch. It can
+be configured in many ways and styles and more applets can be
+added. There are even some extensions like the external taskbar you can
+add. See <link linkend="basics">&kicker; basics</link>, <link
+linkend="applets">Applets </link> and <link
+linkend="extensions">Extensions </link>for more information.
+</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="basics">
+
+<title>&kicker; basics</title>
+
+<sect1 id="general-usage">
+<title>General usage</title>
+       
+<para>
+As mentioned before, there are a lot of things that can be added to
+&kicker;. This section will tell you everything about application
+starting, folder browsing and adding some kinds of applets and
+extensions. Lots of things can be done from the <guimenu>context
+menu</guimenu> or from <guisubmenu>Configure Panel</guisubmenu> in the
+<guimenu>K</guimenu> Menu.
+</para>
+  
+<sect2 id="adding-apps">
+<title>Adding applications</title>
+
+<para>
+There are three different ways to add an application to &kicker;:
+</para>
+
+<variablelist>
+<varlistentry>
+<term>Drag and Drop</term>
+<listitem>
+<para>
+Simply drag any file from &konqueror; into &kicker; and it's there. This
+works also from the <guimenu>K</guimenu> Menu with any entry.  You can
+change the attributes like optional command line parameters or the icon
+by clicking it with the <mousebutton>right</mousebutton> mouse button
+and choosing <guimenuitem>Preferences</guimenuitem> from the
+<guimenu>context menu</guimenu>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Using the context menu to add a &kde; application</term>
+<listitem>
+<para>
+Click the <mousebutton>right</mousebutton> mousebutton on any free space
+in &kicker; and choose <guisubmenu>Add</guisubmenu> and then
+<guisubmenu>Button </guisubmenu>. There you can choose an application
+which will be added in the place you clicked.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Using the <guimenu>context menu</guimenu> to add a legacy
+application</term>
+<listitem>
+<para>
+Legacy application means non-&kde;-applications &eg;
+<application>xosview</application> or <application>xemacs</application>.
+</para>
+
+<para>
+Click the <mousebutton>right</mousebutton> mousebutton on any free space
+in &kicker; and choose <guisubmenu>Add</guisubmenu> and then
+<guimenuitem>Legacy Application </guimenuitem>. Choose the application
+you want to add.  In the newly appearing window, you can append an
+<guilabel>optional command line</guilabel>, have the aplication start
+from a terminal, and choose the icon which will appear in &kicker; by
+clicking the <guiicon>gear </guiicon>. If you don't choose an icon, the
+application will use the gear as a default.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>
+Applications can be moved or removed by &RMB; click and choosing
+<guimenuitem>Move</guimenuitem> or
+<guimenuitem>Remove</guimenuitem>. You can also move an icon by clicking
+&MMB; if you have one.
+</para>
+
+</sect2>
+
+<sect2 id="adding-folders">
+<title>Adding Folders</title>
+
+<para>
+Folders can be added by simply dragging a folder to any free space of
+&kicker;. Quick Browsers can also be added from the <guimenu>context
+menu</guimenu> or the <guimenu>K</guimenu> Menu.
+</para>
+
+<para>
+There are two different ways to have a folder in &kicker;, you can
+choose between them in the menu appearing after dropping. Omitting this
+menu, it will be added as a file manager <acronym>URL</acronym>.
+</para>
+
+<variablelist>
+<varlistentry>
+<term>Add as file manager &URL;</term>
+<listitem>
+<para>Choosing this will add a link to the selected folder. Clicking
+this <guiicon>folder</guiicon> icon will open &konqueror; displaying the
+contents of this folder. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Add as Quick Browser</term>
+<listitem>
+<para>If you add a folder this way, it will be displayed as a submenu of
+&kicker;. This submenu contains <guimenuitem>Open in File
+Manager</guimenuitem>, which does the same as a file manager &URL;, and
+<guimenuitem>Open in Terminal</guimenuitem>, which opens a terminal with
+this folder as working path. Also, this submenu contains the contents of
+that folder.  Sub-folders are displayed as new submenus like the Quick
+Browser itself. The maximum number of displayed elements can be set in
+the <link linkend="configuring">Settings Dialog</link>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>
+Both kinds of folders can be moved or removed by &RMB; click and
+choosing <guimenuitem>Move</guimenuitem> or
+<guimenuitem>Remove</guimenuitem>. You can also move an icon by clicking
+&MMB; if you have one.
+</para>
+
+<para>
+File manager &URL;s can also be configured from the
+<guimenu>context-menu</guimenu>, just like any other folder anywhere in
+&kde;
+</para>
+
+</sect2>
+
+<sect2 id="adding-special-icons">
+<title>Special Icons</title>
+
+<para>
+Some icons in &kicker; have a special meaning. They are added by
+choosing them from the submenu <guisubmenu>Add</guisubmenu> of the
+<guimenu>context-menu</guimenu>.
+</para>
+
+<variablelist>
+<varlistentry>
+<term>The <guimenu>K</guimenu> Menu Icon</term>
+<listitem>
+<para>
+<guiicon><inlinemediaobject><imageobject><imagedata
+fileref="k_menu_icon.png"
+format="PNG"/></imageobject></inlinemediaobject></guiicon> The
+<guiicon>K Menu icon</guiicon> is one of the most necessary icons in
+&kicker;. As you might guess, it opens the <guimenu>K</guimenu> Menu,
+which you can learn more about in <link linkend="k-menu">The K
+Menu</link>.
+</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term>The Window List</term>
+<listitem>
+<para>
+<guiicon><inlinemediaobject><imageobject><imagedata
+fileref="windowlist_icon.png"
+format="PNG"/></imageobject></inlinemediaobject></guiicon> Clicking this
+<guiicon>icon</guiicon> will show the <guimenu>Window
+List</guimenu>. Its first entry, <guimenuitem>Unclutter
+Windows</guimenuitem>, tries to move the windows on your active desktop
+in a way to see as many as possible.
+</para>
+
+<para>
+<guimenuitem>Cascade Windows</guimenuitem> puts all windows on the
+active desktop over each others, the most recently on top and the others
+sorted by the time they where last used.</para> <para>Below those
+entries is a list of all currently running applications, grouped by the
+desktops on which they are running. Clicking on the name of a desktop
+will switch to that one, clicking an application will also activate it.
+</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The Bookmarks Icon</term>
+<listitem>
+<para>
+<guiicon><inlinemediaobject><imageobject><imagedata
+fileref="bookmarks_icon.png"
+format="PNG"/></imageobject></inlinemediaobject></guiicon> The
+<guiicon>Bookmarks icon</guiicon> provides fast access to your
+bookmarks. They appear in the same way as if you click the
+<guimenu>Bookmarks menu</guimenu> in &konqueror;. Clicking a bookmark in
+the menu will launch &konqueror; with the <acronym>URL</acronym> which
+is behind that bookmark.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The Recent Documents Icon</term>
+<listitem>
+<para>
+<guiicon><inlinemediaobject><imageobject><imagedata
+fileref="recent_docs_icon.png"
+format="PNG"/></imageobject></inlinemediaobject></guiicon> 
+This menu shows the most recently used documents (works only with &kde;
+applications for the moment). Clicking the element <guimenuitem>Clear
+History</guimenuitem> will remove those entries, what may be useful for
+privacy reasons.
+</para>
+</listitem>
+</varlistentry>
+
+
+
+<varlistentry>
+<term>The Desktop Access Icon</term>
+<listitem>
+<para>
+<guiicon><inlinemediaobject><imageobject><imagedata
+fileref="desktop_icon.png"
+format="PNG"/></imageobject></inlinemediaobject></guiicon> The
+<guiicon>Desktop Access icon</guiicon> lets you have quick access to all
+the things you have on your desktop by minimizing all currently open
+applications. Clicking it once will toggle it to show the desktop. The
+<guiicon>icon</guiicon> will remain pressed until you either click it
+again, what will restore your minimized apps, or reactivate an
+application from the taskbar.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The Terminal Sessions Icon</term>
+<listitem>
+<para>
+<guiicon><inlinemediaobject><imageobject><imagedata
+fileref="terminals_icon.png"
+format="PNG"/></imageobject></inlinemediaobject></guiicon> This icon
+provides access to some frequently used terminal styles: simply clicking
+it will launch a normal console, while holding down the &LMB; provides
+the same possibilities like the &konsole; gives when clicking
+<guibutton>New</guibutton>.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="removing-icons">
+<title>Removing all kind of icons</title>
+
+<para>
+Clicking the &RMB; on any icon, no means if it's for an application, a
+folder or a special icon, and then choosing
+<guimenuitem>Remove</guimenuitem> from the appearing <guimenu>context
+menu</guimenu> will remove the icon from &kicker;.
+</para>
+
+<note>
+<para>
+Please note, that removing an icon from &kicker; won't remove the
+application on the disk!
+</para>
+</note>
+
+</sect2>
+
+<sect2 id="adding-applets">
+<title>Adding Applets</title>
+
+<para>
+&kicker; comes with a set of applets like the taskbar or the
+mini-pager. Those can be added either from the submenu
+<guisubmenu>Configure Panel</guisubmenu> of the <guimenu>K</guimenu>
+Menu or from the <guimenu>context menu</guimenu> by choosing
+<guisubmenu>Add</guisubmenu> and then <guisubmenu>Applet</guisubmenu>.
+</para>
+
+<para>
+Applets can be moved by dragging them on their handle with holding the
+&LMB; mouse button, or the &MMB; mouse button, or by choosing
+<guimenuitem>Move</guimenuitem> from the <guimenu>context
+menu</guimenu>.
+</para>
+
+<para>
+You can learn more about the applets in the section <link
+linkend="applets">Applets</link>.
+</para>
+
+</sect2>
+<sect2 id="removing-applets">
+<title>Removing Applets</title>
+<para>
+Applets can be removed by choosing <guimenuitem>Remove</guimenuitem>
+from the <guimenu>context menu</guimenu>, which appears when the &RMB;
+is clicked on the applet's handle (left or top side of the applet) or in
+some applets allover the applet.
+</para>
+
+</sect2>
+
+<sect2 id="adding-extensions">
+<title>Adding Extensions</title>
+
+<para>
+There is also the possibility to add external extensions to &kicker;,
+like the external taskbar, the Dock Application Bar for WindowMaker
+dock-applications, <application>Kasbar</application>, an iconic kind of
+taskbar and even child panels which behave like new instances of
+&kicker;.
+</para>
+
+<para>
+All extensions can be moved to any border of the screen by dragging them
+with the &LMB; on the small fade-out handles on the left or top side of
+the extensions.  These fade-out handles can also be used for fading out
+the extension.  The child panel can also be dragged by clicking with the
+&LMB; on any empty space on it.
+</para>
+
+<para>
+More about extensions can be read in the <link
+linkend="extensions">extensions</link> section.
+</para>
+
+</sect2>
+
+<sect2 id="removing-extensions">
+<title>Removing Extensions</title>
+
+<para>
+You can remove extensions by clicking <guimenuitem>Remove</guimenuitem>
+in their <guimenu>context menu</guimenu>, usually located in the
+fade-out handles.
+</para>
+</sect2>
+
+</sect1>
+
+<sect1 id="configuring-apps">
+<title>Configuring Application Buttons</title>
+
+<para>
+Every <guiicon>application starter</guiicon> has some preferences you
+can set from their <guimenu>context menu</guimenu>. Usually applications
+and folders have the same preferences as in &konqueror;.  Only the
+applications which are located in the <guimenu>K</guimenu> Menu (for
+experienced users: those which have a <literal
+role="extension">*.desktop</literal> in the <filename
+class="directory">applnk</filename> dir) have a special kind of config
+dialog.
+</para>
+
+<sect2 id="general-tab">
+<title>The <guilabel>General</guilabel> Tab</title>
+
+<para>
+Here you can see some stats about the application link. You can also
+choose an icon by clicking on the <guibutton>icon button</guibutton> and
+change the filename of the link file. This may be useful if you want the
+icon on the panel behave different to the analogue one in the
+<guimenu>K</guimenu> Menu.
+</para>
+
+</sect2>
+
+<sect2 id="permissions-tab">
+<title>The <guilabel>Permissions</guilabel> Tab</title>
+
+<para>
+Here you can set the permissions of the link file. Please refer to the
+manuals or handbooks of your operating system for more about
+permissions.
+</para>
+
+</sect2>
+
+<sect2 id="execute-tab">
+<title>The <guilabel>Execute</guilabel> Tab</title>
+
+<para>
+You can set the behaviour of the application when it's executed on this page.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Command</guilabel></term>
+<listitem>
+<para>
+Usually, there is only the name of the binary that has to be started
+when clicking on the icon. You can search for another application to be
+started by clicking the <guibutton>Browse</guibutton> button and/or add
+special command line parameters to the application.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Panel Embedding</guilabel></term>
+<listitem>
+<para>
+Sorry, this feature is not implemented yet ;-(
+</para>
+</listitem>
+<!--<listitem><para>&kicker; has the possibility to swallow some applications
+like <abbrev>e.g.</abbrev> <application>XOSView</application>. This means that
+the application will show up directly in the panel.  Therefore you have to
+insert the exact title of the application window in the <guilabel>Window
+Title</guilabel> Textfield. You can also specify an application that will be
+executed when clicking on the swallowed application by typing it's name in the
+<guilabel>Execute on click</guilabel> field.</para></listitem>-->
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Run in terminal</guilabel></term>
+<listitem>
+<para>
+If this box is checked, the application will be executed in a terminal
+window. You can also add special Terminal options.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Run as different user</guilabel></term>
+<listitem>
+<para>
+Checking this option will let the application start with the permission
+of the user you typed in the field <guilabel>Username</guilabel>. You
+will be prompted for the user's password on application start. This
+option may be very useful if you want to start some applications as
+superuser.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="application-tab">
+<title>The <guilabel>Application</guilabel> Tab</title>
+
+<para>
+If you set a name and a comment, they will be shown as tooltips of the
+start icons in the style <quote>Name - Comment</quote>.
+</para>
+
+<para>
+In the <guilabel>File Types</guilabel> section you can choose what kinds
+of filetypes are handled by this application. Please refer to
+&konqueror; handbook for more about this.
+</para>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="configuring">
+<title>Configuring &kicker;</title>
+
+<para>
+This section describes the ways &kicker; can be configured. It's only
+about the basic &kicker; settings, configuration of the applets are
+described in their <link linkend="applets">sections</link>
+</para>
+
+<para>
+You can change the settings by either clicking
+<guimenuitem>Settings</guimenuitem> in the <guimenu>context
+menu</guimenu> or the submenu <guisubmenu>Configure Panel</guisubmenu>
+of the <guimenu>K</guimenu> Menu or in the &kcontrol; in the module
+<guilabel>Look &amp; Feel</guilabel>.
+</para>
+
+<note>
+<para>
+Please note that the settings in the <guilabel>General</guilabel> and
+the <guilabel>Look &amp; Feel</guilabel> tabs only affect to the main
+panel while the behaviour of extensions is set in the
+<guilabel>Extensions</guilabel> tab.
+</para>
+</note>
+
+
+<sect1 id="panel">
+<title>The Panel Section</title>
+
+<sect2 id="panel-general">
+<title><guilabel>General</guilabel></title>
+
+<para>
+In the <guilabel>General</guilabel> tab you can configure some basic
+functionality of the &kde; panel (&ie; functionality you'd find in other
+panel applications as well; later we'll come to the more interesting
+features).
+</para>
+
+<para>
+In the <guilabel>Panel Location</guilabel> frame you can choose which
+screen border the panel should be attached to. Please note that usually
+the available space is used more efficiently if the panel is aligned
+horizontally, &ie; attached to the top or bottom screen border. If you
+want to play around with different settings you can change the panel's
+position even easier by dragging the panel from one border to the other.
+</para>
+
+<para>
+The panel's style can be tiny, small, medium or large. Depending on
+which applets you use you may find that some applets work better at
+different panel sizes.
+</para>
+
+<para>
+Some people may not want to have &kicker; take the whole width or height
+of their screen. The slider <guilabel>Percentage of desktop width/height
+to be used</guilabel> changes this behaviour. If you decrease the
+precentage, &kicker; will either appear aligned left or top of the
+screen, depending on it's location.  Checking the checkbox
+<guilabel>Expand to fit required size</guilabel> makes sure that
+&kicker; is at least as big as needed to show every icon and applet.
+</para>
+
+
+<para>
+Depending on your screen resolution you may find that the panel takes
+away too much of your precious screen real estate. To save screen space,
+the panel offers an auto hide feature. When this feature is enabled, the
+panel will hide when the mouse cursor has not been moved over it for a
+configurable amount of time. If you move the mouse to the panel's screen
+border it will show up again. Check the <guilabel>Enable automatic
+hide</guilabel> option in the <guilabel>Automatic Hide</guilabel> frame
+to enable this feature. Using the <guilabel>Delay in seconds</guilabel>
+slider you can configure the amount of time the panel will wait before
+it hides.  The checkbox <guilabel>Show panel when switching
+desktop</guilabel> makes sure that the panel will be shown on the new
+chosen desktop. Otherwise, if there are too many applets and icons on
+&kicker;, two small scroll buttons will be displayed to scroll the whole
+panel.
+</para>
+
+<para>
+If <guilabel>Show tooltips</guilabel> is checked, small descriptions of
+the icons will be shown when the mousepointer rests over an icon for
+some seconds.
+</para>
+
+</sect2>
+
+<sect2 id="panel-looknfeel">
+<title><guilabel>Look &amp; Feel</guilabel></title>
+
+<para>
+Using the <guilabel>Look &amp; Feel</guilabel> tab you can configure the
+panel's overall appearance.
+</para>
+
+<para>
+When the panel's hide buttons are enabled you'll see buttons on both
+sides of the panel, with arrows showing to the screen border. If you
+click on one of these buttons, the panel will slide away in that
+direction.  After that, you'll see a remaining show button in that
+corner, which will make the panel show again. Check the apropriate
+checkbox if you want the hide buttons to show up on any side of
+&kicker;. Using the slider you can change the width of the buttons.
+</para>
+
+<para>
+Using the <guilabel>Manual Hide Animation</guilabel> (for the hide
+buttons) and <guilabel>Auto Hide Animation</guilabel> (for the auto hide
+functionality) options you can configure whether the panel will softly
+slide away or just disappear. You can enable or disable both animations
+using the <guilabel>Enable</guilabel> options and you can change the
+speed of the animation using the sliders.
+</para>
+
+<para>
+The <guilabel>Background Image</guilabel> is a picture that will be used
+to draw the panel's background, just like you can use a picture for the
+desktop background. Check the <guilabel>Enable background
+image</guilabel> option to enable this feature. You can specify an image
+file in the line edit box below or choose one by clicking on the
+<guibutton>Browse</guibutton> button. You'll see a preview of the
+selected picture on the right.
+</para>
+
+</sect2>
+
+<sect2 id="panel-menus">
+<title>Menus</title>
+
+<para>
+In the <guilabel>Menus</guilabel> tab you can configure the panel menu's
+behavior. This affects the <guimenu>K</guimenu> menu you will often use
+to launch applications, the browser menus you can use to access
+directories and other menus like the recent documents menu.
+</para>
+
+<para>
+The <guilabel>K Menu Layout</guilabel> frame offers you some options to
+configure the <guimenu>K</guimenu> menu's functionality. The
+<guilabel>Show &quot;Bookmarks&quot; submenu</guilabel> and
+<guilabel>Show &quot;Recent Documents&quot; submenu</guilabel> options
+will enable submenus showing your <application>konqueror</application>
+bookmarks and the last documents you've opened using &kde; applications
+respectively. The <guilabel>Show &quot;Quick Browser&quot;
+submenu</guilabel> option will enable a browser menu.
+</para>
+
+<para>
+<guilabel>Merge different menu locations</guilabel> will show all
+applications in the same submenus, regardless of where the corresponding
+configuration files are stored: for example, enabling this option will
+show system wide applications in your <guilabel>Applications</guilabel>
+menu as well as you own ones. If you'd disable this option, there would
+be one applications menu for the whole system and one in a submenu
+containing only your personal entries.
+</para>
+
+<para>
+The menu cache is a feature that can make the panel's menus appear
+faster on screen: instead of reading the menu information from disk
+every time you access a menu, the panel will remember menu entries after
+accessing the menus for the first time. However, depending on the amount
+of memory available to your system, you might want this cache to be
+cleared after some time. Check the <guilabel>Clear menu cache</guilabel>
+option if you want the cache to be cleared after some time. You can
+configure the amount of time after which the cache will be cleared using
+the slider below.
+</para>
+
+<para>
+In the <guilabel>Browser Menus</guilabel> frame you can configure
+whether the panel's browser menus will show hidden files or not (hidden
+files on unix systems are those whose filenames begin with a dot) as
+well as how many files at most will be shown in a browser menu. The
+latter option may be especially useful if you have a rather small screen
+resolution, as then the browser menus will quickly fill up your screen
+when you browse directories containing many files.
+</para>
+
+<para>
+The quick start section in the <guimenu>K</guimenu> menu offers quick
+access to programs you have used often or recently. In the
+<guilabel>&quot;Quick Start&quot; section contains</guilabel> frame you
+can choose whether this section will show the most recently or the most
+frequently used programs. Using the option <guilabel>Max number of
+&quot;Quick Start&quot; entries</guilabel> you can configure how many
+programs the quick start section will remember.
+</para>
+
+</sect2>
+
+<sect2 id="panel-buttons">
+<title>Buttons</title>
+
+<para>
+The &kde; panel supports so-called <quote>tiled buttons</quote>. This
+means that the buttons shown on the panel will be drawn using
+configurable images. To enable button tiling, check the <guilabel>Enable
+background tiles</guilabel> option in the <guilabel>Buttons</guilabel>
+tab. Then you can configure tiles for certain kinds of buttons.
+</para>
+
+<para>
+For every kind of panel button there's a frame offering an
+<guilabel>Enabled</guilabel> option to enable or disable tiled
+images. If tiles are enabled for this kind of button, you can choose a
+tile in the combo box below and the box on the right will show a preview
+of this tile.
+</para>
+
+<para>
+The different kinds of buttons are:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>K Menu Tiles</guilabel></term>
+<listitem>
+<para>
+The icon for the <guiicon>K Menu</guiicon> will be displayed as a tile
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Quickbrowser Tiles</guilabel></term>
+<listitem>
+<para>
+The icons for <guiicon>Quickbrowsers</guiicon> will be displayed as
+tiles
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Application Launcher Tiles</guilabel></term>
+<listitem>
+<para>
+The icons which start applications will be displayed as tiles
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<guilabel>Legacy Application Tiles</guilabel>
+</term>
+<listitem>
+<para>
+The icons for legacy applications will be displayed as tiles
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Window List Tiles</guilabel></term>
+<listitem>
+<para>
+The <guiicon>Window List</guiicon> icon will be displayed as a tile
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Desktop Access Tiles</guilabel></term>
+<listitem>
+<para>
+The <guiicon>Desktop Access </guiicon> icon will be displayed as a tile
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="panel-applets">
+<title>Applets</title>
+
+<para>
+Applets are small plugins that extend the panel's functionality. &kde;
+comes with some applets but they may be provided by third parties as
+well.</para>
+
+<para>
+Panel applets can be started using two different ways: internally or
+externally. While <quote>internal</quote> is the preferred way to load
+applets, this can raise stability or security problems when you are
+using poorly programmed third-party applets. To address these problems,
+applets can be marked <quote>trusted</quote>. You might want to
+configure the panel to treat trusted applets different from untrusted
+ones. Your options are:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+<guilabel>Load only trusted applets internal</guilabel>: All applets but
+the ones marked <quote>trusted</quote> will be loaded using an external
+wrapper application.
+</para>
+</listitem>
+
+<listitem>
+<para>
+<guilabel>Load startup config applets internal</guilabel>: The applets
+shown on &kde; startup will be loaded internally, others will be loaded
+using an external wrapper application.</para></listitem>
+<listitem><para><guilabel>Load all applets internal</guilabel>: will
+load all applets internally, regardless of whether they're trusted or
+not.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>
+For stability and security reasons, we recommend using one of the first
+two options and that you mark only those applets as 'trusted' that come
+with the &kde; base packages.
+</para>
+
+<para>
+To mark applets <quote>trusted</quote> or <quote>untrusted</quote> you
+can move them from one of the shown listboxes to the other. Just try
+selecting an applet in the list of trusted applets and click the
+<guibutton>&gt;&gt;</guibutton> button. This will move the selected
+applet to the other list, while clicking the
+<guibutton>&lt;&lt;</guibutton> button will move the selected applet of
+the list of available applets to the list of trusted ones.
+</para>
+
+</sect2>
+
+<sect2 id="panel-extensions">
+<title>Extensions</title>
+<para>
+In this section you can change the behaviour of the <xref
+linkend="extensions"/>.  Simply choose one of your extensions (&eg;
+Child Panel) from the listbox on the left side and adjust it's
+settings. Those are very similar to the settings on the <xref
+linkend="panel-general"/> and the <xref linkend="panel-looknfeel"/>
+tabs.
+</para>
+
+<para>
+The <guilabel>Panel Location</guilabel> group sets the location of the
+chosen extension. If the option <guilabel>Enable automatic
+hide</guilabel> is checked, the extension will be faded out automaticaly
+after the time in seconds set with the slider <guilabel>Delay in
+seconds</guilabel>. Marking the checkbox <guilabel>Show panel when
+switching desktop</guilabel> lets the extension show up after a desktop
+change.
+</para>
+
+<para>
+You can toggle which hide buttons the chosen extension should have with
+the checkboxes in the group <guilabel>Hide Buttons</guilabel>. The
+slider <guilabel> Hide Button Size</guilabel> sets the size of the
+appearing hide buttons.
+</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="taskbar-settings">
+<title>The Taskbar Section</title>
+
+<para>
+This section changes the settings of the taskbar. Changes affect the
+external taskbar and also taskbar applets on &kicker; or child-panels.
+</para>
+
+
+<variablelist>
+<varlistentry>
+<term>Show all windows</term>
+<listitem>
+<para>
+If this box is checked, the taskbar will show all running apps of every
+desktop. Otherwise, only the applications of the current desktop are
+shown.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Show windows list button</term>
+<listitem>
+<para>Checking this box will show the small <guibutton>window list
+button</guibutton>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Group similar tasks</term>
+<listitem>
+<para>
+<inlinemediaobject><imageobject><imagedata fileref="taskbar_group.png"
+format="PNG"/></imageobject></inlinemediaobject> This is a new feature
+introduced in &kde; version 2.2. If the option <guilabel>Group similar
+tasks</guilabel> is set, several instances of the same application are
+grouped together in one taskbar button.
+</para>
+
+<para>
+Clicking the button with the &LMB; will popup a menu like shown in the
+screenshot above and an instance of the application can be chosen.
+Clicking on the button with the &RMB; will popup the same menu but with
+the <guimenu>taskbar contextmenu</guimenu> behind every application.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Sort tasks by virtual desktop</term>
+<listitem>
+<para>
+Checking this box will sort all <guibutton>taskbar buttons</guibutton>
+in a group for each desktop, otherwise they are sorted by the order they
+are started. This will not affect grouped tasks if they are spread over
+more than one desktop.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Show application icons</term>
+<listitem>
+<para>
+If this box is checked, every <guibutton>taskbar button</guibutton> will
+have the icon of the running application beside its title.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+</chapter>
+
+<chapter id="k-menu">
+<title>The <guimenu>K</guimenu> Menu</title>
+
+<para>
+The <guimenu>K</guimenu> Menu is one of the central elements of
+&kicker;.
+</para>
+
+<para>
+There are five main groups in the <guimenu>K</guimenu> Menu which will
+be described now from bottom to top.
+</para>
+
+<sect1 id="kde-group">
+<title>The <acronym>KDE</acronym> Group</title>
+
+<para>
+This group is for the common &kde; things in the <guimenu>K</guimenu>
+Menu.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guimenuitem>Logout</guimenuitem></term>
+<listitem>
+<para>
+This entry is used to finish the &kde; session. It also shuts down the
+&X-Windows;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Lock Screen</guimenuitem></term>
+<listitem>
+<para>
+With this entry you can lock your screen if you don't want anybody else
+to see your desktop. If you have set a screensaver, it will appear when
+locked, otherwise the screen will turn black. If you hit any key, you
+will be prompted for your user password. This is independent from the
+screensaver's password settings.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guisubmenu>Configure Panel</guisubmenu></term>
+<listitem>
+<para>
+In this submenu you can change the settings of &kicker;, described in
+the <link linkend="configuring">Configuring &kicker;</link> section, add
+things to &kicker; (see in <link linkend="basics">&kicker; Basics</link>
+for more) and start the <application>Menu Editor</application>. You can
+also reach the <guisubmenu>Help</guisubmenu> Menu, but as you are
+reading this, you probably found it yourself.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="run-command">
+<title>Run Command</title>
+
+<para>
+This will bring up a small but powerful application start dialog.
+</para>
+
+<para>
+In the standard case, you just type in a command and press
+<keycap>Enter</keycap> or click <guibutton>Run</guibutton>.  But there
+is also an <guibutton>Options</guibutton> button which will bring up
+some starting options to the command window.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Run in terminal</guilabel></term>
+<listitem>
+<para>
+Checking this box will let the application start in a terminal.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Run as a different user</guilabel></term>
+<listitem>
+<para>
+If this box is checked, you can specify a user with whose permission the
+application should run in the <guilabel>Username</guilabel> textfield.
+If you specify another user, you will have to give a password at the box
+below.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Run with different priority</guilabel></term>
+<listitem>
+<para>
+Check this option to run with a different priority. A higher priority
+will tell the operating system to give more processing time to the
+applications.  You can use the slider to change the priority. If you
+want to give your app a higher priority than the default one (middle
+position), you will need to enter the root password below.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Scheduler</guilabel></term>
+<listitem>
+<para>
+The Scheduler is the part of the operating system which processes will
+run and which have to wait. Usually, an application will run with normal
+schedule, which means it can use the processing time it gets from the
+operating system, but you can also set it to
+<guilabel>Realtime</guilabel>. This means that the application has all
+the process time until it gives it away. You will need to enter the root
+password to use <guilabel>Realtime</guilabel>.
+</para>
+
+<warning>
+<para>
+This can be dangerous. If the application hangs and can't give up the
+processor, the complete system might hang.
+</para>
+</warning>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="browsers">
+<title>Browsers</title>
+
+<para>
+This group contains some very useful browsers:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guisubmenu>Quick Browser</guisubmenu></term>
+<listitem>
+<para>
+This submenu contains quick browsers for three very useful directories:
+home, root, and system configuration.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guisubmenu>Recent Documents</guisubmenu></term>
+<listitem>
+<para>
+This menu shows the most recently used documents (works only with &kde;
+applications for the moment). Clicking the element <guimenuitem>Clear
+History</guimenuitem> will remove those entries, what may be useful for
+privacy reasons.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guisubmenu>Bookmarks</guisubmenu></term>
+<listitem>
+<para>
+This submenu shows your personal bookmarks just like &konqueror;
+does. Refer to the &konqueror; Handbook for more help on this.
+</para>
+</listitem> 
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="application-group">
+<title>The Application Group</title>
+
+<para>
+The submenus for application starting are located in this group. You can
+use &kmenuedit; to add, remove or move the entries.
+</para>
+</sect1>
+
+<sect1 id="most-recently-group">
+<title>The most recently used applications</title>
+
+<para>
+This group holds either the most recently or the most frequently used
+applications. See the <link linkend="panel-menus">Menus
+Configuration</link> section for more about that.
+</para>
+</sect1>
+
+</chapter>
+
+<chapter id="applets">
+<title>Applets</title>
+
+<para>
+Applets are small applications running inside of &kicker;. Almost
+everything besides the <guiicon>application starter buttons</guiicon>
+are applets. They can be added from the <guimenu>context menu</guimenu>
+or from the submenu <guisubmenu>Configure Panel</guisubmenu> by choosing
+<guisubmenu>Add</guisubmenu> and the <guisubmenu>Applet</guisubmenu>.
+</para>
+
+<sect1 id="taskbar-applet">
+<title>The Taskbar Applet</title>
+
+<para>
+The taskbar applet shows buttons for the running applications. The
+application, which has the focus, is shown as a pressed button. If an
+application is minimized, the title displayed in the taskbar will fade
+to grey.
+</para>
+
+<tip>
+<para>
+If you click on the button of the active application, it will be
+minimized. This means also that if you click twice on an inactive
+application, it will also be minimized.
+</para>
+</tip>
+
+<para>
+A click with the &RMB; on a button will show the standard application
+menu. Only the entry <guimenuitem>To current desktop</guimenuitem>
+differs: if you have set the taskbar to show the applications of all
+desktops, you can move this app to the current desktop.
+</para>
+
+<para>
+There is also a small icon on the left or top side of the taskbar, which
+opens a menu. This is called the <guibutton>windows list
+icon</guibutton>.  The menu's first entry, <guimenuitem>Unclutter
+Windows</guimenuitem>, tries to move the windows on your active desktop
+in a way to see as many as possible. <guimenuitem>Cascade
+Windows</guimenuitem> puts all windows on the active desktop over each
+others, the most recently on top and the others sorted by the time they
+where last used.
+</para>
+
+<para>
+Below those entries is a list of all currently running applications,
+grouped by the desktops on which they are running. Clicking on the name
+of a desktop will switch to that one, clicking an application will also
+activate it.
+</para>
+
+<sect2 id="configure-taskbar-applet">
+<title>Configuring the Taskbar Applet</title>
+
+<para>
+You can configure the taskbar by clicking the &RMB; on the small move
+handle.
+</para>
+<para>
+Please refer to <xref linkend="taskbar-settings"/> for details about the
+preferences of the taskbar.
+</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="pager-applet">
+<title>The Mini-Pager Applet</title>
+
+<para>
+This little applet shows a preview of the desktops and lets you also
+choose by a click with the &LMB; which desktop you want to use.
+</para>
+
+<para>
+There is also a very useful <guimenu>context menu</guimenu>:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guimenuitem>Preview</guimenuitem></term>
+<listitem>
+<para>
+This option lets the mini pager appear as a tiny preview of the desktops
+with symbolic rectangles for the running applications.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Number</guimenuitem></term>
+<listitem>
+<para>
+If this option is chosen, the pager will show the numbers of the
+desktops
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Name</guimenuitem></term>
+<listitem>
+<para>
+This will let the pager show the names of the desktops, which can be set
+in the preferences or from <application>Control Center</application>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Enable Desktop Preview</guimenuitem></term>
+<listitem>
+<para>
+If this option is checked, a small button will be shown which shows a
+bigger preview of the running desktops.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Preferences</guimenuitem></term>
+<listitem>
+<para>
+Here you can set the number of desktops you want to have and the names
+of them.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="clock-applet">
+<title>The Clock Applet</title>
+
+<para>
+As you might already guess, the clock applet is a small clock which
+resides in &kicker;.
+</para>
+
+<para>
+A click with the &LMB; on the clock will show a small calendar. You can
+use the <guibutton>single arrows</guibutton> to switch the months or the
+<guibutton>double arrows</guibutton> for switching years. This won't
+have any effect of your date settings, it's just for your information.
+</para>
+
+<para>
+There are some things you can do with the clock applet. This can be done
+from the <guimenu>context menu</guimenu>.
+</para>
+
+<sect2 id="clock-type">
+<title><guisubmenu>Type</guisubmenu></title>
+
+<para>
+There are four ways the clock can appear:
+</para>
+
+<variablelist>
+<varlistentry>
+<term>Plain</term>
+<listitem>
+<para>
+This lets the clock appear as a simple text that shows the time in plain text.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Digital</term>
+<listitem>
+<para>
+This lets the clock appear as a digital clock showing the time in the
+well known seven segment style.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Analog</term>
+<listitem>
+<para>
+If this is set, the clock will be displayed as an old styled analog
+clock.
+</para>
+<note>
+<para>This may only be useful if you set &kicker; to normal or large
+size.
+</para>
+</note>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Fuzzy</term>
+<listitem>
+<para>
+This is a very unorthodox style of time display. Try it out, it is
+really funny! 
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="clock-preferences">
+<title><guimenuitem>Preferences</guimenuitem></title>
+
+<para>
+Here you can set some general preferences of the clock applet.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>General</guilabel></term>
+<listitem>
+<para>
+In the <guilabel>Clock Type</guilabel> settings you can choose between
+the clock styles like in the <guimenu>context menu</guimenu>.
+</para>
+
+<para>
+The <guilabel>Date</guilabel> group lets you pick font and color of the
+date, which is shown when activated for the specific clock type.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The <guilabel>Plain Clock</guilabel> Tab</term>
+<listitem>
+<para>In the <guilabel>Options</guilabel> section you can check if you
+want to have the date and/or the seconds shown. In
+<guilabel>Colors</guilabel> you can choose if you want the common &kde;
+look or your own custom colors and font.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The <guilabel>Digital Clock</guilabel> Tab</term>
+<listitem>
+<para>In the <guilabel>Options</guilabel> section you can check if you
+want to have the date, the seconds and/or blinking dots shown. In
+<guilabel>Colors</guilabel> you can choose if you want the common
+<acronym>LCD</acronym>-Look or your own custom colors.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The <guilabel>Analog Clock</guilabel> Tab</term>
+<listitem>
+<para>
+In the <guilabel>Options</guilabel> section you can check if you want to
+have the date and/or seconds shown. In <guilabel>Colors</guilabel> you
+can choose if you want the common <acronym>LCD</acronym>-Look or your
+own custom colors.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>The <guilabel>Fuzzy Clock</guilabel> Tab</term>
+<listitem>
+<para>
+In the <guilabel>Options</guilabel> section you can check if you want to
+have the date shown. There is also a slider to set the
+<guilabel>Fuzziness</guilabel>. This cannot be described in the
+documents, just do your own experiments.  In <guilabel>Colors</guilabel>
+you can choose the colors and the font of the fuzzy clock.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="adjust-time">
+<title><guimenuitem>Adjust Date and Time</guimenuitem></title>
+
+<para>
+This option starts the <guilabel>Country &amp; Language</guilabel>
+ configuration module of the &kcontrol;.</para>
+
+<note>
+<para>
+You will need the super user password for adjusting date and time.
+</para>
+</note>
+
+</sect2>
+
+<sect2 id="date-format">
+<title><guimenuitem>Date and Time Format</guimenuitem></title>
+
+<para>
+This will open the Date and Time module of &kcontrol; where you can set
+your formats. There aren't any special permissions needed for that.
+</para>
+
+</sect2>
+
+<sect2 id="copy-date">
+<title><guisubmenu>Copy</guisubmenu></title>
+
+<para>
+If you need to paste the actual date and/or time in another application
+(&eg; in a text editor), you can copy it to the clipboard with this
+function. After selecting one of the available formats, the actual date
+and/or time is placed on the clipboard using the appropriate format.
+</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="launcher-applet">
+<title>The Quick Launcher Applet</title>
+
+<para>
+This is a compressed application launcher. It is very useful especially
+if the panel is set to normal or large size. You can add applications by
+drag and drop or from the <guimenu>context menu</guimenu>. The
+<guimenu>context menu</guimenu> is also used to remove an application.
+</para>
+</sect1>
+
+<sect1 id="systemtray-applet">
+<title>The System Tray Applet</title>
+
+<para>
+The System Tray is used to dock some special applications like &eg;
+&klipper; or &kteatime;.  There are also two common buttons: The
+<guibutton>luggage lock</guibutton> is used to lock the screen if you
+ever want to leave your &kde; box alone and don't want anybody to see it
+and the <guibutton>off switch</guibutton> to close your &kde; session.
+</para>
+
+</sect1>
+
+<sect1 id="run-applet">
+<title>The Application Launcher Applet</title>
+
+<para>
+This applet provides a simple command line embedded in &kicker;. Nothing
+more, nothing less.
+</para>
+
+</sect1>
+
+<sect1 id="naughty-applet">
+<title>The Runaway Process Catcher Applet</title>
+
+<para>
+This applet shows a smiley which will get angry when any process catches
+up too much system resources. If an application uses too much, a
+messagebox will appear and ask you how to handle that application.
+</para>
+
+<para>
+Clicking it with the &LMB; will show a configuration dialog. Here you
+can set the <guilabel>Update interval</guilabel>, which is set in
+seconds, and the <guilabel>CPU load threshold</guilabel>.  At the
+moment, there is no real advice for setting this up, you will have to do
+some experimenting. These settings will probably change in a future
+release. There is also a section <guilabel>Programs to ignore</guilabel>
+where you can add applications that use very much resources naturally
+&eg; compilers or 3D renderers.
+</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="extensions">
+<title>Extensions</title>
+
+<para>
+There are also some features that run outside of &kicker;, the
+extensions. They are added from the submenu <guisubmenu>Configure
+Panel</guisubmenu> of the <guimenu>K</guimenu> Menu or the
+<guimenu>context menu</guimenu> by choosing <guisubmenu>Add</guisubmenu>
+and then <guisubmenu>Extensions</guisubmenu>. You can move them to any
+screenborder by dragging them at the small <guibutton>fadeout
+</guibutton> on their side and remove it by right clicking on that
+button and choose <guimenuitem>Remove</guimenuitem>.  Clicking these
+buttons with the &LMB; fades the extension out or in, just like the main
+&kicker;.
+</para>
+
+<para>
+The style of the extensions can be configured in the <xref
+linkend="panel-extensions"/> section of &kicker;'s preferences.
+</para>
+
+
+<sect1 id="external-taskbar-extension">
+<title>The External Taskbar Extension</title>
+
+<para>
+The external taskbar is just the same as the taskbar applet with the
+only difference that it provides its own panel. Refer to the <link
+linkend="taskbar-applet">taskbar applet section</link> for help about
+it.
+</para>
+
+</sect1>
+
+<sect1 id="child-panel-extension">
+<title>The Child Panel Extension</title>
+
+<para>
+This is just a panel like &kicker; itself, where you can add all the
+stuff &kicker; is also capable. So you can have as many &kicker;s as you
+want. Just add a child panel and add applications and applets to it.
+</para>
+
+</sect1>
+
+<sect1 id="kasbar-extension">
+<title>The <application>KasBar</application> Extension</title>
+
+<para>
+The <application>KasBar</application> is an iconic replacement of the
+taskbar. It always shows the icons of all currently running applications
+on any desktop, they can be chosen by clicking with the &LMB;. The
+active window is highlighted, minimized windows will show a little
+triangle pointing downwards instead of the square in the lower right of
+the icons. A triangle pointing to the right indicates that the
+application is shaded.
+</para>
+</sect1>
+
+<sect1 id="dock-application-bar-extension">
+<title>The Dock Application Bar Extension</title>
+
+<para>
+The Dock Application Bar is an external bar which lets WindowMaker
+applications be docked. Just run your dockable WindowMaker programs, if
+the Dock Application Bar is running, they will be automatically docked.
+</para>
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title>Command Reference</title>
+
+<sect1 id="keybinding">
+<title>The Panel</title>
+
+<para>
+There is only one standard shortcut available in &kicker;:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><keycombo action="simul">&Alt;<keycap>F1</keycap></keycombo></term>
+<listitem>
+<para>
+Opens the <guimenu>K</guimenu> Menu
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+</chapter>
+
+<chapter id="faq">
+<title>Questions and Answers</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>
+How can I add applications, applets or anything else to the panel?
+</para>
+</question>
+<answer>
+<para>
+Click the &RMB; on any free space in &kicker; and choose
+<guisubmenu>Add</guisubmenu>. From appearing submenu you can choose,
+what you want to add. See in <link linkend="basics">Kicker Basics</link>
+for more about that.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+Can I have an external Taskbar just like in &kde; 1?
+</para>
+</question>
+<answer>
+<para>
+Yes, you can just click the &RMB; on any empty space in &kicker; and
+then choose <guisubmenu>Add</guisubmenu>,
+<guisubmenu>Extension</guisubmenu> and the <guimenuitem>External
+Taskbar</guimenuitem>.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+How can I move &kicker; to another screen border?
+</para>
+</question>
+
+<answer>
+<para>
+Simply drag it by holding the &LMB; on any empty space in &kicker; to
+any screen border.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+How can I move extensions to another screen border?
+</para>
+</question>
+
+<answer>
+<para>
+Just drag it by holding the &LMB; on the small
+<guibutton>handles</guibutton> on the left or the top of the extension.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+I want the taskbar to show all applications I'm running, independent on
+which desktop it is. Is that possible?
+</para>
+</question>
+<answer>
+<para>
+Yes, click the &RMB; on the small <guibutton>handle</guibutton> of the
+taskbar, then choose <guimenuitem>Preferences</guimenuitem> and check
+<guilabel>Show all windows</guilabel> in the appearing dialog.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+How can I access the <guimenu>K</guimenu> Menu without using the mouse?
+</para>
+</question>
+<answer>
+<para>
+Simply press <keycombo
+action="simul">&Alt;<keycap>F1</keycap></keycombo> and it will appear.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+Is there a way to add a menu containing all desktop icons to &kicker;?
+</para>
+</question>
+<answer>
+<para>
+Just fire up &konqueror;, go to your home directory and drag the
+<guiicon>KDesktop</guiicon> icon to any free space of &kicker;, then
+choose <guimenuitem>Add as Quick Browser</guimenuitem> from the
+appearing menu.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+How can I change the color and style of &kicker;?
+</para>
+</question>
+<answer>
+<para>
+You can change the colors of the panel with the global color module of
+the <application>Control Center</application> or you can style the panel
+itself, see in <link linkend="panel-buttons">Configuring Background
+tiles</link> for more about that.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+Why is the clock showing the wrong time?
+</para>
+</question>
+<answer>
+<para>
+On some &RedHat;systems, the clock always shows the time in
+<acronym>GMT</acronym>. This is a bug in the system setup, and not
+directly related to &kicker;. However, to solve it, just create this
+symbolic link: <userinput><command>ln</command> <option>-s</option>
+<filename>/usr/share/zoneinfo</filename>
+<filename>/usr/lib/zoneinfo</filename></userinput>.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+Is it possible to change the <guiicon>K</guiicon> button of the panel to
+another picture?
+</para>
+</question>
+<answer>
+<para>
+Look for <filename>$HOME/.kde/share/apps/kicker/pics/go.png</filename>
+and <filename>$HOME/.kde/share/apps/kicker/pics/mini/go.png</filename>
+and replace them. Do not forget to flatten the replacements to one
+layer, or else you will not see anything.  Create the directories if
+they do not already exist. Then restart &kicker;.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>
+Why is my <guisubmenu>Settings</guisubmenu> menu not working?
+</para>
+</question>
+<answer>
+<para>
+Your menu entries may be mixed up for some reason. Simply run
+<command>kbuildsycoca</command> on a commandline.
+</para>
+</answer>
+</qandaentry>
+</qandaset>
+
+&reporting.bugs;
+<!-- &updating.documentation; -->
+
+</chapter>
+
+<chapter id="credits">
+
+<title>Credits and License</title>
+
+<para>
+&kicker;
+</para>
+
+<para>
+Program copyright 1999-2000 The KDE Team <ulink
+url="http://www.kde.org"> (www.kde.org)</ulink>.
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+Matthias Elter<email>elter@kde.org</email>
+</para>
+</listitem>
+
+<listitem>
+<para>
+Matthias Ettrich<email>ettrich@kde.org</email>
+</para>
+</listitem>
+
+<listitem>
+<para>
+Wilco Greven<email>greven@kde.org</email>
+</para>
+</listitem>
+
+<listitem>
+<para>
+Rik Hemsley<email>rik@kde.org</email>
+</para>
+</listitem>
+
+<listitem>
+<para>
+Daniel M. Duley<email>mosfet@kde.org</email>
+</para>
+</listitem>
+
+<listitem>
+<para>
+Preston Brown<email>pbrown@kde.org</email>
+</para>
+</listitem>
+
+</itemizedlist>
+
+<para>
+Documentation copyright 2001 Dirk Doerflinger <email>ddoerflinger@web.de</email>
+</para>
+
+&underFDL;               <!-- FDL: do not remove -->
+&underBSDLicense;        <!-- BSD License -->
+
+</chapter>
+
+<appendix id="installation">
+<title>Installation</title>
+
+<sect1 id="getting-kapp">
+<title>How to obtain &kicker;</title>
+
+<para>
+&kicker; is part of the &kde; project <ulink
+url="http://www.kde.org">http://www.kde.org</ulink>.  &kicker; can be
+found in the kdebase package on <ulink
+url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the
+main &FTP; site of the &kde; project.
+</para>
+
+</sect1>
+
+<sect1 id="requirements">
+<title>Requirements</title>
+
+<para>
+In order to successfully use &kicker;, you need &kde; 2.1.  Actually, it
+makes not too much sense running &kicker; without the complete &kde;.
+</para>
+
+</sect1>
+
+<sect1 id="compilation">
+<title>Compilation and Installation</title>
+
+<para>
+In order to compile and install &kicker; on your system, type the
+following in the base directory of the kdebase distribution:
+</para>
+
+<screen width="40">
+<prompt>%</prompt> <userinput><command>./configure</command></userinput>
+<prompt>%</prompt> <userinput><command>make</command></userinput>
+<prompt>%</prompt> <userinput><command>make</command> <option>install</option></userinput>
+</screen>
+
+<para>
+Since &kicker; uses <command>autoconf</command> and
+<command>automake</command> you should have no trouble compiling it.
+Should you run into problems please report them to the &kde; mailing
+lists.
+</para>
+
+</sect1>
+
+<sect1 id="configuration">
+<title>Configuration</title>
+
+<para>
+Please refer to the <filename>INSTALL</filename> file in the kdebase
+directory for more information about configuration.
+</para>
+
+</sect1>
+
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-intent-step:0
+sgml-indent-data:nil
+End:
+-->
+
+

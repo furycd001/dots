@@ -1,0 +1,1894 @@
+dnl    This file is part of the KDE libraries/packages
+dnl    Copyright (C) 2001 Stephan Kulow (coolo@kde.org)
+ 
+dnl    This file is free software; you can redistribute it and/or
+dnl    modify it under the terms of the GNU Library General Public
+dnl    License as published by the Free Software Foundation; either
+dnl    version 2 of the License, or (at your option) any later version.
+ 
+dnl    This library is distributed in the hope that it will be useful,
+dnl    but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+dnl    Library General Public License for more details.
+ 
+dnl    You should have received a copy of the GNU Library General Public License
+dnl    along with this library; see the file COPYING.LIB.  If not, write to
+dnl    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+dnl    Boston, MA 02111-1307, USA.
+
+# Original Author was Kalle@kde.org
+# I lifted it in some mater. (Stephan Kulow)
+# I used much code from Janos Farkas
+
+dnl Process this file with autoconf to produce a configure script.
+
+AC_INIT(acinclude.m4) dnl a source file from your sub dir
+
+dnl This is so we can use kde-common
+AC_CONFIG_AUX_DIR(admin)
+
+dnl This ksh/zsh feature conflicts with `cd blah ; pwd`
+unset CDPATH
+
+dnl Checking host/target/build systems, for make, install etc.
+AC_CANONICAL_SYSTEM 
+dnl Perform program name transformation
+AC_ARG_PROGRAM
+
+dnl Automake doc recommends to do this only here. (Janos)
+AM_INIT_AUTOMAKE(kdebase, "2.2.2") dnl searches for some needed programs
+
+KDE_SET_PREFIX
+
+dnl generate the config header
+AM_CONFIG_HEADER(config.h) dnl at the distribution this done
+
+dnl Checks for programs.
+AC_CHECK_COMPILERS
+AC_ENABLE_SHARED(yes)
+AC_ENABLE_STATIC(no)
+KDE_PROG_LIBTOOL
+
+dnl for NLS support. Call them in this order!
+dnl WITH_NLS is for the po files
+AM_KDE_WITH_NLS
+
+AC_PATH_KDE
+#MIN_CONFIG
+
+dnl PAM, shadow passwords, libcrypt
+KDE_PASSWDLIBS
+
+DEF_PAM_SERVICE(kdm, kdm, KDM)
+DEF_PAM_SERVICE(kcp, kcheckpass, KCHECKPASS)
+DEF_PAM_SERVICE(kss, kscreensaver, KSCREENSAVER)
+
+dnl Image readers/writers
+KDE_CHECK_KIMGIO
+
+dnl Checks for header files.
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_CHECK_HEADERS(sys/time.h crypt.h \
+	sys/select.h sys/ioctl.h sys/stropts.h stropts.h termio.h termios.h sys/termios.h \
+	lastlog.h sys/socket.h sys/sockio.h krb5/krb5.h rpc/rpc.h rpc/key_prot.h \
+	sys/m_wait.h ncurses.h paths.h login_cap.h syslog.h \
+	sys/wait.h sys/ucred.h sys/mount.h floatingpoint.h fstab.h mntent.h \
+	Alib.h libutil.h util.h time.h limits.h vfork.h string.h float.h \
+	math.h nan.h ieeefp.h
+)
+
+
+dnl Checks for Alib on HP-UX (added by deller, Apr 29 1999)
+AC_CHECK_LIB(Alib, main, [LIBALIB="-lAlib"]) dnl HP-UX network audio server
+AC_SUBST(LIBALIB)
+
+dnl Check for ossaudio on NetBSD
+AC_CHECK_LIB(ossaudio, main, [LIBOSSAUDIO="-lossaudio"])
+AC_SUBST(LIBOSSAUDIO)
+
+dnl Check for AIX stuff
+AC_CHECK_LIB(cfg, main, [LIBCFG="-lcfg"]) dnl for AIX
+AC_SUBST(LIBCFG)
+AC_CHECK_LIB(odm, main, [LIBODM="-lodm"]) dnl for AIX
+AC_SUBST(LIBODM)
+
+dnl SMB checks moved to their own configure.in.in
+
+kde_have_setupterm=yes
+AC_CHECK_LIB(curses, setupterm, [LIBCURSES=-lcurses],
+  AC_CHECK_LIB(ncurses, setupterm, [LIBCURSES=-lncurses],
+    AC_CHECK_LIB(mytinfo, setupterm, [LIBCURSES=-lmytinfo],
+       kde_have_setupterm=no)))
+
+AC_SUBST(LIBCURSES)
+
+if test "$kde_have_setupterm" = "yes"; then
+  AC_DEFINE_UNQUOTED(HAVE_SETUPTERM, 1, [Define if you have setupterm in -l(n)curses])
+fi
+
+kde_have_utempter=yes
+AC_CHECK_LIB(utempter, addToUtmp, [LIBUTEMPTER=-lutempter], kde_have_utempter=no)
+AC_SUBST(LIBUTEMPTER)
+if test "$kde_have_utempter" = "yes"; then
+  AC_DEFINE_UNQUOTED(HAVE_UTEMPTER, 1, [Define if you have the utempter helper for utmp managment])
+fi
+
+AC_CHECK_FUNC(res_init, ,
+  AC_CHECK_LIB(resolv, res_init, [LIBRESOLV="-lresolv"], , $LIBSOCKET)) dnl for Sun
+
+AC_SUBST(LIBRESOLV)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_LANG_CPLUSPLUS
+AC_HEADER_TIME
+
+dnl check if the compiler has bool
+AC_CHECK_BOOL
+AC_LANG_C
+AC_C_LONG_DOUBLE
+AC_TYPE_GETGROUPS
+
+dnl for libsmb
+AC_CHECK_SIZEOF(char,1)
+AC_CHECK_SIZEOF(short,2)
+AC_CHECK_SIZEOF(int,4)
+AC_CHECK_SIZEOF(long,4)
+AC_C_BIGENDIAN
+
+AC_CHECK_FUNCS(socket powl sqrtl strdup getdtablesize vsnprintf setpgid nice seteuid snprintf vsyslog initgroups setgroups getgroups grantpt pw_encrypt setpriority getpt unlockpt ptsname setenv unsetenv waitpid mkstemp openpty)
+AC_CHECK_GETDOMAINNAME
+AC_CHECK_GETHOSTNAME
+AC_CHECK_USLEEP
+AC_CHECK_RANDOM
+AC_CHECK_S_ISSOCK
+AC_CHECK_KDEMAXPATHLEN
+
+dnl Perform program name transformation
+AC_ARG_PROGRAM
+
+AC_MSG_CHECKING([if it's safe to enable UTMP])
+
+case "$host_os" in
+linux*) utmp_support=yes;
+     ;;
+freebsd*) utmp_support=yes;
+     ;;
+*) utmp_support=no;
+esac
+
+AC_MSG_RESULT($utmp_support)
+
+if test "$utmp_support" = yes; then
+   AC_DEFINE_UNQUOTED(UTMP_SUPPORT, 1, [Define if you want to use utmp entries])
+fi
+
+AC_CHECK_UTMP_FILE
+
+dnl Checks for Solaris' libkstat
+kde_have_kstat=yes
+AC_CHECK_LIB(kstat, kstat_open, [LIBKSTAT=-lkstat], kde_have_kstat=no)
+AC_SUBST(LIBKSTAT)
+if test "$kde_have_kstat" = "yes"; then
+  AC_DEFINE(HAVE_KSTAT, 1, [Defines if you have Solaris' libkstat])
+fi
+
+dnl Checks for libdevinfo (Solaris 7 and later)
+dnl since the library is available on earlier Solaris releases (but
+dnl with a completely different and undocumented interface),
+dnl we have to verfy that the required header is present as well
+AC_CHECK_HEADER(libdevinfo.h,
+	kde_have_libdevinfo_h=yes,
+	kde_have_libdevinfo_h=no)
+if test "$kde_have_libdevinfo_h" = "yes"; then
+   kde_have_libdevinfo_lib=yes
+   AC_CHECK_LIB(devinfo, di_init, [LIBDEVINFO=-ldevinfo], kde_have_libdevinfo_lib=no)
+   if test "$kde_have_libdevinfo_lib" = "yes"; then
+      AC_DEFINE(HAVE_LIBDEVINFO_H, 1, [Defines if you have libdevinfo of Solaris 7 or later])
+      AC_SUBST(LIBDEVINFO)
+   fi
+fi
+
+dnl Mico, mini STL, python checks
+dnl KDE_CHECK_MICO()
+
+
+dnl -----  Checks for X11 extensions -----
+ac_save_ldflags="$LDFLAGS"
+LDFLAGS="$X_LDFLAGS"
+
+dnl --- XTEST check
+XTESTLIB=
+KDE_CHECK_HEADER(X11/extensions/XTest.h, 
+    [AC_CHECK_LIB( Xtst, XTestFakeKeyEvent,
+	[AC_DEFINE(HAVE_XTEST, 1, [Define if you have the XTest extension])
+	 XTESTLIB=-lXtst], 
+	, [ -lXext -lX11 $X_PRE_LIBS ])
+    ])
+AC_SUBST(XTESTLIB)
+
+dnl --- XKB check
+KDE_CHECK_HEADER(X11/XKBlib.h, 
+    [AC_CHECK_LIB( X11, XkbLockModifiers,
+	[AC_DEFINE(HAVE_XKB, 1, [Define if you have the XKB extension])], 
+	, [ -lXext -lX11 $X_PRE_LIBS ])
+     AC_CHECK_LIB( X11, XkbSetPerClientControls,
+	[AC_DEFINE(HAVE_XKBSETPERCLIENTCONTROLS, 1, [Define if you have XkbSetPerClientControls])],
+	, [ -lXext -lX11 $X_PRE_LIBS ])
+    ])
+
+LDFLAGS="$ac_save_ldflags"
+dnl ----- end of X11 extension checks -----
+
+
+CXXFLAGS="$CXXFLAGS -DQT_CLEAN_NAMESPACE -DQT_NO_COMPAT -DQT_NO_ASCII_CAST"
+if test -z "$RUN_KAPPFINDER"; then
+  RUN_KAPPFINDER="yes"
+fi
+AC_SUBST(RUN_KAPPFINDER)
+ACCESS_SUBDIR=
+KDE_CHECK_HEADER(X11/extensions/XKBstr.h, ACCESS_SUBDIR=access)
+AC_SUBST(ACCESS_SUBDIR)
+AC_LANG_SAVE
+AC_LANG_CPLUSPLUS
+kde_save_LIBS="$LIBS"
+kde_save_CXXFLAGS="$CXXFLAGS"
+LIBS="$LIBS $all_libraries $USER_LDFLAGS $LIB_QT"
+CXXFLAGS="$CXXFLAGS $all_includes $USER_INCLUDES -DQT_XFT"
+AC_MSG_CHECKING(for anti-aliasing support in Qt)
+AC_CACHE_VAL(ac_cv_have_aa,
+[
+	AC_TRY_COMPILE([#include <qt_x11.h>],
+		[int x=qt_use_xft();],
+		[ac_cv_have_aa="yes"],
+		[ac_cv_have_aa="no"])
+])
+AC_MSG_RESULT($ac_cv_have_aa)
+if test "$ac_cv_have_aa" = "yes"; then
+	AC_DEFINE(HAVE_AA, 1, [Define if your Qt supports anti-aliasing])
+fi
+LIBS="$kde_save_LIBS"
+CXXFLAGS="$kde_save_CXXFLAGS"
+AC_LANG_RESTORE
+dnl ------------------------------------------------------------------------
+dnl Try to find the SSL headers and libraries.
+dnl $(SSL_LDFLAGS) will be -Lsslliblocation (if needed)
+dnl and $(SSL_INCLUDES) will be -Isslhdrlocation (if needed)
+dnl ------------------------------------------------------------------------
+dnl
+AC_DEFUN(AC_PATH_SSL,
+[
+LIBSSL="-lssl -lcrypto"
+AC_MSG_CHECKING([for OpenSSL])
+
+ac_ssl_includes=NO ac_ssl_libraries=NO
+ssl_libraries=""
+ssl_includes=""
+AC_ARG_WITH(ssl-dir,
+    [  --with-ssl-dir=DIR      where the root of OpenSSL is installed],
+    [  ac_ssl_includes="$withval"/include
+       ac_ssl_libraries="$withval"/lib
+    ])
+
+want_ssl=yes
+AC_ARG_WITH(ssl,
+    [  --without-ssl           disable SSL checks],
+    [want_ssl=$withval])
+
+if test $want_ssl = yes; then
+
+AC_CACHE_VAL(ac_cv_have_ssl,
+[#try to guess OpenSSL locations
+
+  ssl_incdirs="/usr/include /usr/local/include /usr/ssl/include /usr/local/ssl/include"
+  ssl_incdirs="$ac_ssl_includes $ssl_incdirs"
+  AC_FIND_FILE(openssl/ssl.h, $ssl_incdirs, ssl_incdir)
+  ac_ssl_includes="$ssl_incdir"
+
+  ssl_libdirs="/usr/lib /usr/local/lib /usr/ssl/lib /usr/local/ssl/lib"
+  if test ! "$ac_ssl_libraries" = "NO"; then
+    ssl_libdirs="$ac_ssl_libraries $ssl_libdirs"
+  fi
+
+  test=NONE
+  ssl_libdir=NONE
+  for dir in $ssl_libdirs; do
+    try="ls -1 $dir/libssl*"
+    if test=`eval $try 2> /dev/null`; then ssl_libdir=$dir; break; else echo "tried $dir" >&AC_FD_CC ; fi
+  done
+
+  ac_ssl_libraries="$ssl_libdir"
+
+  AC_LANG_SAVE
+  AC_LANG_C
+
+  ac_cflags_safe="$CFLAGS"
+  ac_ldflags_safe="$LDFLAGS"
+  ac_libs_safe="$LIBS"
+
+  CFLAGS="$CFLAGS -I$ssl_incdir $all_includes"
+  LDFLAGS="-L$ssl_libdir $all_libraries"
+  LIBS="$LIBS $LIBSSL -lRSAglue -lrsaref"
+
+  AC_TRY_LINK(,void RSAPrivateEncrypt(void);RSAPrivateEncrypt();,
+  ac_ssl_rsaref="yes"
+  ,
+  ac_ssl_rsaref="no"
+  )
+
+  CFLAGS="$ac_cflags_safe"
+  LDFLAGS="$ac_ldflags_safe"
+  LIBS="$ac_libs_safe"
+
+  AC_LANG_RESTORE
+
+  if test "$ac_ssl_includes" = NO || test "$ac_ssl_libraries" = NO; then
+    have_ssl=no
+  else
+    have_ssl=yes;
+  fi
+
+  ])
+
+  eval "$ac_cv_have_ssl"
+else
+  have_ssl=no
+fi
+
+if test "$have_ssl" != yes; then
+  LIBSSL="";
+  AC_MSG_RESULT([$have_ssl]);
+else
+  AC_DEFINE(HAVE_SSL, 1, [If we are going to use OpenSSL])
+  ac_cv_have_ssl="have_ssl=yes \
+    ac_ssl_includes=$ac_ssl_includes ac_ssl_libraries=$ac_ssl_libraries ac_ssl_rsaref=$ac_ssl_rsaref"
+  AC_MSG_RESULT([libraries $ac_ssl_libraries, headers $ac_ssl_includes])
+  
+  ssl_libraries="$ac_ssl_libraries"
+  ssl_includes="$ac_ssl_includes"
+
+  AC_MSG_CHECKING([whether OpenSSL uses rsaref])
+  AC_MSG_RESULT($ac_ssl_rsaref)
+  if test "$ac_ssl_rsaref" = yes; then
+    LIBSSL="-lssl -lcrypto -lRSAglue -lrsaref" 
+  fi
+fi
+
+if test "$ssl_includes" = "/usr/include" || test  "$ssl_includes" = "/usr/local/include" || test -z "$ssl_includes"; then
+ SSL_INCLUDES="";
+else
+ SSL_INCLUDES="-I$ssl_includes"
+fi
+
+if test "$ssl_libraries" = "/usr/lib" || test "$ssl_libraries" = "/usr/local/lib" || test -z "$ssl_libraries"; then
+ SSL_LDFLAGS=""
+else
+ SSL_LDFLAGS="-L$ssl_libraries"
+fi
+
+AC_SUBST(SSL_INCLUDES)
+AC_SUBST(SSL_LDFLAGS)
+AC_SUBST(LIBSSL)
+])
+
+
+AC_PATH_SSL
+
+dnl libmach for Tru64
+case "$host" in
+  *-*-osf*)
+    AC_CHECK_LIB(mach, vm_statistics, LIB_TRU64_MACH="-lmach")dnl
+    ;;
+esac
+AC_SUBST(LIB_TRU64_MACH)
+
+KDE_CHECK_LONG_LONG
+
+
+if test x$compile_kdedb = x ; then
+    AC_MSG_CHECKING(for kdedb libraries and headers)
+    compile_kdedb=no
+    dnl check for installed kdedb headers
+    kdedb_incdirs="$kde_includes /usr/include /usr/local/include /opt/kde/include"
+    AC_FIND_FILE(kdb/kdb.h, $kdedb_incdirs, kdedb_incdir)
+    if test -r $kdedb_incdir/kdb/kdb.h; then
+	KDEDB_INCLUDES=$kdedb_incdir
+	compile_kdedb=yes
+    fi
+
+    dnl check for installed kdedb libraries
+    kdedb_libdirs="$kde_libraries /usr/lib /usr/local/lib /opt/kde/lib"
+    AC_FIND_FILE(libkdbcore.la, $kdedb_libdirs, kdedb_libdir)
+    if test -r $kdedb_libdir/libkdbcore.la; then
+	KDEDB_LIBS=$kdedb_libdir
+	compile_kdedb=yes
+    else
+	compile_kdedb=no
+    fi
+    if test $compile_kdedb = yes; then
+	AC_MSG_RESULT([headers $KDEDB_INCLUDES, libraries $KDEDB_LIBS])
+	AC_SUBST(KDEDB_INCLUDES)
+	AC_SUBST(KDEDB_LIBS)
+	
+	LIB_KDBUI="-lkdbui"
+	AC_SUBST(LIB_KDBUI)
+	
+	LIB_KDBCORE="-lkdbcore"
+	AC_SUBST(LIB_KDBCORE)
+	
+	LIB_KDB="$LIB_KDBUI $LIB_KDBCORE"
+	AC_SUBST(LIB_KDB)
+    else
+	AC_MSG_RESULT([not found])
+    fi
+fi
+
+if test $compile_kdedb = yes; then
+    KDEDB_SUBDIR=kdedb
+    AC_SUBST(KDEDB_SUBDIR)
+fi
+
+
+DO_NOT_COMPILE="$DO_NOT_COMPILE kcmthemes"
+dnl CUPS stuffs (to be changed)
+ac_use_cups="yes"
+CUPSSUBDIR=
+LIB_CUPS=
+AC_ARG_ENABLE(cups,[  --disable-cups          disable CUPS support [default=enabled]],[ac_use_cups="no"])
+if test "$ac_use_cups" = "yes"; then
+  ac_cups_libs=0
+  ac_CPPFLAGS_save="$CPPFLAGS"
+  CPPFLAGS="$CPPFLAGS $all_includes"
+  ac_LDFLAGS_save="$LDFLAGS"
+  LDFLAGS="$LDFLAGS $all_libraries"
+  AC_CHECK_LIB(cups,cupsServer,[ac_cups_libs=1],[ac_cups_libs=0],$LIBDL)
+  if test "$ac_cups_libs" = "0"; then
+    AC_MSG_WARN(CUPS library not found. CUPS support disabled)
+    ac_use_cups="no"
+  fi
+  ac_cups_headers=0
+  AC_CHECK_HEADER(cups/cups.h,[ac_cups_headers=1])
+  if test "$ac_cups_headers" = "0"; then
+    AC_MSG_WARN(CUPS headers not found. CUPS support disabled)
+    ac_use_cups="no"
+  fi
+  LDFLAGS="$ac_LDFLAGS_save"
+  CPPFLAGS="$ac_CPPFLAGS_save"
+fi
+if test "$ac_use_cups" = "yes"; then
+  CUPSSUBDIR="cups"
+  LIB_CUPS="-lcups"
+  AC_DEFINE(HAVE_CUPS, 1, [Defines if you have CUPS (Common UNIX Printing System)])
+fi
+AC_SUBST(CUPSSUBDIR)
+AC_SUBST(LIB_CUPS)
+AC_CHECK_FUNCS(sigset sigaction)
+dnl Check for "struct ucred"
+AC_MSG_CHECKING("struct ucred")
+AC_EGREP_HEADER([struct ucred], [sys/socket.h], have_ucred=yes)
+if test "$have_ucred" = "yes"; then
+    AC_DEFINE(HAVE_STRUCT_UCRED, 1, [Define if you have the struct ucred])
+    AC_MSG_RESULT(yes)
+else
+    AC_MSG_RESULT(no)
+fi
+
+dnl Check for the group "nogroup". Use -2 otherwise.
+AC_MSG_CHECKING(nogroup)
+AC_TRY_RUN([
+    #include <grp.h>
+    #include <sys/types.h>
+
+    int main() 
+    {
+	struct group *grp = getgrnam("nogroup");
+	if (grp) return 0;
+	return 1;
+    }
+], nogroup=nogroup, nogroup=65534, nogroup=65534)
+AC_MSG_RESULT($nogroup)
+AC_SUBST(nogroup)
+
+dnl this is for kdm:
+
+savex="$exec_prefix"
+test "x$exec_prefix" = xNONE && exec_prefix="$prefix"
+KDE_CONFDIR=`eval echo $kde_confdir`
+AC_DEFINE_UNQUOTED(KDE_CONFDIR, "$KDE_CONFDIR", [KDE's configuration directory])
+AC_SUBST(KDE_CONFDIR)
+KDE_BINDIR=`eval echo $kde_bindir`
+AC_DEFINE_UNQUOTED(KDE_BINDIR, "$KDE_BINDIR", [KDE's binaries directory])
+AC_SUBST(KDE_BINDIR)
+exec_prefix="$savex"
+
+KDE_FIND_PATH(xmkmf, XMKMF, [], [AC_MSG_ERROR([xmkmf/imake not found. Please make sure it's in PATH!])])
+AC_SUBST(XMKMF)
+
+dnl ask imake about various X settings
+AC_MSG_CHECKING([various X settings])
+AC_CACHE_VAL(kde_cv_defines_imake,
+[rm -fr conftestdir
+if mkdir conftestdir; then
+    cd conftestdir
+    cat > Imakefile <<'EOF'
+BASIC_FLAGS = StandardDefines ConnectionFlags 
+
+#if HasXdmAuth
+XDMAUTH_DEFINES = -DHASXDMAUTH
+#endif
+
+#if HasBSD44Sockets
+SOCK_DEFINES = -DBSD44SOCKETS
+#endif
+
+#if defined(i386Architecture) || defined(ia64Architecture) || defined(AmigaArchitecture)
+FRAGILE_DEFINES = -DFRAGILE_DEV_MEM
+#endif
+
+#ifdef OpenBSDArchitecture
+RANDOM_DEFINES = -DARC4_RANDOM
+#elif defined(LinuxArchitecture)
+RANDOM_DEFINES = -DDEV_RANDOM
+#endif
+
+#if HasLibCrypt && !defined(SpecialLibCrypt) && defined(LynxOSArchitecture)
+CRYPT_DEFINES = -DHAS_CRYPT
+#endif
+
+VERSION_DEFINES = -DOSMAJORVERSION=OSMajorVersion -DOSMINORVERSION=OSMinorVersion
+
+XDM_CFLAGS = $(BASIC_FLAGS) $(VERSION_DEFINES) $(SIGNAL_DEFINES) $(XDMAUTH_DEFINES) $(FRAGILE_DEFINES) $(SOCK_DEFINES) $(RANDOM_DEFINES) $(CRYPT_DEFINES)
+
+acimake:
+	@echo XDM_CFLAGS=\"$(XDM_CFLAGS)\"
+#if HasXdmAuth
+	@echo HASXDMAUTH=1
+#endif
+	@echo XBINDIR=$(BINDIR)
+	@echo XLIBDIR=$(LIBDIR)
+EOF
+    if $XMKMF >&5 2>&1 && test -f Makefile; then
+	[kde_cv_defines_imake=`${MAKE-make} acimake 2> /dev/null | grep '^[^ ]*='`]
+	kde_cv_defines_imake=`echo $kde_cv_defines_imake`
+    else
+	AC_MSG_ERROR([$XMKF (imake) failed])
+    fi
+    cd ..
+    rm -fr conftestdir
+else
+    AC_MSG_ERROR([mkdir failed])
+fi])
+if test -n "$kde_cv_defines_imake"; then
+    eval $kde_cv_defines_imake
+    AC_MSG_RESULT([done])
+fi
+
+AC_MSG_CHECKING([whether to use xdm authorization])
+if test -n "$HASXDMAUTH"; then
+    AC_MSG_RESULT([yes])
+    AC_DEFINE(HASXDMAUTH, 1, [Use encrypted XDM authorization])
+else
+    AC_MSG_RESULT([no])
+fi
+
+AC_MSG_RESULT([checking for X binary directory... $XBINDIR])
+AC_DEFINE_UNQUOTED(XBINDIR, "$XBINDIR", [Define where to find the X binaries])
+AC_MSG_RESULT([checking for X library directory... $XLIBDIR])
+AC_DEFINE_UNQUOTED(XLIBDIR, "$XLIBDIR", [Define where to find the X libraries])
+
+AC_CHECK_LIB(Xau, main, [:], 
+	[
+	  AC_MSG_WARN([Cannot build KDM! Make sure that libXau.a is installed!])
+	  DO_NOT_COMPILE="$DO_NOT_COMPILE kdm"
+	], 
+	  $X_LDFLAGS -lX11 $LIBSOCKET)
+
+AC_ARG_WITH(xdmcp,
+	[  --without-xdmcp         build kdm without xdmcp support [default=with xdmcp]],
+	[ if test "$withval" = yes; then
+	    XDMCP=1
+	  else
+	    XDMCP=
+	  fi
+	], [XDMCP=1])
+if test -n "$XDMCP"; then
+  kdmchooserdir=chooser
+  AC_CHECK_LIB(Xdmcp, main, [LIBXDMCP="-lXdmcp"], , $X_LDFLAGS -lX11 $LIBSOCKET)
+  if test -n "$LIBXDMCP"; then
+    ac_cpp_safe=$ac_cpp
+    ac_cpp='$CXXCPP $CPPFLAGS $X_INCLUDES'
+    AC_CHECK_HEADER(X11/Xdmcp.h, [HAVE_X11_XDMCP_H=1])
+    ac_cpp=$ac_cpp_safe
+  fi
+  if test -z "$HAVE_X11_XDMCP_H"; then
+    AC_MSG_WARN([Cannot build KDM! Make sure that libXdmcp.a and Xdmcp.h 
+are installed or use --without-xdmcp to disable XDMCP support!])
+    DO_NOT_COMPILE="$DO_NOT_COMPILE kdm"
+  fi
+fi
+AC_SUBST(LIBXDMCP)
+AC_SUBST(kdmchooserdir)	dnl XXX phase out
+
+AC_MSG_CHECKING(whether to use Kerberos v4)
+AC_ARG_WITH(krb4,
+[  --with-krb4[=PATH]      Compile in Kerberos v4 support.],
+[ case "$withval" in
+  yes)
+    with_krb4=/usr/kerberos
+    ;;
+  esac ],
+[ with_krb4=no ]
+)
+case "$with_krb4" in
+no)
+  AC_MSG_RESULT(no)
+  ;;
+*)
+  AC_MSG_RESULT(yes)
+  AC_DEFINE_UNQUOTED(KRB4, 1, [ define if you have Kerberos IV ])
+  KERBEROS_ROOT="$with_krb4"
+  KERBEROS_INCS="-I${KERBEROS_ROOT}/include"
+  KERBEROS_LIBS="-L${KERBEROS_ROOT}/lib -lkrb -ldes"
+  KRB_RPATH=
+  if test "$USE_RPATH" = "yes" ; then
+    KRB_RPATH="-R ${KERBEROS_ROOT}/lib"
+  fi
+  AC_CHECK_LIB(resolv, dn_expand, KERBEROS_LIBS="$KERBEROS_LIBS -lresolv")
+  dnl Check whether or not the AFS lifetime conversion routines exist.
+  AC_MSG_CHECKING(whether AFS lifetime conversion routines are present)
+  keeplibs="$LIBS"
+  keepcflags="$CFLAGS"
+  LIBS="-L${KERBEROS_ROOT}/lib -lkrb -ldes $LIBS"
+  CFLAGS="-I${KERBEROS_ROOT}/include $CFLAGS"
+  AC_TRY_LINK([#include <krb.h>], [ krb_life_to_time(10, 10);],
+              [AC_MSG_RESULT(yes)
+               AC_DEFINE_UNQUOTED(HAVE_KRB_LIFE_TO_TIME, 1, 
+	         [ define if libkrb has krb_life_to_time() ])],
+              [AC_MSG_RESULT(no)])
+  LIBS="$keeplibs"
+  CFLAGS="$keepcflags"
+  ;;
+esac
+
+AC_MSG_CHECKING(whether to use AFS)
+AC_ARG_WITH(afs,
+  [  --with-afs              Compile in AFS support (requires KTH krb4).], , 
+  [ with_afs=no ])
+if test "$with_afs" = no; then
+  AC_MSG_RESULT(no)
+else
+  if test "$with_krb4" = no; then
+    AC_MSG_RESULT(no)
+    AC_MSG_WARN("AFS requires Kerberos v4 support.")
+    with_afs=no
+  else
+    AC_MSG_RESULT(yes)
+    AC_DEFINE_UNQUOTED(AFS, 1, [ define if you have KTH Kerberos IV and AFS ])
+    KERBEROS_LIBS="${KERBEROS_LIBS} -lkafs"
+    if test -n "$os_aix"; then
+      KERBEROS_LIBS="${KERBEROS_LIBS} -lld"
+    fi
+  fi
+fi
+
+AC_SUBST(KERBEROS_ROOT)dnl
+AC_SUBST(KERBEROS_INCS)dnl
+AC_SUBST(KERBEROS_LIBS)dnl
+AC_SUBST(KRB_RPATH)
+
+AC_CHECK_LIB(s, main, [LIB_LIBS="-ls"]) dnl for AIX
+AC_SUBST(LIB_LIBS)
+
+AC_MSG_CHECKING([whether to use Kerberos5 for Xauth cookies in kdm])
+AC_ARG_WITH(krb5auth,
+  [  --with-krb5auth         Use Kerberos5 for Xauth cookies in kdm.], , 
+  [ with_krb5auth=no ])
+if test "x$with_krb5auth" = xno; then
+  AC_MSG_RESULT(no)
+else
+  AC_MSG_RESULT(yes)
+  AC_CHECK_HEADER(krb5/krb5.h, 
+    [ XDM_CFLAGS="$XDM_CFLAGS -DK5AUTH" ],
+    [ AC_MSG_ERROR([--with-krb5auth requires Kerberos5 header files.])])
+fi
+
+AC_MSG_CHECKING([whether to use Sun's secure RPC for Xauth cookies in kdm])
+AC_ARG_WITH(rpcauth,
+  [  --with-rpcauth          Use Sun's secure RPC for Xauth cookies in kdm.], , 
+  [ with_rpcauth=no ])
+if test "x$with_rpcauth" = xno; then
+  AC_MSG_RESULT(no)
+else
+  AC_MSG_RESULT(yes)
+  AC_CHECK_HEADER(rpc/rpc.h, 
+    [ XDM_CFLAGS="$XDM_CFLAGS -DSECURE_RPC" ],
+    [ AC_MSG_ERROR([--with-rpcauth requires Sun RPC header files.])])
+fi
+
+if test "x$use_pam" = xno; then
+
+  dnl should be:
+  dnl AC_CHECK_MEMBER(struct passwd.pw_expire, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_PW_EXPIRE" ], , [#include <pwd.h>])
+  dnl but somehow it doesn't work. so we make it by hand ...
+  AC_MSG_CHECKING([for pw_expire in struct passwd])
+  AC_CACHE_VAL(ac_cv_have_pw_expire,
+      [ AC_TRY_COMPILE(
+	  [#include <pwd.h>],
+	  [struct passwd pwd; pwd.pw_expire = 0;],
+	  [ac_cv_have_pw_expire="yes"],
+	  [ac_cv_have_pw_expire="no"])
+      ])
+  AC_MSG_RESULT($ac_cv_have_pw_expire)
+  if test "$ac_cv_have_pw_expire" = "yes"; then
+      XDM_CFLAGS="$XDM_CFLAGS -DHAVE_PW_EXPIRE"
+  fi
+
+  ac_save_libs=$LIBS
+  LIBS="$LIBS $LIBUTIL"
+  AC_CHECK_FUNC(setusercontext, [ XDM_CFLAGS="$XDM_CFLAGS -DHAS_SETUSERCONTEXT" ])
+  AC_CHECK_FUNC(getusershell, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_GETUSERSHELL" ])
+  AC_CHECK_FUNC(login_getclass, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_LOGIN_GETCLASS" ])
+  AC_CHECK_FUNC(auth_timeok, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_AUTH_TIMEOK" ])
+  LIBS=$ac_save_libs
+
+fi
+
+AC_CHECK_FUNC(vsyslog, [ XDM_CFLAGS="$XDM_CFLAGS -DUSE_SYSLOG" ])
+if test "x$use_pam" = xyes; then
+    XDM_CFLAGS="$XDM_CFLAGS -DUSE_PAM"
+elif test "x$use_shadow" = xyes; then
+    XDM_CFLAGS="$XDM_CFLAGS -DUSESHADOW"
+fi
+if test "x$XDMCP" != x; then
+    XDM_CFLAGS="$XDM_CFLAGS -DXDMCP"
+fi
+if test "x$with_krb4" != xno; then
+    XDM_CFLAGS="$XDM_CFLAGS -DKERBEROS"
+    if test "x$with_afs" = xno; then
+	XDM_CFLAGS="$XDM_CFLAGS -DNO_AFS"
+    fi
+fi
+AC_MSG_RESULT([xdm CFLAGS: $XDM_CFLAGS])
+AC_SUBST(XDM_CFLAGS)
+AC_MSG_CHECKING(for cdparanoia libraries and headers)
+
+AC_ARG_WITH(cdparanoia,
+  [  --with-cdparanoia[=DIR] Compile in cdparanoia support [default=check]],
+  [
+    case "$withval" in
+    yes)
+      with_cdparanoia=CHECK
+      ;;
+    esac
+  ],
+  [
+    with_cdparanoia=CHECK
+  ]
+)dnl
+
+if test "x$with_cdparanoia" = "xCHECK" ; then
+  with_cdparanoia=NOTFOUND
+  search_incs="$kde_includes /usr/include /usr/local/include"
+  AC_FIND_FILE(cdda_interface.h, $search_incs, para_incdir)
+  if test -r $para_incdir/cdda_interface.h ; then
+    test "x$para_incdir" != "x/usr/include" && CDPARANOIA_INCS="-I$para_incdir"
+    with_cdparanoia=FOUND
+  fi
+  if test $with_cdparanoia = FOUND ; then
+    with_cdparanoia=NOTFOUND
+    # because of the horrible hack we need shared cdparanoia
+    for ext in la so sl a ; do
+      AC_FIND_FILE(libcdda_paranoia.$ext, $kde_libraries /usr/lib /usr/local/lib,
+        para_libdir)
+      if test -r $para_libdir/libcdda_paranoia.$ext ; then
+        if test "x$para_libdir" != "x/usr/lib" ; then
+          CDPARANOIA_LIBS="-L$para_libdir "
+	  test "$USE_RPATH" = yes && CDPARANOIA_RPATH="-R $para_libdir"
+        fi
+        CDPARANOIA_LIBS="${CDPARANOIA_LIBS}-lcdda_paranoia -lcdda_interface"
+	with_cdparanoia=FOUND
+        break
+      fi
+    done
+    if test "$with_cdparanoia" = FOUND; then
+      if test "$ext" = la; then
+        grep "^library_names='*[a-z]*'" $para_libdir/libcdda_paranoia.$ext 2>&1 > /dev/null || with_cdparanoia=NOTFOUND
+      fi
+      if test "$ext" = a; then
+        with_cdparanoia=NOTFOUND
+        cdparanoia_only_static=yes
+      fi
+      # beware, that we don't reset CDPARANOIA_*
+    fi
+  fi
+fi
+
+case "$with_cdparanoia" in
+no) AC_MSG_RESULT(no) ;;
+NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
+*)
+  if test "x$with_cdparanoia" = "xFOUND" ; then
+    AC_MSG_RESULT(incs=$para_incdir libs=$para_libdir)
+  else
+    AC_MSG_RESULT($with_cdparanoia)
+    CDPARANOIA_ROOT="$with_cdparanoia"
+    if test "x$CDPARANOIA_ROOT" != "x/usr" ; then
+      CDPARANOIA_INCS="-I${CDPARANOIA_ROOT}/include"
+      CDPARANOIA_LIBS="-L${CDPARANOIA_ROOT}/lib "
+      if test "$USE_RPATH" = "yes" ; then
+        CDPARANOIA_RPATH="-R ${CDPARANOIA_ROOT}/lib"
+      fi
+    fi
+    CDPARANOIA_LIBS="${CDPARANOIA_LIBS}-lcdda_paranoia -lcdda_interface"
+  fi
+  AC_DEFINE_UNQUOTED(HAVE_CDPARANOIA, 1, [Define if you have cdparanoia])
+  AUDIOCD_SUBDIR="audiocd"
+  ;;
+esac
+
+AC_SUBST(CDPARANOIA_INCS)
+AC_SUBST(CDPARANOIA_LIBS)
+AC_SUBST(CDPARANOIA_RPATH)
+AC_SUBST(AUDIOCD_SUBDIR)
+
+AC_MSG_CHECKING(for lame library and header)
+
+AC_ARG_WITH(lame,
+  [  --with-lame[=DIR]	  Compile in Lame MP3 support [default=check]],
+  [
+    case "$withval" in
+    yes) with_lame=CHECK ;;
+    esac
+  ],
+  [ with_lame=CHECK ]
+)dnl
+AC_ARG_ENABLE(lametest,
+  [  --disable-lametest    Do not try to compile and run a test Lame MP3 program], , enable_lametest=yes)
+
+if test "x$with_lame" = "xCHECK" ; then
+  with_lame=NOTFOUND
+  search_incs="/usr/local/include $kde_includes /usr/include"
+  AC_FIND_FILE(lame/lame.h, $search_incs, lame_incdir)
+  if test -r $lame_incdir/lame/lame.h ; then
+    test "x$lame_incdir" != "x/usr/include" && LAME_INCS="-I$lame_incdir"
+    with_lame=FOUND
+  fi
+  if test $with_lame = FOUND ; then
+    with_lame=NOTFOUND
+    for ext in la so sl a ; do
+      AC_FIND_FILE(libmp3lame.$ext, /usr/local/lib $kde_libraries /usr/lib,
+        lame_libdir)
+      if test -r $lame_libdir/libmp3lame.$ext ; then
+        if test "x$lame_libdir" != "x/usr/lib" ; then
+          LAME_LIBS="-L$lame_libdir "
+	  test "$USE_RPATH" = yes && LAME_RPATH="-R $lame_libdir"
+        fi
+        LAME_LIBS="${LAME_LIBS}-lmp3lame -lm"
+	with_lame=FOUND
+        break
+      fi
+    done
+  fi
+fi
+
+case "$with_lame" in
+no) AC_MSG_RESULT(no) ;;
+NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
+*)
+  if test "x$with_lame" = "xFOUND" ; then
+    msg="incs=$lame_incdir libs=$lame_libdir"
+  else
+    msg="$with_lame"
+    LAME_ROOT="$with_lame"
+    if test "x$LAME_ROOT" != "x/usr" ; then
+      LAME_INCS="-I${LAME_ROOT}/include"
+      LAME_LIBS="-L${LAME_ROOT}/lib "
+      if test "$USE_RPATH" = "yes" ; then
+        LAME_RPATH="-R ${LAME_ROOT}/lib"
+      fi
+    fi
+    LAME_LIBS="${LAME_LIBS}-lmp3lame -lm"
+  fi
+  non_compile=no
+  if test "x$enable_lametest" = xyes ; then
+    ac_save_CFLAGS="$CFLAGS"
+    ac_save_LIBS="$LIBS"
+    CFLAGS="$CFLAGS $all_includes $LAME_INCS"
+    LIBS="$LIBS $all_libraries $LAME_LIBS"
+    rm -f conf.lametest conf.wrongver
+    AC_TRY_RUN([
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <lame/lame.h>
+
+int main ()
+{
+  lame_version_t v;
+  get_lame_version_numerical (&v);
+  if (v.major>3 || (v.major==3 && v.minor>88)) {
+    system("touch conf.lametest");
+    return 0;
+  } else {
+    system("touch conf.wrongver");
+    return 1;
+  }
+}
+], , non_compile=yes , [echo $ac_n "cross compiling; assumed OK... $ac_c"])
+    CFLAGS="$ac_save_CFLAGS"
+    LIBS="$ac_save_LIBS"
+    # bogus return value, but it _did_ run correctly
+    test -f conf.lametest && non_compile=no
+    # Set the flag for configure.in.bot
+    test -f conf.wrongver && lame_wrong_version=yes
+    rm -f conf.lametest conf.wrongver
+  fi
+  if test "$non_compile" = no ; then
+    AC_MSG_RESULT($msg)
+    AC_DEFINE_UNQUOTED(HAVE_LAME, 1, [Define if you have lame])
+    KCM_AUDIOCD="kcmaudiocd"
+  else
+    AC_MSG_RESULT(no (but first try gave $msg))
+    if test -z "$lame_wrong_version"; then
+      # only do this test, if it really didn't run
+      echo "*** Could not run Lame test program, checking why..."
+      CFLAGS="$CFLAGS $all_includes $LAME_INCS"
+      LIBS="$LIBS $all_libraries $LAME_LIBS"
+      AC_TRY_LINK([
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <lame/lame.h>
+], [
+  lame_version_t v;
+  get_lame_version_numerical (&v);
+  return 0;
+],
+[ echo "*** The test program compiled, but did not run. This usually means"
+echo "*** that the run-time linker is not finding Lame or finding the wrong"
+echo "*** version of Lame. If it is not finding Lame, you'll need to set your"
+echo "*** LD_LIBRARY_PATH environment variable, or edit /etc/ld.so.conf to point"
+echo "*** to the installed location  Also, make sure you have run ldconfig if that"
+echo "*** is required on your system"
+echo "***"
+echo "*** If you have an old version installed, it is best to remove it, although"
+echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH"], [
+echo "*** The test program failed to compile or link. See the file config.log for the"
+echo "*** exact error that occured. This usually means Lame was incorrectly installed"
+echo "*** or that you have moved Lame since it was installed." ])
+      # ac_save_* still set, because this else part is only entered if the
+      # enable_lametest was yes, in which case also ac_save_* was set.
+      CFLAGS="$ac_save_CFLAGS"
+      LIBS="$ac_save_LIBS"
+    fi
+    LAME_INCS=
+    LAME_LIBS=
+    LAME_RPATH=
+  fi
+  ;;
+esac
+
+AC_SUBST(LAME_INCS)
+AC_SUBST(LAME_LIBS)
+AC_SUBST(LAME_RPATH)
+AC_SUBST(KCM_AUDIOCD)
+
+AC_MSG_CHECKING(for Vorbis Ogg libraries and headers)
+
+AC_ARG_WITH(vorbis,
+  [  --with-vorbis[=DIR]	  Compile in Vorbis OGG support [default=check]],
+  [
+    case "$withval" in
+    yes) with_vorbis=CHECK ;;
+    esac
+  ],
+  [ with_vorbis=CHECK ]
+)dnl
+AC_ARG_ENABLE(vorbistest,
+  [  --disable-vorbistest    Do not try to compile and run a test Vorbis program], , enable_vorbistest=yes)
+
+if test "x$with_vorbis" = "xCHECK" ; then
+  with_vorbis=NOTFOUND
+  search_incs="$kde_includes /usr/local/include /usr/include"
+  AC_FIND_FILE(vorbis/codec.h, $search_incs, vorbis_incdir)
+  if test -r $vorbis_incdir/vorbis/codec.h ; then
+    test "x$vorbis_incdir" != "x/usr/include" && VORBIS_INCS="-I$vorbis_incdir"
+    with_vorbis=FOUND
+  fi
+  if test $with_vorbis = FOUND ; then
+    with_vorbis=NOTFOUND
+    for ext in la so sl a ; do
+      AC_FIND_FILE(libvorbis.$ext, $kde_libraries /usr/local/lib /usr/lib,
+        vorbis_libdir)
+      if test -r $vorbis_libdir/libvorbis.$ext ; then
+        if test "x$vorbis_libdir" != "x/usr/lib" ; then
+          VORBIS_LIBS="-L$vorbis_libdir "
+          test "$USE_RPATH" = yes && VORBIS_RPATH="-R $vorbis_libdir"
+        fi
+        VORBIS_LIBS="${VORBIS_LIBS}-lvorbis -lm"
+        with_vorbis=FOUND
+        break
+      fi
+    done
+  fi
+fi
+
+case "$with_vorbis" in
+no) AC_MSG_RESULT(no) ;;
+NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
+*)
+  if test "x$with_vorbis" = "xFOUND" ; then
+    msg="incs=$vorbis_incdir libs=$vorbis_libdir"
+  else
+    msg="$with_vorbis"
+    VORBIS_ROOT="$with_vorbis"
+    if test "x$VORBIS_ROOT" != "x/usr" ; then
+      VORBIS_INCS="-I${VORBIS_ROOT}/include"
+      VORBIS_LIBS="-L${VORBIS_ROOT}/lib "
+      test "$USE_RPATH" = yes && VORBIS_RPATH="-R ${VORBIS_ROOT}/lib"
+    fi
+    VORBIS_LIBS="${VORBIS_LIBS}-lvorbis -lm"
+  fi
+  non_compile=no
+  if test "x$enable_vorbistest" = xyes ; then
+    ac_save_CFLAGS="$CFLAGS"
+    ac_save_CXXFLAGS="$CXXFLAGS"
+    ac_save_LIBS="$LIBS"
+    CFLAGS="$CFLAGS $all_includes $VORBIS_INCS"
+    CXXFLAGS="$CXXFLAGS $all_includes $VORBIS_INCS"
+    LIBS="$LIBS $all_libraries $VORBIS_LIBS"
+    rm -f conf.vorbistest
+    AC_TRY_RUN([
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <vorbis/codec.h>
+
+int main ()
+{
+  system("touch conf.vorbistest");
+  return 0;
+}
+
+], , non_compile=yes , [echo $ac_n "cross compiling; assumed OK... $ac_c"])
+    CFLAGS="$ac_save_CFLAGS"
+    CXXFLAGS="$ac_save_CXXFLAGS"
+    LIBS="$ac_save_LIBS"
+    # bogus return value, but it _did_ run
+    test -f conf.vorbistest && non_compile="no"
+    rm -f conf.vorbistest
+  fi
+
+  if test "$non_compile" = no ; then
+     AC_MSG_RESULT($msg)
+     AC_DEFINE_UNQUOTED(HAVE_VORBIS, 1, [Define if you have vorbis])
+     VORBISFILE_LIBS="-lvorbisfile"
+     VORBISENC_LIBS="-lvorbisenc -lvorbis"
+     KCM_AUDIOCD="kcmaudiocd"	
+  else
+     AC_MSG_RESULT(no (but first try gave $msg))
+     echo "*** Could not run Vorbis test program, checking why..."
+     CFLAGS="$CFLAGS $all_includes $VORBIS_INCS"
+     CXXFLAGS="$CXXFLAGS $all_includes $VORBIS_INCS"
+     LIBS="$LIBS $all_libraries $VORBIS_LIBS"
+     AC_TRY_LINK([
+#include <stdio.h>
+#include <vorbis/codec.h>
+],   [ return 0; ],
+     [ echo "*** The test program compiled, but did not run. This usually means"
+     echo "*** that the run-time linker is not finding Vorbis or finding the wrong"
+     echo "*** version of Vorbis. If it is not finding Vorbis, you'll need to set your"
+     echo "*** LD_LIBRARY_PATH environment variable, or edit /etc/ld.so.conf to point"
+     echo "*** to the installed location  Also, make sure you have run ldconfig if that"
+     echo "*** is required on your system"
+     echo "***"
+     echo "*** If you have an old version installed, it is best to remove it, although"
+     echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH"],
+     [ echo "*** The test program failed to compile or link. See the file config.log for the"
+     echo "*** exact error that occured. This usually means Vorbis was incorrectly installed"
+     echo "*** or that you have moved Vorbis since it was installed." ])
+     CFLAGS="$ac_save_CFLAGS"
+     CXXFLAGS="$ac_save_CXXFLAGS"
+     LIBS="$ac_save_LIBS"
+     VORBIS_INCS=""
+     VORBIS_LIBS=""
+     VORBISFILE_LIBS=""
+     VORBISENC_LIBS=""
+  fi
+  ;;
+esac
+
+AC_SUBST(VORBIS_INCS)
+AC_SUBST(VORBIS_LIBS)
+AC_SUBST(VORBIS_RPATH)
+AC_SUBST(VORBISFILE_LIBS)
+AC_SUBST(VORBISENC_LIBS)
+AC_SUBST(KCM_AUDIOCD)
+AC_DEFUN(AC_FIND_BZIP2,
+[
+AC_MSG_CHECKING([for bzDecompress in libbz2])
+AC_CACHE_VAL(ac_cv_lib_bzip2,
+[
+AC_LANG_C
+kde_save_LIBS="$LIBS"
+LIBS="$all_libraries $USER_LDFLAGS -lbz2 $LIBSOCKET"
+kde_save_CFLAGS="$CFLAGS"
+CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
+AC_TRY_LINK(dnl
+[
+#define BZ_NO_STDIO
+#include<bzlib.h>
+],
+            [ bz_stream s; (void) bzDecompress(&s); ],
+            eval "ac_cv_lib_bzip2='-lbz2'",
+            eval "ac_cv_lib_bzip2=no")
+LIBS="$kde_save_LIBS"
+CFLAGS="$kde_save_CFLAGS"
+])dnl
+AC_MSG_RESULT($ac_cv_lib_bzip2)
+
+if test ! "$ac_cv_lib_bzip2" = no; then
+  dnl BZIP2DIR=bzip2
+  dnl AC_SUBST(BZIP2DIR)
+  BZIP2FILES="bzip.protocol bzip2.protocol"
+  AC_SUBST(BZIP2FILES)
+
+  dnl LIBBZ2="$ac_cv_lib_bzip2"
+  dnl AC_SUBST(LIBBZ2)
+
+else
+  
+   AC_MSG_CHECKING([for BZ2_bzDecompress in libbz2])
+   AC_CACHE_VAL(ac_cv_lib_bzip2_prefix,
+   [
+   AC_LANG_C
+   kde_save_LIBS="$LIBS"
+   LIBS="$all_libraries $USER_LDFLAGS -lbz2 $LIBSOCKET"
+   kde_save_CFLAGS="$CFLAGS"
+   CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
+   AC_TRY_LINK(dnl
+   [
+   #define BZ_NO_STDIO
+   #include<bzlib.h>
+   ],
+               [ bz_stream s; (void) BZ2_bzDecompress(&s); ],
+               eval "ac_cv_lib_bzip2_prefix='-lbz2'",
+               eval "ac_cv_lib_bzip2_prefix=no")
+   LIBS="$kde_save_LIBS"
+   CFLAGS="$kde_save_CFLAGS"
+   ])dnl
+
+   AC_MSG_RESULT($ac_cv_lib_bzip2_prefix)
+    
+   if test ! "$ac_cv_lib_bzip2_prefix" = no; then
+     dnl BZIP2DIR=bzip2
+     dnl AC_SUBST(BZIP2DIR)
+     BZIP2FILES="bzip.protocol bzip2.protocol"
+     AC_SUBST(BZIP2FILES)
+    
+     dnl LIBBZ2="$ac_cv_lib_bzip2_prefix"
+     dnl AC_SUBST(LIBBZ2)
+
+     dnl AC_DEFINE(NEED_BZ2_PREFIX, 1, [Define if the libbz2 functions need the BZ2_ prefix])
+   dnl else, we just ignore this
+   fi
+
+fi
+])
+
+AC_FIND_BZIP2
+
+AC_MSG_CHECKING(whether to compile LDAP support)
+AC_ARG_WITH(ldap,
+[  --with-ldap=PATH     Set path for LDAP files [default=check]],
+[ case "$withval" in
+  yes)
+    with_ldap=CHECK
+    ;;
+  esac ],
+[ with_ldap=CHECK ]
+)dnl
+
+if test "x$with_ldap" = "xCHECK" ; then
+  with_ldap=NOTFOUND
+  search_incs="$kde_includes /usr/include /usr/local/include"
+  AC_FIND_FILE(ldap.h, $search_incs, ldap_incdir)
+  if test -r $ldap_incdir/ldap.h ; then
+    test "x$ldap_incdir" != "x/usr/include" && LDAP_INCS="-I$ldap_incdir"
+    with_ldap=FOUND
+  fi
+  if test $with_ldap = FOUND ; then
+    with_ldap=NOTFOUND
+    for ext in la so sl a ; do
+      AC_FIND_FILE(libldap.$ext, $kde_libraries /usr/lib /usr/local/lib,
+        ldap_libdir)
+      if test -r $ldap_libdir/libldap.$ext ; then
+        if test "x$ldap_libdir" != "x/usr/lib" ; then
+          LDAP_LIBS="-L$ldap_libdir "
+          test "$USE_RPATH" = yes && LDAP_RPATH="-R $ldap_libdir"
+        fi
+        LDAP_LIBS="${LDAP_LIBS}-lldap -llber"
+        with_ldap=FOUND
+        break
+      fi
+    done
+  fi
+fi
+
+case "$with_ldap" in
+no) AC_MSG_RESULT(no) ;;
+NOTFOUND) AC_MSG_RESULT(searched but not found) ;;
+*)
+  if test "x$with_ldap" = "xFOUND" ; then
+    msg="incs=$ldap_incdir libs=$ldap_libdir"
+  else
+    msg="$with_ldap"
+    LDAP_ROOT="$with_ldap"
+    if test "x$LDAP_ROOT" != "x/usr" ; then
+      LDAP_INCS="-I${LDAP_ROOT}/include"
+      LDAP_LIBS="-L${LDAP_ROOT}/lib "
+      if test "$USE_RPATH" = "yes" ; then
+        LDAP_RPATH="-R ${LDAP_ROOT}/lib"
+      fi
+    fi
+    LDAP_LIBS="${LDAP_LIBS}-lldap -llber"
+  fi
+  kde_safe_LIBS="$LIBS"
+  kde_safe_CFLAGS="$CFLAGS"
+  LIBS="$LIBS $all_libraries $LDAP_LIBS $KERBEROS_LIBS $X_EXTRA_LIBS"
+  CFLAGS="$CFLAGS $all_includes $LDAP_INCS $KERBEROS_INCS"
+  AC_LANG_SAVE
+  AC_LANG_C
+  AC_TRY_LINK(dnl
+  [
+  #include <lber.h>
+  #include <ldap.h>
+  ],
+  [
+  LDAP *ldap;
+  ],
+  , with_ldap=no
+  )
+  AC_LANG_RESTORE
+  CFLAGS=$kde_safe_CFLAGS
+  LIBS=$kde_safe_LIBS
+  if test "$with_ldap" = "no" ; then
+    LDAP_INCS=
+    LDAP_LIBS=
+    LDAP_RPATH=
+    LDAP_SUBDIR=
+    AC_MSG_RESULT(no (but first try gave $msg))
+  else
+    AC_DEFINE_UNQUOTED(HAVE_LIBLDAP, 1, [Define if you have LDAP libraries])
+    LDAP_SUBDIR="ldap"
+    AC_MSG_RESULT($msg)
+  fi
+  ;;
+esac
+
+AC_SUBST(LDAP_INCS)
+AC_SUBST(LDAP_LIBS)
+AC_SUBST(LDAP_RPATH)
+AC_SUBST(LDAP_SUBDIR)
+
+SMB_SUBDIR="smb"
+KDE_CHECK_HEADER(libsmbclient.h, ,[SMB_SUBDIR=""] )
+KDE_CHECK_LIB(smbclient, smbc_init, ,[SMB_SUBDIR=""] )
+AC_SUBST(SMB_SUBDIR)
+AC_HAVE_GL([
+GL_SAVERS="kmorph3d.kss kspace.kss kpipes.kss"
+ac_save_CPPFLAGS="$CPPFLAGS"
+CPPFLAGS="-I$GL_INCLUDE $CPPFLAGS $X_INCLUDES"
+AC_CHECK_HEADERS(GL/xmesa.h GL/glut.h memory.h)
+CPPFLAGS="$ac_save_CPPFLAGS"
+],
+GL_SAVERS="")
+AC_SUBST(GL_SAVERS)
+
+AC_CHECK_FUNCS(gettimeofday)
+
+AC_HAVE_DPMS()
+ac_save_LIBS="$LIBS"
+LIBS="$LIBS $X_LDFLAGS -lICE"
+AC_CHECK_FUNCS(_IceTransNoListen)
+LIBS="$ac_save_LIBS"
+dnl Check whether ksysguardd can run; 
+AC_MSG_CHECKING(if ksysguardd can be compiled)
+case "$host" in 
+  *-*-linux*) ksysguardd_compile=yes; UNAME='Linux' ;;
+  *-*-freebsd*) ksysguardd_compile=yes; UNAME='FreeBSD' ;;
+  *-*-solaris*) ksysguardd_compile=yes; UNAME='Solaris' ;;
+  *) ksysguard_compile=no; UNAME='' ;;
+esac
+AC_MSG_RESULT($ksysguardd_compile)
+AC_SUBST(UNAME)
+
+AC_CHECK_LIB(sensors, sensors_init, [LIBSENSORS="-lsensors"])
+AC_SUBST(LIBSENSORS)
+AC_CHECK_HEADERS(sensors/sensors.h)KDE_CHECK_HEADER(X11/extensions/XKBstr.h, ,
+  DO_NOT_COMPILE="$DO_NOT_COMPILE kxkb" )
+dnl
+dnl
+dnl AC_FIND_MOTIF : find OSF/Motif or LessTif, and provide variables
+dnl	to easily use them in a Makefile.
+dnl
+dnl Adapted from a macro by Andreas Zeller.
+dnl
+dnl The variables provided are :
+dnl	link_motif		(e.g. -L/usr/lesstif/lib -lXm)
+dnl	include_motif		(e.g. -I/usr/lesstif/lib)
+dnl	motif_libraries		(e.g. /usr/lesstif/lib)
+dnl	motif_includes		(e.g. /usr/lesstif/include)
+dnl
+dnl The link_motif and include_motif variables should be fit to put on
+dnl your application's link line in your Makefile.
+dnl
+dnl Oleo CVS Id: motif.m4,v 1.9 1999/04/09 11:46:49 danny
+dnl LessTif CVS $Id: configure.in.in,v 1.12 2001/06/15 00:16:32 mueller Exp $
+dnl
+AC_DEFUN(KAC_FIND_MOTIF,
+[
+
+AC_REQUIRE([AC_PATH_XTRA])
+
+motif_includes=
+motif_libraries=
+
+AC_ARG_WITH(motif,
+[  --without-motif         do not use Motif widgets],
+[if test "$withval" = "no" ; then
+  motif_includes=none
+  motif_libraries=none
+fi])dnl
+
+AC_ARG_WITH(motif-includes,
+[  --with-motif-includes=DIR    Motif include files are in DIR],
+motif_includes="$withval")
+
+AC_ARG_WITH(motif-libraries,
+[  --with-motif-libraries=DIR   Motif libraries are in DIR],
+motif_libraries="$withval")
+
+AC_MSG_CHECKING(for Motif)
+
+#
+#
+# Search the include files.
+#
+if test "$motif_includes" = ""; then
+AC_CACHE_VAL(ac_cv_motif_includes,
+[
+ac_motif_save_LIBS="$LIBS"
+ac_motif_save_INCLUDES="$INCLUDES"
+ac_motif_save_CPPFLAGS="$CPPFLAGS"
+ac_motif_save_LDFLAGS="$LDFLAGS"
+#
+LIBS="$X_PRE_LIBS -lXm -lXt -lX11 $X_EXTRA_LIBS $LIBS"
+INCLUDES="$X_CFLAGS $INCLUDES"
+CPPFLAGS="$X_CFLAGS $CPPFLAGS"
+LDFLAGS="$X_LIBS $LDFLAGS"
+#
+ac_cv_motif_includes="none"
+AC_TRY_COMPILE([#include <Xm/Xm.h>
+#include <Xm/DrawingA.h>
+],[int a;],
+[
+# Xm/Xm.h is in the standard search path.
+ac_cv_motif_includes=
+],
+[
+# Xm/Xm.h is not in the standard search path.
+# Locate it and put its directory in `motif_includes'
+#
+# /usr/include/Motif* are used on HP-UX (Motif).
+# /usr/include/X11* are used on HP-UX (X and Athena).
+# /usr/dt is used on Solaris (Motif).
+# /usr/openwin is used on Solaris (X and Athena).
+# Other directories are just guesses.
+for dir in "$x_includes" "${prefix}/include" /usr/include /usr/local/include \
+           /usr/include/Motif2.0 /usr/include/Motif1.2 /usr/include/Motif1.1 \
+           /usr/include/X11R6 /usr/include/X11R5 /usr/include/X11R4 \
+           /usr/dt/include /usr/openwin/include \
+           /usr/dt/*/include /opt/*/include /usr/include/Motif* \
+           "${prefix}"/*/include /usr/*/include /usr/local/*/include \
+           "${prefix}"/include/* /usr/include/* /usr/local/include/*; do
+if test -f "$dir/Xm/Xm.h"; then
+ac_cv_motif_includes="$dir"
+break
+fi
+done
+])
+#
+LIBS="$ac_motif_save_LIBS"
+INCLUDES="$ac_motif_save_INCLUDES"
+CPPFLAGS="$ac_motif_save_CPPFLAGS"
+LDFLAGS="$ac_motif_save_LDFLAGS"
+])
+motif_includes="$ac_cv_motif_includes"
+fi
+#
+#
+# Now for the libraries.
+#
+if test "$motif_libraries" = ""; then
+AC_CACHE_VAL(ac_cv_motif_libraries,
+[
+ac_motif_save_LIBS="$LIBS"
+ac_motif_save_INCLUDES="$INCLUDES"
+ac_motif_save_CPPFLAGS="$CPPFLAGS"
+ac_motif_save_LDFLAGS="$LDFLAGS"
+#
+LIBS="$X_PRE_LIBS -lXm -lXt -lX11 $X_EXTRA_LIBS $LIBS"
+INCLUDES="$X_CFLAGS $INCLUDES"
+CPPFLAGS="$X_CFLAGS $CPPFLAGS"
+LDFLAGS="$X_LIBS $LDFLAGS"
+#
+ac_cv_motif_libraries="none"
+AC_TRY_LINK([#include <Xm/Xm.h>],[XtToolkitInitialize();],
+[
+# libXm.a is in the standard search path.
+ac_cv_motif_libraries=
+],
+[
+# libXm.a is not in the standard search path.
+# Locate it and put its directory in `motif_libraries'
+#
+# /usr/lib/Motif* are used on HP-UX (Motif).
+# /usr/lib/X11* are used on HP-UX (X and Athena).
+# /usr/dt is used on Solaris (Motif).
+# /usr/lesstif is used on Linux (Lesstif).
+# /usr/openwin is used on Solaris (X and Athena).
+# Other directories are just guesses.
+for dir in "$x_libraries" "${prefix}/lib" /usr/lib /usr/local/lib \
+           /usr/lib/Motif2.0 /usr/lib/Motif1.2 /usr/lib/Motif1.1 \
+	   /usr/X11R6/LessTif/Motif1.2/lib \
+	   /usr/X11R6/LessTif/Motif2.0/lib \
+           /usr/lib/X11R6 /usr/lib/X11R5 /usr/lib/X11R4 /usr/lib/X11 \
+           /usr/dt/lib /usr/openwin/lib \
+           /usr/dt/*/lib /opt/*/lib /usr/lib/Motif* \
+           /usr/lesstif*/lib /usr/lib/Lesstif* \
+           "${prefix}"/*/lib /usr/*/lib /usr/local/*/lib \
+           "${prefix}"/lib/* /usr/lib/* /usr/local/lib/*; do
+if test -d "$dir" && test "`ls $dir/libXm.* 2> /dev/null`" != ""; then
+ac_cv_motif_libraries="$dir"
+break
+fi
+done
+])
+#
+LIBS="$ac_motif_save_LIBS"
+INCLUDES="$ac_motif_save_INCLUDES"
+CPPFLAGS="$ac_motif_save_CPPFLAGS"
+LDFLAGS="$ac_motif_save_LDFLAGS"
+])
+#
+motif_libraries="$ac_cv_motif_libraries"
+fi
+#
+# Provide an easier way to link
+#
+if test "$motif_includes" = "none" -o "$motif_libraries" = "none"; then
+        with_motif="no"
+else
+        with_motif="yes"
+fi
+
+if test "$with_motif" != "no"; then
+        if test "$motif_libraries" = "" -o "$motif_libraries" = "/usr/lib"; then
+                link_motif="-lXm"
+                MOTIF_LIBS="-lXm"
+        else
+                link_motif="-L$motif_libraries -lXm"
+                MOTIF_LIBS="-L$motif_libraries -lXm"
+        fi
+        if test "$motif_includes" != "" -a "$motif_includes" != "/usr/include"; then
+                include_motif="-I$motif_includes"
+                MOTIF_CFLAGS="-I$motif_includes"
+        fi
+	AC_DEFINE(HAVE_MOTIF,1,[Define if you have Motif installed])
+else
+        with_motif="no"
+fi
+#
+AC_SUBST(link_motif)
+AC_SUBST(include_motif)
+AC_SUBST(MOTIF_CFLAGS)
+AC_SUBST(MOTIF_LIBS)
+#
+#
+#
+motif_libraries_result="$motif_libraries"
+motif_includes_result="$motif_includes"
+test "$motif_libraries_result" = "" && motif_libraries_result="in default path"
+test "$motif_includes_result" = "" && motif_includes_result="in default path"
+test "$motif_libraries_result" = "none" && motif_libraries_result="(none)"
+test "$motif_includes_result" = "none" && motif_includes_result="(none)"
+AC_MSG_RESULT(
+  [libraries $motif_libraries_result, headers $motif_includes_result])
+])dnl
+
+
+KAC_FIND_MOTIF
+if test "$with_motif" != "no"; then
+  NSPluginDir="nsplugins"
+else
+  NSPluginDir=""
+  DO_NOT_COMPILE="$DO_NOT_COMPILE nsplugins"
+fi
+
+AC_CHECK_LIB(Xp, XpStartPage, [MOTIF_LIBS="$MOTIF_LIBS -lXp"
+AC_SUBST(MOTIF_LIBS)
+], [], [$all_libraries -lXext -lX11 $LIBSOCKET])
+KDE_CREATE_SUBDIRSLIST
+AC_OUTPUT( \
+./Makefile \
+applnk/Makefile \
+doc/Makefile \
+doc/kaddressbook/Makefile \
+doc/kate/Makefile \
+doc/kcontrol/Makefile \
+doc/kdebugdialog/Makefile \
+doc/kdeprint/Makefile \
+doc/kdesu/Makefile \
+doc/kdm/Makefile \
+doc/khelpcenter/Makefile \
+doc/khelpcenter/faq/Makefile \
+doc/khelpcenter/glossary/Makefile \
+doc/khelpcenter/quickstart/Makefile \
+doc/khelpcenter/userguide/Makefile \
+doc/khelpcenter/visualdict/Makefile \
+doc/kicker/Makefile \
+doc/kioslave/Makefile \
+doc/klipper/Makefile \
+doc/kmenuedit/Makefile \
+doc/konqueror/Makefile \
+doc/konsole/Makefile \
+doc/kpager/Makefile \
+doc/ksysguard/Makefile \
+doc/kwrite/Makefile \
+drkonqi/Makefile \
+drkonqi/debuggers/Makefile \
+drkonqi/pics/Makefile \
+drkonqi/presets/Makefile \
+kaddressbook/Makefile \
+kaddressbook/pics/Makefile \
+kappfinder/Makefile \
+kappfinder/apps/Makefile \
+kappfinder/apps/Development/Makefile \
+kappfinder/apps/Editors/Makefile \
+kappfinder/apps/Games/Makefile \
+kappfinder/apps/Games/Arcade/Makefile \
+kappfinder/apps/Games/Board/Makefile \
+kappfinder/apps/Games/Card/Makefile \
+kappfinder/apps/Games/Emulators/Makefile \
+kappfinder/apps/Games/TacticStrategy/Makefile \
+kappfinder/apps/Graphics/Makefile \
+kappfinder/apps/Internet/Makefile \
+kappfinder/apps/Internet/Terminal/Makefile \
+kappfinder/apps/Multimedia/Makefile \
+kappfinder/apps/Office/Makefile \
+kappfinder/apps/System/Makefile \
+kappfinder/apps/System/ScreenSavers/Makefile \
+kappfinder/apps/System/Terminal/Makefile \
+kappfinder/apps/Toys/Makefile \
+kappfinder/apps/Utilities/Makefile \
+kappfinder/apps/Utilities/xutils/Makefile \
+kappfinder/apps/WordProcessing/Makefile \
+kate/Makefile \
+kate/app/Makefile \
+kate/console/Makefile \
+kate/data/Makefile \
+kate/document/Makefile \
+kate/factory/Makefile \
+kate/filelist/Makefile \
+kate/fileselector/Makefile \
+kate/interfaces/Makefile \
+kate/kdevelop/Makefile \
+kate/main/Makefile \
+kate/mainwindow/Makefile \
+kate/pics/Makefile \
+kate/pics/actions/Makefile \
+kate/pics/indicators/Makefile \
+kate/pics/tabicons/Makefile \
+kate/pluginmanager/Makefile \
+kate/qt3back/Makefile \
+kate/view/Makefile \
+kcheckpass/Makefile \
+kcontrol/Makefile \
+kcontrol/access/Makefile \
+kcontrol/arts/Makefile \
+kcontrol/background/Makefile \
+kcontrol/background/pics/Makefile \
+kcontrol/bell/Makefile \
+kcontrol/clock/Makefile \
+kcontrol/colors/Makefile \
+kcontrol/crypto/Makefile \
+kcontrol/css/Makefile \
+kcontrol/display/Makefile \
+kcontrol/display/ad/Makefile \
+kcontrol/display/kcs/Makefile \
+kcontrol/display/pics/Makefile \
+kcontrol/ebrowsing/Makefile \
+kcontrol/ebrowsing/plugins/Makefile \
+kcontrol/ebrowsing/plugins/ikws/Makefile \
+kcontrol/ebrowsing/plugins/ikws/searchproviders/Makefile \
+kcontrol/ebrowsing/plugins/shorturi/Makefile \
+kcontrol/email/Makefile \
+kcontrol/energy/Makefile \
+kcontrol/energy/pics/Makefile \
+kcontrol/filetypes/Makefile \
+kcontrol/fonts/Makefile \
+kcontrol/icons/Makefile \
+kcontrol/info/Makefile \
+kcontrol/input/Makefile \
+kcontrol/input/pics/Makefile \
+kcontrol/ioslaveinfo/Makefile \
+kcontrol/kcontrol/Makefile \
+kcontrol/kcontrol/pics/Makefile \
+kcontrol/kdedb/Makefile \
+kcontrol/kdm/Makefile \
+kcontrol/kdm/pics/Makefile \
+kcontrol/keys/Makefile \
+kcontrol/kicker/Makefile \
+kcontrol/kio/Makefile \
+kcontrol/kio/uasproviders/Makefile \
+kcontrol/knotify/Makefile \
+kcontrol/knotify/sounds/Makefile \
+kcontrol/konq/Makefile \
+kcontrol/konqhtml/Makefile \
+kcontrol/konsole/Makefile \
+kcontrol/kwindecoration/Makefile \
+kcontrol/kwm/Makefile \
+kcontrol/kwm/pics/Makefile \
+kcontrol/launch/Makefile \
+kcontrol/locale/Makefile \
+kcontrol/locale/default/Makefile \
+kcontrol/locale/pics/Makefile \
+kcontrol/midi/Makefile \
+kcontrol/passwords/Makefile \
+kcontrol/pics/Makefile \
+kcontrol/pics/hicolor/Makefile \
+kcontrol/samba/Makefile \
+kcontrol/screensaver/Makefile \
+kcontrol/screensaver/pics/Makefile \
+kcontrol/smserver/Makefile \
+kcontrol/socks/Makefile \
+kcontrol/spellchecking/Makefile \
+kcontrol/taskbar/Makefile \
+kcontrol/thememgr/Makefile \
+kcontrol/usbview/Makefile \
+kdcop/Makefile \
+kdebugdialog/Makefile \
+kdeprint/Makefile \
+kdeprint/descriptions/Makefile \
+kdeprint/kdeprintfax/Makefile \
+kdeprint/kdeprint_part/Makefile \
+kdeprint/kjobviewer/Makefile \
+kdeprint/kprinter/Makefile \
+kdeprint/printmgr/Makefile \
+kdeprint/slave/Makefile \
+kdeprint/slave/mimetypes/Makefile \
+kdeprint/slave/pics/Makefile \
+kdeprint/slave/templates/Makefile \
+kdesktop/Makefile \
+kdesktop/init/Makefile \
+kdesktop/init/Templates/Makefile \
+kdesktop/kwebdesktop/Makefile \
+kdesktop/patterns/Makefile \
+kdesktop/pics/Makefile \
+kdesktop/programs/Makefile \
+kdesu/Makefile \
+kdesu/kdesu/Makefile \
+kdesu/kdesud/Makefile \
+kdm/Makefile \
+kdm/backend/Makefile \
+kdm/chooser/Makefile \
+kdm/kfrontend/Makefile \
+kdm/kfrontend/pics/Makefile \
+khelpcenter/Makefile \
+khelpcenter/htmlsearch/Makefile \
+khelpcenter/pics/Makefile \
+khelpcenter/plugins/Makefile \
+khelpcenter/plugins/Tutorials/Makefile \
+khotkeys/Makefile \
+khotkeys/kcontrol/Makefile \
+khotkeys/khotkeys/Makefile \
+khotkeys/shared/Makefile \
+kicker/Makefile \
+kicker/applets/Makefile \
+kicker/applets/clock/Makefile \
+kicker/applets/launcher/Makefile \
+kicker/applets/minipager/Makefile \
+kicker/applets/naughty/Makefile \
+kicker/applets/run/Makefile \
+kicker/applets/swallow/Makefile \
+kicker/applets/systemtray/Makefile \
+kicker/applets/taskbar/Makefile \
+kicker/core/Makefile \
+kicker/data/Makefile \
+kicker/data/app_start_anim/Makefile \
+kicker/data/icons/Makefile \
+kicker/data/icons/actions/Makefile \
+kicker/data/tiles/Makefile \
+kicker/data/wallpaper/Makefile \
+kicker/extensions/Makefile \
+kicker/extensions/childpanel/Makefile \
+kicker/extensions/dockbar/Makefile \
+kicker/extensions/kasbar/Makefile \
+kicker/extensions/taskbar/Makefile \
+kicker/proxy/Makefile \
+kicker/share/Makefile \
+kicker/taskbar/Makefile \
+kicker/taskmanager/Makefile \
+kicker/ui/Makefile \
+kioslave/Makefile \
+kioslave/audiocd/Makefile \
+kioslave/audiocd/kcmaudiocd/Makefile \
+kioslave/filter/Makefile \
+kioslave/finger/Makefile \
+kioslave/floppy/Makefile \
+kioslave/gopher/Makefile \
+kioslave/imap4/Makefile \
+kioslave/info/Makefile \
+kioslave/ldap/Makefile \
+kioslave/man/Makefile \
+kioslave/nfs/Makefile \
+kioslave/nntp/Makefile \
+kioslave/pop3/Makefile \
+kioslave/smb/Makefile \
+kioslave/smbro/Makefile \
+kioslave/smtp/Makefile \
+kioslave/tar/Makefile \
+kioslave/thumbnail/Makefile \
+klipper/Makefile \
+kmenuedit/Makefile \
+kmenuedit/pixmaps/Makefile \
+konqueror/Makefile \
+konqueror/about/Makefile \
+konqueror/client/Makefile \
+konqueror/dirtree/Makefile \
+konqueror/dirtree/bookmark_module/Makefile \
+konqueror/dirtree/dirtree_module/Makefile \
+konqueror/dirtree/history_module/Makefile \
+konqueror/dirtree/init/Makefile \
+konqueror/dirtree/init/remote/Makefile \
+konqueror/dirtree/init/remote/ftp/Makefile \
+konqueror/dirtree/init/remote/web/Makefile \
+konqueror/dirtree/init/services/Makefile \
+konqueror/history/Makefile \
+konqueror/iconview/Makefile \
+konqueror/keditbookmarks/Makefile \
+konqueror/kfindpart/Makefile \
+konqueror/kfindpart/pics/Makefile \
+konqueror/kfmexec/Makefile \
+konqueror/listview/Makefile \
+konqueror/pics/Makefile \
+konqueror/pics/actions/Makefile \
+konqueror/pics/indicators/Makefile \
+konqueror/pics/tiles/Makefile \
+konqueror/shellcmdplugin/Makefile \
+konqueror/sidebar/Makefile \
+konqueror/sidebar/sidebar_classic/Makefile \
+konqueror/sidebar/test/Makefile \
+konqueror/sidebar/trees/Makefile \
+konqueror/sidebar/trees/bookmark_module/Makefile \
+konqueror/sidebar/trees/dirtree_module/Makefile \
+konqueror/sidebar/trees/history_module/Makefile \
+konqueror/sidebar/trees/init/Makefile \
+konqueror/sidebar/trees/init/remote/Makefile \
+konqueror/sidebar/trees/init/remote/ftp/Makefile \
+konqueror/sidebar/trees/init/remote/web/Makefile \
+konqueror/sidebar/trees/init/services/Makefile \
+konsole/Makefile \
+konsole/doc/Makefile \
+konsole/doc/VT100/Makefile \
+konsole/fonts/Makefile \
+konsole/include/Makefile \
+konsole/other/Makefile \
+konsole/src/Makefile \
+kpager/Makefile \
+kpersonalizer/Makefile \
+kpersonalizer/pics/Makefile \
+kreadconfig/Makefile \
+kscreensaver/Makefile \
+kscreensaver/kdesavers/Makefile \
+kscreensaver/kpartsaver/Makefile \
+kscreensaver/kxsconfig/Makefile \
+kscreensaver/kxsconfig/config/Makefile \
+kscreensaver/xsavers/Makefile \
+ksmserver/Makefile \
+ksplash/Makefile \
+ksplash/pics/Makefile \
+ksplash/pics/locolor/Makefile \
+kstart/Makefile \
+ksysguard/Makefile \
+ksysguard/CContLib/Makefile \
+ksysguard/example/Makefile \
+ksysguard/gui/Makefile \
+ksysguard/ksysguardd/Makefile \
+ksysguard/ksysguardd/FreeBSD/Makefile \
+ksysguard/ksysguardd/Linux/Makefile \
+ksysguard/ksysguardd/Solaris/Makefile \
+ksysguard/pics/Makefile \
+ktip/Makefile \
+ktip/pics/Makefile \
+kwin/Makefile \
+kwin/clients/Makefile \
+kwin/clients/b2/Makefile \
+kwin/clients/default/Makefile \
+kwin/clients/default/config/Makefile \
+kwin/clients/icewm/Makefile \
+kwin/clients/icewm/config/Makefile \
+kwin/clients/icewm/icewm-themes/Makefile \
+kwin/clients/kde/Makefile \
+kwin/clients/kde1/Makefile \
+kwin/clients/kstep/Makefile \
+kwin/clients/kwmtheme/Makefile \
+kwin/clients/kwmtheme/cli_installer/Makefile \
+kwin/clients/laptop/Makefile \
+kwin/clients/modernsystem/Makefile \
+kwin/clients/modernsystem/config/Makefile \
+kwin/clients/mwm/Makefile \
+kwin/clients/quartz/Makefile \
+kwin/clients/quartz/config/Makefile \
+kwin/clients/redmond/Makefile \
+kwin/clients/riscos/Makefile \
+kwin/clients/system/Makefile \
+kwin/clients/web/Makefile \
+kwin/pics/Makefile \
+kxkb/Makefile \
+kxmlrpc/Makefile \
+l10n/Makefile \
+l10n/C/Makefile \
+legacyimport/Makefile \
+libkonq/Makefile \
+libkonq/favicons/Makefile \
+libkonq/pics/Makefile \
+nsplugins/Makefile \
+nsplugins/control/Makefile \
+nsplugins/test/Makefile \
+nsplugins/viewer/Makefile \
+nsplugins/wrapper/Makefile \
+pics/Makefile \
+pics/hicolor/Makefile \
+pics/wallpapers/Makefile \
+)
+dnl put here things which have to be done as very last part of configure
+
+all_tests=fine
+
+if test "x$with_motif" != xyes; then
+  echo ""
+  echo "You're missing OSF/Motif or LessTif."
+  echo "KDE won't be able to use Netscape plugins without it, so you should"
+  echo "consider installing it."
+  echo "Have a look at http://www.lesstif.org, or find a binary package for"
+  echo "your platform."
+  echo ""
+  all_tests=bad
+fi
+
+if test "$cdparanoia_only_static" = yes; then
+  echo ""
+  echo "KDE needs a shared version of the cdparanoia libs, but only"
+  echo "a static one was found.  Look at http://www.xiph.org/paranoia/"
+  echo "and be sure to configure that package with --enable-shared when"
+  echo "compiling from source."
+  echo ""
+  all_tests=bad
+fi
+
+if test "$lame_wrong_version" = yes; then
+  echo ""
+  echo "You have liblame, but it's of a wrong version.  KDE needs at least"
+  echo "version 3.89 (alpha or beta)."
+  echo "Have a look at http://www.mp3dev.org/ ."
+  echo ""
+  all_tests=bad
+fi
+
+if test "$all_tests" = "fine"; then
+  echo ""
+  echo "Good - your configure finished. Start make now"
+  echo ""
+fi

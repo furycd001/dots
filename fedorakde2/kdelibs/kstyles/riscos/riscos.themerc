@@ -1,0 +1,290 @@
+# Risc OS theme by R. Wareham <richwareham@users.sourceforge.net>
+
+[PushButton]
+Background=227,227,227
+Foreground=0,0,0
+#PixmapBorder=riscos/raised_border.png
+#PixmapBWidth=2
+Border=0
+Highlight=2
+
+[PushButtonDown]
+Background=187,187,187
+Foreground=0,0,0
+#PixmapBorder=riscos/sunk_border.png
+#PixmapBWidth=2
+Border=0
+Highlight=2
+
+[ToolButton]
+Background=227,227,227
+Foreground=0,0,0
+#PixmapBorder=riscos/raised_border.png
+#PixmapBWidth=2
+Highlight=2
+Border=0
+
+[ToolButtonDown]
+Background=187,187,187
+Foreground=0,0,0
+#PixmapBorder=riscos/sunk_border.png
+#PixmapBWidth=2
+Border=0
+Highlight=2
+
+[ToolBar]
+Border=0
+Highlight=1
+Background=227,227,227
+Pixmap=riscos/background.png
+
+[CheckMark]
+Border=0
+Highlight=0
+Pixmap=riscos/checkmark.png
+
+[MenuBar]
+Background=227,227,227
+Border=0
+Highlight=1
+Pixmap=riscos/background.png
+
+[MenuBarItem]
+Foreground=255,255,255
+Background=0,0,0
+Border=0
+Highlight=0
+#PixmapBorder=riscos/raised_border.png
+#PixmapBWidth=2
+
+[Menu]
+Background=227,227,227
+Border=0
+Highlight=0
+Pixmap=riscos/background.png
+
+[MenuItem]
+Background=227,227,227
+Border=0
+Highlight=0
+Pixmap=riscos/background.png
+
+[MenuItemDown]
+Background=227,227,227
+Foreground=255,255,255
+Pixmap=riscos/menu_back.png
+Border=0
+#Highlight=0
+
+[Splitter]
+Background=227,227,227
+Border=0
+Highlight=1
+#PixmapBorder=riscos/raised_border.png
+#PixmapBWidth=2
+
+[ProgressBar]
+Border=0
+Highlight=2
+Foreground=255,255,255
+Background=187,187,187
+
+[ProgressBackground]
+Background=255,255,255
+
+# Toolbar-Handles:
+[VBarHandle]
+#Pixmap=riscos/htab.png
+Background=187,187,187
+Border=0
+Highlight=1
+#Scale=Vertical
+
+[HBarHandle]
+#Pixmap=riscos/vtab.png
+Background=187,187,187
+Border=0
+Highlight=1
+#Scale=Horizontal
+
+[VSBarSlider]
+Pixmap=riscos/vscrollbar.png
+PixmapBorder=riscos/vscrollborder.png
+PixmapBWidth=3
+
+[VSBarSliderDown]
+Pixmap=riscos/vscrollbar_down.png
+PixmapBorder=riscos/vscrollborder.png
+PixmapBWidth=3
+
+[VScrollGroove]
+Pixmap=riscos/vscrollback.png
+PixmapBorder=riscos/scrollborder.png
+PixmapBWidth=1  
+
+[HSBarSlider]
+Pixmap=riscos/hscrollbar.png
+PixmapBorder=riscos/hscrollborder.png
+PixmapBWidth=3
+
+[HSBarSliderDown]
+Pixmap=riscos/hscrollbar_down.png
+PixmapBorder=riscos/hscrollborder.png
+PixmapBWidth=3
+
+[HScrollGroove]
+Pixmap=riscos/hscrollback.png
+PixmapBorder=riscos/scrollborder.png
+PixmapBWidth=1
+
+[ArrowUp]
+Pixmap=riscos/arrowup.png
+
+[ArrowDown]
+Pixmap=riscos/arrowdown.png
+
+[ArrowLeft]
+Pixmap=riscos/arrowleft.png
+
+[ArrowRight]
+Pixmap=riscos/arrowright.png
+
+[SunkenArrowUp]
+Pixmap=riscos/arrowup_down.png
+
+[SunkenArrowDown]
+Pixmap=riscos/arrowdown_down.png
+
+[SunkenArrowLeft]
+Pixmap=riscos/arrowleft_down.png
+
+[SunkenArrowRight]
+Pixmap=riscos/arrowright_down.png
+
+[Bevel]
+Background=255,255,255
+Foreground=0,0,0
+Border=0
+Highlight=1
+Pixmap=riscos/background.png
+#PixmapBorder=riscos/raised_border.png
+#PixmapBWidth=2
+
+[BevelDown]
+Background=255,255,255
+Foreground=0,0,0
+Border=0
+Highlight=1
+Pixmap=riscos/background.png
+#PixmapBorder=riscos/sunk_border.png
+#PixmapBWidth=2
+
+[ComboBox]
+Background=227,227,227
+Foreground=0,0,0
+Border=0
+Highlight=1
+
+[Radio]
+Pixmap=riscos/radio.png
+[RadioDown]
+Pixmap=riscos/radio_down.png
+
+[CheckBox]
+Pixmap=riscos/check.png
+[CheckBoxDown]
+Pixmap=riscos/check_checked.png
+
+[ComboDeco]
+Pixmap=riscos/combo.png
+
+[Slider]
+Pixmap=riscos/slider.png
+
+[SliderGroove]
+SmallGroove=true
+
+[Tab]
+Border=0
+Highlight=1
+Background=187,187,187
+Foreground=0,0,0
+BottomLine=true
+#Pixmap=riscos/background.png
+
+[TabDown]
+Border=0
+Highlight=1
+Background=227,227,227
+Foreground=0,0,0
+BottomLine=false
+Pixmap=riscos/background.png
+
+[KDE]
+widgetStyle=basicstyle.la 
+
+[Misc]
+ShadeStyle=Motif
+ScrollBarExtent=20
+Name=RISC OS
+Name[cs]=Risc OS
+Name[da]=Risc os
+Name[de]=RISC-OS
+Name[eo]=Risc-OS
+Name[ko]=리스크 OS
+Name[mt]=OS RISC
+Name[sl]=OS RISC
+Name[uk]=RISC ОС
+Name[xh]=i RISC OS
+Name[zh_TW.Big5]=RISC 作業系統
+Comment=RISC OS-like theme
+Comment[az]=RISC OS-oxşarı tərz
+Comment[bg]=Тема, прличаща на RISC OS
+Comment[cs]=Motiv jako RISC OS
+Comment[da]=RISC OS-lignende tema
+Comment[de]=Stil ähnlich RISC OS
+Comment[el]=Θέμα RISC OS
+Comment[eo]=Risc OS - simila stilo
+Comment[es]=Tema tipo RISC OS
+Comment[et]=RISC OS-laadne teema
+Comment[fi]=RISC OS kaltainen tyyli
+Comment[fr]=Thème similaire à RISC OS
+Comment[hu]=RISC OS-szerű téma
+Comment[is]=Stíll í anda RiscOS (Archimedes tölvur)
+Comment[it]=Stile alla RISC-OS
+Comment[ja]=RISC OS ライクテーマ
+Comment[ko]=리스크 OS 같은 테마
+Comment[lt]=Panašus į RISC OS stilius
+Comment[lv]=RISC OS-līdzīga tēma
+Comment[mt]=Tema bħall-OS RISC
+Comment[nl]=RISC OS-achtige theme
+Comment[no]=RISCO OS-lignende tema
+Comment[no_NY]=RISC OS-aktig tema
+Comment[pl]=Motyw podobny do RISC-OS
+Comment[pt_BR]=Estilo tipo RISC OS
+Comment[pt]=Estilo tipo RISC OS
+Comment[ru]=тема, похожая на RISC OS
+Comment[sk]=Téma ako RISC OS
+Comment[sl]=Slog, podoben OS RISC
+Comment[sr]=Tema nalik na RISC OS
+Comment[sv]=RISC OS-liknande tema
+Comment[ta]=RISC OS-À¡½¢ ¯Õ¸Õ
+Comment[tr]=RISC OS-benzeri stil
+Comment[uk]=Тема 'а ля RISC OS'
+Comment[vi]=Theme kiểu RISC OS 
+Comment[xh]=RISC OS-njengomxholo wokuxoxwa
+Comment[zh_CN.GB2312]=类似 Sgi 的风格
+SButtonPosition=Opposite
+FrameWidth=1
+
+[Background]
+Background=227,227,227
+Pixmap=riscos/background.png
+
+[General]
+Background=227,227,227
+Foreground=0,0,0
+windowForeground=0,0,0
+windowBackground=255,255,255
+selectForeground=255,255,255
+selectBackground=0,0,0

@@ -1,0 +1,28 @@
+[Arg0]
+Label=Size:
+Maximum=60
+Minimum=2
+Switch=-size %1
+Type=Range
+Value=5
+[Arg1]
+Label=Cycles:
+Maximum=300
+Minimum=2
+Switch=-cycle %1
+Type=Range
+Value=20
+[Arg2]
+Label=Number of colors:
+Maximum=300
+Minimum=10
+Switch=-ncolors %1
+Type=Range
+Value=256
+[Arg3]
+Label=Count:
+Maximum=50
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=20

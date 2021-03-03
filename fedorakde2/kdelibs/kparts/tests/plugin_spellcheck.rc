@@ -1,0 +1,15 @@
+<!DOCTYPE kpartplugin>
+<kpartplugin library="libspellcheckplugin">
+<MenuBar>
+ <Menu name="edit"><Text>&amp;Edit</Text>
+  <Action name="spellcheck"/>
+ </Menu>
+ <Menu name="SomePluginMenu"><text>Some Cool Plugin Menu</text>
+  <Action name="spellcheck"/>
+  <Action name="searchreplace"/>
+  <Menu name="WhatASubMenu"><text>Yep</text>
+    <Action name="searchreplace"/>
+  </Menu>
+ </Menu>
+</MenuBar>
+</kpartplugin>

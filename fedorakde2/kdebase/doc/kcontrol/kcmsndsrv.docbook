@@ -1,0 +1,203 @@
+<sect1 id="sndserver">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>sound server</keyword>
+<keyword>sound</keyword>
+<keyword>aRts</keyword>
+</keywordset>
+</sect1info>
+
+<title>Sound Server</title>
+
+<para>This control module is used to configure the settings for the
+&arts; sound server (the &kde; sound server).</para>
+
+<sect2 id="sndserver-general">
+<title>General</title>
+
+<para>The top option, labeled <guilabel>Start aRts soundserver on KDE
+startup</guilabel>, enables (or disables) the <application>aRts sound
+server</application>.  </para>
+
+<para>The rest of the panel consists of three options for the
+<application>aRts soundserver</application>.</para>
+
+<variablelist>
+<varlistentry>
+<term>Enable network transparency</term>
+<listitem>
+<para>If this option is enabled, then sound requests from the network
+will be honored by the sound server.  If this option is disabled, the sound
+server will only honor requests from the local
+computer.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Exchange security and reference info over X11</guilabel></term>
+<listitem><para>If you have enabled network transparency, this option
+will allow the exchange of security and reference information.  If in
+doubt, and you have enabled network transparency, this option should be
+checked.</para></listitem> 
+</varlistentry>
+<varlistentry>
+<term><guilabel>Run soundserver with realtime priority</guilabel></term>
+<listitem><para>Enabling this option will give the soundserver priority over
+other applications, which will help alleviate any problems delivering
+uninterupted sound.</para>
+<note><para>This option may require permissions you do not have as a regular
+user.</para>
+<para>This option also relies on certain real time support from your
+system which may not be available.</para>
+<para>If you do not have the necessary permissions, or your system does
+not have the real time support necessary, enabling this option will not
+cause problems.</para></note></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Autosuspend if idle for</guilabel></term>
+<listitem>
+<para>Normally &arts; locks the sound card device, so that other
+applications cannot use it.  If you enable this option, then if &arts;
+has been idle for the amount of time you set, it will suspend itself,
+allowing any application access to the sound hardware.  If &arts;
+receives another request, it will unsuspend, and continue as normal.
+Enabling this option may cause a small delay when you start an &arts;
+application.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Display messages using</guilabel></term>
+<listitem>
+<para>The application that will be used to display messages from the
+&arts; server.  The default is <application>artsmessage</application>
+and this should probably not be changed unless you have thoroughly read
+the &arts; documentation.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Message Display</guilabel></term>
+<listitem>
+<para>You can select how detailed the messages are that &arts; displays
+to you.  You can choose to see only error messages, debug messages that
+are useful to the developers (you probably only want that level if you
+are a developer, or one has asked you to set this).  Or you can choose
+to see generally informational messages when &arts; is doing something
+such as suspending itself.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>At the bottom of this page is a button that allows you to
+<guibutton>Test Sound</guibutton>.</para>
+
+</sect2>
+
+<sect2 id="sndserver-soundio">
+<title>Sound I/O</title>
+
+<para>The first option you can configure in the <guilabel>Sound
+I/O</guilabel> panel is the <guilabel>Sound I/O method</guilabel>.  It
+tells arts which sound system to use for input and output of
+sound. Current choices are <acronym>ALSA</acronym> (Advanced &Linux;
+Sound Architecture), <acronym>OSS</acronym> (Open Sound System), no
+audio at all and autodetect. In most cases <quote>Autodetect</quote>
+will be perfect for you.</para>
+
+<para>Other options are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Enable full duplex operation</guilabel></term>
+<listitem><para>This option allows the soundserver to play and record sound at
+the same time.  This option should be enabled if you use applications (such as
+internet telephones) which require simultaneous record and
+playback.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Use custom sound device</guilabel></term>
+<listitem>
+<para>Normally, the sound server defaults to using the device called
+<filename class="devicefile">/dev/dsp</filename> for sound output. That
+should work in most cases. An exception is for instance if you are using
+devfs, then you should use <filename
+class="devicefile">/dev/sound/dsp</filename> instead. Other alternatives
+are things like <filename class="devicefile">/dev/dsp0</filename> or
+<filename class="devicefile">/dev/dsp1</filename> if you have a
+soundcard that supports multiple outputs, or you have multiple
+soundcards.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Use custom sampling rate</guilabel></term>
+<listitem>
+<para>Normally, the sound server defaults to using a sampling rate of
+44100 Hz (<acronym>CD</acronym> quality), which is supported on almost any
+hardware. If you are using certain Yamaha soundcards, you might need to
+configure this to 48000 Hz here, if you are using old SoundBlaster cards, like
+SoundBlaster Pro, you might need to change this to 22050 Hz. All other values
+are possible, too, and may make sense in certain contexts (&ie; professional
+studio equipment).</para> 
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Other custom options</guilabel></term>
+<listitem><para>There are some options offered by
+&arts; which may not be available in this control module, so you can add
+command line options here which will directly be passed to
+<application>artsd</application>. The options will be appended, so they
+will in doubt override the choices made in the
+<acronym>GUI</acronym>. To see the possible choices, open a &konsole;
+window, and type <userinput><command>artsd</command>
+<option>-h</option></userinput>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Audio buffer size (response time)</guilabel></term>
+<listitem><para>This slider determines how quickly the soundserver can use your
+computers resources.  The faster the response time, the higher the
+<acronym>CPU</acronym> load will be.</para>
+<tip><para>I would recommend that you start with the soundserver set at
+250 ms, and use &kde; for a while.  If you notice that the sound does
+not work correctly, increase the responsivness one step at a time until
+the problems disappear.</para></tip>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="sndserver-author">
+<title>Section Author</title>
+
+<para>This section written by Mike McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+<para>Updated by Jost Schenck <email>jost@schenck.de</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+
+

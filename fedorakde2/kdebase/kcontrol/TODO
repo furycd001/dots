@@ -1,0 +1,119 @@
+File Browsing -> Filemanager
+----------------------------
+Appearance (Rik was right here and I was wrong): Getting rid of "Standard Font" and "Normal Text Color" by putting "Filemanager Text" into "Look&Feel -> Colors -> Widget color"
+Other: This tab should be removed: "Show network operations in a single window" should go either in "Behaviour" or into "Network -> KDE protocols Information". Also "Terminal program" appears for Konqueror-Settings as well as in the Kicker-Settings. There should only be one place which specifies which terminal should be used for all applications.
+
+
+Help -> Index
+-------------
+This looks a bit crowdy. Adding a second Tab "Program Locations" which appears behind the "General tab" might be a good idea as the paths should be set automagically and user-interaction concerning this should only be necessary in case of failure.
+
+
+Look & Feel -> Desktop
+----------------------
+Desktop: Looks overcrowded:
+"Show Preview for:" should go into a tab "Previews" in File-Browsing -> File Associations. Malte is probably already working on this.
+Appearance (Rik was right here): Getting rid of "Standard Font" and "Normal Text Color" by putting "Desktop Text" into "Look&Feel -> Colors -> Widget color"
+
+Groupboxes named "Behaviour", "Clicks on the desktop" and "Paths" would look much more tidy here ("path" could be removed from each item then and would make the dialog look more tidy).
+
+
+Look & Feel -> Panel
+--------------------
+General: terminal application should be set globally for the whole desktop.
+(Same as in File Browsing -> File Manager -> Other).
+
+
+Look & Feel -> Style
+--------------------
+This dialog is too long and incoherent in the topic it is dealing with.
+I would propose to rename it to "Widgets" and to  create two Tabs within Widgets (like in "Icons"):
+"Theme" and "Advanced".
+The following items aren't really widget-Properties to the user, so:
+
+- Move "Menubar on top of the screen" to "Desktop" (Makes sense as there are many people who search for Mac-menubar/Desktop-menubar find one of them and think the other solution (which they might have been searching for) isn't implemented.
+
+Except for the Widget-themes everything else should be moved to the Advanced-tab.
+Hint, hint ;) The Theme-tab should contain an import-button. *duck*
+
+
+Look & Feel -> System-Notifications
+-----------------------------------
+The current dialog resembles a very good "advanced"-tab. It would be nice for the newbie if there was a
+Tab for newbies in the first place which only shows the available Notification-themes ("Minimalistic", "Visually impaired", "Aureal impaired", "KDE-Standard").
+The current dialog should appear as an advanced tab behind the "Theme"-tab.
+
+Network -> LAN Browsing
+-----------------------
+Way too much text here. Widgets aren't supposed to be indepth-manuals. Most of the text should be moved into the "Help"-Section on the left or into tooltips.
+
+Also kcontrol contains scrollbars for me using the default-size. This should never be the case for kcontrol-modules.
+
+Network -> Talk Configuration
+-----------------------------
+Answering Machine: A groupbox around "Adress:, Subject:, First Line:" would be nice. That way one wouldn't need to mention "Mail" each time. The Groupbox could be named something like "Anwering Mail".
+That way one would have a much cleaner layout and it would be much easier to see at once what the dialog is about.
+Forward: Way too much text here. I see the point of having a direct explanation in the dialog. But this could look much friendlier using the following solution:
+There should be a Textbox below the "Forward method"-Combobox. This Textbox only contains the information for the Forward-method which is currently selected (So the text changes each time a different Forward-method is selected).
+
+
+Peripherals -> Mouse
+--------------------
+Two Groupboxes "Pointer" (with "Accelaration"/Treshhold" inside) and "Drag and Drop" (with "Start Time"/'Start Distance" inside) would be nice here.
+
+Sound -> Sound Server
+---------------------
+As soon as more stuff is being added, a tab "Quality" might be a good idea.
+
+
+Web Browsing -> User Agent
+--------------------------
+The Dialog suffers from the cockpit-dilemma.
+All the new "Add"-checkboxes are only there for finetuning. Most of the time the useragent-strings should work
+w/o the need to tune them this way. Better Solution: Remove the Customize-Group-box and simply add a Button "Customize ..." below the Text: "Current User Agent String: Mozilla/5.0 (comp.; Konq.orwhateveritis)".
+After pressing the "Customize"-Button a dialog should pop up which contains all the nice
+"Add"-checkboxes which have been added recently.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

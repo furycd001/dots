@@ -1,0 +1,144 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd"><kpartgui name="Konqueror" version="37">
+<MenuBar>
+ <Menu name="file" noMerge="1"><text>&amp;Location</text>
+  <Action name="new_window"/>
+  <Action name="duplicate_window"/>
+  <Action name="open_location"/>
+  <Separator/> 
+  <Action name="sendURL"/>
+  <Action name="sendPage"/>
+  <Separator/>
+  <Merge/> <!--Includes termination separator-->
+  <Action name="print"/>
+  <DefineGroup name="print" />
+  <Separator/>
+  <ActionList name="openwith" /> <!--Includes termination separator-->
+  <Action name="quit"/>
+ </Menu>
+ <Menu name="edit" noMerge="1"><text>&amp;Edit</text>  <!--Here is what applies to a selection-->
+  <Action name="undo" />
+  <Action name="cut"/>
+  <Action name="copy"/>
+  <Action name="paste"/>
+  <Action name="rename"/>
+  <Action name="trash"/>
+  <Action name="del"/>
+  <Action name="shred"/>
+  <ActionList name="operations" /><!-- copy files and move files, when two directory views -->
+  <Separator/>
+  <Action name="new_menu"/>
+  <Separator/>
+  <Action name="editMimeType"/>
+  <Action name="properties"/>
+  <WeakSeparator/>
+  <Merge/>
+ </Menu>
+ <Menu name="view" noMerge="1"><text>&amp;View</text> <!--Here is what applies to the active view-->
+  <ActionList name="viewmode" />
+  <Action name="usehtml"/>
+  <Action name="lock"/>
+  <Action name="unlock"/>
+  <Action name="link"/>
+  <Separator/>
+  <Action name="reload"/>
+  <Action name="stop" />
+  <WeakSeparator/>
+  <Merge/>
+ </Menu>
+ <Menu name="go"><text>&amp;Go</text>
+  <Action name="up"/>
+  <Action name="back"/>
+  <Action name="forward"/>
+  <Action name="home"/>
+  <Separator/>
+  <Action name="go_applications"/>
+  <Action name="go_dirtree"/>
+  <Action name="go_trash"/>
+  <Action name="go_templates"/>
+  <Action name="go_autostart"/>
+  <Action name="go_most_often"/>
+  <Separator/>
+  <Action name="history"/>
+ </Menu>
+ <Action name="bookmarks"/>
+ <Menu name="tools"><text>&amp;Tools</text>
+  <Action name="run"/>
+  <Action name="open_terminal"/>
+  <Action name="findfile"/>
+  <WeakSeparator/>
+  <Merge/>
+ </Menu>
+ <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
+  <Action name="showmenubar"/>
+  <Action name="showtoolbar"/>
+  <Action name="showextratoolbar"/>
+  <Action name="showlocationbar"/>
+  <Action name="showbookmarkbar"/>
+  <Separator/>
+  <Action name="saveViewPropertiesLocally"/>
+  <Action name="removeLocalProperties"/>
+  <Separator/> 
+  <Action name="options_configure_keybinding"/>
+  <Action name="options_configure_toolbars"/>
+  <Action name="configure"/>
+ </Menu>
+ <Menu name="window" append="settings_merge"><text>&amp;Window</text>
+  <Action name="splitviewh"/>
+  <Action name="splitviewv"/>
+  <Action name="removeview"/>
+  <Separator/>
+  <ActionList name="toggleview" />
+  <Separator/>
+  <Action name="saveviewprofile"/>
+  <Action name="saveremoveviewprofile"/>
+  <Action name="loadviewprofile"/>
+  <Separator/>
+  <Action name="fullscreen"/>
+ </Menu>
+ <Menu name="help" append="about_merge"><text>&amp;Help</text>
+  <Action name="konqintro"/>
+ </Menu>
+ <Merge/>
+</MenuBar>
+<ToolBar fullWidth="true" name="mainToolBar" newline="true"><text>Main Toolbar</text>
+ <Action name="up"/>
+ <Action name="back"/>
+ <Action name="forward"/>
+ <Action name="home"/>
+ <Separator/>
+ <Action name="reload"/>
+ <Action name="stop"/>
+ <Separator/>
+ <Action name="cut"/>
+ <Action name="copy"/>
+ <Action name="paste"/>
+ <Action name="print"/>
+ <Separator/>
+ <WeakSeparator/>
+ <Merge/>
+ <ActionList name="viewmode_toolbar" />
+ <ActionList name="fullscreen" />
+ <WeakSeparator/>
+ <Action name="animated_logo"/>
+</ToolBar>
+<ToolBar hidden="true" name="extraToolBar" newline="false" index="1"><text>Extra Toolbar</text>
+  <Action name="konq_sidebartng" />
+  <Action name="findfile" />
+  <Action name="splitviewv" />
+  <Action name="splitviewh" />
+  <Action name="removeview" /> 
+</ToolBar>
+<ToolBar fullWidth="true" name="locationToolBar" newline="true"><text>Location Toolbar</text>
+  <Action name="clear_location" />
+  <Action name="location_label" />
+  <Action name="toolbar_url_combo" />
+  <Action name="go_url" />
+</ToolBar>
+<ToolBar noEdit="true" iconText="icontextright" fullWidth="true" name="bookmarkToolBar" newline="true"><text>Bookmark Toolbar</text>
+</ToolBar>
+<ActionProperties>
+  <Action accel="F9" name="konq_sidebartng" />
+</ActionProperties>
+
+</kpartgui>
+

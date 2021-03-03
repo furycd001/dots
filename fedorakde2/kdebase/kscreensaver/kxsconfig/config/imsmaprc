@@ -1,0 +1,20 @@
+[Arg0]
+Label=Iterations:
+Maximum=30
+Minimum=1
+Switch=-iterations %1
+Type=Range
+Value=10
+[Arg1]
+Label=Mode:
+Type=DropList
+Options=hue,saturation,value,random
+Switches=-mode hue,-mode saturation,-mode value,-mode random
+Value=3
+[Arg2]
+Label=Cycle colors
+Type=Check
+SwitchOn=-cycle
+SwitchOff=-no-cycle
+Value=true
+  

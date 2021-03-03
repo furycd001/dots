@@ -1,0 +1,27 @@
+[Arg0]
+Label=Size:
+Maximum=50
+Minimum=10
+Switch=-size %1
+Type=Range
+Value=40
+[Arg1]
+Label=Speed:
+Maximum=100000
+Minimum=0
+Switch=-delay %1
+Type=Range
+Value=10000
+[Arg2]
+Label=Redo delay:
+Maximum=100
+Minimum=0
+Switch=-redoDelay %1
+Type=Range
+Value=10                 
+[Arg3]
+Label=Ammann lines
+Type=Check
+SwitchOn=-ammann
+SwitchOff=-no-ammann
+Value=false

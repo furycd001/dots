@@ -1,0 +1,24 @@
+<article lang="&language;" id="finger">
+<title>finger</title>
+
+<para>Finger is a program to display information about users.</para>
+
+<para>If finger is enabled on the remote machine, you may be given
+information on the user's real name, if they are logged in or not, if
+they have mail, and if they have a <filename>.plan</filename> file in
+their home directory, it might be displayed for you.</para>
+
+<para>Finger is normally associated with a user@hostname address, which
+may or may not be the same as a users email address.</para>
+
+<para>Most Internet Service Providers no longer allow finger access, so,
+you may find that you get no useful answer for most people.</para>
+
+<para>Other people use their local <filename>.plan</filename> file to
+hold such information as <acronym>PGP</acronym> keys, the fact they are
+on vacation, and all sorts of information.</para>
+
+<para>Use the finger kioslave like this:
+<userinput>finger://<replaceable>username</replaceable>@<replaceable>hostname</replaceable></userinput></para>
+
+</article>

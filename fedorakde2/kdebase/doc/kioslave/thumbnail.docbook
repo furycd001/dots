@@ -1,0 +1,23 @@
+<article lang="&language;" id="thumbnail">
+<title>thumbnail</title>
+
+<para>The thumbnail kioslave is used by &kde; for network transparent
+and persistent generation of thumbnails.</para>
+
+<para>The thumbnail kioslave uses plugins to generate the actual
+thumbnails.  You can enable viewing these thumbnails from the
+<menuchoice><guimenu>View</guimenu>
+<guisubmenu>Preview</guisubmenu></menuchoice> submenu, available in
+&konqueror; in file manager mode.</para>
+
+<para>The thumbnail kioslave is not directly useful as a user, but if
+you are a developer, you can use it within your own applications to
+create file previews.</para>
+
+<para>See the documentation in the sources for more information.  You
+will find these at
+<filename>$<envar>KDEDIR</envar>/include/thumbcreator.h</filename> or
+in the source directory <filename
+class="directory">kdebase/kioslave/thumbnail</filename></para>
+
+</article>

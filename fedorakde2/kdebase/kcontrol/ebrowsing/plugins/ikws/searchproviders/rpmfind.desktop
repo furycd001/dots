@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Service
+Name=RPM-Find
+Name[de]=RPM-Suche
+Name[eo]=RPM-trovilo
+Name[fi]=RPM-haku
+Name[is]=RPM-leit
+Name[ko]=RPM 찾기
+Name[lv]=RPM-Meklēšana
+Name[pl]=Szukanie RPM-ów
+Name[xh]=RPM-Fumana
+ServiceTypes=SearchProvider
+Keys=rf,rpmfind
+Query=http://rpmfind.net/linux/rpm2html/search.php?query=\1

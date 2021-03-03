@@ -1,0 +1,76 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="tips">
+<title>Useful tips</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Reading man pages in &kde;</para>
+</question>
+<answer>
+<para>Pop up the minicli window (<keycombo
+action="simul">&Alt;<keycap>F2</keycap></keycombo> by
+default) and type
+<command>man:<replaceable>command</replaceable></command>.  It
+even unpacks on the fly if the man pages are gzipped.</para>
+<para>Or you can use the <application>&kde; Help Center</application> if you are using &kde;
+2.  Simply start the <application>&kde; Help Center</application> by clicking on the icon (the blue
+book with the yellow key) on the toolbar.  Once the <application>&kde; Help Center</application> has
+loaded, the window on the left will contain an entry called
+<guilabel>Unix manual pages</guilabel>.  Click once on this entry, and
+you can browse through all the installed manual pages on your
+system.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Move or resize windows quickly</para>
+</question>
+<answer>
+<para>To move a window, use <keycombo
+action="simul">&Alt;<mousebutton>left</mousebutton></keycombo> mouse
+button.  <keycombo
+action="simul">&Alt;<mousebutton>right</mousebutton></keycombo> mouse
+button will resize the window.  Last but not least, <keycombo
+action="simul">&Alt;<mousebutton>middle</mousebutton></keycombo> mouse button
+raises/lowers the window. The <application>&kde; Control Center</application>
+allows you to change these mouse bindings.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Killing windows in &kde;</para>
+</question>
+<answer>
+<para>There is a standard keybinding (<keycombo
+action="simul">&Ctrl;&Alt;&Esc;</keycombo>) 
+that gives you a skull/crossbones cursor.  Click that cursor on a
+window to kill it.  The keybindings are viewable/changeable from the
+<application>&kde; Control Center</application>.
+<!-- fixme: use only if necessary; processes might remain --></para>
+</answer>
+</qandaentry>
+
+<!-- fixme: how to do in KDE2.x
+<qandaentry>
+<question>
+<para>Switching window managers on the fly in &kde; 1.x</para>
+</question>
+<answer>
+<para>If you want to switch your window manager on the fly, type the
+following into a terminal window: <command>kwmcom
+go:<replaceable>blackbox</replaceable></command>.  This switches to
+Blackbox, but you can substitute any window manager you like.</para>
+</answer>
+</qandaentry>
+-->
+
+</qandaset>
+</chapter>

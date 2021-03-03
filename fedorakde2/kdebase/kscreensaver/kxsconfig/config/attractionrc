@@ -1,0 +1,40 @@
+[Arg0]
+Label=Size:
+Maximum=30
+Minimum=5
+Switch=-size %1
+Type=Range
+Value=10
+[Arg1]
+Label=Points:
+Minimum=0
+Maximum=30
+Type=Range
+Value=0
+Switch=-points %1
+[Arg2]
+Label=Threshold:
+Minimum=0
+Maximum=300
+Type=Range
+Value=100
+Switch=-threshold %1
+[Arg3]
+Label=Mode:
+Type=DropList
+Options=Balls,Lines,Polygons,Tails,Splines,Filled-splines
+Switches=-mode balls,-mode lines,-mode polygons,-mode tails,-mode splines,-mode filled-splines
+Value=0
+[Arg4]
+Label=Glow balls
+Type=Check
+SwitchOn=-glow
+SwitchOff=-noglow
+Value=true
+[Arg5]
+Label=Mouse influence
+Type=Check
+SwitchOn=-mouse
+SwitchOff=-nomouse
+Value=true                    
+ 

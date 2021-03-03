@@ -1,0 +1,235 @@
+<sect1 id="mouse">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>mouse</keyword>
+</keywordset>
+</sect1info>
+<title>Mouse</title>
+
+<para>This module allows you to configure your pointing device. Your
+pointing device may be a mouse, a trackball, a touchpad, or another piece
+of hardware that performs a similar function.</para>
+
+<para>This module is divided into 2 tabs: <link
+linkend="mouse-general">General</link> and <link
+linkend="mouse-advanced">Advanced</link></para>
+
+<sect2 id="mouse-general">
+<title>General</title>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Button Mapping</guilabel></term>
+<listitem><para>
+If you are left-handed, you may
+prefer to swap the functions of the <mousebutton>left</mousebutton> and
+<mousebutton>right</mousebutton> buttons on your pointing device by choosing the
+<quote>left-handed</quote> option. If your pointing device has more than two
+buttons, only those that function as the <mousebutton>left</mousebutton> and
+<mousebutton>right</mousebutton> buttons are affected. For example, if you have
+a three-button mouse, the <mousebutton>middle</mousebutton> button is
+unaffected.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Single-click to open files and folders</guilabel></term>
+<listitem>
+<para>This is the default setting for &kde;. Clicking once on an icon
+will open it.  To select you can drag around the icon(s) or <keycombo
+action="simul">&Ctrl;<mousebutton>Right</mousebutton></keycombo> click,
+or simply click and hold to drag it.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Change pointer shape over icons</guilabel></term>
+<listitem>
+<para>When this option is checked, the shape of the mouse pointer
+changes whenever it is over an icon.</para> 
+
+<tip><para>This option should be checked in most situations. It gives
+more visual feedback and says, in essence, if you click here, something
+will happen.</para></tip>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Use double-click to activate or open</guilabel></term>
+<listitem>
+<para> If this option is not checked, icons/files will be opened with a
+single click of the <mousebutton>left</mousebutton> mouse-button. This
+default behavior is consistent with what you would expect when you click
+links in most web browsers. If checked however, icons/files will be
+opened with a double click, while a single click will only select the
+icon or file. This is the behavior you may know from other desktops or
+operating systems.</para> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Visual feedback on activation</guilabel></term> 
+<listitem>
+<para>When this option is
+checked, &kde; gives you visual feedback whenever you click on something and activate it.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Large Cursor</guilabel></term> 
+<listitem>
+<para>This will give &kde; a larger mouse cursor.</para>
+
+<note><para>The large cursor will not be seen until &kde; is
+restarted.</para></note>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Automatically Select Icons</guilabel></term> 
+<listitem>
+<para>If you check this option, pausing the mouse pointer over an icon
+on the screen will automatically select that icon.  This may be useful
+when single clicks opens icons, and you only want to select the icon
+without opening it.</para> 
+
+<tip><para>You can still select an icon or file without opening it, even
+when <guilabel>Single Click Opens</guilabel> is checked.  This is done
+by either holding down the &Ctrl; key and then clicking, or by dragging
+a box around the icon(s) or file(s) which you wish to select.
+</para></tip>
+
+<para> If you have activated this option, you can use the slider to
+select how long the mouse pointer must rest on an icon before it becomes
+selected.</para> 
+</listitem> 
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="mouse-advanced">
+<title>Advanced</title>
+
+<variablelist>
+<varlistentry>
+<term id="peripherals-mouse-acceleration">
+<guilabel>Pointer Acceleration</guilabel></term>
+<listitem>
+<para>This option allows you to change the relationship
+between the distance that the mouse pointer moves on the
+screen and the relative movement of the physical device
+itself (which may be a mouse, trackball, or some other
+pointing device.)</para>
+
+<para>A high value for the acceleration multiplier will lead to large
+movements of the mouse pointer on the screen, even when
+you only make a small movement with the physical device.</para>
+
+<tip><para>A multiplier between <guilabel>1x</guilabel> and
+<guilabel>3x</guilabel> will works well for many systems.  With a multiplier
+over <guilabel>3x</guilabel> the mouse pointer may become difficult to
+control.</para></tip>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Pointer Threshold</guilabel></term>
+<listitem>
+<para>The threshold is the smallest distance that the mouse pointer must
+move on the screen before acceleration has any effect. If the movement
+is within the threshold, the mouse pointer moves as if the acceleration
+were set to <guilabel>1x</guilabel>.</para>
+
+<para>Thus, when you make small movements with the physical device (&eg;
+mouse), you still have fine control of the mouse pointer on the screen,
+whereas larger movements of the physical device will move the mouse
+pointer rapidly to different areas on the screen.</para>
+				
+<para>You can set the threshold value by dragging the slider button or
+by clicking the up/down arrows on the spin-button to the left of the
+slider.</para>
+				
+<tip><para>In general, the higher you set the <guilabel>Pointer
+Acceleration</guilabel> value, the higher you'll want to set the
+<guilabel>Drag Threshold</guilabel> value.  For example, A
+<guilabel>Drag Threshold</guilabel> of <guilabel>4pixels</guilabel> may
+be appropriate for a <guilabel>Pointer Acceleration</guilabel> of
+<guilabel>2x</guilabel>, but <guilabel>10pixels</guilabel> might be
+better for <guilabel>3x</guilabel>.</para></tip>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Double Click Interval</guilabel></term>
+<listitem>
+<para>This is the maximum amount of time between clicks for &kde; to
+register a double click.  If you click twice, and the time between those
+two clicks is less than this number, &kde; recognises that as a double
+click.  If the time between these two clicks is greater than this
+number, &kde; recognises those as two <emphasis>seperate</emphasis>
+single clicks.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Drag Start Time</guilabel> and <guilabel>Drag Start
+Distance</guilabel></term> 
+
+<listitem>
+<para>If you
+<itemizedlist>
+<listitem><para>Click with the mouse</para></listitem>
+<listitem><para>drag within the time specified in <guilabel>Drag Start
+Time</guilabel>, and </para></listitem>
+<listitem><para>move a distance equal to or greater than the number (of
+pixels) specified in <guilabel>Drag Start Distance</guilabel></para>
+</listitem>
+</itemizedlist>
+
+&kde; will drag the selected item.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Mouse Wheel Scrolls By</guilabel></term>
+<listitem>
+<para>If you have a wheel mouse, use the slider to determine how many
+lines of text one <quote>step</quote> of the mouse wheel will
+scroll.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="mouse-author">
+
+<title>Section Author</title>
+
+<para>Ellis Whitehead <email>kde@ellisw.net</email></para>
+<para>Updated by: Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

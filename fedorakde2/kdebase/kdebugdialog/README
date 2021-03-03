@@ -1,0 +1,12 @@
+kdebugdialog
+------------
+
+In --fullmode, you can choose to dump debug output to a file.
+But keep in mind that multiple programs may be writing to that
+area (and therefore to that file), so they will always be appending
+to it and never clearing it. So don't forget to empty it once in a
+while!
+
+Your configuration will of course be stored in
+  $HOME/.kde/share/config/kdebugrc
+

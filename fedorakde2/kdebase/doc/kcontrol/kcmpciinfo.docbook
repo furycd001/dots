@@ -1,0 +1,69 @@
+<sect1 id="pci">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>PCI</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+
+<title><acronym>PCI</acronym>-bus and Installed <acronym>PCI</acronym>
+Cards</title>
+
+<para>This page displays information about the
+<acronym>PCI</acronym>-bus and installed <acronym>PCI</acronym> cards,
+and other devices that use the Peripheral Component Interconnect
+(<acronym>PCI</acronym>) bus.</para>
+
+<note><para>The exact information displayed is system-dependent. On some
+systems, <acronym>PCI</acronym>-information can not yet be
+displayed.</para> </note>
+
+<para>On &Linux;, this information is read from <filename
+class="devicefile">/proc/pci</filename> which is only available if the
+<filename class="directory">/proc</filename> pseudo-filesystem is
+compiled into the kernel.  A listing of all <acronym>PCI</acronym>
+devices found during kernel initialization, and their configuration, is
+shown.</para>
+
+<para>Each entry begins with a bus, device and function number.</para>
+<para>The user cannot modify any settings on this page.</para>
+
+<sect2 id="pci-author">
+<title>Section Authors</title>
+
+<para> Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, Helge Deller
+<email>helge.deller@ruhruni-bochum.de</email>, Duncan Haldane
+<email>duncan@kde.org</email>,and Michael McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

@@ -1,0 +1,27 @@
+qt2_wrap_cpp(appletproxy_MOC
+    SOURCES
+        appletproxy.h
+    )
+kde2_kinit_executable(appletproxy
+    SOURCES
+        appletproxy.cpp
+        ${appletproxy_MOC}
+    LIBS
+        kde2::kicker
+    INCLUDE_DIRECTORIES
+        ${CMAKE_CURRENT_SOURCE_DIR}../share
+    )
+
+qt2_wrap_cpp(extensionproxy_MOC
+    SOURCES
+        extensionproxy.h
+    )
+kde2_kinit_executable(extensionproxy
+    SOURCES
+        extensionproxy.cpp
+        ${extensionproxy_MOC}
+    LIBS
+        kde2::kicker
+    INCLUDE_DIRECTORIES
+        ${CMAKE_CURRENT_SOURCE_DIR}../share
+    )

@@ -1,0 +1,1470 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kappname "&kde; Quick Start Guide">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+]>
+
+<book lang="&language;">
+<bookinfo>
+	
+<title>An Introduction to &kde;</title>
+
+<authorgroup>
+
+<author>
+<surname>The KDE Team</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-07-10</date>
+<releaseinfo>2.00.00</releaseinfo>
+
+<copyright>
+<year>1999</year><year>2000</year>
+<holder>The KDE Team</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<abstract>
+<para>An introduction to the K Desktop Environment</para>
+<para>Quick Start Guide to &kde;</para></abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>quick start</keyword>
+<keyword>introduction</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+<para>
+This document is a brief introduction to the K Desktop Environment. It
+will familiarize you with some of the basic features of &kde;.
+</para>
+
+<para>
+This guide is far from covering all aspects of the K Desktop or even most
+of them. It will only describe some of the most basic ways to accomplish a few
+of the most common tasks.
+</para>
+
+<para>
+We assume that you are already familiar with at least one graphical user
+interface, for example <trademark>CDE</trademark>, <trademark>Geos</trademark>,
+<trademark>GEM</trademark>, &NeXTSTEP;, &Mac;, <trademark>OS/2</trademark> or
+&Microsoft; &Windows;. So we will not explain the usage of the mouse or the
+keyboard but concentrate on hopefully more interesting things. 
+</para>
+
+</chapter>
+
+<chapter id="an-overview-of-kde">
+<title>An Overview of &kde;</title>
+
+<para>
+This section is for users who prefer to learn by exploring and want only a
+brief orientation to get started. Later sections provide a more thorough
+introduction to the environment, with helpful hints and shortcuts. If you are
+impatient to get started, skim this section, go play for a bit, then come back
+and peruse the other sections of this guide as needed.
+</para>
+
+<note>
+<para>
+Note: &kde; provides a highly configurable desktop environment. This
+overview assumes that you are using the default environment.
+</para>
+</note>
+
+<sect1 id="the-kde-desktop">
+<title>The &kde; Desktop</title>
+
+<para>A typical &kde; desktop consists of several:</para>
+
+<itemizedlist>
+<listitem>
+<para>A <interface>panel</interface> at the bottom of the screen, used
+to start applications and switch between desktops. Among other things, it
+contains the Application Starter, a large <guiicon>K</guiicon> icon
+which displays a menu of applications to start when clicked. 
+</para>
+</listitem>
+
+<listitem>
+<para>
+A <interface>taskbar</interface>, by default embedded in the panel, used
+to switch between and manage currently running applications. Click on an
+application on the taskbar to zip to the application.
+</para>
+</listitem> 
+
+<listitem>
+<para>
+The <interface>desktop</interface> itself, on which frequently used
+files and folders may be placed. &kde; provides multiple desktops, each
+of which has its own windows. Click on the numbered buttons on the panel
+to switch between desktops.
+</para>
+</listitem>
+</itemizedlist>
+
+</sect1>
+
+<sect1 id="ready-set-go">
+<title>Ready, Set, Go!</title>
+
+<para>Here are a few quick tips to get you up and running.</para>
+
+<itemizedlist>
+<listitem>
+<para>
+To start an application, click on the <guiicon>K</guiicon> button on the
+panel (called the <link linkend="starter">Application Starter</link>)
+and choose an item from the menu.
+</para>
+</listitem>
+<listitem>
+<para>
+Click the icon that looks like a folder with a picture of a
+house on the panel to access the files in your home directory using
+&konqueror;, &kde;'s File Manager utility.
+</para>
+</listitem>
+<listitem>
+<para>Choose <menuchoice><guimenu>Application Starter</guimenu>
+<guisubmenu>System</guisubmenu>
+<guimenuitem>Terminal</guimenuitem></menuchoice> to get a &UNIX; command
+prompt, or press <keycombo action="simul">&Alt;
+<keycap>F2</keycap></keycombo> to get a mini command prompt window to
+execute a single command.
+</para>
+</listitem>
+
+<listitem>
+<para>
+Choose the <guiicon>KDE Control Center</guiicon> item on Application
+Starter to configure &kde;.
+</para>
+</listitem> 
+
+<listitem>
+<para>
+Press <keycombo action="simul">&Alt;<keycap>Tab</keycap></keycombo> to
+switch between applications and
+<keycombo action="simul">&Ctrl;<keycap>Tab</keycap></keycombo> to switch
+between desktops using the keyboard.
+</para>
+</listitem> 
+
+<listitem>
+<para>
+Use the &RMB; mouse button to access context menus for the panel,
+desktop, and most &kde; applications.
+</para>
+</listitem> 
+</itemizedlist>
+
+</sect1>
+</chapter>
+
+<chapter id="launching-applications">
+<title>Launching Applications</title>
+
+<sect1 id="starter">
+<title>Using the Application Starter and the Panel</title>
+
+<para>
+On the bottom of the screen you find the desktop panel, which is called
+&kicker;.  You use the panel to launch applications. Have a look at the
+button on the left with a large <guiicon>K</guiicon>.
+</para>
+
+<para> 
+This button is called the <guiicon>Application Starter</guiicon>. It has
+a small arrow on the top to indicate that it will pop up a menu if you
+click on it. Just do it! The pop-up offers you easy access to all &kde;
+applications installed on your computer system.
+</para>
+
+<sect2>
+<title>Customizing &kicker;</title>
+
+<para>
+If you use one application or tool very often, then you may want to have
+even faster access to it, of course. In this case, you can add a single
+application, or an entire sub-menu of the Application Starter menu, as a
+special quick-launch button onto the panel. If you want to reach the
+&kfind; application directly via a launch button, simply choose
+<menuchoice><guimenu>Application starter</guimenu> <guisubmenu>Panel
+Menu</guisubmenu> <guisubmenu>Add</guisubmenu>
+<guisubmenu>Button</guisubmenu> <guimenuitem>Find
+Files</guimenuitem></menuchoice> (By this we mean that you should first
+click the <guimenu>Application Starter</guimenu>, then select
+<guisubmenu>Panel Menu</guisubmenu> where the small arrow to the right
+indicates that another menu will pop up. In this menu, choose
+<guisubmenu>Add</guisubmenu>, then <guisubmenu>Button</guisubmenu>, and
+in the next sub-menu, <guimenuitem>Find Files</guimenuitem>.).
+</para>
+	
+<para>
+You can add an entire menu this way, or one of the <guiicon>K</guiicon>
+button sub-menus.  For example, if you have &koffice; installed and
+want quick access to all the &koffice; applications, without having to
+navigate through the application starter, then instead of choosing an
+application, click on the <guimenuitem>Add this menu</guimenuitem> menu
+entry.  Now you will have instant access to all the &koffice;
+applications, without having to put an icon for each on the panel.
+</para>
+
+<note>
+<para>
+you can move all items of the panel around with the
+<guimenuitem>move</guimenuitem> command of the context menu. Just click
+with the <mousebutton>third</mousebutton> mouse button (the
+<mousebutton>third</mousebutton> mouse button is normally the
+<mousebutton>right</mousebutton> button, but if you have configured your
+mouse differently, for example for left-handers, it might also be the
+<mousebutton>left</mousebutton> one). A menu will pop up where you can
+choose <guimenuitem>Move</guimenuitem>. Now move the mouse and see how
+the icon follows while still staying on the panel. When you are done,
+simply hit the <mousebutton>first</mousebutton> mouse button (by default
+the <mousebutton>left</mousebutton> one). As you have may have noticed,
+there is also a menu entry <guimenuitem>Remove</guimenuitem> in case you
+are tired of a certain launch button on your desktop.
+</para> 
+</note>
+
+</sect2>
+
+<sect2>
+<title>Using Context menus</title>
+
+<para>
+This leads us to another interesting topic: in many places, you can
+click the <mousebutton>right</mousebutton> mouse button to display a
+<interface>context menu</interface> with choices that are applicable to
+the item you clicked. It is therefore always a good idea to try out the
+<mousebutton>third</mousebutton> mouse button on something, if you do
+not know what to do with it. Even the background of the desktops has
+such a menu!  
+</para>
+
+</sect2>
+
+<sect2>
+<title>Other Panel features</title>
+
+<para>
+There are other interesting things possible with the panel. One
+may be important if you have a low resolution on your monitor: it is
+the <quote>hide-and-show</quote> function, activated by clicking on the
+textured bar on the left edge of the panel.  
+</para>
+
+<para>
+Perhaps you just don't like the panel extending the full width of the
+screen.  That's easily changed!  <mousebutton>RMB</mousebutton> on an
+empty space in the panel, and choose
+<menuchoice><guimenu>Panel</guimenu>
+<guisubmenu>Preferences</guisubmenu></menuchoice>.  In the &kcontrol;
+dialog that pops up, you can choose <guilabel>Panel Size</guilabel> on
+the <guilabel>General</guilabel> tab, and use the slider there to set
+the panel to less than 100% width.
+</para>
+
+<para>
+If you're following along, and have that dialog open anyway, then feel
+free to play with all the options, and use the
+<guibutton>Apply</guibutton> to see the effect they have.  You can
+easily reset everything to the default configuration, by simply pressing
+the <guibutton>Use Defaults</guibutton> button.
+</para>
+
+<para>
+By the way, if you are not sure what a certain button does in &kde;,
+just move the mouse pointer over it and wait for a short while: &kde;
+has a built-in mini context help, called <quote>tool tips</quote>, which
+explains the functionality of such controls in a few words.  
+</para>
+
+
+</sect2>
+</sect1>
+
+<sect1 id="want-command-line-back">
+<title>But I want my command line back!</title>
+
+<para>
+Just calm down, there is nothing to fear. &kde; does not want to take your
+beloved (and sometimes very effective) command line away from you. You can move
+your files with the desktop, but you can also use the &UNIX; commands you are
+accustomed to. In fact,&kde; puts command line power at your fingertips,
+in perhaps some surprising places.
+</para>
+
+<para>
+&kde; provides a very sophisticated command line window called
+&konsole;.  Choose <menuchoice><guimenu>application
+starter</guimenu> <guisubmenu>System</guisubmenu>
+<guimenuitem>Terminal</guimenuitem></menuchoice> to start it. This may
+be something you want on your panel, luckily it's already there in the
+default configuration!
+</para>
+  
+<para>
+Sometimes, you only want to enter one command on the command line. In
+these cases, you do not need a full-blown terminal. Just hit
+<keycombo><keycap>Alt</keycap> <keycap>F2</keycap></keycombo> and you get a
+small command line where you can enter one command. The command line
+window will disappear afterwards, but it remembers your command.
+</para>
+
+<para>
+When you pop up this window (which we call
+<application>minicli</application> by the way) and hit the
+<keycap>Up-arrow</keycap>, you can browse through all the commands you
+have previously entered.  Also, you can enter <acronym>URL</acronym>'s
+in <application>minicli</application> to open a &konqueror; window with
+the specified <acronym>URL</acronym>.
+</para>
+
+<para>
+&konqueror; and the editor &kate; can both display terminal windows,
+which behave just like &konsole;.  In &konqueror;, you can turn this on
+with the menu choice
+<menuchoice><guimenu>Window</guimenu><guimenuitem>Show Terminal
+Window</guimenuitem></menuchoice>.  The embedded terminal will display
+at the bottom of your &konqueror; window, and the really clever thing is
+that it will follow your clicks in the file manager view, changing
+directory as you do.  In &kate; you can display a terminal with the menu
+choice <menuchoice><guimenu>Windows</guimenu> <guimenuitem>Show
+Console</guimenuitem></menuchoice>.  
+</para>
+
+<tip>
+<para>
+To display a Unix man page, enter
+<userinput><command>man:</command><parameter>command</parameter></userinput>
+in <application>minicli</application>, where
+<parameter>command</parameter> is the name of a &UNIX; command.
+</para>
+</tip>
+
+<tip>
+<para>
+To search for a word or words on the Google search engine, you can try
+<userinput><command>gg:</command><parameter>word or
+words</parameter></userinput>.  There's a whole lot more of these
+shortcut commands, and you can even add your own!  Take a look in
+&kcontrol;, in the tab <menuchoice><guilabel>Web Browsing</guilabel>
+<guilabel>Enhanced Browsing</guilabel></menuchoice>.
+</para>
+</tip>
+
+<para>
+Finally, there's a way to have your command line always available, no
+matter what you're doing - add one to your &kicker; panel! 
+</para>
+
+<para>
+Simply &RMB; click on an empty space in the panel, and choose
+<menuchoice><guimenu>Panel</guimenu> <guisubmenu>Add</guisubmenu>
+		  <guisubmenu>Applet</guisubmenu> <guimenuitem>Application
+Launcher</guimenuitem></menuchoice>.  This will embed a mini-cli
+directly into your panel, complete with command history.
+</para>
+
+<para>
+So, in conclusion, the command line is never far from view when you're
+using &kde;.
+</para>
+
+</sect1>
+</chapter>
+
+<chapter id="working-with-windows">
+<title>Working with Windows</title>
+
+<para>
+If you have not already done so, start an application using the <link
+linkend="starter"><guiicon>Application Starter</guiicon></link>, like
+<guimenuitem>Find Files</guimenuitem>.  
+</para>
+
+<sect1 id="window-what-now">
+<title>A window! What now?</title>
+
+<para>
+Well, usually people work <emphasis>inside</emphasis> windows, but
+sometimes you may want to manipulate windows. Here's a quick overview of
+some of the most common window related functions:
+</para>
+
+<variablelist>
+<varlistentry>
+<term>Move a window</term>
+<listitem>
+<para>
+Drag the window's title bar, or hold the &Alt; key down
+and drag anywhere in the window.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term>Resize a window:</term>
+<listitem>
+<para>
+Drag the window's border, or hold the &Alt; key down and drag with the
+&RMB; mouse button anywhere in the window. 
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Maximize a window</term>
+<listitem>
+<para>
+Click the maximize button in the title bar (in the default decoration it
+is the square, next to the X) to make the window fill the screen, or if
+the window is already maximized, to shrink it back to it's original
+size.  Clicking with the &MMB; maximizes the window vertically; the
+&RMB;, horizontally.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Iconify a window</term>
+<listitem>
+<para>
+Click the iconify button in the title bar (next to Maximize) to hide the
+window.  Get it back by clicking on the window's icon in the
+taskbar.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term>Switch between windows</term>
+<listitem>
+<para>
+Aside from the usual mouse click to switch to another window,
+you can use <keycombo action="simul">&Alt;
+<keycap>Tab</keycap></keycombo> to switch windows.  See below for more
+techniques.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<sect2>
+<title>Title bar buttons</title>
+
+<para>
+&kde; windows have some pretty standard buttons on their title bars which
+give you fast access to some common operations. The default button
+layout looks like this:
+</para>
+
+<itemizedlist>
+<title>On the left side:</title>
+<listitem>
+<para>
+A menu button. This usually shows a mini icon for the application. Click
+on it to get a window operations menu.  Shortcut: <keycombo
+action="simul">&Alt; <keycap>F3</keycap></keycombo> opens the window
+menu.
+</para>
+</listitem>
+ 
+<listitem>
+<para>
+A sticky button, with a picture of a tack. What the heck is this? Stay
+tuned! 
+</para>
+</listitem> 
+</itemizedlist>
+
+<itemizedlist>
+<title>On the right side:</title>
+<listitem>
+<para>
+An iconify button. 
+</para>
+</listitem>
+
+<listitem>
+<para>
+A maximize button. 
+</para>
+</listitem>
+
+<listitem>
+<para>
+A close button. This closes the window. Shortcut: <keycombo
+action="simul">&Alt; <keycap>F4</keycap></keycombo>.  
+</para>
+</listitem>
+</itemizedlist>
+
+</sect2>
+
+<sect2>
+<title>Switching between windows</title>
+
+<para>
+Now that we know how to deal with windows we encourage you to open some
+other windows with the panel since we will now discuss how to switch
+between different windows. Since this is such a common activity, &kde;
+offers several ways to do it; pick your favorite!
+</para>
+
+<para>
+Many window systems require you to click the mouse in another window to
+begin using it. This is &kde;'s default behavior, termed
+<quote>ClickToFocus</quote> focus policy. But you can also configure
+your desktop in a way that moving the mouse pointer onto a window will
+activate it. This is called <quote>FocusFollowMouse</quote>. If you
+select this policy using the <link linkend="configure">KDE Control
+Center</link>, the window under the mouse pointer is always the active
+one. It doesn't necessarily come to the front automatically, but you can
+still click onto the title bar or the border of a window or -- a &kde;
+special -- you can use the &Alt; key and click the
+<mousebutton>middle</mousebutton> mouse button anywhere on the window to
+raise it.
+</para>
+
+<para>
+Here are some other methods to switch windows:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+Pick a window from the <emphasis>window list</emphasis> menu. To open
+the menu, click the <mousebutton>middle</mousebutton> mouse button on an
+empty area of the desktop, or click the icon with several windows on the
+panel, or finally click the up arrow at the left hand end of the
+taskbar in the panel.
+</para>
+</listitem> 
+
+<listitem>
+<para>
+Hold down the &Alt; key and press <keycap>Tab</keycap> to cycle through
+the windows.
+</para>
+</listitem> 
+
+<listitem>
+<para>
+Use the taskbar (see below).
+</para>
+</listitem>
+</itemizedlist>
+
+</sect2>
+</sect1>
+
+<sect1 id="using-taskbar">
+<title>Using the Taskbar</title>
+
+<para>
+The <interface>taskbar</interface> displays a list of small icons, one for
+each window on the desktop. In the default &kde; setup the taskbar is
+located inside the panel, but it can also be located at the top or the
+bottom of the screen.
+</para> 
+
+<para>
+The taskbar is very powerful: A simple click with the
+<mousebutton>left</mousebutton> mouse button on the appropriate taskbar
+button will bring you to the selected application immediately. Click an
+entry with the <mousebutton>middle</mousebutton> mouse button  to
+iconify/deiconify a window. Last but not least, the
+<mousebutton>right</mousebutton> mouse button will pop up a context
+menu, with window operations for the selected window.
+</para> 
+
+<para>
+You can choose to see all the windows on all the desktops in your
+taskbar, no matter which desktop you are currently viewing, or to only
+see the icons for the desktop you are looking at.  You can also choose
+to group the icons, so that all open &konqueror; windows display as one
+icon, and clicking and holding the mouse button on that icon will pop up
+a list to choose from.  This and many more options are available simply
+by right clicking on the taskbar handle (the small textured bar at the
+left hand side) and choosing <guimenuitem>Preferences</guimenuitem>.
+</para>
+
+<para>
+The icons on the taskbar resize themselves to make room for
+applications, so you can fit many more applications than you might
+think.  Making the panel wider, will let the taskbar icons take on a row
+and column layout, but they will still resize to fit more icons.  
+</para>
+
+</sect1>
+
+<sect1 id="using-v-desktops">
+<title>Using Virtual Desktops</title>
+
+<para>
+Now, what was that <quote>sticky</quote> thing?
+</para>
+
+<para>
+It may happen that you have more windows open than space on your
+desktop. In this case you have three possibilities: 
+</para>
+
+<orderedlist>
+<listitem>
+<para> 
+Leave all windows open (cluttered desktop)
+</para>
+</listitem>
+
+<listitem>
+<para> 
+Iconify those windows which you do not need at present and use
+the taskbar or <keycombo action="simul">&Alt;
+			  <keycap>Tab</keycap></keycombo> to switch between them
+(still a bit confusing and much work!) 
+</para>
+</listitem> 
+
+<listitem>
+<para>
+Recommended: Do what a real operating system does if there is not enough
+physical memory: Use virtual memory, in this case virtual desktops. 
+</para>
+</listitem>
+</orderedlist>
+
+<para>
+Item 3 is the way to go! &kde; can handle several different desktops,
+each with its own windows. The default configuration provides four
+desktops.  You can switch between the virtual desktops easily with a
+click on one of the desktop buttons on the panel. Also <keycombo
+action="simul">&Ctrl;<keycap>F1...F8</keycap></keycombo> will send you
+to the corresponding desktop immediately, or <keycombo
+action="simul">&Ctrl; <keycap>Tab</keycap></keycombo> will cycle through
+the desktops.
+</para>
+
+<para>
+Virtual desktops are very nice. But sometimes you want a window to be
+present on <emphasis>every</emphasis> desktop. This could be for example
+a small chat window or a alarm clock or whatever. In this case you can
+use the above mentioned <quote>sticky</quote> button which will pin the
+window on the background so that it will appear on every virtual
+desktop.
+</para> 
+
+<para>
+The sticky button can also be used to move a window from one virtual
+desktop to another one: push the sticky pin on the window, switch to a
+different desktop, and release the pin by pushing it again. It is easier
+if you use the context pop-up menu of the window's entry in the taskbar
+(menu item <guimenuitem>Onto current desktop</guimenuitem>) or the
+<guimenuitem>Send to</guimenuitem> option on the window operations menu.
+</para>
+
+</sect1>
+</chapter>
+
+<chapter id="managing-your-files">
+<title>Managing your files</title>
+
+<para>
+A common metaphor of graphical desktops is the use of folders to
+represent directories on your hard disk. Folders contain files and other
+folders. A &kde; application called &konqueror;, the K File Manager,
+uses this metaphor to help you manage your files.
+</para>
+
+<sect1 id="using-konqueror">
+<title>Using &konqueror;</title>
+
+<para>
+The first time you start &kde;, a window with lots of icons in it
+appears. This is a &konqueror; window displaying the files in your home
+directory (the area where your personal files are stored). The pathname
+of the folder is displayed under the window's tool bar. If you don't see
+such a window now, click the icon on the panel that looks like a folder
+with a picture of a house.
+</para>
+
+<para>
+To open a file or folder, simply click it once with the &LMB; mouse
+button. You can also choose
+<menuchoice><guimenu>Window</guimenu><guimenuitem>Show
+Sidebar</guimenuitem></menuchoice> from the menu to display the folder
+hierarchy for more direct navigation. Or you can edit the path displayed
+under the tool bar to get to a specific directory quickly. 
+</para>
+
+<sect2>
+<title>Opening Files</title>
+
+<para>
+&kde; comes with a set of applications to view and edit many common
+kinds of files, and when you click a file containing, say, a document or
+image, &konqueror; will start the appropriate application to display the
+file. If it doesn't know what application to start to open a file you
+clicked, &konqueror; will prompt you for the name of the application to
+run, and when you have chosen, &konqueror; will offer to remember your
+choice for next time you open on of those files.
+</para>
+
+<note>
+<para>
+&konqueror; uses <link linkend="mime">MIME types</link> to associate
+files with applications. 
+</para>
+</note> 
+
+</sect2>
+
+<sect2>
+<title>Dragging and Dropping Icons</title>
+
+<para>
+To copy or move a file, simply drag its icon to the desktop, to another
+&konqueror; window, or to a folder icon.  When you release the button,
+&konqueror; displays a menu to allow you to choose to copy, move, or
+create a link to the file.
+</para>
+
+<note>
+<para>
+Note that if you choose to create a link, &kde; creates a &UNIX;
+symbolic link (not a hard link), so if you move or delete the original 
+file, the link will be broken.
+</para>
+</note>
+
+<para>
+Most &kde; applications also support drag and drop operations: you can
+drag an icon onto a window of running application, or onto an icon of an
+application that is not started, to have the application open the
+file. Try it!
+</para>
+
+</sect2>
+
+<sect2>
+<title>Setting File Properties</title>
+ 
+<para>
+To change file properties, such as its name and permissions, &RMB; click
+the icon and choose <guimenuitem>Properties</guimenuitem> from the menu.
+</para>
+
+</sect2>
+</sect1>
+
+<sect1 id="archives-and-networks">
+<title>Working with Archives and Networks</title>
+
+<para>
+In the near past, you needed special software to access files on the
+Internet. Not any more!
+</para>
+
+<para>
+&kde; KDE supports a technology called <quote>Network Transparent
+Access</quote> (<acronym>NTA</acronym>) which allows you to work with
+files  on the other side of the earth as easily as those on your local
+hard disk.
+</para> 
+
+<para>
+For example, to access files on an &FTP; server, just choose
+<menuchoice><guimenu>Location</guimenu><guimenuitem>Open
+Location</guimenuitem></menuchoice> from a &konqueror; menu, and enter
+the <acronym>URL</acronym> of an &FTP; server.  You can drag and drop
+files to and from the folders on the server just as if they were on your
+local disk. You'll even be able to open files on the &FTP; server
+without having to copy them to your local disk (&kde; does it for you
+when necessary).
+</para>
+
+<note>
+<para>
+Note that &konqueror; uses anonymous &FTP; access, which may restrict
+your access to files on the &FTP; server.  If you have an account on the
+server, you can supply your user <abbrev>ID</abbrev> as part of the
+<acronym>URL</acronym>, like this:
+<userinput><command>ftp://</command><parameter>userid</parameter>@<parameter>server</parameter>/<parameter>directory</parameter></userinput>
+</para>
+
+<para>
+&konqueror; will prompt you for your password, and if the login
+succeeds, you will have full access to your files on the server.
+</para>
+</note>
+
+<para>
+If you are used to the
+<trademark><application>WinZip</application></trademark> utility on
+&Microsoft; &Windows;, then you will be happy to hear that &kde; can
+look into tar archives, too. It treats such archives just like a normal
+folder -- you can browse into the archive, open files, etc. In general,
+accessing files on the Internet and in archives should look and feel
+just like accessing files on your local disk, except for delays imposed
+by the network.
+</para>
+</sect1>
+
+<sect1 id="using-templates">
+<title>Using Templates to access Applications and Devices</title>
+
+<para>
+In &kde; it's easy to put icons on the panel or the desktop to access
+your applications.  It's just as easy to add icons to access other items
+of interest.  &kde; has templates for shortcuts to:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+Applications
+</para>
+</listitem>
+<listitem>
+<para>
+Printers
+</para>
+</listitem>
+<listitem>
+<para>
+Mountable Devices (&eg; floppy drives)
+</para>
+</listitem> 
+<listitem>
+<para>
+Internet resources (&eg; <acronym>WWW</acronym> documents, &FTP;
+directories)
+</para>
+</listitem>
+<listitem>
+<para>
+Documents for some of &kde;'s &koffice; applications.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>
+You can add any of these items to the desktop by &RMB; clicking where
+you want the icon, and choosing <guisubmenu>Create
+New</guisubmenu> and
+selecting the item you want to link to.
+</para>
+
+<para>
+Nearly every item in the Application Starter, on the desktop, and on the
+panel refers to a <literal role="extension">.desktop</literal> file on
+disk. The <literal role="extension">.desktop</literal> file specifies
+what icon to display, as well as specific information about what the
+icon represents (an application, device, or <acronym>URL</acronym>). You
+can drag any <literal role="extension">.desktop</literal> file to the
+panel to create a quick-launch button.
+</para>
+
+<!-- 
+<sect2>
+<title>Setting up printers</title>
+
+<para>
+You can create icons for your printers so that you can print a file by
+dragging it to a printer icon. Here's how:
+</para>
+
+<procedure>
+<step><para>Open the Templates folder located on the desktop. </para></step>
+<step><para>Drag the Program icon in the folder to the desktop. Choose
+<guimenuitem>Copy</guimenuitem> from the menu that appears when you drop the
+icon.</para></step>
+<step><para><mousebutton>Right</mousebutton> click the new icon, and choose
+<guimenuitem>Properties</guimenuitem> from the context menu.</para></step>
+<step><para>On the <guilabel>General</guilabel> tab, change the name to
+<filename>Printer.kdelnk</filename>.</para></step>
+<step><para>On the <guilabel>Execute</guilabel> tab, enter the following in the
+first <guilabel>Execute</guilabel> field:</para>
+<screen><command>lpr <option>%f</option></command></screen>
+<note><para>This example assumes that you print using the <command>lpr</command>
+command. If you use a different command, enter the one you
+use.</para></note></step>
+<step><para>Still in the <guilabel>Execute</guilabel> tab, click the icon that
+looks like a <guiicon>cog</guiicon>, and select the <guiicon>Printer</guiicon> icon from the list that appears.</para></step>
+</procedure>
+
+<para>Now you should be able to drag a file to the Printer icon and have it
+printed on your default printer.</para> 
+</sect2>
+
+--> 
+
+<sect2>
+<title>Mounting devices</title>
+
+<para>
+&UNIX; provides access to storage devices other than the primary
+<hardware>hard disk</hardware> through a process called
+<emphasis>mounting</emphasis>. &kde; uses <literal
+role="extension">.desktop</literal> files to allow you to easily mount,
+unmount, and access files on secondary storage devices such as
+<hardware>floppy</hardware> drives and &cdrom; drives.
+</para>
+
+<para>
+As an example, here are the steps needed to create an icon to access
+files on a floppy disk:
+</para>
+
+<note>
+<para>
+Many systems require you to be logged in as
+<systemitem class="username">root</systemitem> to mount and unmount
+devices.
+</para>
+</note>
+
+<procedure>
+<step>
+<para><mousebutton>Right</mousebutton> click on the desktop and choose
+<menuchoice><guisubmenu>Create New</guisubmenu> <guimenuitem>Floppy
+Device...</guimenuitem></menuchoice>.
+</para>
+</step>
+<step>
+<para>
+On the <guilabel>General</guilabel> tab of the resulting dialog, change
+the name to as you like, in the text box at the top.
+</para>
+</step>
+
+<step>
+<para>
+On the <guilabel>Device</guilabel> tab, enter <filename
+class="devicefile">/dev/fd0</filename> (or the path to the floppy device
+as it is named on your system) as the <guilabel>Device</guilabel>.
+</para>
+</step>
+<step>
+<para>
+You can add a <guilabel>Mount Point</guilabel> here too.  This should be
+an existing directory, but empty.  Common mount points are <filename
+class="directory">/mnt/floppy</filename> or <filename
+class="directory">/floppy</filename>, but you can as easily have floppy
+disks mounted as <filename class="directory">~/mydisk</filename> if you
+want.
+</para>
+</step> 
+<step>
+<para>
+Click the <guilabel>Unmounted Icon</guilabel> and select the picture
+of a floppy disk without the green light.
+</para>
+</step>
+<step>
+<para>
+Once you're happy with your choices, choose <guibutton>OK</guibutton>
+and you are finished!
+</para>
+</step>
+</procedure>
+
+<para>
+Now, place a properly formatted floppy in the drive and click the
+<guiicon>Floppy</guiicon> icon to have &kde; mount the floppy drive and display
+the files on the disk. Before removing the disk from the drive, &RMB;
+click the <guiicon>Floppy</guiicon> icon and choose
+<guimenuitem>Unmount</guimenuitem> from the menu.
+</para>
+
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="configure">
+<title>Configuring your desktop</title>
+
+<para>
+If you do not like something about the way the desktop looks or
+operates, you can probably change it. &kde; is very configurable and you
+can change almost every aspect of the appearance and the behavior of
+your desktop. Unlike many other &UNIX; desktop environments, you do not
+have to edit cryptic configuration files, either (but you can if you
+really want to)!  You use the &kcontrol;, a special program for
+configuring your desktop.
+</para>
+
+<sect1 id="using-kde-control">
+<title>Using the <application>KDE Control Center</application></title>
+
+<para>
+Launch the &kcontrol; from the <link linkend="starter">Application
+Starter</link>. A window with two panes appears, displaying a list of
+modules in the left pane.
+</para>  
+
+<para> 
+Open a module by clicking its name; a list of submodules will
+appear. Then, click one of the submodule category names to edit its
+configuration in the right pane.
+</para>
+
+<para>
+Changing the configuration is fairly straightforward. A help button is
+available on each configuration panel to explain settings that are not
+obvious.  Each panel has buttons labeled <guibutton>Help</guibutton>,
+<guibutton>Use Defaults</guibutton>, <guibutton>Apply</guibutton>, and
+<guibutton>Reset</guibutton>, which work as follows:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guibutton>Help</guibutton></term>
+<listitem>
+<para>
+Displays a short help text in the left hand pane, including a link to a
+longer manual for the module in question.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Use Defaults</guibutton></term>
+<listitem>
+<para>
+Sets all the options in the current module back to the default at the
+time &kde; was installed.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Apply</guibutton></term>
+<listitem>
+<para>
+Applies the current settings in the currently open module.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Reset</guibutton></term>
+<listitem>
+<para>
+Reset the options to the state they were in when you opened the module.
+If you have already used the <guibutton>Apply</guibutton> button, then
+this button will reset the options to the state they were in when you
+pressed <guibutton>Apply</guibutton>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note>
+<para>
+If you make changes on one configuration panel and move to a different
+module without clicking <guibutton>Ok</guibutton> or
+<guibutton>Apply</guibutton> first, &kcontrol; will prompt you if your
+changes should be applied first.
+</para>
+</note>
+
+</sect1>
+
+<sect1 id="configuration-modules">
+<title>Configuration Modules</title>
+
+<para>
+Here is a brief overview of the major configuration modules categories:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>File Browsing</guilabel></term>
+<listitem>
+<para>
+Contains options that relate to how you view the contents of your local
+system.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Information</guilabel></term>
+<listitem>
+<para>
+Contains modules that you normally can't use to change anything.  They
+display useful information about your computer instead.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Look &amp; Feel</guilabel></term>
+<listitem>
+<para>
+Here you find the modules that have the most visible effect on your
+environment:  Colors, styles, window decorations. Nearly everything you
+see can be customized to suit your tastes, and the few things that can't
+be, soon will.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Network</guilabel></term>
+<listitem>
+<para>
+The place to configure how your computer sees the world outside, as well
+as how the world sees you.  Among other things you can set up central
+email identities that many &kde; applications can use, to save you
+having to enter the same information over and over, you can set up SOCKS
+firewall support, and you can configure windows (<acronym>SMB</acronym>)
+shares... and much more.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Peripherals</guilabel></term>
+<listitem>
+<para>
+Contains settings for your keyboard and mouse.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Personalization</guilabel></term>
+<listitem>
+<para>
+Here you can set up things that make your life easier, from
+accessibility features to localization, so that &kde; applications know
+how you like to see numbers and dates formatted, for example.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Power Control</guilabel></term>
+<listitem>
+<para>
+If your display supports power saving features, or you are using a
+laptop, this is the place to configure them.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Sound</guilabel></term>
+<listitem>
+<para>
+Configure the sound daemon (&artsd;) and other audio behavior.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>System</guilabel></term>
+<listitem>
+<para>
+Here you can set the remaining system features - how the &konsole; and
+&kdm; applications behave, set up printing, and set your system date.
+You might not be able to set some of these options unless you are logged
+in as <systemitem class="username">root</systemitem>, but &kcontrol;
+will let you know if this is the case.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Web Browsing</guilabel></term>
+<listitem>
+<para>
+With the Internet, and especially the web being such an integral part of
+today's computer world, there are many options to be set to enhance your
+experience.  You'll find them all here, from setting up custom style
+sheets, to proxies and caching.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>
+Go ahead!  Explore the configuration possibilities and discover the
+flexibility of &kde;.
+</para>
+
+</sect1>
+</chapter>
+
+<chapter id="logging-out">
+<title>Logging out</title>
+
+<para>
+We sincerely hope that using the &kde; gives you so much fun and
+pleasure that you never want to log out. But if you do, simply choose
+<menuchoice><guimenu>Application starter</guimenu>
+<guimenuitem>logout</guimenuitem></menuchoice>.
+</para>
+
+<para>
+There is also a logout button directly on the panel, which looks like a
+small power button.  Or you can press <keycombo action="simul">&Ctrl;
+&Alt; <keycap>Delete</keycap></keycombo> to log out.
+</para>
+
+<sect1 id="session-management">
+<title>Session Management</title>
+
+<para>
+When you log out, &kde; remembers which applications you had open, as well
+as where all the windows were located, so that it can open them for you
+the next time you log in. This feature is termed <emphasis>Session
+Management</emphasis>. &kde; aware applications will restore themselves
+to the state they were in when you logged out.  For example, &kate;
+remembers which files you were editing. 
+</para> 
+
+<para>
+Non-KDE applications do not memorize their state on logout, and KDE will
+warn you to make sure that you have saved any important data in them
+when you start to log out.
+</para>
+
+<para>
+To illustrate session management, choose <menuchoice>
+<guimenu>Application
+starter</guimenu><guisubmenu>Applications</guisubmenu>
+<guimenuitem>Editor</guimenuitem> </menuchoice> to start &kedit;. Open a
+text document to edit. Now log out and back in. You will observe that
+&kate; will be restored to the exact same position on the screen,
+including the right virtual desktop and the document we left open in
+&kate; before we logged out is opened again automatically.  &kate; will
+even remember whether you had unsaved changes to your document before
+you logged out and will save them to the file you were working on if you
+choose <guimenuitem>Save</guimenuitem> from the <guimenu>File</guimenu>
+menu.
+</para>
+
+</sect1>
+</chapter>
+
+<chapter id="kde-an-exciting-journey">
+<title>&kde;, an exciting Journey</title>
+
+<para>
+We hope you enjoyed this brief tour of the K Desktop environment and
+that this unique desktop environment will help you get your work done
+faster and more comfortably than ever.
+</para>
+
+<para>
+Please remember that the &kde; project is not a commercial venture, but
+rather a project run by volunteers from all over the world. We would
+like to invite you to join the &kde; project and become part of this
+unique network of people. If you are a programmer you might consider
+helping us write &kde; applications. If you are an artist or have
+experience with graphic design, consider creating icons sets, color
+schemes,  sound schemes and logos for &kde;.  If you enjoy writing we
+would love for  you to join our documentation project.
+</para>
+
+<para>
+As you can see there are many ways in which you can help. You are
+cordially invited to join this world-wide network of people dedicated to
+making &kde; the best desktop environment for any computer. Please visit
+<ulink url="http://www.kde.org">www.kde.org</ulink> for more
+information.
+</para>
+
+<para>
+<emphasis>Welcome aboard on this exciting journey, </emphasis>
+</para>
+<para>
+<literal>Your KDE Team</literal>
+</para>
+</chapter>
+
+<chapter id="advanced-topics">
+<title>Advanced Topics</title>
+
+<sect1 id="mime">
+<title>Mime Types</title>
+
+<para>
+&kde; comes with a number of &MIME; types predefined, but you can add
+your own &MIME; types by choosing
+<menuchoice><guimenu>Settings</guimenu>
+<guisubmenu>Configure</guisubmenu> <guimenuitem>File
+Associations</guimenuitem> </menuchoice> in a &konqueror; window.
+</para>
+
+<para>
+&kde;'s handling of &MIME; types is very powerful, and very
+configurable.  On the one hand, you can set a default action to be
+performed when you click on a file in &konqueror;.  Just as useful, you
+can add many more actions, which are then available with a &RMB; click
+menu on the file in question.
+</para>
+
+<!-- Note: this is copied from the user-guide - eventually these two -->
+<!-- docs will merge, so there's no point adding new text in both, but -->
+<!-- for the moment they have a slightly different audience -->
+<procedure>
+<title>To link a certain file type with a particular application:</title>
+<step>
+<para>
+Make sure the application you want to start this file type has an
+entry in the <guimenu>Application Starter</guimenu> menu.
+</para>
+</step>
+
+<step>
+<para>In &konqueror; find or make a file with the extension you wish to
+link.
+</para>
+</step> 
+
+<step>
+<para>
+<mousebutton>Right</mousebutton> click on the file, and choose
+<guimenuitem>Edit File Type</guimenuitem> from the context menu, or
+choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Edit File
+Type</guimenuitem></menuchoice> in &konqueror;'s menu bar.
+</para>
+</step>
+
+<step>
+<para>
+Add file masks for the application by clicking the
+<guibutton>Add</guibutton> button, and entering the file pattern you
+want. Remember that Unix is case sensitive, so you may need to add
+variations - <literal role="extension">*.mp3</literal> may need <literal
+role="extension">*.MP3</literal> added as well, for example.  Add as
+many extensions as you like in this way.
+</para>
+</step>
+
+<step>
+<para>
+Add a description if you like.  This is optional.
+</para>
+</step>
+
+<step>
+<para>In the section labeled <guilabel>Application Preference
+Order</guilabel>, press the <guibutton>Add</guibutton> button.  A
+miniature copy of the <guimenu>Application Starter</guimenu> menu will
+open, where you can choose the application you want files of this type
+to be opened with.
+</para>
+</step>
+
+<step>
+<para>
+Sometimes, you may want to use a different application to open this file
+type.  For example, you might like to use &kate; to open text files you
+wish to edit, and &kedit; for text files that you just want to take a
+quick peek into.  You can add more applications in the same way as you
+did in the last step, and you can change the preferred order using the
+<guibutton>Move Up</guibutton> and <guibutton>Move Down</guibutton>
+buttons.
+</para>
+</step> 
+
+<step>
+<para>
+If you're satisfied with your choices, you can click the
+<guibutton>Apply</guibutton> button to save your changes without closing
+the dialog box.  This gives you the opportunity to test in the
+<application>Konqueror</application> window that your file association
+is correct.  You can choose <guibutton>OK</guibutton> to save your
+changes and close the dialog box, or <guibutton>Cancel</guibutton> if
+you have changed your mind and just want to close the dialog box.
+</para>
+</step>
+</procedure>
+  
+<para>
+Be sure to try your new association by opening a directory containing a
+file of the type you just selected. Click on the file, and the program
+needed to edit it should start.
+</para>
+
+<note>
+<para>
+&MIME; types are a way of describing the contents of files.  You may be
+used to using file extensions for that purpose, and you may know that on
+&UNIX; systems the file extension often bear little or no relation to the
+contents of the file.  On the other hand, it may be vital - for example,
+some implementations of <command>gunzip</command> won't operate on files
+that aren't named <literal role="extension">.gz</literal>.
+</para>
+
+<para>
+&MIME; types naturally make use of filename patterns, but not
+necessarily the extensions - you can set up any filename pattern you
+like.  For example, if you always want to open any files relating to a
+particular client with &kate;,  and you make a habit of naming the files
+with the client's name at the beginning so that they naturally group in
+the &konqueror; window, then you can set up a filename pattern that
+matches <literal>^<replaceable>clientname</replaceable>*</literal>.
+Then any files that have <replaceable>clientname</replaceable> at the
+beginning (the ^ character means <quote>starts with...</quote>) and
+without any regard to the rest of the filename. 
+</para>
+</note>
+
+</sect1>
+
+</chapter>
+<chapter id="credits">
+<title>Credits</title>
+<sect1 id="authors">
+<title>Authors</title>
+
+<itemizedlist>
+<listitem><para>Matthias Ettrich
+<email>ettrich@kde.org</email></para></listitem>
+<listitem><para>Kalle Dahlheimer <email>kalle@kde.org</email></para></listitem>
+<listitem><para>Torben Weiss <email>weis@kde.org</email></para></listitem>
+<listitem><para>Bernd Wuebben <email>wuebben@kde.org</email></para></listitem>
+<listitem><para>Stephen Schaub <email>sschaub@bju.edu</email> -
+Editor</para></listitem>
+<listitem><para>Robert Williams <email>rwilliams@kde.org</email> -
+Editor</para></listitem>
+<listitem><para>Lauri Watts <email>lauri@kde.org</email> - Additional
+post &kde; 2.x material</para></listitem>
+</itemizedlist>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+
+</sect1>
+</chapter>
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+End:
+-->
+

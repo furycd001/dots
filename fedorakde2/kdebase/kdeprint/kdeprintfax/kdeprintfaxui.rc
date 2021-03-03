@@ -1,0 +1,27 @@
+<!DOCTYPE kpartgui>
+<kpartgui name="kdeprintfax">
+<MenuBar>
+  <Menu name="file"><text>&amp;File</text>
+    <Action name="file_add" />
+    <Action name="file_remove" />
+  </Menu>
+  <Menu name="fax"><text>Fa&amp;x</text>
+    <Action name="fax_send" />
+    <Action name="fax_stop" />
+    <Separator />
+    <Action name="fax_ab" />
+    <Separator />
+    <Action name="fax_log" />
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar" iconText="icontextbottom">
+  <Action name="file_add" />
+  <Action name="file_remove" />
+  <Separator />
+  <Action name="fax_send" />
+  <Action name="fax_stop" />
+  <Action name="fax_ab" />
+  <Separator />
+  <Action name="fax_log" />
+</ToolBar>
+</kpartgui>

@@ -1,0 +1,126 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="desktop">
+<title>The desktop</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I add an application to the desktop?</para>
+</question>
+<answer>
+<para>Just chose the wanted application in the <guimenu>K</guimenu> menu and drag and drop it to the Desktop. Thats it. 
+</para> 
+<para>For applications not listed in the <guimenu>K</guimenu> menu, 
+use the &RMB; on the desktop and choose <guimenuitem>Create New</guimenuitem>
+<guimenuitem>Link to Application</guimenuitem> and fill in the configuration for the application you want to link to.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I mount/unmount a device from the desktop?</para>
+</question>
+<answer>
+<para>First, make sure you are allowed to <command>mount</command>/<command>umount</command> the according device as a user. 
+</para>
+<para>Then you can add any device via &RMB; on the desktop and then choosing <guimenuitem>Create New</guimenuitem>.  
+</para>
+</answer>
+</qandaentry>
+
+
+<qandaentry>
+<question>
+<para>Where are the icons kept?</para>
+</question>
+<answer>
+<para>The icons can be found only in <filename
+class="directory">$<envar>KDEDIR</envar>/share/icons</filename> or <filename
+class="directory">$<envar>HOME</envar>/.kde/share/icons</filename> or
+<filename class="directory">$<envar>HOME</envar>/.kde2/share/icons</filename>.  To use icons
+stored in other locations, you must either copy them into one of the
+above-mentioned fixed &kde; locations or make symlinks.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I use the mouse scroll wheel in &kde;?</para>
+</question>
+<answer>
+<para>Mouse wheel support comes with &Qt; 2.0 and above, so &kde; based on
+that will automagically support the use of the mouse scroll wheel.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why can't I get system sound to work, like for opening
+windows?</para>
+</question>
+<answer>
+<para>System sound currently does not work on non-<acronym>FreeBSD</acronym> and
+non-&Linux; systems.  This is being worked on.  If you use 
+<acronym>FreeBSD</acronym> or &Linux;, you have found a bug, so please report it.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I launch applications in a particular desktop?</para>
+</question>
+<answer>
+<para>&kde; comes with a program called &kstart;.
+To start <application>Mozilla</application> on the second desktop and then activate it use:
+<command>kstart <option>"netscape" -desktop
+2 -activate</option></command>.</para>
+<para>Please read <command>kstart <option>--help-all</option></command> for more magic
+done by &kstart; (and there is quite some ;)
+</para>
+</answer>
+</qandaentry>
+
+<!-- Commented this out, because IMHO this belongs not in the KDE FAQ -->
+<!--
+<qandaentry>
+<question>
+<para>I have played with the fonts section in the &kde; Control Center
+but the fonts are still way too small.  What can I do?</para>
+</question>
+<answer>
+<para>Many users use the 75 <acronym>dpi</acronym> fonts as the default.  If you have
+installed the 100 <acronym>dpi</acronym> fonts, make sure your <filename>XF86Config</filename> file has
+those fonts in the path before the 75 <acronym>dpi</acronym> fonts.  Here is a step-by-step procedure on how to do it:</para>
+<procedure>
+<step performance="required"><para>Open <filename>/etc/Xll/XF86Config</filename> using your
+favorite editor.</para></step>
+<step performance="required"><para>Near the top of the file is a several-row listing of fonts:
+type1, speedo, <abbrev>etc.</abbrev>, and at the bottom there are two entries: 75dpi
+and 100dpi.  Reverse their order.  And while you are at it, move the
+Type 1 fonts to the bottom of the list (or somewhere below the 75 and
+100 <acronym>dpi</acronym> fonts).  That makes an improvement
+too!</para></step>
+</procedure>
+</answer>
+</qandaentry>
+-->
+
+
+<qandaentry>
+<question>
+<para>Where do I save my files if I want them to appear directly on
+the desktop?</para>
+</question>
+<answer>
+<para><filename class="directory">$<envar>HOME</envar>/Desktop</filename>.  You might
+need to refresh your desktop after you have saved your files.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>

@@ -1,0 +1,233 @@
+<!-- if you want to validate this file separately, uncomment this prolog:
+
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+
+-->
+
+<chapter id="not-kde">
+<title>Not really &kde;-related, but frequently asked nevertheless
+:-)</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I change the screen resolution?</para>
+</question>
+<answer>
+<para>Use <keycombo
+action="simul">&Ctrl;&Alt;<keycap>+</keycap></keycombo> and <keycombo
+action="simul">&Ctrl;&Alt;<keycap>-</keycap></keycombo> to cycle among
+the resolutions you have defined in <filename>XF86Config</filename> (maybe under
+<filename class="directory">/etc/X11</filename>; poke around first).
+If you prefer to get your hands dirty, you can always edit the file
+directly.  By placing your favorite resolution at the beginning (or
+making it the only one listed), the &X-Windows; will always start up with that
+resolution.
+<caution><para>Always make a backup copy of your <filename>XF86Config</filename> file
+<emphasis>before</emphasis> you start editing it.  Errors in this file
+can render your &X-Windows; unusable.</para></caution>
+<note><para>These instructions are only valid if you are running
+version 3.3.x of the XFree86 server.  If you are running XFree86 4.x,
+you must consult with the <ulink url="http://xfree.org">XFree86(TM):
+Home Page</ulink>.</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I change the color depth?</para>
+</question>
+<answer>
+<para>AFAIK, there is no way you can do it on the fly.  You can either
+start the &X-Windows; using <command>startx <option> -bpp
+<replaceable>number</replaceable></option></command> where
+<replaceable>number</replaceable> can be 8, 16, 24, or 32 depending on
+the depth you want, or if you are using
+<application>xdm</application>/&kdm;, you
+have to edit 
+<filename>/etc/X11/xdm/Xservers</filename> (may vary) by putting
+<userinput>:0 local /usr/X11R6/bin/X -bpp 16</userinput> for color
+depth 16.</para>
+<para>Alternatively, you can edit the <filename>XF86Config</filename> file and add a line
+like <userinput>DefaultColorDepth
+<replaceable>number</replaceable></userinput> to Section "Screen".
+The next time you start X, it will run with the newly-configured color
+depth.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What can I do if I am using a 2-button mouse?</para>
+</question>
+<answer>
+<para>Go buy a 3-button one, or use third button emulation.  The third
+button is emulated by pressing both the &LMB; and the &RMB; 
+together.  You would need to enable <option>Emulate3Buttons</option>
+in your <filename>XF86Config</filename> file. </para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What is a "sticky" window?</para>
+</question>
+<answer>
+<para>In a virtual desktop environment with multiple virtual desktops, a
+"sticky" window will stay put on the screen when you switch between
+desktops, as if sticking to the glass of the screen.
+<application>Xclock</application> is a typical candidate for sticking,
+as you need to run only one instance of it, and it always stays with
+you. </para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I replace the "X" mouse pointer with an arrow?</para>
+</question>
+<answer>
+<para>The various types of cursor available in X are defined in
+<filename class="headerfile">X11/cursorfont.h</filename>.  You can
+change it using <command>xsetroot -cursor_name
+<replaceable>name_of_cursor</replaceable></command>.  For example, I
+have the following in my <filename>.Xclients</filename>:</para>
+<screen>
+xsetroot -cursor_name left_ptr
+</screen>
+<para>This will create the common left-angled pointer.  To see other
+alternatives, type <command>xfd -fn cursor</command>.  And of course,
+do not forget that <command>man xsetroot</command> is your
+friend.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I extract/install diff files?</para>
+</question>
+<answer>
+<para>To generate a context-diff suitable for patching, use
+<command>diff -u <replaceable>old-file new-file</replaceable> &gt;
+<replaceable>patchfile</replaceable></command>.  To apply the diff to
+a file (<abbrev>i.e.</abbrev> "patch the file"), execute
+<command>patch &lt; <replaceable>patchfile</replaceable></command>.</para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get &Linux; to mount the floppy device both in dos and
+ext2 floppies?</para>
+</question>
+<answer>
+<para>Just specify the filesystem type as auto in
+<filename>/etc/fstab</filename>.  Auto detection works fine for dos and
+ext2.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I start &kde; with the <keycap>Num Lock</keycap> on?</para>
+</question>
+<answer>
+<para>Have you tried <command>man setleds</command>?  In addition, you
+might want to edit your
+<filename>$<envar>HOME</envar>/.Xmodmap</filename> and put the
+following lines in:</para>
+<screen>
+! redefines numeric keypad to be used without NumLock
+keycode 79 = 7
+keycode 80 = 8
+keycode 81 = 9
+
+keycode 83 = 4
+keycode 84 = 5
+keycode 85 = 6
+
+keycode 87 = 1
+keycode 88 = 2
+keycode 89 = 3
+
+keycode 90 = 0
+keycode 91 = comma
+keycode 86 = plus
+
+! deactivates NumLock key
+keycode 77 =            
+</screen>
+<para>Other possible alternatives:</para>
+<itemizedlist>
+<listitem><para><application>xkeycaps</application>:
+<mousebutton>right</mousebutton> clicking should allow edits.  May
+have to do this as root.</para></listitem>
+<listitem><para><command>man XF86Config</command> and look under
+section Keyboard.</para></listitem>
+<listitem><para>Install <application>NumLockX</application> which is
+available from <ulink
+url="http://dforce.sh.cvut.cz/~seli/en/numlockx">http://dforce.sh.cvut.cz/~seli/en/numlockx</ulink>.</para></listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I take window or desktop screenshots?</para>
+</question>
+<answer>
+<para>Use &ksnapshot;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there a tool to make webpages?</para>
+</question>
+<answer>
+<para>Yes, and there are a lot of them out there, including
+<application>StarOffice</application>, <application>&Netscape; Composer</application>, and
+<application>XEmacs</application>. 
+There are also many &kde; applications.  To find the most current
+list, go to <ulink url="http://apps.kde.com">APPS.&kde;.com: The
+Latest in &kde; Applications</ulink> and search for <emphasis>web
+development</emphasis>.  Try as many as possible and choose the one
+most suitable to your needs.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What do all those acronyms like AFAIK mean?</para>
+</question>
+<answer>
+<para><screen>
+AAMOF: as a matter of fact
+AFAIK: as far as I know
+AISE: as I see it
+BFN: bye for now
+BION: believe it or not
+BRB: be right back
+BTW: by the way
+CMIIW: correct me if I am wrong
+FUD: fear, uncertainty, and doubt
+FWIW: for what it's worth
+FYI: for your information
+HTH: hope this helps
+IIRC: if I recall correctly
+IMHO: in my humble opinion
+LOL: laughing out loud
+MYOB: mind your own business
+PITA: pain in the ass
+ROTFL: rolling on the floor laughing
+RTFM: read the fine manual
+SOP: standard operating procedure
+TIA: thanks in advance
+YMMV: your mileage may vary
+</screen></para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>

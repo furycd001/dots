@@ -1,0 +1,28 @@
+<!-- These entities should be translated, but NOT CHANGED, NOR EXTENDED.
+     For language-specific extensions, use user.entities.
+     Translate everything between quotes, except names of general 
+     entities (&...;). -->
+
+<!ENTITY kappname "это приложение">
+<!-- Entities to fill in slots in docbook version of FDL notice.
+     The default values of the parameter entities is IGNORE. -->
+<![%FDLIS;[
+<!ENTITY FDLISTitles "ПЕРЕЧИСЛИТЬ ИХ НАЗВАНИЯ"><!-- keep capitals -->
+<!ENTITY FDLInvariantSections "неизменяемые разделы: &FDLISTitles;">
+ ]]>
+<!ENTITY FDLInvariantSections "нет неизменямых разделов">
+<![%FDLFCT;[
+<!ENTITY FDLFCTTitles "LIST"><!-- keep capitals -->
+<!ENTITY FDLFrontCoverText "текст на первой странице: &FDLFCTTitles;">
+ ]]>
+<!ENTITY FDLFrontCoverText "нет текста на первой странице">
+<![%FDLBCT;[
+<!ENTITY FDLBCTTitles "ПЕРЕЧИСЛИТЬ ИХ НАЗВАНИЯ"><!-- keep capitals -->
+<!ENTITY FDLBackCoverText "текст на последней странице: &FDLBCTTitles;">
+ ]]>
+<!ENTITY FDLBackCoverText "нет текста на последней странице">
+
+ 
+<!ENTITY kde.modespec '
+ <modespec id="kdems-help">help:</modespec>
+  <modespec id="kdems-man">man:</modespec>'>

@@ -1,0 +1,266 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="misc">
+<title>Miscellaneous questions</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Why does &kde; use &Qt;?</para>
+</question>
+<answer>
+<para>&Qt; is a very sophisticated toolkit that provides everything that
+is needed to build a modern user interface.  &Qt; is written in C++, thus
+allowing object-oriented development which ensures efficiency and
+code reuse in a project the size and scope of &kde;.  In our opinion
+there is no better toolkit available for &UNIX; systems and that it
+would have been a grave mistake to try to build &kde; on anything but
+the best.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why does &kde; not use gtk, xforms, xlib, whatever?</para>
+</question>
+<answer>
+<para>There are a number of toolkits available.  To provide a
+consistent user interface and to keep used resources such as memory to
+a minimum, &kde; can use only one of them.  &Qt; was selected for the
+reasons mentioned above.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>But &Qt; isn't free, is it?</para>
+</question>
+<answer>
+<para>It is!  As of September 4, 2000, version 2.2 of the &Qt;
+libraries were licensed under the <acronym>GPL</acronym>, thereby
+fulfilling all aspects of "free software".</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Does &kde; have terminal emulators with transparent
+background?</para>
+</question>
+<answer>
+<para>Yes and no.  &konsole; has the ability to simulate transparency
+by redrawing the background of the window inside the &konsole; window.
+This gives the illusion of transparency, but if you place
+&konsole; on top of another window, the transparency is lost.  <ulink
+url="http://www.eterm.org">Eterm</ulink> should work fine under &kde;
+if you desire more complete transparency.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I create icons for non-&kde; applications that I can put
+in the <guimenu>K</guimenu> menu?  Where do these icons (or kdelnk)
+go?</para>
+</question>
+<answer>
+<para>Create using your favorite image manipulator, for example,
+<application>GIMP</application> or the <application>&kde; Icon
+Editor</application> and put them in <filename
+class="directory">$<envar>KDEDIR</envar>/share/icons(/mini)</filename>
+or <filename
+class="directory">$<envar>HOME</envar>/.kde/share/icons(/mini)</filename>.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What about &kde; programs that do not have icons? How do I get
+them into the menu?</para>
+</question>
+<answer>
+<para>Use &kmenuedit;. To access it use the &RMB; on the 
+<guibutton>K</guibutton> button and select <guimenu>Preferences...</guimenu>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Does &kde; have a graphical &FTP; client?</para>
+</question>
+<answer>
+<para>Yes, and it is none other than your favorite file
+manager, &konqueror;. You can drag and drop remote files into local
+directories.<!-- fixme: write more about how to use it --></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I exit &kde;?</para>
+</question>
+<answer>
+<para>Simply click on the <guibutton>K</guibutton> button and select
+<guimenu>Logout</guimenu>.  In addition, if you
+<mousebutton>right</mousebutton> click on an
+empty area of the desktop, you will be presented with a menu
+containing logout as one of the options.
+<note><para>Depending on your configuration of &X-Windows;, <keycombo
+action="simul">&Ctrl;&Alt;&Backspace;</keycombo>
+might also do the trick by killing the X server, but its use prevents
+session management and cannot be recommended.</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there a program that checks for new mails at my
+<acronym>ISP</acronym> if and only if I am online?</para>
+</question>
+<answer>
+<para>Either &kbiff; or &korn; will do the job.  If you are not
+connected, they will just sit there (idling).</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it really necessary to upgrade to the latest version?</para>
+</question>
+<answer>
+<para>We recommend to always use the latest stable release. If you don't, it will 
+probably be difficult to get answers to your questions. If you have a problem
+with an old version, the answer will probably be <quote>Please upgrade and try again</quote>.
+Note that new versions also sometimes fix security problems.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I copy and paste in &kde;?</para>
+</question>
+<answer>
+<para>The simplest method is to use your mouse:</para>
+<procedure>
+<step performance="required"><para>Highlight the text you want to copy by holding down the
+&LMB; and dragging across the text.</para></step>
+<step performance="required"><para>Go to the destination area; depending on your configuration,
+you might need to click it using the &LMB; to give it
+focus.</para></step>
+<step performance="required"><para>Click the &MMB; to paste.  If you have a two
+button mouse and are emulating a three button mouse, push both buttons
+simultaneously.</para></step>
+</procedure>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I convert the default &RedHat; menus into a menu in the
+<guimenu>K</guimenu> menu?</para>
+</question>
+<answer>
+<para>Click on the <guibutton>K</guibutton> button and select
+<menuchoice><guimenu>System</guimenu><guimenuitem>Appfinder</guimenuitem></menuchoice>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="CVS">
+<para>What is <acronym>CVS</acronym>?</para>
+</question>
+<answer>
+<para>It stands for Concurrent Versions System.  It is a version 
+control system and is based on <acronym>RCS</acronym> (Revision
+Control System), but 
+offers more functionality.  It is used to maintain source code under
+development.  It will keep multiple versions of things (handy if you
+broke something and have to back up and get a clean old version), and
+allows people remote access over the Net to pick up the latest source
+code and even to check in new stuff if they have permission.  It is
+also open source (you pay for support if you want it), and since it is
+free it is the system of choice for people writing more free products,
+such as &kde;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Does &kde; support dual screen (Xinerama)?</para>
+</question>
+<answer>
+<para>Yes, you need to have the a multi-headed X server
+(<abbrev>e.g.</abbrev> MetroX or XFree86 4.0 and above) and a &kde; >= 2.2.1
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I check which version of &kde; I am using?</para>
+</question>
+<answer>
+<para>Fire up your <application>&kde; Control
+Center</application>.  It comes up with a Info Screen including the version of &kde;
+The &kde; version is also included in the applications 
+<guimenuitem>About</guimenuitem> screen.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Can I write commerical software for &kde;?</para>
+</question>
+<answer>
+<para>You can use the &kde; libraries to write "commercial and closed
+source" as well as "commercial and open source" software.  If you
+write open source software you can use the &Qt; free edition.  But if
+you write closed source software you may not use the &Qt; free edition;
+you'd have to obtain the &Qt; professional edition from Troll Tech. </para>
+<para>If you want more information, please contact <ulink
+url="http://www.trolltech.com">Troll Tech</ulink> directly.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I go about creating themes and icons?</para>
+</question>
+<answer>
+<para>Go see <ulink
+url="http://artist.kde.org">http://artist.kde.org</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is <application>KLyX</application> dead?</para>
+</question>
+<answer>
+<para>Yes.  But future versions of <application>LyX</application>
+will be &GUI; independent.  Check the progress of the various &GUI;
+frontends <ulink url="http://devel.lyx.org/guii.php3">here</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I get to know about development updates?</para>
+</question>
+<answer>
+<para>You might want to subscribe to the various &kde; mailing lists
+available, especially kde-cvs, which lists all commits done to the
+&kde; <acronym>CVS</acronym> repository.  Check <ulink
+url="http://lists.kde.org">http://lists.kde.org</ulink> if you want to
+read without subscribing.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+

@@ -1,0 +1,258 @@
+The KDE Control Center
+======================
+
+
+The KDE Control Center is a central application that allows a 
+user to:
+
+a) change user specific settings
+b) change KDE specific system settings
+c) change system settings
+
+The functionality is provided by a great number of "modules" 
+that are embedded into a framework appliaction called "kcontrol".
+
+
+How to write a control center module?
+-------------------------------------
+
+The mechanism to implement kcontrol modules changed quite a bit with
+KDE 2.0. In KDE 1.x the modules have been implemented as separate
+processes that were swallowed into the control center. This had several
+advantages, as well as disadvantages:
+
++ modules could run standalone
++ broken modules (segfaulting) left the framework untouched
+- focus handling was hard to achive
+- layout management was a pain
+- communication between modules and framework was inefficient
+
+To overcome the problems, modules in KDE 2.0 are implemented as 
+simple shared libraries that are loaded, at runtime, into the process
+of the frame application. This solves all of the disadvantages.
+To allow modules to run "standalone", there is a wrapper application
+"kcmshell". What is left is the problem of segfaulting modules; the
+solution is simple: avoid that your modules segfault! :-)
+
+
+Now to the practical side of things: Modules have to inherit from the
+class KCModule, defined in kcmodule.h, which is part of kdeui.
+This class defines some important functions that are used in the
+communication between framework and module:
+
+virtual void load();
+
+This method is invoked whenever the module should read its configuration
+(most of the times from a config file) and update the user interface.
+This happens when the user clicks the "Reset" button in the control
+center, to undo all of his changes and restore the currently valid
+settings. NOTE that this is not called after the modules is loaded,
+so you probably want to call this method in the constructor.
+
+virtual void save();
+
+You might have guessed it: this function gets called when the user
+wants to save the settings in the user interface, updating the 
+config files or wherever the configuration is stored.
+The method is called when the user clicks "Apply" or "Ok".
+
+virtual void defaults();
+
+This function is called to set the settings in the module to sensible
+default values. It gets called when hitting the "Default" button.
+The default values should probably be the same as the ones the 
+application uses when started without a config file.
+
+static void init();
+
+This is a static method which gets called to realize the modules settings
+durign the startup of KDE. NOTE that most modules do not implement this
+method, but modules like the keyboard and mouse modules, which directly
+interact with the X-server, need this method.
+As this method is static, it can avoid to create an instance of
+the user interface, which is often not needed in this case.
+
+int buttons();
+
+The control center calls this function to decide which buttons should
+be displayed. For example, it does not make sense to display an "Apply"
+button for one of the information modules. The value returned can
+be set by modules using setButtons. E.g.
+
+setButtons(KCModule::Ok|KCModule::Help);
+
+will make sure that only the "Ok" and the "Help" button is enabled.
+
+
+There is also a signal used by the modules:
+
+void changed(bool state);
+
+This signal should be emitted whenever the state of the modules changes.
+"state" is true, if the contents of the modules differ from the ones in
+the current configuration, "false" otherwise. For example, if the user
+changes a value, you emit "changed(true)". When the user reloads the
+systems settings, emit "changed(false)". The control center uses
+this signal to keep track about unsaved changes in certain modules.
+
+
+How to make a module available?
+-------------------------------
+
+Ok, now that you have implemented your class with the module, you
+must make sure it can be accessed from the control center. For
+this purpose, you have to use a function that is exported from
+the library:
+
+extern "C" 
+{
+  KCModule *create_xyz(QWidget *parent, const char *name)
+  {
+    return new XYZ(parent, name);
+  };
+}
+
+This function and the implementation of the module is then compiled
+to build a shared library. If the name of your modules is 'xyz', the
+name of the library should be
+
+libkcm_xyz(.la|.so)
+
+and should be installed into $KDEDIR/lib. (Ok, beat me for the KDEDIR, 
+but you all know what I mean, don't you? :)
+
+
+The .desktop entry
+------------------
+
+To make the control center find the module, it needs a .desktop
+entry. This has to be placed under
+
+$KDEDIR/applnk/Settings/...
+
+so put it in kdebase/applnk/Settings... to have it installed.
+
+just as the old control center modules. There are a number of special
+entries in the .desktop file for the modules:
+
+X-KDE-ModuleType
+	
+	If the value if this entry is "Library", the module is
+	assumed to be in a shared library. All KDE 2.0 modules should
+	be of this type, it is only here to keep some kind of
+	upward compatibility with the old style modules.
+
+X-KDE-Library
+
+	This is the name of the library, without the libkcm_ prefix.
+	So in the example, the library name would be "xyz".
+
+X-KDE-FactoryName
+
+	This entry can be used to set the name of the factory
+  	function in the library. Usually, this is the same as
+	the Library, but if you want to have more than
+	one module in one library, you need this entry.
+
+	For example, if you have a library named
+
+	libkcm_frog.la
+
+	with two modules, named "kermit" and "quak", you would
+	have 
+
+	X-KDE-Library=frog
+	X-KDE-FactoryName=kermit
+
+	in one of the .desktop files, and in the other
+
+	X-KDE-Library=frog
+	X-KDE-FactoryName=quak
+
+	The control center would then call the "create_kermit" and
+	"create_quak" functions respectively.
+
+
+X-KDE-RootOnly
+
+	If this is set to "true", the module must be executed
+	with root permissions. The control center will then show
+    the module only if run in system mode. (kcontrol --system)
+
+X-KDE-Group
+
+	If you want to override the place where the modules is shown,
+	then use the Group entry. If this entry is missing, the 
+	path to the module in the module tree is inferred from the
+	path to the desktop file. This entry is here in order
+	to allow users of a future version of the control settings
+	to rearrange the entries. At the moment, you should not use
+	it.
+
+
+X-KDE-Init
+
+	If the module has to perform some action at system startup,
+	use this entry to build the name of a function to call.
+	if X-KDE-Init is "bell", for example, the function
+	"init_bell" is called in the library indicated by
+	X-KDE-Library.
+
+
+Don't forget the usual entries :
+
+Type=Application
+Icon=...
+Exec=kcmshell dir/file
+
+
+What else do I need?
+--------------------
+
+There are a number of additional things for convenience. 
+
+- kcmshell
+
+Consider you want to run a module standalone, without the control
+center. You can no longer call the module, as it is a library
+now. Instead, call "kcmshell module". For example, to get the
+font and the desktop color settings, use
+
+  kcmshell Desktop/fonts Desktop/colors
+
+- multiple instances of kcontrol
+
+With the new control center, it is no longer possible to have multiple
+instances in the control center. Instead, when you have a kcontrol 
+instance running, and you call, e.g. "kcontrol Desktop/colors", the
+colors module is opened in the running instance (and this instance
+is popped to the top of the window stack). Long live DCOP!
+
+- KCDialog
+
+Sometimes, you may want to reuse your control center modules
+inside an application. There are several ways to accomplish this:
+
+a) call "kcontrol module"
+
+to either run a new instance of the control center, or to load
+your modules into the already running instance.
+
+b) call "kcmshell modules"
+
+to run the module as a separate program.
+
+c) use "KCDialog"
+
+This is a simple dialog that takes your module as first parameter
+and creates a normal QDialog. The advantage is that you can control
+the behaviour and the results much easier that with a separate
+process. And as your module is a simple library, you can just link
+to it anyway. 
+
+
+More questions?
+---------------
+
+Ask: Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
+or : Matthias Elter <elter@kde.org>

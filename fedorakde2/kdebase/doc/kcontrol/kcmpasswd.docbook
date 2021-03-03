@@ -1,0 +1,90 @@
+<sect1 id="passwords">
+
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>tateneni@pluto.njcc.com</email></address></affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>password</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>Passwords</title>
+
+<sect2 id="passwords-intro">
+<title>Introduction</title>
+
+<para>This module of the &kcontrol; gives you options for configuring the way in
+which the &kdesu; program treats passwords. &kdesu; will ask you for a password
+when you try to carry out some privileged actions, such as changing the
+date/time stored in your system clock, or adding new users on your
+computer.</para>
+
+<para>Privileged actions such as those described above can only be carried out
+by root or a user with administrator permissions on your system. You will need
+to enter the password for the root account when you want to carry out such
+actions.</para>
+
+<important><para>The options in this module do not affect the behavior of
+passwords in other programs such as <application>KMail</application>.</para>
+</important>
+
+</sect2>
+
+<sect2 id="passwords-use">
+<title>Use</title>
+
+<para>There are two configuration options for passwords. The first is to control
+the visual feedback that you receive when you type a password. The actual
+characters in the password are never shown on the screen. You can choose to have
+each character represented by a <token>*</token> character. If you want to make
+it harder for someone who might be watching your screen to figure out how many
+characters there are in the password, you can choose to have each character in
+the password be represented by three asterisks rather than just one. Still
+another option is not to have any visual feedback at all, so nothing appears on
+the screen when you type a password.</para>
+
+<para>If you work in a reasonably secure environment, you can check the option
+labeled <guilabel>Remember Passwords</guilabel>, and then choose a time period
+in minutes using the spinner labeled <guilabel>Timeout</guilabel>. (You can
+either type a number between 5 and 1200 minutes, or use the arrows on the
+spinner.)</para>
+
+<para>If the <guilabel>Remember passwords</guilabel> option has been selected,
+<application>kdesu</application> will not ask you for a password for the length
+of time specified, after you have given the password once. Keep in mind,
+however, that this makes your workstation less secure.</para>
+
+<important><para>You should avoid selecting the <guilabel>Remember
+passwords</guilabel> option if you are working in an insecure area, such as a
+publicly accessible workstation. Also, note that choosing a shorter timeout may
+be better if you are in a less secure environment.</para></important>
+
+</sect2>
+
+<sect2 id="passwords-author">
+<title>Section Author</title>
+
+<para>This section written by:</para>
+<para>Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>.</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+
+</sect1>

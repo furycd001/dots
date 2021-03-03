@@ -1,0 +1,104 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+
+
+<chapter id="windowmanager">
+<title>The window manager</title>
+
+<para>The default window manager provided by &kde; is the K Window
+Manager (&kwin;).  Please read "The
+K Window Manager Handbook" (should be accessible from the
+<application>&kde; Help Center</application>) for usage information.</para>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Are there keyboard shortcuts for &kwin; operations?</para>
+</question>
+<answer>
+<para>Yes.  Please refer to "The K Window Manager Handbook" for the
+list of shortcuts available.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Can I define my own set of keyboard shortcuts?</para>
+</question>
+<answer>
+<para>Yes.  Launch the
+<application>&kde; Control Center</application> and select <menuchoice><guimenu>Look and
+Feel</guimenu><guimenuitem>Key bindings</guimenuitem></menuchoice> to
+configure window manager bindings like maximizing windows, <abbrev>etc.</abbrev> 
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>When I "iconify" a window, it disappears.  Where does it
+go?</para>
+</question>
+<answer>
+<para>With many &X-Windows; &GUI;, the minimize button (a little dot) will
+erase the window that the program is running in and create, instead,
+an icon on the desktop.  &kde; does not do this.  Instead, when a
+window is iconified it is simply hidden (but the program is still
+running).</para>
+<para>There are a few ways to access "disappeared" windows:</para>
+<itemizedlist>
+<listitem>
+<para>If you are running the taskbar part of &kicker;,
+you can choose to have a list of tasks displayed on your desktop.
+Iconified tasks will have their names surrounded by parentheses.</para>
+</listitem>
+<listitem>
+<para>If you click the &MMB; on the root window (<abbrev>i.e.</abbrev>
+the background of the desktop), &kwin; will give you a list
+of all available tasks (and again, the names of the iconified tasks
+will be bracketed).</para>
+</listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I maximize windows only vertically or horizontally?</para>
+</question>
+<answer>
+<para>Provided your window is not already maximized, clicking on the
+maximize button with the &LMB;/&MMB;/&RMB; will
+maximize fully/vertically/horizontally respectively.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What is "shading" a window?</para>
+</question>
+<answer>
+<para>By "shading" a window we mean "rolling up" a window leaving just
+the title bar visible.  You can do this by double clicking on the
+window title bar.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to have FVWM2-like shadow frameworks for the
+placement of windows?</para>
+</question>
+<answer>
+<para>Yes.  Run <application>&kde; Control Center</application> and select <guimenu>Look and Feel</guimenu>
+followed by <guisubmenu>Window Behavior</guisubmenu> and finally
+<guimenuitem>Advanced</guimenuitem>.  There is a dialog option that
+allows you to set the placement policy you want.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>

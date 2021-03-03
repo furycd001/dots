@@ -1,0 +1,59 @@
+<sect1 id="mixer">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>mixer</keyword>
+</keywordset>
+</sect1info>
+
+<title>Mixer</title>
+
+<para>This module can be used to configure some of the more basic
+options of &kmix; (the &kde; Mixer).</para>
+
+<para>The first section, relates to default volumes.  With this section,
+you can save the current volume levels as the default.  You can also
+load the default volume levels (thereby restoring them to the default
+status).</para>
+
+<para>By selecting the <guilabel>Load volumes on login</guilabel>, you
+can instruct &kde; to automatically load the default volume levels
+whenever &kde; is started.</para>
+
+<para>The next section, lets you specify what hardware &kmix; should
+look for.</para>
+
+<para>The   slider   labeled    <guilabel>Maximum   number   of   probed
+mixers</guilabel> determines  when &kmix; stops  looking for soundcards.
+If you have one soundcard in  your computer, you should set this to one.
+Using a higher number, means &kmix; will continue to search for a second
+sound card, which will delay the startup of &kmix;.</para>
+
+<para>The slider labeled <guilabel>Maximum number of probed devices per
+soundcard</guilabel> determins how many devices &kmix; tries to detect
+on each soundcard.  If there are more devices on your soundcard than
+&kmix; shows on startup, you should increase this number.</para>
+
+<sect2 id="mixer-author">
+<title>Section Author</title>
+
+<para>This section written by Mike McBride
+<email>mpmcbride7@yahoo.com</email> </para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

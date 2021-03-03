@@ -1,0 +1,142 @@
+<sect1 id="proxies">
+
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>
+tateneni@pluto.njcc.com
+</email></address></affiliation>
+</author>
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>proxy</keyword>
+<keyword>proxies</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>Proxies</title>
+
+<sect2 id="proxies-intro">
+
+<title>Introduction</title>
+
+<para>Proxies are programs running on a computer that acts a server on
+the network you are connected to (whether by modem or other
+means). These programs receive <acronym>HTTP</acronym> and
+<acronym>FTP</acronym> requests, retrieve the relevant files from the
+internet, and pass them on to the client computer that made the
+requests.</para>
+
+<para>When you have configured a proxy, <acronym>HTTP</acronym> and/or
+<acronym>FTP</acronym> requests are re-routed through the computer that
+is acting as a proxy server.  However, you can also select specific
+hosts which should be contacted directly, rather than through the proxy
+server. If you are on a local network, for example, access to local
+hosts probably doesn't need to go through a proxy server.</para>
+
+<para>You should only need to configure a proxy server if your network
+administrator requires it (if you are a dial-up user, that would be your
+internet service provider or <acronym>ISP</acronym>). Otherwise,
+especially if you are feeling a bit confused about this proxy business,
+but everything seems to be fine with your internet connection, you don't
+need to change anything.</para>
+
+<para>This module also allows you control the size of the local cache
+directory used by &konqueror;. Note that each user account on your
+computer has a separate cache directory, and this directory is not
+shared with other web browsers such as &Netscape;.</para>
+
+<para>Storing local copies of web pages that you have visited allows
+Konqueror to quickly load their contents on subsequent visits. It will
+only be necessary to reload the contents from the original site if they
+have changed since your last visit, or if you click the reload button in
+&konqueror;.</para>
+
+</sect2>
+
+<sect2 id="proxies-use">
+
+<title>Use</title>
+
+<para>The proxy and cache settings are on separate pages.</para>
+
+<para>On the first page, labelled <guilabel>Proxies</guilabel>, you can
+see the controls that are related to proxy settings, and on the top left
+is a checkbox labeled <guilabel>Use Proxy</guilabel>. If you need to
+configure a proxy, you should select this option. When the checkbox is
+enabled, you will be able to use the other controls.</para>
+
+<para>The complete addressing information for the proxy includes both
+the internet address and a port number. You should enter these into the
+relevant text boxes. The arrow button on the right copies the
+information from the <guilabel>HTTP</guilabel> line to the
+<guilabel>FTP</guilabel> line, in order to help save some typing.</para>
+
+<para>If there are hosts which you can connect to without going through
+the proxy server, you can press <guibutton>Add</guibutton> to add the
+names of these hosts, separated by in the text box labeled <guilabel>No
+Proxy For:</guilabel>. For example, hosts that are on your local network
+can probably be contacted directly.</para>
+
+<para>If you are on a network that has a proxy server capable of auto
+configuring clients, then you can select the box labelled <guilabel>Auto
+Configure Proxy</guilabel>.  Then type in the <acronym>URL</acronym> of
+the server.  You will probably need to get this from your Network
+Administrator, if you have such a proxy.</para>
+
+<para>On the other page, labelled <guilabel>Cache</guilabel>, you can
+see the controls that are related to cache settings. If you really don't
+want any of the web pages you visit to be stored on your computer, you
+can disable &konqueror;'s disk cache by clearing the checkbox labeled
+<guilabel>Use Cache</guilabel></para>
+
+<para>You can set here how aggressively &konqueror; keeps the cache up
+to date. <guilabel>Keep Cache in sync</guilabel> means that &konqueror;
+will hit the cache for all objects, downloading them if they are not
+there, and then display the item from the cache.  <guilabel>Use Cache if
+possible</guilabel> means that &konqueror; will try the cache, and if an
+object is not there, it will directly download it for display.
+<guilabel>Offline Browsing Mode</guilabel> means that &konqueror; will
+try the cache, and if an object is not there, it will not attempt to
+download it from the internet.</para>
+
+<para>You can control the size of the cache by typing a number into the
+text box labeled <guilabel>Average Cache Size</guilabel>.  This is the
+average amount of space in kilobytes that the cache directory is allowed
+to use. When the cache grows too large, &konqueror; will delete older
+files to reduce the size of the cache directory.</para>
+
+<para>This is however, only an average, and during a browsing session
+the cache could become substantially larger.</para>
+
+<para>You can use the <guibutton>Clear Cache</guibutton> button to empty
+the cache at any time.</para>
+
+</sect2>
+
+<sect2 id="proxies-author">
+
+<title>Section Author</title>
+
+<para>This section written by: </para>
+<para>Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>.</para>
+<para>Minor update by Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<para>Another update by Lauri Watts <email>lauri@kde.org</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

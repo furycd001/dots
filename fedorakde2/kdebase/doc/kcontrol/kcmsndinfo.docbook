@@ -1,0 +1,61 @@
+<sect1 id="soundinfo">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>soundcard</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+<title>Soundcard Information</title>
+
+<para>This page displays information about any soundcards installed in the
+system.</para>
+
+<note><para>The exact information displayed is system-dependent.  On some
+systems, soundcard information cannot be displayed yet.</para></note>
+
+<para>On &Linux;, this information is read either from <filename
+class="devicefile">/dev/sndstat</filename>, if present, or from
+<filename class="devicefile">/proc/sound</filename>, which is only
+available if the <filename class="directory">/proc</filename>
+pseudo-filesystem is compiled into the (2.1.x or later) kernel.</para>
+
+<para>The user cannot modify any settings on this page.</para>
+
+<sect2 id="sndinfo-author">
+<title>Section Authors</title>
+
+<para>
+Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, 
+Helge Deller <email>helge.deller@ruhruni-bochum.de</email>, 
+Duncan Haldane <email>duncan@kde.org</email>,and
+Michael McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

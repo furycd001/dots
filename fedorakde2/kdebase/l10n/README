@@ -1,0 +1,184 @@
+$Id: README,v 1.19 2001/05/23 17:47:47 bieker Exp $
+
+GENERAL
+=======
+In KDE 2 we added support for localization of dates, time, numbers and
+money. KDE will use this when displaying such information, giving you a
+feeling that KDE was written to fit your national standards. To make this
+possible, we need to gather some information on your national standards.
+Currently is over 70 countries supported. If your contry is missing, please
+let us know.
+
+HOW TO ADD INFORMATION
+======================
+First you have to write a file called "ENTRY.DESKTOP". This file will
+describe your national standards. Please read the section below for more
+information on that.
+
+You will need a nice flag for your country. The size should be 21x14 pixles,
+and it should be called "flag.png".
+
+To add your information, we need a two letter country code for you country.
+Use http://www.tu-berlin.de/zrz/dienste/netz/mail/iso-3166.html as a guide.
+
+Now you are done, and you can commit the files to KDE project by sending a
+mail to Hans Petter Bieker <bieker@kde.org>. The files will be added in the
+next release. Please include the country code in the mail.
+
+WHAT IS ENTRY.DESKTOP
+=====================
+entry.desktop is a file which defines a locale for a country. It's stored
+the same way as the rest of the KDE configuration files. The very first line
+should only contain "[KCM Locale]". The rest of the file should contain one
+line for each of the entries below. Add "=" between the entry name and the
+value.
+
+* Name
+	The name of the country in English.
+
+	Default: blank
+
+* Region
+	Defines which submenu the country belongs to. Currently there are
+	five different regions: asia (Asia), easteurope (Eastern Europe),
+	westeurope (Western Europe), northamerica (North America),
+	and southamerica (South America).
+
+	Default: blank
+
+* Languages
+	A comma separated list of locale codes for the official languages
+	of the country.
+
+	Default: blank
+
+* DecimalSymbol
+	The symbol that separates the decimales from the rest of the
+	number.
+
+	Default: "."
+
+* ThousandsSeparator
+	Thousands separator.
+
+	Default: ","
+
+* CurrencySymbol
+	The symbol of the currency used in the country.
+
+	Default: "$"
+
+* MonetaryDecimalSymbol
+	The symbol that separates the decimales from the rest of the
+	number when displaying .
+
+	Default: "."
+
+* MonetaryThousandsSeparator
+	Thousands separator for money.
+
+	Default: ","
+
+* PositiveSign
+	Positive sign for money.
+	Note: this well be used then formating numbers. Do not add "+" if
+	      you don't really want to numbers fo be format that way.
+
+	Default: ""
+
+* NegativeSign
+	Negative sign for money.
+
+	Default: "-"
+
+* FractDigits
+	Number fract digits used for money
+
+	Default: 2
+
+* PositivePrefixCurrencySymbol
+	If currency symbol should be prepended (if not, it will be
+	appended). This is for non-negative money values.
+
+	Default: true
+
+* NegativePrefixCurrencySymbol
+	If currency symbol should be prepended (if not, it will be
+	appended). This is for negative money values.
+
+	Default: true
+
+* PositiveMonetarySignPosition
+	Defines which type and where the sign (if it's positive or
+	negative) should be places. This is for non-negative money
+	values.
+
+	0 ParensAround
+	1 BeforeQuantityMoney
+	2 AfterQuantityMoney
+	3 BeforeMoney
+	4 AfterMoney
+
+	Default: 1
+
+* NegativeMonetarySignPosition
+	Same as PositiveMonetarySignPosition, but for negative numbers.
+
+	Default: 0
+
+* DateFormat[language code]
+	This defines how a date is formated. The date string will be
+        contructed from this string and the sequenzes below will be
+        replaced. This should be marked with a language code as well
+        for each supported language.
+
+	%Y The year with century as a decimal number.
+	%y The year without century as a decimal number (00-99).
+	%m The month as a decimal number (01-12).
+	%n The month as a decimal number (1-12).
+	%b The national representation of the abbreviated month
+	   name, where the abbreviation is the first three characters.
+	%B The national representation of the full month name.
+	%d The day of month as a decimal number (01-31).
+	%e The day of month as a decimal number (1-31).
+	%a The national representation of the abbreviated weekday
+	   name, where the abbreviation is the first three characters.
+	%A The national representation of the full weekday name.
+
+	Default: "%A %d %B %Y"
+
+* DateFormatShort
+	This is the same as DateFormat, but is used when the program
+	asks for a short date. Usally this is used when listing files
+        etc.
+
+	Default: "%m/%d/%y"
+
+* TimeFormat
+	This defines how a times are formated. The date string will be
+        contructed from this string and the sequenzes below will be
+        replaced.
+
+	%H The hour as a decimal number using a 24-hour clock
+	   (range 00 to 23).
+	%k The hour (24-hour clock) as a decimal number (range
+           0 to 23).
+	%I The  hour as a decimal number using a 12-hour clock
+           (range 01 to 12).
+	%l The hour (12-hour clock) as a decimal number (range
+           1 to 12).
+	%M The minute as a decimal number (range 00 to 59).
+	%S The second as a decimal number (range 00 to 59).
+	%p Either AM or PM according to the given time
+           value. AM or PM are translating to the current language.
+           Noon is treated as Pm and midnight as Am.
+
+	Default: "%I:%M:%S %p"
+
+* WeekStartsMonday
+	This defines which day is the first in the week. Monday will be
+	used if it's true. Otherwise Sunday will be used.
+
+	Default: true
+
+Hans Petter Bieker <bieker@kde.org>

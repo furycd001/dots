@@ -1,0 +1,222 @@
+<sect1 id="ebrowse">
+
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>
+tateneni@pluto.njcc.com
+</email></address></affiliation>
+</author>
+<author>
+<firstname>Yves</firstname>
+<surname>Arrouye</surname>
+<affiliation><address><email>
+yves@realnames.com
+</email></address></affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>enhanced browsing</keyword>
+<keyword>browsing</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>Enhanced Browsing</title>
+
+<sect2 id="ebrowse-intro">
+
+<title>Introduction</title>
+
+<para>&konqueror; offers some features to enhance your browsing
+experience. Currently, two such features are <emphasis>Internet
+Keywords</emphasis> and <emphasis>Web Shortcuts</emphasis>.</para>
+
+<para>You may already have noticed that &kde; is very internet friendly.
+For example, you can click on the <guimenuitem>Run</guimenuitem> menu
+item or type the keyboard shortcut assigned to that command (<keycombo
+action="simul"><keycap>Alt</keycap><keycap>F2</keycap></keycombo>,
+unless you have changed it) and type in a <acronym>URI</acronym>.
+<footnote><para>Uniform Resource Identifier. A standardized way of
+referring to a resource such as a file on your computer, a world wide
+web address, an email address,
+<abbrev>etc...</abbrev>.</para></footnote></para>
+
+<para>Internet Keywords make it easier for you to use well known names
+such as brand names, celebrities names, etc. For example, instead of
+typing <userinput>http://www.kde.org/</userinput>, you can just type
+<userinput>KDE</userinput>, or even <userinput>K Desktop
+Environment</userinput>.  The name you type will be resolved to a
+<acronym>URI</acronym>, and you will be redirected to the appropriate
+location.</para>
+
+<para>Web shortcuts, on the other hand, let you come up with new pseudo
+<acronym>URL</acronym> schemes, or shortcuts, that basically let you
+<emphasis>parameterize</emphasis> commonly used
+<acronym>URI</acronym>s. For example, if you like the Google search
+engine, you can configure KDE so that a pseudo <acronym>URL</acronym>
+scheme like <emphasis>gg</emphasis> will trigger a search on
+Google. This way, typing <userinput>gg:<replaceable>my
+query</replaceable></userinput> will search for <replaceable>my
+query</replaceable> on Google.</para>
+
+<note><para>One can see why we call these pseudo <acronym>URL</acronym>
+schemes. They are used like a <acronym>URL</acronym> scheme, but the
+input is not properly <acronym>URL</acronym> encoded, so one will type
+<userinput>google:kde apps</userinput> and not
+<userinput>google:kde+apps</userinput>.</para></note>
+
+<para>You can use Internet Keywords in &kde; in interactive navigation
+applications like <application>Konqueror</application>.  You can use web
+shortcuts wherever you would normally use
+<acronym>URI</acronym>s. Shortcuts for several search engines should
+already be configured on your system, but you can add new keywords, and
+change or delete existing ones in the enhanced browsing control
+module. </para>
+
+</sect2>
+
+<sect2 id="ebrowse-use">
+
+<title>Use</title>
+
+<para>There is a single tab in this control module. The title of the tab
+is <guilabel>Keywords</guilabel>. This tab features two main boxes, one
+for Internet Keywords and one for web shortcuts.</para>
+
+<sect3 id="ebrowse-ikw-use">
+
+<title>Internet Keywords</title>
+
+<para>The top of the dialog has a checkbox labeled <guilabel>Enable
+Internet Keywords</guilabel>. If this option is selected, you can use
+Internet Keywords in KDE.</para>
+
+<para>Also at the top of the dialog, there is a dropdown list of all the
+known web shortcuts, which is labeled <guilabel>Search
+Fallback</guilabel>. You can either select one of the shortcuts from the
+list or leave it at <guilabel>None</guilabel>. If you select a web
+shortcut here, whenever you type something that is not an Internet
+Keyword, your input will be passed to the selected web shortcut. This
+provides a very pleasant navigation and search experience, where
+Internet Keywords provide direct navigation, and you are in control of
+how to search for information when the Internet Keywords database does
+not contain the name you type. (If you select <guilabel>None</guilabel>
+then a directory listing of relevant Internet Keywords is provided
+instead.)  Also, if you type something that starts with a question mark,
+as in <userinput>?  KDE</userinput>, your input is directly passed to
+the web shortcut after stripping the question mark off, bypassing
+Internet Keywords entirely. This is useful when you really intend to do
+a search on your favorite search engine.</para>
+
+</sect3>
+
+<sect3 id="ebrowse-srch-use">
+
+<title>Web Shortcuts</title>
+
+<para>The descriptive names of defined web shortcuts are shown in a
+listbox. You may have to use the horizontal scrollbar and move to the
+right side of the list to see the actual keywords associated with the
+descriptive names. As with other lists in KDE, you can click on a column
+heading to toggle the sort order between ascending and
+descending.</para>
+
+<para>If you click on a specific entry in the list of defined search
+providers, the details for that entry are shown in text boxes which are
+located immediately to the right of the list. In addition to the
+descriptive name for the item, you can also see the
+<acronym>URI</acronym> which is used, as well as the associated
+shortcuts which you can type anywhere in &kde; where
+<acronym>URI</acronym>s are expected. A given search provider can have
+multiple shortcuts, separated by a comma.</para>
+
+<para> The text boxes are used not only for displaying information about
+an item in the list of web shortcuts, but also for modifying or adding
+new items. Notice that there are two buttons below the text
+boxes. Initially, these buttons have the captions
+<guibutton>Change</guibutton> and <guibutton>Delete</guibutton>, and the
+first of these buttons is disabled. Clicking the
+<guibutton>Delete</guibutton> button has the expected effect of removing
+the currently selected item from the list of web shortcuts.</para>
+
+<para>If you change the contents of either the <guilabel>Search
+URI</guilabel> or the <guilabel>URI Shortcuts</guilabel> text box, the
+button labeled <guibutton>Change</guibutton> will be enabled so that you
+may save the changes you have made. On the other hand, if you change the
+contents of the <guilabel>Search Provider Name</guilabel> text box, the
+<guilabel>Change</guilabel> button will be replaced by an
+<guibutton>Add</guibutton> button so that you may create a new entry in
+the list of web shortcuts.</para>
+
+<para>If you examine the contents of the <guilabel>Search URI</guilabel>
+text box, you will find that most, if not all of the entries have a
+<option>\1</option> in them. This sequence of two characters acts as a
+parameter, which is to say that they are replaced by whatever you happen
+to type after the colon character that is between a shortcut and its
+parameter. Let's consider some examples to clarify this idea.</para>
+
+<para>Suppose that the <acronym>URI</acronym> is
+<userinput>http://www.google.com/search?q=\1</userinput>, and
+<userinput>gg</userinput> is a shortcut to this
+<acronym>URI</acronym>. Then, typing
+<userinput>gg:<replaceable>alpha</replaceable></userinput> is equivalent
+to
+<userinput>http://www.google.com/search?q=<replaceable>alpha</replaceable></userinput>.
+You could type anything after the <userinput>:</userinput> character;
+whatever you have typed simply replaces the <option>\1</option>
+characters, after being converted to the appropriate character set for
+the search provider and then properly
+<acronym>URL</acronym>-encoded. Only the <option>\1</option> part of the
+search <acronym>URI</acronym> is touched, the rest of it is supposed to
+be properly <acronym>URL</acronym>-encoded already and is left as
+is.</para>
+
+<para>You can also have shortcuts without parameters. Suppose the
+<acronym>URI</acronym> was
+<emphasis>file:/home/me/mydocs/kofficefiles/kword</emphasis> and the
+shortcut was <emphasis>mykword</emphasis>. Then, typing
+<userinput>mykword:</userinput> is the same as typing the complete
+<acronym>URI</acronym>. Note that there is nothing after the colon when
+typing the shortcut, but the colon is still required in order for the
+shortcut to be recognized as such.</para>
+
+<para>By now, you will have understood that even though these shortcuts
+are called web shortcuts, they really are shortcuts to parameterized
+<acronym>URI</acronym>s, which can point not only to web sites like
+search engines but also to anything else that can be pointed to by a
+<acronym>URI</acronym>. Web shortcuts are a very powerful feature of
+navigation in KDE.</para>
+
+</sect3>
+
+</sect2>
+
+
+<sect2 id="ebrowse-author">
+
+<title>Section Author</title>
+
+<para>This section written by
+Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>
+and Yves Arrouye
+<email>yves@realnames.com</email>
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

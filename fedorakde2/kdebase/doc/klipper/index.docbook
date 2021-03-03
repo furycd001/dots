@@ -1,0 +1,379 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kappname "&klipper;">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  
+  
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title>The &klipper; Handbook </title>
+
+<authorgroup>
+<author>
+<firstname>Philip</firstname>
+<surname>Rodrigues</surname>
+<affiliation>
+<address><email>phil.rod@ntlworld.com</email></address>
+</affiliation>
+</author>
+
+<othercredit role="developer">
+<firstname>Carsten</firstname>
+<surname>Pfeiffer</surname>
+<affiliation>
+<address><email>pfeiffer@kde.org</email></address>
+</affiliation>
+<contrib>Developer</contrib>
+</othercredit>
+
+<othercredit role="reviewer">
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+<affiliation>
+<address><email>lauri@kde.org</email></address>
+</affiliation>
+<contrib>Reviewer</contrib>
+</othercredit>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+</authorgroup>
+
+<copyright>
+<year>2000</year>
+<holder>Philip Rodrigues</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2001-05-21</date>
+<releaseinfo>2.00.00</releaseinfo>
+
+<abstract>
+<para>&klipper; is the &kde; clipboard cut &amp; paste utility.</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>Klipper</keyword>
+<keyword>kdebase</keyword>
+<keyword>clipboard</keyword>
+</keywordset>
+</bookinfo>
+ 
+<chapter id="introduction">
+<title>Introduction</title>
+<para>&klipper; is the &kde; clipboard utility. It stores clipboard
+history, and allows you to link clipboard contents to application
+actions. Please report any problems or feature requests to Carsten
+Pfeiffer <email>pfeiffer@kde.org</email>.</para>
+
+</chapter>
+
+<chapter id="using-klipper">
+<title>Using &klipper;</title>
+
+<sect1 id="basic-usage">
+<title>Basic Usage</title>
+
+<para>To display the clipboard history, click on the &klipper; icon, or press
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>V</keycap>
+</keycombo>. Previous clipboard entries are shown at the top of the popup
+menu which appears. Selecting one of these copies it to the clipboard, from
+where it can be pasted into any &kde; or X application as usual.</para>
+
+</sect1>
+
+<sect1 id="actions">
+<title>Actions</title>
+
+<para>&klipper; can perform actions on the contents of the clipboard,
+based on whether they match a particular regular expression. For
+example, any clipboard contents starting with <quote>http://</quote> can
+be passed to &Netscape; or &konqueror; as &URL;s to open.</para>
+
+<para>To use this feature, just copy a &URL; or filename to the
+clipboard. If there is a matching regular expression in &klipper;'s
+list, a menu will appear showing you the options you have (&eg; Open
+&URL; in &konqueror;, open &URL; in &Netscape;). Use the mouse or
+keyboard to select the option you want, and &klipper; will run the
+program you have selected, opening the address pointed to by the
+clipboard contents.</para>
+
+<para>If you do not want to perform any actions on the clipboard
+contents, select <guimenuitem>Do Nothing</guimenuitem> on the popup menu
+to return to what you were doing before.If you leave the menu, it will
+disappear, leaving you to continue your work. You can change the time
+that the menu remains for in the <guilabel>Preferences</guilabel>
+dialog, and the option <guilabel>Timeout for action popups</guilabel>
+under the <guilabel>General</guilabel> tab.</para>
+	  
+<para>Actions can be disabled completely by clicking on &klipper; and
+selecting <guimenuitem>Actions Enabled</guimenuitem>, or by pressing
+<keycombo action="simul">&Ctrl;&Alt;<keycap>V</keycap></keycombo>
+followed by <keycombo
+action="simul">&Ctrl;&Alt;<keycap>X</keycap></keycombo>.</para>
+
+<para>Clipboard contents which match a regular expression can also be
+edited before performing an action on them. Select <guimenuitem>Edit and
+process again</guimenuitem> on the &klipper; popup menu, and you can
+change the clipboard contents in the dialog which appears, before
+clicking the <guibutton>OK</guibutton> button to run the appropriate
+action.</para>
+
+<para>Pressing <keycombo
+action="simul">&Ctrl;&Alt;<keycap>R</keycap></keycombo> shows the popup
+menu to repeat the last action which &klipper; performed.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="preferences">
+<title>&klipper; Preferences</title>
+
+<sect1 id="viewing-options">
+
+<title>Viewing Options</title>
+
+<para>To view or change &klipper;'s settings, open the &klipper;
+popup menu, and select <guimenu>Configuration</guimenu>. The &klipper;
+Configuration Dialog will appear. Its contents are described
+below.</para>
+
+<sect2 id="general-tab">
+<title>General Options</title>
+
+<variablelist>
+
+<varlistentry>
+<term><guilabel>Popup menu at mouse-cursor position</guilabel></term>
+<listitem><para>Make the &klipper; popup menus appear at the position of
+the mouse cursor, instead of their default positions of in the KDE Panel.
+Useful if you use the mouse more than the keyboard.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Replay actions on an item selected from
+history</guilabel></term>
+<listitem><para>If this is switched on, selecting an item from the history
+causes &klipper; to display the actions popup on that item, if appropriate.</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term><guilabel>Save clipboard contents on exit</guilabel></term>
+<listitem><para>If this option is on, selecting an item from the history
+causes klipper to check if any actions are applicable for that item, and
+shows the possible actions. If the option is off, actions cannot be run
+on items from the history.</para></listitem> 
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Timeout for Action popups</guilabel></term>
+<listitem><para>Set the time that a popup menu will remain for if you do
+nothing with it.</para></listitem>
+</varlistentry>
+
+<varlistentry><term><guilabel>Clipboard history size</guilabel></term>
+<listitem><para>Sets the number of items that are stored in the
+clipboard history.</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="actions-tab">
+<title>Action Options</title>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Editing Expressions/Actions</guilabel></term>
+<listitem><para>On the <guilabel>Actions</guilabel> tab, click the regular
+expression or action that you want to edit. A small box will appear in
+which the text can be edited as you wish. Make sure you press
+<keycap>Enter</keycap> when you are done.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Adding Expressions/Actions</guilabel></term>
+<listitem><para>Click the <guimenuitem>Add Action</guimenuitem> button
+to add a regular expression for &klipper; to match. &klipper; uses
+&Qt;'s <classname>QRegExp</classname>, which understands most regular
+expressions as you would use in <application>grep</application> or
+<application>egrep</application> for instance.</para>  
+
+<note><para>You can find detailed information about the use of
+<classname>QRegExp</classname> regular expressions at <ulink
+url="http://doc.trolltech.com/qregexp.html#details">http://doc.trolltech.com/qregexp.html#details</ulink>.
+Note that &klipper; does not support the wildcard mode mentioned on this
+page.</para></note> 
+
+<para>Edit the regular expression as described above. To add a command
+to execute, <mousebutton>right</mousebutton> click, select
+<guimenuitem>Add Command</guimenuitem> and edit the command which
+appears in the tree under the regular expression.</para>
+
+<para>Note that <token>%s</token> in the command line is replaced with
+the clipboard contents, &eg; if your command definition is
+<userinput><command>kedit</command> <token>%s</token></userinput> and
+your clipboard contents are <filename>/home/phil/textfile</filename>,
+the command <userinput><command>kedit</command>
+<filename>/home/phil/textfile</filename></userinput> will be run. To
+include <token>%s</token> in the command line, escape it with a
+backslash, as so: <userinput>\%s</userinput>.</para></listitem>
+</varlistentry>
+
+<varlistentry><term><guilabel>Advanced...</guilabel></term>
+<listitem><para>Brings up the <guilabel>Disable Actions for windows
+of type WM_CLASS</guilabel> dialog.</para><para>Some programs, such as
+&konqueror;, use the clipboard internally. If you get unwanted
+&klipper; popups all the time when using a certain application, do the
+following:</para>
+
+<orderedlist>
+<listitem><para>Open the application</para></listitem>
+<listitem><para>From a terminal, run <userinput><command>xprop</command>
+| <command>grep</command> <parameter>WM_CLASS</parameter></userinput>
+and then click on the window of the application you are
+running</para></listitem> 
+<listitem><para>The first string after the equals sign is the one to
+enter</para></listitem>
+</orderedlist>
+
+<para>Once the WM_CLASS is added, no more actions will be generated for
+windows of that application.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="shortcuts-tab">
+<title>Shortcut Options</title>
+
+<para>The shortcuts tab allows you to change the keyboard shortcuts
+which are used to access &klipper; functions. You can change the
+shortcut to one of three things:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>No Key</guilabel></term>
+<listitem><para>The selected action cannot be accessed directly from the
+keyboard</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Default Key</guilabel></term>
+<listitem><para>The selected action uses &klipper;'s default key. These are the
+shortcuts referred to in this manual.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Custom Key</guilabel></term>
+<listitem><para>The selected action is assigned to the keys you choose.</para>
+<para>To choose a custom key for the action you have selected, click on the
+representation of a key in the lower right of the screen to activate it, and
+type the desired key combination on your keyboard, as in any &kde; application. </para> </listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title>Credits and License</title>
+
+<para>
+Klipper
+</para>
+<para>
+Program copyright 1998 Andrew Stanley-Jones <email>asj@cban.com</email>
+</para>
+<para>
+Program copyright 1998-2000 Carsten Pfeiffer <email>pfeiffer@kde.org</email></para>
+<para>
+Currently maintained by Carsten Pfeiffer
+</para>
+
+<para>
+Documentation copyright 2000 Philip Rodrigues
+<email>phil.rod@ntlworld.com</email> </para>
+
+&underFDL;
+&underGPL;
+
+</chapter>
+
+<appendix id="installation">
+<title>Installation</title>
+
+<sect1 id="getting-klipper">
+<title>How to obtain &klipper;</title>
+
+<para>&klipper; is part of the &kde; project <ulink
+url="http://www.kde.org">http://www.kde.org</ulink>.  &klipper; can be
+found in the kdebase package on <ulink
+url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the
+main ftp site of the KDE project.</para>
+
+</sect1>
+
+<sect1 id="requirements">
+<title>Requirements</title>
+
+<para>In order to run &klipper;, you need &kde; 2.</para>
+
+<para>All required libraries can be found on <ulink url="ftp://ftp.kde.org">the
+KDE ftp site</ulink>. </para>
+</sect1>
+
+<sect1 id="compilation">
+<title>Compilation and Installation</title>
+<para>&klipper; should compile and install along with the kdebase
+package, and appear on your &kde; panel (&kicker;) when you run KDE
+2.</para> 
+
+<screenshot>
+<screeninfo>&klipper; icon</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="screenshot.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>Screenshot</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para>To disable this, simply remove the file 
+<filename>$KDEDIR/share/autostart/klipper.desktop</filename>
+or create a file <filename>$HOME/share/autostart/klipper.desktop</filename>
+with the following contents:
+
+<programlisting>
+[Desktop Entry]
+Hidden=true
+</programlisting>
+
+The latter will keep the system installation intact and only prevent
+klipper being started for you, without affecting other users.
+</para>
+
+</sect1>
+</appendix>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+End:
+-->
+

@@ -1,0 +1,45 @@
+#! /usr/bin/perl
+
+$inui = 0;
+$tag = "";
+$linenr = 0;
+
+while ( <STDIN> )
+{
+  $linenr = $linenr + 1;
+
+     # *OpenUI *InputSlot/Media Source: PickOne
+     if ($_ =~ "^*OpenUI") {
+	  $inui = 1;
+	  $_ =~ s/^\*OpenUI\s*//;
+	  $tag = $_;
+	  $tag =~ s%:.*$%%;
+	  $tag =~ s%/.*%%;
+	  chomp($tag);
+	  $_ =~ s%\s*:.*$%%;
+	  $_ =~ s%\s*\*%%;
+	  $_ =~ s%^[^/]*/%%;
+	  chomp($_);
+	  print "i18n(\"", $_, "\"); // line: $linenr\n";
+	  next;
+     }
+
+     if ($_ =~ "^*CloseUI") {
+	  $inui = 0;
+	  $tag = "";
+     }
+
+     if ($inui) {
+       if (substr($_, 0, length($tag)) eq $tag) {
+	 $_ =~ s%\s*:.*$%%;
+	 $_ =~ s%\*\S*\s*%%;
+	 $_ =~ s%^[^/]*/%%;
+	 chomp($_);
+	 print "i18n(\"", $_, "\"); // line: $linenr\n";
+       }
+     }
+
+     
+}
+
+   

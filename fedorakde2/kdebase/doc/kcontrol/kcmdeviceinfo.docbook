@@ -1,0 +1,77 @@
+<!-- <?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant
+V1.0//EN" "dtd/kdex.dtd"> -->
+<sect1 id="devices">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+    
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>device</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+
+<title>Device Information</title>
+
+<para>
+This page displays information about the available devices,
+</para>
+
+<note>
+<para>
+The exact information displayed is system-dependent.  On some systems,
+device information cannot be displayed yet.
+</para>
+</note>
+
+<para>
+On &Linux;, this information is read from <filename
+class="devicefile">/proc/devices</filename> and <filename
+class="devicefile">/proc/misc</filename>, which are only available if
+the <filename class="directory">/proc</filename> pseudo-filesystem is
+compiled into the kernel. Devices are listed by group (Character, Block,
+or Miscellaneous).  The device major number is listed, followed by an
+identifying label.
+</para>
+
+<para>
+The user cannot modify any settings on this page.
+</para>
+
+<sect2 id="device-author">
+<title>Section Authors</title>
+
+<para>
+Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, Helge Deller
+<email>helge.deller@ruhruni-bochum.de</email>, Duncan Haldane
+<email>duncan@kde.org</email>,and Michael McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+</sect2>
+
+</sect1>
+

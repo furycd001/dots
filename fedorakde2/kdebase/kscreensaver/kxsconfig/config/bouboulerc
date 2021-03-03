@@ -1,0 +1,27 @@
+[Arg0]
+Label=Speed:
+Maximum=100000
+Minimum=1
+Switch=-delay %1
+Type=Range
+Value=20000         
+[Arg1]
+Label=Size:
+Maximum=100
+Minimum=5
+Switch=-size %1
+Type=Range
+Value=20
+[Arg2]
+Label=Points:
+Minimum=20
+Maximum=200
+Type=Range
+Value=100
+Switch=-count %1
+[Arg3]
+Label=3D mode
+Type=Check
+SwitchOn=-3d
+SwitchOff=-no-3d
+Value=false

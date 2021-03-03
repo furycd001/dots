@@ -1,0 +1,47 @@
+[Arg0]
+Label=Count:
+Maximum=30
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=3 
+[Arg1]
+Label=Speed:
+Maximum=1000
+Minimum=10
+Switch=-speed %1
+Type=Range
+Value=10
+[Arg2]
+Label=Grid size:
+Maximum=10
+Minimum=1
+Switch=-gridsize %1
+Type=Range
+Value=4
+[Arg3]
+Label=Radius:
+Maximum=1000
+Minimum=10
+Switch=-radius %1
+Type=Range
+Value=500
+[Arg4]
+Label=Number of colors:
+Maximum=1024
+Minimum=2
+Switch=-ncolors %1
+Type=Range
+Value=256
+[Arg5] 
+Label=Hidden painting 
+Type=Check 
+SwitchOn=-db 
+SwitchOff=-no-db 
+Value=false     
+[Arg6]
+Label=Gray mode
+Type=Check
+SwitchOn=-gray
+SwitchOff=
+Value=false            

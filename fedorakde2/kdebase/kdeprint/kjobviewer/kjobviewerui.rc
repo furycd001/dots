@@ -1,0 +1,28 @@
+<!DOCTYPE kpartgui>
+<kpartgui name="kjobviewer">
+<MenuBar>
+  <Menu name="jobs"><text>&amp;Jobs</text>
+    <Action name="job_hold" />
+    <Action name="job_resume" />
+    <Separator />
+    <Action name="job_remove" />
+    <Separator />
+    <Action name="job_move" />
+  </Menu>
+  <Menu name="filter"><text>&amp;Filter</text>
+    <Action name="filter_modify" />
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar">
+  <Action name="job_hold" />
+  <Action name="job_resume" />
+  <Separator />
+  <Action name="job_remove" />
+  <Separator />
+  <Action name="job_move" />
+  <Separator />
+  <Action name="filter_modify" />
+  <Separator />
+  <Action name="refresh" />
+</ToolBar>
+</kpartgui>

@@ -1,0 +1,19 @@
+[Arg0]
+Label=Delay:
+Maximum=200000
+Minimum=1
+Switch=-delay %1
+Type=Range
+Value=100000
+[Arg1]
+Label=Mode:
+Type=DropList
+Options=Seuss,Ramp,Random
+Switches=-mode seuss,-mode ramp,-mode random
+Value=0
+[Arg2]
+Label=Animate
+Type=Check
+SwitchOn=-animate
+SwitchOff=
+Value=false

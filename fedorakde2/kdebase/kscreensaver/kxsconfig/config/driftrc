@@ -1,0 +1,19 @@
+[Arg0]
+Label=Count:
+Maximum=10000
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=3000 
+[Arg1] 
+Label=Grow 
+Type=Check 
+SwitchOn=-grow 
+SwitchOff=-no-grow 
+Value=true     
+[Arg2]
+Label=Liss
+Type=Check
+SwitchOn=-liss
+SwitchOff=-no-liss
+Value=false            

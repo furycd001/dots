@@ -1,0 +1,4 @@
+#%PAM-1.0
+auth       sufficient  /lib/security/pam_linux_afs.so ignore_root
+#auth       sufficient /lib/security/pam_linux_afs.so no_unlog ignore_root
+auth       required    /lib/security/pam_pwdb.so shadow nullok

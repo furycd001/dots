@@ -1,0 +1,45 @@
+
+if test x$compile_kdedb = x ; then
+    AC_MSG_CHECKING(for kdedb libraries and headers)
+    compile_kdedb=no
+    dnl check for installed kdedb headers
+    kdedb_incdirs="$kde_includes /usr/include /usr/local/include /opt/kde/include"
+    AC_FIND_FILE(kdb/kdb.h, $kdedb_incdirs, kdedb_incdir)
+    if test -r $kdedb_incdir/kdb/kdb.h; then
+	KDEDB_INCLUDES=$kdedb_incdir
+	compile_kdedb=yes
+    fi
+
+    dnl check for installed kdedb libraries
+    kdedb_libdirs="$kde_libraries /usr/lib /usr/local/lib /opt/kde/lib"
+    AC_FIND_FILE(libkdbcore.la, $kdedb_libdirs, kdedb_libdir)
+    if test -r $kdedb_libdir/libkdbcore.la; then
+	KDEDB_LIBS=$kdedb_libdir
+	compile_kdedb=yes
+    else
+	compile_kdedb=no
+    fi
+    if test $compile_kdedb = yes; then
+	AC_MSG_RESULT([headers $KDEDB_INCLUDES, libraries $KDEDB_LIBS])
+	AC_SUBST(KDEDB_INCLUDES)
+	AC_SUBST(KDEDB_LIBS)
+	
+	LIB_KDBUI="-lkdbui"
+	AC_SUBST(LIB_KDBUI)
+	
+	LIB_KDBCORE="-lkdbcore"
+	AC_SUBST(LIB_KDBCORE)
+	
+	LIB_KDB="$LIB_KDBUI $LIB_KDBCORE"
+	AC_SUBST(LIB_KDB)
+    else
+	AC_MSG_RESULT([not found])
+    fi
+fi
+
+if test $compile_kdedb = yes; then
+    KDEDB_SUBDIR=kdedb
+    AC_SUBST(KDEDB_SUBDIR)
+fi
+
+

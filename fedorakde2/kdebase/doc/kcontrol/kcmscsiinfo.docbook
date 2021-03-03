@@ -1,0 +1,67 @@
+<sect1 id="scsi">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>SCSI</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+<title><acronym>SCSI</acronym> Interface Information</title>
+
+<para>This page displays information about Small Computer Systems
+Interface (<acronym>SCSI</acronym>) Interfaces and the attached
+<acronym>SCSI</acronym> devices.</para>
+
+<note><para>The exact information displayed is system-dependent.  On
+some systems <acronym>SCSI</acronym> information cannot be displayed
+yet.</para></note>
+
+<para>On &Linux;, this information is read from <filename
+class="devicefile">/proc/scsi/scsi</filename>, which is only available
+if the <filename class="directory">/proc</filename> pseudo-filesystem is
+compiled into the kernel.  A listing of all <acronym>SCSI</acronym>
+devices known to the kernel is shown.</para>
+
+<para>The devices are sorted numerically by their Host, channel, and
+<acronym>ID</acronym> numbers.</para>
+
+<para>The user cannot modify any settings on this page.</para>
+
+<sect2 id="scsi-author">
+<title>Section Authors</title>
+
+<para> Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, Helge Deller
+<email>helge.deller@ruhruni-bochum.de</email>, Duncan Haldane
+<email>duncan@kde.org</email>,and Michael McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

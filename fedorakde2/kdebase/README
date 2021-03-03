@@ -1,0 +1,230 @@
+In this file:
+
+* What it is
+* Thank you
+* Common Mistakes
+* Configuring
+* Debugging
+* Upgrading
+* Removal/Uninstallation
+* More Info
+
+What it is
+----------
+
+kdebase is the second mandatory package (besides kdelibs) for the KDE Kool
+Desktop Environment. Here we have various applications and infrastructure
+files and libraries. Here is an overview of the directories:
+
+* applnk: files to create the icons for the K menu button
+* bsd-port: needed to create a BSD package
+* debian: needed to create a debian package
+* doc: XML formatted documentation files for the apps
+* drkonqi: if ever an app crashes (heaven forbid!) then Dr.Konqi will be so
+kind and make a stack trace. This is a great help for the developers to fix
+the bug.
+* kaddressbook: an addressbook (for postal addresses, phone numbers and of course
+for e-mail addresses)
+* kappfinder: searches your hard disk for non-KDE applications, e.g. Acrobat
+Reader (tm) and installs those apps under the K start button
+* kate: a fast and advanced text editor with nice plugins
+* kcheckpass: small program to enter and check passwords, only to be used by
+other programs
+* kcontrol: the KDE Control Center allows you to tweak the KDE settings
+* kdcop: GUI app to browse for DCOP interfaces, can also execute them
+* kdebugdialog: allows you to specify which debug messages you want to see
+* kdeprint: the KDE printing system
+* kdesktop: you guessed it: the desktop above the panel
+* kdesu: a graphical front end to "su"
+* kdm: replacement for XDM, for those people that like graphical logins
+* khelpcenter: the app to read all great documentation about KDE
+* khotkeys: intercepts keys and can call applications
+* kicker: the panel at the botton with the K start button and the taskbar etc
+* kioslave: infrastructure that helps make every KDE application internet
+enabled, e.g. to directly save a file to ftp://place.org/dir/file.txt
+* klipper: enhances and extenses the X clipboard
+* kmenuedit: edit for the menu below the K start button
+* konqueror: the file manager and web browser you get easily used to
+* konsole: a shell program similar to xterm
+* kpager: applet to show the contents of the virtual desktops
+* kpersonalizer: the customization wizard you get when you first start KDE
+* kreadconfig: a tool for shell scripts to get info from KDE's config files
+* kscreensaver: the KDE screensaver environment and lot's of savers
+* ksmserver: the KDE session manager (saves program status on login, restarts
+those program at the next login)
+* ksplash: the screen displayed while KDE starts
+* kstart: to launch applications with special window properties
+such as iconified etc
+* ksysguard: task manager and system monitor, even for remote systems
+* ktip: gives you tips how to use KDE
+* kwin: the KDE window manager
+* kxkb: a keyboard map tool
+* kxmlrpc: allows clients to control DCOP-enabled KDE applications
+throught XML
+* l10n: mostly country flags
+* legacyimport: odd name for a cute program to load GTK themes
+* libkonq: some libraries needed by Konqueror
+* nsplugins: together with OSF/Motif or Lesstif allows you to use Netscape (tm)
+plugins in Konqueror
+* pics: various icons and wallpapers
+
+Thanks!
+-------
+
+Thank you Steven M. Scotten and Kuno Raffi (weave) for creating artwork
+specifically for the K Desktop Environment.  Your efforts are much
+appreciated.
+
+Mr. Scotten has created: blue_angle_swirl, bluecheck, bluegreencrisscross,
+bluegreensilver, candystripe_chainlink, charcoal_sunset, fadedpaint,
+garden_lattice, ghost_lightning, glassywarpcheck, gold_crinkle, greenish,
+heavens_hex, latte, lime_vibration, liquid_canvas, northbeach,
+orange_stacks, purple_swirl, string_theory, sunday_brunch,
+toothofthehoundthatbitcha, vegetative_fog, wavetron, woodcheck
+
+Common Mistakes
+---------------
+
+IMPORTANT: most applications need KDEDIR as the directory where KDE is
+installed.  Please set this in your login file.
+
+If XPM support wasn't configured, it may be that configure has no idea
+where your XPM libraries are.  If so, set XPM_INCLUDE and XPM_LDFLAGS to
+the paths where configure should look for XPM.  But if you haven't
+installed XPM or it didn't come with your system, that's no problem.  You
+will only miss a few screensavers.  The same thing applies with OPENGL
+support.  Here you have to set GL_INCLUDE and GL_LDFLAGS.
+
+If configure claims Qt cannot be found, have a look at ftp://ftp.trolltech.com
+and download the latest Qt 2.x release.
+
+Be advised, if you're using FreeBSD, then please do not use the Qt port
+that comes along with it. 
+
+Configuring
+-----------
+
+kdebase's configure script supports all the standard GNU autoconf options
+(you can have the various options listed for you by specifying the --help
+switch), plus the following options are also supported.  Note:  the *non*
+default variation is listed, so if you see --enable-debug, the default is
+--disable debug.
+
+`--x-includes=DIR'
+     use X include files in DIR
+
+`--x-libraries=DIR'
+     use X library files in DIR
+
+`--enable-debug'
+     creates debugging code [default=no]
+
+`--enable-strict'
+     Add strict[er] compiler options (may not work!) to the CFLAGS and
+     CXXFLAGS.  This is GNU CC specific for the time being.
+
+`--with-gnu-ld'
+     assume the C compiler uses GNU ld [default=no]
+
+`--disable-libtool-lock'
+     force libtool not to do file locking
+
+`--disable-nls'
+     do not use Native Language Support (i18n)
+
+`--with-qt-dir'
+     where the root of qt is installed 
+
+`--with-qt-includes=DIR'
+     look for the Qt header files in DIR
+
+`--with-qt-libraries=DIR'
+     look for the Qt library in DIR
+
+`--with-extra-includes=DIR'
+     look for include files in DIR in addition to any other
+     `standard' paths
+
+`--with-extra-libs=DIR'
+     look for [extra] libraries in DIR too
+
+`--disable-path-check'
+     don't try to make sure that kdebase is installed into the same
+     base KDE directory as the rest of KDE
+ 
+`--with-install-root=DIR'
+     the root to install to [default=/] (i.e. make / == DIR, so /usr
+     becomes DIR/usr)
+
+`--disable-rpath'
+     do not use the rpath feature of ld
+
+`--with-xdmdir=DIR'
+     use xdm (and config files) from DIR if the xdm config dir can't be
+     found automaticly
+
+`--with-pam[=ARG]'
+     enable support for PAM: ARG=[yes|no|service name]
+
+`--with-shadow'
+     if you want to check for and use shadow password support if it's present
+
+`--without-gl'
+     disable any software which depends on OpenGL
+
+`--without-xpm'
+     disable color pixmap XPM tests
+
+`--with-xinerama'
+     enable Xinerama support
+
+Please check ./configure --help for a more current list of options and what they
+do. 
+
+Debugging
+---------
+
+You can use --enable-debug with the configure script, if you want to have
+debug code in your KDE apps and libs. If you experience problems and want
+to report problems to the KDE Bugs database, it is recommended to recompile
+with this switch enabled to make the backtraces more verbose (and thus
+giving the developer more information about the cause of the bug).
+
+Removal/Uninstallation
+----------------------
+
+You can use 'make uninstall' if you want to remove the kde from the dirs.
+This feature has not been tested completely, and is depreciated.
+On a system where KDEDIR is specific to KDE (i.e. not /usr), rm -rf $KDEDIR
+does it as well.
+
+More Info
+---------
+
+If your system does not have XPM installed, and you cannot locate a
+package of it, you may obtain it from ftp://avahi.inria.fr/pub/xpm, or you
+may find it in ftp://ftp.freebsd.org/pub/FreeBSD/distfiles
+
+If you are running a FreeBSD system, you will need to make sure that LIBS
+is set to "-Wl,-export-dynamic".  The easiest way to do this is to prefix
+configure with it, i.e.: LIBS="-Wl,-export-dynamic" ./configure.  Thanks
+to Will Andrews <will@FreeBSD.org> and Arun Sharma <adsharma@sharmas.dhs.org>
+for identifying what needed to be done, and how to do it, and such.
+
+If your system supports PAM (Plugable Authentication Modules), please see
+the README.pam file in this directory for more information about using KDE
+with PAM.
+
+Have a look at the individual subdirectories, if you would like to find
+out more about a specific application included in kdebase.
+
+More FAQs on http://www.kde.org/info/faq.html
+
+If you have problems compiling and installing this package, please 
+check the kde-devel@kde.org mailing list archive (see http://lists.kde.org)
+to see if somebody had a similiar problem already. If not, try posting
+a message to the list with detailed information about the compile problem. 
+
+General KDE discussions should go to the KDE mailing list (kde@kde.org).
+
+$Id: README,v 2.8.2.1 2001/10/23 18:54:16 binner Exp $

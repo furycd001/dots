@@ -1,0 +1,93 @@
+2001-06-10  Oswald Buddenhagen <ossi@kde.org>
+
+	* The source directory structure changed entirely
+	* External greeter: kdm_greet
+	  - libKdmGreet.so is gone
+	* External config parser is now named kdm_config
+	* The config files are all located in ${kde_confdir}/kdm now;
+	  KDM will no longer use kdm-config
+
+2001-04-02  Simon Hausmann <simon@kde.org>
+
+        * patch by Joachim Plack <jack@caldera.de> to make dead keys work when
+          the keyboard is grabbed.
+
+2001-03-19  Oswald Buddenhagen <ossi@kde.org>
+
+	* External config parser: kdm_getcfg
+	  - kdm will now use kdm-config, NOT xdm-config
+	* Stolen idea for console mode handling from dtlogin
+	* Tons of internal changes
+
+2000-12-07  Oswald Buddenhagen <ossi@kde.org>
+
+	* New XDM port from xfree86 4.0.1
+	* Made the greeter dynamically loadable
+	* Moved chooser and greeter to separate directories, 
+	  same for unused stuff (misc/)
+	* Optional auto-login, auto-re-login and password-free login
+	* A LOT of bug fixes and clean up
+
+1999-11-09  Harald Hoyer <Harald.Hoyer@RedHat.de>
+
+	* made kchooser
+
+1999-07-02  Steffen Hansen <hansen@kde.org>
+
+	* Fixes from KDE_1_1_BRANCH:
+        1) The "session type" wasn't updated when the user left the login line
+        edit with Tab (Pressing return worked fine). This is fixed now.
+        2) Kdm accepts NOBROADCAST in the Xaccess file now.
+        3) PAM modules now have the ability to set environment variables
+        for the user. Without this patch, changes to the env. are lost.
+
+1999-06-07  Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
+
+	* kdmshutdown.cpp:
+
+	  added Lilo reboot handling from 
+          Stefan van den Oord <oord@cs.utwente.nl> 
+	
+	  added button to switch to console mode
+
+	  TODO: Update kcmkdm to actually use these options
+
+
+1999-02-01  Steffen Hansen <hansen@kde.org>
+
+	* kdmshutdown.cpp :
+	fork()/sleep() to prevent gpm and X from racing.
+
+1998-12-17  Steffen Hansen <hansen@kde.org>
+
+	* kdmshutdown.cpp :
+	Changed char[] to QString. We want unicode ;)
+
+1998-12-16 Duncan Haldane <f.d.m.haldane@cwix.com>
+
+	* kdmshutdown.cpp : 
+	(1) made the PAM service name configurable
+	if KDE_PAM_SERVICE is defined (if not, it is "xdm"). (This
+	should have been done when I did this to verify.c a while
+	back).
+	
+	(2) Added a extra line to the shutdown dialog box
+	"(Enter Root password") if it is in "RootOnly" mode.
+
+	(3) Changed the confusing description of the "exit xdm" button
+	to "Restart X server", which is the actual function of the
+	third button.
+
+
+1998-12-04  Steffen Hansen <hansen@kde.org>
+
+	* genauth.c (len;): Read random data from "randomFile" (usually
+		/dev/mem) for auth key.
+
+	* kgreeter.cpp (GreetUser): Removed hardcoded backspace
+
+1998-11-27  Steffen Hansen <hansen@kde.org>
+
+	* Make the authentication cookie more unpredictable by adding
+	times from X events to seed
+

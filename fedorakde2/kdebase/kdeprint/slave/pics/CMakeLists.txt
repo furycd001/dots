@@ -1,0 +1,2 @@
+kde2_stdicon()
+

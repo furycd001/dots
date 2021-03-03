@@ -1,0 +1,21 @@
+AC_LANG_SAVE
+AC_LANG_CPLUSPLUS
+kde_save_LIBS="$LIBS"
+kde_save_CXXFLAGS="$CXXFLAGS"
+LIBS="$LIBS $all_libraries $USER_LDFLAGS $LIB_QT"
+CXXFLAGS="$CXXFLAGS $all_includes $USER_INCLUDES -DQT_XFT"
+AC_MSG_CHECKING(for anti-aliasing support in Qt)
+AC_CACHE_VAL(ac_cv_have_aa,
+[
+	AC_TRY_COMPILE([#include <qt_x11.h>],
+		[int x=qt_use_xft();],
+		[ac_cv_have_aa="yes"],
+		[ac_cv_have_aa="no"])
+])
+AC_MSG_RESULT($ac_cv_have_aa)
+if test "$ac_cv_have_aa" = "yes"; then
+	AC_DEFINE(HAVE_AA, 1, [Define if your Qt supports anti-aliasing])
+fi
+LIBS="$kde_save_LIBS"
+CXXFLAGS="$kde_save_CXXFLAGS"
+AC_LANG_RESTORE

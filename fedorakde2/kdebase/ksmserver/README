@@ -1,0 +1,120 @@
+KDE session manager  (ksmserver)
+--------------------------------
+
+Thu Apr 6 2000
+Matthias Ettrich <ettrich@kde.org>
+
+ksmserver is KDE's new session management server. It talks the
+standard X11R6 session management protocol (XSMP).  Thus, in theory,
+it should be compatible with all session managment compliant X11R6
+applications. Unfortunately, there aren't that many of them. To be
+precise, I have never seen a single commercial application that
+supports it and even within the official X11R6 distribution, 'xclock'
+is the only exception. Nevertheless we've chosen to support XSMP
+despites the complexity of the protocol in order to provide KDE users
+more interoperability with applications that were not explicitely
+written with KDE in mind. XSMP, as an official X standard, promised to
+be more likely to be supported by third parties than even a superior
+KDE-specific protocol. Let's see whether we were right and more
+applications will actually talk XSMP. At least all KDE applications do
+now.
+
+Here's a short overview on how session management works.
+
+Starting the server
+-------------------
+
+The server is usually started from the 'startkde' script. It supports the following options:
+
+  -r, --restore             Restores the previous session if available
+  -w, --windowmanager <wm>  Starts 'wm' in case no other window manager is
+                            participating in the session. Default is 'kwin'
+
+The default 'startkde' launches 'ksmserver --restore'.  The
+'windowmanager' option is useful for users that prefer a window
+manager other than kwin. Since the window manager has to participate
+in the session (it has to remember window positions and states), it is
+usually restarted when the session is restored. To be *really* sure
+that this happens, even if the wm might have crashed during the
+previous session, ksmserver ensures that. The option specifies, which
+windowmanager shall be launched for sure. But again: if the stored
+session contains a window manager, the restored one will be used, not
+the specified one. As a special feature, ksmserver always starts the
+specified window manager first, which results in a much nicer startup
+sequence (less flashy).
+
+A typical KDE setup starts all the daemons, initialization programs
+and persistent desktop tools (like kdesktop and kicker) outside the
+session and then gives control to ksmserver.
+
+
+Establishing the connection
+---------------------------
+
+As required by the XSMP specification, the session management server
+propagates its network address in the SESSION_MANAGER environment
+variable. Probably not the best way to do it, but it's the way it
+is. All KDE (and plain Qt) applications simply read this variable and
+try to establish a connection to an XSMP server at this address. If
+the variable is undefined, nothing happens.
+
+This means, if you want to start a program that should not participate
+in the session, simply undefine SESSION_MANAGER in your terminal
+window and launch the application. If you want to see an application
+desparately trying to connect to something, try setting it to some
+bogus value.
+
+In addition, ksmserver propagates both its network address and its
+process id in ~/.kde/socket-$HOSTNAME/KSMserver-$DISPLAY. A
+utility function KApplication::propagateSessionManager() reads this
+setting and sets SESSION_MANAGER accordingly, so that child processes
+can pick it up.  The function is called by clients that are started
+outside the session ( i.e. before ksmserver is started), but want to
+launch other processes that should participate in the session.
+Examples are kdesktop or kicker, see below.
+
+Authorization
+-------------
+
+XSMP is, just like DCOP, built on top of the Inter Client Exchange
+(ICE) protocol, which comes standard as a part of X11R6 and later.
+Authorization is done using 'iceauth', with MIT-MAGIC-COOKIE as used
+by X. In order to be able to access the session management server, you
+need to be able to read ~/.ICEauthority. For security reasons, we do
+not provide any host-based authorization (neither does DCOP, btw.).
+
+
+Requesting a shutdown
+---------------------
+
+If an application wants to request a shutdown (i.e. a logout), it does
+this via an SmcRequestSaveYourself message to the server. In KDE, a
+utility function KApplication::requestShutDown() does exactly
+this. It's for example called by KDE's panel or by the context menu of
+the desktop.
+
+
+User Interface
+--------------
+
+ksmserver has a very straight-forward user interface.  It mainly asks
+the question "Shutdown KDE Session?" and provides two obvious command
+buttons "Yes" and "Cancel". The interesting bit is the additonal
+checkbox that says "Restore session when logging in next time". The
+checkbox remembers state within session, so simply use whatever you
+prefer.  For those who remember, this was one of the main questions
+with KDE-1.x ("How to get rid of session managment?"). With KDE-2.x,
+most users will probably prepare a session once, store it with the
+checkbox enabled and keep the checkbox disabled in the future. This
+way you get a proper and clean 'homesession' each time.
+
+
+Troubleshooting
+---------------
+
+If you experience trouble like 'logout does not work anymore' or 'I
+cannot start new applications', as a result of a previous crash,
+ensure that ksmserver is indeed not running anymore and remove the
+file ~/.kde/socket-$HOSTNAME/KSMserver-$DISPLAY. Shouldn't be necessry, 
+but one never knows.
+

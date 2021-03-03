@@ -1,0 +1,21 @@
+[Arg0]
+Label=Speed:
+Maximum=50
+Minimum=10
+Switch=-speed %1
+Type=Range
+Value=10
+[Arg1]
+Label=Thickness:
+Maximum=50
+Minimum=1
+Switch=-thickness %1
+Type=Range
+Value=20
+[Arg2]
+Label=Count:
+Maximum=20
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=4

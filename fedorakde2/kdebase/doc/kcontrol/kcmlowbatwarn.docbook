@@ -1,0 +1,94 @@
+<sect1 id="lowbatwarn">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Battery</keyword>
+<keyword>Power</keyword>
+</keywordset>
+</sect1info>
+<title>The Low Battery Warning and Low Battery Critical Panels
+</title>
+
+<sect2 id="low-bat-warn-intro">
+<title>Introduction</title>
+
+
+<para>These two modules work together to control what happens when a
+pre-determined low battery condition occurs.  There are two of them, so you can
+set a warning for when time is getting close, and something more desperate for
+the last minute save or suspend.</para>
+
+<note><para>The laptop modules require the correct installation of the apm modules.  For more information see the section entitled <link linkend="laptop">Laptop Information</link>.</para></note>
+
+</sect2>
+
+<sect2 id="low-bat-warn-use">
+<title>Use</title>
+
+<para><emphasis>Low trigger</emphasis></para>
+
+<para>This field specifies at which point the battery low state is detected - it
+is the number of minutes left (according to APM) in your batteries. When this
+number is crossed the low state is triggered and one or more of the following
+things will occur</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Run Command</guilabel></term>
+<listitem><para>This is a shell command that will be executed when the battery
+low is detected.  By default, this is turned off.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Play Sound</guilabel></term>
+<listitem><para>This specifies a sound to play when battery low is detected. As
+of this version, it will only play .wav files. Simply specify the path to the
+file to have it played. By default, this is turned off.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>System Beep</guilabel></term>
+<listitem><para>Enabling this will cause the battery monitor to beep whenever
+the battery level drops below the preset value. This is probably the least
+intrusive, yet still active, method of alerting the user that the battery is
+low. By default, this is on.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Notify</guilabel></term>
+<listitem><para>Enabling this will cause Battery to popup a window when the
+battery becomes low.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Suspend</guilabel></term>
+<listitem><para>If you have set up <filename>/usr/bin/apm</filename> to be run
+setuid (see the instructions for the "Power" panel) then this check box will
+appear - if checked it will cause your computer to be put into "Suspend"
+mode.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Standby</guilabel></term>
+<listitem><para>Like "Suspend" above, but it puts your computer into "Standby"
+mode.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+<sect2 id="low-bat-warn-author">
+<title>Section Author</title>
+<para>This section written by Paul Campbell <email>paul@taniwha.com</email></para>
+<para>Converted to Docbook by Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

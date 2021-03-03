@@ -1,0 +1,52 @@
+<article lang="&language;" id="smb">
+<title>SMB</title>
+
+<para>
+The smb ioslave enables you to browse the shares of a &Windows; (or samba)
+network.
+</para>
+
+<para>
+To see the shares of a host, enter
+<userinput><command>smb://</command><replaceable>the_host</replaceable></userinput>.
+To access a share directly enter
+<userinput><command>smb://</command><replaceable>the_host/the_share</replaceable></userinput>
+</para>
+
+<para>
+The smb ioslave is a wrapper around the command line tool
+<command>smbclient</command>, which is part of the Samba package.  This means
+you need to have Samba installed to use this ioslave.
+</para>
+
+<para>
+To be able to authenticate to &Windows; <acronym>NT</acronym> Domain
+Cotnrollers, you need at least Samba 2.0. To access the shares of &Windows; 2000
+machines, you need at least Samba 2.0.7.
+</para>
+
+<para>
+Currently the slave is <emphasis>read-only</emphasis>, &ie; you are not able to
+write to remote shares.  The current smb ioslave also doesn't provide you with a
+list of running hosts.  You should use the lan or rlan ioslaves to get a network
+neighborhood.
+</para>
+
+<para>
+You can set your default user name and password in the &kcontrol; in
+<menuchoice><guisubmenu>Network</guisubmenu><guimenuitem>Windows
+Shares</guimenuitem></menuchoice>.  This is especially useful if you are a
+member of a &Windows; <acronym>NT</acronym> domain. There you can also set your
+workgroup name, this is in most cases not required.
+</para>
+
+<para>
+This ioslave is tested and developed mainly using samba 2.0.7, but other
+versions of samba should work too.
+</para>
+
+<para>
+Author: Alexander Neundorf <email>neundorf@kde.org</email>
+</para>
+</article>
+

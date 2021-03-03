@@ -1,0 +1,26 @@
+- Huge bug: KSimpleConfig doesn't sync up for the certificate cache.  This
+  means that stuff randomly disappears from it.  Also I suspect there is a
+  small GUI bug still.
+
+- KHTML needs a dialog to warn on an insecure post (unencrypted)
+  if the user has selected to do so in kcmcrypto
+
+- The "back" button on konqueror doesn't behave well with kio_https.  Try
+  it, you'll see :)
+
+- Provide an option to not load insecure portions of a secured page
+
+- Friend certificates (for S/MIME) are not implemented
+
+- The certificate factory is not done.  This is needed to generate personal
+  certificates (self signed) for users.
+
+- Document libkssl interface
+
+- Make a tamper proof certificate repository of some sort
+
+- Is it possible to provide warning if a particular attack is detected?
+  (OpenSSL looks for these if it knows about them)
+
+- Use libkssl in kcmcrypto - libkssl needs lots of work first.
+

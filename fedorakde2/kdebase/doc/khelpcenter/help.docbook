@@ -1,0 +1,695 @@
+<chapter id="help-system-user-manual">
+<chapterinfo>
+<date>2001-05-14</date>
+<releaseinfo>0.08.00</releaseinfo>
+</chapterinfo>
+<title>KDE Help System User Manual</title>
+<anchor id="help"/>
+
+<sect1 id="help-introduction">
+<title>KDE Help System</title>
+	
+<para>The &kde; help system is designed to make accessing the common
+&UNIX; help systems (<application>man</application> and
+<application>info</application>) simple, as well as the native &kde;
+documentation (&XML;). 
+</para>
+	
+<para> 
+All base &kde; applications come fully documented, thanks to the efforts
+of the Documentation team.  If you would like to help, please write to
+the Documentation coordinator, Lauri Watts, at
+<email>lauri@kde.org</email> for information.  No experience is
+required, just enthusiasm and patience.
+</para>
+
+<para>
+If you would like to help translating &kde; Documentation to your native
+language, the Translation coordinator is Thomas Diehl,
+<email>thd@kde.org</email>, and he would also welcome the help.  More
+information, including the coordinators for each language team, can be
+found on the <ulink url="http://i18n.kde.org">Internationalization web
+site</ulink>, and in the <link linkend="contact">Contact</link> section
+of this document.
+</para>
+
+<sect2 id="installation">
+<title>Installation</title>
+
+<para>
+&khelpcenter; is an integral part of the &kde; Base installation, and is
+installed with every copy of &kde;.  It can be found in the kdebase
+package, and is available from the <ulink url="ftp://ftp.kde.org/">KDE
+&FTP; site</ulink> or will be found in your operating system kdebase
+package.  
+</para>
+
+</sect2>
+</sect1>
+
+<sect1 id="invoking-help">
+<title>Invoking Help</title>
+
+<para>
+&khelpcenter; can be called in several ways:
+</para>
+
+<variablelist> 
+<varlistentry> 
+<term>From the <guimenu>Help</guimenu> menu</term> 
+<listitem>
+<para>
+The most common will probably be from within an application.  Choose
+<menuchoice><guimenu>Help</guimenu>
+<guimenuitem>Contents</guimenuitem></menuchoice> to open that
+applications help file, at the contents page.  
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>From the <guimenu>K</guimenu> menu</term>
+<listitem>
+<para>
+Choose the big <guiicon>K</guiicon> in your panel, and select
+<guimenuitem>Help</guimenuitem> to open &khelpcenter;, starting at the
+default welcome page.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term>From the panel</term>
+<listitem>
+<para>
+The &kicker; panel contains by default an icon to call &khelpcenter;.
+Again, the default welcome page is displayed.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term>From the command line</term>
+<listitem>
+<para>
+&khelpcenter; may be started using a <abbrev>URL</abbrev> to display a
+file.  <abbrev>URL</abbrev>s have been added for
+<command>info</command> and <command>man</command> pages
+also. You can use them as follows:
+</para> 
+
+<variablelist>
+<varlistentry>
+<term>An application help file</term>
+<listitem>
+<para>
+<command>khelpcenter</command> 
+<option>help:/<replaceable>kedit</replaceable></option>
+</para>
+<para>
+Opens the &kedit; help file, at the contents page.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>A local url</term>
+<listitem><para>
+<command>khelpcenter</command>
+<option>file:/
+<replaceable>usr/local/src/qt/html/index.html</replaceable></option>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>A Man page</term>
+<listitem>
+<para>
+<command>khelpcenter</command>
+<option>man:/<replaceable>strcpy</replaceable></option>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>An Info page</term>
+<listitem>
+<para>
+<command>khelpcenter</command> 
+<option>info:/<replaceable>gcc</replaceable></option>
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>
+Invoking <command>khelpcenter</command> with no parameters opens the
+default welcome page.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+<!-- Interface - Basics, using Konqueror -->
+<sect1 id="interface-basics">
+<title>The &khelpcenter; interface</title>
+
+<para>
+The &khelpcenter; interface consists of two panes of information.
+</para>
+
+<para>
+The toolbar and menus are explained further in section<xref
+ linkend="menu-and-toolbar-ref"/>.
+</para>
+
+<para>
+Documents contain their own navigation tools, enabling you to move
+either sequentially through a document, using <guilabel>Next</guilabel>,
+<guilabel>Previous</guilabel>, <guilabel>Up</guilabel> and
+<guilabel>Home</guilabel> links, or to move around in a less structured
+manner, using hyperlinks.  
+</para>
+
+<para>
+Links can take you to other parts of the same document, or to a
+different document, and you can use the <guiicon>Back</guiicon> (Left
+pointing arrow) or <guiicon>Forward</guiicon> (Right pointing arrow)
+icons on the toolbar to move through the documents you have viewed in
+this session.
+</para> 
+
+<para>
+The two panes display the contents of the help system, and the help
+files themselves, on the left and right respectively.
+</para>
+
+<sect2 id="contents-pane">
+<title>The <guilabel>Contents</guilabel> pane</title>
+
+<para>
+The <guilabel>Contents</guilabel> pane in &khelpcenter; is
+displayed on the left hand side of the window.  As you might expect, you
+can move the splitter bar, to make sure you can comfortably read the
+contents of either pane.
+</para> 
+
+<para>
+The <guilabel>Contents</guilabel> pane is further divided into three tabs,
+one containing a <link linkend="contents-menu">menu</link> showing all
+the help information &khelpcenter; is aware of, and the next enabling
+you to <link linkend="search">Search</link> for specific information,
+and the third contains the &kde; <link
+linkend="kde-glossary">glossary</link> of terms.
+</para>
+
+<sect3 id="contents-menu">
+<title>The <guilabel>Contents</guilabel> Menu</title>
+
+<para>
+The <guilabel>Contents</guilabel> contains the following default
+entries:
+</para> 
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Introduction</guilabel></term>
+<listitem><para>Welcome to &kde; - an introduction to the K Desktop
+Environment.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Introduction to &kde;</guilabel></term>
+<listitem>
+<para>
+The &kde; Quickstart guide.  Contains a tour of the &kde;
+Interface and specific help and tips on how to work smarter with &kde;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>&kde; User's manual</guilabel></term>
+<listitem>
+<para>
+The &kde; User's manual is an in depth exploration of &kde;, including
+installation, configuration and customization, and use.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Application manuals</guilabel></term>
+<listitem>
+<para>
+Native &kde; application documentation. All &kde; applications have
+documentation in &XML; format, which are converted to HTML when you view
+them. This section lists all the &kde; applications with a brief
+description and a link to the full application documentation.
+</para>
+<para>
+The applications are displayed in a tree structure that echoes the default
+structure of the <guimenu>K</guimenu> menu, making it easy to find the
+application you are looking for.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Unix manual pages</guilabel></term>
+<listitem>
+<para>
+&UNIX; man pages are the traditional on-line documentation format for
+unix systems. Most programs on your system will have a man page. In
+addition, man pages exist for programming functions and file
+formats.
+</para>
+</listitem> 
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Browse info pages</guilabel></term>
+<listitem>
+<para>
+TeXinfo documentation is used by many &GNU; applications,
+including <command>gcc</command> (the C/C++ compiler),
+<command>emacs</command>, and many others.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Tutorials</guilabel></term>
+<listitem>
+<para>
+Short, task based or informational tutorials.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>The KDE FAQ</guilabel></term>
+<listitem>
+<para>
+Frequently asked questions about &kde;, and their answers.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>&kde; on the web</guilabel></term>
+<listitem>
+<para>
+Links to &kde; on the web, both the official &kde; website, and other
+useful sites.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Contact Information</guilabel></term>
+<listitem>
+<para>
+Information on how to contact &kde; developers, and how to join the
+&kde; mailing lists.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Supporting &kde;</guilabel></term>
+<listitem>
+<para>
+How to help, and how to get involved.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+<sect3 id="search">
+<title>The <guilabel>Search</guilabel> tab</title>
+
+<para>
+Searching requires you have the <application>ht://Dig</application>
+application installed.  Information on installing and configuring the
+search index is available in the document.  Configuration of the search
+index is performed in the &kcontrol;, by choosing
+<menuchoice><guisubmenu>Help</guisubmenu><guimenuitem>Index</guimenuitem></menuchoice>,
+and detailed help is available from this module.
+</para>
+
+<para>
+For the purposes of this document, we'll assume you already have this set
+up and configured.
+</para>
+
+<para>
+Searching the help files is fairly intuitive, enter the word(s) you wish
+to search for in the text box, choose your options (if any), and press
+<guibutton>Search</guibutton>.  The results display in the viewer pane
+to the right.
+</para>
+
+<para>The options available are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Method</guilabel></term>
+<listitem>
+<para>
+Choose how to search for multiple words.  If you choose
+<guilabel>and</guilabel>, results are returned only if all your search
+terms are included in the page. <guilabel>or</guilabel> returns results
+if <emphasis>any</emphasis> of the search terms are found, and
+<guilabel>boolean</guilabel> lets you search using a combination.
+</para> 
+<para>
+Boolean syntax lets you use the operators <literal>AND</literal>,
+<literal>OR</literal> and <literal>NOT</literal> to create complex
+searches. Some examples:</para>
+<variablelist>
+<varlistentry>
+<term><userinput>cat and dog</userinput></term>
+<listitem><para>Searches for pages which have both the words
+<userinput>cat</userinput> and <userinput>dog</userinput> in them.  Pages with
+only one or the other will not be returned.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><userinput>cat not dog</userinput></term>
+<listitem><para>Searches for pages with <userinput>cat</userinput> in them, but
+only returns the ones that don't have the word <userinput>dog</userinput> in
+them.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><userinput>cat or (dog not nose)</userinput></term>
+<listitem><para>Searches for pages which contain <userinput>cat</userinput>, and
+for pages which contain <userinput>dog</userinput> but don't contain
+<userinput>nose</userinput>.  Pages which contain both
+<userinput>cat</userinput> and <userinput>nose</userinput> would be returned,
+pages containing all three words would not.</para></listitem> 
+</varlistentry>
+</variablelist>
+<para>If your searches are not returning the results you expect, check
+carefully you haven't excluded the wrong search term with an errand
+<literal>NOT</literal> or a stray brace.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Max. results</guilabel></term>
+<listitem><para>Determines the maximum number of results returned from your
+search.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Format</guilabel></term>
+<listitem><para>Decide if you want just a short link to the page
+containing your search terms, or do you want a longer
+summary.</para></listitem> 
+</varlistentry>
+<varlistentry>
+<term><guilabel>Sort</guilabel></term>
+<listitem><para>Sort the results in order of <guilabel>Score</guilabel> (how
+closely your search terms were matched,) alphabetically by
+<guilabel>Title</guilabel> or by <guilabel>Date</guilabel>.  Selecting the
+<guilabel>Reverse order</guilabel> check box, naturally enough, reverses the
+sort order of the results.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Update index</guilabel></term>
+<listitem><para>Update the search index, to incorporate new documents,
+or if you think your database is incomplete or damaged.  This may take
+some time.</para></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+
+<sect2 id="man-and-info">
+<title>The <application>Man</application> and <application>Info</application>
+sections</title>
+
+<para>Man pages are the standard unix manual pages, and have been in use
+for many years on many operating systems.  They are extremely thorough,
+and are the very best place to get information about most linux commands
+and applications.  When people say <quote>RTFM</quote>, the Manual
+they're referring to is very often the man page.</para>
+
+<para>The man pages are not perfect.  They tend to be in depth,
+but also extremely technical, often written by developers, and for
+developers. In some cases this makes them somewhat unfriendly, if not
+downright impossible for many users to understand.  They are however,
+the best source of solid information on most commandline applications,
+and very often the only source.</para>
+
+<para>If you've ever wondered what the number is when people write things like
+man(1) it means which section of the manual the item is in.  You'll see
+&khelpcenter; uses the numbers to divide the very many man pages into
+their own sections, making it easier for you to find the information
+you're looking for, if you're just browsing.</para>
+
+<para>Also available are the Info pages, intended to be a replacement
+for the man pages.  The maintainer of some applications no longer update
+the man pages, so if there is both a man page and an info page
+available, the info page is probably the most recent.  Most applications
+have one or the other though.  If the application you are looking for
+help on is a &GNU; utility, you will most likely find it
+has an info page, not a man page.</para>
+
+<sect3 id="navigation">
+<title>Navigating inside the <application>Info</application> pages</title>
+
+<para>Info documents are arranged hierarchically with each page called a
+node. All info documents have a <guilabel>Top</guilabel> node,
+<abbrev>i.e.</abbrev> the opening page.  You can return to the
+<guilabel>Top</guilabel> of an info document by pressing
+<guilabel>Top</guilabel>.</para>
+
+<para><guibutton>Prev</guibutton> &amp; <guibutton>Next</guibutton> are used to
+move to the previous/next page at the current level of the hierarchy.</para>
+
+<para>Clicking on a menu item within a document moves you to a lower level in
+the hierarchy. You may move up the hierarchy by pressing
+<guibutton>Up</guibutton>.</para>
+
+<para>Man is treated similarly to info, with the section index being the Top
+node and each man page on the level below.  Man entries are one page long.</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="kde-glossary">
+<title>The &kde; glossary</title>
+
+<para>
+The glossary provides a quick reference point, where you can look up the
+definitions of words that may be unfamiliar to you.  These range from
+&kde; specific applications and technologies, through to general &UNIX;
+computing terms.
+</para>
+
+<para>
+In the left hand pane you will see a tree view, with two choices:
+<guilabel>Alphabetically</guilabel> or <guilabel>By topic</guilabel>.
+Both contain the same entries, sorted differently, to allow you to
+quickly find the item of interest.
+</para>
+
+<para>
+Navigate down the tree views to the left, and items you select will be
+displayed on the right.
+</para>
+
+</sect2>
+
+<sect2 id="menu-and-toolbar-ref">
+<title>The menus and toolbar</title>
+
+<para>
+&khelpcenter; has a very minimal interface, allowing you to concentrate
+on getting help rather than learning how to use the help browser.
+</para>
+
+<para>
+The icons available to you in the toolbar are as follows:
+</para>
+
+<variablelist>
+<title>Toolbar Icons</title>
+
+<varlistentry>
+<term><guiicon>Print</guiicon></term>
+<listitem>
+<para>
+Print the contents of the currently visible page.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guiicon>Find</guiicon></term>
+<listitem>
+<para>
+Find a word or words within the currently visible page.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guiicon>Increase Font</guiicon></term>
+<listitem>
+<para>
+Increase the size of the text in the viewer pane.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guiicon>Decrease Font</guiicon></term>
+<listitem>
+<para>
+Decrease the size of the text in the viewer pane.  This icon is only
+enabled if you have previously enlarged the text.
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>
+The menus contain the following entries:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guimenu>File</guimenu></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem>Print Frame</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Print the contents of the currently visible page.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>W</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>C</accel>lose</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Close and exit &khelpcenter;
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenu>Edit</guimenu></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>A</keycap></keycombo></shortcut>
+<guimenu><accel>E</accel>dit</guimenu>
+<guimenuitem>Select <accel>A</accel>ll</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Select all the text in the current page.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
+<guimenu><accel>E</accel>dit</guimenu>
+<guimenuitem><accel>F</accel>ind</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Find a word or words in the currently visible page.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenu>View</guimenu></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu><accel>V</accel>iew</guimenu>
+<guimenuitem>View Document Source</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+View the <acronym>HTML</acronym> source of the page you are currently
+ viewing.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>V</accel>iew</guimenu>
+<guisubmenu>Set <accel>E</accel>ncoding</guisubmenu>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Change the encoding of the current page.  Normally, the default setting
+of <guimenuitem>Auto</guimenuitem> should be sufficient, but if you are
+having problems viewing pages written in languages other than English,
+you may need to choose a specific encoding in this menu.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+
+<sect1 id="credits">
+<title>Credits and Licenses</title>
+
+<para>&khelpcenter;</para>
+
+<para>Originally developed by Matthias Elter <email>me@kde.org</email></para>
+<para>Current maintainer Matthias Hoelzer-Kluepfel
+<email>mhk@kde.org</email></para>
+
+&underFDL;
+&underGPL;
+
+</sect1>
+</chapter>
+

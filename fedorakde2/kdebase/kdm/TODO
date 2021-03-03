@@ -1,0 +1,31 @@
+$Id: TODO,v 1.17 2001/07/14 17:55:23 ossi Exp $
+
+Must:
+
+- Make nis & kerberos5 work (done, but untested ...)
+
+- Integrate chooser into kdm_greet
+- Integrate kdmdesktop into kdm_greet
+- Move clock from greeter dialog to desktop
+- Add XDMCP _client_ to core (for remote login like in dtlogin)
+- Add language selection
+
+Should:
+
+- kill warning on AIX - see bug #13628 (really present?)
+
+- dpi/bpp/resolution selection. will require x-server restart.
+
+Could:
+
+- add a minimalistic window manager to the greeter (see gdm)
+- make kdm kcontrol module invokable from greeter
+- enable font AA support in greeter
+- session name aliasing
+- password change dialog for aged passwords
+
+- Make remembering user's last session more portable (standard??)
+- Animated logo
+- Different logos for each session type
+- User pictures in logo field
+

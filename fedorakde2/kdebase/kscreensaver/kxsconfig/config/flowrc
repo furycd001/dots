@@ -1,0 +1,14 @@
+[Arg0]
+Label=Count:
+Maximum=4000
+Minimum=100
+Switch=-count %1
+Type=Range
+Value=500
+[Arg1]
+Label=Cycles:
+Maximum=10000
+Minimum=10
+Switch=-cycle %1
+Type=Range
+Value=2000    

@@ -1,0 +1,24 @@
+[Protocol]
+# The executable, of course
+exec=kio_imap4
+# protocol that will appear in URLs
+protocol=imaps
+
+# input/output can be one of: filesystem, stream, none
+input=stream
+output=filesystem
+
+# Headings for file listings?
+listing=Name,Type,Size
+# For now, no mkdir
+mkdir=false
+deleting=true
+linking=false
+# For now, reading yes, writing no
+reading=true
+writing=false
+# For now, no moving
+moving=false
+
+# Can be source protocol
+source=true

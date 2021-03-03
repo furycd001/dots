@@ -1,0 +1,152 @@
+<sect1 id="style">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>style</keyword>
+</keywordset>
+</sect1info>
+<title>Style</title>
+
+<sect2 id="style-intro">
+<title>Introduction</title>
+
+<para>This module is used to configure how the individual widgets are drawn by
+&kde;.</para>
+
+<note><para>A <emphasis>Widget</emphasis> is a commonly-used programmer's term
+for referring to User Interface elements such as buttons, menus, and scroll
+bars.  You can think of them as the fundamental pieces that are assembled to
+make your application.</para></note>
+
+<para>You can configure how the widgets are drawn with this module, but to
+change the color of the widgets, you should refer to the section entitled <link
+linkend="color">Colors</link>.</para>
+
+<para>This panel is divided into three sections.</para>
+
+<sect3 id="style-pre">
+<title><guilabel>Widget styles and themes</guilabel></title>
+
+<para>The top list box, contains a list of the pre-defined styles.  Each style
+has a name, and a brief description.</para>
+
+<para>To change styles, simply click on the style name, and press
+<guibutton>Apply</guibutton> to see what the new widgets look like.</para>
+
+<!-- Isn't any more <note><para>There is a style named
+<guilabel>Testing</guilabel>.  This represents cutting edge development.
+You might occasionaly notice problems with this style.</para></note> -->
+
+</sect3>
+
+<sect3 id="style-misc">
+<title>Other settings for drawing</title>
+
+<para>This small section has only two options.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Menubar on the top of the screen in the style of
+MacOS</guilabel></term>
+<listitem><para>This will turn on a menubar at the top of the screen.  This
+menubar will reflect the menu options of the active
+application.</para></listitem>
+</varlistentry> 
+<varlistentry>
+<term><guilabel>Apply fonts and colors to non-KDE apps</guilabel></term>
+<listitem><para>If this option is enabled, &kde; will try to force all
+applications to use the &kde; colors and fonts.  This usually works, but
+certain applications may behave oddly. </para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+<sect3 id="style-toolbars">
+<title>Style options for toolbars</title>
+<para>This section of the panel is used for toolbars in &kde;
+applications.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Style options for toolbars</guilabel></term>
+<listitem><para>This option determines how toolbars will be displayed.  There
+are 4 options: <guilabel>Icons only</guilabel>, <guilabel>Text only</guilabel>,
+<guilabel>Text aside icons</guilabel>, and <guilabel>Text under
+icons</guilabel>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Highlight buttons under mouse</guilabel></term>
+<listitem><para>When this option is enabled, any time you move the mouse
+pointer over a button, the button will <quote>light up</quote>, to give
+you feedback.  When disabled, the button does not change at
+all.</para></listitem> 
+</varlistentry>
+<varlistentry>
+<term><guilabel>Toolbars are transparent when moving</guilabel></term>
+<listitem><para>If this option is enabled, toolbars will appear as a rectangle
+while they are being moved.  If this option is disabled, the toolbar will
+contain all graphic elements when being moved.</para></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+
+<sect3 id="style-effects">
+<title>Effect options</title>
+
+<para>Here you can set up some visual effects for menus, combo boxes,
+and tooltips.</para>
+
+<para>These are very processor and memory intensive, so you may wish to
+disable some of them.</para>
+
+<para>For menus, you can choose to have <guilabel>No menu
+effect</guilabel>, or you can <guilabel>Fade menus</guilabel>,
+where you will have menus fade on to your screen, or <guilabel>Animate
+menus</guilabel>, which will give you menus that appear to slide out as
+you click on them.</para>
+
+<para>You can likewise animate combo boxes, by checking the box labelled
+<guilabel>Animate combo boxes</guilabel></para>
+
+<para>Tooltips are the small phrases that appear if you hover your mouse
+button over an icon.  You can disable them here, by checking the
+<guilabel>Disable tool tips</guilabel> checkbox.</para>
+
+<para>If you like the tooltips, you might like them even more with some
+visual effects.  You can choose between <guilabel>Plain tool
+tips</guilabel>, <guilabel>Fade tool tips</guilabel> which appear to
+fade onto your screen, or <guilabel>Rollout tool tips</guilabel>, where
+the tooltips seem to unroll from under your mouse cursor.</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="style-author">
+<title>Section Author</title>
+
+<para>This section written by Mike McBride
+<email>mpmcbride7@yahoo.com</email>
+</para>
+
+<para>Updated for &kde; 2.2 by Lauri Watts
+<email>lauri@kde.org</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

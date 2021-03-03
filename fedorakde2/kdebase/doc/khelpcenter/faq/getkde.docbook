@@ -1,0 +1,102 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="getting-kde">
+<title>Getting &kde;</title>
+
+<qandaset>
+<qandaentry>
+<question id="where-to-get-kde">
+<para>Where do I get &kde;?</para>
+</question>
+<answer>
+<para>The main distribution site for &kde; is 
+<ulink url="ftp://ftp.kde.org">ftp.kde.org</ulink>.  However, this site is
+often under heavy load, so you might prefer one of the 
+<ulink url="http://www.kde.org/mirrors.html"> &kde; mirror
+sites</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para> Are there &Linux; distributions that include &kde;?</para>
+</question>
+<answer>
+<para>Yes, major &Linux; distributions already ship &kde;.  As
+building a distribution takes some time, they might not always contain
+the latest version, but for a start or to avoid downloading from the
+Internet, they do provide a good starting point.
+</para>
+<para>You can find an up-to-date list of distributions that ship
+with &kde; <ulink url="http://www.kde.org/kdeships.html">here</ulink>.
+</para>
+
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What is the current version?</para>
+</question>
+<answer>
+<para>Currently, the latest stable version is 2.2.1</para>
+<para>The <ulink
+url="http://www.kde.org/info/2.2.1.html">&kde; 2.2.1 Info
+Page</ulink> contains a lot of information specific to this
+release.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Where do I find &kde; snapshots?</para>
+</question>
+<answer>
+<para>You can get the latest snapshots from <ulink
+url="ftp://ftp.kde.org/pub/kde/unstable/CVS/snapshots">ftp://ftp.kde.org/pub/kde/unstable/CVS/snapshots</ulink>.
+You might also want to consider setting up your own <acronym>CVS</acronym> client in order to
+maintain the latest snapshot at all times.  Please refer to <ulink
+url="http://www.kde.org/anoncvs.html">Anonymous <acronym>CVS</acronym> and &kde;</ulink> for further
+information.
+</para>
+
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="where-to-get-qt">
+<para>Where do I get &Qt;?</para>
+</question>
+<answer>
+<para>&Qt; is a product of the Norwegian company Trolltech.  You can
+always get the latest &Qt; version from their 
+<ulink url="ftp://ftp.trolltech.com">&FTP; server</ulink>.</para>
+<para>
+And with most up-to-date &Linux; distributions, &Qt; is already
+included.  Please see <xref linkend="prerequisites"/> for the version
+of &Qt; you need.</para>
+</answer>
+</qandaentry>
+
+<!--throw this into the glossary as well? ;)  maybe not.-->
+<qandaentry>
+<question id="qt">
+<para>What is &Qt;, by the way?</para>
+</question>
+<answer>
+<para>&Qt; is a C++-based class library to build user interfaces. It
+also includes many utility classes like string classes and classes
+to handle input and output. It
+provides most of the widgets you will see in a &kde; application:
+menus, buttons, sliders, <abbrev>etc.</abbrev>  &Qt; is a cross-platform library that
+allows you to write code that will compile on &UNIX; systems as well as
+&Windows; and embedded devices.  You can learn more about &Qt; at <ulink
+url="http://www.trolltech.com">http://www.trolltech.com</ulink>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>

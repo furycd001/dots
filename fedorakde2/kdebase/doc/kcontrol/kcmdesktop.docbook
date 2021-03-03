@@ -1,0 +1,224 @@
+<sect1 id="desktop">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-01-29</date>
+<releaseinfo>1.00.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>desktop</keyword>
+</keywordset>
+</sect1info>
+
+<title>Desktop</title>
+
+<para>This module is used to change some of the most commonly needed
+options for the &kde; desktop.</para>
+
+<para>This module has three tabs, labeled: <link
+linkend="desktop-desktop"><guilabel>Desktop</guilabel></link>, <link
+linkend="desktop-appearance"><guilabel>Appearance</guilabel></link> and
+<link linkend="desktop-number"><guilabel>Number of
+Desktops</guilabel></link>.</para>
+
+<sect2 id="desktop-desktop">
+<title>Desktop Tab</title>
+
+<para>The Desktop tab is divided into 3 sections: <link
+linkend="desktop-desktop-icon"><guilabel>Desktop
+Icons/Menus</guilabel></link>, <link
+linkend="desktop-desktop-mb"><guilabel>Clicks on the
+desktop</guilabel></link>, and <link
+linkend="desktop-desktop-path"><guilabel>Pathnames</guilabel></link>.</para>
+
+<sect3 id="desktop-desktop-icon">
+<title><guilabel>Desktop Icons and Menus</guilabel></title>
+
+<para>In the top section, you can see several options on the left:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Align Icons Vertically on Desktop</guilabel></term>
+<listitem><para>If this option is enabled, &kde; will place all of the
+icons in columns along the left side of the screen whenever you select
+<guimenuitem>Arrange Icons</guimenuitem> from the
+<guimenu>Desktop</guimenu> Menu.  If this option is disabled, then &kde;
+will place all icons in a row along the top of the
+screen.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Show Hidden Files on Desktop</guilabel></term>
+<listitem><para>If this option is enabled, then all hidden files will
+appear on the desktop.  Generally this only clutters your desktop area,
+but if you are often working with hidden files or directories, this can
+be useful.</para> 
+<warning><para>Be very careful when deleting or modifying hidden files.
+Many of these files are configuration files and are essential for the
+correct operation of your computer.</para></warning>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Enable Desktop Menu</guilabel></term>
+<listitem><para>This option determines whether there is a menu across
+the top of the &kde; Desktop.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Support Programs in Desktop Window</guilabel></term>
+<listitem>
+<para>Enabling this option allows you to set a program as your desktop
+background, for example <command>xearth</command>, or &kworldclock;</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>To the right of these options you can see a list titled
+<guilabel>Show Previews for</guilabel>.  The &kde; desktop has a preview
+feature for <acronym>HTML</acronym> files, images, &PostScript; and
+<acronym>PDF</acronym>, sound, web archives (if you have the appropriate
+&konqueror; plugin installed) and text files.</para>
+
+<para>if you enable previews for one of these, files of that particular
+file type will not be represented by standard icons on the desktop, but
+will instead be shown as miniature previews.  On slow computers, the
+previews can take some time to show up, so you might not want to enable
+this feature.</para>
+
+</sect3>
+
+<sect3 id="desktop-desktop-mb">
+<title>Clicks on the Desktop</title>
+
+<para>The mouse button section allows you to determine what happens when
+you click one of the three mouse buttons on the Desktop (where there is
+no window).</para>
+
+<note><para>Not all mice have three buttons.  Two button mice can
+usually activate the <mousebutton>Middle</mousebutton> button by
+pressing both the <mousebutton>Left</mousebutton> and
+<mousebutton>Right</mousebutton> mouse buttons at the same
+time.</para></note>
+
+<para>For each of the three mouse buttons, you can select:</para>
+
+<variablelist>
+<varlistentry>
+<term>No Action</term>
+<listitem><para>When you use this mouse button, nothing
+happens.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Window list menu</term>
+<listitem><para>This brings up a submenu with all the virtual desktops.
+Under each virtual desktop, you can select any window currently located
+on that desktop.  Once selected, &kde; will switch to that desktop, and
+place the focus on that window.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Desktop Menu.</term>
+<listitem><para>This brings up a submenu with commands specific to
+&kde;. You can create icons, edit bookmarks, cut and paste, get help,
+run commands, configure &kde;, arrange icons, lock the screen and log
+out of &kde;.  The exact content of the menu varies depending on the
+current status of &kde;. </para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Application Menu</term>
+<listitem><para>This brings up the <guimenu>Application</guimenu> Menus
+(also know as the <guimenu>K</guimenu> Menus), so you can start a new
+application.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+<sect3 id="desktop-desktop-path">
+<title>Pathnames</title>
+
+<para>You can use this section to configure where Desktop files, Trash
+files, and Autostart files are stored on your computer as well as the
+standard path for documents. By changing the values in the first three
+of these paths, you will automatically move the files from their
+previous to their new location. </para>
+
+<warning><para>If you are reading this, you probably shouldn't be
+changing the Pathnames.  You can render your system almost unusable if
+incorrect values are entered here.</para></warning>
+
+</sect3>
+</sect2>
+
+<sect2 id="desktop-appearance">
+<title><guilabel>Appearance Tab</guilabel></title>
+
+<para>The appearance tab has 6 options.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Standard Font</guilabel></term>
+<listitem><para>This option can be used to change the typeface used on the
+desktop.  Simply select your typeface from the dropdown box.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Font Size</guilabel></term>
+<listitem><para>You can change the relative size of the text on the Desktop.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Normal Text Color</guilabel></term>
+<listitem><para>This option lets you select the color of normal (or
+unhighlighted) text.</para></listitem>
+</varlistentry>
+<varlistentry><term><guilabel>Text Background Color</guilabel></term>
+<listitem><para>This option lets you select the background color of
+normal text.  If left unchecked, the text has a transparent
+background.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Underline File Names</term>
+<listitem><para>Determines if file names are underlined on the
+Desktop.</para></listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="desktop-number">
+<title>Number of Desktops</title>
+<para>&kde; offers you the possibility to have several virtual
+desktops. In this tab you can configure the number of desktops as well
+as their names. Just use the slider to adjust the number of
+desktops. You can assign names to the desktops by entering text into the
+text fields below.</para> 
+</sect2>
+
+<sect2 id="desktop-author">
+<title>Section Author</title>
+
+<para>This section written by:</para>
+<para>Mike McBride <email>mpmcbride7@yahoo.com</email>. </para>
+<para>Jost Schenck <email>jost@schenck.de</email>. </para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

@@ -1,0 +1,839 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kappname "&kdm;">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  
+  
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title>The &kdm; Handbook</title>
+
+<authorgroup>
+<author>
+<firstname>Neal</firstname>
+<surname>Crook</surname>
+<affiliation><address><email>nac@forth.org</email></address></affiliation>
+</author>
+<othercredit role="developer">
+<firstname>Steffen</firstname>
+<surname>Hansen</surname>
+<affiliation><address><email>stefh@dit.ou.dk</email></address></affiliation>
+<contrib>Developer</contrib>
+</othercredit>
+<othercredit role="reviewer">
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+<affiliation><address><email>vampyr@atconnex.net</email></address></affiliation>
+<contrib>Reviewer</contrib>
+</othercredit>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+</authorgroup>
+
+<copyright>
+<year>2000</year>
+<holder>Neal Crook</holder>
+</copyright>
+
+<date>2000-12-12</date>
+<releaseinfo>0.05.02</releaseinfo>
+
+<abstract>
+<para>This document describes &kdm; the KDE Display Manager. &kdm; is also known
+as the <quote>Login Manager</quote>.</para>
+</abstract>
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdm</keyword>
+<keyword>xdm</keyword>
+<keyword>display manager</keyword>
+<keyword>login manager</keyword>
+</keywordset>
+</bookinfo>
+
+<!-- ********************************************************************** -->   
+<chapter id="Introduction"> 
+
+<title>Introduction</title> 
+
+<para> &kdm; provides a graphical interface that allows you to log in to a
+system. It prompts for login (username) and password, authenticates the user and
+starts to run a "session".  &kdm; is a "drop-in" replacement for
+<application>xdm</application>, the X Display Manager, and is superior to it in
+a number of ways.</para> <para> The user-interface to &kdm; is through two
+dialogue boxes. The main dialogue box has these features:</para>
+
+<itemizedlist> 
+<listitem><para>A "<guilabel>Login</guilabel>" field for you to enter your
+username.</para></listitem>
+<listitem><para>A "<guilabel>Pass</guilabel>" field for you to enter your
+password.</para></listitem>
+<listitem><para>A region to the left of the "<guilabel>Login</guilabel>" and
+"<guilabel>Pass</guilabel>" fields which can be used to display either a static
+image or an analogue clock.</para></listitem>
+<listitem><para>(Optionally) a graphical image of each user (for example, a
+digitised photograph). Clicking on an image is equivalent to typing the
+associated username into the "<guilabel>Login</guilabel>" field. (This feature
+is an imitatation of the login box on IRIX).</para></listitem> 
+<listitem><para>A "<guilabel>session type</guilabel>" drop-down box that allows
+&kdm; to be used to start sessions with various different window managers or
+desktop environments installed on the system, including KDE, KDE2 and
+GNOME.</para></listitem>
+<listitem><para>A "<guibutton>Go!</guibutton>" button that validates the
+username/password combination and attempts to start a session of the selected
+type.</para></listitem>
+<listitem><para>A "<guibutton>Cancel</guibutton>" button that clears the text
+from the "<guilabel>Login</guilabel>" and "<guilabel>Pass</guilabel>"
+fields.</para></listitem>
+<listitem><para>(Optionally) a "<guibutton>Shutdown</guibutton>" button that
+displays the "<guibutton>Shutdown</guibutton>" dialogue box.</para></listitem>
+</itemizedlist>
+
+<para>The "<guilabel>Shutdown</guilabel>" dialogue box presents a set of radio buttons
+that allow one of these options to be selected:</para>
+
+<variablelist>
+<varlistentry>
+<term>Shutdown</term>
+<listitem><para>Shut the system down in a controlled manner,
+ready for power-down.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Restart</term>
+<listitem><para>Shut the system down and reboot. For systems that use
+<application>Lilo</application>, an optional drop-down box allows you to select
+a particular operating-system kernel to be used for the
+reboot.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Restart X Server</term> 
+<listitem><para>Stop and then restart the X-server. Typically, you might need to
+use this option if you have changed your X11 configuration in some
+way.</para></listitem> 
+</varlistentry>
+<varlistentry>
+<term>Console Mode</term>
+<listitem><para>Stop the X-server and return the system to console mode. This is
+achieved by bringing the system down to run-level 3. Typically, the system
+manager might need to use this option before upgrading or re-configuring X11
+software.</para></listitem> 
+</varlistentry>
+</variablelist>
+
+<para>Pressing the "<guibutton>OK</guibutton>" button initiates the selected action;
+pressing the "<guibutton>Cancel</guibutton>" button returns to the main &kdm;
+dialogue box. </para>
+
+<para>The next chapter explains how to configure &kdm;. Subsequent chapters
+describe how to configure your system in order to use &kdm;, how to build and
+install &kdm; from source, and how to learn more about &kdm; and the KDE
+project.</para> 
+
+</chapter>
+
+<!-- *********************************************************************** -->
+<chapter id="Configuring-kdm">
+<title>Configuring &kdm;</title>
+
+<para>This chapter assumes that &kdm; is already up and running on your system,
+and that you simply want to change its behaviour in some way. If your problem is
+more serious, skip forward to later chapters. </para> 
+
+<para>When &kdm; starts up, it reads its configuration from the file
+<filename>kdmrc</filename>. Since &kdm; must run before any user is logged in,
+it is not associated with any particular user. Therefore, it is not possible to
+have a user-specific <filename>$HOME/share/config/kdmrc</filename> file; all
+users share the common version of <filename>kdmrc</filename>, located in
+<filename>$KDEDIR/share/config/kdmrc</filename>. It follows from this that the
+configuration of &kdm; can only be altered by those users that have write-access
+to <filename>$KDEDIR/share/config/kdmrc</filename> (normally restricted to
+system administrators logged in as "root"). </para> 
+
+<!-- ** nac TODO the link to local kderc doesn't work.. I get a security ** -->
+<!-- error; yet I can point to the file manually. what should it be? --> 
+
+<para>You can view the <filename>kdmrc</filename> file currently in use on your
+system (located by default at <filename>$KDEDIR/share/config/kdmrc</filename>),
+and you can configure &kdm; by editing this file. Alternatively, you can use the
+graphical configuration tool provided by the KDE Control Centre (under
+<menuchoice><guisubmenu>Applications</guisubmenu>
+<guisubmenu>System</guisubmenu> <guimenuitem>Login
+Manager</guimenuitem></menuchoice>), which is described in <ulink
+url="help:/kcontrol/login-manager.html">the KControl help files</ulink>.</para>
+
+<para>The remainder of this chapter describes the contents of the
+<literal>kdmrc</literal> file. If you are happy using the graphical
+configuration tool, there's no need to read any further.</para>
+
+<!-- ** nac: updated KDM keys list from code of 2000-06-06 -->
+
+<para>There are four sections in <literal>kdmrc</literal>:</para>
+
+<sect1 id="KDM">
+<title>KDM</title>
+<para>The keys in this section are:</para>
+<screen>StdFont
+FailFont
+GreetFont
+GreetString
+SessionTypes
+LogoArea
+LogoPixmap
+ShutdownButton
+Shutdown
+Restart
+ConsoleMode
+UserView
+Users
+NoUsers
+SortUsers
+GUIStyle
+</screen>
+
+<para>A short description of the keys:</para>
+<variablelist>
+
+<varlistentry>
+<term><parameter>*Font</parameter></term>
+<listitem><para>A fontsstring formatted like this:
+Courier,12,5,iso-8859-1,50,0.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>GreetString</parameter></term>
+<listitem><para>The title of the &kdm; login window.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>SessionTypes</parameter></term>
+<listitem><para>A comma-separated list of session arguments, usually used to
+select a particular window manager. Defaults to
+<option>SessionTypes=kde,failsafe</option>.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>LogoArea</parameter></term>
+<listitem><para>Controls what appears in the lower left-hand corner of the login
+window. Can be either <option>KdmLogo</option> (in which case the image
+specified by <option>LogoPixMap</option> is displayed) or
+<option>KdmClock</option> (in which case a clock is displayed).</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>LogoPixmap</parameter></term>
+<listitem><para>Specifies the image to be displayed in the lower left-hand
+corner of the login window when LogoArea=KdmLogo.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>ShutdownButton</parameter></term>
+<listitem><para>ShutdownButton controls when the shutdown button is displayed
+and can be one of <option>All</option>, <option>None</option>,
+<option>RootOnly</option> and <option>ConsoleOnly</option>. The meaning of
+<option>All</option> and <option>None</option> is very clear. If you choose
+<option>ConsoleOnly</option> you can't do a remote shutdown. If you choose
+<option>RootOnly</option> you will be prompted to enter the root password before
+the shutdown will proceed.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>Shutdown and Restart</parameter></term>
+<listitem><para>The commands to run on system shutdown and restart,
+respectively. (Defaults: <command>/sbin/halt</command> and
+<command>/sbin/reboot</command> respectively.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>ConsoleMode</parameter></term>
+<listitem><para>The command string used by the Console Mode option of the
+"<guibutton>Shutdown</guibutton>" button. (Default: <command>/sbin/init
+<option>3</option></command>). This option is not available under BSD.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>UserView</parameter></term>
+<listitem><para>If this is set to "<option>1</option>", a graphical view of
+users will be displayed in the &kdm; window.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>Users</parameter></term>
+<listitem><para>A comma-separated list of usernames that will be displayed in
+the graphical user view. If <parameter>UserView</parameter> is set to
+"<replaceable>1</replaceable>" and the <parameter>Users</parameter> entry is
+missing, &kdm; will look for users in the password file
+<filename>/etc/passwd</filename>. The users displayed are those who have a real
+name beside their login name, a home directory and a default shell - the rest
+are skipped. &kdm; will look in
+<filename>$KDEDIR/share/apps/kdm/pics/users/</filename> for an icon for each
+user. If an icon named <filename>johndoe.png</filename> exists, &kdm; will use
+that for displaying user johndoe. If not, &kdm; will use
+<filename>default.png</filename>. </para> 
+<para>&kdm; is able to handle icons of different sizes, but the result looks
+messy. The solution to this is to use an application such as KDE's
+<application>Pixie</application>, (or the GNU Image Manipulation Program,
+(<application>gimp</application>) or John Bradley's
+<application>XV</application>,) to convert all your images to the same size. A
+size of 64x64 should give enough resolution, and matches the default icons
+provided. These two programs can also be used to convert images from various
+formats into png format.</para></listitem> 
+</varlistentry>
+
+<varlistentry>
+<term><parameter>NoUsers</parameter></term>
+<listitem><para>A comma-separated list of usernames that won't be displayed. Use
+it to filter "pseudo-users" like <literal>sync</literal> and
+<literal>shutdown</literal> from the user view.</para>  </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>SortUsers</parameter></term>
+<listitem><para>If set to "<option>0</option>", the list of users are displayed
+in the order it was read. The default is to display users in sorted
+order.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>GUIStyle</parameter></term>
+<listitem><para>Can be either <option>Motif</option> or
+<option>Windows</option>.</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="KDMDESKTOP">
+<title>KDMDESKTOP</title>
+
+<para>This section is obsolete. In previous versions of &kdm; it could be used
+to control a background screen prior to login. The graphical configurator for
+&kdm; may still generate this section, but it is ignored by &kdm;.</para>
+
+</sect1>
+
+<sect1 id="Locale">
+<title>Locale</title> 
+
+<para>This section is handled by a standard KDE library. The only keys that are
+likely to have any effect are:</para>
+
+<screen>Country
+Language
+Charset
+</screen>
+
+<para>A short description of the keys:</para>
+
+<variablelist>
+
+<varlistentry>
+<term><parameter>Country</parameter></term>
+<listitem><para>indicates the country. Look in
+<filename>$KDEDIR/share/locale/l10n</filename> for the complete list of country
+codes supported by your system. The country code is used to locate the file
+<filename>$KDEDIR/share/locale/l10n/country_code/entry.desktop</filename>
+which is used to provide locale-specific information such as time and date
+formats and the local currency symbol.</para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>Language</parameter></term>
+<listitem><para>indicates the language to use for &kdm; (default:
+<option>C</option>, representing US English). The value can be over-ridden by
+the <envar>KDE_LANG</envar> environment variable.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>Charset</parameter></term>
+<listitem>
+<para>indicates the character set to use (default:
+<option>iso-8859-1</option>).</para></listitem>
+</varlistentry>
+</variablelist>
+
+<note><para>If you change the keys but all the dialogue text remains in English,
+this probably indicates that you do not have the translations installed on your
+system.</para></note>
+
+</sect1>
+
+<sect1 id="Lilo">
+<title><application>Lilo</application></title> 
+<para><application>Lilo</application> (Linux Loader) is a boot manager that is
+often used on GNU/Linux systems. Lilo comes with extensive documentation (see
+<ulink url="man:lilo">man lilo</ulink> as a start). This section configures
+mechanisms for restarting the system using <application>Lilo</application>. The
+keys are:</para>
+
+<screen>
+Lilo
+LiloCommand
+LiloMap
+</screen>
+
+<para>A short description of the keys: </para>
+
+<variablelist>
+<varlistentry>
+<term><parameter>Lilo</parameter></term>
+<listitem><para>Controls whether <application>Lilo</application> is used to
+restart the system (default: <option>FALSE</option>). When this key is set to
+<option>TRUE</option>, the "shutdown" dialogue box contains an extra drop-down
+configuration box next to the "restart" radio button. The drop-down allows you
+to select the kernel image that is to be used when rebooting the system. The
+list of images is created by querying the Lilo map file.</para></listitem>
+</varlistentry> 
+
+<varlistentry>
+<term><parameter>LiloCommand</parameter></term>
+<listitem>
+<para>The location of the <application>Lilo</application> binary (default:
+<filename>/sbin/lilo</filename>).</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><parameter>LiloMap</parameter></term>
+<listitem><para>The location of the <application>Lilo</application> map
+file. The map file is maintained by <application>Lilo</application> and contains
+a list of kernels (versions of the operating system) to boot (default:
+<filename>/boot/map</filename>).</para></listitem> </varlistentry>
+</variablelist>
+
+</sect1>
+
+</chapter>
+
+<!-- ************************************************************ -->   
+<chapter id="Configuring-your-system-for-kdm">
+<title>Configuring your system to use &kdm;</title>
+
+<para>This chapter assumes that your system is already configured to
+run the X Window System, and that you only need to reconfigure it to
+allow graphical login.</para>
+
+<sect1 id="setting-up-kdm">
+<title>Setting up &kdm;</title>
+
+<para>The fundamental thing that controls whether your computer boots
+to a terminal prompt (console mode) or a graphical login prompt is the
+default runlevel.  The runlevel is set by the program <application>
+<ulink url="man:init">/sbin/init</ulink></application> under
+the control of the configuration file <filename>/etc/inittab</filename>. The default
+runlevels used by different Unix systems (and different Linux
+distributions) vary, but if you look at <filename>/etc/inittab</filename> the
+start of it should be something like this:</para>
+
+<screen># Default runlevel. The runlevels used by RHS are:
+# 0 - halt (Do NOT set initdefault to this)
+# 1 - Single user mode
+# 2 - Multiuser, without NFS
+# 3 - Full multiuser mode
+# 4 - unused
+# 5 - X11
+# 6 - reboot (Do NOT set initdefault to this)
+
+id:3:initdefault:  
+</screen>
+
+<para>All but the last line of this extract are comments. The comments
+show that runlevel 5 is used for X11 and that runlevel 3 is used for
+multi-user mode without X11 (console mode). The final line specifies
+that the default runlevel of the system is 3 (console mode). If your
+system currently uses graphical login (for example, using
+<application>xdm</application>) its default runlevel will match the runlevel
+specified for X11.</para>
+
+<para>The runlevel with graphical login (<application>xdm</application>) for
+some common Linux distributions are:</para>
+
+<itemizedlist>
+<listitem><para>5 for Red Hat 3.x and later, and for Mandrake</para></listitem>
+<listitem><para>4 for Slackware</para></listitem>
+<listitem><para>3 for S.u.S.E. 4.x and 5.x</para></listitem>
+</itemizedlist>
+
+<para>The first step in configuring your system is to ensure that you
+can start &kdm; from the command line. Once this is working, you can
+change your system configuration so that &kdm; starts automatically each
+time you reboot your system.</para>
+
+<para>To test &kdm;, you must first bring your system to a runlevel that
+doesn't run <application>xdm</application>. To do so, issue a command like
+this:</para>
+
+<screen><command>/sbin/init <option>3</option></command>
+</screen>
+
+<para>Instead of the number "<option>3</option>" you should specify the
+appropriate runlevel for console mode on your system.</para>
+
+<para>Next you need to locate your <application>xdm</application> configuration
+directory; normally <filename>/etc/X11/xdm/</filename> or
+<filename>/usr/X11R6/lib/X11/xdm/</filename>. The configuration directory
+contains the file <filename>Xsetup_0</filename>. If you build &kdm; from source
+code and the <filename>configure</filename> step is unable to find this
+directory, it will install a new version of <filename>Xsetup_0</filename> from
+a template file in the &kdm; source tree. You can include the line:</para> 
+
+<screen>kdmdesktop</screen>
+
+<!-- ** nac: TODO 14Jul2000 not sure whether kdmdesktop still works.
+     ** The binary still exists; it is built in kdebase/kdesktop but it
+     ** doesn't use the kdmrc file; from the source code it seems to read
+     ** the kdmdesktoprc file, which does not exist -->
+
+<para>In your file to display some nice backgrounds (pictures and
+background colors). (I'm not sure if this still works; it is certainly
+not required).  If your <envar>KDEDIR</envar> is not
+<filename>/opt/kde</filename> you may have to change the path to
+<filename>kdmdesktop</filename>.</para>
+
+<para>If your system uses Pluggable Authentication Modules
+(<abbrev>PAM</abbrev>), which is normal with recent Red Hat and Mandrake
+systems, you should check that your <abbrev>PAM</abbrev> configuration permits
+login through the service named <literal>xdm</literal>. If you previously used
+<application>xdm</application> successfully, you should not need to make any
+changes to your <abbrev>PAM</abbrev> configuration in order to use
+&kdm;. <filename>/etc/pam.conf</filename> or
+<filename>/etc/pam.d/xdm</filename>. Information on configuring
+<abbrev>PAM</abbrev> is beyond the scope of this handbook, but
+<abbrev>PAM</abbrev> comes with comprehensive documentation (try looking in
+<filename>/usr/doc/pam*/html</filename>).</para>
+
+<para>Now it's time for you to test &kdm; by issuing the following
+command:</para>
+
+<screen><command>kdm <option>-nodaemon</option></command>
+</screen>
+
+<para>If you get a &kdm; login box and you are able to log in, things
+are going well.  The main thing that can go wrong here is that the
+run-time linker might not find the shared Qt or KDE libraries.  If you
+have a binary distribution of the KDE libraries, make sure &kdm; is
+installed where the libraries believe kde is installed (usually
+<filename>/opt/kde/bin</filename>) and try setting some environment variables to
+point to your KDE and Qt libraries. For example:</para>
+
+<screen><command>export <option>KDEDIR=<replaceable>/opt/kde</replaceable></option></command>
+<command>export <option>QTDIR=<replaceable>/usr/lib/qt2</replaceable></option></command>
+<command>export <option>PATH=<replaceable>$KDEDIR/bin:$QTDIR/bin:$PATH</replaceable></option></command>
+<command>export <option>LD_LIBRARY_PATH=<replaceable>$KDEDIR/lib:$QTDIR/lib</replaceable></option></command>
+</screen>
+
+<para>If you are still unsuccessful, try starting <application>xdm</application>
+instead, to make sure that you are not suffering from a more serious X
+configuration problem.</para>
+
+<para>When you are able to start &kdm; successfully, you can start to
+replace <application>xdm</application> by &kdm;. Again, this is
+distribution-dependent.</para>
+
+<itemizedlist>
+
+<listitem><para>For Redhat, edit <filename>/etc/inittab</filename>, look for the string xdm and replace
+it with &kdm; (including all paths).</para></listitem>
+
+<listitem><para>For Mandrake, the X11 runlevel in
+<filename>/etc/inittab</filename> invokes the shell script
+<filename>/etc/X11/prefdm</filename>, which is set up to select from amongst
+several display managers, including &kdm;. Make sure that all the paths are
+correct for your installation.</para> </listitem>
+
+<listitem><para>For <abbrev>S.u.S.E</abbrev>, edit
+<filename>/sbin/init.d/xdm</filename> to add a first line:</para>
+
+<screen>. /etc/rc.config
+DISPLAYMANAGER=kdm
+export DISPLAYMANAGER
+</screen>
+</listitem>
+
+<listitem><para>Most other distributions are a variation of one of
+these.</para></listitem>
+</itemizedlist>
+
+<para>If you don't like changing <filename>inittab</filename>, an alternative is
+to rename <filename>xdm</filename> to <filename>xdm.bak</filename> and make
+<filename>xdm</filename> a symbolic link to &kdm;.</para>
+
+<para>At this stage, you can test &kdm; again by bringing your system to the
+runlevel that should now run &kdm;. To do so, issue a command like this:</para>
+
+<screen><command>/sbin/init <option>5</option></command>
+</screen>
+
+<para>Instead of the number "<option>5</option>" you should specify the
+appropriate runlevel for running X11 on your system.</para>
+
+<para>The final step is to edit the <parameter>initdefault</parameter>
+entry in <filename>/etc/inittab</filename> to specify the
+appropriate runlevel for X11.</para>
+
+<warning><para>Before you make this change, ensure that you have a way to reboot
+your system if a problem occurs. This might be a "rescue" floppy-disk provided
+by your operating system distribution or a specially-designed "rescue"
+floppy-disk, such as <literal>tomsrtbt</literal>. Ignore this advice at your
+peril.</para></warning> 
+
+<para>When you reboot your system, you should end up with the
+graphical &kdm; login box.</para>
+
+<para>If this step is unsuccessful the most likely problem is that the
+environment used at boot time differs from the environment that you used for
+testing at the command line. Check files like
+<filename>/etc/X11/xdm/Xsetup_0</filename> (and any scripts that it invokes) to
+make sure that your path is not being changed without your knowledge. If you are
+trying to get two versions of KDE to co-exist, be particularly careful that the
+settings you use for your <envar>PATH</envar> and <envar>LD_LIBRARY_PATH</envar>
+environent variables are consistent, and that the startup scripts are not
+over-riding them in some way.</para>
+
+</sect1>
+
+<sect1 id="different-window-managers-with-kdm">
+<title>Supporting multiple window managers</title>
+
+<para>The main dialogue box for &kdm; includes a "<guilabel>session
+type</guilabel>" drop-down box, which allows you to select a window manager to
+use for your session. This chapter describes the changes that you must make to
+your configuration files in order to support this feature.</para>
+
+<para>The options that appear in the "<guilabel>session type</guilabel>" drop-down box
+are <ulink url="KDM">configured</ulink> by entries in the <literal>KDM</literal>
+section of <filename>kdmrc</filename>.</para> 
+
+<para>When you log in using &kdm;, the shell script
+<filename>Xsession</filename> is executed.  The session type that you select is
+passed as a command-line argument.  (<filename>Xsession</filename> can be found
+in <filename>/etc/X11/xdm/</filename> for Redhat and Mandrake, and in
+<filename>/usr/X11R6/lib/X11/xdm/</filename> for S.u.S.E.). Whilst debugging,
+you might find it helpful to add this line to
+<filename>Xsession</filename>:</para>
+      
+<screen>echo "$0 || $1 || $2" > $HOME/.Xsession_args </screen>
+
+<para>How you proceed now depends upon how your system usually starts
+up window managers. Here are two different approaches, with examples of the
+changes that you must make:</para>
+
+<itemizedlist>
+
+<listitem><para>The window manager is started by commands within
+<filename>Xsession</filename>. In this case, you can add a case statement to
+start the appropriate window manager. Linux Mandrake uses this approach; here is
+an extract from <filename>Xsession</filename>:</para>
+
+<screen># now, we see if xdm/gdm/kdm has asked for a specific environment
+case $# in
+1)
+    case $1 in
+        kde)
+        source /opt/kde2/bin/kde1
+        exec startkde
+        ;;
+        kde2)
+        source /opt/kde2/bin/kde2
+        exec startkde
+        ;;
+    	failsafe)
+	exec xterm -geometry 80x24-0-0
+	;;
+	default)
+	;;
+	*)
+	exec /bin/sh -c "$(/usr/sbin/chksession -x=$1)"
+	;;
+     esac
+esac
+</screen>
+</listitem>
+
+<listitem><para>The window manager is started by another script that
+is invoked by <filename>Xsession</filename>. In this case you
+must ensure that the parameter passed to <filename>Xsession</filename> is passed
+on to that other script. For example, if the window manager is started like
+this:</para>
+
+<screen><command>exec <option>$startup</option></command></screen>
+
+<para>you would need to change it to:</para>
+
+<screen><command>exec <option>$startup</option> <option>$@</option></command></screen>
+
+<para>Having made this change, you must trace your way through the
+startup to find the place where the window manager is started. One
+approach uses <filename>xinitrc</filename> to start the
+window manager; this allows a system-wide file
+<filename>/etc/X11/xinit/xinitrc</filename> or a user-specific file 
+<filename>$HOME/.xinitrc</filename> to be used. If you edit
+<filename>$HOME/.xinitrc</filename>, you may want to save a
+copy in <filename>/etc/skel</filename>, so that it will be
+automatically generated in every user account you create from now on.
+Here is an example <filename>xinitrc</filename> for a system
+using this approach:</para>
+
+<screen>#!/bin/bash
+#
+# .xsession/.xinitrc
+#
+# choose a window manager
+#
+
+defaultwm=kde
+#set the window manager to $1 if it was supplied
+windowmgr=${1:-$defaultwm}
+
+#start the respective window managers
+case ${windowmgr} in
+  kde|kwm|kdestart)
+	WINDOWMANAGER=startkde
+	;;
+  fvwm|fvwm2)
+	WINDOWMANAGER=fvwm2
+	;;
+
+  fvwm95)
+	WINDOWMANAGER=fvwm95
+	;;
+
+  *)    WINDOWMANAGER=windowmgr   # default for unknown wm's
+
+esac
+
+#
+# load resources
+#
+
+if [ -f /usr/X11R6/lib/X11/Xmodmap ]; then
+    xmodmap /usr/X11R6/lib/X11/Xmodmap
+fi
+
+if [ -f ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+
+if [ -f ~/.Xdefaults ]; then
+    xrdb -merge ~/.Xdefaults
+fi
+
+if [ -f ~/.Xresources ]; then
+    xrdb -merge ~/.Xresources
+fi
+# 
+# finally start the window manager
+#
+exec $WINDOWMANAGER
+</screen>
+
+</listitem>
+</itemizedlist>
+
+
+</sect1>
+</chapter>
+
+<!-- *********************************************************************** -->
+<chapter id="Building-and-Installing-kdm">
+<title>Building and Installing kdm</title>
+
+<para>&kdm; is part of the KDE project. The various component parts of the KDE
+project are broken into sections, called packages. &kdm; is part of the package
+called kdebase. You can get KDE source code from various Linux and BSD
+distribution CDs, or by download from <ulink
+url="http://www.kde.org">www.kde.org</ulink> or its mirrors. If you have an
+out-of-date source code tree, you can use one of the KDE cvsup servers to bring
+it up-to-date whilst using minimal network bandwidth.
+</para>
+
+<para>Before building kdebase, you must have built and installed (in this order)
+version 2 of the qt library and the KDE packages kde-qt-addon, kdesupport and
+kdelibs.</para>
+
+<para>In order to build any of the above, you must already have the X Window
+System installed, together with a C++ compiler and the GNU configuration tools
+<application>configure</application>, <application>automake</application> and
+<application>autoconf</application>.</para>
+
+<para>If the last few paragraphs seemed like a foreign language, then
+either you have strayed into an Inappropriate Area of this handbook,
+or you are about to undergo a Great Learning Experience.</para>
+
+<para>If you managed to satisfy all of the prerequisites, you are unlikely to
+have any problems with building and installing kdebase. &kdm; is installed in
+your "<filename>$KDEDIR/bin</filename>" directory.</para>
+
+<note><para><command>make <option>install</option></command> will overwrite your
+previous <filename>kdmrc</filename>.</para></note>
+
+</chapter>
+
+
+<!-- *********************************************************************** -->
+<chapter id="Other-Information">
+<title>Other sources of information</title>
+
+<para>Since &kdm; is descended from <application>xdm</application>, the <ulink
+url="man:xdm">xdm man page</ulink> may provide useful background
+information. For X-related problems try the man pages <ulink
+url="man:X">X</ulink> and <ulink url="man:startx">startx</ulink>. If you have
+questions about &kdm; that aren't answered by this handbook, take advantage of
+the fact the &kdm; is provided under the terms of the <abbrev>GNU</abbrev>gnu>
+Public License: look at the source code.
+</para>
+
+</chapter>
+
+<!-- *********************************************************************** -->
+<chapter id="credits"><title>Credits and License</title>
+
+<para>&kdm; is derived from, and includes code from,
+<application>xdm</application>.</para>
+
+<para>&kdm; 0.1 was written by Matthias Ettrich. All later versions were
+written by Steffen Hansen.</para>
+
+<para><application>Xdm</application> is copyright (c) 1990, X
+Consortium.</para>
+
+<para>Other parts of the &kdm; code are copyright by the authors, and
+licenced under the terms of the <ulink url="common/gpl-license.html">GNU
+GPL</ulink>. Anyone is allowed to change &kdm; and redistribute the result as
+long as the names of the authors are mentioned.</para>
+
+<para>&kdm; requires the Qt library, which is copyright Troll Tech AS.</para>
+
+<para>Documentation contributors:
+<itemizedlist>
+<listitem><para>Documentation written by Steffen Hansen <email>stefh@dit.ou.dk</email></para></listitem>
+
+<listitem><para>Documentation extended by Gregor Zumstein<email>zumstein@ssd.ethz.ch</email>. Last
+update 1998/07/09</para></listitem>
+
+<listitem><para>Documentation revised for KDE2 by Neal Crook<email>nac@forth.org</email>. Last
+update 2000/07/06</para></listitem>
+</itemizedlist></para>
+
+<para>Documentation copyright Steffen Hansen, Gregor Zumstein and Neal Crook.</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+&underGPL;
+
+</chapter>
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+End:
+-->
+

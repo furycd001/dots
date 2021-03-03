@@ -1,0 +1,59 @@
+<sect1 id="sessions">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>session</keyword>
+</keywordset>
+</sect1info>
+<title>Session Manager</title>
+
+<sect2 id="sessions-use">
+<title>Use</title>
+
+<para>In this control module you can configure &kde;'s session
+manager. This includes just two options:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Confirm logout</guilabel></term>
+<listitem>
+<para>If this option is checked, when logging out &kde; will display a
+dialog asking for confirmation. In this dialog you can also choose
+whether you want to restore your current session when you login the next
+time.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Restore previous session when logging in</guilabel></term>
+<listitem><para>If this option is checked, &kde; will save your current
+session's state when you logout.  &kde; will restore your session on the
+next login, so you can continue to work with a desktop just like you
+left it.</para>
+</listitem> 
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="sessions-author">
+<title>Section Author</title>
+<para>This section written by: Jost Schenck
+<email>jost@schenck.de</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

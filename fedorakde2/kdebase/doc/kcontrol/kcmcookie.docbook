@@ -1,0 +1,166 @@
+<sect1 id="cookie">
+
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>
+tateneni@pluto.njcc.com
+</email></address></affiliation>
+</author>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+<affiliation><address><email>
+jost@schenck.de
+</email></address></affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>cookie</keyword>
+</keywordset>
+
+</sect1info>
+
+
+<title>Cookies</title>
+
+<para>Cookies are a mechanism used by web sites to store and retrieve
+information using your browser.  For example, a web site may allow you
+to customize the content and layout of the pages you see, so that your
+choices are persistent across different visits to that web site.</para>
+
+<para>The web site is able to remember your preferences by storing a
+cookie on your computer. Then, on future visits, the web site retrieves
+the information stored in the cookie to format the content of the site
+according to your previously specified preferences.</para>
+
+<para>Thus, cookies play a very useful role in web browsing.
+Unfortunately, web sites often store and retrieve information in cookies
+without your explicit knowledge or consent. Some of this information may
+be quite useful to the web site owners, for example, by allowing them to
+collect summary statistics on the number of visits different areas of
+the web sites get, or to customize banner advertising.</para>
+
+<para>The cookies module of the &kcontrol; allows you to set policies
+for the use of cookies when you are browsing the web with the
+&konqueror; web browser. </para> 
+
+<warning><para>Note that the policies that you set using this control
+module will not apply to other web browsers such as
+&Netscape;.</para></warning>
+
+<sect2 id="cookie-policy">
+
+<title>Policy</title>
+
+<para>Using the <guilabel>Policy</guilabel> tab, you can configure the
+&kde; applications will handle cookies. You can do this by specifying a
+general cookie policy as well as special cookie policies for certain
+domains or hosts.</para>
+
+<para>The top of the policy tab has a checkbox labeled <guilabel>Enable
+Cookies</guilabel>. If you leave this unchecked, cookies will be
+completely disabled. However, this may make browsing rather
+inconvenient, especially as some web sites require the use of browsers
+with cookies enabled.</para>
+
+<para>Therefore, you will probably want to enable cookies, and then set
+specific policies on how you want them to be handled. There are three
+possible options, as seen in the group of radio buttons labeled
+"<guilabel>Default Policy</guilabel>".</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Ask for confirmation before accepting cookies</guilabel></term>
+<listitem><para>If this option is selected, you will be asked for confirmation
+every time a cookie is stored or retrieved. You can selectively accept or reject
+each cookie. The confirmation dialog will also allow you to set a domain
+specific policy, if you do not want to confirm each cookie for that
+domain.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Accept all cookies</guilabel></term>
+<listitem><para>If this option is selected, all cookies will be accepted without
+asking for confirmation.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Reject all cookies</guilabel></term>
+<listitem><para>If this option is selected, all cookies will be rejected without
+asking for confirmation.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<para>In addition to the default policy for handling of cookies, which you can
+set by selecting one of the three options described above, you can also set
+policies for specific host domains using the controls in the <guilabel>Domain
+Specific</guilabel> group.</para>
+
+<para>The <guilabel>Ask, Accept, or Reject</guilabel> policy can be applied to
+a specific domain by clicking on the <guibutton>Add...</guibutton> button,
+which brings up a dialog. In this dialog, you can type the name of the domain
+(with a leading dot), then select the policy you want to apply to this
+domain. Note that entries may also get added while you are browsing, if the
+default policy is to ask for confirmation, and you choose a general policy for a
+specific host (for example, by selecting <guilabel>Reject all cookies from this
+domain</guilabel> when asked to confirm a cookie.)</para>
+
+<para>You can also select a specific host domain from the list, and click the
+<guibutton>Change...</guibutton> button to choose a different policy for that
+domain than the one shown in the list.</para>
+
+<para>To delete a domain specific policy, choose a domain from the list, and
+then click the <guibutton>Delete</guibutton> button. The default policy will
+apply to domains which have been deleted from the list. </para>
+
+<para>If you have previously exported cookie policies to a file, you can merge
+those policies with the ones listed by clicking on the
+<guibutton>Import...</guibutton> button and selecting the file. To create a
+compressed archive file of the cookie policies shown in the list, click on the
+<guibutton>Export...</guibutton> and save the file to a location of your
+choice. </para>
+
+</sect2>
+
+<sect2 id="cookie-management">
+<title>Management</title>
+
+<para>In the <guilabel>Management</guilabel> tab you can browse and selectively
+delete cookies that have been set in the past.</para>
+
+<para>In the upper part of this dialog you can see a list of domains, displayed
+as a tree. Click on the little <guiicon>+</guiicon> next to a domain to see all
+cookies that have been set for this particular target domain. If you select one
+of these cookies, you'll notice that its contents will show up in the frame
+<guilabel>Cookie details</guilabel> below.</para>
+
+<para>By clicking the <guibutton>Delete</guibutton> button you can now delete the selected
+cookie. Click <guibutton>Delete all</guibutton> to delete all cookies stored.</para>
+
+</sect2>
+
+<sect2 id="cookie-author">
+
+<title>Section Author</title>
+
+<para>This section written by:</para>
+<para>Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>.</para>
+<para>Jost Schenck
+<email>jost@schenck.de</email>.</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

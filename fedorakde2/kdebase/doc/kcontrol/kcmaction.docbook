@@ -1,0 +1,594 @@
+<sect1 id="window-behavior">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>actions</keyword>
+<keyword>window placement</keyword>
+<keyword>window size</keyword>
+</keywordset>
+</sect1info>
+
+<title>Window Behavior</title>
+
+<para>
+In the upper part of this control module you can see three panels:
+<guilabel>Focus</guilabel>, <guilabel>Actions</guilabel> and
+<guilabel>Advanced</guilabel>. In the <guilabel>Focus</guilabel> panel
+you can configure how windows gain or lose focus, &ie; become active or
+inactive.  Using <guilabel>Actions</guilabel> you can configure how
+windows react to mouse clicks. The <guilabel>Advanced</guilabel> options
+concern window placement, movement or resizing.
+</para>
+
+<note>
+<para>
+Please note that the configuration in this module will not take effect
+if you don't use &kde;'s native window manager, &kwin;. If you do use a
+different window manager, please refer to its documentation for how to
+customize window behavior.
+</para>
+</note>
+
+<sect2 id="action-focus">
+<title>Focus</title>
+
+<para>
+The <quote>focus</quote>, of the desktop refers to the window which the
+user is currently working on. The window with focus is often referred to
+as the <quote>active window</quote>.
+</para>
+
+<sect3 id="action-focus-focuspolicy">
+<title>Focus Policy</title>
+
+<para>
+There are four methods &kde; can use to determine the current focus:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Click to Focus</guilabel></term>
+<listitem>
+<para>
+With this option, you simply click on the window to make that window
+active.
+</para>
+<para>
+All the other options within this section have no effect when this option
+is chosen.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Focus follows mouse</guilabel></term>
+<listitem>
+<para>
+To change the focus of a window, simply place the mouse pointer over the
+window.  If the mouse pointer is then moved to an area of the desktop
+without another window, the last window retains the focus.
+</para>
+
+<para>
+In other window managers, this is sometimes known as <quote>Sloppy focus
+follows mouse</quote>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Focus under mouse</guilabel></term>
+<listitem>
+<para>
+The window under the mouse, has the focus.  If, however, the mouse
+pointer is in an area of the desktop that has no windows, no window will
+be active.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Focus strictly under mouse</guilabel></term>
+<listitem>
+<para>Similar to <guilabel>Focus under mouse</guilabel>, but even more
+strict with its interpretation.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>
+Once you have determined the focus policy, there are two more options
+which you can determine.
+</para>
+
+<para>
+By placing a mark in front of <guilabel>Auto Raise</guilabel>, &kde; can
+bring a window to the front if the mouse is over that window for a
+specified period of time.  This is very useful with the <guilabel>Focus
+follows Mouse</guilabel> option.  You can determine the delay by using
+the slider bar/spin box comination.
+</para>
+
+<tip>
+<para>
+Setting the delay too short, will cause a rapid fire changing of
+windows, which can be quite distracting.  Most people will like a delay
+of 100-300 ms.  This is responsive, but it will let you slide over the
+corners of a window on your way to your destination without bringing
+that window to the front.  
+</para>
+</tip>
+
+<para>
+If you do not use <guilabel>Auto Raise</guilabel>, make sure the
+<guilabel>Click Raise</guilabel> option has a mark in front of it.  You
+will not be happy with both <guilabel>Auto Raise</guilabel> and
+<guilabel>Click Raise</guilabel> disabled.
+</para>
+</sect3>
+
+<sect3 id="action-focus-keyboard">
+<title>Keyboard</title>
+
+<para>
+In the <guilabel>Keyboard</guilabel> frame you can configure the way
+switching between applications or desktops using <keycombo
+action="simul"> &Alt;<keycap>Tab</keycap></keycombo> or <keycombo
+action="simul"> &Ctrl;<keycap>Tab</keycap></keycombo>.
+</para>
+
+<para>
+Switching applications using <keycombo action="simul">&Alt;
+<keycap>Tab</keycap></keycombo>, &ie; holding down &Alt; while
+repeatedly pressing the <keycap>Tab</keycap> key, can take place in
+&kde; mode or in <acronym>CDE</acronym> mode: in &kde; mode you will see
+a box in the middle of the screen showing you the currently selected
+application while you are still holding down the &Alt; key. In
+<acronym>CDE</acronym> mode you don't get any visual feedback.
+</para>
+
+<para>
+Finally there is an option where you can choose to <guilabel>Traverse
+windows on all desktops</guilabel> or not.  With this enabled, switching
+windows with <keycombo action="simul">
+&Alt;<keycap>Tab</keycap></keycombo> will show all windows, on all
+desktops, and take you to the appropriate desktop for the window you
+select.  With it disabled, only windows on your current desktop are
+selectable with <keycombo action="simul">
+&Alt;<keycap>Tab</keycap></keycombo>, and you must use <keycombo
+action="simul">&Ctrl;<keycap>Tab</keycap></keycombo> to switch to other
+desktops yourself.
+</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="action-actions">
+<title>Actions</title>
+
+<!-- The same functionality is in kcmmousebeh, so this is mainly copied from
+kcmmousebeh.docbook, only the introduction sentence and the ids have been
+adapted. -->
+
+<para>
+In this panel you can configure what happens to windows when a mouse is
+clicked on them. This panel is divided into 4 sections.
+</para>
+
+<sect3 id="action-actions-sec1">
+<title><guilabel>Titlebar Doubleclick</guilabel></title>
+
+<para>
+This section provides a single dropdown box.  You can select either
+<guilabel>Shade</guilabel>, or <guilabel>Maximize</guilabel>.
+</para>
+
+<para>
+Selecting <guilabel>Maximise</guilabel>, causes &kde; to maximise the
+window whenever you doubleclick on the titlebar.
+<guilabel>Shade</guilabel>, on the other hand, causes the window to be
+reduced to simply the titlebar.  Double clicking on the titlebar again,
+restores the window to its normal size.
+</para>
+
+<tip>
+<para>
+You can have windows automatically unshade when you simply place the
+mouse over their shaded titlebar. Just check the <guilabel>Enable
+Hover</guilabel> check box in the <guilabel>Advanced</guilabel> tab of
+this module.  This is a great way to reclaim desktop space when you're
+cutting and pasting between a lot of windows, for example.
+</para>
+</tip>
+
+</sect3>
+
+<sect3 id="action-actions-sec2">
+<title><guilabel>Titlebar and Frame</guilabel></title>
+
+<para>
+This section, allows you to determine what happens when you single click
+on the titlebar or frame of a window.  Notice that you can have
+different actions associated with the same click depending on whether
+the window is active or not.
+</para>
+
+<para>
+For each combination of mousebuttons and Active/Inactive, you can select
+the most appropriate choice.  The actions are as follows:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Activate</guilabel></term>
+<listitem>
+<para>
+Make this window active.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Lower</guilabel></term>
+<listitem>
+<para>
+Will move this window to the bottom of the display.  This will get the
+window out of the way.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Nothing</guilabel></term>
+<listitem>
+<para>
+Just like it says.  Nothing happens.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Operations Menu</guilabel></term>
+<listitem>
+<para>
+Will bring up a small submenu, where you can choose window related
+commands (&ie; Maximize, Minimize, Close, &etc;).
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Raise</guilabel></term>
+<listitem>
+<para>
+Will bring the window to the top of the display.  All other windows
+which overlap with this one, will be hidden <quote>below</quote> it.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Toggle Raise and Lower</term>
+<listitem>
+<para>
+This will raise windows which are not on top, and lower windows which
+are already on top.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+
+<sect3 id="action-actions-sec3">
+<title><guilabel>Inactive Inner Window</guilabel></title>
+
+<para>
+This part of the module, allows you to configure what happens when you
+click on an inactive window, with any of the three mouse buttons.
+</para>
+
+<para>
+Your choices are as follows:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Activate, Raise and pass click</guilabel></term>
+<listitem>
+<para>
+This makes the clicked window active, raises it to the top of the
+display, and passes a mouse click to the application within the window.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Activate and pass click</guilabel></term>
+<listitem>
+<para>
+This makes the clicked window active and passes a mouse click to the
+application within the window.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Activate</guilabel></term>
+<listitem>
+<para>
+This simply makes the clicked window active.  The mouse click is not
+passed on to the application within the window.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Activate and Raise</guilabel></term>
+<listitem>
+<para>
+This makes the clicked window active and raises the window to the top of
+the display.  The mouse click is not passed on to the application within
+the window.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+<sect3 id="action-actions-sec4">
+<title><guilabel>Inner Window, titlebar and frame</guilabel></title>
+
+<para>
+This bottom section, allows you to configure additional actions, when
+the &Alt; key is pressed, and a mouse click is made on a window.
+</para>
+
+<para>
+Once again, you can select different actions for
+<mousebutton>Left</mousebutton>, <mousebutton>Middle</mousebutton> and
+<mousebutton>Right</mousebutton> button clicks.
+</para>
+
+<para>Your choices are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Lower</guilabel></term>
+<listitem>
+<para>
+Will move this window to the bottom of the display.  This will get the
+window out of the way.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Move</guilabel></term>
+<listitem>
+<para>
+Allows you to drag the selected window around the desktop.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Nothing</guilabel></term>
+<listitem>
+<para>
+Just like it says.  Nothing happens.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Raise</guilabel></term>
+<listitem>
+<para>
+Will bring the window to the top of the display.  All other windows
+which overlap with this one, will be hidden <quote>below</quote> it.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Resize</guilabel></term>
+<listitem>
+<para>
+Allows you to change the size of the selected window.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Toggle Raise and Lower</guilabel></term>
+<listitem>
+<para>
+This will raise windows which are not on top, and lower windows which
+are already on top.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+</sect2>
+
+<sect2 id="action-advanced">
+<title>Advanced</title>
+
+<para>
+In the <guilabel>Advanced</guilabel> panel you can do more advanced fine
+tuning to the window behavior.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Display content in moving windows</guilabel></term>
+<listitem>
+<para>
+When this option is selected, &kde; will continue to update the contents
+of the window as you move it around the screen.
+</para> 
+
+<para>
+If this option is not selected, &kde; will use show you a rectangle,
+which will move with your mouse.  When the mouse button is released,
+&kde; will restore th contents of the window.  
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Display content in resizing windows</guilabel></term>
+<listitem>
+<para>
+When this option is selected, &kde; will resize the contents of a window
+as you change the size.  If this option is not selected, then &kde; will
+show a rectangle while you are resizing, and when the mouse button is
+released, the contents of the window will be resized and appear within
+the window.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<tip>
+<para>
+Both the <guilabel>Display content in moving windows</guilabel> and
+<guilabel>Display content in resizing windows</guilabel> options,
+consume significantly more processor resources when enabled, then when
+disabled.  If you find your computer is not as responsive as you would
+like when moving or resizing windows, disabling one or both of these
+features will improve the responsiveness of &kde;.
+</para>
+</tip>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Animate minimize and restore</guilabel></term>
+<listitem>
+<para>
+If this option is enabled, an animation is shown when a window is being
+minimized or restored, to give you a visual feedback about what
+happened. If it is disabled, a minimized window will just disappear, a
+restored window will suddenly appear.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Allow moving and resizing of maximized
+windows</guilabel></term>
+<listitem>
+<para>
+When enabled, the borders of maximized windows will stay active, so
+you can still move them around or resize them. When disabled, maximized
+windows will be <quote>fixed to the screen borders</quote>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Placement</guilabel></term>
+<listitem>
+<para>
+The placement policy determines where a new window will appear on the
+desktop. For now, there are three different policies:
+<guilabel>Smart</guilabel> will try to achieve a minimum overlap of
+windows. <guilabel>Cascade</guilabel> will cascade the windows,
+<guilabel>Random</guilabel> will use a random position.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title>Shading</title>
+
+<varlistentry>
+<term><guilabel>Animate</guilabel></term>
+<listitem>
+<para>If this is enabled then shading, or rolling up a window until just
+the title bar is shown, will be animated.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Shade hover</guilabel></term>
+<listitem>
+<para>
+If this option is enabled a shaded window will un-shade automatically
+when the mouse pointer has been over the title bar for some time. Use
+the slider to configure the delay un-shading.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title>Magic Borders</title>
+<varlistentry>
+<term><guilabel>Border snap zone</guilabel></term>
+<listitem>
+<para>The magic borders allow you to <quote>snap</quote> windows to the
+edge of the screen, and to each other.  This setting determines how
+close in pixels you should move a window to the edge of the screen, in
+order for it to snap to the edge when you let go of the mouse.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Window snap zone</guilabel></term>
+<listitem>
+<para>As with the borders, this setting determines how close you should
+drag a window to the edge of an existing window, in order for it to snap
+into alignment, edge to edge, with the existing window.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Snap windows only when overlapping</guilabel></term>
+<listitem>
+<para>This setting modifies the previous item, so that only windows that
+you have dropped overlapping another window, and with the edge within
+the magic zone, will snap to the edge.  If you turn this on, you can set
+the magic zone quite large, and overlapping windows will attempt to
+uncover themselves.  This can also be quite disconcerting, so try it out
+for a while.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="action-author">
+<title>Section Author</title>
+
+<para>This section written by: </para>
+<para>Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<para>Jost Schenck <email>jost@schenck.de</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

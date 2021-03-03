@@ -1,0 +1,294 @@
+<sect1 id="konq-browsing">
+
+
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>
+tateneni@pluto.njcc.com
+</email></address></affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>konqueror</keyword>
+<keyword>browsing</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>Browsing With &konqueror;</title>
+
+<para>The &konqueror; Browser module of &kcontrol; allows you to select
+various options for the appearance and behavior of &konqueror;, the
+integrated web browser of &kde;.</para>
+
+<para>There are five main tabs in this control center module, which are
+described in detail in the following sections. Briefly, the five tabs
+are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>HTML</guilabel>:</term>
+<listitem><para>Options for handling of links and images in
+<abbrev>HTML</abbrev> pages.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Appearance</guilabel>:</term>
+<listitem><para>Options for the fonts used in displaying web
+pages.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Java</guilabel>:</term>
+<listitem><para>Options for handling Java code embedded in web pages, as
+well as the security policies to be applied to such code.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>JavaScript</guilabel>:</term>
+<listitem>
+<para>Options for handling JavaScript code embedded in web pages.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Plugins</guilabel></term>
+<listitem>
+<para>Options about Plugins</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<sect2 id="kbrowse-html">
+
+<title>HTML</title>
+
+<para>The first option you can enable on this page is <guilabel>Enable
+completion of forms</guilabel>.  If you check this box, &konqueror; will
+try to remember what you answer to form questions, and will try to fill
+in forms for you with the answers you previously used.</para>
+
+<para>You can configure the number of form items &konqueror; remembers
+with the slider below labelled <guilabel>Maximum
+completions</guilabel></para>
+
+<note><para>Of course, anything &konqueror; fills in a form with, you
+can still edit before submitting the form!</para></note>
+
+<para>The next setting is <guilabel>Underline links</guilabel>. /ou can
+choose to underline links <guilabel>Always</guilabel>.  If this option
+is selected, any text on web pages that acts as a link will be shown in
+an underlined font. While many web pages do use color to distinguish
+text that acts as a link, underlining makes it very easy to spot
+links.</para>
+
+<para>If you don't like underlined links, you can choose
+<guilabel>Never</guilabel>, so that no links are underlined.  Or you can
+choose a middle ground, <guilabel>Hover</guilabel>, so that links are
+underlined when the mouse cursor is resting over them, and not
+underlined the rest of the time.</para>
+
+<para>Finally there are two last checkbox options. The first is
+<guilabel>Change cursor over links</guilabel>. If this option is
+selected, the shape of the cursor will change (usually to a hand)
+whenever it moves over a hyperlink. This makes it easy to identify
+links, especially when they are in the form of images.</para>
+
+
+<para>Finally, the checkbox labeled <guilabel>Automatically load
+images</guilabel>, allows you to control whether images on web pages are
+loaded by default. Unless you have a very slow connection, you will
+probably want to leave this option selected, as there are many web pages
+that are difficult to use without images. If you don't select the option
+to automatically load images, you can still view the text on the page,
+and then load the images if you need them.</para>
+
+</sect2>
+
+<sect2 id="kbrowse-appearance">
+
+<title>Appearance</title>
+
+<para>Under this tab, you can select various options related to the use
+of fonts. Although the shapes and sizes of fonts are often part of the
+design of a web page, you can select some default settings for
+&konqueror; to use.</para>
+
+<para>The first thing you can set here is the font size.  There are two
+settings which work together to allow you a comfortable browsing
+experience.</para>
+
+<para>Firstly, you can set a <guilabel>Minimum Font Size</guilabel>.
+This means, even if the font size is set specifically in the page you
+are viewing, &konqueror; will ignore that instruction and never show
+smaller fonts than you set here.</para>
+
+<para>Next you can set a <guilabel>Medium Font Size</guilabel>.  This is
+not only the default size of text, used when the page doesn't specify
+sizes, but it is also used as the base size that relative font sizes are
+calculated against.  That is, the <acronym>HTML</acronym> instruction
+<quote>smaller</quote>, it means smaller than the size you set for this
+option.</para>
+
+<para>For either option, you can select the exact font size in points by
+using the up/down spin control (or just typing) next to the option
+label.</para>
+
+<para>The remaining options are for the fonts to be associated with
+different types of markup used in <acronym>HTML</acronym> pages. Note
+that many web pages may override these settings. If you click anywhere
+on a control which shows a font name, a list of font names appears, and
+you can select a different font if you like. (If there are a lot of
+fonts, a vertical scrollbar appears in the list to allow you to scroll
+through all of the fonts.)</para>
+
+<para>You can set a font for each <quote>type</quote> of markup, for
+each <guilabel>Charset</guilabel>, by changing the character set in the
+first drop down box, and then selecting a font for each category below.
+This would take quite some time, so you may just want to set up the
+fonts for your default character set.  Most English speaking users will
+use iso8859-1</para>
+
+<para>Below this, you can set a <guilabel>Font size adjustment for this
+encoding</guilabel>.  Sometimes the fonts you want to use for a
+particular encoding or language are much larger or smaller than average,
+so you can use this setting to bring them into line.</para>
+
+<para>You can set a default encoding that &konqueror; should assume
+pages are when rendering them.  The default setting is <guilabel>Use
+language encoding</guilabel>, but you can change it to any encoding
+available in the list.  You can even force the use of your default
+encoding using the <guilabel>Enforce default Encoding
+charset</guilabel>, in which case &konqueror; will ignore any language
+or charset from the page or server, and will use your setting.</para>
+
+<warning>
+<para>This setting could render many pages completely unreadable. You
+should probably only select it if you are sure it's the correct solution
+to any problems you are having.</para>
+</warning>
+
+</sect2>
+
+<sect2 id="kbrowse-java">
+
+<title>Java</title>
+
+<para>Java allows applications to be downloaded and run by a web
+browser, provided you have the necessary software installed on your
+machine. Many web sites make use of Java (for example, online banking
+services or interactive gaming sites). You should be aware that running
+programs from unknown sources could pose a threat to the security of
+your computer, even if the potential extent of the damage is not
+great.</para>
+
+<para>The checkboxes under <guilabel>Global Settings</guilabel> allows
+you to turn Java support on for all web sites by default. You can also
+select to turn Java on or off for specific hosts. To add a policy for a
+specific host, click the <guilabel>Add...</guilabel> button to bring up
+a dialog in which you can type the host name and then choose to accept
+or reject Java code from that particular host, which will add the domain
+to the list on the left of the page.</para>
+
+<para>You can select a host in the list, and click the
+<guilabel>Change...</guilabel> button to choose a different policy for
+that host. Clicking the <guilabel>Delete</guilabel> button removes the
+policy for the selected host; after deletion, the global settings will
+then apply to that host. You can import policies from a file by clicking
+the <guilabel>Import...</guilabel> button. To save the current list to a
+compressed archive file, click the <guilabel>Export...</guilabel>
+button.</para>
+
+<para>Finally, the group of controls labeled <guilabel>Java Runtime
+Settings</guilabel> allows you to set some options for the way in which
+Java should run. If you select the <guilabel>Show Java
+Console</guilabel> option, &konqueror; will open a console window from
+which Java applications can read and write text. While most Java
+applications will not require such a console, it could be helpful in
+diagnosing problems with Java applications.</para>
+
+<para>The <guilabel>Shutdown Applet Server when inactive</guilabel>
+checkbox allows you to save resources by closing the Java Applet Server
+when it is not in use, rather than leaving it running in the
+background.  Leaving this disabled may make Java applets start up
+faster, but it will use system resources when you are not using a Java
+applet.  If you enable this, you can set a timeout.</para>
+
+<para>You can either opt to have &konqueror; automatically detect the
+Java installation on your system, or specify the path to the
+installation yourself by selecting <guilabel>Use user-specified
+Java</guilabel>. You may want to choose the latter method, for instance,
+if you have multiple Java installations on your system, and want to
+specify which one to use. If the Java Virtual Machine you are using
+requires any special startup options, you can type them in the text box
+labeled <guilabel>Additional Java Arguments</guilabel>.</para>
+
+</sect2>
+
+<sect2 id="kbrowse-javascript">
+<title>JavaScript</title>
+
+<para>Despite the name, JavaScript is not related at all to Java.</para>
+
+<para>The first part of this page works the same as the Java page
+settings.</para>
+
+<para>The checkboxes under <guilabel>Global Settings</guilabel> allows
+you to turn JavaScript support on for all web sites by default. You can
+also select to turn JavaScript on or off for specific hosts. To add a
+policy for a specific host, click the <guilabel>Add...</guilabel> button
+to bring up a dialog in which you can type the host name and then choose
+to accept or reject JavaScript code from that particular host, which
+will add the domain to the list on the left of the page.</para>
+
+<para>You can select a host in the list, and click the
+<guilabel>Change...</guilabel> button to choose a different policy for
+that host. Clicking the <guilabel>Delete</guilabel> button removes the
+policy for the selected host; after deletion, the global settings will
+then apply to that host. You can import policies from a file by clicking
+the <guilabel>Import...</guilabel> button. To save the current list to a
+compressed archive file, click the <guilabel>Export...</guilabel>
+button.</para>
+
+<para>The final set of options on this page determine what happens when
+a page uses JavaScript to try to open a new window.  You can set
+&konqueror; to <guilabel>Allow</guilabel> all such requests,
+<guilabel>Ask</guilabel> each time a request is made, or
+<guilabel>Deny</guilabel> all popup requests.</para>
+
+</sect2>
+
+<sect2>
+<title>Plugins</title>
+
+<para>There is currently only one option on this page: <guilabel>Enable
+Plugins globally</guilabel>.  If you disable this checkbox, then &konqueror;
+will not use any plugins.  If you enable it, then any installed and
+configured plugins that it can find will be used by &konqueror;</para>
+</sect2>
+
+<sect2 id="kbrowse-author">
+
+<title>Section Author</title>
+
+<para>This section written by: </para>
+<para>Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>.</para>
+
+<para>Additional material by Lauri Watts
+<email>lauri@kde.org</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

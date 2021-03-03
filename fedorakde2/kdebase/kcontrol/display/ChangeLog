@@ -1,0 +1,33 @@
+1999-05-06  Steffen Hansen  <hansen@kde.org>
+
+	* DND stuff for color-preview.
+
+1999-03-01 Duncan Haldane <duncan@kde.org>
+	* commented out (//) annoying debug calls in
+	* backgnd.cpp, colorscm.cpp, general.cpp, scrnsave.cpp
+	* that write to logs during normal error-free operation
+
+1999-1-13  Matej Koss  <koss@napri.sk>
+
+	* Moved all defaults to config-kbgndwm.h ( patch from Michael Reiher )
+	* backgnd.cpp: after latest patch user coudn't change display mode when
+		using Random mode. But it's required when we open setup dialog
+	  
+1999-1-4  Antonio Larrosa  <larrosa@kde.org>
+
+	* Change to use kcmdisplayrc everywhere (instead of the old
+	kdisplayrc) and disable wallpaper draw mode when in random mode
+
+1998-12-23  Christian Esken  <esken@kde.org>
+
+	* scrnsave.cpp: Removed the "Allow unlock by root" checkbox,
+	because kcheckpass doesn't support this option.
+
+1998-12-07  Alex Zepeda  <garbanzo@hooked.net>
+
+	* general.cpp: Initialized a variable to NULL.
+
+1998-11-30  Alex Zepeda  <garbanzo@hooked.net>
+
+	* Makefile.am: Moved icons into pics/ && pics/mini/
+

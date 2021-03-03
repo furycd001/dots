@@ -1,0 +1,4 @@
+#! /bin/sh
+
+file=`echo $3 | sed -e "s#http://localhost/#/#; s#file:/*#/#"`
+meinproc --htdig $file 

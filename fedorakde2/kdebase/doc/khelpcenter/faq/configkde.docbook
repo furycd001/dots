@@ -1,0 +1,209 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+ 
+<chapter id="configure">
+<title>Configuring &kde;</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I set the language used by &kde;?</para>
+</question>
+<answer>
+<para>There are two ways to set the language &kde; uses in the
+messages it will display:</para>
+<variablelist>
+<varlistentry><term>Using the <application>&kde; Control Center</application></term>
+<listitem><para>Fire up the <application>&kde; Control Center</application> and select
+<guimenu>Personalization</guimenu> followed by <guimenuitem>Country
+and Language</guimenuitem>.  You can select your language and location
+here.  If &kde; cannot find a translation in the first language
+chosen, it will fall back on the default language.  This is usually
+(American) English by default.</para>
+<note><para>Using the <application>&kde; Control Center</application> is the preferred way of choosing
+languages in &kde;.</para></note></listitem>
+</varlistentry>
+<varlistentry><term>Using the <envar>LANG</envar> environment variable</term>
+<listitem><para>The second method uses the standard locale setting on
+your system.  To change the language, simply set the environment
+variable <envar>LANG</envar> accordingly.  For example, if your shell 
+is <application>bash</application>, execute <command>export
+LANG=de</command> to set German as the language used.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there any keyboard switcher for international keyboards for
+&kde;?</para>
+</question>
+<answer>
+<para>
+Yes you can configure it using the <application>&kde; Control Center</application>
+<guimenu>Peripherals</guimenu>
+<guimenuitem>Keyboard</guimenuitem>
+<guimenuitem>Layout</guimenuitem> configuration dialog.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I replace the standard &Linux; text login screen with the
+&kde; login screen?</para>
+</question>
+<answer>
+<para>First, you need to change to the "xdm runlevel" (runlevel 5 on
+&RedHat; systems, 3 on S.u.S.E.) by editing your
+<filename>/etc/inittab</filename> file.  In the file, you should have
+a line saying <userinput>id:3:initdefault:</userinput>.  Change it to
+<userinput>id:5:initdefault:</userinput>.  Now at the end of the file,
+comment out the following line:
+<userinput>x:5:respawn:/usr/bin/X11/xdm -nodaemon</userinput> and
+replace it with
+<userinput>x:5:respawn:<replaceable>/opt/kde/</replaceable>bin/kdm
+-nodaemon</userinput>.
+<note><para>The location of &kdm; may differ on your
+system.</para></note></para>
+<para>For changes to take effect immediately, type <command>init
+5</command> (for &RedHat; systems) at the shell prompt. 
+<caution><para>It is risky to initiate a graphical login without
+checking beforehand whether it works.  If it fails to work, you would
+be in for a hard time getting back....</para></caution></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+
+<para>I would like to click the &LMB; anywhere on the
+desktop and have the <guimenu>K</guimenu> menu displayed.</para>
+</question>
+<answer>
+<para>Open the <application>&kde; Control Center</application> and choose
+<menuchoice><guisubmenu>Look and
+Feel</guisubmenu><guisubmenu>Desktop</guisubmenu>
+<guisubmenu>General</guisubmenu></menuchoice>.  You can now choose the
+behavior of mouse clicks on the desktop.  To have the
+<guimenu>K</guimenu> menu open from a single &LMB;
+click, change the entry labeled <guilabel>Left button</guilabel> to
+say <guilabel>Application Menu</guilabel>.</para>
+</answer>
+</qandaentry>
+
+<!-- Not KDE -->
+<!--
+<qandaentry>
+<question>
+<para>How do I use the three extra keys on my &Windows; keyboard in
+&kde;?</para>
+</question>
+<answer>
+<para>You may have to configure your X server via
+<command>xmodmap</command> to bind the keycodes of the &Windows; keys
+to useful X key symbols (<command>xev</command> is your friend!).</para>
+<para>First, create a file <filename>$<envar>HOME</envar>/.Xmodmap</filename>
+containing the entries:</para>
+<screen>
+keycode 115=F13
+keycode 117=F15
+</screen>
+<para>Then run <command>xmodmap ~/.Xmodmap</command>.  This sets
+the <keycap>Start</keycap> key to emit <keysym>F13</keysym> and the
+<keycap>Windows</keycap> key to emit <keysym>F15</keysym>.  Next, fire
+up the <application>&kde; Control Center</application> and select <menuchoice><guimenu>Shortcut
+Keys</guimenu><guimenuitem>Global Shortcut</guimenuitem></menuchoice>.
+Set <guilabel>Pop-up system menu</guilabel> to <keysym>F13</keysym>
+and <guilabel>Window operations menu</guilabel> to
+<keysym>F15</keysym>.  That is it.
+<note><para>The numbers 115 and 117 may depend on the keyboard.  If
+you are not sure, please check using <command>xev</command>.  In
+addition, the above procedure requires &kde; 1.1 and above.</para>
+<para>&kikbd; is able to do this too, but keymaps have to be edited.
+The advantage of &kikbd; is that one can choose whether to use these
+mappings on several custom keymaps and have them hotswappable.</para>
+<para>It would be interesting to make a little script that will
+automatically do the keymap modifications on demand.  &kikbd; should
+be able to read/understand user-side keymap files.</para></note></para>
+</answer>
+</qandaentry>
+-->
+
+<qandaentry>
+<question>
+<para>Where do I find information regarding &kde; themes?</para>
+</question>
+<answer>
+<para>Go see <ulink
+url="http://kde.themes.org/">http://kde.themes.org/</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I change &MIME; Types?</para>
+</question>
+<answer>
+<para>If you are using &konqueror;, do this instead: first, open a
+&konqueror; window and choose
+<menuchoice><guimenu>Edit</guimenu><guimenuitem>File
+Type</guimenuitem></menuchoice>.  Find the type you want to change
+(<abbrev>e.g.</abbrev> text/english or image/gif), click the &RMB;,
+select <guilabel>General</guilabel>, and set the application
+preference order to whatever you want.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kde; (&kdm;) does not read my
+<filename>.bash_profile</filename>!</para>
+</question>
+<answer>
+<para>Well, <application>xdm</application> (and &kdm;) does not run a login shell, so
+<filename>.profile</filename>, <filename>.bash_profile</filename>,
+<abbrev>etc.</abbrev> are not sourced.  When the user logs in, <application>xdm</application> runs
+<command>Xstartup</command> as root and then
+<command>Xsession</command> as user.  So the normal practice is to add
+statements in <filename>Xsession</filename> to source the user profile.
+Please edit your <filename>Xsession</filename> and
+<filename>.xsession</filename> files.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I use &TrueType; fonts in &kde;?</para>
+</question>
+<answer>
+<para>You need to install &TrueType; font support to your &X-Windows;.  Please
+take a look at <ulink url="http://x.themes.org/">x.themes.org</ulink>
+for the fonts, and <ulink
+url="http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/">xfsft:
+&TrueType; Font Support For X11</ulink> or <ulink
+url="http://X-TT.dsl.gr.jp/">X-&TrueType; Server Project Home
+Page</ulink> for the font servers.</para>
+<para>If you have a bunch of &TrueType; fonts from &Microsoft;
+&Windows;, edit the <filename>XF86Config</filename> file to get the fonts from the font
+folder.  Then just tell &kde; to use these new fonts with the font
+administrator utility.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to enter, show and work with the Euro Symbol in
+&kde;?</para>
+</question>
+<answer>
+<para>Yes and no.  For details, look here: <ulink url="http://www.koffice.org/kword/euro.phtml">http://www.koffice.org/kword/euro.phtml
+</ulink>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>

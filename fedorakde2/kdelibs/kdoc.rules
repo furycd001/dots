@@ -1,0 +1,56 @@
+# These are the rules used by makekdedoc to generate the kdelibs
+# documentation with KDOC. Please update them if I forget any
+# dependencies.
+#
+# -Taj (Apr 1999)
+#
+# $Id$
+
+kde_MODULES = dcop kdecore kdeui kio kded kfile kparts khtml kjs kdejava kspell kab kdeprint libkmid interfaces
+
+dcop_FILES = *.h
+dcop_LIBS = -lqt
+
+kdecore_FILES = k*.h net*.h
+kdecore_LIBS = -ldcop -lqt
+
+kdeui_FILES = *.h
+kdeui_LIBS = -lkdecore -ldcop -lqt
+
+kab_FILES = kabapi.h addressbook.h
+kab_LIBS = -lkdecore -lkdeui -lqt
+
+kfile_FILES= *.h
+kfile_LIBS= -lkio -lkdecore -lkdeui -lqt
+
+kspell_FILES = *.h
+kspell_LIBS = -lkdecore -lkdeui -lqt
+
+khtml_FILES = *.h dom/*.h
+khtml_LIBS = -lkio -lkparts -lkdecore -lkdeui -lqt
+
+kjs_FILES = kjs.h object.h types.h function.h operations.h ustring.h
+kjs_LIBS = -lqt
+
+kdejava_FILES = *.h
+kdejava_PATH = khtml/java
+kdejava_LIBS = -lkdecore -lkdeui -lqt
+
+kio_FILES = *.h
+kio_LIBS = -lkdecore -lkdeui -ldcop -lqt
+
+kded_FILES = *.h
+kded_PATH = kio/kded
+kded_LIBS = -lkio -lkdecore -lkdeui -ldcop -lqt
+
+kparts_FILES = *.h
+kparts_LIBS = -lkdeui -lkdecore -lqt
+
+kdeprint_FILES = kprinter.h kprintdialogpage.h
+kdeprint_LIBS = -lkdeui -lkdecore -lqt
+
+libkmid_FILES = *.h
+libkmid_LIBS = -lqt
+
+interfaces_FILES = *.h
+interfaces_LIBS = -lkparts -l kdeui -lqt

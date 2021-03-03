@@ -1,0 +1,99 @@
+<sect1 id="sys-notify">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>system notification</keyword>
+<keyword>notification</keyword>
+</keywordset>
+</sect1info>
+
+<title>System Notification</title>
+
+<para>&kde;, like all applications, needs to inform the user when a
+problem occurs, a task is completed, or something has happened.  &kde;
+uses a set of <quote>System Notifications</quote> to keep the user
+informed on what is happening.</para>
+
+<para>Using this module, you can determin what &kde; does to communicate
+each event.</para>
+
+<para>The panel consists of a large list of specific events which need
+to be communicated to the user.  This list is organized into a tree, so
+that you can rapidly find the notification you are looking for.</para>
+
+<para>To configure a notification, simply click on a group, which will
+open up a subgroup.  You can click on subgroups, which may lead to more
+subgroups, or it may lead to a list of notifications.</para>
+
+<para>Once you have found the notification you are looking for, double-click on
+the notification.</para>
+
+<para>You will be presented with 4 options:</para>
+
+<variablelist>
+<varlistentry>
+<term>Log to file</term>
+<listitem><para>This will tell &kde; to add the notification to the end of a file.
+Once you place a mark in front of this option, you can enter a filename at the
+bottom of the module.  If you click on the <guiicon>folder</guiicon> to the
+right of the blank, you can browse through your filesystem and select the file
+you want.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Play sound</term>
+<listitem><para>When this notification is activated, &kde; will play a sound.
+Once you place a mark in front ofthis option, you can enter a filename at the
+bottom of the module.  </para>
+<para>If you click on the <guiicon>folder</guiicon> to the right of the blank,
+you can browse through your filesystem and select the file you want.</para>
+<para>By clicking the arrow button to the right of the <guiicon>folder</guiicon>
+button, you can hear the sound.</para>
+
+<note><para>Currently, you can only play <literal
+role="extension">.wav</literal> files.  This will likely change in future
+releases.</para></note>
+
+<para>Maybe you want to use a special media player to play sound files, &eg;
+because you use sound files in a special format or you don't use the
+<application>aRts</application> sound daemon. In that case, check the
+<guilabel>Use external player</guilabel> option and enter the full path and name
+of the program you want to use into the text field.</para></listitem>
+
+</varlistentry>
+<varlistentry>
+<term>Show message box</term>
+<listitem><para>When this notification is activated, a message box appears in
+the middle of the screen to inform the user of the message..</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Standard error output</term>
+<listitem><para>When this notification is activated, the message is sent to the
+standard output.</para></listitem>
+</varlistentry>
+</variablelist>
+<tip><para>You are not limited to choosing one option, you can use any
+combination of these four options for each notification.</para></tip>
+
+<sect2>
+<title>Section Author</title>
+
+<para>This section written by Mike McBride <email>mpmcbride7@yahoo.com</email>
+</para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

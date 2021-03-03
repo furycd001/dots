@@ -1,0 +1,886 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+<!ENTITY kappname "&kate;"><!-- replace kapp here -->
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % English "INCLUDE"><!-- change language only here -->
+<!-- Do not define any other entities; instead, use the entities
+from kde-genent.entities and $LANG/user.entities. -->
+]>
+
+<!-- The language must NOT be changed here. -->
+
+<book lang="&language;">
+<title>The &kate; Handbook</title>
+
+<bookinfo>
+<authorgroup>   
+<author>
+<firstname>Seth</firstname>
+<surname>Rothberg</surname>
+<affiliation>
+<address><email>sethmr@bellatlantic.net</email></address>
+</affiliation>
+</author>
+</authorgroup>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+<copyright>
+<year>2000</year>
+<year>2001</year>
+<holder>Seth M. Rothberg</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<!-- Date and version information of the documentation
+Don't forget to include this last date and this last revision number, we
+need them for translation coordination !
+Please respect the format of the date (DD/MM/YYYY) and of the version
+(V.MM.LL), it could be used by automation scripts.
+Do NOT change these in the translation. -->
+
+<date>2001-05-30</date>
+<releaseinfo>1.00.00</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para>&kate; is a programmer's text editor for KDE 2.2 and above.</para>
+
+<para>This handbook documents &kate; Version 1.0</para>
+</abstract>
+
+<!-- This is a set of Keywords for indexing by search engines.
+Please at least include KDE, the KDE package it is in, the name
+of your application, and a few relevant keywords. -->
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdebase</keyword>
+<keyword>Kate</keyword>
+<keyword>text</keyword>
+<keyword>editor</keyword>
+<keyword>programmer</keyword>
+<keyword>programming</keyword>
+<keyword>projects</keyword>
+<keyword>MDI</keyword>
+<keyword>Multi</keyword>
+<keyword>Document</keyword>
+<keyword>Interface</keyword>
+<keyword>terminial</keyword>
+<keyword>console</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+<para>
+Welcome to &kate;, a programmer's text editor for &kde; version 2.2 and
+above. Some of &kate;'s many features include configurable syntax
+highlighting for languages ranging from C and C++ to
+<acronym>HTML</acronym> to bash scripts, the ability to create and
+maintain projects, a multiple document interface
+(<acronym>MDI</acronym>), and a self-contained terminal emulator.
+</para>
+
+<para>
+But &kate; is more than a programmer's editor. It's ability to open
+several files at once makes it ideal for editing &UNIX;'s many
+configuration files.  This document was written in &kate;.
+</para>
+</chapter>
+
+<chapter id="fundamentals">
+<title>The Fundamentals</title>
+
+<para>
+If you have ever used a text editor you will have no problem using
+&kate;. In the next two sections, <link linkend="starting-kate">Starting
+&kate; </link> and in <link linkend="working-with-kate">Working with
+&kate;</link> we'll show you everything you need to get up and running
+quickly.
+</para>
+
+<sect1 id="starting-kate">
+<title>Starting &kate;</title>
+
+<para>
+You can start &kate; from the <guimenu>K menu</guimenu> or from the
+command line.
+</para>
+
+<sect2 id="starting-from-the-menu">
+<title>From the Menu</title>
+<para>
+Open the <acronym>KDE</acronym> program menu by clicking on the
+<guiicon>big K</guiicon> icon on the toolbar at the bottom left of your
+screen. This will raise the <guimenu>program menu</guimenu>. Move your
+cursor up the menu to the <guimenu>Editors</guimenu> menu item. A list
+of available editors will appear. Choose
+<guimenuitem>&kate;</guimenuitem>.
+</para>
+
+<para>
+Unless you configure &kate; not to, it will load the last files you
+edited. See <link linkend="configure">Configuring &kate;</link> to learn
+how to toggle this feature on and off.
+</para>
+
+</sect2>
+
+<sect2 id="starting-from-the-command-line">
+<title>From the Command Line</title>
+
+<para>
+You can start &kate; by typing its name on the command line. If you give
+it a file name, as in the example below, it will open or create that
+file.
+</para>
+
+<informalexample>
+<screen>
+<prompt>%</prompt><userinput><command>kate</command><option><replaceable>myfile.txt</replaceable></option></userinput>
+</screen>
+</informalexample>
+
+<para>
+If you have an active connection, and permission, you can take advantage
+of &kde;'s network transparency to open files on the internet.
+</para>
+
+<informalexample>
+<screen>
+<prompt>%</prompt><userinput><command>kate</command><option><replaceable>ftp://ftp.kde.org/pub/kde/README_FIRST</replaceable></option></userinput>
+</screen>
+</informalexample>
+
+<sect3 id="command-line-options">
+<title>Command Line Options</title>
+<para>&kate; accepts following command line options:</para>
+
+<variablelist>
+<varlistentry>
+<term><userinput><command>kate</command> <option>--help</option></userinput></term>
+<listitem>
+<para>
+This lists the most basic options available at the command line.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><userinput><command>kate</command>
+<option>--help-qt</option></userinput></term>
+<listitem>
+<para>
+This lists the options available for changing the way &kate; interacts
+with &Qt;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><userinput><command>kate</command> <option>--help-kde</option></userinput></term>
+<listitem>
+<para>
+This lists the options available for changing the way &kate; interacts
+with &kde;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><userinput><command>kate</command>
+<option>--help-all</option></userinput></term>
+<listitem>
+<para>
+This lists all of the command line options.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><userinput><command>kate</command>
+<option>--author</option></userinput></term>
+<listitem>
+<para>
+Lists &kate;'s authors in the terminal window.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><userinput><command>kate</command>
+<option>--version</option></userinput></term>
+<listitem>
+<para>
+Lists version information for &Qt;, &kde;, and &kate;.  Also available
+through <userinput><command>kate</command>
+<option>-V</option></userinput>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><userinput><command>kate</command>
+<option>--licence</option></userinput></term>
+<listitem>
+<para>
+Shows license information.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+
+<sect2 id="drag-and-drop">
+<title>Drag and Drop</title>
+<para>
+&kate; uses the &kde; Drag and Drop protocol. Files may be dragged and
+dropped onto &kate; from the Desktop, &konqueror; or some remote ftp
+site opened in one of &konqueror;'s windows.
+</para>
+</sect2>
+</sect1>
+
+<sect1 id="working-with-kate">
+<title>Working with &kate;</title>
+<para>
+<link linkend="quick-start">Quick Start</link> will show you how to
+toggle four simple options that will let you configure some of &kate;'s
+more powerful features right away. <link linkend="keystroke-commands">
+Keystroke Commands</link> lays out some of the default keystroke
+shortcuts for those who can't or don't want to use a mouse.
+</para>
+
+<sect2 id="quick-start">
+<title>Quick Start</title>
+
+<para>
+This section will describe some of the items on the
+<guimenu>Settings</guimenu> menu so that you can quickly configure
+&kate; to work the way you want it.
+</para>
+
+<para> When you start &kate; for the first time you'll see two windows
+with white backgrounds. Above the two windows is a toolbar with the
+usual labeled icons. And above that, a menu bar.
+</para>
+
+<para>
+The left-hand window is a dockable side bar. It combines the Filelist
+and Fileselector windows. Switch between the two by clicking on the tabs
+at the top of the window. </para>
+
+<para>
+If you've started &kate; with a file, the right-hand window will show
+the file you are editing and the Filelist on the side bar will show the
+name of the file. Use the Fileselector window to open files.
+</para>
+
+<para>
+You can toggle the Filelist and Fileselector window on and off in
+<guimenu>Settings</guimenu> menu. This menu offers you your first
+glimpse into &kate;'s power and flexibility.  In this section we'll look
+at four items:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><guimenuitem>Show
+<accel>T</accel>oolbar</guimenuitem></menuchoice></term>
+<listitem>
+<para>
+Toggles the toolbar on and off.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<guimenuitem>Show Filelist</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+Toggles the Filelist on and off. If the Filelist/Fileselector window is
+not open, &kate; launches the side bar as a separate, undocked,
+window. To dock the window grab the two thin parallel lines above the
+tabs by clicking on them with your &LMB; and holding the button
+down. Drag the the window into &kate;'s editing window and release the
+&LMB; when you have positioned the Filelist/Fileselector window as you
+prefer.
+</para>
+
+<tip>
+<para>
+If you have grabbed the two parallel lines successfully your mouse
+pointer will turn into two crossed arrows as you drag.
+</para>
+</tip>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice><guimenuitem>Show
+Fileselector</guimenuitem></menuchoice></term>
+<listitem>
+<para>
+Toggles the Fileselector on and off. This menu item is the same as
+<guimenuitem>Show Filelist</guimenuitem> with one difference.  Toggling
+it on launches the window with the Fileselector on top.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenuitem>Show
+<accel>C</accel>onsole</guimenuitem></menuchoice></term>
+<listitem>
+<para>
+Toggles a console emulator on and off at the bottom of &kate;'s
+window. In other words, it gives you a command line within the
+application.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2 id="keystroke-commands">
+<title>Keystroke Commands</title>
+
+<para>
+Many of &kate;'s keystroke commands (shortcuts) are configurable by
+way of the <link linkend="settings">Settings</link> menu.  By default
+&kate; honors the following key bindings.
+</para>
+
+<informaltable>
+<tgroup cols="2">
+<tbody>
+
+<row><entry><para><keycap>Insert</keycap></para></entry> 
+<entry><para>
+Toggle between Insert and Overwrite mode. When in insert mode the editor
+will add any typed characters to the text and push any previously typed
+data to the right of the text cursor. Overwrite mode causes the entry of
+each character to eliminate the character immediately to the right of
+the text cursor.</para></entry>
+</row>
+<row>
+<entry><para><keycombo><keycap>Left Arrow</keycap></keycombo></para></entry>
+<entry><para>Move the cursor one character to the left </para></entry>
+</row>
+<row>
+<entry><para><keycombo><keycap>Right Arrow</keycap></keycombo></para></entry>
+<entry><para> Move the cursor one character to the right </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Up Arrow</keycap></keycombo></para></entry>
+<entry><para> Move the cursor up one line  </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Down Arrow</keycap></keycombo></para></entry>
+<entry><para> Move the cursor down one line </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Page Up</keycap></keycombo></para></entry>
+<entry><para> Move the cursor up one page  </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Page Down</keycap></keycombo></para></entry>
+<entry><para>Move the cursor down one page  </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Backspace</keycap></keycombo></para></entry>
+<entry><para> Delete the character to the left of the cursor </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Home</keycap></keycombo></para></entry>
+<entry><para> Move the cursor to the beginning of the line </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>End</keycap></keycombo></para></entry>
+<entry><para> Move the cursor to the end of the line </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Delete</keycap></keycombo></para></entry>
+<entry><para>Delete the character to the right of the cursor (or any selected
+text)</para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Shift</keycap><keycap>Left Arrow</keycap></keycombo></para></entry>
+<entry><para> Mark text one character to the left </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Shift</keycap><keycap>Right Arrow</keycap></keycombo></para></entry>
+<entry><para> Mark text one character to the right </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F1</keycap></keycombo></para></entry>
+<entry><para> Help</para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Shift</keycap><keycap>F1</keycap></keycombo></para></entry>
+<entry><para><link linkend="whats-this">What's this?</link></para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>F</keycap></keycombo></para></entry>
+<entry><para><link linkend="find"> Find</link></para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F3</keycap></keycombo></para></entry>
+<entry><para><link linkend="find-again"> Find again</link></para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>B</keycap></keycombo></para></entry>
+<entry><para>Set a Bookmark</para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>C</keycap></keycombo></para></entry>
+<entry><para> Copy the marked text to the clipboard. </para></entry>
+</row>
+
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>N</keycap></keycombo></para></entry>
+<entry><para> <link linkend="new">New</link> document</para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>P</keycap></keycombo></para></entry>
+<entry><para><link linkend="print">Print</link> </para></entry>
+</row>
+<row>
+
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>Q</keycap></keycombo></para></entry>
+<entry><para>Quit - close active copy of editor </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>R</keycap></keycombo></para></entry>
+<entry><para><link linkend="replace"> Replace</link></para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>S</keycap></keycombo></para></entry>
+<entry><para>Save your file.</para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>V</keycap></keycombo></para></entry>
+<entry><para> Paste.</para></entry>
+</row>
+
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>X</keycap></keycombo></para></entry>
+<entry><para>Delete the marked text and copy it to the clipboard. </para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>Z</keycap></keycombo></para></entry>
+<entry><para><link linkend="undo">Undo</link></para></entry>
+</row>
+<row>
+<entry><para><keycombo action="simul"><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>Z</keycap></keycombo></para></entry>
+<entry><para><link linkend="redo">Redo</link></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="menu-entries">
+<title>Menu Entries</title>
+<sect1 id="file-menu">
+<title>The <guimenu>File</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<anchor id="new"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>N</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>N</accel>ew</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command <action>starts a new document</action> in the editing
+window.  In the <guibutton>Filelist</guibutton> on the left the new file
+is named <emphasis>Untitled</emphasis>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="open"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>O</accel>pen</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command does not <action>open a file</action>. It
+launches &kde;'s open file dialog box which waits for you
+to select the files you want to open.
+</para>
+
+<para>
+The open file dialog box works like a simple version of &konqueror;. Use
+your &LMB; to click on a file name to select it. Double-click on a file
+name to open that file. Once you've selected a file name, you can also
+press the <guibutton>OK</guibutton> button to open the
+file.
+</para>
+<tip>
+<para>
+Select multiple files by holding down the <keycap>Ctrl</keycap> or the
+<keycap>Shift</keycap> key along with the &LMB;.
+<keycombo action="simul">
+<keycap>Ctrl</keycap><mousebutton>Left</mousebutton>
+</keycombo>
+click selects one file at a time.
+<keycombo action="simul">
+<keycap>Shift</keycap><mousebutton>Left</mousebutton>
+</keycombo>
+click selects a contiguous set of files.
+</para>
+</tip>
+
+<para>
+Clicking on a directory name in the file selection window
+opens that directory and displays its contents.
+Clicking on a file name shows a thumbnail view of the file in the
+preview window to the right of the file system window.
+</para>
+
+<para>
+Use the buttons and combo box on the toolbar above the file selection
+window to move through the file system or to adjust the properties of
+the open file dialog box.
+</para>
+
+<para>
+Below the file selection window is the Location
+combo  box. Type the name of the file you want to edit
+here. If you click the arrow on the right of the drop down
+box, you can choose from recently used files. Open several
+files at once by quoting each file name.
+</para>
+
+<para>
+Below the Location combo box is the Filter combo box.  Enter file masks
+here to filter the kinds of files shown in the selection window. For
+example, typing the filter <literal role="extension">*.txt</literal> and
+pressing <keycap>Enter</keycap> will limit the display to files with a
+<literal role="extension">.txt</literal> extension.  The Filter combo
+contains a list of your most recently used filters.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="open-recent"/>
+<menuchoice>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem>Open <accel>R</accel>ecent</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command allows you to <action>open a file</action> from a submenu
+that contains a list of recently edited files.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="save"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>S</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>S</accel>ave</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command <action>saves your file</action>. Use it often. If the file is
+<emphasis>Untitled</emphasis> then
+<guimenuitem>Save</guimenuitem> becomes
+<guimenuitem>Save As</guimenuitem>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="save-as"/>
+<menuchoice>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem>Save <accel>A</accel>s</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+<action>Name and rename files</action> with this command.
+It launches the save file dialog box. This dialog works just as
+the open file dialog box does. You can use it to navigate through
+your file system, preview existing files, or filter your file
+view with file masks.
+</para>
+
+<para>
+Type the name you want to give the file you are saving in the
+Location combo box and press the
+<guibutton>OK</guibutton> button.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="save-all"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>L</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem>Save A<accel>l</accel>l</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command <action>saves all open files</action>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="reload"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>F5</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>R</accel>eload</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+<action>Reloads the active file from disk</action>.  This command is
+useful if another program or process has changed the file while you have
+it open in &kate;
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="open-with"/>
+<menuchoice>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem>O<accel>p</accel>en with</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command launches the open with dialog box that allows you to
+<action>select another application to open the active
+file</action>. Your file will still be open in &kate;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="print"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>P</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>P</accel>rint</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+<action>Print the active file</action>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="close"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>W</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>C</accel>lose</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+<action>Close the active file</action> with this command. If you
+have made unsaved changes, you will be prompted to save
+the file before &kate; closes it.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="close-all"/>
+<menuchoice>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>C</accel>lose All</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command <action>closes all the files you have open</action>
+in &kate;.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="new-window"/>
+<menuchoice>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem>New <accel>W</accel>indow</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+<action>Opens a another instance of &kate;</action>.
+The new instance will be identical to your previous instance.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="quit"/>
+<menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>Ctrl</keycap><keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>Q</accel>uit</guimenuitem>
+</menuchoice>
+</term>
+<listitem>
+<para>
+This command <action>closes &kate;</action> and any files you were
+editing. If you have made unsaved changes to any of the files you were
+editing, you will be prompted to save them.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+</chapter>
+
+<chapter id="configuring-kate">
+<title>Configuring Kate</title>
+<para>
+<anchor id="settings"/>
+<anchor id="configure"/>
+<anchor id="whats-this"/>
+<anchor id="find"/>
+<anchor id="find-again"/>
+<!-- <anchor id="print"/> -->
+<anchor id="replace"/>
+<!-- <anchor id="save"/> -->
+<anchor id="undo"/>
+<anchor id="redo"/>
+This chapter will show you all the options for configuring
+&kate;.
+</para>
+</chapter>
+
+<chapter id="credits">
+
+<!-- Include credits for the programmers, documentation writers, and
+contributors here. The license for your software should then be included
+below the credits with a reference to the appropriate license file
+included in the KDE distribution. -->
+
+<title>Credits and License</title>
+
+<para>
+&kate; Copyright 2000, 2001, Christoph Cullmann.
+</para>
+
+<!-- To save you some work, here's Kate's author list (I could mark it -->
+<!-- up too if you want, I just didn't want to interfere too much :) -->
+
+<!-- 
+Kate was written by
+Christoph Cullmann <cullmann@kde.org>
+Anders Lund <anders@alweb.dk>
+Joseph Wenninger <jowenn@bigfoot.com>
+Michael Bartl <michael.bartl1@chello.at>
+Phlip <phlip_cpp@my-deja.com>
+Waldo Bastian <bastian@kde.org>
+Matt Newell <newellm@proaxis.com>
+Michael McCallum <gholam@xtra.co.nz>
+Jochen Wilhemly <digisnap@cs.tu-berlin.de>
+Michael Koch <koch@kde.org>
+Christian Gebauer <gebauer@bigfoot.com>
+Simon Hausmann <hausmann@kde.org>
+Glen Parker <glenebob@nwlink.com>
+Scott Manson <sdmanson@alltel.net>
+John Firebaugh <jfire@uclink.berkeley.edu>
+-->
+
+<para>
+Documentation copyright 2000,2001 Seth Rothberg,
+<email>sethmr@bellatlantic.net</email>
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;               <!-- FDL: do not remove -->
+&underGPL;               <!-- GPL License -->
+
+</chapter>
+
+
+&documentation.index;
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-namecase-general: t
+sgml-namecase-entity: nil
+sgml-general-insert-case: lower
+sgml-minimize-attributes: nil
+sgml-omittag: nil
+End:
+-->
+
+
+

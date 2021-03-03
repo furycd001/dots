@@ -1,0 +1,154 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="applications">
+<title>&kde; applications</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>&kppp;</para>
+</question>
+<answer>
+<para>Many &kde; users report problems using &kppp;.  But before you
+complain about &kppp;, make sure you have already checked the
+following:</para>
+<itemizedlist>
+<listitem><para>Can you dialup to your <acronym>ISP</acronym> without using &kppp;?  If you cannot, then perhaps &kppp; is not the culprit after
+all.</para></listitem>
+<listitem><para>Have you gone through the &kppp; documentation at
+least three times and follow its instructions and trouble-shooting
+suggestions?</para></listitem>
+</itemizedlist>
+<para>The &kppp; documentation can be accessed through the 
+<application>&kde; Help Center</application> or going directly to the documentation directory, usually
+<filename
+class="directory">$<envar>KDEDIR</envar>/share/doc/HTML/default/kppp</filename>.
+In addition, there is a web page "How to set up kppp with ISPs in the
+UK" at <ulink
+url="http://www.kppp-archive.freeserve.co.uk/">http://www.kppp-archive.freeserve.co.uk/</ulink>.
+ Last but not least, the &kppp; homepage is at <ulink
+ url="http://devel-home.kde.org/~kppp/">http://devel-home.kde.org/~kppp/</ulink>.</para>
+<para>Now, if you still encounter problems, here's what might help you
+solve them:</para>
+<variablelist>
+<varlistentry><term>How do I change the &MTU; setting in &kppp;?</term>
+<listitem><para>Open up the &kppp; dialog box and select
+<guibutton>Setup</guibutton>.  Choose an existing account and click
+<guibutton>Edit</guibutton>, or <guibutton>New</guibutton> to create a
+new dialup account.  Select the <guilabel>Dial</guilabel> tab and
+click <guibutton>Arguments</guibutton>.  Type what you want to change
+in the Argument textbox (<abbrev>e.g.</abbrev> <userinput>mtu 296</userinput>) and
+click <guibutton>Add</guibutton>.  When you are satisfied, click
+<guibutton>Close</guibutton>.</para>
+<para>To check whether the options "took", do one of the followings:</para>
+<itemizedlist>
+<listitem><para>In a terminal window, run <command>/sbin/ifconfig
+ppp0</command> and look at the reported &MTU; in the output.  It
+should match your request.</para></listitem>
+<listitem><para>Add <option>debug</option> and <option>kdebug</option>
+(each on a separate line) to your
+<filename>/etc/ppp/options</filename> file and restart your
+&PPP; session.  You will find debugging messages in
+<filename>/var/log/messages</filename>, including &MRU; and &MTU;
+settings.</para></listitem>
+</itemizedlist>
+<para>If you want, the &MRU; and &MTU; settings can be added to the
+<filename>options</filename> file, one complete setting per line, no
+quotes or dashes.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>&kppp; connects at a slower speed than
+normal.</term>
+<listitem><para>The following might do the trick:</para>
+<itemizedlist>
+<listitem><para>Try executing <command>setserial
+spd_hi</command>.</para></listitem>
+<listitem><para>The default &MTU; value is 1500,
+which maybe too large 
+for a dialup connection.  Try changing it to a smaller value like
+<userinput>296</userinput>
+or <userinput>576</userinput>.</para></listitem>
+<listitem><para>Check in your <filename
+class="directory">$<envar>HOME</envar>/.kde/share/config</filename> for the 
+<filename>kppprc</filename>.  Ensure the correct modem speed is
+actually defined there.</para></listitem>
+</itemizedlist></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&konsole;</para>
+</question>
+<answer>
+<variablelist>
+<varlistentry>
+<term>How do I page-up or page-down?</term>
+<listitem><para>Use <keycombo action="simul">
+<keycap>Shift</keycap> <keycap>Pg Up</keycap></keycombo>
+and <keycombo action="simul"><keycap>Shift</keycap><keycap>Pg
+Dn</keycap></keycombo>.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>How do I perform a simple "copy" from &konsole; to
+anything else?</term>
+<listitem><para>When I do a <command>ls</command>, first I select with
+the mouse the desired text, press 
+<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>,
+then I make the target application active, point the mouse to the
+relevant part and press <keycombo
+action="simul">&Ctrl;<keycap>V</keycap></keycombo>.
+Alternatively, highlight the text by dragging with the &LMB; down and
+paste by clicking with the &MMB; (or both 
+buttons if you have 3 button emulation set and you are using a two
+button mouse).</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kmail;</para>
+</question>
+<answer>
+<para>&kmail; has its own home page at <ulink
+url="http://kmail.kde.org">http://kmail.kde.org</ulink> where an
+<acronym>FAQ</acronym> is available.</para>
+</answer>
+</qandaentry>
+
+<!-- kbiff is dead ?? -->
+<!--
+<qandaentry>
+<question>
+<para>&kbiff;</para>
+</question>
+<answer>
+<para>&kbiff; is a mail notification utility and its home page is at
+<ulink
+url="http://www.granroth.org/kbiff">http://www.granroth.org/kbiff</ulink>.</para>
+<variablelist>
+<varlistentry><term>How can one instance of &kbiff; monitor two
+mailboxes and take the appropriate action when new messages arrive?</term>
+<listitem><para>Are you getting many messages in both mailboxes?  If
+so, it would be better to use two instances to monitor them.  If not,
+then go to the <guilabel>Mailbox</guilabel> tab and click on the little
+mailbox icon.  This will create another mailbox in that instance.
+Now, whenever either of them gets new mail, &kbiff; will do all of its
+new mail stuff.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+-->
+
+</qandaset>
+</chapter>

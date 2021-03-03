@@ -1,0 +1,198 @@
+<article lang="&language;" id="audiocd">
+<title>audiocd</title>
+<articleinfo>
+<authorgroup>
+<author><firstname>Rik</firstname><surname>Hemsley</surname>
+<affiliation><address><email>rik@kde.org</email></address></affiliation>
+</author>
+</authorgroup>
+
+<date>2001-07-14</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+</articleinfo>
+
+<para>Allows treating audio <acronym>CD</acronym>s like a
+<quote>real</quote> filesystem, where tracks are represented as files
+and, when copied from the directory, are digitally extracted from the
+<acronym>CD</acronym>. This ensures a perfect copy of the audio
+data.</para>
+
+<para>To see how this slave works, insert an audio <acronym>CD</acronym>
+in your &CD-ROM; drive and type <userinput>audiocd:/</userinput> into
+&konqueror;. Within a few seconds you should see a list of tracks and
+some directories.</para>
+
+<para>Audio <acronym>CD</acronym>s don't really have directories, but
+the audiocd slave provides them as a convenience. If you look inside
+these directories you will see that they all contain the same number of
+tracks. If you are connected to the Internet, some directories will have
+the actual track titles shown as the filenames.</para>
+
+<para>The reason that these separate directories exist are so that you
+can choose in which format you would like to listen to (or copy) the
+tracks on the <acronym>CD</acronym>.</para>
+
+<para>If you drag a track from the <filename class="directory">Ogg
+Vorbis</filename> directory and drop it on another &konqueror; window
+open at your home directory, you should see a progress window showing
+you that the track is being extracted from the <acronym>CD</acronym> and
+saved to a file. Note that Ogg Vorbis is a compressed format, so the
+file in your home directory will appear a great deal smaller than it
+would have been if you had copied the raw data.</para>
+
+<para>The mechanism behind this is quite simple. When the audiocd slave
+is asked to retrieve a track from the <filename class="directory">Ogg
+Vorbis</filename> directory, it starts extracting the digital audio data
+from the <acronym>CD</acronym>. As it sends the data over to the file in
+your home directory, it simultaneously encodes it in Ogg Vorbis format
+(<acronym>CD</acronym> audio isn't in any particular format to start
+with, it's just raw binary data.)</para>
+
+<para>You could also try dragging a file ending in <literal
+role="extension">.wav</literal> and dropping it on the &kde; Media
+Player, &noatun;. In this case, the procedure that happens behind the
+scenes is similar, except that instead of encoding the audio data in Ogg
+Vorbis format, it is put through a very simple conversion, from raw
+binary data (which the <literal role="extension">.cda</literal> files in
+the toplevel directory represent) to <quote>RIFF WAV</quote> format, an
+non-compressed format that most media players understand.</para>
+
+<para>&noatun; should quite happily play the <literal
+role="extension">.wav</literal> file, but if it has trouble, you may
+consider using the <option>paranoia_level</option> option, explained
+below.</para>
+
+<variablelist>
+<title>Options</title>
+<varlistentry>
+<term><option>device</option></term>
+<listitem>
+<para>Set the path to the audio <acronym>CD</acronym> device, &eg;
+<userinput>audiocd:/<option>?device</option>=<parameter>/dev/sdc</parameter></userinput>.
+Normally, the slave will try to find a <acronym>CD</acronym> drive with
+an audio <acronym>CD</acronym> inserted, but if it fails or you have
+more than one <acronym>CD</acronym> drive, you may want to try this
+option. Note that the configuration dialog allows you to set a default
+value for this option.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>paranoia_level</option></term>
+<listitem>
+<para>Set the amount of error detection and correction used when
+extracting data.</para>
+
+<variablelist>
+<varlistentry>
+<term>Level 0</term>
+<listitem>
+<para>No detection or correction. Only useful if you have a perfect
+<acronym>CD</acronym> drive (unlikely).</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Level 1</term>
+<listitem>
+<para>Enable basic error checking and correction.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Level 2</term>
+<listitem>
+<para>Default.  Specifies that only a perfect extraction will be
+accepted.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Note that there is a disadvantage to level 2. Extraction can be
+very slow, so real-time digital playback may not work properly. If you
+have a good quality <acronym>CD</acronym> drive (note that more
+expensive does not necessarily mean better quality) then you probably
+won't experience very slow extraction, but a poor drive may take days
+(!) to extract the audio from one <acronym>CD</acronym>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>use_cddb</option></term>
+<listitem>
+
+<para>Specify that track names for the inserted <acronym>CD</acronym>
+will be looked up on the Internet <acronym>CD</acronym> Database. Audio
+<acronym>CD</acronym>s don't have track names, but the Internet
+<acronym>CD</acronym> Database is a clever system which uses a special
+unique identifier generated from the number and length of tracks on each
+<acronym>CD</acronym> to cross-reference a track listing. Track listings
+are contributed by the Internet community and made available to
+all.</para>
+
+<para>You can submit your own track listings using &kscd;, the &kde;
+<acronym>CD</acronym> player.</para>
+
+<para>This option is on by default. If your Internet connection is not
+set up correctly, you may find that your <acronym>CD</acronym> tracks
+don't appear.  In this case, you can try
+<userinput>audiocd:/?<option>use_cddb</option>=<parameter>0</parameter></userinput>
+to switch this option off.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>cddb_server</option></term>
+<listitem>
+<para>Set the Internet <acronym>CD</acronym> Database server to
+contact. By default, this is
+<systemitem>freedb.freedb.org:888</systemitem>, which means server
+<systemitem>freedb.freedb.org</systemitem> at port 888.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title>Examples</title>
+<varlistentry>
+<term><userinput>audiocd:/?device=/dev/scd0?paranoia_level=0&amp;use_cddb=0</userinput></term>
+<listitem>
+<para>Gives a listing of the tracks on the audio <acronym>CD</acronym>
+inserted in <filename class="devicefile">/dev/scd0</filename>, which on
+&Linux; specifies the first <acronym>SCSI</acronym> &CD-ROM; device. If
+you copy tracks from the <acronym>CD</acronym>, digital extraction will
+be performed without error correction or detection. No Internet
+<acronym>CD</acronym> Database will be contacted.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<qandaset>
+<title>Frequently Asked Question</title>
+<qandaentry>
+<question>
+<para>I get <errorname>The file or directory / does not
+exist</errorname>.  How do I fix that? I have an audio
+<acronym>CD</acronym> in my drive!</para>
+</question>
+
+<answer>
+<para>Try running <userinput><command>cdparanoia</command>
+<option>-vsQ</option></userinput> as yourself (not <systemitem
+class="username">root</systemitem>). Do you see a track list? If not,
+make sure you have permission to access the <acronym>CD</acronym>
+device. If you're using <acronym>SCSI</acronym> emulation (possible if
+you have an <acronym>IDE</acronym> <acronym>CD</acronym> writer) then
+make sure you check permissions on the generic <acronym>SCSI</acronym>
+device, which is probably <filename
+class="devicefile">/dev/sg0</filename>, <filename
+class="devicefile">/dev/sg1</filename>, &etc;. If it still doesn't work,
+try typing <userinput>audiocd:/?device=/dev/sg0</userinput> (or similar)
+to tell kio_audiocd which device your &CD-ROM; is.</para> 
+</answer>
+</qandaentry>
+</qandaset>
+
+
+</article>

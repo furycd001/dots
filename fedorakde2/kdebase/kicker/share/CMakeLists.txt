@@ -1,0 +1,10 @@
+kde2_library(libkicker
+    SOURCES
+        pluginmgr.cpp
+        appletinfo.cpp
+    HEADERS
+        appletinfo.h
+        pluginmgr.h
+    LIBS
+        kde2::konq
+   )

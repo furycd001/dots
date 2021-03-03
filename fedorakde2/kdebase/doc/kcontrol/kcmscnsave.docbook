@@ -1,0 +1,115 @@
+<sect1 id="screensaver">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>screensaver</keyword>
+<keyword>screen saver</keyword>
+</keywordset>
+</sect1info>
+<title>Screensaver</title>
+
+<para>Using this module, you can choose your screensaver, determine how quickly
+the screen is saved, and add or remove password protection to your
+screensaver.</para>
+
+<sect2 id="ss-choose">
+<title>Choosing the screensaver, and configuring its options</title>
+
+<para>At the top left corner of the module, is a check-box labeled
+<guilabel>Enable Screensaver</guilabel>.  This box must have a mark in it, or
+&kde; will not launch any screensaver and it will not allow you to adjust the
+settings of your screensaver.</para>
+
+<para>Along the left side, is a list of all available screensavers.  You can
+select a screensaver by simply clicking on the name of the screensaver.  Once
+you have selected a screensaver, you will see a small preview on the preview
+monitor on the right.  </para>
+
+<note><para>The preview monitor will often show the screensaver larger than it
+is when the screensaver is activated.  This is done on purpose, since many of
+the details of the screensavers would be uninteligable if actually scaled down
+to such a small size.</para></note>
+
+<para>Each screensaver has a different set of setup options.  By
+clicking on <guilabel>Setup</guilabel>, a dialog box will appear with
+all available options.  As you adjust the options, the preview box in
+the dialog box will show you what effect you will achieve with the
+current settings.</para>
+
+<para>When you are done setting up your screensaver, click
+<guibutton>OK</guibutton>.</para> <para>Clicking <guibutton>Cancel</guibutton>,
+will erase any changes you made in this dialog box, and return you to the
+screensaver module.</para>
+
+<para>Clicking <guibutton>About</guibutton>, will give you the Copyright and
+Author information if you are interested.</para>
+
+<para>When you think you have all the options set the way you want, simply click
+on <guibutton>Test</guibutton>, to immediately start the screensaver
+<emphasis>exactly</emphasis> as it will appear.</para>
+
+</sect2>
+
+
+<sect2 id="ss-options">
+<title>Setting the time, priority and passwords for screensavers.</title>
+
+<para>Below the Preview Monitor, is a spin box, which determines the period of
+inactivity before the screensaver should be started.  You can enter any number
+from 1-120 minutes in this box.</para>
+
+<para>Below that, is a check-box, labeled <guilabel>Require Password</guilabel>.
+If checked, when you click a key, or click a mouse button to end the
+screensaver, and return to your work, you must enter a password.  The password
+used is the same password you used to login to your machine.  If left blank, no
+password is required.</para>
+
+<!-- This option disappeared -->
+
+<!-- <para>The next check-box down, is labeled "<guilabel>Show password
+as stars</guilabel>".  If this box is not checked, there is no visual
+indication of any letters you enter for your password.  This is the most
+secure way to protect your password. If this check box is marked, then
+each character you enter for your password will be represented by a
+single asterisk (*). </para> -->
+
+<para>At the bottom of the right side of the module, is a slider labeled
+<guilabel>Priority</guilabel>.  If your screensaver appears jumpy, you
+should increase the priority closer to the <guilabel>High</guilabel>
+end.  This will tell your computer to devote more time to the
+screensaver, and less time to other tasks.  </para>
+
+</sect2>
+
+<sect2 id="ss-other"><title>Using a non-&kde; screensaver</title> 
+
+<para>&kde; does not prevent another screensaver from working.  To use a
+different screensaver, such as <application>xscreensaver</application>, simply
+disable the &kde; Screen Saver, and set up your other screen saver program
+normally.  </para>
+
+</sect2>
+
+<sect2 id="screensaver-author">
+<title>Section Author</title> 
+
+<para>Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

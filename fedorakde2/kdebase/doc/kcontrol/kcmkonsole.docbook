@@ -1,0 +1,169 @@
+<sect1 id="konsole">
+<sect1info> 
+
+<authorgroup>
+<author>
+<firstname>Jonathan</firstname>
+<surname>Singer</surname>
+<affiliation><address>
+<email>jsinger@leeta.net</email>
+</address></affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-12</date>
+<releaseinfo>2.20.0</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>konsole</keyword>
+<keyword>terminal</keyword>
+</keywordset>
+</sect1info>
+
+<title>&konsole;</title>
+
+<para>In this module, you can configure basic settings for &konsole;,
+the &kde; terminal.  You can also easily create new schemata (appearance
+files) for &konsole;.</para>
+
+<para>This module contains two tab pages: <guilabel>General</guilabel>
+and <guilabel>Schema</guilabel>.</para>
+
+<sect2>
+<title><guilabel>General</guilabel></title>
+
+<para>This tab page allows you to configure aspects of &konsole;'s
+functions.  It contains the following options:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Misc</guilabel></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Do not use Konsole as default terminal
+application</guilabel></term>
+<listitem>
+<para>If you wish to have &kde; use another terminal application by
+default, check this box and enter the preferred application
+(<application>wterm</application>, <application>rxvt</application>,
+&etc;) in the text field below.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Codec</guilabel></term>
+<listitem>
+<para>Not implemented yet.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Warn for Open Session on Quit</guilabel></term>
+<listitem>
+<para>When set, a warning appears when you try to close a  &konsole;
+window with multiple sessions.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>History</guilabel></term>
+<listitem>
+<para>Check the box to enable the saving of the session's history.  This
+allows you to review lines that have scrolled out of the top of the
+window, up to a pre-set maximum (1000 lines by default.)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Layout</guilabel></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Font</guilabel></term>
+<listitem>
+<para>Use the drop-down box to select the default font size.  Use the
+<guibutton>Custom...</guibutton> button to select your own combination
+of font, size, and style.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Full Screen</guilabel></term>
+<listitem>
+<para>Check the box to make &konsole; windows full-screen by
+default.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Bars</guilabel></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Show menubar</guilabel></term>
+<listitem>
+<para>Check to show the menubar by default.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Show toolbar</guilabel></term>
+<listitem>
+<para>Check to show the toolbar by default.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Show frame</guilabel></term>
+<listitem>
+<para>Check to show the frame by default.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Scrollbar position</guilabel></term>
+<listitem>
+<para>Select the default position of the scrollbar:
+<guilabel>Hide</guilabel> (on scrollbar), <guilabel>Left</guilabel>, or
+<guilabel>Right</guilabel>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title>Schema</title>
+
+<para>The <guilabel>Schema</guilabel> page will alow you to easily
+create, edit, and save schemata, with text and background coloring,
+transparency, and background images.</para>
+
+<para>Not yet documented</para>
+
+</sect2>
+
+<sect2 id="konsole-author">
+<title>Section Author</title>
+
+<para>Jonathan Singer <email>jsinger@leeta.net</email></para>
+
+</sect2>
+
+</sect1>

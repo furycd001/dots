@@ -1,0 +1,17 @@
+<article lang="&language;" id="ldap">
+<title>ldap</title>
+
+<para><acronym>ldap</acronym> is the lightweight directory access
+protocol.  It provides access to an X.500 directory, or to a stand-alone
+<acronym>LDAP</acronym> server.</para>
+
+<para>You can use the ldap kioslave as follows:</para>
+
+<para><userinput>ldap://host:port/ou=People,o=where,c=de??sub</userinput>
+for a subtree-query</para>
+
+<para>or
+<userinput>ldap://host:port/cn=MM,ou=People,o=where,c=de??base</userinput>
+for a complete branch.</para>
+
+</article>

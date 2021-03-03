@@ -1,0 +1,93 @@
+<sect1 id="battery-monitor">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Battery</keyword>
+<keyword>level</keyword>
+</keywordset>
+</sect1info>
+<title>The Battery Monitor Panel</title>
+<note><para>The laptop modules require the correct installation of the apm modules.  For more information see the section entitled <link linkend="laptop">Laptop Information</link>.</para></note>
+<sect2 id="batmon-intro">
+<title>Introduction</title>
+
+<para>This panel controls whether or not a battery state icon appears in
+KDE's panel.</para>
+
+<para>Once enabled a battery will appear in your docking bar as one of 3
+icons - a battery with a red X through it indicates that
+<abbrev>APM</abbrev> has not been installed (in particular
+<filename>/proc/apm</filename> can't be read).</para>
+
+<para>The other two icons indicate the battery state - a small plug with
+a bar beside it indictes your batteries are charging - the height of the
+blue portion of the bar indicate how full your batteries are.  A small
+battery in the dock indicates you are running on batteries, the amount
+of blue in the battery indicates how full your batteries are.</para>
+
+<para>If you <mousebutton>left</mousebutton> click on the docked icon a
+pop-up will tell you how much time you have left in minutes.</para>
+
+<para>If you <mousebutton>right</mousebutton> click you get a pop-up
+that lets you put your laptop into suspend or standby modes - or to
+bring up the laptop configuration widget.</para>
+
+<para>All features of Battery are configured from the Setup dialog.</para>
+
+</sect2>
+<sect2 id="batmon-use">
+<title>Use</title>
+
+<para>The configuration window can be divided into 3 parts.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Show Battery Monitor</guilabel></term>
+<listitem><para>This controls whether or not the battery icon appears.  This is
+disabled by default.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Poll</guilabel></term>
+<listitem><para>This setting controls how often, in seconds, the battery is
+updated. </para>
+<para>The default is 20 seconds.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Icons</guilabel></term>
+<listitem><para>The battery monitor uses three icons to represent the three
+states: No APM, Charging, and Not Charging. The icons shown are the "large"
+icons. To select new ones, click on the buttons and a icon loader dialog will
+pop up. </para>
+<note><para>If you create your own icons - they will work with the battery
+monitor - but be carefull.</para>
+<para>All the exactly white pixels in the icon get filled by blue for the
+battery meter - if you want some white looking pixels to stay choose a slightly
+off-white or grey color for them.</para></note>
+<para>The author does not claim to be a graphic artist and would love for
+someone to donate some better looking icons to the cause.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+<sect2 id="batmon-author">
+<title>Section Author</title>
+<para>This section written by Paul Campbell <email>paul@taniwha.com</email></para>
+<para>Converted to Docbook by Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

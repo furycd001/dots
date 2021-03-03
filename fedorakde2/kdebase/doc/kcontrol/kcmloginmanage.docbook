@@ -1,0 +1,529 @@
+<sect1 id="login-manager">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Thomas</firstname>
+<surname>Tanghus</surname>
+<affiliation><address><email>tanghus@earthling.net</email></address></affiliation>
+</author>
+<author>
+<firstname>Steffen</firstname>
+<surname>Hansen</surname>
+<affiliation><address><email>stefh@mip.ou.dk</email></address></affiliation>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>KDM configuration</keyword>
+<keyword>login manager</keyword>
+<keyword>login</keyword>
+</keywordset>
+</sect1info>
+<title>Login Manager</title>
+
+<para>Using this module, you can configure the &kde; graphical login manager
+&kdm;.  You can change how the login screen looks, who has access using the
+login manager and who can shutdown the computer.</para>
+
+<para>In order to organize all of these options, this module is divided into
+five sections: <link
+linkend="kdmconfig-appearance"><guilabel>Appearance</guilabel></link>, <link
+linkend="kdmconfig-font"><guilabel>Font</guilabel></link>, <link
+linkend="kdmconfig-background"><guilabel>Background</guilabel></link>, <link
+linkend="kdmconfig-sessions"><guilabel>Sessions</guilabel></link>, <link
+linkend="kdmconfig-users"><guilabel>Users</guilabel></link> and <link linkend="kdmconfig-convenience"><guilabel>Convenience</guilabel></link>.</para>
+
+<para>You can switch between the sections using the tabs at the top of the
+window.</para>
+
+<note><para>If you are not currently logged in as a superuser, you will
+need to click the <guibutton>Modify</guibutton> Button. You will then be
+asked for a superuser password.  Entering a correct password will allow
+you to modify the settings of this module.</para></note>
+
+<sect2 id="kdmconfig-appearance">
+<title>Appearance</title>
+
+<para>From this page you can change the visual appearance of &kdm;,
+&kde;'s graphical login manager.</para>
+
+<para>The greeting string is the title of the login screen. If the
+string contains the word <computeroutput>HOSTNAME</computeroutput> it
+will be translated to the domainless name of the machine &kdm; is
+installed on.</para>
+
+<para>You can then choose to show either the current system time, a logo
+or nothing special in the login box.  Make your choice in the radio
+buttons labled <guilabel>Logo area</guilabel>. Using the
+<guilabel>Positions</guilabel> setting, you can choose to either center
+the content of the logo area or to position it using fixed
+coordinates.</para>
+
+<para>If you chose <guilabel>Show logo</guilabel> you can now choose a
+logo:</para>
+
+<itemizedlist>
+<listitem>
+<para>Drop an image file on the image button.</para>
+</listitem>
+<listitem>
+<para>Click on the image button an select a new image from the image chooser
+dialog.</para>
+</listitem>
+</itemizedlist>
+
+<para>If you do not specify a logo the default
+<filename>$<envar>KDEDIR</envar>/share/apps/kdm/pics/kdelogo.xpm</filename>
+will be displayed.</para>
+
+<para>While &kde;'s style depends on the settings of the user logged in,
+the style used by &kdm; can be configured using the <guilabel>GUI
+Style</guilabel> option.</para>
+
+<para>Below that, you have two dropdown boxes to choose the language and the
+country for your login box.</para>
+
+</sect2>
+
+<sect2 id="kdmconfig-font">
+<title>Font</title>
+
+<para>From this section of the module you can change the fonts used in
+the login window.</para>
+
+<para>You can select three different font styles from the drop down box
+(<guilabel>Greeting</guilabel>, <guilabel>Fail</guilabel>,
+<guilabel>Standard</guilabel>) When you click on the <guibutton>Change
+font</guibutton> button a dialog appears from which you can select the
+new characteristics for the font style..</para>
+
+<itemizedlist>
+<listitem>
+<para>The <guilabel>Greeting</guilabel> font is the font used for the title
+(Greeting String).</para>
+</listitem>
+<listitem>
+<para>The <guilabel>Fail</guilabel> font is used when a login fails.</para>
+</listitem>
+<listitem>
+<para>The <guilabel>Standard</guilabel> font is used all other places in the
+login window.</para>
+</listitem>
+</itemizedlist>
+
+<para>An example of each font can be seen in the
+<guilabel>Example</guilabel> Box.</para>
+
+</sect2>
+
+<sect2 id="kdmconfig-background">
+<title>Background</title>
+
+<para>Here you can change the desktop background which will be displayed
+when a user logs in. You can have a single color or an image as a
+background. If you have an image as background and select center the
+selected background color will be used around the image if it isn't
+large enough to cover the entire desktop.</para>
+
+<para>The background colors and effects are controlled by the options on
+the tab labeled <guilabel>Background</guilabel> and you select a
+background image and its placement from the options on the tab labeled
+<guilabel>Wallpaper</guilabel>.</para>
+
+<para>To change the default background color(s) simply click either of
+the color bottons and select a new color.</para>
+
+<para>The dropdown box above the color buttons provides you with several
+different blend effects.  Choose one from the list, and it will be
+previewed on the small monitor at the top of the window.  Your choices
+are:</para>
+
+<variablelist>
+<varlistentry>
+<term>Flat</term>
+<listitem><para>By choosing this mode, you select one color (using the color
+button labeled <guibutton>Color 1</guibutton>), and the entire background is
+covered with this one color.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Pattern</term>
+<listitem><para>By choosing this mode, you select two colors (using both color
+buttons). </para> <para>You then select a pattern by clicking
+<guilabel>Setup</guilabel>.  This opens a new dialog window, which gives you
+the opportunity to Select a pattern.  Simply click once on the pattern of your
+choice, then click on <guilabel>OK</guilabel>, and &kde; will render the pattern
+you selected using the two colors you selected.  For more on patterns, see the
+section <link linkend="bkgnd-patterns">Background: Adding, Removing and Modifying
+Patterns</link>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Background Program</term>
+<listitem><para>By selecting this option, you can have &kde; use an external
+program to determine the background.  This can be any program of your choosing.
+For more information on this option, see the section entitled <link
+linkend="bkgnd-programs">Background: Using an external program</link>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Horizontal Gradient</term>
+<listitem><para>By choosing this mode, you select two colors (using both color
+buttons).  &kde; will then start with the color selected by <guilabel>Color
+1</guilabel> on the left edge of the screen, and slowly transform into the
+color selected by <guilabel>Color 2</guilabel> by the time it gets to the
+right edge of the screen.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Vertical Gradient</term>
+<listitem><para>By choosing this mode, you select two colors (using both color
+buttons).  &kde; will then start with the color selected by <guilabel>Color
+1</guilabel> on the top edge of the screen, and slowly transform into the color
+selected by <guilabel>Color 2</guilabel> as it moves to the bottom of the
+screen.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Pyramid Gradient</term>
+<listitem><para>By choosing this mode, you select two colors (using both color
+buttons).  &kde; will then start with the color selected by <guilabel>Color
+1</guilabel> in each corner of the screen, and slowly transform into the color
+selected by <guilabel>Color 2</guilabel> as it moves to the center of the
+screen.</para></listitem> 
+</varlistentry>
+<varlistentry>
+<term>Pipecross Gradient</term>
+<listitem><para>By choosing this mode, you select two colors (using both color
+buttons).  &kde; will then start with the color selected by <guilabel>Color
+1</guilabel> in each corner of the screen, and slowly transform into the color
+selected by <guilabel>Color 2</guilabel> as it moves to the center of the
+screen. The <quote>shape</quote> of this gradient is  different then the pyramid
+gradient.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Elliptic Gradient</term>
+<listitem><para>By choosing this mode, you select two colors (using both color
+buttons).  &kde; will then start with the color selected by <guilabel>Color
+2</guilabel> in the center of the screen, and slowly transform into the color
+selected by <guilabel>Color 1</guilabel> as it moves to the edges, in an
+elliptical pattern.</para></listitem> 
+</varlistentry>
+</variablelist>
+
+<para>The setup button is only needed for if you select <guilabel>Background
+program</guilabel> or <guilabel>Patterns</guilabel>.  In these instances,
+another window will appear to configure the specifics.</para>
+<para><emphasis>Wallpaper</emphasis></para>
+<para>To select a new background image first, click on the
+<guilabel>Wallpapers</guilabel> tab, then  you can either select an image from the
+drop-down list labled <guilabel>Wallpaper</guilabel> or select
+<guibutton>Browse...</guibutton> and select an image file from a file
+selector.</para>
+
+<para>The image can be displayed in six different ways:</para>
+<variablelist>
+<varlistentry>
+<term>No wallpaper</term> 
+<listitem><para>No image is displayed.  Just the background colors.</para>
+</listitem></varlistentry>
+<varlistentry>
+<term>Centered</term> 
+<listitem><para>The image will be centered on the screen.  The background colors
+will be present anywhere the image does not cover.</para> </listitem>
+</varlistentry>
+<varlistentry>
+<term>Tiled</term>
+<listitem><para>The image will be duplicated until it fills the entire
+desktop. The first image will be placed in the upper left corner of the screen,
+and duplicated downward and to the right.</para> </listitem>
+</varlistentry>
+<varlistentry>
+<term>Center Tiled</term>
+<listitem><para>The image will be duplicated until it fills the entire
+desktop. The first image will be placed in the center of the screen, and
+duplicated upward, downward to the right, and to the left.</para> </listitem>
+</varlistentry>
+<varlistentry>
+<term>Centered Maxpect</term>
+<listitem><para>The image will be placed in the center of the screen.  It will
+be scaled to fit the desktop, but it will not change the aspect ratio of the
+original image.  This will provide you with an image that is not distorted.
+</para> </listitem>
+</varlistentry>
+<varlistentry>
+<term>Scaled</term>
+<listitem><para>The image will be scaled to fit the desktop.  It will be
+streched to fit all four corners.</para> </listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="kdmconfig-sessions">
+<title>Sessions</title>
+
+<para><guilabel>Allow to shutdown</guilabel></para>
+<para>Use this dropdown box to choose who is allowed to shut down:</para>
+<itemizedlist>
+<listitem>
+<para><guilabel>None</guilabel>: No one can shutdown the computer using &kdm;.
+You must be logged in, and execute a command.</para>
+</listitem>
+<listitem>
+<para><guilabel>All</guilabel>:  Everyone can shutdown the computer using
+&kdm;.</para>
+</listitem>
+<listitem><para><guilabel>Root only</guilabel>: &kdm; requires that the
+<systemitem>root</systemitem> password be entered before shutting down the
+computer.</para></listitem> 
+<listitem><para><guilabel>Console only</guilabel>: The user must be at this
+console, to shut down the computer.</para></listitem>
+</itemizedlist>
+
+<para><emphasis>Commands</emphasis></para>
+<para>Use these 3 blanks to define the exact shutdown command.</para>
+<para>The shutdown command defaults to:</para>
+
+<para><command>/sbin/shutdown</command></para>
+
+<para>The restart command defaults to:</para>
+
+<para><command>/sbin/reboot</command></para>
+
+<para>The Console mode (which restarts the computer as a console only terminal)
+defaults to:</para>
+
+<para><command>/sbin/init <option>3</option></command></para>
+
+<para>When <guilabel>Show boot options</guilabel> is enabled, &kdm; will on reboot
+offer you options for the lilo boot manager. For this feature to work, you will
+need to supply the correct paths to your <command>lilo</command> command and to
+lilos map file.</para>
+
+
+<sect3 id="kdmconfig-sess">
+<title>Session types</title>
+
+<para>Define which session types should be accessable from the login
+window.</para>
+
+<para> For more information on this subject, look at <filename
+class="directory">/etc/X11/xdm/Xsession</filename> to find your
+<application>xdm</application> setup files.  Also review the <ulink
+url="man:xdm">xdm man pages</ulink>, especially under the SESSION
+PROGRAM section</para> <para>To add a session, type its name in the
+blank entitled <guilabel>New types</guilabel>, and click
+<guibutton>Add new</guibutton>. </para>
+
+<para>To remove a session, select the session from the list and click
+<guibutton>Remove</guibutton>.</para>
+
+</sect3>
+
+</sect2>
+
+
+<sect2 id="kdmconfig-users">
+<title>Users</title>
+
+<para>From here you can change the way users are represented in the
+login window.</para>
+
+<para>As you look on this window, you will see three lists (All users,
+selected users, and no-show users).  You also see an image box, and a
+set of options along the right side of the window.</para>
+
+<para>The first thing you must decide, is if you are going to show users
+or not.</para>
+
+
+<para>If you choose to show users, then the login window will show
+images (which you select), of a list of users.  When someone is ready to
+login, they select their user name/image, enter their password, and they
+are granted access.  </para>
+
+<para>If you choose not to show users, then the login window will be
+more traditional.  Users will need to type their username, and password
+to gain entrance.  This is the preferred way if you have many users on
+this terminal.</para>
+
+<sect3 id="kdmconfig-showusers">
+<title>To show (and sort) or not to show users</title>
+
+<para>Along the right edge of the window, are two check boxes:</para>
+
+<para>If <guilabel>Show users</guilabel> is selected, you have chosen to
+show images of users, instead of making them type their login
+name.</para>
+
+<para>If <guilabel>Sort users</guilabel> is selected, then the list of
+users will be sorted alphabetically in the login window.  If unchecked,
+users will be listed in the same order as they are on this page.  If
+<guilabel>Show users</guilabel> is not checked, this has no
+effect.</para>
+
+</sect3>
+
+<sect3 id="kdmconfig-whichusers">
+<title>How to determine which users to show and which users to hide</title>
+
+<para>Below the user image box, and above the <guilabel>Show
+users</guilabel> check box, is a set of two radio buttions:</para>
+
+<itemizedlist>
+<listitem><para>Show only selected users: If this option is selected, only the
+users contained in the list labelled <guilabel>Selected Users</guilabel>, will
+be displayed in the login window. If <guilabel>Show users</guilabel> is not
+checked, this has no effect.</para></listitem>
+<listitem><para>Show all users but no-show users: If this option is selected,
+all users will be listed, <emphasis>except</emphasis> those users contained in
+the list entitled <guilabel>No show users</guilabel>.  If <guilabel>Show
+users</guilabel> is not checked, this has no effect.  </para></listitem>
+</itemizedlist>
+
+</sect3>
+
+<sect3 id="kdmconfig-select">
+<title>Select users</title>
+
+<para>The pages contains three listboxes. The large listbox on the left
+shows all the users on the system which might be a genuine user.</para>
+
+<para>The top rightmost listbox shows the selected users and the bottom
+rightmost listbox shows the users we don't want displayed in the login
+window.</para>
+
+<para>To move a user from one listbox to another you click on the
+username in the listbox and selects <guibutton>&gt;&gt;</guibutton> to
+move the user from the leftmost box the the rightmost box or
+<guibutton>&lt;&lt;</guibutton> to move the user from the rightmost box
+to the leftmost box.</para>
+
+</sect3>
+
+<sect3 id="kdmconfig-image">
+<title>Images</title>
+
+<note><para>This section of the manual only applies if <guilabel>Show
+users</guilabel> is selected.  If it is not, this image box has no
+effect.</para></note>
+
+<para>Every user on the system can be represented by a image. The image
+for the user is kept in a file called
+<filename>$<envar>KDEDIR</envar>/share/apps/kdm/pics/users/$<envar>USER</envar>.xpm.</filename>
+If the user doesn't have such a file the file
+<filename>$<envar>KDEDIR</envar>/share/apps/kdm/pics/users/default.xpm</filename>
+will be used instead.</para>
+
+<para>To assign a new image to a user just select the user in one of the
+listboxes and either drop an imagefile on the image button to the right
+or click on the image button and select a new image from the image
+selector.</para>
+
+<para>If no user is currently selected you will be asked if you want to change
+the default image.</para>
+
+<para>The replacement is performed by a &konqueror; process so if the
+imagefile all ready exists you will be prompted by &konqueror; if you
+want to replace it. If you confirm the image will be replaced - you will
+<emphasis>NOT</emphasis> have to press the <guibutton>Apply</guibutton>
+button.</para>
+
+</sect3>
+</sect2>
+
+
+<sect2 id="kdmconfig-convenience">
+<title>Convenience</title>
+
+<para>In the <guilabel>convenience</guilabel> tab you can configure some
+options that make life easier for lazy people, like auto login or
+disabling passwords.</para>
+
+<important><para>Please think more than twice before using these
+options. Every option in the <guilabel>convenience</guilabel> tab is
+well suited to seriously compromise your system security. Practically,
+these options are only to be used in a completely non-critical
+environment, &eg; a private computer at home.  </para></important>
+
+<sect3 id="loginmanager-convenience-autologin">
+<title>Automatic Login</title>
+
+<para>Automatic login will give anyone access to a certain account on
+your system without doing any authentification.  You can enable it using
+the option <guilabel>Enable auto-login</guilabel>.</para>
+
+<para>Automatic login comes in two flavours: <guilabel>truly automatic
+login</guilabel> acts like you would expect automatic login to, &ie;
+&kdm; will automatically login without expecting any input from the
+user. Enable this using the <guilabel>Truly automatic login</guilabel>
+option. If this option is not enabled, &kdm; will start normally,
+enabling you to login as any user, and will only perform automatic login
+if you kill the X server, &eg; by pressing <keycombo
+action="simul">&Ctrl;&Alt;<keycap>Backspace</keycap></keycombo>.</para>
+
+<para>You can choose the account to be used for automatic login in the
+list below.</para>
+
+</sect3>
+
+<sect3 id="loginmanager-convenience-nopasswd">
+<title>Password-less Login</title>
+
+<para>Using this feature, you can allow certain users to login without
+having to provide their password. Enable this feature using the
+<guilabel>Enable password-less logins</guilabel> option.</para>
+
+<para>Below this option you'll see a list of users for which a password
+is required, as well as a (by default empty) list of users that don't
+need to provide a password.  When <guilabel>Enable password-less
+logins</guilabel> is enabled, you can move users from one list into the
+other, by selecting them and then click the
+<guibutton>&gt;&gt;</guibutton> and <guibutton>&lt;&lt;</guibutton>
+buttons.</para>
+
+<important><para>Again, this option should only be used in a safe
+environment. If you enable it on a rather public system you should take
+care that only users with heavy access restrictions are granted
+password-less login, &eg;
+<systemitem>guest</systemitem>.</para></important>
+
+</sect3>
+
+
+<sect3 id="loginmanager-convenience-misc">
+<title>Miscellaneous</title>
+
+<para>The <guilabel>Automatically login after X server crash</guilabel>
+option allows you to skip the authentification procedure when your X
+server accidentally crashed.  <guilabel>Show previous user</guilabel>
+will show the name of the last login already entered into the login
+field in &kdm;. Some site administrators would consider even this a
+possible security weakness, because potential attackers then know at
+least one valid login.</para>
+
+</sect3>
+
+</sect2>
+
+<sect2 id="loginmanager-author">
+<title>Section Author</title>
+
+<para>This section written by: </para> <para>Mike McBride
+<email>mpmcbride7@yahoo.com</email>, Thomas
+Tanghus<email>tanghus@earthling.net</email>, and Steffen Hansen
+<email>stefh@mip.ou.dk</email>. Updated by Jost Schenck <email>jost@schenck.de</email>.
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

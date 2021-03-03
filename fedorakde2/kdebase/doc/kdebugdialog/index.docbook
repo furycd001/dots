@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kdebugdialog "<application>KDebugDialog</application>">
+  <!ENTITY kappname "&kdebugdialog;">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  
+  
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title>The &kdebugdialog; Handbook</title>
+
+<authorgroup>
+<author>
+<firstname>David</firstname>
+<surname>Faure</surname>
+<affiliation>
+<address><email>faure@kde.org</email></address>
+</affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-02-13</date>
+<releaseinfo>0.03.00</releaseinfo>
+
+<abstract>
+<para>This document describes &kdebugdialog;.</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KDebugdialog</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="Introduction">
+<title>What is KDebugDialog</title>
+
+<para>It is a dialog box for managing diagnostic messages at runtime.
+</para>
+
+<para>If you simply start "kdebugdialog", you will see a list of "areas",
+that can be disabled or enabled. A kdDebug(area) call in the code will
+show something in the debug output only if the area is enabled.
+</para>
+
+<note><para>
+Note that kdWarning, kdError and kdFatal always appear, they are NOT
+controlled by this setting.
+</para></note>
+
+<para>If you start "kdebugdialog --fullmode", you can define separately for
+every severity level what should be done with the diagnostic messages
+of that level, and this for each debug area.
+</para>
+
+<para>
+In the full mode, the following settings are available:
+<itemizedlist>
+<listitem>
+<para>Output: In this Combobox, you can choose where the messages
+should be output. The choices are: "File", "Message Box",
+"Shell" (meaning stderr) and "syslog". Please do not direct
+fatal messages to syslog unless you are the system administrator
+yourself. The default is "Message Box".</para>
+</listitem>
+<listitem>
+<para>File: This is only meaningful when you have chosen "File" as
+the output and provides the name of that file (which is
+interpreted relatively to the current directory). The default is
+kdebug.dbg.</para>
+</listitem>
+<listitem>
+<para>Area: The areas which should only be output. Every message
+that is not mentioned here will simply not be output (unless
+this field remains empty which is the default and means that all
+messages should be output). Your can enter several areas
+separated by commas here, and you can also use area ranges with
+the syntax start-end. Thus a valid entry could be:
+117,214-289,356-359,221. Please do not use whitespace.</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para>Apart from this, you can also tick the checkbox "Abort on fatal
+errors". In this case, if a diagnostic message with the severity
+level "KDEBUG_FATAL" is output, the application aborts with
+a SIGABRT after outputting the message.
+</para>
+
+<para>When you close the dialog with OK, your entries apply immediately
+and saved in kdebugrc. When you press cancel, your entries are 
+discarded and the old ones are restored.
+</para>
+
+<para>Credits to Kalle Dalheimer for the original version of kdebugdialog
+</para>
+
+</chapter>
+
+&documentation.index; 
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-general-insert-case: lower
+sgml-shorttag: t
+End:
+-->
+
+

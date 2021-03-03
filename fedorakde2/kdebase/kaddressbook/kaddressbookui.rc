@@ -1,0 +1,28 @@
+<!DOCTYPE kpartgui>
+<kpartgui name="kaddressbook" version="1">
+
+  <MenuBar>
+    <Menu name="file"><text>&amp;File</text>
+      <Action name="file_sync"/>
+      <Action name="file_new_contact"/>
+      <Action name="file_properties"/>
+      <Action name="file_import_csv"/>
+      <Action name="file_export_csv"/>
+    </Menu>
+    <Menu name="edit"><text>&amp;Edit</text>
+      <Action name="edit_delete" append="edit_paste_merge"/>
+    </Menu>
+    <Menu name="view"><text>&amp;View</text>
+      <Action name="view_choose_fields"/>
+      <Action name="view_options"/>
+      <Action name="view_defaults"/>
+    </Menu>
+  </MenuBar>
+
+  <ToolBar name="mainToolBar"><text>Main Toolbar</text>
+    <Action name="file_new_contact"/>
+    <Action name="file_properties"/>
+    <Action name="edit_delete"/>
+  </ToolBar>
+
+</kpartgui>

@@ -1,0 +1,5032 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kdeprint "<application>KDEPrint</application>">
+  <!ENTITY kprinter "<command>kprinter</command>">
+  <!ENTITY CUPS "<acronym>CUPS</acronym>">
+  <!ENTITY PPD "<acronym>PPD</acronym>">
+  <!ENTITY IPP "<acronym>IPP</acronym>">
+  <!ENTITY ghostscript "<application>ghostscript</application>">
+  <!ENTITY kappname "&kdeprint;"><!-- replace kapp here -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"><!-- change language only here -->
+]>
+	
+<book lang="&language;">
+  
+<bookinfo>
+<title>The &kdeprint; Handbook</title>
+
+<authorgroup>
+<author>
+<firstname>Kurt</firstname>
+<surname>Pfeifle</surname>
+<affiliation>
+<address><email>kpfeifle@danka.de</email></address>
+</affiliation>
+</author>
+        
+<othercredit role="developer">
+<firstname>Michael</firstname>
+<surname>Goffioul</surname>
+<affiliation>
+<address><email>goffioul@imec.be</email></address>
+</affiliation>
+<contrib>Developer</contrib>
+</othercredit>
+
+<othercredit role="reviewer">
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+<affiliation>
+<address><email>lauri@kde.org</email></address>
+</affiliation>
+<contrib>Reviewer</contrib>
+</othercredit>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+</authorgroup>
+
+<copyright>
+<year>2001</year>
+<holder>Kurt Pfeifle</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2001-08-09</date>
+<releaseinfo>1.00.04</releaseinfo>
+
+<abstract>
+<para>This handbook describes &kdeprint;. &kdeprint; is not a standalone
+program. It is the new printing framework for &kde; 2.2. &kdeprint;
+is an intermediate layer between &kde; (or other) applications and the selected
+(and installed) print subsystem of your OS (&OS;).</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdebase</keyword>
+<keyword>kdeprint</keyword>
+<keyword>print</keyword>
+<keyword>printing</keyword>
+<keyword>CUPS</keyword>
+<keyword>LPR</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+<para>This handbook describes &kdeprint;. &kdeprint; is not a standalone
+program. It is the new printing framework for &kde; 2.2. &kdeprint;
+is an intermediate layer between &kde; (or other) applications and the selected
+(and installed) print subystem of your OS (&OS;).</para>
+
+<para>It should be noted that both the developer of this application,
+and the author of this document are most familiar with &CUPS; as a
+printing system.  At the time of writing, &CUPS; is the best supported
+printing subsystem, and it is the best documented.</para>
+
+<para>This handbook is work in progress, and later versions of the
+&kdeprint; software and editions of this handbook will support and
+explore more closely other printing systems.</para>
+
+<para>In the meantime, even if your printing subsystem is not yet well
+covered, you are encouraged to explore the <guilabel>Printing
+Manager</guilabel> module in &kcontrol;, and you will find its
+operation to hopefully be fairly self evident, no matter what printing
+subsystem you use.</para>
+
+<para>Lauri Watts, &kde; documentation team</para>
+
+<!-- Insert here screenshot : <steinbruch_scaled.png> -->
+
+<sect1>
+<title>To configure your printing subsystem from &kcontrol;</title>
+
+<para>To configure your printing subsystem from &kcontrol;, go to
+<menuchoice><guilabel>System</guilabel><guilabel>Printing
+Manager</guilabel></menuchoice> and select your subsystem. Or you can
+let &kdeprint; guess it... </para>
+
+<screenshot>
+<screeninfo>&CUPS; Printing Manager dialog: overview via &kcontrol;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="steinbruch_scaled.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to configure the &CUPS; server: security settings</phrase></textobject>
+<caption><para>Configuration of printing subsystem from &kcontrol;</para></caption>
+</mediaobject>
+</screenshot>
+</sect1>
+
+</chapter>
+
+<chapter id="technical-overview">
+<title>Technical Overview</title>
+
+<para>This chapter aims to give a technical overview of &kdeprint; which
+is comprehensible for non-programmers.</para>
+
+<para>&kdeprint; is a new and revolutionary tool to give easy access to
+printing services for both &kde; users and &kde; developers.</para>
+
+<sect1 id="brief-description">
+<title>A Brief Description of &kdeprint;</title>
+
+<para>You can access the functions of &kdeprint; in different ways:
+through the Printing Manger in the &kcontrol;, through the
+<command>kprinter</command> command or through the dialog that pops up
+if you want to print.</para>
+
+<sect2 id="what-kdeprint-is-not">
+<title>What it is <emphasis>not</emphasis></title>
+
+<para>&kdeprint; is <emphasis>not</emphasis> a replacement of the
+printing subsystem itself.  &kdeprint; therefor does
+<emphasis>not</emphasis> provide for the spooling, and it does
+<emphasis>not</emphasis> do the basic processing of &PostScript; or
+other print data.</para>
+
+</sect2>
+
+<sect2 id="what-kde-print-is">
+<title>What it <emphasis>is</emphasis></title>
+
+<para>&kdeprint; is an intermediate layer between the spooling and the
+data processing print subsystem (as installed), and the application that
+seeks to print.  &kdeprint; provides a common interface, for &kde;
+developers and &kde; users, to different supported print subsystems.  At
+the same time, it is customizable, and highly configurable.</para>
+
+<para>&kdeprint; is easy to use for &kde; developers and end-users.
+Developers can port their applications with minimal changes to use
+&kdeprint; instead of the old &Qt; print <quote>system</quote>. Users
+can easily choose and configure their print subsystem.</para>
+
+<para>For a reference to new &kde; users: &Qt; is the basic library and
+graphical toolkit, which is used by all &kde; applications; &Qt; is
+developed by TrollTech, a Norwegian software company).</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="different-users">
+<title>&kdeprint; -- Different Usage for Different People</title>
+
+<para>&kdeprint; has different faces for different people.</para>
+
+<sect2 id="what-users-can-do">
+<title>What users and administrators can do with &kdeprint;</title>
+
+<para>&kdeprint; allows users and/or administrators, depending on their
+rights, to access printing subsystems (&CUPS;, <acronym>LPD</acronym>,
+<acronym>RLPR</acronym>, <application>LPRng</application>,
+<application>PDQ</application> &etc;) through a &kde; graphical user
+interface (&GUI;).  Using &kdeprint;, they can print, administer jobs,
+printers and the printing daemon, all in a comfortable manner.</para>
+
+<para>Experienced users will like the possibility to plug any working
+filter for the print data between the output of their application and
+the input into the chosen print subsystem. Some examples for this
+already ship with <quote>plain vanilla</quote> &kdeprint;. Read
+on.</para>
+
+</sect2>
+
+<sect2 id="what-developers-can-do">
+<title>What &kde; developers can do with it...</title>
+
+<para>If a &kde; developer needs printing access for his application, he
+does not code the printing functions from scratch. Before &kde; 2.2 this
+service was provided by the <classname>QPrinter</classname> class, a
+library function of the &Qt; Toolkit. The
+<classname>QPrinter</classname> class relied on the out-moded
+<quote>Line Printer Daemon</quote> (<acronym>LPD</acronym>). The
+&kdeprint; library bases itself firmly on the more modern Common &UNIX;
+Printing System (&CUPS;), while at the same time keeping backward
+compatibility to <acronym>LPD</acronym> and other legacy or less
+elaborate print systems, and also <quote>leaving the door open</quote>
+to any new development that might occur.</para>
+
+<para>For &kde; developers to use the new &kdeprint; class in their
+applications, they need just minimal changes in their code: for every
+call of <classname>QPrinter</classname>, they just need to change this to
+<classname>KPrinter</classname>.  Replacing one (!) letter in a few
+spots, and automatically they are done; their application then can use
+all the features of the new &kdeprint; library.</para>
+
+<para>More ambitious developers, or ones with special needs can do more:
+despite &kdeprint;'s feature-rich framework, they are still able
+to customize the print dialog of their application
+by letting an additional <quote>Tab</quote> appear, where their
+extensions to the standard &kdeprint; will feel right at home.</para>
+
+<para>This last mentioned feature is not being used widely inside
+&kde; so far, as developers are not yet fully aware of &kdeprint;'s
+power. Expect more of this in the near future. One example I
+discovered is the &kcron; application. It lets you edit the crontab
+through a &GUI;. The developers have implemented a printing feature
+that lets you (or <systemitem class="username">root</systemitem>)
+choose if you want to print the whole of crontab (for all users) or
+just the part that is marked. You can see the effects on &kdeprint;
+in the following screenshots.</para>
+
+<para>This shot shows a sample from the &kcron; utility.
+<screenshot>
+<screeninfo>&kcron; utility: a small sample of a system's cronjobs as
+shown through the &kde; <acronym>GUI</acronym>&GUI;.</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kcron_to_be_printed.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The &kcron; developers let you choose to print the whole of the
+cron table or just the marked part of it.</phrase></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para>The dialog to configure &kcron;'s printing options: the
+additional tab titled <guilabel>Cron Options</guilabel> is from inside
+&kcron;, not &kdeprint;; it is a special extension added by the
+&kcron; developers for printing purposes, not originating from, but
+executed by the &kdeprint;. Developers of other applications are free
+to implement their own goodies, if they feel need for it.</para>
+
+<screenshot>
+<screeninfo>&kcron;'s addition to the &kdeprint; dialog.</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kprinter_with_kcron_developer_special.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>&kcron;'s addition to the &kdeprint; dialog.</phrase></textobject>
+<caption>
+<para>&kcron;'s addition to the &kdeprint; dialog.</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+</sect2>
+
+<sect2>
+<title>What &kdeprint; offers to everybody...</title>
+
+<para>&kdeprint;'s easy-to-use interface towards all supported print subsystems
+of course does not eliminate basic traditional weaknesses of some of
+those systems. But it smoothes some rough edges.  Different users may use
+different printing systems on the same box. A user is free to even
+switch <quote>on the fly</quote>, from the print dialog, the print
+subsystem to be used for the next job. (This is possible if different
+systems are installed in a way that they don't <quote>get in each
+other's way</quote>.)</para>
+
+<para>Most <acronym>PC</acronym> users are used to
+<acronym>LPD</acronym> printing. <acronym>LPD</acronym> provides only
+basic printing functions, is very inflexible and does not utilize the
+many options of more modern print systems like &CUPS;. While also
+working remotely over any distance (like every TCP/IP based protocol),
+<acronym>LPD</acronym> lacks bi-directional communication,
+authentification, access control and encryption support.</para>
+
+<para>&kdeprint; can use &CUPS; to support:</para>
+
+<itemizedlist>
+<listitem>
+<para>Querying the <acronym>LAN</acronym> for available printers,</para>
+</listitem>
+<listitem>
+<para>Basic, Digest, and Certificate Authentication,</para>
+</listitem>
+<listitem>
+<para>Access Control based on <acronym>IP</acronym> addresses, net
+addresses, netmasks, host- and domain names,</para>
+</listitem>
+<listitem>
+<para>and 128-Bit TLS or SSL3 encryption of print data, to prevent
+eavesdropping, or at least make it much more difficult.</para>
+</listitem>
+</itemizedlist>
+
+<para>This makes &kdeprint; a much more robust and reliable solution
+than using the venerable <acronym>LPD</acronym>.</para>
+
+</sect2>
+
+<sect2>
+<title>How to access &kdeprint; </title>
+
+<para>You get access to &kdeprint; or parts of it in four different
+ways:</para>
+
+<itemizedlist>
+<listitem><para>through your applications: if you call the printing
+dialogue (either <menuchoice><guilabel>File</guilabel>
+<guilabel>Print...</guilabel></menuchoice>) or the button with the
+little printer icon on it; this opens the printing
+dialogue.</para></listitem>
+
+<listitem><para>through the typed command <command>kprinter</command>
+in a <application>terminal</application> or a &konsole; window or from
+the <guilabel>Run Command...</guilabel> mini-<acronym>CLI</acronym>
+window: this also opens the printing dialogue.</para></listitem>
+
+<listitem><para>from the <inlinemediaobject><imageobject> <imagedata
+fileref="kcontrol-icon.png" format="PNG"/></imageobject>
+</inlinemediaobject> button, starting &kcontrol;, and then go to
+<menuchoice><guilabel>System</guilabel><guilabel>Printing
+Manager</guilabel></menuchoice>. This opens the &kdeprint;
+administration as part of the &kcontrolcenter; and lets switch to
+other parts of the &kcontrol;</para></listitem>
+
+<listitem><para>from a commandline (&konsole; or
+mini-<acronym>CLI</acronym>) type <userinput>
+<command>kcmshell</command> <option>printmgr</option></userinput>.
+This opens just the &kdeprint; part of &kcontrol; to do your settings
+</para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>&kprinter; dialogue to be started from <guilabel>Run Command...</guilabel> window</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kprinter_called_from_run_command.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Starting the &kprinter; dialogue from
+a <guilabel>Run Command...</guilabel> window.</phrase></textobject>
+<caption><para>Starting the &kprinter; dialogue from a <guilabel>Run
+Command...</guilabel> window.</para></caption>
+</mediaobject>
+</screenshot>
+
+<!-- TODO: This one ought to be a screenshot LW. --> <para>Here is a
+&kivio; drawing of the &kprinter; dialogue as it pops up after being
+started... You can always add a new printer by clicking on the small
+<guiicon>Wizard</guiicon> button (marked red/yellow in this
+drawing).</para>
+  
+<screenshot>
+<screeninfo>&kprinter; dialogue started (&kivio; draft drawing)
+</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kprinter-kivio.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>&kprinter; dialogue started (&kivio; draft drawing)</phrase></textobject>
+<caption><para>&kprinter; dialogue started (&kivio; draft
+drawing)</para></caption>
+</mediaobject>
+</screenshot>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="kdeprint-highlights">
+<title>&kdeprint;'s Highlights</title>
+
+<para>The new &kdeprint; system includes more than one highlight.
+Having worked in a not exactly sophisticated environment as far as
+printing is concerned, in previous years, have a look at some of the
+goodies that come with &kdeprint;</para>
+
+<sect1 id="add-printer-wizard">
+<title>The <quote>Add Printer</quote> Wizard</title>
+
+<para>&kdeprint; has an <quote>Add Printer Wizard</quote>.  The Add
+Printer Wizard helps you adding and configuring a new printer.  Of
+course, you may do this manually as well.</para>
+
+<para>&kdeprint; helps you <quote>discover</quote> printers. It is able
+to scan the environment for available devices and queues. This works for
+network connections against <acronym>TCP</acronym> (AppSocket,
+<acronym>aka</acronym> &HP; <trademark
+class="registered">JetDirect</trademark>, or <acronym>IPP</acronym>) or
+<acronym>SMB</acronym>/Samba (<quote>shared</quote> &Windows;) printers
+and partially for directly attached printers over parallel, serial, or
+<acronym>USB</acronym> connections.</para>
+
+<screenshot>
+<screeninfo>A screenshot of the new <quote>Add Printer
+Wizard</quote></screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsaddprinterwizard1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>Here's a screenshot of the <quote>Add Printer Wizard</quote>
+(this one is not very exciting yet; but...)</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para>The wizard makes the installation and handling of the drivers
+<quote>a snap</quote>. Selecting, configuring and testing should be easy
+as never before on any &Linux;-like system.</para>
+
+<!-- LW: needs some info where to find it, or a pointer to where in this -->
+<!-- doc that is covered -->
+
+</sect1>
+
+<sect1 id="print-job-control">
+<title>Full Print Job Control</title>
+
+<para>The Print Job Viewer is automatically started by &kprinter;.  It
+may be docked into the &kde; panel (in the system tray).  The Print Job
+Viewer allows full job management, if supported by the print
+subsystem.</para>
+
+<para>You can:</para>
+
+<itemizedlist>
+<listitem>
+<para>Hold and release jobs,</para>
+</listitem>
+<listitem>
+<para>Move pending jobs to another printer,</para>
+</listitem>
+<listitem>
+<para>Cancel pending or processing jobs.</para>
+</listitem>
+</itemizedlist>
+
+<para>A screenshot of the &kdeprint; PrintJob Viewer shows the info
+you get: Job-ID, target printer, job name, job owner, job status and job
+size. In the next &kdeprint; release you will also see information about the
+number of pages (as &CUPS; calculates it; see chapter on page accounting
+for more info about its merits and limitations).</para>
+
+<screenshot>
+<screeninfo>A screenshot of the &kdeprint; PrintJob Viewer</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kdeprint-jobviewer.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>Here's a screenshot of the &kdeprint; PrintJob Viewer.</phrase>
+</textobject>
+<caption><para>A screenshot of the &kdeprint; PrintJob
+Viewer.</para></caption>
+</mediaobject>
+</screenshot>
+
+<para>An alternative way to looking at the same info (and having the
+same amount of control is through the <inlinemediaobject><imageobject>
+<imagedata fileref="kcontrol-icon.png" format="PNG"/></imageobject>
+</inlinemediaobject> &kcontrolcenter; going to
+<menuchoice><guilabel>System</guilabel><guilabel>Printing
+Manager</guilabel></menuchoice>. If you don't see the
+<guilabel>Printer Information</guilabel>,
+<mousebutton>right</mousebutton> click onto the window
+background and select <guilabel>View Printer
+Informations</guilabel>. Then go to the <guilabel>Jobs</guilabel> tab
+to see this:</para>
+
+<screenshot>
+<screeninfo></screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kcontrolcenter-printmanager-jobcontrol-2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>Here's a screenshot of the &kdeprint; PrintJob Viewer.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="modules-for-different-subsystems">
+<title>Modules for different print subsystems</title>
+
+<para>&kdeprint; uses different modules to realize the interface to the
+possible print subsystems.  Not all the modules are yet developed fully,
+but you will have basic printing functionality with:</para>
+
+<itemizedlist>
+<listitem>
+<para><acronym>LPD</acronym> (<acronym>BSD</acronym> style)</para>
+</listitem>
+<listitem>
+<para><acronym>LPRng</acronym> (&RedHat;, if you just use it's
+<acronym>BSD</acronym> style subset),</para>
+</listitem>
+<listitem>
+<para><acronym>RLPR</acronym> (a command-line <acronym>LPR</acronym>
+utility, which doesn't need a <filename>printcap</filename> file.</para>
+</listitem>
+<listitem>
+<para><quote>external</quote> print commands (&Netscape; like).</para>
+</listitem>
+</itemizedlist>
+
+<para>Most importantly, full support for &CUPS; is already there.
+Modules for other print subsystems, such as <acronym>PLP</acronym>,
+<acronym>PPR</acronym> and <acronym>PDQ</acronym> may be available
+later.</para>
+
+<para>&kdeprint; makes &kde; much more flexible.  It gives freedom of
+choice to &kde; 2.2 users.  To use different available print subsystems,
+these must, of course, be installed independently from &kde;.  In
+former versions, users were stuck with the old <acronym>LPD</acronym>
+style print subsystems.  Now they can even use &CUPS;. In the future,
+there will be easy integration of new subsystems, as they might
+appear on the scene.</para>
+
+</sect1>
+
+<sect1 id="kdeprint-goodies">
+<title>More &kdeprint; <quote>Goodies</quote></title>
+<subtitle>Benefitting all Print SubSystems.</subtitle>
+
+<para>Some specific features of &kdeprint; depend on the chosen print
+subsystem.  This dependency might exist because those features are only
+implemented there; remember, &kdeprint; is an intermediate layer between
+&kde; applications, and the print subsystem, but it's no replacement for
+any print subsystem by itself.  Such dependency may exist for another
+reason: that &kdeprint; has not yet implemented an interface to all the
+features of all the subsystems.</para>
+
+<para>Other features include goodies from &kdeprint; that are
+independent of the chosen print subsystem, and are available with every
+one.  At present there are <quote>special</quote> or
+<quote>virtual</quote> printers, and some generic
+<quote>pre-filters</quote>.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Print Preview</guilabel></term>
+<listitem>
+<para>From the Print Dialog, you can select to look at a preview.  For
+this the print file is sent through filters which make it fit for
+display on screen by &kghostview;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Special Printers</guilabel></term>
+<listitem>
+<para>Amongst these additional &kdeprint; features are a few
+<quote>special</quote> or <quote>virtual</quote> printers:</para>
+
+<para>These special printers may:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Print to PDF</guilabel></term>
+<listitem>
+<para>Convert our document into a <acronym>PDF</acronym> with the help
+of an external program.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Print to email</guilabel></term>
+<listitem>
+<para>Send your document as an email attached <acronym>PDF</acronym>
+file.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Print to PS file</guilabel></term>
+<listitem>
+<para>Save your document as a &PostScript; file.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Print to Fax</guilabel></term>
+<listitem>
+<para>Send it through an available backend, such as
+<application>Hylafax</application> as a fax.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>These <quote>special</quote> printers appear in the user print
+dialog just like <quote>normal</quote> printers.  They are entirely
+configurable on a per-user basis.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Generic Pre-Filtering</guilabel></term>
+<listitem>
+<para>&kdeprint; provides you with a framework to define and configure
+your own <quote>pre-filters</quote>.  These pre-filters may take effect
+<emphasis>before</emphasis> they are passed to your print subsystem for
+further processing, but <emphasis>after</emphasis> the (&PostScript; or
+text or other) print files have been generated by your
+application.</para>
+
+<para>There are a few useful filters already predefined. These
+are:</para>
+
+<itemizedlist>
+<listitem>
+<para>The <quote>multiple pages per sheet</quote> filter,</para>
+</listitem>
+
+<listitem>
+<para>the <quote>enscript</quote> text filter,</para>
+</listitem>
+
+<listitem>
+<para>and three filters to help print pamphlets.</para>
+</listitem>
+</itemizedlist>
+
+<para>You may create your own filters based on any third party program
+that is able to process &PostScript;, text, or image files, and output
+any one of those formats.</para>
+
+<para>Those filters are configured through <acronym>XML</acronym> files.
+This makes an extension of the concept very easy for experienced geeks,
+but end-user configuration is also done through an intuitive graphical
+user interface.  So, fear not, you don't need to learn
+<acronym>XML</acronym> because of &kdeprint;!.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Multiple Pages Per Sheet Filter</guilabel></term>
+<listitem>
+<para>This is a predefined filter that installs with &kdeprint;.  It
+allows you to create a modified &PostScript; output, from &PostScript;
+input, that prints 1, 2, or 4 logical pages on a single sheet of
+physical paper.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Enscript Text Filter</guilabel></term>
+<listitem>
+<para>This is a predefined filter that installs with &kdeprint;.  It
+allows you to create &PostScript; output from any text file input, that
+includes syntax highlighting for program listings, pretty-print, and
+nice configurable page frames and headers.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Pamphlet Printing Filters</guilabel></term>
+<listitem>
+<para>If your printer is able to produce duplex output, using either
+one-pass or two-pass technology, you may be able to use one or a
+combination of the <quote>pamphlet</quote> filters.</para>
+
+<para>For duplexing printers, make sure to use the duplex option that
+<quote>turns</quote> the output along the short paper edge.  Folding the
+output along the middle turns your document into a nice pamphlet.</para>
+
+<para>If you are stuck to using a simplex-only device, you can do the
+same, using two different filters and a few additional steps.</para>
+
+<para>Depending on your model, first use the filter for printing the
+<quote>odd</quote> pages, then insert the paper in the correct order
+back into the paper tray to get the even pages printed on the reverse
+side.  Finish by folding.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="cups-plugin">
+<title>&CUPS; Support: the Most Important Module in &kdeprint;</title>
+
+<para>&kdeprint; contains a module for &CUPS;.  &CUPS;, the
+<quote>Common UNIX Printing System</quote> (<ulink
+url="http://www.cups.org">http://www.cups.org/</ulink>), is the most
+advanced, powerful and flexible of all print subsystems on &UNIX; and
+other &Linux; like operating systems.  It is still quite new on the
+horizon, but is based on <acronym>IPP</acronym>, the Internet Printing
+Protocol, the newly emerging standard for the future of network
+printing. &CUPS; is clearly the print system of choice for Michael
+Goffioul, the principal &kdeprint; developer.</para>
+
+<para>Experienced &kde; users may already be familiar with Michael's
+utilities <application>qtcups</application> and
+<application>kups</application> (co-developed with Jean-Eric Cuendet).
+These were up until now the graphical
+&GUI; front ends for &CUPS; with a strong relation to &kde;.</para>
+
+<sect2>
+<title><application>qtcups</application> and
+<application>kups</application> &mdash; The Predecessors</title>
+
+<para>Both utilities are probably still in wide usage. For those
+not familiar with them,
+here are short explanations.</para>
+
+<para><application>qtcups</application> was a graphical front end for
+the <command>lp</command> or <command>lpr</command> print commands as
+installed by &CUPS;. Using <application>qtcups</application> opened a
+dialog.  This dialog let you comfortably select your printer and the
+print job options. <application>qtcups</application>
+worked from the command line, or from
+within applications, when the application in question had a configurable
+print command.</para>
+
+<para><application>kups</application> was a graphical wrapper to do the
+administration tasks for your &CUPS; server, and the &CUPS; daemon at
+the heart of it.  You could add, delete, modify, configure, start, and
+stop printers.  You could cancel, delete, move, stop and restart print
+jobs, and you could change the settings of the daemon, start, stop, and
+restart it.</para>
+
+</sect2>
+
+<sect2>
+<title>&kdeprint; &mdash; The Heir</title>
+
+<para>The &CUPS; Module in &kdeprint; now contains all (and more)
+functions that were provided by <application>qtcups</application> and
+<application>kups</application> in former &kde; versions.</para>
+
+<para>Instead of <command>qtcups</command> you now can use the
+<command>kprinter</command> command.  And in place of
+<command>kups</command> you will in future probably use
+<command>kcmshell printmgr</command>.
+</para>
+
+<para>The &kdeprint; module for &CUPS; also lets you fully administer
+the print subsystem, just like <application>kups</application> did
+before. It can start, stop and configure your &CUPS; daemon. It also can
+stop, start, add and delete <quote>printers</quote> (&ie; printer
+queues) and printer <quote>instances</quote>.  Printer instances are
+printer queues that point to the same physical output device but with a
+different default setting of print options.</para>
+
+</sect2>
+
+<sect2>
+<title>&kprinter; &mdash; Graphical Print Command</title>
+
+<para>&kdeprint;'s &CUPS; module gives you access to a <quote>graphical
+print command</quote>, like <application>qtcups</application> did
+before.</para>
+
+<para>Use &kprinter; in any application, even non &kde;
+application that lets you configure your print command.  Examples of
+this are &Netscape; and <application>StarOffice</application>, but
+<emphasis>not</emphasis> most pre-&kde; 2.2 programs.</para>
+
+<para>A screenshot how to use the new <command>kprinter </command>
+print command instead of the old-fashioned
+<command>lpr</command>... (Of course you need to have
+<command>kprinter</command> in your $<envar>PATH</envar> for this
+short version; otherwise give the full path in the dialog once, &eg;
+<userinput><filename>/opt/kde/bin/kprinter</filename></userinput>. &Netscape;
+will remember this and from now on you always get the
+<command>kprinter</command> dialog to configure your printouts.</para>
+
+<screenshot>
+<screeninfo>A screenshot of the <command>kprinter</command> print
+command in action.</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kprinter-as-netscape-printcommand.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>Here's a screenshot how to use the new
+<command>kprinter</command> print command
+instead of the old-fashioned <command>lp</command> or
+<command>lpr</command> in &Netscape;.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para>You can also use <command>&kprinter;</command> from the
+commandline and see the resulting dialog box pop up:</para>
+
+<screenshot>
+<screeninfo>Screenshot of <command>kprinter</command> command</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kprinter.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Screenshot of using the <command>kprinter</command> command
+from the commandline.</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<note><para>Just make sure you give at least the file to be printed
+from the commandline as well: <userinput><command>kprinter</command>
+<option>/usr/share/doc/packages/cups/sam.pdf</option></userinput>.
+This will hand over the &CUPS; Software Administrator Manual to the
+<command>kprinter</command> dialogue, which then pops up with the
+default printer pre-selected.</para>
+
+<para>To pre-select a specific printer from the commandline, use it
+like <userinput><command>kprinter</command> <option>-d
+DANKAcolorC2000</option>
+<option>/home/kurt/linuxtag2001-paper.ps</option></userinput>.  You
+can still de-select the printer <option>DANKAcolorC2000</option> and
+choose a different one.</para>
+
+<para> You <emphasis>cannot</emphasis> however call
+<userinput><command>kprinter</command></userinput> 
+without a print file and hope to open a file selection
+dialog box from the kprinter window. This is a feature that will be
+implemented only in the next version.</para>
+</note>
+
+<para>Through <command>kprinter</command> your are able to <quote>ring
+all the bells and blow all the whistles</quote> of your printer.  You
+will need a device-specific so-called &PPD; (&PostScript; Printer
+Description) to enable &CUPS; to make this nice tandem team do this
+for you.  Read more about this in <xref linkend="ppd-files"/>.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="future-plans">
+<title>Plans for Future Development</title>
+
+<para>What you have now is the first, already very feature-rich
+version of &kdeprint;. This version is, of course, fully usable for
+printing. >You might even think, that <quote>it never was so
+easy</quote> (not even back in the dark days you had to use
+&Microsoft; &Windows;.</para>
+
+<para> In the future, &kdeprint; will become even better. It will do a
+better job of <quote>detecting</quote> your installed print subsystem
+itself. Already &kdeprint; is doing quite well in automatically
+sensing if you have &CUPS; on your system. But in many cases you will
+have to tell &kdeprint; what you are using, if you want to keep a
+legacy print system.</para>
+
+<para>The most important improvement in the near future will be a
+completion of the <application>LPRng</application> plugin.  This at
+present is still very basic.  It is restricted to the pure classical
+<acronym>LPD</acronym> part of
+<application>LPRng</application>.</para>
+
+<para>Also, you may be able to add printers directly from the print
+dialog to your system <quote>just in time</quote>, without going to
+&kcontrol; first.</para>
+
+<para>Some smaller improvements already planned are:</para>
+
+<itemizedlist>
+<listitem><para>add a file selection dialog from the kprinter window
+to allow for combining additional files to the present
+printjob</para></listitem> <listitem><para>add a
+<quote>history</quote> button to the
+<application>KJobViewer</application> window and also a column to show
+the number of pages &CUPS; calculates for the job.</para></listitem>
+</itemizedlist>
+
+<para>Finally, there will be an <quote>IO slave</quote> that will give
+you access to your print subsystem, via &konqueror; for example.  With
+this you will soon be able to browse your print subsystem from
+&konqueror; through a &URL; like shortcut such as
+<userinput>print://printers/printername</userinput>.  A KPart will add
+a virtual folder to the services section of the &konqueror; sidebar,
+giving a nice integrated way to browse and manage your print system
+via the &URL; <userinput>print:/manager</userinput>.</para>
+
+<para>Please contact Michael Goffioul at <email>goffioul@imec.be</email>
+with any further user or developer suggestions.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="theory">
+<title>Some Theoretical Background: &CUPS;, <acronym>IPP</acronym>,
+&PostScript; and <application>GhostScript</application></title>
+
+<para>This chapter aims to give a bit of theoretical background to
+printing in general, and to &CUPS; especially.  If you are not in need
+of this, you might like to skip ahead to the <link
+linkend="getting-started">next chapter</link>. I am betting you will
+come back to this chapter at some point anyway, because sometimes one
+needs extra theory to solve a practical problem.</para>
+
+<sect1 id="basics-of-printing">
+<title>Basics About Printing</title>
+
+<para>Printing is one of the more complicated chapters in
+<acronym>IT</acronym> technology.</para>
+
+<para>Earlier on in history, every developer of a program that was
+capable of spitting out printable output had to write his own printer
+drivers too.  That was quite complicated, because different programs
+have different file formats.  Even programs with the same usage, for
+example, word processors, often do not understand each others formats.
+So, there was no common interface to all printers, hence the programmers
+often supported only a few selected models.</para>
+
+<para>A new device appearing on the market required the program authors
+to write a new driver if they wanted their program to support it.  Also
+for manufacturers, it was impossible to make sure their device was
+supported by any program known to the world (although, there were far
+fewer than today.)</para>
+
+<para>Having to support ten application programs and a dozen printers,
+meant a system administrator had to deal with 120 drivers.  So the
+development of unified interfaces between programs and printers became
+an urgent need.</para>
+
+<para>The appearance of <quote>Page Description Languages</quote>,
+describing the graphical representation of ink and toner on sheets of
+paper (or other output devices, like monitors, photo typesetters, &etc;)
+in a common way was a move that found a big gap. <!-- FIXME --></para>
+
+<para>One such development was &PostScript; by Adobe.  It meant that an
+application programmer could concentrate on making his program give out
+a &PostScript; language description of his printable page, while
+printing device developers could focus on making their devices
+&PostScript; literate.</para>
+
+<para>Of course, there came, over time, the development of other description
+methods.  The most important competitors to &PostScript; were
+<acronym>PCL</acronym> (<quote>Print Control Language</quote>, from
+&Hewlett-Packard;), <quote>ESC/P</quote> (from Epson) and
+<acronym>GDI</acronym> (<quote>Graphical Device Interface</quote> from
+&Microsoft;).</para>
+
+<para>The appearance of these page description languages eased life, and
+facilitated further development for everybody.  Yet the fact that there
+still remained different, incompatible, and competing page description
+languages keeps life for users, administrators, developers and
+manufacturers difficult enough.</para>
+
+<sect2>
+<title>&PostScript; in memory - Bitmaps on Paper</title>
+
+<para>&PostScript; is most heavily used in professional printing
+environments such as PrePress and printing service industries.  In the
+domains of &UNIX; and &Linux;, &PostScript; is the pre-dominant standard
+as a <acronym>PDL</acronym>. Here, nearly every program generates a
+&PostScript; representation of it's pages once you push the
+<quote>Print</quote> button.  Let us look at a simple example of
+(hand-made) &PostScript; code.  The following listing describes two
+simple drawings:</para>
+
+<example id="coded-postscript">
+<title>&PostScript; Code</title>
+<screen>%!PS
+100 100 moveto
+0 50 rlineto
+50 0 rlineto
+0 -50 rlineto
+closepath
+.7 setgray fill
+% first box over; next
+160 100 moveto
+0 60 rlineto
+45 10 rlineto
+0 -40 rlineto
+closepath
+.2 setgray fill</screen>
+</example>
+
+<para>This tells the imaginary &PostScript; <quote>pen</quote> to draw
+a path of a certain shape, and then fill it with different shades of
+gray.  The first part translates into more comprehensive English as
+<quote>Go to coordinate (100,100), draw a line with length 50 upward;
+then one from there to the right, then down again, and finally close
+this part.Now take a paint of 70% gray, and use it to fill the drawn
+shape.</quote></para>
+
+<example id="rendered-postscript">
+<title>Rendered &PostScript;</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="ps-boxes.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase><xref linkend="coded-postscript"/> example rendered as an
+image.</phrase>
+</textobject>
+</mediaobject>
+</example>
+
+<para>Of course, &PostScript; can be much more complicated than this
+simplistic example. It is a fully fledged programming language with
+many different operators and functions. You may even write
+&PostScript; programs to compute the value of Pi, format a harddisk or
+write to a file. The main value and strength of &PostScript; however
+lays in the field to describe the layout of graphical objects on a
+page: it also can scale, mirror, translate, transform, rotate and
+distort everything you can imagine on a piece of paper -- such as
+letters in different font representations, figures, shapes, shades,
+colors, lines, dots, raster...</para>
+
+<para>A &PostScript; file is a representation of one or more
+to-be-printed pages in a relatively abstract way. Ideally, it is meant
+to describe the pages in an device-independent way. &PostScript; is
+not directly <quote>visible</quote>; it only lives on the hard disks
+and in <acronym>RAM</acronym> memory as a coded representation of
+future printouts.</para>
+
+</sect2>
+
+<sect2>
+<title>Raster Images on Paper Sheets</title>
+
+<para>What you see on a piece of paper is nearly always a
+<quote>raster image</quote>. Even if your brain suggests to you that
+your eyes see a line: take a good magnifying glass and you will
+discover lots of small dots...  (One example to the contrary are
+sheets that have been drawn by <quote>pen plotters</quote>).  And that
+is the only thing what the <quote>marking engines</quote> of todays
+printers can put on paper: simple dots of different colors, size,
+resolution to make up a complete <quote>page image</quote> composed of
+different bitmap patterns.</para>
+
+<para>Different printers need the raster image prepared in different
+ways. Thinking about an inkjet device: depending on its resolution,
+the number of used inks (the very good ones need different 7 inks, while a
+cheaper one might have use 3), the number of available jets (some print
+heads have more than 100!) spitting out ink simultaneously, the
+<quote>dithering algorithm</quote> used, and many other things, the
+final raster format and transfer order to the marking engine is heavily
+dependent on the exact model used.</para>
+
+<para>Back in the early life of the <quote>Line Printer Daemon</quote>,
+printers were machines that hammered rows of <acronym>ASCII</acronym>
+text mechanically onto long media, folded as a zig-zag paper
+<acronym>snake</acronym>, drawn from cardboard boxes beneath the
+table... What a difference from today!</para>
+
+</sect2>
+
+<sect2>
+<title><acronym>RIP</acronym>: From &PostScript; to Raster</title>
+
+<para>Before the final raster images are put on paper cut-sheets, they
+have to be calculated somehow out of their abstract &PostScript;
+representation. This is a very computing-intensive process. It is called
+the <quote>Raster Imaging Process</quote>, more commonly
+<quote><acronym>RIP</acronym></quote>).</para>
+
+<para>With &PostScript; printers the <acronym>RIP</acronym>-ping is
+taken care of by the device itself. You just send to it the &PostScript;
+file. The <quote>Raster Imaging Processor</quote> (also called the
+<acronym>RIP</acronym>) inside the printer is responsible (and
+specialized) to fullfil quite well this task of interpreting the
+&PostScript;-page descriptions and put the raster image on paper.</para>
+
+<para>Smaller &PostScript; devices have a
+hardware-<acronym>RIP</acronym> built in; it is cast in silicon, on a
+special chip. Big professional printers often have their
+<acronym>RIP</acronym> implemented as a software-<acronym>RIP</acronym>
+inside a dedicated fast &UNIX; run computer, often a Sun SPARC Solaris
+or a &SGI; &IRIX; machine.</para>
+
+</sect2>
+
+<sect2>
+<title><application>GhostScript</application> as a Software
+<acronym>RIP</acronym></title>
+
+<para>But what happens, if you are not lucky enough to have a
+&PostScript; printer available?</para>
+
+<para>You need to do the <acronym>RIP</acronym>-ing before you send
+the print data the marking engine. You need to digest the &PostScript;
+generated by your application on the host machine (the print client)
+itself. You need to know how the exact raster format of the target
+printers' marking engine must be composed.</para>
+
+<para>In other words, as you can't rely on the printer to understand
+and interpret the &PostScript; itself, the issue becomes quite a bit
+more complicated.  You need software that tries to solve for you the
+issues involved.</para>
+
+<para>This is exactly what the omnipresent &ghostscript; package is
+doing for many &Linux;, *BSD and other &UNIX; boxes that need to print
+to non-&PostScript; printers: &ghostscript; is a &PostScript;
+interpreter, a software <acronym>RIP</acronym> capable to run a lot of
+different devices.</para>
+
+</sect2>
+
+<sect2>
+<title><quote>Drivers</quote> and <quote>Filters</quote> in General</title>
+
+<para>To produce rasterized bitmaps from &PostScript; input, the
+concept of <quote>filters</quote> is used by &ghostscript;.  There are
+many different filters in &ghostscript;, some of them specialized for
+a certain model of printer.  &ghostscript; filterspecializedin devices
+have often been developed without the consent or support of the
+manufacturer concerned.  Without access to the specifications and
+documentation, it was a very painstaking process to reverse engineer
+protocols and data formats.</para>
+
+<para>Not all &ghostscript; filters work evenly well for their
+printers.  Yet, some of the newer ones, like the
+<application>stp</application> Filter of the
+<application>Gimp</application> Print project, produce excellent
+results leading to photographic quality on a par or even superior to
+their &Microsoft; &Windows; driver counterparts.</para>
+
+<para>&PostScript; is what most application programs produce for
+printing in &UNIX; and &Linux;.  Filters are the true workhorses of
+any printing system there.  Essentially they produce the right bitmaps
+from any &PostScript; input for non-&PostScript; target
+engines.</para>
+
+</sect2>
+
+<sect2>
+<title>Drivers and Filters and Backends in CUPS</title>
+
+<para>&CUPS; uses its own filters, though the filtering system is
+based on ghostscript. Namely the pstoraster and the imagetoraster
+filters are directly derived from ghostscript code. &CUPS; has
+re-organized and streamlined the whole mechanics of this legacy code
+and organized it into a few clear and distinct modules.</para>
+
+<para>This next drawing (done with the help of &kivio;) gives an
+overview of the filters and backends inside &CUPS; and how they fit to
+each other. The <quote>flow</quote> is from top to bottom. Backends
+are special filters: they don't convert date to a different format,
+but they send the ready files to the printer. There are different
+backends for different transfer protocols.</para>
+
+<screenshot id="architecture-diagram">
+<screeninfo>&kprinter; dialogue started (&kivio; draft drawing)
+</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cups-filterarchitecture-kivio-70Percent-scaled.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>&kprinter; dialogue started (&kivio; draft
+drawing)</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+</sect2>
+<sect2>
+<title>Spoolers and Printing Daemons</title>
+
+<para>Besides the heavy part of the filtering task to generate a
+print-ready bitmap, any printing software needs to use a SPOOLing
+mechanism: this is to line up different jobs from different users for
+different printers and different filters and send them accordingly to
+the destinations. The printing daemon takes care of all this.</para>
+
+<para>This daemon is keeping the house in order: it is also
+responsible for the job control: users should be allowed to cancel,
+stop, restart &etc; their jobs (but not other peoples's jobs) and so
+on.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="cups-and-ppd">
+<title>Excursion: How <quote>CUPS</quote> uses the power of
+&PPD;s</title>
+
+<para>Now that you know how a &PostScript; language file (which
+describes the page layout in a largely device independent way) is
+traveling to become transformed into a Raster Image, you might ask:
+<quote>Well, there are different kinds of raster output devices: first
+they differ in their resolution; then there are the different paper
+sizes; it goes on with many finishing options (duplex prints,
+pamphlets, punched and stapled output with different sheets of colored
+paper being drawn from different trays, &etc;). How does this fit into
+our model of device-independent &PostScript;?</quote></para>
+
+<para>The answer comes with so called &PostScript; Printer Description
+(&PPD; files. A &PPD; describes all the device dependent features
+which can be utilized by a certain printer model.  It also contains
+the coded commands that must be used to call certain features of the
+device.  But &PPD;s are no closed book, they are simple
+<acronym>ASCII</acronym> text files.</para>
+
+<para>&PPD;s were <quote>invented</quote> by Adobe to make it easy for
+manufacturers to implement their own features into &PostScript;
+printers, and at the same time retain a standard way of doing so.
+&PPD;s are well documented and described by Adobe.  Their
+specification is a de-facto open standard.</para>
+
+<sect2 id="ppd-files">
+<title>Device Dependent Print Options</title>
+
+<para>Remember, advanced &PostScript; printing originally was
+developed for use on &Microsoft; &Windows; and Apple &Mac; systems
+only.  For a long time all the feature rich printing on modern devices
+was just unavailable for &Linux; and &UNIX;. &CUPS; changes this
+decisively. &CUPS; is very intimated with PPDs, and therefor existing
+&PPD;s can be utilized to the full by all systems powered by
+&CUPS;.</para>
+
+<para>Via &PPD;s, printer manufacturers were able to insert
+device-specific hardware features into their products, for things such
+as duplexing, stapling, punching, finishing &etc;. The printer drivers
+load this &PPD; just like an additional configuration file. Thus the
+printer driver learns about the available device options and how to
+call them; the driver also shows them in a &GUI; to the user. Through
+this mechanism you still are able to print
+<quote>device-independent</quote> &PostScript; page description
+language files and specify device-dependent finishing options on top,
+which are added to the application-produced &PostScript;.</para>
+
+</sect2>
+
+<sect2>
+<title>Where to get the &PPD;s for &PostScript; Printers</title>
+
+<para>&PPD;s originally were not used routinely in &UNIX; and &Linux;
+systems.  The vendors providing those &PPD;s never intended them for
+other than the originally supported &OS;es, &Microsoft; &Windows; and
+&Mac; &OS;.  Through it's brilliant move to fully support and utilize
+the existing &PPD; specification, &CUPS; now gives the power to use
+all features of modern printers to users of &Linux; and &Linux;-like
+systems.  &kdeprint; makes it's usage even more comfortable than the
+&CUPS; developers ever dreamt of.</para>
+
+<para>&CUPS; can use original &Windows; &PPD;s, distributed by the
+vendors in the case of &PostScript; printers.  Those normally don't
+cost any money, and they can be grabbed from any &Windows; computer
+with an installed &PostScript; driver for the model concerned, or from
+the disks provided with the printer.  There are also several places on
+the web to download them.</para>
+
+</sect2>
+
+<sect2>
+<title>How Special &PPD;s are Now Useful Even For Non-&PostScript;
+Printers.</title>
+
+<para>Now you know how &PostScript;-Printers can use &PPD;s. But what
+about non-&PostScript; printers? &CUPS; has done a very good trick: by
+using the same format and data structure as the &PostScript; Printer
+Descriptions (&PPD;s) in the &PostScript; world, it can describe the
+available print job options for non-&PostScript; printers just the
+same. For its own special purposes &CUPS; just added a few special
+options (namely the line which defines the filter to be used for
+further processing of the &PostScript; file).</para>
+
+<para>So, the developers could use the same software engine to parse
+the Printer Description Files for available options for all sorts of
+printers.  Of course the &CUPS; developers could not rely on the
+non-&PostScript; hardware manufacturers to suddenly develop &PPD;s.
+They had to do the difficult start themselves and write them from
+scratch.  More than 1000 of these are available through the commercial
+version of &CUPS;, called <application>ESP
+PrintPro</application>.</para>
+
+<para>Meanwhile there are a lot of &CUPS;-specific &PPD;s available.
+Even now those are in most cases not originating from the printer
+manufacturers, but from Free software developers.  The &CUPS; folks
+proofed it, and others followed suit: where &Linux; and &UNIX;
+printing one or two years ago still was a kludge, it is now able to
+support a big range of printers, including 7-color inkjets capable of
+pushing them to Photo Quality output.</para>
+
+</sect2>
+
+<sect2>
+<title>Different Ways to get &PPD;s for non-&PostScript;
+Printers</title>
+
+<para>You can get &PPD;s to be used with &CUPS; and non-&PostScript;
+printers from different areas in the Web:</para>
+
+<itemizedlist>
+<listitem>
+<para> first, there is the repository at <ulink
+url="http://www.linuxprinting.org">www.linuxprinting.org</ulink>,
+which lets you generate a <quote>CUPS-O-Matic</quote>-&PPD; online for
+any printer that had been supported by traditional &ghostscript;
+printing already. This helps you to switch over to &CUPS; with little
+effort, if you wish so. If your printer was doing well with the
+traditional way of &ghostscript; printing, take CUPS-O-Matic to plug
+your driver into th e &CUPS; system and you'll have the best of both
+worlds.</para>
+</listitem>
+
+<listitem>
+<para>second, there are &CUPS;-&PPD;s for the more than 120 printer
+models, which are driven by the new universal
+<application>stp</application> driver. <application>stp</application>
+(stood originally for Stylus Photo) is now developed by the gimp-print
+project; it was started by Mike Sweet, the leading &CUPS; developer
+and is now available through <ulink
+url="http://gimp-print.sourceforge.net">gimp-print.sourceforge.net</ulink>.
+This driver prints real Photo quality on many modern inkjets and can
+be configured to make 120 &CUPS;-&PPD;s along its own
+compilation. &HP; Laser- and DeskJet, <trademark
+class="registered">Epson</trademark> Stylus and Photo Color models as
+well as some <trademark class="registered">Canon</trademark> and
+<trademark class="registered">Lexmark</trademark> are covered.</para>
+</listitem>
+
+<listitem>
+<para>third, there is the commercial extension to &CUPS; from the
+&CUPS; developers themselves: it is called <application>ESP
+PrintPro</application> and comes with more than 2.300 printer
+drivers. There are even improved imagetoraster and pstoraster filters
+included.</para>
+</listitem>
+</itemizedlist>
+
+<para>&CUPS; makes it really easy for manufacturers to start
+supporting &Linux; and &UNIX; printing for their models at reasonably
+low cost. The modular framework of &CUPS; facilitates to plug in any
+filter (=driver) with minimal effort and to access and utilize the
+whole printing framework that &CUPS; is creating.</para>
+
+<para>Read more about the exciting &CUPS; features in the available
+&CUPS; documentation at <ulink
+url="http://www.cups.org/documentation.html">http://www.cups.org/documentation.html</ulink>
+and <ulink
+url="http://wwww.danka.de/printpro/faq.html">http://www.danka.de/printpro/faq.html</ulink>.
+Also at <ulink
+url="http://www.linuxprinting.org">http://www.linuxprinting.org/</ulink>
+is a universal repository for all issues related to &Linux; and &UNIX;
+printing.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="cups-ipp-support">
+<title>How &IPP; Support Makes &CUPS; the Best Choice Around</title>
+
+<sect2>
+<title><quote><acronym>LPD</acronym> Must Die!</quote></title>
+
+<para>For a long time many developers were deeply dissatisfied with good
+old <acronym>LPD</acronym>. Quite a few new projects were started to
+improve printing: <application>LPRng</application> is the best known
+example. Others are <acronym>PDQ</acronym>, <acronym>PPR</acronym>,
+<acronym>PLP</acronym>, <acronym>GNUlpr</acronym> and
+<acronym>RLPR</acronym>. but none of the new programs were seen as a
+<quote>big shot</quote>; most of them are just implementing the same old
+<acronym>LPD</acronym> specification with a few (or many) new
+extensions, which again make them incompatible to each other.</para>
+
+<para>Having seen the development of not just one, but different
+viable alternatives to venerable <acronym>BSD</acronym>-style
+<acronym>LPD</acronym>, Grant Taylor, author of the <citetitle>Linux
+Printing HOWTO</citetitle>, finally rallied the call <citetitle>LPD
+Must Die!</citetitle> in his <quote>Campaign To Abolish The Line
+Printer Daemon</quote>.</para>
+
+<!-- FIXME: look up URLs for the above -->
+
+</sect2>
+
+<sect2>
+<title>How the &IPP; Came to Be</title>
+
+<para>Along with the above, on the industry side of things, there were
+efforts to overcome the well-known weaknesses of
+<acronym>LPD</acronym>.  It started with proprietary extensions to
+plain old <acronym>LPD</acronym>, and stretched as far as
+&Hewlett-Packard;'s attempt to establish &HP; JetDirect as a new
+standard for a network printing protocol.  The result were even more
+incompatibilities.</para>
+
+<para>In the end, an initiative to define a new common industry and
+<acronym>IETF</acronym> standard took shape. The <quote>Printer
+Working Group</quote> or <acronym>PWG</acronym>, a loose aggregation
+of vendors in hardware, software, and operating systems, drafted the
+new <quote>Internet Printing Protocol</quote>, &IPP;.  &IPP; v1.1 has
+now been approved by the <acronym>IETF</acronym> (Internet Engineering
+Task Force) as a proposed standard, and now enjoys the unanimous
+support throughout the industry in Europe, USA and Japan.  Most
+current network printer models have now built in &IPP; support on top
+of traditional <acronym>LPR</acronym>/<acronym>LPD</acronym> or
+JetDirect Printing.</para>
+
+</sect2>
+
+<sect2>
+<title>Why &IPP; is Solving Many Problems</title>
+
+<para>&IPP; promises to solve a lot of problems network administrators
+face. This trade normally deals with heterogeneous network
+environments and spends more than half of its working hours dealing
+with printing problems.</para>
+
+<para>By creating a unified set of query functions for &IPP; enabled
+printers and servers, for transferring files and setting job-control
+attributes &etc;, &IPP; is destined to work across all &OS; platforms.
+It's rollout however, will not happen overnight, as many legacy print
+devices will still be in use for many years to come.  Therefore, in
+&IPP; there is a provision made for backwards compatibility of all
+&IPP; implementations.  &CUPS; is proving the viability of &IPP;
+printing in all environments.</para>
+
+<para>The most striking advantage will be it's integration into the
+existing set of other robust <acronym>IP</acronym> protocols.  Being
+an extension of the proven and robust <acronym>HTTP</acronym> 1.1
+protocol, for the special task of handling print file and related
+data, it is also very easy to plug in other standards as they are
+being developed and deployed:</para>
+
+<itemizedlist>
+<listitem>
+<para>Basic, Digest, and Certificate Authentication for users seeking
+access to print services.</para>
+</listitem>
+<listitem>
+<para>SSL3 and <acronym>TLS</acronym> encryption for transferring
+data.</para>
+</listitem>
+<listitem>
+<para>Bi directional communication of clients with print devices, using
+the <acronym>HTTP</acronym>/&IPP; <command>GET</command> and
+<command>POST</command> mechanism.</para>
+</listitem>
+<listitem>
+<para>LDAP directory service integration to keep a consistent database
+of available printers, their capabilities and page-costs, &etc;, as well
+as user passwords, <acronym>ACL</acronym>s &etc;.</para>
+</listitem>
+<listitem>
+<para><quote>Pull</quote> (as opposed to the usual <quote>Push</quote>
+model) printing, where a server or printer just needs to be told the
+&URL; of a document, whereupon it is retrieved from the resource on the
+internet and printed.</para>
+</listitem>
+</itemizedlist>
+
+</sect2>
+
+<!--
+<sect2>
+<title>&CUPS;, &IPP; and &kde;</title>
+
+<para>&CUPS; is the most advanced implementation of &IPP; on all &OS;
+platforms.  That makes &CUPS; a crucial ally to help "conquer the
+desktop" for projects like &kde;. &kdeprint; is the best utility to
+make &CUPS; core functionality available to &kde; Desktop
+users.</para>
+
+</sect2> -->
+
+<sect2>
+<title>Printer <quote>Plug'n'Play</quote> for Clients</title>
+
+<para>Have you ever seen a demonstration about &CUPS; capabilities in
+the network?  You must have been quite impressed if you didn't know in
+advance what to expect.</para>
+
+<para>Imagine you as the administrator of a <quote>LAN</quote>.  For
+testing purposes you fully installed one &kde;/&CUPS; box on your net,
+complete with a dozen printers configured and functional:
+&PostScript;, LaserJets, InkJets and BubbleJets, and so on.  Your
+&kde; users on that box are very happy, they can print like never
+before, <quote>ringing all the bells and whistles</quote> of every
+printer.  It took you 2 hours to make everything run perfectly... and
+now all the other 100 users on the network want the same.  Two hours
+again for every box?  No way you could do that before next year, you
+think?</para>
+
+<para>Wrong.  Just change one setting in the original &CUPS; box to
+make it a <quote>server</quote>.  Install &CUPS; on five other boxes,
+as <quote>clients</quote>.  By the time you turn back to your first
+client, you find the users happily playing with the settings for the
+dozen printers you had defined earlier on the <quote>server</quote>.
+Somehow magically the printers had appeared on all the
+<quote>Print</quote> dialogs of the five new &CUPS; client
+boxes.</para>
+
+<para>Your users print, but nota single driver had been installed on
+the clients, nor a printer queue defined.</para>
+
+<para>So, how does this magic work?</para>
+
+</sect2>
+
+<sect2>
+<title><quote>Seeing</quote> Printers Not Installed Locally?</title>
+
+<para>The answer is not complicated at all.</para>
+
+<para>If a &CUPS; server is on the <acronym>LAN</acronym>, it
+broadcasts the names of all available printers to the
+<acronym>LAN</acronym>, using the <acronym>UDP</acronym> protocol and
+port 631.  Port 631 is reserved as a <quote>well-known port</quote> by
+<acronym>IANA</acronym> (the <quote>Internet Assigning Numbers
+Authority</quote>) for &IPP; purposes.  All &CUPS; clients listen to
+&CUPS; server info sent to their port 631.  That's how they know about
+available printers, and that's how they learn about the
+<quote>path</quote> to the printers as well.</para>
+
+<para>Using &IPP;, which is really a clever extension to
+<acronym>HTTP</acronym> v1.1, &CUPS; is able to address all objects
+related to the printing system via <quote>Universal Resource
+Locators</quote> or <acronym>URL</acronym>s.  Print jobs to be deleted
+or restarted, printers to be queried or modified, admin tasks to be
+performed on the server, with &IPP; and &CUPS;, everything is
+addressable by a certain <acronym>URL</acronym>.  Many important
+things can be done through the Web interface to &CUPS;,accessible for
+example with &konqueror;.</para>
+
+</sect2>
+
+<sect2>
+<title>Printing Without Installing a Driver</title>
+
+<para>And more, the clients basically can <quote>administer</quote>
+and <quote>use</quote> any printer they see, just as if it was a
+locally installed one.  Of course, you can set restrictions on it with
+access control lists &etc;, so that not <emphasis>any</emphasis>
+clients may use <emphasis>any</emphasis> printer as it likes.</para>
+
+<para>The clients even are able to print without the appropriate filter
+(or driver) installed locally.</para>
+
+<para>So how does this work? If a client wants to know about and
+select printer-specific options, it sends a request (called
+<command>CUPS-get-ppd</command>) to the server.  The server tells the
+client all about all printer-specific options, as read from the server
+side &PPD;.  The user on the client side can see the options and
+select the required ones.  He then sends the print file, usually
+unfiltered <quote>raw</quote> &PostScript;, spiced up with the
+printer-options to the printer server, using &IPP; as the transport
+protocol.  All further processing, especially the filtering to
+generate the final format for the target printer, is then done by the
+server.  The server has the necessary programs (<quote>drivers</quote>
+or <quote>filters</quote>) to do this.</para>
+
+<para>This way a client prints without needing to install a driver
+locally.</para>
+
+<para>Any change on the server, such as adding or modifying a printer,
+is instantly <quote>known</quote> to the clients with no further
+configuration.</para>
+
+</sect2>
+
+<sect2>
+<title><quote>Zero Administration</quote>, Load Balancing, and
+<quote>Failover Switching</quote></title>
+
+<para>Some other advanced features built into &CUPS; are the capacity to
+do <quote>load balancing</quote>.</para>
+
+<para>If you define the same printer queues on two or more different
+servers, the clients will send their jobs to the first responding or
+available server. This implies an automatic load balancing amongst
+servers. If you have to take off the net one server for admin
+maintainance the others will just take his tasks without the users even
+noticing the difference.</para>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="getting-started">
+<title>Getting Started</title>
+
+<para>This chapter of the &kdeprint; Handbook will walk you through most
+of the configuration or selection options of &kdeprint;.  It will mainly
+deal with &CUPS; in this version, as the author is most familiar with
+it, and also because &kdeprint; started off with supporting &CUPS;
+best.  Later versions of the &kdeprint; software and editions of this
+handbook will support and explore more closely other printing
+systems.</para>
+
+<sect1 id="selecting-your-print-subsystem">
+<title>Selecting Your Print Subsystem</title>
+
+<para>You need to define your print subsystem, before you are able to
+install any printer with the &kdeprint; framework.  There are two areas
+where you can define this: either in &kcontrol; (The <guilabel>Printing
+Manager</guilabel> section), or directly and <quote>on the fly</quote>
+from the print dialog.</para>
+
+<para>Navigate to <menuchoice><guimenu>K Menu</guimenu>
+<guisubmenu>Preferences</guisubmenu> <guisubmenu>System</guisubmenu>
+<guimenuitem>Printing Manager</guimenuitem></menuchoice>.  At the bottom
+you can see a button that lets you select which printing subsystem you
+want to use.  In &kde; 2.2 you can choose from the following
+alternatives:</para>
+
+<itemizedlist>
+<listitem>
+<para>&CUPS; (Common &UNIX; Printing System)</para>
+</listitem>
+<listitem>
+<para>Print through an external program (generic)</para>
+</listitem>
+<listitem>
+<para><acronym>LPR</acronym> (Standard <acronym>BSD</acronym> Print
+System)</para>
+</listitem>
+<listitem>
+<para>Generic &UNIX; <acronym>LPD</acronym> print system (the
+default)</para>
+</listitem>
+<listitem>
+<para><acronym>RLPR</acronym> environment (print to remote
+<acronym>LPD</acronym> servers from commandline.</para>
+</listitem>
+</itemizedlist>
+
+<para>Of course, the chosen system must be installed, up and running on
+your box prior to your selection, or before it takes effect.  <!-- The -->
+<!-- authors personal recommendation is &CUPS; -->
+</para>
+
+<para>On it's first startup, &kdeprint; will try an autodetection.  This
+only works for:</para>
+
+<itemizedlist>
+<listitem>
+<para>&CUPS;, as it is checking first for a running &CUPS; daemon</para>
+</listitem>
+<listitem>
+<para><acronym>LPD</acronym>, as it is checking for a running
+<acronym>LPD</acronym> daemon, plus a <filename>printcap</filename>
+file.</para>
+</listitem>
+</itemizedlist>
+
+<!-- <para>
+Go to System->XY->ABC. Now you can choose from the following
+alternatives: 
+</para>-->
+
+<para>The system you choose must be installed on your system prior to
+your selection.  The author's personal recommendation is
+&CUPS;.</para>
+
+<para>Once autodetected, chosen, or changed, the active print
+subsystem will take effect for all &kde; applications.  Different
+users may have different print subsystems in use, if those do exist on
+the computer and are compliant to each other.  Their settings are
+stored in the <filename>kdeprintrc</filename>.  This file is unique to
+every user, and is normally installed in
+<filename>$<envar>HOME</envar>/.kde/share/config/kdeprintrc</filename>.</para>
+
+<warning>
+<para>This file is not intended to be directly editable, and all
+available options can be set from the &kdeprint; &GUI;.</para>
+</warning>
+
+<para>You may even switch printer subsystem in use on the fly, from the
+&kprinter; dialog box.</para>
+
+</sect1>
+
+<sect1 id="working-with-printing-manger">
+<title>Working with the Printing Manager</title>
+
+<para>Once you have chosen your preferred and installed print subsystem,
+you are ready to investigate, configure administer and work with this
+system through the &kdeprint; framework.</para>
+
+<para>Navigate to <menuchoice><guimenu>K Menu</guimenu>
+<guisubmenu>Preferences</guisubmenu> <guisubmenu>System</guisubmenu>
+<guimenuitem>Printing Manager</guimenuitem></menuchoice>.  In the right
+part of the window you will see at least 4 printers predefined.  These
+are the virtual or special purpose printers, explained in section <!-- <xref 
+linkend="FIXME"/> -->.  You will probably see a toolbar with 13 icons at the
+top of the window, and at least 4 tabs in the lower half of the window,
+labelled <guilabel>Information</guilabel>, <guilabel>Jobs</guilabel>,
+<guilabel>Properties</guilabel> and
+<guilabel>Instances</guilabel>.</para>
+
+<!-- Not needed: the default view is as described, this can be mentioned -->
+<!-- elsewhere <para>If you start the <guilabel>Printing -->
+<!-- Manager</guilabel> module for the first time, you may be missing -->
+<!-- Icons or tabs. <mousebutton>Right</mousebutton>-clicking the mouse -->
+<!-- on the white background of the right part of the window opens a -->
+<!-- Menu to select your viewing preferences. To get the same view as in -->
+<!-- most screenshots, select: <guimenuitem>View Toolbar</guimenuitem> -->
+<!-- and <guimenuitem>View Printer Information</guimenuitem> and -->
+<!-- <guimenuitem>View Icons</guimenuitem> and <guimenuitem>Orientation -->
+<!-- Vertical</guimenuitem>. Moving the mouse over one Button and -->
+<!-- waiting a second gives you a tooltip hint about its functions. -->
+
+<!-- 
+
+3.3 Selection: &CUPS; or other?
+
+If your selection of the print system is &CUPS;, you will have more 
+choices at your fingertips than with any other printing 
+system. &CUPS; is new to most Linux users (even the senior
+hackers amongst us), and it is quite easy to use. But it
+is at the same time very different from other printing systems.
+Therfor the &CUPS; part in the &kdeprint; Handbook is naturally
+the most detailed.
+
+Future editions of the &kdeprint; handbook will describe in
+more detail the other systems.
+-->       
+
+</sect1>
+
+</chapter>
+
+<chapter id="cups-configuration">
+<title>Print Server Configuration: CUPS</title>
+
+<para>Start the print server configuration (now that you have chosen
+&CUPS;, this is equivalent to the configuration of the &CUPS; daemon) by
+clicking on the appropriate button. You can find it by moving the mouse
+slowly over the buttons and reading the tooltips. It should be the 11th
+from the left , or third from the right; its icon is a
+<guiicon>wrench</guiicon>.</para>
+
+<para>The &CUPS; Server Configuration window pops up. It gives you a
+structured view of all the settings that apply to the &CUPS; daemon. The
+configuration file for that daemon is normally located in
+<filename>/etc/cups/cupsd.conf</filename>. This is a plain
+<acronym>ASCII</acronym> file with a syntax similar to the configuration
+file of the <application>Apache</application> web server. It is a good
+idea to create a backup copy, just in case something goes wrong with the
+configuration through &kdeprint;/&CUPS; Server Configuration
+dialogs:</para>
+
+<screen><userinput><command>cp</command> <filename>/etc/cups/cupsd.conf</filename> <filename>/etc/cups/cupsd.conf.bak</filename></userinput></screen>
+
+<para>As this graphical user interface to edit the configuration file is
+such a new feature, you should have the second chance of resorting to
+the original file. So back it up, please.</para>
+
+<sect1 id="quick-help">
+<title>Quick Help</title>
+
+<para>One very nice feature is the <quote>Quick Help</quote>
+available. If you click on the little question mark (<guiicon>What's
+this?</guiicon>) on your window title bar, you'll see the cursor
+changing its form.  Now click on a <command>cupsd</command>
+configuration setting field to find out what it means and what your
+options are. In most cases you should understand the meaning
+immediately, otherwise turn to the excellent &CUPS; documentation. (If
+your &CUPS; Daemon is running, you have it online on your own host at
+<ulink
+url="http://localhost:631/documentation.html">http://localhost:631/documentation.html</ulink>.</para>
+<para>If &CUPS; is not running, but installed on your system you could
+find it in your own host's file system.  The exact location depends on
+your &OS;, but on &Linux; the default is <filename
+class="directory">/usr/share/doc/cups/</filename> or
+<filename class="directory">
+/usr/share/doc/cups/documentation.html</filename>.</para>
+
+</sect1>
+
+<sect1 id="longer-help">
+<title>Longer Help</title>
+
+<para>For the best, most detailed and most recent information you should
+always refer to the original &CUPS; documentation.  &CUPS; is, much like
+&kde; in a rapid development process.  There are constantly new features
+being added. New features might for times be only configurable by
+directly editing the configuration files. The &kdeprint; &GUI; might not
+have caught up with &CUPS; development.</para>
+
+<para>Just in case you want to look at the original configuration files
+of your &CUPS; system -- they are here:</para>
+
+<note>
+<para>These paths are based on the default installation.  Your &OS;
+may have installed them to a different prefix, for example, <filename
+class="directory">/usr/local/</filename>, but the hierarchy should
+still match that shown below.</para>
+</note>
+
+<variablelist>
+<varlistentry>
+<term><filename class="directory">/etc/cups/</filename></term>
+<listitem>
+<para>The directory with the configuration files</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><filename>/etc/cups/cupsd.conf</filename></term>
+<listitem>
+<para>The configuration file for the &CUPS; daemon</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><filename>/etc/cups/printers.conf</filename></term>
+<listitem>
+<para>The configuration file that contains the information about your
+locally installed printers.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><filename class="directory">/etc/cups/ppd/</filename></term>
+<listitem>
+<para>The directory with &PPD; files of your installed
+printers.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>The following links only work if your &CUPS; daemon is up and
+running.  To access all the original &CUPS; documentation, go
+to:</para>
+
+<variablelist>
+<varlistentry>
+<term><ulink url="http://localhost:631/documentation.html">
+http://localhost:631/documentation.html</ulink></term>
+<listitem>
+<para>A page with all the links to the other documents.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><ulink url="http://localhost:631/sam.html">
+http://localhost:631/sam.html</ulink></term>
+<listitem>
+<para>Direct access to the &CUPS; Software Administrator Manual
+in <acronym>HTML</acronym> format.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><ulink url="http://localhost:631/sam.pdf">
+http://localhost:631/sam.pdf</ulink></term>
+<listitem>
+<para>Direct access to the &CUPS; Software Administrator Manual in
+<acronym>PDF</acronym> format.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><ulink url="http://www.cups.org/documentation.html">
+http://www.cups.org/documentaiton.html</ulink></term>
+<listitem>
+<para>The latest on line documentation from the &CUPS; web
+site.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>The following links give you access to the same files (probably
+icons and grapphis will be missing) even if your CUPS daemon is not up
+and running. You need, however, CUPS installed on your system. (Some
+distributions might place the files somewhere else -- you're on your
+own then to find out where...) To access all the original CUPS
+documentation, go to:</para>
+
+<para>This documentation is available even when the &CUPS; daemon is
+not installed, although you may find images and icons are missing when
+you view the <acronym>HTML</acronym> files.</para>
+
+<para>As noted above, the hierarchy below should be intact, but your
+&OS; may have installed &CUPS; to a different location.</para>
+
+<variablelist>
+<varlistentry>
+<term><filename>/usr/share/doc/cups/documentation.html</filename></term>
+<listitem>
+<para>A page with all the links to the other documents.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><filename>/usr/share/doc/cups/sam.html</filename></term>
+<listitem>
+<para>Direct access to the &CUPS; Software Administrator Manual in
+<acronym>HTML</acronym> format.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><filename>/usr/share/doc/cups/sam.pdf</filename></term>
+<listitem>
+<para>Direct access to the &CUPS; Software Administrator Manual in
+<acronym>PDF</acronym> format.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>There are a few WebSites and Newsgroups discussing &CUPS; (and
+&Linux; Printing in General) and giving help to newbies at:</para>
+
+<variablelist>
+<varlistentry>
+<term><ulink url="http://www.cups.org/newsgroups.php">
+http://www.cups.org/newsgroups.php</ulink></term>
+<listitem>
+<para>The &CUPS; website.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><ulink url="http://www.linuxprinting.org/newsportal/">
+http://www.linuxprinting.org/newsportal/</ulink></term>
+<listitem>
+<para>LinuxPrinting.org, the home of the Linuxprinting HOWTO and the
+&Linux; Printer Database</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>And finally, there will be a WebSite for &kdeprint; and related
+documentation, at <ulink url="http://kdeprint.sourceforge.net/">
+http://kdeprint.sourceforge.net/</ulink></para>
+
+<para>In the next section I will step you through most of the
+configuration options of &kdeprint; with &CUPS;.</para>
+
+</sect1>
+
+<sect1 id="explaining-different-gui-elements">
+<title>Explaining different elements of the &GUI;</title>
+
+<sect2>
+<title>Upper Window: View on Printers, both Real and Virtual</title>
+
+<para>This section is not yet complete</para>
+
+<itemizedlist>
+<listitem>
+<para>Tree view, icon view and list view</para>
+</listitem>
+<listitem>
+<para>The icons of the task bar</para>
+</listitem>
+<listitem>
+<para>Different fonts for different printers</para>
+</listitem>
+<listitem>
+<para>Different printer icons mean different things</para>
+</listitem>
+</itemizedlist>
+
+</sect2>
+
+<sect2>
+<title>Lower Window: Tabbed View of Details</title>
+
+<para>This section is not yet complete.</para>
+
+<itemizedlist>
+<listitem>
+<para>The icons of the task bar</para>
+</listitem>
+<listitem>
+<para>The Tabs</para>
+</listitem>
+<listitem>
+<para>Changing printer settings</para>
+</listitem>
+</itemizedlist>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="welcome-to-cups-server-configuration">
+<title>Welcome to the &CUPS; Server Configuration</title>
+
+<para>This is the Welcome Screen for your server configuration
+dialogues. Clicking onto one of the items of the tree view on left
+side of the screen opens the appropriate part of the configuration
+settings.</para>
+
+<para>Every setting has a default value. The defaults let &CUPS;
+normally work as a fully functional client. The clients listen on
+TCP/IP Port 631 for infos broadcast by &CUPS; servers on the
+<acronym>LAN</acronym>. This information let the clients print
+immediately after receiving them, without installing any driver or
+configuring any printer on the clients.</para>
+
+<para>To configure a &CUPS; server (which is broadcasting its service
+to the <acronym>LAN</acronym>) you need to change settings from the
+defaults.</para>
+
+<para>The dialog to configure the &CUPS; server: welcome screen. </para>
+<screenshot>
+<screeninfo>CUPS server configuration dialog: welcome screen</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration1_welcome.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to configure the &CUPS; server: welcome
+screen</phrase></textobject>
+<caption><para>The dialog to configure the &CUPS; server: welcome
+screen</para></caption>
+</mediaobject>
+</screenshot>
+
+<para>To select the default setting of any item just enable the
+checkbox on the right side of the screen. To set an item to a
+different value, disable the checkbox and then go on to do the setting
+you want on the left side of the screen.</para>
+
+<para>The complete server configuration includes:</para>
+
+<itemizedlist>
+<listitem>
+<para><link linkend="server-general-configuration"><guilabel>Server</guilabel>
+General Configuration</link></para>
+</listitem>
+<listitem>
+<para><link linkend="server-logging-configuration">Server
+<guilabel>Log</guilabel>ging Configuration</link></para>
+</listitem>
+<listitem>
+<para><link
+linkend="server-directories-configuration">Server
+<guilabel>Directories</guilabel> and Path Definitions</link></para>
+</listitem>
+<listitem>
+<para><link linkend="server-configuration">Server
+<guilabel>HTTP</guilabel> Configuration</link></para>
+</listitem>
+<listitem>
+<para><link linkend="server-encryption-support-configuration">Server
+<guilabel>Encryption</guilabel> and Certificate Support
+Configuration</link></para>
+</listitem>
+<listitem>
+<para><link linkend="server-miscellaneous-configuration">Server
+<guilabel>Misc</guilabel>ellaneous Configuration</link></para>
+</listitem>
+<listitem>
+<para><guilabel>Network</guilabel> General Configuration</para>
+</listitem>
+<listitem>
+<para><link linkend="network-clients-configuration">Network
+<guilabel>Clients</guilabel> Configuration</link></para>
+</listitem>
+<listitem>
+<para><link
+linkend="browsing-general-configuration"><guilabel>Browsing</guilabel>
+General Configuration</link></para>
+</listitem>
+<listitem>
+<para><link linkend="browsing-connection-configuration">Browsing
+<guilabel>Connection</guilabel> Configuration</link></para>
+</listitem>
+<listitem>
+<para><link
+linkend="browsing-masks-configuration">Browsing
+<guilabel>Masks</guilabel> Configuration</link></para>
+</listitem>
+<listitem>
+<para><link linkend="browsing-timeouts-configuration">Browsing
+<guilabel>Timeouts</guilabel> Configuration</link></para>
+</listitem>
+<listitem>
+<para><link linkend="browsing-relay-configuration">Browsing
+<guilabel>Relay</guilabel> Configuration</link></para>
+</listitem>
+<listitem>
+<para><link
+linkend="security-configuration"><guilabel>Security</guilabel>
+Configuration</link></para>
+</listitem>
+</itemizedlist>
+
+<para>Each of these configuration items will be described in the
+following sections of the manual.</para>
+
+</sect1>
+
+<sect1 id="server-general-configuration">
+<title>Server General Configuration</title>
+
+<para>The server general configuration is done on this screen. It
+includes:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Server name</guilabel></para></listitem>
+<listitem><para><guilabel>Administrators email</guilabel></para></listitem>
+<listitem><para><guilabel>Server user</guilabel></para></listitem>
+<listitem><para><guilabel>Server group</guilabel></para></listitem>
+<listitem><para><guilabel>Remote user name</guilabel></para></listitem>
+</itemizedlist>
+
+<para>The tab window to configure the &CUPS; server general settings
+lets you the change the default values. Click on the little question
+mark and then on one of the fields to get a <quote>Quick Help</quote>
+about the meaning of the setting.</para>
+
+<para>If you are unsure, leave alone and turn to the original &CUPS;
+documentation first.  If your &CUPS; daemon is already running, it is
+readable from the &konqueror; by pointing it to &URL; <ulink
+url="http://localhost:631/documentation.html">
+http://localhost:631/documentation.html</ulink>.</para>
+
+<para>There, first <quote>make friends</quote> with the Software
+Adminstrator Manual. Otherwise, for example, if the &CUPS; daemon is
+not running, try looking in your local file system, by default at
+<filename class="directory">/usr/share/doc/cups/</filename> or
+<filename>/usr/share/doc/cups/documentation.html</filename>.</para>
+
+<screenshot>
+<screeninfo>&CUPS; server general configuration dialog: ServerName, AdminMail,
+ServerUser, ServerGroup, RemoteUserName</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration2_general.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to configure the &CUPS; server general settings:
+ServerName, AdminMail, ServerUser, ServerGroup, RemoteUserName
+</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Server Name</guilabel></term>
+<listitem>
+<para>The hostname of your server, as advertised to the world. By
+default, &CUPS; will use the hostname of the system.  To set the
+default server usd by clients, see the
+<filename>client.conf</filename> file.</para>
+
+<informalexample>
+<para>For example, enter <userinput>myhost.domain.com</userinput></para>
+</informalexample>
+
+<para>This is the hostname that is reported to clients. Should you
+ever encounter strange problems in accessing the server, put here its
+<acronym>IP</acronym> address for troubleshooting. This way you
+eliminate any potential name resolution problems; and you can more
+easily nail the real problem down.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Administrators email</guilabel></term>
+<listitem>
+<para>This is the email address to send all complaints or problems
+to.  By default &CUPS; will use <quote>root@hostname</quote>.</para>
+
+<informalexample>
+<para>For example, enter
+<userinput>root@myhost.com</userinput>.</para>
+</informalexample>
+
+<note>
+<para>Contrary to what the quickhelp suggests, it is also legal to
+send an email full of praise and enthusiasm about &CUPS; and
+&kdeprint; to the server adminstrator.</para>
+</note>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Server User</guilabel></term>
+<listitem>
+<para>The user the server runs under.  Normally this must be
+<systemitem class="username">lp</systemitem>, however you can
+configure things for another user if needed.</para>
+
+<note>
+<para>The server must be initially run as root to support the default
+<acronym>IPP</acronym> port of 631.  It changes users whenever an
+external program is run.</para>
+</note>
+
+<informalexample>
+<para>Enter for example <userinput>lp</userinput>.</para>
+</informalexample>
+
+<para>This is the &UNIX; user account for filters and
+<acronym>CGI</acronym> programs to run under. <acronym>CGI</acronym>
+programs are resposible for showing you the nice web administration
+interface accessible via <ulink
+url="http://localhost:631/">http://localhost:631/</ulink>).</para>
+
+<warning>
+<para>There is no need to set the <guilabel>User</guilabel> directive
+to <systemitem class="username">root</systemitem>, so never do this,
+as it only involves dangers. Should anyone discover security
+vulnerabilities in one of the used file filters, printer drivers or
+<acronym>CGI</acronym> programs, he could remotely execute arbitrary
+commands on your system with root user privileges. Always use an
+unprivileged account for the server directive
+<guilabel>User</guilabel>.</para>
+</warning>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Server group</guilabel></term>
+<listitem>
+<para>The group the server runs under.  Normally this must be
+<systemitem class="groupname">sys</systemitem>, however you can
+configure things for another group as needed.</para>
+
+<informalexample>
+<para>Enter for example <userinput>sys</userinput>.</para>
+</informalexample>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Remote user name</guilabel></term>
+<listitem>
+<para>The name of the user assigned to unauthenticated accesses from
+remote systems.  By default <userinput>remroot</userinput>.</para>
+
+<para>This name will appear in log files and in queries about the job
+owner &etc;, for all resources and locations of the &CUPS; server that
+are configured to allow access <emphasis>without</emphasis>
+authentication.  Authenticated entries will carry the authenticated
+names.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="server-logging-configuration">
+<title>Server Logging Configuration</title>
+
+<para>The server logging configuration is done on this screen. It
+includes:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Access log file</guilabel> setting</para></listitem>
+<listitem><para><guilabel>Error log file</guilabel> setting</para></listitem>
+<listitem><para><guilabel>Page log</guilabel> file setting</para></listitem>
+<listitem><para><guilabel>Log level</guilabel> setting</para></listitem>
+<listitem><para><guilabel>Max log file size</guilabel>
+setting</para></listitem>
+</itemizedlist>
+
+<para>This is an important screen for you. Should you ever encounter
+problems: here is the place to set the Log level to
+<quote>debug</quote>, restart the &CUPS; daemon and then look at the
+Error log file defined here for entries that might give you an insight
+to the trouble.</para>
+
+<screenshot>
+<screeninfo>&CUPS; server configuration dialog: <guilabel>Server
+logging</guilabel>  </screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration3_logging.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to configure the &CUPS; server: <guilabel>Server
+logging</guilabel></phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Access log file</guilabel></term>
+<listitem>
+<para>This is where accesses to the server are logged.  If this does
+not start with a leading <literal>/</literal>, then it is assumed to
+be relative to the server root.</para>
+
+<para>You can also use the special name <userinput>syslog</userinput>
+to send the output to the syslog file or daemon.</para>
+
+<informalexample>
+<para>Enter a path, for example
+<userinput><filename>/var/log/cups/acces_log</filename></userinput>.</para>
+</informalexample>
+
+<para>The format of this file is stored in the so-called <quote>Common
+Log Format</quote>. This way you can use programs such as
+<application>Webalyzer</application> or any other Web access reporting
+tool to generate reports on the &CUPS; server activities.</para>
+
+<para>To include the server name in the file name use a
+<token>%s</token> in the name. Example:
+<userinput><filename>/var/log/cups/access_log-%s</filename></userinput>.</para>
+
+<screen><prompt>kurt@transmeta:~ ></prompt><userinput><command>tail</command> <parameter>/var/log/cups/access_log</parameter></userinput>
+<computeroutput>
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "POST /printers/ HTTP/1.1" 200 109
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "POST /admin/ HTTP/1.1" 401 0
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "POST / HTTP/1.1" 200 210
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "GET /ppd/DANKA_P450.ppd HTTP/1.1" 200 51021
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "POST /jobs/ HTTP/1.1" 200 246
+10.160.16.45 - - [04/Aug/2001:20:11:39 +0100] "GET /printers/DANKA_P450 HTTP/1.0" 200 0
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "POST / HTTP/1.1" 200 80
+127.0.0.1    - - [04/Aug/2001:20:11:39 +0100] "POST / HTTP/1.1" 200 139
+10.160.16.45 - - [04/Aug/2001:20:11:40 +0100] "GET /cups.css HTTP/1.0" 200 198
+127.0.0.1    - - [04/Aug/2001:20:11:40 +0100] "POST / HTTP/1.1" 200 139
+10.160.16.45 - - [04/Aug/2001:20:11:39 +0100] "GET /printers/DANKA_P450 HTTP/1.0" 200 7319
+10.160.16.45 - - [04/Aug/2001:20:11:40 +0100] "GET /images/title-logo.gif HTTP/1.0" 200 5729
+</computeroutput></screen>
+
+<para>You see a seperate line for each single access, showing the
+<acronym>IP</acronym> address of the accessing client, date and time
+of access, method of access (<command>POST</command> or
+<command>GET</command>), the requested ressource, the &HTTP; version
+used by the client, status code and the number of transferred
+bytes. Status code <errorcode>200</errorcode> means
+<errorname>successful-OK</errorname> the <errorcode>401</errorcode> in
+the above example was an <errorname>unauthorized access</errorname>
+which was denied. For a detailed explanation of the log format go to
+<ulink url="http://localhost:631/sam.html#7_6_1">the &CUPS; Software
+Adminstrator Manual</ulink>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Error log file</guilabel></term>
+<listitem>
+<para>If this does not start with a leading <literal>/</literal>, then
+it is assumed to be relative to the server root.  The default setting
+is <filename>/var/log/cups/error_log</filename>.</para>
+
+<para>You can also use the special name <userinput>syslog</userinput>
+to send the output to the syslog file or daemon.</para>
+
+<informalexample>
+<para>Enter the path, for example
+<userinput><filename>/var/log/cups/error_log</filename></userinput>.</para>
+</informalexample>
+
+<para>The error log excerpt below shows you the part logged for printing the test page
+with the default setting of <guilabel>Log level</guilabel> to
+<quote>info</quote>.  For an explanation of the <guilabel>Log
+Level</guilabel> setting see further below.</para>
+
+<screen><prompt>kurt@transmeta:~ ></prompt><userinput><command> tail </command> <parameter>/var/log/cups/error_log</parameter></userinput>
+<computeroutput>
+I [04/Aug/2001:23:15:10 +0100] Job 213 queued on 'DANKA_P450' by 'root'
+I [04/Aug/2001:23:15:10 +0100] Started filter /usr/lib/cups/filter/pstops (PID 18891) for job 213.
+I [04/Aug/2001:23:15:10 +0100] Started backend /usr/lib/cups/backend/lpd (PID 18892) for job 213.
+</computeroutput></screen>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Page log file</guilabel></term>
+<listitem>
+<para>If this does not start with a leading <literal>/</literal> then
+it is assumed to be relative to the server root.  The default is
+<filename>/var/log/cups/page_log</filename></para>
+
+<para>You can also use the special name <userinput>syslog</userinput>
+to send the output to the syslog file or daemon.</para>
+
+<informalexample>
+<para>Enter the path, for example
+<userinput><filename>/var/log/cups/page_log</filename></userinput>.</para>
+</informalexample>
+
+<para>The page log file has a line for every single page of every job
+printed.</para>
+
+<para> Here is what some entries look like:</para>
+
+<screen><prompt>kurt@transmeta:~ ></prompt><userinput><command> tail </command> <parameter>/var/log/cups/page_log</parameter></userinput>
+<computeroutput>
+GIMP_print_stp_HP kdetest 201 [03/Aug/2001:03:18:03 +0100] 4 1
+GIMP_print_stp_HP kdetest 201 [03/Aug/2001:03:18:03 +0100] 5 1
+GIMP_print_stp_HP kdetest 202 [03/Aug/2001:11:46:49 +0100] 1 1
+GIMP_print_stp_HP kdetest 203 [03/Aug/2001:11:46:54 +0100] 1 1
+DANKA_infotec_P450 kurt 204 [04/Aug/2001:03:29:00 +0100] 1 33
+DANKA_infotec_P450 kurt 204 [04/Aug/2001:03:29:00 +0100] 2 33
+DANKA_infotec_P450 kurt 204 [04/Aug/2001:03:29:00 +0100] 3 33
+DANKA_infotec_P450 kurt 204 [04/Aug/2001:03:29:00 +0100] 4 33
+DANKA_infotec_P450 root 205 [04/Aug/2001:19:12:34 +0100] 1 14
+DANKA_infotec_P450 root 206 [04/Aug/2001:19:15:20 +0100] 1 1
+</computeroutput></screen>
+
+<para>In this excerpt of the file you find information on the name of
+the printers (<systemitem
+class="resource">GIMP_print_stp_HP</systemitem> and <systemitem
+class="resource">DANKA_infotec_P450</systemitem>) used through this
+server, the user names (<systemitem
+class="username">kdetest</systemitem>, <systemitem
+class="username">kurt</systemitem> and <systemitem
+class="username">root</systemitem>), the job-IDs (<quote>201</quote>
+to <quote>205</quote>), time of printing, page number inside the job
+and the number of copies for the pages.  For example, job-ID 204 had 4
+pages and 33 copies printed, job-ID 205 had 14 copies of just 1 page)
+.</para>
+
+<note>
+<para>&CUPS; is dependent (for its calculation of the number of pages
+in a job) on passing the &PostScript; through the
+<quote>pstops</quote> filter.  See the <link
+linkend="architecture-diagram">&kivio; Flowchart</link> on the &CUPS;
+filter architecture for an idea about were this filter fits into the
+whole printing process).  More, <command>pstops</command> depends for
+the counting on a <acronym>DSC</acronym> conforming
+(<acronym>DSC</acronym> is Document Structuring Conventions, a
+standard defined by Adobe) to be sent by the client.  In most cases
+this is working.</para>
+
+<para>However, this page accounting does not work for any
+<quote>raw</quote> printer queues (as those, by definition, don't use
+any filtering on the &CUPS; host and are by-passing
+<command>pstops</command>.) Every job going through a
+<quote>raw</quote> queue is counted as a 1-page-job (with possibly
+multipe copies). This is especially true for all Jobs send from
+&Microsoft; &Windows; clients via <application>Samba</application> to
+the &CUPS; server, as those jobs are already arriving in the correct
+format for the printer, because the clients use the original printer
+driver.</para>
+</note>
+
+<note>
+<para>I am still looking for someone who will write a nice &CUPS; page
+log analysing tool. It should generate a report with a graphical
+output similar to the <application>Webalizer</application>'s access
+log reports. This way you could have nice statistics to be used for
+accounting about usage of printers, load dependent on daytime or
+weekday, users &etc; Anyone?</para>
+</note>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Log level</guilabel></term>
+<listitem>
+<para>This setting controls the number of messages logged to the error
+log file.  It can be one of the following:</para>
+
+<variablelist>
+<varlistentry>
+<term>debug2</term>
+<listitem>
+<para>Log everything.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>debug</term>
+<listitem>
+<para>Log almost everything.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>info</term>
+<listitem>
+<para>Log all requests and state changes.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>warn</term>
+<listitem>
+<para>Log errors and warnings.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>error</term>
+<listitem>
+<para>Log only errors.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>none</term>
+<listitem>
+<para>Log nothing.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para>If you need to troubleshoot (or if you want to study the inner
+workings of &CUPS;), set the log level to debug or debug2. Then the
+error_log will have a lot more entries (not just errors, but also
+informational entries).</para> 
+
+<para>You can use this to watch <quote>live</quote> what &CUPS; is
+doing when you send a print job. In a &konsole; type:</para>
+
+<screen><prompt>kurt@transmeta:~ ></prompt><userinput><command>tail</command> <option>-f</option> <option>-n</option><parameter>100</parameter> <parameter>/var/log/cups/error_log</parameter></userinput></screen>
+
+<para>This will give you the last 100 lines (<option>-n</option>
+<parameter>100</parameter>) of the file onto the screen and a
+<quote>realtime</quote> update (<option>-f</option>)of what is
+happening. The following listing shows the printing of a test page
+(some pieces have been cut off for space reasons... Try it yourself if
+you need more info):</para>
+
+<screen><computeroutput> 
+I [04/Aug/2001:23:15:12 +0100] Job 214 queued on 'DANKA_P450' by 'root'
+D [04/Aug/2001:23:15:12 +0100] StartJob(214, 08426fe0) 
+D [04/Aug/2001:23:15:12 +0100] StartJob() id = 214, file = 0/1 
+D [04/Aug/2001:23:15:12 +0100] job-sheets=none,none 
+D [04/Aug/2001:23:15:12 +0100] banner_page = 0 
+D [04/Aug/2001:23:15:12 +0100] StartJob: argv = "DANKA_P450","214","root","KDE Print Test",
+[....]  
+D [04/Aug/2001:23:15:12 +0100] StartJob: envp = "PATH=/usr/lib/cups/filter:/bin:/usr/bin", [....]  
+D [04/Aug/2001:23:15:12 +0100] StartJob: statusfds = 5, 6 
+D [04/Aug/2001:23:15:12 +0100] StartJob: filterfds[1] = 7, -1 
+D [04/Aug/2001:23:15:12 +0100] StartJob: filter = "/usr/lib/cups/filter/pstops" 
+D [04/Aug/2001:23:15:12 +0100] StartJob: filterfds[0] = 8, 9 
+D [04/Aug/2001:23:15:12 +0100] start_process("/usr/lib/cups/filter/pstops", [....]  
+I [04/Aug/2001:23:15:12 +0100] Started filter /usr/lib/cups/filter/pstops (PID 18991) for job 214.  
+D [04/Aug/2001:23:15:12 +0100] StartJob: backend = "/usr/lib/cups/backend/lpd" 
+D [04/Aug/2001:23:15:12 +0100] StartJob: filterfds[1] = -1, 7 
+D [04/Aug/2001:23:15:12 +0100] start_process("/usr/lib/cups/backend/lpd", [....]  
+I [04/Aug/2001:23:15:12 +0100] Started backend /usr/lib/cups/backend/lpd (PID 18992) for job 214.
+D [04/Aug/2001:23:15:12 +0100] Page = 595x842; 15,16 to 580,833 [....]  </computeroutput></screen> 
+
+<para>The lines tagged <quote>D</quote> at the beginning are debug
+level entries, the ones tagged <quote>I</quote> are there in
+<quote>info</quote> level.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Max log file size</guilabel></term>
+<listitem>
+
+<para>Controls the maximum size of each log file before they are
+rotated.  Defaults to 1048576 (1 Mb).  Set this to 0 to disable log
+rotation.</para>
+
+<informalexample>
+<para>Enter an size in bytes, for example <userinput>1048576</userinput></para>
+</informalexample>
+
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="server-directories-configuration">
+<title>Server Directories Configuration</title>
+
+<para>The dialog to configure the &CUPS; server.  Different
+directories are to be set here. Normally you don't need to change
+anything in this section. In case you play around with fancy
+(TrueType, &PostScript; or other) fonts on your system, this qis the
+place to do the settings for using those fonts when printing.  Server
+directory settings include:</para>
+
+<itemizedlist>
+<listitem>
+<para><guilabel>Executables</guilabel>: where to find the server
+executables</para>
+</listitem>
+<listitem>
+<para><guilabel>Configuration</guilabel>: where to find the server
+configuration files</para>
+</listitem>
+<listitem>
+<para><guilabel>Data</guilabel>: where to find the server data
+files</para>
+</listitem>
+<listitem>
+<para><guilabel>Temporary files</guilabel>: where to put the server
+temporary print files </para>
+</listitem>
+<listitem>
+<para><guilabel>Temporary Requests</guilabel>: where to find the
+server </para>
+</listitem>
+<listitem>
+<para><guilabel>Font Path</guilabel>: where to find the
+server fonts</para>
+</listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>&CUPS; server configuration dialog: &HTTP; configuration</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration4_directories.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to configure the &CUPS; server: &HTTP; configuration</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Executables</guilabel></term>
+<listitem>
+<para>The root directory for the scheduler executables.  By default
+this is <filename class="directory">/usr/lib/cups</filename> (or
+<filename class="directory">/usr/lib32/cups</filename> on IRIX
+6.5)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Configuration</guilabel></term>
+<listitem>
+<para>The root directory for the scheduler.  By default, <filename
+class="directory">/etc/cups</filename>.</para>
+<para>On the authors SuSE system, this is <filename
+class="directory">/usr/share/doc/cups</filename>.  It contains all the
+<acronym>HTML</acronym> or <acronym>PDF</acronym> documentation for
+&CUPS; which is available through the Web interface at <ulink
+url="http://localhost:631/documentation.html">
+http://localhost:631/documentation.html</ulink></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Data</guilabel></term>
+<listitem>
+<para>The root directory for the &CUPS; data files.  By default this
+is <filename class="directory">/usr/share/cups</filename></para>
+<para>It contains such things as banners, charsets, data, drivers,
+fonts, and <command>pstoraster</command> templates.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Temporary files</guilabel></term>
+<listitem>
+<para>The directory to put temporary files in.  This directory must be
+writable by the user defined on the previous screen.  This defaults to
+either <filename class="directory">/var/spool/cups/tmp</filename> or
+the value of the <envar>TMPDIR</envar> environment variable.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Temporary Requests</guilabel></term>
+<listitem>
+<para>The directory where request files are stored.  By default this
+is <filename class="directory">/var/spool/cups</filename></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Font path</guilabel></term>
+<listitem>
+<para>The place to configure the &CUPS; server for handling your fancy
+fonts (TrueType or &PostScript;).  &CUPS; will look here for fonts to
+embed in printfiles.  This currently only affects the
+<command>pstoraster</command> filter, and the default is <filename
+class="directory">/usr/share/cups/fonts</filename>.</para>
+
+<para>To specifiy more than one directory, list them with double colons as
+separator. Do it like this:</para>
+
+<informalexample>
+<para><userinput>/path/to/first/fontdir/:/path/to/second/fontdir/:/path/to/last/fontdir/</userinput></para>
+</informalexample>
+
+<para>For the Font path directive to work as intended, the application
+that wants to print needs to:</para>
+
+<itemizedlist>
+<listitem>
+<para>Either correctly reference its desired fonts in the header of the
+generated &PostScript;</para>
+</listitem>
+<listitem>
+<para>Or embed the font into the &PostScript; file.</para>
+</listitem>
+</itemizedlist>
+
+<para><emphasis>Referencing</emphasis> the font by name leaves it up
+to the <acronym>RIP</acronym> and print device to respect and actually
+use it. <acronym>RIP</acronym> or printer <emphasis>can</emphasis>
+only use the desired font, if it is available on the system.</para>
+
+<para> In the case of a &PostScript; printer, this needs to be a
+printer-resident font. If the printers doesn't have this font, it will
+try and replace it by an adequately similar font.</para>
+
+<para>In the case of a non &PostScript; printer, this is done by
+&CUPS; and its <acronym>RIP</acronym>-ing filtering system. &CUPS;
+will use the font path directive to grab the correct font when
+<acronym>RIP</acronym>-ing the &PostScript; in the
+<command>pstoraster</command> filter. </para>
+
+<para>In the case of a &PostScript; output device, &CUPS; is just
+spooling the file (actually, it is passing it through the
+<command>pstops</command> filter for accounting or n-up purposes), not
+<quote>working</quote> on it. Therefore, if you print to a
+&PostScript; printer it is solely the printer's responsibility to use
+the font asked for. It can't, if the font is neither loaded into the
+printer nor embedded in the &PostScript;.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="server-configuration">
+<title>Server <acronym>HTTP</acronym>
+Configuration</title>
+
+<para>The dialog to configure the &CUPS; server &HTTP; settings
+is shown here. </para>
+<para>&CUPS; server &HTTP; settings are the following ones: </para>
+<itemizedlist>
+<listitem><para>the <guilabel>Document directory</guilabel></para></listitem>
+<listitem><para>the <guilabel>Default Language</guilabel></para></listitem>
+<listitem><para>the <guilabel>Default Charset</guilabel></para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server &HTTP; settings
+</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration5_HTTP.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server &HTTP; settings
+</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Document directory</guilabel></term>
+<listitem>
+<para>The root directory for &HTTP; documents that are served.  By
+default the compiled in directory, <filename
+class="directory">/usr/share/cups/doc</filename></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Default Language</guilabel></term>
+<listitem>
+<para>The default language, if not specified by the browser.  If not
+specified, the current locale is used.</para>
+<informalexample>
+<para>Use the two letter locale codes, for example
+<userinput>en</userinput> or <userinput>de</userinput>.</para>
+</informalexample>
+<!-- available languages? -->
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Default charset</guilabel></term>
+<listitem>
+<para>The default character set to use. If not specified, this
+defaults to UTF-8.  This can also be overridden directly in the
+<acronym>HTML</acronym> documents.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="server-encryption-support-configuration">
+<title><guilabel>Server encryption support configuration</guilabel></title>
+
+<para>This is the dialog to configure the &CUPS; server security
+settings. The server encyption support settings are these: </para>
+
+<itemizedlist>
+<listitem><para><guilabel>Server certificate</guilabel>: the file to
+read containing the server's sertificate</para></listitem> 
+<listitem><para>Server key: the file to read containing the server's
+key</para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>&CUPS; server configuration dialog: security overview</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration6_encryption.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to configure the &CUPS; server: security settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Server certificate</guilabel></term>
+<listitem>
+<para>The file to read containing the server's certificate.  Defaults
+to <filename>/etc/cups/ssl/server.crt</filename>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Server key</guilabel></term>
+<listitem>
+<para>The file to read containing the server's key.  Defaults to
+<filename>/etc/cups/ssl/server.key</filename></para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="server-miscellaneous-configuration">
+<title>Server Miscellaneous Configuration</title>
+
+<para>The dialog to configure the &CUPS; server miscellaneous settings
+is shown here. The following server settings are done through this
+screen:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Preserve job history</guilabel>: whether to
+preserve a job history for later re-view</para></listitem>
+<listitem><para><guilabel>Preserve job files</guilabel>: whether to
+preserve fully <acronym>RIP</acronym>-ed job files for later
+re-print</para></listitem>  
+<listitem><para><guilabel>Printcap file</guilabel>: setting the name
+of and the path to a printcap file</para></listitem>
+<listitem><para><guilabel>RIP Cache</guilabel>: setting the size of
+the <acronym>RIP</acronym> cache in memory</para></listitem>
+<listitem><para><guilabel>Filter Limit</guilabel>: defining a filter
+limit</para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server miscellaneous settings</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration7_miscellanious.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server miscellaneous
+settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Preserve job history (after completion)</guilabel></term>
+<listitem>
+<para>Whether or not to preserve the job history after a job is
+completed, cancelled, or stopped.  The default is yes</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Preserve job file (after completion)</guilabel></term>
+<listitem>
+<para>Whether or not to preserve the job files after a job is
+completed, cancelled, or stopped. The default is no.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Printcap file</guilabel></term>
+<listitem>
+<para>The name of the printcap file.  The default is no filename.
+Leave this blank, to disable printcap file generation.</para>
+<para>The printcap setting is only needed to satisfy older
+applications in need of such a file.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>RIP cache</guilabel></term>
+<listitem>
+<para>The amount of memory that each <acronym>RIP</acronym> should use
+to cache bitmaps.  The value can be any real number, followed by
+<quote>k</quote> for kilobytes, <quote>m</quote> for megabytes,
+<quote>g</quote>for gigabytes, or <quote>t</quote> for tiles, where
+one tile is 256 x 256 pixels.  The default value is 8m.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Filter limit</guilabel></term>
+<listitem>
+<para>Sets the maximum cost of all job filters that can be run at the
+same time.  A limit of 0 means no limit.  A typical job may need a
+filter limit of at least 200.  Limits less than the minimum required
+by a job force a single job to be printed at any time.  The default
+limit is 0 (unlimited).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="network-general-configuration">
+<title>Network General Configuration</title>
+
+<para>The dialog to configure the &CUPS; server network settings is
+shown here. It includes:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Look for hostname on IP
+addresses</guilabel></para></listitem>
+<listitem><para><guilabel>Port</guilabel></para></listitem>
+<listitem><para><guilabel>Max request size</guilabel></para></listitem>
+<listitem><para><guilabel>Timeout</guilabel></para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server network settings</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration8_networkgeneral.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server network
+settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Look for hostname on IP addresses</guilabel></term>
+<listitem>
+<para>Whether or not to do lookups on <acronym>IP</acronym> addresses
+to get a fully-qualified hostname.  This defaults to off, for
+performance reasons.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Port</guilabel></term>
+<listitem>
+<para>Enter here Ports and addresses that the server will listen to.
+The default port 631 is reserved for the Internet Printing Protocol,
+and is what we use here.</para>
+<para>You can have multiple entries, to listen to more than one port
+or address, or to restrict access.</para>
+<note>
+<para>Unfortunately, most web browsers don't support
+<acronym>TLS</acronym> or &HTTP; upgrades for encryption.  If you want
+to support web-based encryption, you'll probably need to listen on
+port 443, the <acronym>HTTPS</acronym> port.</para>
+</note>
+<para>Use the <guibutton>Add</guibutton> and
+<guibutton>Remove</guibutton> buttons to add and remove entries from
+the list.</para>
+<informalexample>
+<para>You can enter ports on their own, &eg;
+<userinput>631</userinput>, or hostnames with ports, &eg;
+<userinput>myhost:80</userinput> or <userinput>1.2.3.4:631</userinput>.</para>
+</informalexample>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Max request size</guilabel></term>
+<listitem>
+<para>Controls the maximum size of &HTTP; requests and print files.
+The default setting is 0, which disables this feature.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Timeout</guilabel></term>
+<listitem>
+<para>The timeout (in seconds) before requests time out.  The default
+is 300 seconds.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="network-clients-configuration">
+<title>Network Clients Configuration</title>
+
+<para>The dialog to configure the &CUPS; network client settings is
+shown here. It includes:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Accept "Keep Alive"
+requests</guilabel></para></listitem>
+<listitem><para>KeepAliveTimeout:</para> </listitem>
+<listitem><para>MaxClients: </para></listitem>
+</itemizedlist>
+<screenshot>
+<screeninfo>dialog to configure the &CUPS; network client settings</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration9_networkclients.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; network client settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Accept "Keep Alive" requests</guilabel></term>
+<listitem>
+<para>Whether or not to support the Keep-Alive connection option. The
+default is on.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Keep alive timeout</guilabel></term>
+<listitem>
+<para>The timeout (in seconds) before Keep-Alive connections are
+automatically closed.  The default is 60 seconds.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Max number of clients</guilabel></term>
+<listitem>
+<para>Controls the maximum number of simultaneous clients that will be
+handled.  Defaults to 100.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="browsing-general-configuration">
+<title>Browsing General Configuration</title>
+
+<para>The dialog to configure the &CUPS; browsing general settings
+is shown here. It includes: </para>
+
+<itemizedlist>
+<listitem><para><guilabel>Enable browsing</guilabel></para></listitem>
+<listitem><para><guilabel>Use short names when
+possible</guilabel></para></listitem>
+<listitem><para><guilabel>Use implicit
+classes</guilabel></para></listitem>
+</itemizedlist>
+
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; browsing general
+settings</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration10_browsinggeneral.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; browsing general
+settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Enable browsing</guilabel></term>
+<listitem>
+<para>Whether or not to broadcast printer information to other &CUPS;
+servers.  Enabled by default.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Use short names when possible</guilabel></term>
+<listitem>
+<para>Whether or not to use <quote>short</quote> names for remote
+printers when possible (&eg; <systemitem
+class="resource">printer</systemitem> instead of <systemitem
+class="resource">printer@host</systemitem>).  Enabled by
+default.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Use implicit classes</guilabel></term>
+<listitem>
+<para>Whether or not to use implicit classes.</para>
+<para>Printer classes can be specified explicitly, in the
+<filename>classes.conf</filename> file, implicitly based upon the
+printers available on the <acronym>LAN</acronym>, or both.</para>
+<para>When Implicit classes are enabled, printers on the
+<acronym>LAN</acronym> with the same name (&eg; <systemitem
+class="resource">Acme-LaserPrint-1000</systemitem>) will be put into
+a class with the same name.  This allows you to setup multiple
+redundant queues on a <acronym>LAN</acronym> without a lot of
+administrative difficulties.  If a user sends a job to <systemitem
+class="resource">Acme-LaserPrint-1000</systemitem>, the job will go to
+the first available queue.</para>
+<para>This option is enabled by default.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="browsing-connection-configuration">
+<title>Browsing Connection Configuration</title>
+
+<para>The dialog to configure the &CUPS; server browsing connection is
+shown here. Browsing connection settings include:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Broadcast addresses</guilabel>: The
+(<acronym>UDP</acronym>) broadcast address to transmit printer
+information to</para></listitem>
+<listitem><para><guilabel>Broadcast Port</guilabel>: The port number
+to use for broadcasting</para></listitem> 
+<listitem><para><guilabel>Poll addresses</guilabel>: The address(es)
+to poll for information about printers on servers that might not
+broadcast (or whose broadcasts might not reach your
+<acronym>LAN</acronym> due to routers in between).</para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server browsing
+connection</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration11_browsingconnections.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server browsing
+connection</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Broadcast addresses</guilabel></term>
+<listitem>
+<para>After pressing the <guibutton>Add</guibutton> button, you will
+see the following dialog to enter a new value for outgoing
+broadcasting browse packets. It is the same kind of dialog as for
+adding other &CUPS; server addresses to be polled for printer
+information.</para>
+
+<screenshot>
+<screeninfo>Dialog to enter a new value for broadcasting browse
+packets to</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfig_browsingmasks_add_button.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to enter a new value for broadcasting browse packets
+to</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>This option specifies a broadcast address to be used.  By
+default, browsing information is broadcast to all active
+interfaces.</para>
+
+<note>
+<para>&HP-UX; 10.20 and earlier do not properly handle broadcast
+unless you have a Class A, B, C or D netmask (&ie;, there is no
+<acronym>CIDR</acronym> support).</para>
+</note>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Broadcast port</guilabel></term>
+<listitem>
+<para>The port used for <acronym>UDP</acronym> broadcasts.  By default
+this is the <acronym>IPP</acronym> port; if you change this, you need
+to do it on all servers.  Only one BrowsePort is recognized.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Poll addresses</guilabel></term>
+<listitem>
+<para>Poll the named server(s) for printers.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="browsing-masks-configuration">
+<title>Browsing Masks Configuration</title>
+
+<para>The dialog to configure the &CUPS; server allowed and/or denied browse
+packets from other servers is shown here. </para>
+
+<itemizedlist>
+<listitem><para><guilabel>Browse allow</guilabel>: </para></listitem>
+<listitem><para><guilabel>Browse deny</guilabel>: </para></listitem>
+<listitem><para><guilabel>Browse order</guilabel>: </para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server allowed and/or
+denied browse packets from other servers</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration11_browsingmasks.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server allowed and/or denied
+browse packets from other servers</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Add Browse Address</guilabel> dialog</term>
+<listitem>
+<para>The dialog to enter a new value for the address of another
+&CUPS; server to accept browse packets from is shown here. It is opend
+by clicking on the <guibutton>Add...</guibutton> button beside the
+field named <guilabel>Browse Allow:</guilabel>. It is the same dialog
+as for adding <quote>denied</quote> broadcast sending
+addresses.</para>
+
+<para>The dialog to enter a new value for the address of another
+&CUPS; server to accept browse packets from is shown here.</para>
+
+<screenshot>
+<screeninfo>Dialog to enter a new value for the address of another
+&CUPS; server to accept browse packets from</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfig_browsingmasks_add_button.png"
+format="PNG" /></imageobject>
+<textobject>
+<phrase>Dialog to enter a new value for the address of another &CUPS;
+server to accept browse packets from</phrase></textobject>
+</mediaobject>
+</screenshot>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Browse allow</guilabel> and <guilabel>Browse
+deny</guilabel></term>
+<listitem>
+<para><guilabel>Browse allow</guilabel> specifies an address mask to
+allow for incoming browser packets.  The default is to allow packets
+from all addresses.</para>
+<para><guilabel>Browse deny</guilabel> specifies an address mask to
+deny for incoming browser packets.  The default is to deny packets
+from no addresses.</para>
+<para>Both <guilabel>Browse allow</guilabel> and <guilabel>Browse
+deny</guilabel> accept the following notations for addresses:</para>
+
+<informalexample>
+<itemizedlist>
+<listitem>
+<para><userinput>All</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>None</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>*.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>host.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn/mmm</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn/mmm.mmm.mmm.mmm</userinput></para>
+</listitem>
+</itemizedlist>
+</informalexample>
+
+<para>The hostname/domain name restrictions will only work if you have
+turned hostname lookups on!</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Browse order</guilabel></term>
+<listitem>
+<para>Specifies the order of the allow/deny comparisons.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="browsing-timeouts-configuration">
+<title>Browsing Timeouts Configuration</title>
+
+<para>The dialog to configure the &CUPS; server browse timeout settings
+is shown here. Browse timeout settings include:</para>
+<itemizedlist>
+<listitem><para><guilabel>Browse Interval</guilabel></para></listitem>
+<listitem><para><guilabel>Browse Timeout</guilabel></para></listitem>
+</itemizedlist>
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server browse timeout
+settings</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration12_browsingtimeouts.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>dialog to configure the &CUPS; server browse timeout
+settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Browse interval</guilabel></term>
+<listitem>
+<para>The time between browsing updates in seconds.  The default is 30
+seconds.</para>
+<para>Note that browsing information is sent whenever a printer's
+state changes as well, so this represents the maximum time between
+updates.</para>
+<para>Set this to 0 to disable outgoing broadcasts so your local
+printers are not advertised, but you can still see printers on other
+hosts.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Browse timeouts</term>
+<listitem>
+<para>The timeout (in seconds) for network printers - if we don't get
+an update within this time, the printer will be removed from the
+printer list.</para>
+<para>This number definitely should not be less than the browse
+interval period, for obvious reasons.  Defaults to 300 seconds.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="browsing-relay-configuration">
+<title>Browsing Relay Configuration</title>
+
+<para>The dialog to configure the &CUPS; server as a browsing relay is
+shown here. Browsing relay settings include:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Browser packets relay</guilabel></para></listitem>
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server as a browsing
+relay</screeninfo> 
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration14_browsingrelay.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server as a browsing
+relay</phrase></textobject> 
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term>Add Browse Relay dialog</term>
+<listitem>
+<para>The dialog to enter a new value for an address pair to define
+browsing relaying between a &CUPS; server and a network is shown
+here.</para>
+
+<screenshot>
+<screeninfo>The dialog to enter a new value for an address pair to
+define browsing relaying between a &CUPS; server and a
+network</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfig_browse_relay_add_button.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The dialog to enter a new value for an address pair to define
+browsing relaying between a &CUPS; server and a
+network</phrase></textobject>
+</mediaobject>
+</screenshot>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Browser packets relay</guilabel></term>
+<listitem>
+<para>Relay browser packets from one address or network to
+another.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="security-configuration">
+<title>Security Configuration</title>
+
+<para>The dialog to configure the &CUPS; server security settings for
+any of the defined server locations is shown here. It contains the
+following settings, which may be defined seperately for any valid
+resource (or location) of the &CUPS; server:</para>
+
+<itemizedlist>
+<listitem><para>System Group:</para></listitem>
+<listitem><para>Access Permissions: </para></listitem>
+<listitem><para>Auth Type:</para></listitem>
+<listitem><para>Auth Class:</para></listitem>
+<listitem><para>Auth Group Name:</para></listitem>
+<listitem><para>Encryption:</para></listitem>
+<listitem><para>Allow:</para></listitem>
+<listitem><para>Deny:</para></listitem>
+<listitem><para>Order:</para></listitem>
+</itemizedlist>
+
+<para>Valid resources (or locations) of the &CUPS; server are:</para>
+
+<itemizedlist>
+<listitem><para>Server Root Location: <systemitem
+class="resource">/</systemitem> </para></listitem> 
+<listitem><para>Server Administration Location: <systemitem
+class="resource">/admin</systemitem></para></listitem>
+<listitem><para>All printers on the server: <systemitem
+class="resource">/printers</systemitem></para></listitem>
+<listitem><para>Any individual printer on the server:
+&eg; <systemitem
+class="resource">/printers/infotec_P320</systemitem></para></listitem> 
+<listitem><para>All printer classess on the server: <systemitem
+class="resource">/classes</systemitem>:</para></listitem> 
+<listitem><para>Any individual printer class on the server:
+&eg; <systemitem
+class="resource">/classes/all_infotecs_P320_or_P450</systemitem></para></listitem> 
+</itemizedlist>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server security settings
+for any of the defined server locations</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration_securityoverview.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>dialog to configure the &CUPS; server security settings for
+any of the defined server locations</phrase></textobject>
+
+</mediaobject>
+</screenshot>
+
+<note>
+<para>For all locations that are not defined seperately the setting of
+the location <quote>above</quote> it is valid.</para>
+
+<para>For example, you have a printer named <systemitem
+class="resource">infotec_P450</systemitem> with no set security
+options. Then the security of the location <systemitem
+class="resource">/printers</systemitem> will take the reponsibility
+for this printer as it is a sub-location of<systemitem
+class="resource">/printers</systemitem>. If, in turn there is no
+security set for <systemitem class="resource">/printers</systemitem>,
+then the security for <systemitem class="resource">/</systemitem> (the
+general security) of the server takes responsibility. Either you have
+set this for your purpose or the compiiled-in default value takes
+over.</para>
+</note>
+
+<variablelist>
+<varlistentry>
+<term>SystemGroup</term>
+<listitem>
+<para>The group name for <systemitem
+class="groupname">System</systemitem> or printer administration
+access.  The default varies depending on the operating system, but
+will be <systemitem class="groupname">sys</systemitem>, <systemitem
+class="groupname">system</systemitem> or <systemitem
+class="groupname">root</systemitem> (checked for in that order).</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Access Permissions</term>
+<listitem>
+<para>Access permissions for each directory served by the scheduler.
+Locations are relative to the document root.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Authorization Type</term>
+<listitem>
+<para>The authorization to use:</para>
+
+<variablelist>
+<varlistentry>
+<term>None</term>
+<listitem>
+<para>Perform no authentication.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Basic</term>
+<listitem>
+<para>Perform authentication using the &HTTP; Basic method.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Digest</term>
+<listitem>
+<para>Perform authentication using the &HTTP; Digest method.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note>
+<para>Local certificate authentication can be substituted by the
+client for Basic or Digest, when connecting to the localhost
+interface.</para>
+</note>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Authorization Class</term>
+<listitem>
+<para>The authorization class.  Currently only
+<quote>Anonymous</quote>, <quote>User</quote>, <quote>System</quote>
+(valid user belonging to the group set as system group), and
+<quote>group</quote> (valid user belonging to the specified group) are
+supported.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Authorization Group Name</term>
+<listitem>
+<para>The group name for <quote>Group</quote> authorization</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Encryption</term>
+<listitem>
+<para>Whether or not to use encryption.  This depends on having the
+<application>OpenSSL</application> linked into the &CUPS; library and
+scheduler.</para>
+<para>Possible values are:</para>
+<variablelist>
+<varlistentry>
+<term>Always</term>
+<listitem>
+<para>Always use encryption (<acronym>SSL</acronym>)</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Never</term>
+<listitem>
+<para>Never use encryption.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Required</term>
+<listitem>
+<para>Use <acronym>TLS</acronym> encryption upgrade.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>IfRequested</term>
+<listitem>
+<para>Use encryption if the server requests it.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Allow</guilabel></term>
+<listitem>
+<para>Allows access from the specified hostname, domain,
+<acronym>IP</acronym> address or network.  Possible values are:</para>
+
+<informalexample>
+<itemizedlist>
+<listitem>
+<para><userinput>All</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>None</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>*.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>host.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn/mmm</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn/mmm.mmm.mmm.mmm</userinput></para>
+</listitem>
+</itemizedlist>
+</informalexample>
+
+<para>The host and domain address require that you enable hostname
+lookups, as described earlier.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Deny</guilabel></term>
+<listitem>
+<para>Denies access from the specified hostname, domain,
+<acronym>IP</acronym> address or network.  Possible values are:</para>
+
+<informalexample>
+<itemizedlist>
+<listitem>
+<para><userinput>All</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>None</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>*.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>host.domain.com</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.*</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn/mmm</userinput></para>
+</listitem>
+<listitem>
+<para><userinput>nnn.nnn.nnn.nnn/mmm.mmm.mmm.mmm</userinput></para>
+</listitem>
+</itemizedlist>
+</informalexample>
+<para>The host and domain address require that you enable hostname
+lookups, as described earlier.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Order</term>
+<listitem>
+<para>The order of the allow and deny processing.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="example-how-define-security-for-all-printers">
+<title>Example: How To Define The Security For All Printers</title>
+
+<para>The dialog to configure the &CUPS; server security settings is
+discussed here. We use the example to add security definitions other
+than the default ones for the resource named <systemitem
+class="resource">all printers</systemitem>. For the &CUPS; web server,
+this is the location you access through <ulink
+url="http://localhost:631/printers/">
+http://localhost:631/printers/</ulink> or (remotely) through <ulink
+url="http://cups.server.name:631/printers/">
+http://cups.server.name:631/printers/</ulink></para>
+
+<para>The first screenshot shows the general location for this
+setting. <guilabel>Select</guilabel> <guibutton>Add</guibutton> or
+<guibutton>Modify</guibutton> a resource for which you want to decide
+about its security settings.</para>
+
+<screenshot>
+<screeninfo>Dialog to configure the &CUPS; server security
+settings</screeninfo><mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration15a_resourceallprinters_defineaccess.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to configure the &CUPS; server security
+settings</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>This dialog is to add a new resource.  It looks similar if you
+want to modify an already existing resource. Here are the general
+options:</para>
+
+<screenshot>
+<screeninfo>Dialog to add a new resource.</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration15b_resourceallprinters_defineaccess.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to add a new resource.</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>.This is the second part or the dialog is to add a new
+ressource.  It looks similar if you want to modify an already existing
+resource. Here you define the actual access masks for the resource in
+question. </para>
+
+<screenshot>
+<screeninfo>Dialog to add a new resource.</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration15c_resourceallprinters_defineaccess.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Dialog to add a new resource.</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>Resource dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration_resourceadminaccessmasks.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Resource dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>Resource dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration_resourceadminaddprinters.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Resource dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>Resource dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration_resourceadminaddprinters_defineaccess.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Resource dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>Resource dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsserverconfiguration_resourceadminauthorization.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Resource dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+</chapter>
+
+<chapter id="add-printer-wizard-2">
+<title>The <quote>Add Printer Wizard</quote> for &CUPS;</title>
+
+<para>Clicking on the most leftward icon of the toolbar
+<inlinemediaobject><imageobject> <imagedata
+fileref="hi32-action-wizard.png" format="PNG"/></imageobject>
+</inlinemediaobject> in the upper part of the window starts the
+<quote>Add Printer Wizard</quote>).</para>
+
+<para>This wizard steps you through various screens to install a new
+printer. At present this Wizard works for &CUPS; and the
+<acronym>RLPR</acronym> environment module. The number of steps depend
+on the actual print-subsystem which is active for you on your
+box.</para>
+
+<sect1>
+<title>Starting</title>
+
+<para>The welcome screen tells you that you can go back any time to
+change a setting. </para>
+
+<screenshot>
+<screeninfo>The &kdeprint; wizard introduction screen</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsaddprinterwizard1.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>The introduction screen of the printer wizard</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="backend-selection">
+<title>Backend Selection</title>
+
+<para>Choose the <quote>backend</quote> protocol &CUPS; is supposed to
+use with your new printer. There are:</para>
+
+<itemizedlist>
+<listitem>
+<para>local printer (serial, parallel, <acronym>USB</acronym>)</para>
+</listitem>
+<listitem>
+<para>remote <acronym>LPD</acronym> queue</para>
+</listitem>
+<listitem>
+<para><acronym>SMB</acronym> shared printer (&Windows;)</para>
+</listitem>
+<listitem>
+<para>Network Printer (<acronym>TCP</acronym>, &HP; JetDirect,
+AppSocket)</para>
+</listitem>
+<listitem>
+<para>Network printer with &IPP; (&IPP;/<acronym>HTTP</acronym>)</para>
+</listitem>
+<listitem>
+<para>File printer</para>
+</listitem>
+<listitem>
+<para>serial fax /modem printer</para>
+</listitem>
+<listitem>
+<para>Class of Printers</para>
+</listitem>
+</itemizedlist>
+
+<para>If some choices are grayed out, they are not available.  For
+example, maybe you have no fax backend software or no modem installed to
+use this.</para>
+
+<screenshot>
+<screeninfo>Choosing your Printer system</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsaddprinterwizard2_backendselection.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>Choosing your Printer System</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="direct-network-settings">
+<title>Direct Network Setting</title>
+
+<para>The contents of your next screen is dependent on your choice in
+the previous screen. If you know the details, just type them in to
+configure your network settings directly.</para>
+
+<para>In other cases the wizard can scan the network for you to help you
+decide which setting could be useful. </para>
+
+<screenshot>
+<screeninfo>&kdeprint; wizard network scan</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsaddprinterwizard3_networkscan.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>In the &kdeprint; wizard, you can enter network details
+directly, or you can scan the network
+automatically</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="information-retrieval-by-network-scanning">
+<title>Information Retrieval by Scanning the Network</title>
+
+<para>If you use one of the network connections (remote
+<acronym>LPD</acronym>, <acronym>SMB</acronym>, remote &CUPS;, network
+printer with &IPP;), you have an option for scanning the net. Be careful
+when applying this; in some environments network scanning is considered
+a hostile and harmful act!</para>
+
+<para>In the case of <acronym>SMB</acronym>, &kdeprint; will use the
+Samba utilities <command>nmblookup</command> and
+<command>smbclient</command> (which need to be installed for this to
+work) to retrieve the information it presents in a tree
+structure.</para>
+
+<para>In the case of &IPP; (Port 631) and <acronym>TCP</acronym>
+Network/AppSocket (Port 9100) &kdeprint; will try to open the port and
+in case of success send an <command>ipp-get-printer-attribute</command>
+request to the printer. For newer &HP; printers the latter usually
+works, because they support both AppSocket and &IPP;.</para>
+
+<para>Some printers or manufacturers use other port numbers for direct
+TCP/IP printing. You may need to look up which one to use. The
+<guilabel>Settings</guilabel> button in the dialog lets you configure
+your scan, including <acronym>IP</acronym> addresses, ports and
+timeout to use.</para>
+
+<para>Once again: be careful not to be misunderstood as an intruder to
+your network, if you use the scanning technique.</para>
+
+<screenshot>
+<screeninfo>&kdeprint; wizard network configuration dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cupsaddprinterwizard4_networkscan_config.png"
+format="PNG"/></imageobject>
+<textobject>
+<phrase>In the &kdeprint; wizard, you can enter parameters to have the
+wizard scan parts of your network.</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="printer-model-selection">
+<title>Printer Model Selection</title>
+
+<para>The hardest part probably is the <quote>Printer Model
+Selection</quote>. In former years the situation was difficult, because
+there were hardly any drivers to find. Now it is, because there are too
+many, with some of them very good, but many quite broken. </para>
+
+<para>If you have a current <quote>database</quote> of available drivers
+on your system, select the manufacturer in the left part of the window
+first, then the device model in the right part. This split window shows
+all &PPD;s found by &CUPS; in its standard repository of installable
+&PPD;s.  This repository normally is <filename
+class="directory">/usr/share/cups/model/</filename>. If you want your
+driver found automatically by &CUPS; and &kdeprint;, throw it in
+there.</para>
+
+<!-- Insert Screenshot here:  -->
+
+</sect1>
+
+<sect1 id="driver-selection">
+<title>Driver Selection</title>
+
+<para>On the next screen you will see a description of the driver
+selected previously. This description is extracted from the actual &PPD;
+used.</para>
+
+<warning>
+<para>For a real &PostScript; printer <emphasis>never</emphasis> try to
+install a <quote>Foomatic</quote> or <quote>Gimp-Print</quote> &PPD;,
+even if it is offered. You won't be happy with it. Instead find the
+original &PPD; from the manufacturer, preferably the one written for
+&Windows; NT and use it. </para>
+</warning>
+
+<para>Some &Linux; distributions have supplied for &CUPS; every
+possible combination of <application>ghostscript</application> filters
+and <quote>foomatic</quote> &PPD; files they could find on the net,
+Many of those are quite useless; they were generated a year ago, when
+the folks at <ulink
+url="http://www.linuxprinting.org">www.linuxprinting.org</ulink> made
+their first experiments with suppying third party &PPD;s for
+&CUPS;. Although dubbed <quote>Alpha</quote> at the time, these
+started to take a life of their own and can now be found at various
+places on the net, doing &CUPS; no favours.</para>
+
+<para>If you are not sure which ones to use go to:</para>
+
+<itemizedlist>
+<listitem>
+<para><ulink
+url="http://www.linuxprinting.org">http://www.linuxprinting.org</ulink>
+</para>
+</listitem>
+
+<listitem>
+<para>
+<ulink url="http://www.cups.org">http://www.cups.org</ulink>
+</para>
+</listitem>
+</itemizedlist>
+
+<para>And ask for help. At a later stage a document detailing the
+differences of the different driver and &PPD; models will appear at
+<ulink
+url="http://kdeprint.sourceforge.net">http://kdeprint.sourceforge.net/</ulink>
+Watch out for this!</para>
+
+<para>Via the <guibutton>Other...</guibutton> button you are able to
+retrieve any &PPD; located somewhere on your available file
+system.</para>
+
+<!-- Insert Screenshot here:  -->
+
+</sect1>
+
+<sect1 id="printer-test-and-finding-settings">
+<title>Printer Test and Finding the Right Settings</title>
+
+<para>Do your first driver settings now. The most important one is the
+default paper size. This is in many cases set ot
+<quote>Letter</quote>. If you are at home in an <quote>A4</quote>
+country and don't want yout first test page to jam: now is the time to
+prevent this. </para>
+
+<para>You are ready to start a test print. Hit the
+<guibutton>Test</guibutton> button.</para>
+
+<!-- Insert Screenshot here: -->
+
+</sect1>
+
+<sect1 id="banner-selection">
+<title>Banner Selection</title>
+
+<para>The last but one screen lets you select, if and which banners
+you want to use to mark the beginning and/or end of every printjob on
+that printer. You can also select and deselect banners before printing
+in the job options dialogs.</para>
+
+<para>If you need to use custom banners, copy them into <filename
+class="directory">/usr/share/cups/banners/</filename> to make them
+available for selection. They must be &PostScript; files
+however.</para>
+
+<!-- Insert Screenshot here: -->
+
+</sect1>
+
+<sect1 id="baptizing-your-printer">
+<title>Finally: Baptizing Your New Printer</title>
+
+<para>The last screen lets you insert a name for your new
+printer.</para>
+
+<para>The name must start with a letter and may contain numbers and
+underscores with a maximum size of 128 characters. Stick to it if you
+want to avoid erratic behaviour of your &CUPS; daemon. The printer
+names in &CUPS; are <emphasis>not</emphasis> case sensitive! This is a
+requirement of &IPP;. So the names <systemitem
+class="resource">DANKA_infotec</systemitem>, <systemitem
+class="resource">Danka_Infotec</systemitem> and <systemitem
+class="resource">danka_infotec</systemitem> all represent the same
+printer.</para>
+
+<!-- Insert Screenshot here: -->
+
+</sect1>
+
+<sect1 id="final-confirmation-screen">
+<title>The Final Confirmation Screen</title>
+
+<para><!-- Insert Screenshot here: --></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="cupsoptions-presently-outside-kcontrol">
+<title>&CUPS; options presently not available through &kcontrol;</title>
+
+<para>This chapter gives you some hints about further configuration
+posibilities which may not be available through the &kdeprint; &GUI;
+interface to &CUPS;.</para>
+
+<sect1>
+<title>Overview of provided features</title>
+
+<para>All of the most often used features and functions &CUPS; provides
+are supported in &kdeprint;.</para>
+
+<itemizedlist>
+<listitem>
+<para>Printer management is supported: add, remove, modify, configure,
+test, disable, enable ...</para>
+</listitem>
+<listitem>
+<para>Job management is supported: cancel, hold, release, move to
+different printer</para>
+</listitem>
+<listitem>
+<para>Print options: for full control as provided by &CUPS;.</para>
+</listitem>
+</itemizedlist>
+
+</sect1>
+
+<sect1 id="where-to-find-further-chupshelp">
+<title>Where to find help when using &CUPS;</title>
+
+<para>A lot of information about the inner workings of &CUPS; is
+available through the web interface, which &CUPS; will always
+support. It works with any browser (yes, even text-based ones). Just go
+to <ulink url="http://localhost:631/">http://localhost:631/</ulink> for
+a start. There you find a link to locally available &CUPS; documentation
+in <acronym>HTML</acronym> and <acronym>PDF</acronym> if you are new to
+&CUPS;.</para>
+
+<para>&CUPS; is accessible through other means than &kdeprint;:
+commandline and browser are two native &CUPS; interfaces. The many
+commandline utilities add up to the most complete control you have on
+&CUPS;. The web interface is only a subset of all available
+configuration or control options. </para>
+
+<para>This is also true for &kdeprint;. Generally, as &CUPS; develops,
+most new features will first be implemented through the commandline. Be
+sure to check the latest versions of the man pages for &CUPS; to stay
+up-to-date with new features after you install a new version.</para>
+
+<tip>
+<para>Depending on your update method for &CUPS;, your active
+configuration file might not have been re-placed by a new one; thus your
+new, more capable &CUPS;-daemon might not have been told by the old
+configuration file about the new features to use.</para>
+</tip>
+
+<para>A complete list of available files and man pages should always be
+in the &CUPS; Software Administrator Manual (<ulink
+url="http://localhost:631/sam.html#FILES">http://localhost:631/sam.html#FILES</ulink>.
+In the &konqueror; &URL;/location field, type
+<userinput>man:/lpadmin</userinput> and
+<userinput>man:/cupsd.conf</userinput> to find out about the most
+important command and configuration file. You knew already about
+&konqueror;'s nice abilties to show you the traditional &UNIX; man
+pages, didn't you? Read this.  From there you find more interesting
+hints and links to other man pages and documentation.</para>
+
+<sect2>
+<title>How to find &CUPS; related man pages</title>
+
+<para>Here is a way to find out which &CUPS; related man pages there
+are on your system: </para>
+
+<screen><prompt>kurt@transmeta:~ ></prompt> <userinput><command>apropos</command> <parameter>cups</parameter></userinput>
+<computeroutput>
+cups-calibrate (8)- ESP Printer Calibration Tool
+lpstat (1)        - print cups status information
+cups-lpd (8)      - receive print jobs + report printer status to lpd clients
+classes.conf (5)  - class configuration file for cups
+backend (1)       - cups backend transmission interfaces
+filter (1)        - cups file conversion filter interfaces
+cups-polld (8)    - cups printer polling daemon
+mime.types (5)    - mime type description file for cups
+cupsd (8)         - common unix printing system daemon
+lpadmin (8)       - configure cups printers and classes
+cupsd.conf (5)    - server configuration file for cups
+mime.convs (5)    - mime type conversion file for cups
+printers.conf (5) - printer configuration file for cups
+mime.convs (5)    - mime type conversion file for cups
+cups-polld (8)    - cups printer polling daemon
+lpstat (1)        - print cups status information
+backend (1)       - cups backend transmission interfaces
+mime.types (5)    - mime type description file for cups
+cupsd (8)         - common unix printing system daemon
+lpadmin (8)       - configure cups printers and classes
+printers.conf (5) - printer configuration file for cups
+cupsd.conf (5)    - server configuration file for cups
+filter (1)        - cups file conversion filter interfaces
+</computeroutput></screen>
+</sect2>
+</sect1>
+
+<sect1 id="tips-and-tricks-for-cups">
+<title>Outside &kdeprint;: Hints &amp; Tips Tricks with &CUPS; on the
+Commandline</title>
+
+<para>Here are a few examples of options that are presently only
+available if you use the commandline. </para>
+
+<sect2>
+<title>Allowing or denying printer access for certain users</title>
+
+<para>When installing (or modifying) a printer through the command line,
+you can either deny or allow the usage of that printer to certain
+users:</para>
+
+<screen><userinput><command>lpadmin</command> <option>-p</option><parameter>HeidelbergDigimaster9110</parameter> <option>-v</option> <parameter>lpd:/10.160.16.99/mqueue</parameter> <option>-u</option> <parameter>allow:kurt,sylvi,hansjoerg</parameter> <option>-E</option> <option>-P</option> <parameter>/home/kurt/PPDs/DVHV.ppd</parameter></userinput></screen>
+
+<para>will allow the usage of this (believe me: very nice and also very
+professional) printer to only the three mentioned users and at the same
+time deny it to all others. If another user wants to print on the
+DigiMaster via this &CUPS; server, he will receive an error message
+along the lines <errortype>client-error-not-possible</errortype>.</para>
+
+<screen><userinput><command>lpadmin</command> <option>-p</option> <parameter>HeidelbergDigimaster9110</parameter> <option>-v</option> <parameter>lpd:/10.160.16.99/mqueue</parameter> <option>-u</option> <parameter>deny:tackat,boss,waba</parameter> <option>-E</option> <option>-P</option> <parameter>/home/kurt/PPDs/DVHV.ppd</parameter></userinput></screen>
+
+<para>will deny the usage of this same printer to the three mentioned
+users and at the same time allow it to all others. If
+<quote>denied</quote> user wants to print on the DigiMaster via this
+&CUPS; server, he will receive an error message along the lines
+<errortype>client-error-not-possible</errortype>.</para>
+
+<note>
+<para>Only one of the two options may be used at one time; at present
+there is no support to have a similar option in a per-group based
+way. This will be implemented in the future.</para>
+</note>
+
+</sect2>
+
+<sect2>
+<title>Imposing Quotas for certain printers</title>
+
+<para>Sometimes you want to impose quotas for certain printers.  With
+quotas you can set upper limits for the number of pages or the amount of
+data to be printed over a certain period to a certain printer.</para>
+
+<para>Quotas can be set with the <option>-o</option> option when
+installing a printer with the <command>lpadmin</command> command, or
+afterwards for an already existing printer. Following are some
+guidelines (which are missing at the time of writing in the, official
+&CUPS; documentation):</para>
+
+<itemizedlist>
+<listitem>
+<para>With &CUPS; you may have pagecount- and filesize-based quotas for
+individual printers.</para>
+</listitem>
+
+<listitem>
+<para>Quotas are calculated for each user individually (so a single set
+of limits applies to all users for the printer concerned).</para>
+</listitem>
+
+<listitem>
+<para>Quotas include banner pages (if those are used).</para>
+</listitem>
+
+<listitem>
+<para>This means: you can limit every user to 20 pages per day on an
+expensive printer, but you cannot limit every user except <systemitem
+class="username">Kurt</systemitem> or <systemitem
+class="username">root</systemitem>.</para>
+</listitem>
+
+<listitem>
+<para>There are <option>job-k-limit</option>,
+<option>job-page-limit</option>, and <option>job-quota-period</option>
+options to give when setting up a printer.</para>
+</listitem>
+
+<listitem>
+<para><option>job-quota-period</option> sets a time interval for quota
+computing (intervals are determined in seconds; so a day is
+60x60x24=86.400, a week is 60x60x24x7=604,800, and a month is
+60x60x24x30=2.592.000 seconds.)</para>
+</listitem>
+
+<listitem>
+<para>For quotas to be enforced, the time-period
+<emphasis>plus</emphasis> at least one job-limit must be set to
+non-zero.</para>
+</listitem>
+
+<listitem>
+<para>The default value of 0 for <option>job-k-limit</option> specifies
+that there is no limit.</para>
+</listitem>
+
+<listitem>
+<para>The default value of 0 for <option>job-page-limit</option>
+specifies that there is no limit.</para>
+</listitem>
+
+<listitem>
+<para>The default value of 0 for <option>job-quota-period</option>
+specifies that the limits apply to all jobs that have been printed by a
+user that are still known to the system.</para>
+</listitem>
+</itemizedlist>
+
+<sect3>
+<title>Working Examples:</title>
+
+<para>Working, as both, time-period <emphasis>plus</emphasis> one or
+both job-limits are defined</para>
+
+<screen><userinput><command>lpadmin</command> <option>-p</option> <parameter>danka_infotec_4850</parameter> <option>-o</option> <parameter>job-quota-period=604800</parameter> <option>-o</option> <parameter>job-k-limit=1024</parameter></userinput></screen>
+
+<para>This sets a limit of a file size of 1 MB (in total) for each user
+of existing printer <systemitem
+class="resource">danka_infotec_4850</systemitem> during one week.</para>
+
+<screen><userinput><command>lpadmin</command> <option>p</option> <parameter>danka_infotec_4105</parameter> <option>-o</option> <parameter>job-quota-period=604800</parameter> <option>-o</option> <parameter>job-page-limit=100</parameter></userinput></screen>
+
+<para>This sets a limit of 100 pages (in total) for each user of
+existing printer <systemitem
+class="resource">danka_infotec_4105</systemitem> during one week.</para>
+
+<screen><userinput><command>lpadmin</command> <option>-p</option> <parameter>danka_infotec_P450</parameter> <option>-o</option> <parameter>job-quota-period=604800</parameter> <option>-o</option> <parameter>job-k-limit=1024</parameter> <option>-o</option> <parameter>job-page-limit=100</parameter></userinput></screen>
+
+<para>This sets a combined limit of 1 MB (in total) and 100 pages (in
+total) for each user of existing printer <systemitem
+class="resource">danka_infotec_P450</systemitem> during one
+week. Whichever limit is reached first will take effect.</para>
+
+</sect3>
+
+<sect3>
+<title>Not working examples</title>
+
+<para><emphasis>NOT</emphasis> working, as only
+<emphasis>one</emphasis>, time-period <emphasis>or</emphasis> job-limit
+is defined)</para>
+
+<screen><userinput><command>lpadmin</command> <option>-p</option> <parameter>danka_infotec_P320</parameter> <option>-o</option> <parameter>job-quota-period=604800</parameter></userinput>
+
+<userinput><command>lpadmin</command> <option>-p</option> <parameter>danka_infotec_FullColor</parameter> <option>-o</option> <parameter>job-page-limit=100</parameter></userinput>
+
+<userinput><command>lpadmin</command> <option>-p</option> <parameter>danka_infotec_HiSpeed</parameter> <option>-o</option> <parameter>job-k-limit=1024</parameter></userinput></screen>
+
+</sect3>
+
+<sect3>
+<title>Related Error Messages</title>
+
+<para>Once a user reaches his quota limit, he'll get a
+<errortype>client-error-not-possible</errortype> message, if he wants to
+print.</para>
+
+</sect3>
+
+</sect2>
+
+<sect2>
+<title>Installing a <quote>raw</quote> printer</title>
+
+<para>There are different ways to define a <quote>raw</quote>
+printer. One comfortable one is to use the <command>lpadmin</command>
+command.  Just don't define a &PPD; file to be used for that printer and
+it will be a raw one:</para>
+
+<screen><userinput><command>lpadmin</command> <option>-p</option> <parameter>Raw_Danka_infotec</parameter> <option>-E</option> <option>-v</option> <parameter>lpd://10.160.16.137/PORT1</parameter></userinput></screen>
+
+<para>Raw printer queues are those which don't touch the print file to
+transform it to a different file format. You need this for example when
+printing from &Windows; clients via Samba through a &CUPS; server to a
+<acronym>PCL</acronym> printer: in this case the &Windows; side printer
+driver would generate the finished print file format for the target
+printer and filtering it through &CUPS; filters would only harm the
+purpose. Under certain circumstances (if you want to make sure that the
+file goes to the printer <quote>unfiltered</quote> by &CUPS;) the
+<quote><command>lpadmin</command> without a &PPD;</quote> comes in
+handy.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="troubleshooting-cups">
+<title>Troubleshooting &CUPS; in &kdeprint;</title>
+
+<para>This section of the &kdeprint; Handbook will live from the
+readers' feedback. Here is just a small beginning.</para>
+
+<sect2>
+<title>Error Messages</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>What does the error
+<errortype>client-error-bad-request</errortype> mean?</para>
+</question>
+<answer>
+<para>The user sent a file to the &CUPS; which the server could not
+process. You get this also upon sending an <quote>empty</quote>
+file.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>And <errortype>client-error-not-possible</errortype>?</para>
+</question>
+<answer>
+<para>User is either not allowed to print to a certain printer or has
+achieved his quota (based on file size and/or page number)</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How about <errortype>client-error-not-found</errortype>?</para>
+</question>
+<answer>
+<para>The user tried to access a nonexistant resource on the &CUPS;
+server, such as trying to print a nonexistent file, or one that you are
+denied permission to read.</para>
+</answer>
+
+</qandaentry>
+</qandaset>
+
+</sect2>
+
+<sect2>
+<title>Questions and Answers</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Why can't I re-start my jobs?</para>
+</question>
+<answer>
+<para>To be able to re-start your <quote>completed</quote> jobs from the
+web interface, you need a setting in the
+<filename>/etc/cups/cupsd.conf</filename> file: set
+<userinput>PreserveJobFiles True</userinput>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get rid of the long list of completed jobs in the web
+interface?</para>
+</question>
+<answer>
+<para>TODO</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How does page accounting work?</para>
+</question>
+<answer>
+<para>&CUPS; does the <quote>print accounting</quote> by passing nearly
+every job through the <quote>pstops</quote> filter.  This one does,
+amongst other things, the page counting. Output of this filter there may
+be piped into other filters (like pstoraster --> rastertopcl) or sent to
+the printer directly (if it is a &PostScript; printer).</para>
+
+<para>In any case, this works for network, parallel, serial or
+<acronym>USB</acronym> printers the same. For pstops to work, it needs
+<acronym>DSC</acronym>, Document Structuring Convention compliant
+&PostScript; (or near-equivalent) as input. So it calculates the pages
+during filtering on the print server and writes info about every single
+page (what time, which user, which job-ID and -name, which printer, how
+many copies of which pages of the document, how many kilo-bytes?) into
+<filename>/var/log/cups/page_log</filename>.</para>
+
+<para>By the way: on my personal <quote>wishlist</quote> is a hack of
+<quote>webalizer</quote> to read and analyse the page_log and give a
+similar output.  Anyone?</para>
+
+<para>However, it is <emphasis>not</emphasis> giving correct results in
+the following cases:</para>
+
+<itemizedlist>
+<listitem>
+<para>The printer jams and maybe therefor throw away the job (real live
+experience; or maybe throwing away the job because of problems with the
+data format)</para>
+</listitem>
+<listitem>
+<para>Jobs printed as <quote>raw</quote> are always counted as size of 1
+page (and maybe multiple copies).</para>
+</listitem>
+</itemizedlist>
+
+<para>Therefore the page accounting of &CUPS; is <quote>only</quote>
+an approximation (in many cases an excellent or at least good one, in
+others a quite poor one). The only reliable print count is the one
+done by the internal printer counter. (Because this is the one you pay
+for, if you are on a <quote>click price</quote> or similar.)  Some, by
+far not most, printers can be queried remotely for that information
+via <acronym>SNMP</acronym> (Simple Network Management Protocol). That
+means, in a bigger network with many different printers there
+<emphasis>is</emphasis> just no completely reliable and accurate page
+accounting tool!</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why doesn't page-accounting work with &Windows; clients?</para>
+</question>
+<answer>
+<para>From &Windows; clients jobs nearly always need to be sent as
+<quote>raw</quote>. Why? If &CUPS; works as a print server for &Windows;
+clients using the original native &Windows; driver for the target print
+device, this guarantees the correct formatting of the job on the clients
+already; therefor the server should not touch it and print
+<quote>raw</quote>; therefor no filtering is started (and this is not
+even possible as the input from the clients is not &PostScript; as
+pstops expects; hence no page-count other than the default
+<quote>1</quote>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get a list of available options for a given printer or a
+&PPD; file?</para>
+</question>
+<answer>
+<para>See the man page for the <command>lpoptions</command> command. You
+may investigate a &CUPS;-enabled box about any option of its available
+printers. There is no need to have the printer installed locally. As
+long as the printer is available locally (through the &CUPS;
+<quote>printer browsing</quote> feature), it will also work
+remote.</para>
+
+<para>To query for a printers' option typing
+<userinput><command>lpoptions</command> <option>-p</option>
+<parameter>HitachiDDP70MicroPress</parameter>
+<option>-l</option></userinput> will give a long listing of all
+available options as read from the &PPD; file for the given
+Hitachi-Printer (in my case installed on remote server
+transmeta). Remote server <systemitem
+class="systemname">Transmeta</systemitem> and its &CUPS; daemon as well
+as the localhost's &CUPS; daemon need to be up and running for this to
+succeed.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I read the listing retrieved by the
+<command>lpoptions</command> command?</para>
+</question>
+
+<answer>
+<para>You know that for &PostScript; printer manufacturers it is
+<quote>legal</quote> to define their own internal names and procedures
+even for standard &PostScript; options. As long as the driver is able to
+retrieve the option from the &PPD; and show it to the user in a way that
+he understands it everything is OK. But what do <emphasis>you</emphasis>
+do, if you want to use some obscure printer options on the command line?
+How do you find out its exact syntax?</para>
+
+<para>Let's take an example. Looking at Hitachi's DDP70 printer and how
+it implements duplex printing is revealing somehow. How do you tell how
+to print double sided? duplex or Duplex? Or another name altogether?.</para>
+
+<screen><userinput><command>lpoptions</command> <option>-h</option> <parameter>transmeta</parameter> <option>-p</option> <parameter>Hitachi_DDP70_ClusterPrintingSystem</parameter> <option>-l</option> | <command>grep</command> <parameter>uplex</parameter></userinput></screen>
+
+<para>This leads to the output</para>
+
+<screen><computeroutput>TR-Duplex/Duplex: False *True</computeroutput></screen>
+
+<para>This is to be interpreted like follows:</para>
+
+<itemizedlist>
+<listitem>
+<para>The name of the investigated option is
+<option>TR-Duplex</option>;</para>
+</listitem>
+<listitem>
+<para>Behind the slash you see the translation of the option, as it
+should be shown in a &GUI; or Web interface
+(<quote>Duplex</quote>);</para>
+</listitem>
+<listitem>
+<para>The option may take one of the two values
+<parameter>False</parameter> or <parameter>True</parameter>;</para>
+</listitem>
+<listitem>
+<para>The present setting is <parameter>True</parameter> to be
+recognized by the marking with a star <literal>*</literal>.</para>
+</listitem>
+</itemizedlist>
+
+<para>To override the present default setting (duplex) and print a job
+in simplex, you need to use the following command: </para>
+
+<screen><userinput><command>lpr</command> <option>-P</option> <parameter>Hitachi_DDP70_ClusterPrintingSystem</parameter> <option>-o</option> <parameter>TR-Duplex=False</parameter> <parameter>/path/to/your/printjob</parameter></userinput></screen>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get a nicely formatted listing of available options for a
+given printer or &PPD;?</para>
+</question>
+<answer>
+<para>Use the <command>lphelp</command> command which may be installed
+on your system locally. There is not yet a man page for
+<command>lphelp</command>.</para>
+
+<screen><userinput><command>lphelp</command> <parameter>infotecP450</parameter></userinput></screen>
+
+<para>This lists the available options for the named printer. It is
+nicely formatted and does explain every available option and how to use
+it. You can query different printers' options at once:</para>
+
+<screen><userinput><command>lphelp</command> <parameter>infotec7410color</parameter> <parameter>DANKA_fullcolor_D2000</parameter> <parameter>HP_ColorLaserJet8550</parameter></userinput></screen>
+
+<para>It also works for &PPD; files. Just specify the path to the
+&PPD;:</para>
+
+<screen><userinput><command>lphelp</command> <filename>/home/kurt/PPDs/HP-ColorLaserJet8550.ppd</filename></userinput></screen>
+</answer>
+</qandaentry>
+</qandaset>
+
+</sect2>
+
+<sect2>
+<title>Solving Problems</title>
+
+<para>No system is perfect. Here are some commonly seen traps people
+have fallen into.</para>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>My printer named <quote>3-lp-duplex</quote> shows erratic
+behavior.  What's wrong?</para>
+</question>
+<answer>
+<para>The printer names used in &CUPS; shall start with a letter and may
+contain up to 128 letters, numbers or underscores. Using dashes may lead
+to problems. Speaking about naming: printer names in &CUPS; are not case
+sensitive. So a printer named <systemitem
+class="resource">Best_of_Danka</systemitem> will be the same as
+<systemitem class="resource">best_of_danka</systemitem> or <systemitem
+class="resource">BEST_OF_DANKA</systemitem>. (This is a requirement of
+&IPP;, which &CUPS; is fully compliant with).</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why do I get <errortype>Unable to connect to SAMBA host:
+Success</errortype> with my printer shares from &Windows; accessed via
+Samba?</para>
+</question>
+<answer>
+<para>Are the rights on the remote &Windows; box set correctly for you?
+Are you actually allowed to print on the &Windows; shared
+printer?</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>My files for printer <systemitem class="resource">lp</systemitem>
+sometimes mysteriously disappear and two days later I am told they got
+printed on a printer 3 storeys below my office. What's on?</para>
+</question>
+<answer>
+<para>Believe me, it is very unlikely that your printer is the only one
+with the name <systemitem class="resource">lp</systemitem>.  Maybe
+&CUPS; is playing a trick on you. As you might have the setting
+<quote>ImplicitClasses On</quote> activated, &CUPS; tries to stuff all
+printers it sees on the network into a <quote>Class</quote> name lp. All
+jobs destined to lp are sent to this class and the first available
+member prints it. So if you had this nice fellow (who listened closely
+when you raved about &CUPS; and &kdeprint;) install &CUPS; and poke
+around the system...get the idea?</para>
+
+<para>Take my advice: choose a unique name for any network printer!
+(Mind you, the one on your parallel port also turns out to be a network
+printer for the rest of the world if you don't take care of your
+settings).</para>
+</answer>
+</qandaentry>
+</qandaset>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="rlpr-module">
+<title>Module Built Around <application>rlpr</application>
+Utility</title>
+
+<sect1>
+<title>Overview of provided features</title>
+
+<para>Printer management: basic operations are supported
+(add/remove/modify).</para>
+
+<para>Each user can predefine the printers he wants to use by specifying
+the host and related printer queues. Printers are stored on a <quote>per
+user basis</quote>. This module is built around the
+<application>rlpr</application> utility <ulink
+url="http://truffula.com/rlpr/">rlpr</ulink></para>
+
+</sect1>
+</chapter>
+
+<chapter id="lpd-module">
+<title>Generic <acronym>LPD</acronym> Module (&UNIX;)</title>
+
+
+<sect1>
+<title>Overview of Provided Features</title>
+
+<para>Module used by default (on first start for example).</para>
+
+<para>Generic modules that only allows to send print jobs. No printer or
+job management supported. It is made to work on a wide variety of &UNIX;
+flavor: &Linux;/<acronym>LPR</acronym>, &HP-UX;, Solaris, &IRIX;.
+It also supports some <application>LPRng</application> extensions (like
+the absence of continuation character <literal>\</literal> in
+<filename>printcap</filename> files).</para>
+
+</sect1>
+</chapter>
+
+<chapter id="lpr-bsd-style-module">
+<title><acronym>LPR</acronym> (<acronym>BSD</acronym>)</title>
+
+<para>Plain (old?) <acronym>LPR</acronym> support. An
+<acronym>LPRng</acronym> module is in development, and hopefully
+available for 2.3 release.</para>
+
+<sect1>
+<title>Overview of Provided Features</title>
+
+<itemizedlist>
+<listitem>
+<para>Printer management: basic support to add/remove/configure a
+printer, compatible with &RedHat;-6.x systems
+(<command>printtool</command> + rhs-printfilers packages).</para>
+</listitem>
+<listitem>
+<para>Job management: not supported</para>
+</listitem>
+<listitem>
+<para>Print options: basic control</para>
+</listitem>
+</itemizedlist>
+</sect1>
+</chapter>
+
+<chapter id="lprng-module">
+<title><application>LPRng</application></title>
+
+<para>An <application>LPRng</application> module for &kdeprint; is in
+development, and hopefully available for the &kde; 2.3 release.</para>
+
+</chapter>
+
+<chapter id="external-printcommand-module">
+<title>Module For External Print Command (&Netscape;-like) </title>
+
+<para>This module allows to completely specify the print command
+(&Netscape;-like). An edit line is added in the print dialog for that
+purpose. Can be used in many cases, for example with a self-made print
+program. </para>
+
+<sect1>
+<title>Overview of provided features</title>
+
+<itemizedlist>
+<listitem>
+<para>Printer management: not supported</para>
+</listitem>
+<listitem>
+<para>Job management: not supported.</para>
+</listitem>
+<listitem>
+<para>Print options: basic control, depending on your knowledge of the
+print command</para>
+</listitem>
+</itemizedlist>
+</sect1>
+</chapter>
+
+<chapter id="extensions-to-all-printsubsystems">
+<title>&kdeprint; Extensions To All Print Subsystems</title>
+
+<sect1>
+<title><quote>Virtual</quote> Printers</title>
+
+<sect2>
+<title>The <quote>Fax</quote> Printer</title>
+
+<para></para>
+
+</sect2>
+
+<sect2>
+<title>The <quote>File</quote> Printer</title>
+
+<para></para>
+
+</sect2>
+
+<sect2>
+<title>The <quote><acronym>PDF</acronym></quote> Printer</title>
+
+<para></para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="external-filters">
+<title><quote>External</quote> Filters</title>
+
+<sect2>
+<title>The <command>enscript</command> Filter for Text Files</title>
+
+<para></para>
+
+</sect2>
+
+<sect2>
+<title>The <quote>n-up</quote> Filter for Any File</title>
+
+<para></para>
+
+</sect2>
+
+<sect2>
+<title>Three different <quote>Make Pamphlet</quote> Filters for
+&PostScript; Files</title>
+
+<para></para>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="final-word-from-author">
+<title>Final word from the Author</title>
+
+<sect1>
+<title>Who am I, what is my business? </title>
+
+<para>
+My employer is Danka Deutschland GmbH, a leading and
+manufacturer-independent provider of professional and hi-speed digital
+printing systems, black-and-white as well as color. Danka provides for
+Hardware, Software, Service, Maintainance.  Consumables and customized
+solutions around the products in its portfolio.  There I work as a
+System Engineer.  Amongst the brands Danka offers are Heidelberg
+(formerly Kodak), Canon, &Hewlett-Packard;, Hitachi, infotec and
+EfI.</para>
+
+<para>
+My acquaintance with &Linux; and the Free Software community is not
+too old. When I started to play around with &Linux; at the beginning
+of 1999, my deepest disappointment was the poor support for
+printing. True, I made all our machines spit out simplex prints -- but
+what about duplex? What about punching the output? How to make sorting
+work? Or stapling, cover sheets and all the other beautiful finishing
+options our engines offer to customers? No way -- at least for me as a
+non-geek!</para>
+
+<para>
+I went on a search in the internet for a solution. Fortunately not
+much later, in May 1999, Mike Sweet, principal developer of &CUPS;,
+announced the first Beta release of this superb piece of printing
+software.  After trying it shortly, I knew this was just it!</para>
+
+<para>
+Next thing I attempted: to make &Linux; distributions interested in
+this new stuff. Believe me -- it was more than tenacious! They seemed
+to think they had already the best thing they could get in
+printing. One reason probably was that they (and many &Linux;
+developers) never had to think about how to best support a printer
+duplexer -- because there had never come one near their own
+desks...</para>
+
+<para>
+Finally, my attempts to make some &Linux; print publications
+interested in &CUPS; <quote>backfired</quote> on me - one editor
+squeezed me into writing a series on the subject myself.  And this is
+how some people started to give me the nickname <quote>CUPS
+Evangelist</quote>. I will not get rid of this nick anytime soon, now,
+that even the &kde; people wedged me into their timeframe of
+releases. Oh, boy...</para>
+
+<para>Anyway, &CUPS; is now making its way around the world and it
+might well become a triumphal one: I am a little bit proud to have
+supported and contributed to this from the near beginning.</para>
+
+<para>It should encourage you: Even if some more experienced &Linux;
+users than you are sceptical about it and even if your programming
+skills are next to zero (like mine) - there are a lot of tasks and
+jobs and ideas and talent that you can contribute to the Free Software
+community. Not least inside the &kde; project... ;-)
+</para>
+
+</sect1>
+
+<sect1>
+<title>Credits</title>
+
+<para>I'd like to thank...</para>
+<itemizedlist>
+<listitem>
+<para>Mike Sweet for developing &CUPS; in the first place</para>
+</listitem>
+<listitem>
+<para>Jean-Eric Cuendet for starting <application>kups</application>
+and <application>qtcups</application>, the predecessors of
+&kdeprint;</para>
+</listitem>
+<listitem>
+<para>Michael Goffioul for doing all the hard work recently</para>
+</listitem>
+<listitem>
+<para>Martin Konold for thinking twice</para>
+</listitem>
+<listitem>
+<para>Sven Guckes for teaching me a few things about the art of <quote>survival
+on the terminal</quote> (just in case &kde; is not there ;-)</para>
+</listitem>
+<listitem>
+<para>...too numerous others to mention who also let me snatch bits
+and bytes of knowledge
+off them</para>
+</listitem>
+<listitem>
+<para> and last, but not least: Tom Schwaller for encouraging me
+to get into <quote>documentation
+writing</quote></para>
+</listitem>
+</itemizedlist>
+
+</sect1>
+
+<sect1 id="caveats">
+<title>Caveats</title>
+
+<para>&kdeprint; has been developed on a system using &CUPS; 1.1.6.
+&kdeprint; has been tested on other versions of &CUPS; and so
+far no incompatibilities are known. By the time of writing
+this Handbook, &CUPS; 1.1.9 is out with a few new features
+not yet supported by &kdeprint;. Of course you are able to
+access these features, but you will need to bypass &kdeprint;
+and use the &CUPS; command-line tools or edit configuration
+files manually. &kdeprint;'s development will go on and this
+Handbook strives to always be the best available user documentation
+resource for it.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="credits-and-license">
+<title>Credits And Licenses</title>
+
+<para>&kdeprint; copyright 2001, Michael Goffioul
+<email>goffioul@imec.be</email></para>
+&underGPL;
+
+<para>Documentation copyright 2001, Kurt Pfeifle,
+<email>kpfeifle@danka.de</email></para>
+&underFDL;
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=0:sw=2:tw=78:noet
+-->

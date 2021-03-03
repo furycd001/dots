@@ -1,0 +1,41 @@
+[Arg0]
+Label=Torque:
+Maximum=1
+Minimum=0
+Switch=-torque %1
+Type=DoubleRange
+Value=0.1
+[Arg1]
+Label=Elasticity:
+Maximum=30
+Minimum=1
+Switch=-elasticity %1
+Type=Range
+Value=1
+[Arg2]
+Label=Velocity:
+Maximum=30
+Minimum=1
+Switch=-max-velocity %1
+Type=Range
+Value=1
+[Arg3]
+Label=Number of goops:
+Maximum=10
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=5
+[Arg4]
+Label=Number of planes:
+Maximum=10
+Minimum=1
+Switch=-planes %1
+Type=Range
+Value=5
+[Arg5] 
+Label=Transparent 
+Type=Check 
+SwitchOn=-transparent
+SwitchOff=-non-transparent
+Value=true

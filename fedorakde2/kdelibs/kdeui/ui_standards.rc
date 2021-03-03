@@ -1,0 +1,181 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="standard_containers" version="1">
+<MenuBar>
+  <Menu name="file"><text>&amp;File</text>
+    <Action name="file_new"/>
+    <Action name="file_open"/>
+    <Action name="file_open_recent"/>
+    <MergeLocal name="new_merge"/>
+    <Separator/>
+    <Action name="file_save"/>
+    <Action name="file_save_as"/>
+    <MergeLocal name="save_merge"/>
+    <Action name="file_revert"/>
+    <Separator/>
+    <Action name="file_close"/>
+    <MergeLocal name="close_merge"/>
+    <Separator/>
+    <Action name="file_print"/>
+    <Action name="file_print_preview"/>
+    <MergeLocal name="print_merge"/>
+    <Separator/>
+    <Action name="file_mail"/>
+    <Separator/>
+    <MergeLocal/>
+    <Separator/>
+    <Action name="file_quit"/>
+  </Menu>
+  <Menu name="game"><text>&amp;Game</text>
+    <Action name="game_new"/>
+    <Action name="game_load"/>
+	<MergeLocal name="new_merge"/>
+    <Separator/>
+    <Action name="game_save"/>
+    <Action name="game_save_as"/>
+	<MergeLocal name="save_merge"/>
+    <Separator/>
+    <Action name="game_end"/>
+        <MergeLocal name="end_merge"/>
+    <Separator/>
+    <Action name="game_pause"/>
+    <Action name="game_highscores"/>
+    <Action name="game_print"/>
+	<MergeLocal name="misc_merge"/>
+    <Separator/>
+	<MergeLocal/>
+	<Separator/>
+    <Action name="game_quit"/>
+  </Menu>
+  <Menu name="edit"><text>&amp;Edit</text>
+    <Action name="edit_undo"/>
+    <Action name="edit_redo"/>
+    <MergeLocal name="edit_undo_merge"/>
+    <Separator/>
+    <Action name="edit_cut"/>
+    <Action name="edit_copy"/>
+    <Action name="edit_paste"/>
+    <MergeLocal name="edit_paste_merge"/>
+    <Action name="edit_select_all"/>
+    <MergeLocal name="edit_select_merge"/>
+    <Separator/>
+    <Action name="edit_find"/>
+    <Action name="edit_find_next"/>
+    <Action name="edit_replace"/>
+    <MergeLocal name="edit_find_merge"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <Menu name="move"><text>&amp;Move</text>
+    <Action name="move_repeat"/>
+    <Action name="move_undo"/>
+    <Action name="move_redo"/>
+    <MergeLocal name="move_undo_merge"/>
+    <Separator/>
+    <Action name="move_end_turn"/>
+    <MergeLocal name="move_turn_merge"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <Menu name="view"><text>&amp;View</text>
+    <Action name="view_actual_size"/>
+    <Action name="view_fit_to_page"/>
+    <Action name="view_fit_to_width"/>
+    <Action name="view_fit_to_height"/>
+    <Separator/>
+    <MergeLocal name="view_zoom_merge"/>
+    <Action name="view_zoom_in"/>
+    <Action name="view_zoom_out"/>
+    <Action name="view_zoom"/>
+    <WeakSeparator/>
+    <Action name="view_redisplay"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <Menu name="go_web"><text>&amp;Go</text>
+    <Action name="go_up"/>
+    <Action name="go_back"/>
+    <Action name="go_forward"/>
+    <Action name="go_home"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <Menu name="go_document"><text>&amp;Go</text>
+    <Action name="go_previous"/>
+    <Action name="go_next"/>
+    <Action name="go_goto_page"/>
+    <Action name="go_goto_line"/>
+    <Action name="go_goto"/>
+    <Separator/>
+    <Action name="go_first"/>
+    <Action name="go_last"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <MergeLocal/>
+  <Menu name="bookmarks"><text>&amp;Bookmarks</text>
+    <Action name="bookmarks_add"/>
+    <Action name="bookmarks_edit"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <Menu name="tools"><text>&amp;Tools</text>
+    <Action name="tools_spelling"/>
+    <MergeLocal/>
+  </Menu>
+  <Menu name="settings"><text>&amp;Settings</text>
+    <Action name="options_show_menubar"/>
+    <Action name="options_show_toolbar"/>
+    <Action name="options_show_statusbar"/>
+    <MergeLocal name="show_merge"/>
+    <Separator/>
+    <Action name="options_save_options"/>
+    <MergeLocal name="save_merge"/>
+    <Separator/>
+    <Action name="options_configure_keybinding"/>
+    <Action name="options_configure_toolbars"/>
+    <Action name="options_configure_carddecks"/>
+    <Action name="options_configure"/>
+    <MergeLocal name="configure_merge"/>
+    <Separator/>
+    <MergeLocal/>
+  </Menu>
+  <MergeLocal name="settings_merge"/>
+  <Menu name="help"><text>&amp;Help</text>
+    <Action name="help_contents"/>
+    <Action name="help_whats_this"/>
+    <Separator/>
+    <MergeLocal/>
+    <Separator/>
+    <Action name="help_report_bug"/>
+    <Separator/>
+    <MergeLocal name="about_merge"/>
+    <Action name="help_about_app"/>
+    <Action name="help_about_kde"/>
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar"><text>Main Toolbar</text>
+  <Action name="file_new"/>
+  <Action name="file_open"/>
+  <Action name="file_save"/>
+  <Action name="file_print"/>
+  <Action name="file_print_preview"/>
+  <Action name="file_mail"/>
+  <Separator/>
+  <Action name="edit_undo"/>
+  <Action name="edit_redo"/>
+  <Action name="edit_cut"/>
+  <Action name="edit_copy"/>
+  <Action name="edit_paste"/>
+  <Separator/>
+  <Action name="edit_find"/>
+  <Action name="view_zoom"/>
+  <Separator/>
+  <Action name="go_previous"/>
+  <Action name="go_next"/>
+  <Action name="go_home"/>
+  <Separator/>
+  <MergeLocal/>
+  <Action name="help"/>
+</ToolBar>
+<StatusBar/>
+</kpartgui>

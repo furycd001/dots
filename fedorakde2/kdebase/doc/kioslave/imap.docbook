@@ -1,0 +1,30 @@
+<article lang="&language;" id="imap">
+<title>imap</title>
+<articleinfo>
+<authorgroup>
+<author><firstname>Michael</firstname><surname>Haeckel</surname>
+<affiliation><address><email>Michael@Haeckel.Net</email></address></affiliation>
+</author>
+</authorgroup>
+ 
+<date>2001-08-07</date>
+
+ 
+</articleinfo>
+
+<para>The IMAP4rev1 protocol (Internet Message Access Protocol) allows
+to access messages in mail folders on a server. Unlike POP3, which is designed
+to download the mails and delete them from the server, the purpose of IMAP is
+to store all mails on the server to be able to access these mails from
+everywhere. Messages can be stored on the server, retrieved from there or
+moved between folders.</para>
+
+<para>This plugin is currently mainly used by KMail, but you can also use it
+in any other KDE application, that uses kioslave plugins.</para>
+
+<para>For example in Konqueror simply type
+<userinput>imap://username@your.mail.server/</userinput> to get your IMAP
+folders listed. You can then deal with the folders and mails like with folders
+and files on a local file system.</para>
+
+</article>

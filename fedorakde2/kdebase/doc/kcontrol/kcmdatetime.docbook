@@ -1,0 +1,71 @@
+<sect1 id="datetime">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>date</keyword>
+<keyword>time</keyword>
+<keyword>configure</keyword>
+</keywordset>
+</sect1info>
+<title>Date and Time</title>
+
+<para>You can use this module to alter the system date and time, using a
+convienent graphical interface.</para>
+
+<note><para>You must have system administrator (<systemitem
+class="username">root</systemitem>) access to change the system date and
+time.  If you do not have this access level, this module will only show
+you the current settings.</para></note>
+
+<para>When you first start, you are in display mode only.  To modify
+your settings, click on <guibutton>Modify</guibutton>.  If you are
+logged in as root, you will go straight to the change dialog.  If not,
+KDE will ask for a superuser password.</para>
+
+<sect2 id="date-change">
+<title>Modifying your settings</title>
+
+<para>You set the date using the left half of the module.  Simply choose your
+month (the drop down box at the top), year (the spin box at the top), and the
+day of the month (simply click on the day in the calendar).</para>
+
+<para>You set the time using the spin box at the bottom of the clock.  Simply
+click in the hour, minutes or seconds box.  You can directly enter your value,
+or you can click on the <guiicon>+</guiicon> or <guiicon>-</guiicon> buttons to
+adjust that value up one value.</para>
+
+<note><para>The time is represented in 24 hour format.  If you want the system
+time to be set to 8:00 PM, you need to set the hour spinbox to
+<guilabel>20</guilabel> (8 + 12).  If you want the system time set to 8:00 AM,
+you should set the hour spinbox to <guilabel>8</guilabel>.</para></note>
+
+<para>You can then click on the <guilabel>Time Zone</guilabel> tab.</para>
+<para>Simply select your new timezone from the drop down box in the middle of
+the screen </para>
+
+<para>When you have set the correct date and time, simply click
+<guibutton>Apply</guibutton> to make the changes permanent.</para>
+</sect2>
+
+<sect2 id="datetime-author">
+
+<title>Section Author</title>
+<para>Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

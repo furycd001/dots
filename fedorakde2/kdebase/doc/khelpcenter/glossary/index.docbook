@@ -1,0 +1,274 @@
+<?xml version="1.0" ?>
+<!DOCTYPE glossary PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+"customization/dtd/kdex.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % English "INCLUDE">
+]>
+
+<glossary id="glossary">
+	<glossdiv id="glossdiv-technologies">
+		<title>Technologies</title>
+		<glossentry id="gloss-ioslave">
+			<glossterm><acronym>IO</acronym> Slave</glossterm>
+			<glossdef><para><acronym>IO</acronym> Slaves enable &kde; applications to
+				access remote resources as easily as local resources (making them
+				<quote>network transparent</quote>). Remote resources (&eg; files) might
+				be stored on <acronym>SMB</acronym> shares or similar.</para>
+				<glossseealso otherterm="gloss-smb"><acronym>SMB</acronym></glossseealso>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-kio">
+			<glossterm>KIO</glossterm>
+			<glossdef><para>The &kde; Input/Output system which makes use of so-called
+				<quote><acronym>IO</acronym> Slaves</quote>.</para>
+				<glossseealso otherterm="gloss-ioslave"><acronym>IO</acronym> Slave</glossseealso>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-kparts">
+			<glossterm>KParts</glossterm>
+			<glossdef><para>KParts is an embedding technology which allows &kde;
+				applications to embed other &kde; applications. The text view used by
+				&konqueror; is for example a KPart.</para>
+				<glossseealso otherterm="gloss-konqueror">&konqueror;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-ksycoca">
+			<glossterm>KSyCoCa</glossterm>
+			<glossdef><para>KSyCoCa (&kde; <emphasis>Sy</emphasis>tem
+				<emphasis>Co</emphasis>nfiguration <emphasis>Ca</emphasis>che) is a
+				configuration cache which guarantees for example fast access to the menu
+				entries.</para>
+				<glossseealso otherterm="gloss-kbuildsycoca">KBuildsycoca</glossseealso>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+	
+	<glossdiv id="glossdiv-xfree86">
+		<title>XFree86</title>
+		<glossentry id="gloss-antialiasing">
+			<glossterm>Antialiasing</glossterm>
+			<glossdef><para>If mentioned in context with &kde;, antialiasing means
+				often the smoothing of the fonts visible on the screen. &Qt; version 2.3.0
+				or higher used together with XFree86 4.x makes this possible under &kde;
+				as well.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-qt">Qt</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-xserver">
+			<glossterm>X Server</glossterm>
+			<glossdef><para>The X server represents a basic layers upon which the
+				various <acronym>GUI</acronym>s like &kde; are built. It manages the
+				basic mouse and keyboard input (from the local host as well as from
+				remote hosts) and provides elementary graphic routines to draw
+				rectangles and other primitives.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-gui"><acronym>GUI</acronym></glossseealso>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+	<glossdiv id="glossdiv-applications">
+		<title>Applications</title>
+		<glossentry id="gloss-kbuildsycoca">
+			<glossterm>KBuildsycoca</glossterm>
+			<glossdef><para>KBuildsycoca is a command line program and regenerates the
+				so-called KSycoca. This is for example useful if some or all modules in
+				&kcontrol; are missing.</para>
+				<glossseealso otherterm="gloss-ksycoca">KSycoca</glossseealso>
+				<glossseealso otherterm="gloss-kcontrol">&kcontrol;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-kcontrol">
+			<glossterm>&kcontrol;</glossterm>
+			<glossdef><para>This is the project and filename of the &kde; control
+				center. The &kde; control center allows you to customize virtually
+				every configuration option of &kde;.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-kicker">
+			<glossterm>&kicker;</glossterm>
+			<glossdef><para>&kicker; is the nickname as well as project name of the
+				&kde; panel.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-panel">Panel</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-konqueror">
+			<glossterm>&konqueror;</glossterm>
+			<glossdef><para>&konqueror; is a filemanager, web browser, picture viewer,
+				you name it multitalent and a core part of the &kde; project. You can
+				find more information about &konqueror; at <ulink
+				url="http://www.konqueror.org">www.konqueror.org</ulink>.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-ksirc">
+			<glossterm>&ksirc;</glossterm>
+			<glossdef><para>&ksirc; is the default <acronym>IRC</acronym> client,
+				which is shipped with &kde;. You can use &ksirc; to chat with anyone on
+				an <acronym>IRC</acronym> network.</para>
+				<glossseealso otherterm="gloss-irc"><acronym>IRC</acronym></glossseealso>
+			</glossdef>
+		</glossentry>			 	
+	</glossdiv>
+	
+	<glossdiv id="glossdiv-desktop-terminology">
+		<title>Desktop Terminology</title>
+		<glossentry id="gloss-draganddrop">
+			<glossterm>Drag and Drop</glossterm>
+			<glossdef><para>This concept tries to replace many actions like copying
+				files from one place to another by a certain mouse movement, &eg;
+				clicking on an icon in a &konqueror; window, moving the mouse to another
+				window while keeping the mouse button pressed, and releasing the mouse
+				button (<quote>dropping</quote> the object) copies files.</para>
+				<glossseealso otherterm="gloss-konqueror">&konqueror;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-gui">
+			<glossterm><acronym>GUI</acronym></glossterm>
+			<glossdef><para>Abbreviation for <emphasis>G</emphasis>raphical
+				<emphasis>U</emphasis>ser <emphasis>I</emphasis>nterface. Every desktop
+				environment (like &kde;) is a <acronym>GUI</acronym>. Most
+				<acronym>GUI</acronym>s feature mouse support and/or windows to manage
+				the programs.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-kde">
+			<glossterm>&kde;</glossterm>
+			<glossdef><para>Abbreviation for <quote>K Desktop Environment</quote>, a
+				leading <acronym>GUI</acronym> for UNIX-based systems. You can find more
+				detailled information at <ulink
+				url="http://www.kde.org">www.kde.org</ulink>.</para>
+				<glossseealso otherterm="gloss-gui"><acronym>GUI</acronym></glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-gnome">
+			<glossterm><acronym>GNOME</acronym></glossterm>
+			<glossdef>
+				<para><emphasis>GN</emphasis>U <emphasis>O</emphasis>bject
+				<emphasis>M</emphasis>odel <emphasis>E</emphasis>nvironment, one of the
+				leading Unix <acronym>GUI</acronym>s.</para>
+				<glossseealso otherterm="gloss-gui"><acronym>GUI</acronym></glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-panel">
+			<glossterm>Panel</glossterm>
+			<glossdef><para>Refers to the panel (also known as
+				<quote>&kicker;</quote>) which often resides at the bottom of the
+				screen.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-kicker">&kicker;</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-ripping">
+			<glossterm>ripping</glossterm>
+			<glossdef><para>The process of reading audio data from a &cdrom; and
+				storing it on the harddisk.</para>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+	
+	<glossdiv id="kde-development">
+		<title>&kde; Development</title>
+		<glossentry id="gloss-qt">
+			<glossterm>&Qt;</glossterm>
+			<glossdef><para>The <acronym>GUI</acronym> of &kde; is built in top of
+				the &Qt; toolkit, which provides many graphical elements (so-called
+				<quote>Widgets</quote>) which are used to construct the desktop. You
+				can find more information about &Qt; at <ulink
+				url="http://www.trolltech.com">www.trolltech.com</ulink>.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-gui"><acronym>GUI</acronym></glossseealso>
+				<glossseealso otherterm="gloss-widget">Widget</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-i18n">
+			<glossterm>i18n</glossterm>
+			<glossdef><para>Abbreviation for <quote>internationalization</quote>. &kde;
+				supports many different languages, and several i18n techniques make it
+				easy to translate the <acronym>GUI</acronym> as well as the accompanying
+				documents of &kde; into all these languages. More information about the
+				i18n process is available at <ulink
+				url="http://i18n.kde.org">i18n.kde.org</ulink>.</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-gui"><acronym>GUI</acronym></glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-l10n">
+			<glossterm>l10n</glossterm>
+			<glossdef><para>Abbreviation for <quote>localization</quote>, the process
+				of adapting a program to the local environment. This includes &ie; the
+				currency used for monetary values or the time format.</para>
+				<glossseealso otherterm="gloss-i18n">i18n</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-widget">
+			<glossterm>Widget</glossterm>
+			<glossdef><para>Graphical elements like scrollbars, buttons or input
+				fields which are used by &kde; to construct the <acronym>GUI</acronym>.
+				</para>
+				<glossseealso otherterm="gloss-kde">&kde;</glossseealso>
+				<glossseealso otherterm="gloss-gui"><acronym>GUI</acronym></glossseealso>
+			</glossdef>
+		</glossentry>
+      <glossentry id="gloss-cvs">
+         <glossterm><acronym>CVS</acronym></glossterm>
+         <glossdef>
+            <para><emphasis>C</emphasis>oncurrent <emphasis>V</emphasis>ersion <emphasis>S</emphasis>ystem.
+            The <acronym>CVS</acronym> is a very elegant way of managing file versions that lets easily work more than one
+            developer on the same project. You can find a description of how to get the latest (developer) version of the
+            &kde; sources via anonymous <acronym>CVS</acronym> on
+            <ulink url="http://www.kde.org/anoncvs.html">http://www.kde.org/anoncvs.html</ulink>.
+            More about <acronym>CVS</acronym> is available at <ulink url="http://www.cvshome.org">www.cvshome.org</ulink>.
+
+            </para>
+         </glossdef>
+      </glossentry>
+	</glossdiv>
+	
+	<glossdiv id="glossdiv-misc">
+		<title>Miscellaneous</title>
+		<glossentry id="gloss-rfc">
+			<glossterm><acronym>RFC</acronym></glossterm>
+			<glossdef><para><emphasis>R</emphasis>equest <emphasis>F</emphasis>or
+				<emphasis>C</emphasis>omment. A common way to publish new protocol
+				ideas or procedures for evaluation of the internet community. Though
+				<acronym>RFC</acronym>'s are not mandatory, many applications try to
+				adhere them, once they have been approved of by the community.</para>
+			</glossdef>
+		</glossentry>	
+	</glossdiv>
+	
+	<glossdiv id="glossdiv-protocols">
+		<title>Various protocols</title>
+		<glossentry id="gloss-smb">
+			<glossterm><acronym>SMB</acronym></glossterm>
+			<glossdef><para><emphasis>S</emphasis>erver <emphasis>M</emphasis>essage
+				<emphasis>B</emphasis>lock. A network protocol used in MS-Windows© 
+				networks to access the filesystems of other computers.</para>
+				<glossseealso otherterm="gloss-ioslave"><acronym>IO</acronym> Slave</glossseealso>
+			</glossdef>
+		</glossentry>
+		<glossentry id="gloss-irc">
+			<glossterm><acronym>IRC</acronym></glossterm>
+			<glossdef><para><emphasis>I</emphasis>nternet <emphasis>R</emphasis>elay
+				<emphasis>C</emphasis>hat. A protocol defined in <acronym>RFC</acronym>
+				1459, which handles specification to enable real time text chat.</para>
+				<glossseealso otherterm="gloss-rfc"><acronym>RFC</acronym></glossseealso>
+			</glossdef>
+		</glossentry>
+                <glossentry id="gloss-host">
+		        <glossterm>host</glossterm>
+			<glossdef><para>This can either be a name from your 
+                        <filename>/etc/hosts</filename> file
+			(<systemitem class="systemname">mycomputer</systemitem>), 
+                        an internet name (<systemitem class="systemname">www.kde.org</systemitem>) or an IP-Address (<systemitem>192.168.0.10</systemitem>).
+			</para>
+	                </glossdef>
+	        </glossentry>
+	</glossdiv>
+</glossary>

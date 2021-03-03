@@ -1,0 +1,262 @@
+
+dnl this is for kdm:
+
+savex="$exec_prefix"
+test "x$exec_prefix" = xNONE && exec_prefix="$prefix"
+KDE_CONFDIR=`eval echo $kde_confdir`
+AC_DEFINE_UNQUOTED(KDE_CONFDIR, "$KDE_CONFDIR", [KDE's configuration directory])
+AC_SUBST(KDE_CONFDIR)
+KDE_BINDIR=`eval echo $kde_bindir`
+AC_DEFINE_UNQUOTED(KDE_BINDIR, "$KDE_BINDIR", [KDE's binaries directory])
+AC_SUBST(KDE_BINDIR)
+exec_prefix="$savex"
+
+KDE_FIND_PATH(xmkmf, XMKMF, [], [AC_MSG_ERROR([xmkmf/imake not found. Please make sure it's in PATH!])])
+AC_SUBST(XMKMF)
+
+dnl ask imake about various X settings
+AC_MSG_CHECKING([various X settings])
+AC_CACHE_VAL(kde_cv_defines_imake,
+[rm -fr conftestdir
+if mkdir conftestdir; then
+    cd conftestdir
+    cat > Imakefile <<'EOF'
+BASIC_FLAGS = StandardDefines ConnectionFlags 
+
+#if HasXdmAuth
+XDMAUTH_DEFINES = -DHASXDMAUTH
+#endif
+
+#if HasBSD44Sockets
+SOCK_DEFINES = -DBSD44SOCKETS
+#endif
+
+#if defined(i386Architecture) || defined(ia64Architecture) || defined(AmigaArchitecture)
+FRAGILE_DEFINES = -DFRAGILE_DEV_MEM
+#endif
+
+#ifdef OpenBSDArchitecture
+RANDOM_DEFINES = -DARC4_RANDOM
+#elif defined(LinuxArchitecture)
+RANDOM_DEFINES = -DDEV_RANDOM
+#endif
+
+#if HasLibCrypt && !defined(SpecialLibCrypt) && defined(LynxOSArchitecture)
+CRYPT_DEFINES = -DHAS_CRYPT
+#endif
+
+VERSION_DEFINES = -DOSMAJORVERSION=OSMajorVersion -DOSMINORVERSION=OSMinorVersion
+
+XDM_CFLAGS = $(BASIC_FLAGS) $(VERSION_DEFINES) $(SIGNAL_DEFINES) $(XDMAUTH_DEFINES) $(FRAGILE_DEFINES) $(SOCK_DEFINES) $(RANDOM_DEFINES) $(CRYPT_DEFINES)
+
+acimake:
+	@echo XDM_CFLAGS=\"$(XDM_CFLAGS)\"
+#if HasXdmAuth
+	@echo HASXDMAUTH=1
+#endif
+	@echo XBINDIR=$(BINDIR)
+	@echo XLIBDIR=$(LIBDIR)
+EOF
+    if $XMKMF >&5 2>&1 && test -f Makefile; then
+	[kde_cv_defines_imake=`${MAKE-make} acimake 2> /dev/null | grep '^[^ ]*='`]
+	kde_cv_defines_imake=`echo $kde_cv_defines_imake`
+    else
+	AC_MSG_ERROR([$XMKF (imake) failed])
+    fi
+    cd ..
+    rm -fr conftestdir
+else
+    AC_MSG_ERROR([mkdir failed])
+fi])
+if test -n "$kde_cv_defines_imake"; then
+    eval $kde_cv_defines_imake
+    AC_MSG_RESULT([done])
+fi
+
+AC_MSG_CHECKING([whether to use xdm authorization])
+if test -n "$HASXDMAUTH"; then
+    AC_MSG_RESULT([yes])
+    AC_DEFINE(HASXDMAUTH, 1, [Use encrypted XDM authorization])
+else
+    AC_MSG_RESULT([no])
+fi
+
+AC_MSG_RESULT([checking for X binary directory... $XBINDIR])
+AC_DEFINE_UNQUOTED(XBINDIR, "$XBINDIR", [Define where to find the X binaries])
+AC_MSG_RESULT([checking for X library directory... $XLIBDIR])
+AC_DEFINE_UNQUOTED(XLIBDIR, "$XLIBDIR", [Define where to find the X libraries])
+
+AC_CHECK_LIB(Xau, main, [:], 
+	[
+	  AC_MSG_WARN([Cannot build KDM! Make sure that libXau.a is installed!])
+	  DO_NOT_COMPILE="$DO_NOT_COMPILE kdm"
+	], 
+	  $X_LDFLAGS -lX11 $LIBSOCKET)
+
+AC_ARG_WITH(xdmcp,
+	[  --without-xdmcp         build kdm without xdmcp support [default=with xdmcp]],
+	[ if test "$withval" = yes; then
+	    XDMCP=1
+	  else
+	    XDMCP=
+	  fi
+	], [XDMCP=1])
+if test -n "$XDMCP"; then
+  kdmchooserdir=chooser
+  AC_CHECK_LIB(Xdmcp, main, [LIBXDMCP="-lXdmcp"], , $X_LDFLAGS -lX11 $LIBSOCKET)
+  if test -n "$LIBXDMCP"; then
+    ac_cpp_safe=$ac_cpp
+    ac_cpp='$CXXCPP $CPPFLAGS $X_INCLUDES'
+    AC_CHECK_HEADER(X11/Xdmcp.h, [HAVE_X11_XDMCP_H=1])
+    ac_cpp=$ac_cpp_safe
+  fi
+  if test -z "$HAVE_X11_XDMCP_H"; then
+    AC_MSG_WARN([Cannot build KDM! Make sure that libXdmcp.a and Xdmcp.h 
+are installed or use --without-xdmcp to disable XDMCP support!])
+    DO_NOT_COMPILE="$DO_NOT_COMPILE kdm"
+  fi
+fi
+AC_SUBST(LIBXDMCP)
+AC_SUBST(kdmchooserdir)	dnl XXX phase out
+
+AC_MSG_CHECKING(whether to use Kerberos v4)
+AC_ARG_WITH(krb4,
+[  --with-krb4[=PATH]      Compile in Kerberos v4 support.],
+[ case "$withval" in
+  yes)
+    with_krb4=/usr/kerberos
+    ;;
+  esac ],
+[ with_krb4=no ]
+)
+case "$with_krb4" in
+no)
+  AC_MSG_RESULT(no)
+  ;;
+*)
+  AC_MSG_RESULT(yes)
+  AC_DEFINE_UNQUOTED(KRB4, 1, [ define if you have Kerberos IV ])
+  KERBEROS_ROOT="$with_krb4"
+  KERBEROS_INCS="-I${KERBEROS_ROOT}/include"
+  KERBEROS_LIBS="-L${KERBEROS_ROOT}/lib -lkrb -ldes"
+  KRB_RPATH=
+  if test "$USE_RPATH" = "yes" ; then
+    KRB_RPATH="-R ${KERBEROS_ROOT}/lib"
+  fi
+  AC_CHECK_LIB(resolv, dn_expand, KERBEROS_LIBS="$KERBEROS_LIBS -lresolv")
+  dnl Check whether or not the AFS lifetime conversion routines exist.
+  AC_MSG_CHECKING(whether AFS lifetime conversion routines are present)
+  keeplibs="$LIBS"
+  keepcflags="$CFLAGS"
+  LIBS="-L${KERBEROS_ROOT}/lib -lkrb -ldes $LIBS"
+  CFLAGS="-I${KERBEROS_ROOT}/include $CFLAGS"
+  AC_TRY_LINK([#include <krb.h>], [ krb_life_to_time(10, 10);],
+              [AC_MSG_RESULT(yes)
+               AC_DEFINE_UNQUOTED(HAVE_KRB_LIFE_TO_TIME, 1, 
+	         [ define if libkrb has krb_life_to_time() ])],
+              [AC_MSG_RESULT(no)])
+  LIBS="$keeplibs"
+  CFLAGS="$keepcflags"
+  ;;
+esac
+
+AC_MSG_CHECKING(whether to use AFS)
+AC_ARG_WITH(afs,
+  [  --with-afs              Compile in AFS support (requires KTH krb4).], , 
+  [ with_afs=no ])
+if test "$with_afs" = no; then
+  AC_MSG_RESULT(no)
+else
+  if test "$with_krb4" = no; then
+    AC_MSG_RESULT(no)
+    AC_MSG_WARN("AFS requires Kerberos v4 support.")
+    with_afs=no
+  else
+    AC_MSG_RESULT(yes)
+    AC_DEFINE_UNQUOTED(AFS, 1, [ define if you have KTH Kerberos IV and AFS ])
+    KERBEROS_LIBS="${KERBEROS_LIBS} -lkafs"
+    if test -n "$os_aix"; then
+      KERBEROS_LIBS="${KERBEROS_LIBS} -lld"
+    fi
+  fi
+fi
+
+AC_SUBST(KERBEROS_ROOT)dnl
+AC_SUBST(KERBEROS_INCS)dnl
+AC_SUBST(KERBEROS_LIBS)dnl
+AC_SUBST(KRB_RPATH)
+
+AC_CHECK_LIB(s, main, [LIB_LIBS="-ls"]) dnl for AIX
+AC_SUBST(LIB_LIBS)
+
+AC_MSG_CHECKING([whether to use Kerberos5 for Xauth cookies in kdm])
+AC_ARG_WITH(krb5auth,
+  [  --with-krb5auth         Use Kerberos5 for Xauth cookies in kdm.], , 
+  [ with_krb5auth=no ])
+if test "x$with_krb5auth" = xno; then
+  AC_MSG_RESULT(no)
+else
+  AC_MSG_RESULT(yes)
+  AC_CHECK_HEADER(krb5/krb5.h, 
+    [ XDM_CFLAGS="$XDM_CFLAGS -DK5AUTH" ],
+    [ AC_MSG_ERROR([--with-krb5auth requires Kerberos5 header files.])])
+fi
+
+AC_MSG_CHECKING([whether to use Sun's secure RPC for Xauth cookies in kdm])
+AC_ARG_WITH(rpcauth,
+  [  --with-rpcauth          Use Sun's secure RPC for Xauth cookies in kdm.], , 
+  [ with_rpcauth=no ])
+if test "x$with_rpcauth" = xno; then
+  AC_MSG_RESULT(no)
+else
+  AC_MSG_RESULT(yes)
+  AC_CHECK_HEADER(rpc/rpc.h, 
+    [ XDM_CFLAGS="$XDM_CFLAGS -DSECURE_RPC" ],
+    [ AC_MSG_ERROR([--with-rpcauth requires Sun RPC header files.])])
+fi
+
+if test "x$use_pam" = xno; then
+
+  dnl should be:
+  dnl AC_CHECK_MEMBER(struct passwd.pw_expire, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_PW_EXPIRE" ], , [#include <pwd.h>])
+  dnl but somehow it doesn't work. so we make it by hand ...
+  AC_MSG_CHECKING([for pw_expire in struct passwd])
+  AC_CACHE_VAL(ac_cv_have_pw_expire,
+      [ AC_TRY_COMPILE(
+	  [#include <pwd.h>],
+	  [struct passwd pwd; pwd.pw_expire = 0;],
+	  [ac_cv_have_pw_expire="yes"],
+	  [ac_cv_have_pw_expire="no"])
+      ])
+  AC_MSG_RESULT($ac_cv_have_pw_expire)
+  if test "$ac_cv_have_pw_expire" = "yes"; then
+      XDM_CFLAGS="$XDM_CFLAGS -DHAVE_PW_EXPIRE"
+  fi
+
+  ac_save_libs=$LIBS
+  LIBS="$LIBS $LIBUTIL"
+  AC_CHECK_FUNC(setusercontext, [ XDM_CFLAGS="$XDM_CFLAGS -DHAS_SETUSERCONTEXT" ])
+  AC_CHECK_FUNC(getusershell, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_GETUSERSHELL" ])
+  AC_CHECK_FUNC(login_getclass, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_LOGIN_GETCLASS" ])
+  AC_CHECK_FUNC(auth_timeok, [ XDM_CFLAGS="$XDM_CFLAGS -DHAVE_AUTH_TIMEOK" ])
+  LIBS=$ac_save_libs
+
+fi
+
+AC_CHECK_FUNC(vsyslog, [ XDM_CFLAGS="$XDM_CFLAGS -DUSE_SYSLOG" ])
+if test "x$use_pam" = xyes; then
+    XDM_CFLAGS="$XDM_CFLAGS -DUSE_PAM"
+elif test "x$use_shadow" = xyes; then
+    XDM_CFLAGS="$XDM_CFLAGS -DUSESHADOW"
+fi
+if test "x$XDMCP" != x; then
+    XDM_CFLAGS="$XDM_CFLAGS -DXDMCP"
+fi
+if test "x$with_krb4" != xno; then
+    XDM_CFLAGS="$XDM_CFLAGS -DKERBEROS"
+    if test "x$with_afs" = xno; then
+	XDM_CFLAGS="$XDM_CFLAGS -DNO_AFS"
+    fi
+fi
+AC_MSG_RESULT([xdm CFLAGS: $XDM_CFLAGS])
+AC_SUBST(XDM_CFLAGS)

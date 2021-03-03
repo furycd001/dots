@@ -1,0 +1,36 @@
+<article lang="&language;" id="nntp">
+<title>nntp</title>
+
+<para>The nntp kioslave accesses <acronym>NNTP</acronym> servers
+directly.</para>
+
+<para>This kioslave can not be used with servers that do not implement
+the <command>GROUP</command> command, including some versions of the
+popular <application>INN</application> news server which is often used
+by <acronym>ISP</acronym>s.  It does work with
+<application>leafnode</application>, which many people use to keep an
+offline cache of news articles on their own hard drive or within their
+<acronym>LAN</acronym>.</para>
+
+<para>You can use the nntp kioslave by typing
+<userinput>nntp://yourserver/groupname</userinput> into the &konqueror;
+<acronym>URL</acronym> bar.</para>
+
+<para>If you enter a group name, as above, and the group is available,
+you will see the messages stored for that group as icons in
+&konqueror;.</para>
+
+<para>Clicking on a message will display it as plain text, including all
+headers.  This could be useful for debugging a news client to news
+server connection, for example, to ensure that your new
+<application>leafnode</application> server is working correctly.</para>
+
+<para>If you don't enter a group name, and only the server name, you
+will see a list of available groups. </para>
+
+<para>Please beware that this could take an enormous amount of time, and
+will cause a lot of network traffic.  Some commercial usenet servers
+have 60 thousand or more groups available, and doing such a thing may
+cause your desktop to freeze.</para>  
+
+</article>

@@ -1,0 +1,168 @@
+# You might want to edit the following 2 lines, the rest should be ok
+%define qtdir /usr/lib/qt-2.1.0
+Prefix: /opt/kde2
+
+%define pamservice kde
+Name: kdebase
+Icon: kde-icon.xpm
+URL: http://www.kde.org
+Summary: K Desktop Environment - core files
+Version: @VERSION@
+Release: 1
+Epoch: 2
+Source: ftp://ftp.kde.org/pub/kde/stable/%{version}/distributions/tar/generic/source/%{name}-%{version}.tar.bz2
+Obsoletes: kdpms
+Group: User Interface/Desktops
+Copyright: GPL
+BuildRoot: /var/tmp/%{name}-buildroot
+Requires: kdesupport, kdelibs
+BuildPrereq: qt-devel, kdesupport-devel
+
+%description
+Core applications for the K Desktop Environment.  Included are: kdm
+(replacement for xdm), kwin (window manager), konqueror (filemanager, web
+browser, ftp client, ...), konsole (xterm replacement), kicker
+(application starter and desktop pager), kaudio (audio server),
+kdehelp (viewer for kde help files, info and man pages), kthememgr
+(system for managing alternate theme packages) plus other KDE
+components (kcheckpass, kikbd, kscreensaver, kcontrol, kfind,
+kfontmanager, kmenuedit, kappfinder).
+
+%package 3d-screensavers
+Summary: 3D screensavers for KDE
+Group: User Interface/Desktops
+Requires: qt-GL
+BuildPrereq: qt-GL
+
+%description 3d-screensavers
+Some 3D-screensavers for the K Desktop Environment.
+
+%prep
+rm -rf $RPM_BUILD_ROOT
+%setup -q
+make -f Makefile.cvs
+
+%build
+export KDEDIR=%{prefix} QTDIR=%{qtdir}
+CFLAGS="$RPM_OPT_FLAGS -I/usr/X11R6/include" CXXFLAGS="$RPM_OPT_FLAGS -DNO_DEBUG -DNDEBUG -I/usr/X11R6/include" \
+	./configure  \
+	--prefix=%{prefix} \
+	--with-pam=kde \
+	--without-shadow \
+	--disable-shadow \
+	--with-install-root=$RPM_BUILD_ROOT
+make
+
+%install
+export PATH=$PATH:/usr/X11R6/bin
+make RUN_KAPPFINDER=no DESTDIR=$RPM_BUILD_ROOT install
+for i in $RPM_BUILD_ROOT%{prefix}/bin/*; do
+  strip $i &>/dev/null || :
+done
+
+# make kcheckpass suid root
+chmod 1755 $RPM_BUILD_ROOT%{prefix}/bin/kcheckpass
+
+# remove SUID bit from konsole_grantpty
+chmod 0755 $RPM_BUILD_ROOT%{prefix}/bin/konsole_grantpty
+
+#install pam configuration file
+mkdir -p $RPM_BUILD_ROOT/etc/pam.d
+install -m 0644 $RPM_BUILD_DIR/kdebase-%{version}/kde.pamd \
+	$RPM_BUILD_ROOT/etc/pam.d/%{pamservice}
+
+# fix kappfinder script for relocatability
+{
+	pushd $RPM_BUILD_ROOT%{prefix}/bin
+	cp kappfinder kappfinder.temp
+	sed -e 's.\$(prefix).\$KDEDIR.g' kappfinder.temp > kappfinder
+	rm -f kappfinder.temp
+	popd
+}
+
+# make symlink for our applnk directory and GNOME directory
+{
+	pushd $RPM_BUILD_ROOT%{prefix}/share/applnk
+	mkdir -p $RPM_BUILD_ROOT/etc/X11/applnk
+	cat > $RPM_BUILD_ROOT/etc/X11/applnk/.directory << EOF
+# KDE Config File
+[KDE Desktop Entry]
+Icon=/usr/share/pixmaps/redhat/shadowman-round-32.xpm
+MiniIcon=/usr/share/pixmaps/redhat/shadowman-round-mini.xpm
+Name=Red Hat
+EOF
+
+	ln -sf ../../../etc/X11/applnk redhat
+
+	mkdir -p $RPM_BUILD_ROOT/usr/share/gnome/apps
+	cat > $RPM_BUILD_ROOT/usr/share/gnome/apps/.directory << EOF
+# KDE Config File
+[KDE Desktop Entry]
+Icon=/usr/share/pixmaps/gnome-logo-icon-transparent.png
+Name=GNOME
+EOF
+	
+	ln -sf ../gnome/apps gnome
+
+	popd
+}
+
+# fix konsole /opt/kde hardcode
+{
+	pushd konsole/other
+	perl -pi -e "s|/opt/kde|%{prefix}|g" *
+	popd
+}
+
+{
+	pushd $RPM_BUILD_ROOT
+	find . -type d | sed '1,2d;s,^\.,\%attr(-\,root\,root) \%dir ,' > \
+		$RPM_BUILD_DIR/file.list.%{name}
+
+	find . -type f | sed -e 's,^\.,\%attr(-\,root\,root) ,' \
+		-e '/\/config\//s|^|%config|' >> \
+		$RPM_BUILD_DIR/file.list.%{name}
+
+	find . -type l | sed 's,^\.,\%attr(-\,root\,root) ,' >> \
+		$RPM_BUILD_DIR/file.list.%{name}
+
+	# remove the 3D screensavers - we want them separate.
+	# no need to require Mesa/glxMesa for kdebase.
+	perl -pi -e "s,^.*/kmorph3d.kss,," $RPM_BUILD_DIR/file.list.%{name}
+	perl -pi -e "s,^.*/kspace.kss,," $RPM_BUILD_DIR/file.list.%{name}
+	perl -pi -e "s,^.*/kpipes.kss,," $RPM_BUILD_DIR/file.list.%{name}
+
+	echo "%docdir /usr/doc/kde" >> \
+		$RPM_BUILD_DIR/file.list.%{name}
+
+	popd
+}
+
+# install the linux console fonts
+install -d -m 755 $RPM_BUILD_ROOT/usr/X11R6/lib/X11/fonts/misc
+install -m 644 konsole/other/*.pcf.gz \
+	$RPM_BUILD_ROOT/usr/X11R6/lib/X11/fonts/misc
+
+%clean
+rm -rf $RPM_BUILD_ROOT $RPM_BUILD_DIR/files.list.%{name}
+
+%post
+cd /usr/X11R6/lib/X11/fonts/misc && /usr/X11R6/bin/mkfontdir
+
+%postun
+if [ "$1" = "0" ]; then
+  cd /usr/X11R6/lib/X11/fonts/misc && /usr/X11R6/bin/mkfontdir
+fi
+
+%files -f ../file.list.%{name} 
+%attr(-,root,root) /etc/X11/gdm/Sessions/KDE
+%attr(-,root,root) /usr/X11R6/lib/X11/fonts/misc/*
+
+%files 3d-screensavers
+%attr(-,root,root) %{prefix}/bin/kmorph3d.kss
+%attr(-,root,root) %{prefix}/bin/kspace.kss
+%attr(-,root,root) %{prefix}/bin/kpipes.kss
+
+%changelog
+* Thu May 11 2000 Bernhard Rosenkraenzer <bero@redhat.com>
+- initial specfile

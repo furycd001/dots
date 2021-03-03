@@ -1,0 +1,103 @@
+<sect1 id="nsplugins">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.2000</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Netscape</keyword>
+<keyword>plugins</keyword>
+</keywordset>
+</sect1info>
+<title>&Netscape; Plugins</title>
+
+<sect2 id="nsplugins-intro">
+<title>Introduction</title>
+
+<para>As &Netscape;'s <application>Navigator</application> has been a
+web browsing standard for many years, so-called &Netscape; plugins have
+appeared that allow rich web content.  Using those plugins, web sites
+can contain <acronym>PDF</acronym> files, flash animations, video &etc;
+With &konqueror;, you can still use these plugins to take advantage of
+rich web content.</para>
+
+<note><para>&Netscape; plugins should not be confused with &konqueror;
+plugins. The latter ones specifically extend &konqueror;'s
+functionality; they are normally not used to display rich web
+content.</para></note>
+
+</sect2>
+
+<sect2 id="nsplugins-scan">
+<title>Scan</title>
+
+<para>&konqueror; has to know where your &Netscape; plugins are
+installed.  This can be in several places, &ie; you might have
+system-wide plugins in <filename
+class="directory">/opt/netscape/plugins</filename> and your personal
+plugins in <filename
+class="directory">$<envar>HOME</envar>/.netscape/plugins</filename>.
+However, &konqueror; will not automatically use the installed plugins:
+it first has to scan a list of directories.  You can initiate the scan
+by clicking <guibutton>Scan for new plugins</guibutton>.  Or you can
+enable <guilabel>Scan for new plugins at KDE startup</guilabel> so
+&konqueror; will on every &kde; startup scan the appropriate directories
+to see whether new plugins have been installed.</para>
+
+<note><para>Enabling <guilabel>Scan for new plugins at KDE
+startup</guilabel> can considerably slow down the startup
+procedure.</para></note>
+
+<para>To find plugins, &konqueror; will look in the directories
+specified in the <guilabel>Scan Directories</guilabel> frame.  When you
+use this control module for the first time, this list will already be
+filled with reasonable paths that should work on most operating systems.
+If you need to provide a new path, click the <guibutton>New</guibutton>
+button; then you can either enter the new path in the text edit box to
+the left, or choose a directory using the file dialog by clicking the
+<guibutton>...</guibutton> button.  As scanning the directories can take
+a little time, you might want to remove directories from the list where
+you know that no plugins are installed: do this by selecting a directory
+and clicking <guibutton>Remove</guibutton>.  Using the
+<guibutton>Up</guibutton> and <guibutton>Down</guibutton> buttons you
+can change the order in which directories will be scanned by moving the
+selected directory up or down.</para>
+
+<para>As usual, click <guibutton>Apply</guibutton> to save your changes
+permanently.</para>
+
+</sect2>
+
+<sect2 id="nsplugins-plugins">
+<title>Plugins</title>
+
+<para>In this tab, you can see a list of the &Netscape; plugins found by
+&konqueror;, displayed as a tree.  Double click on a plugin to fold it
+out and you'll see that the different mime types this plugin can handle
+will be displayed as branches.  Fold out a mime type to see its
+info.</para>
+
+</sect2>
+
+<sect2 id="nsplugins-author">
+<title>Section Author</title>
+
+<para>This section written by: Jost Schenck
+<email>jost@schenck.de</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

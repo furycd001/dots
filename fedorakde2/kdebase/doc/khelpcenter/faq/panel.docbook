@@ -1,0 +1,56 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="panel">
+<title>The panel</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I add applications to the panel(&kicker;)?</para>
+</question>
+<answer>
+<para>There are several ways to add an application to the
+panel:</para>
+<variablelist>
+<varlistentry><term>Using the panel configuration menu</term>
+<listitem>
+<para>Perhaps the easiest method is to use the entry
+<menuchoice><guimenu>Configure Panel</guimenu><guimenuitem>Add
+</guimenuitem><guimenuitem>Button</guimenuitem></menuchoice> in the panel menu (the
+menu that appears when pressing the <guibutton>K</guibutton> button on the panel).  The menu shows all installed &kde; applications.  To add a button to the
+menu, simply click on the application.</para> 
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Using the file manager</term>
+<listitem>
+<para>You can also simply drag a <filename>.desktop</filename> file from a window of the file manager to the panel.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<!-- Since I don't know the anwser for this in KDE 2.2.1 I have to comment it out -->
+<!--
+<qandaentry>
+<question>
+<para>Is it possible to change the <guibutton>K</guibutton> button of
+the panel to another picture?</para>
+</question>
+<answer>
+<para>Look for
+<filename>$<envar>HOME</envar>/.kde/share/apps/kicker/pics/go.png</filename> and
+<filename>$<envar>HOME</envar>/.kde/share/apps/kicker/pics/mini/go.png</filename>
+and replace them.  Do not forget to flatten the replacements to one
+layer, or else you will not see anything.  Create the directories if
+they do not already exist.  Then restart &kicker;.</para>
+</answer>
+</qandaentry>
+-->
+</qandaset>
+</chapter>

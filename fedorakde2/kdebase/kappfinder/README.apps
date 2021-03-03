@@ -1,0 +1,12 @@
+The apps directory contains .desktop files for commonly used non-KDE
+programs which kappfinder installs into the applnk directory of KDE.
+
+kappfinder used to install .directory files as well because in the past the
+non-KDE applications were installed in their own directory seperated from
+the main KDE applications. This is no longer the case, all .directory files
+are maintained in kdebase/applnk.
+
+Terminal applications however are in a seperate directory. This is done by
+creating a subdirectory for the category (e.g. Internet/Terminal) and
+installing the .directory from kdebase/applnk and the application .desktop
+files from kdebase/kappfinder/apps/

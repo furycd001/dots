@@ -1,0 +1,221 @@
+<!DOCTYPE UI><UI>
+<class>KOSPageDlg</class>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>KOSPageDlg</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>550</width>
+            <height>452</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form2</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="4"  column="1" >
+            <class>QTextView</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>textview_ospage</cstring>
+            </property>
+        </widget>
+        <widget row="0"  column="0"  rowspan="5"  colspan="1" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>px_osSidebar</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>minimumSize</name>
+                <size>
+                    <width>170</width>
+                    <height>430</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>Panel</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Sunken</enum>
+            </property>
+            <property stdset="1">
+                <name>scaledContents</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>indent</name>
+                <number>0</number>
+            </property>
+        </widget>
+        <widget row="3"  column="1" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextLabel9</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Description:</string>
+            </property>
+        </widget>
+        <widget row="2"  column="1" >
+            <class>QButtonGroup</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>bg_ospage</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>Please select your preferred system behavior:</string>
+            </property>
+            <vbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>rb_kde</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>KDE (TM)</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>rb_unix</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>UNIX (R)</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>rb_windows</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Microsoft Windows (R)</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>rb_mac</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Apple MacOS (R)</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget row="0"  column="1" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextLabel1</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&lt;b&gt;System Behavior&lt;/b&gt;&lt;br&gt;
+Graphical User Interfaces behave differently on various Operating Systems. 
+KDE allows you to customize its behavior according to your needs.</string>
+            </property>
+        </widget>
+        <spacer row="1"  column="1" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer2</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Fixed</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>22</width>
+                    <height>10</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>rb_kde</sender>
+        <signal>clicked()</signal>
+        <receiver>KOSPageDlg</receiver>
+        <slot>slotKDEDescription()</slot>
+    </connection>
+    <connection>
+        <sender>rb_unix</sender>
+        <signal>clicked()</signal>
+        <receiver>KOSPageDlg</receiver>
+        <slot>slotUnixDescription()</slot>
+    </connection>
+    <connection>
+        <sender>rb_windows</sender>
+        <signal>clicked()</signal>
+        <receiver>KOSPageDlg</receiver>
+        <slot>slotWindowsDescription()</slot>
+    </connection>
+    <connection>
+        <sender>rb_mac</sender>
+        <signal>clicked()</signal>
+        <receiver>KOSPageDlg</receiver>
+        <slot>slotMacDescription()</slot>
+    </connection>
+    <slot access="public">slotWindowsDescription()</slot>
+    <slot access="public">slotKDEDescription()</slot>
+    <slot access="public">slotMacDescription()</slot>
+    <slot access="public">slotUnixDescription()</slot>
+</connections>
+</UI>

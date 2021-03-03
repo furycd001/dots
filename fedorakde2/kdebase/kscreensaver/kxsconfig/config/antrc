@@ -1,0 +1,27 @@
+[Arg0]
+Label=Number of ants:
+Maximum=50
+Minimum=1
+Switch=-count %1
+Type=Range
+Value=1
+[Arg1]
+Label=Size:
+Maximum=150
+Minimum=1
+Switch=-size %1
+Type=Range
+Value=20
+[Arg2]
+Label=Truchet
+Type=Check
+SwitchOn=-truchet
+SwitchOff=-no-truchet
+Value=false        
+[Arg3]
+Label=Sharp turn
+Type=Check
+SwitchOn=-sharpturn
+SwitchOff=-no-sharpturn
+Value=true
+        

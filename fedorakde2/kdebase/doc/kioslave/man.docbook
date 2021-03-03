@@ -1,0 +1,47 @@
+<article lang="&language;" id="man">
+<title>Man</title>
+
+<para>
+Using the man ioslave you are able to read the man pages installed
+on your system. It is easy to use:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><userinput><command>man:/</command></userinput></term>
+<listitem>
+<para>See the sections of the manual, click to find the rest.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><userinput><command>man:</command>fopen</userinput></term>
+<listitem>
+<para>See the man page of <command>fopen</command>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>
+There is also a shortcut: <userinput><command>#fopen</command></userinput>,
+which has the same effect as above.
+</para>
+
+<para>
+If you don't find all your man pages, adjust the environment variables
+<envar>MANPATH</envar> and <envar>MANSECT</envar>.
+</para>
+
+<para>
+As with any other &kde; ioslave, it is possible to enter a &URL;, like
+<userinput><command>man:socket</command></userinput> in <emphasis>any</emphasis>
+&kde; 2.x application.  Try it in &kwrite; and you will see the man page in
+<acronym>HTML</acronym> format.
+</para>
+
+<para>
+Contact mailing list: <email>kde-devel@kde.org</email>
+</para>
+
+</article>

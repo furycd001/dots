@@ -1,0 +1,39 @@
+dnl put here things which have to be done as very last part of configure
+
+all_tests=fine
+
+if test "x$with_motif" != xyes; then
+  echo ""
+  echo "You're missing OSF/Motif or LessTif."
+  echo "KDE won't be able to use Netscape plugins without it, so you should"
+  echo "consider installing it."
+  echo "Have a look at http://www.lesstif.org, or find a binary package for"
+  echo "your platform."
+  echo ""
+  all_tests=bad
+fi
+
+if test "$cdparanoia_only_static" = yes; then
+  echo ""
+  echo "KDE needs a shared version of the cdparanoia libs, but only"
+  echo "a static one was found.  Look at http://www.xiph.org/paranoia/"
+  echo "and be sure to configure that package with --enable-shared when"
+  echo "compiling from source."
+  echo ""
+  all_tests=bad
+fi
+
+if test "$lame_wrong_version" = yes; then
+  echo ""
+  echo "You have liblame, but it's of a wrong version.  KDE needs at least"
+  echo "version 3.89 (alpha or beta)."
+  echo "Have a look at http://www.mp3dev.org/ ."
+  echo ""
+  all_tests=bad
+fi
+
+if test "$all_tests" = "fine"; then
+  echo ""
+  echo "Good - your configure finished. Start make now"
+  echo ""
+fi

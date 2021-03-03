@@ -1,0 +1,140 @@
+<sect1 id="help-index">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-10-21</date>
+<releaseinfo>1.00.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Help Index</keyword>
+<keyword>Index</keyword>
+</keywordset>
+</sect1info>
+<title>Help Index</title>
+<sect2 id="help-index-intro">
+<title>Introduction</title>
+
+<para>KDE 2.0 comes with a lot of documentation for applications and
+components. While it is possible to just browse the manuals until you find that
+piece of information you're looking for, this may be a very time-consuming
+task. To make this easier for you, KDE offers fulltext search using a program
+called <application>ht://dig</application>. It works quite similar to search
+engines on the web, in fact some search engines you now might even use it. Just
+click on the "<guilabel>Search</guilabel>" tab in the KDE Help Center, enter the
+word you are looking for, click <guibutton>Search</guibutton> and enjoy!</para>
+
+<para>However, to make use of this feature, <application>ht://dig</application>
+has to be installed on your system and KDE has to be configured to make us of
+it. This control module tries to help you doing the latter. If you haven't
+installed <application>ht://dig</application> and it wasn't shipped with your
+operating system you have to get ht://dig yourself. Have a look at <ulink
+url="http://www.htdig.org">the ht://dig homepage</ulink> on how to download and
+install it.</para>
+
+</sect2> 
+
+<sect2 id="help-index-use"> 
+
+<title>Use</title> 
+
+<para>There are two important things to tell KDE so it can make use of the
+fulltext search engine:</para>
+
+<itemizedlist>
+<listitem><para>where to find the <application>ht://dig</application> programs
+KDE uses for fulltext search</para></listitem>
+<listitem><para>where to search</para></listitem>
+</itemizedlist>
+
+<sect3 id="help-index-use-progs">
+
+<title>The <application>ht://dig</application> Programs</title>
+
+<para> There are three programs KDE needs that come with
+<application>ht://dig</application>: <command>htdig</command>,
+<command>htsearch</command> and <command>htmerge</command>. For each program you
+have to provide the full path including the program name, for example: <filename
+class="directory">/usr/bin/htdig</filename>.</para> 
+
+<para>Where exactly these programs are installed depends on your operating
+system or your distribution. However, there are some good guesses you might want
+to try:</para>
+
+<itemizedlist>
+
+<listitem><para><command>htdig</command> and <command>htmerge</command> are
+often found in <filename class="directory">/usr/bin/</filename> or in something
+like <filename
+class="directory">/usr/local/www/htdig/bin/</filename>.</para></listitem>
+
+<listitem><para>the <command>htsearch</command> command is often found in a sub
+directory called <filename class="directory">cgi-bin</filename>, for example
+<filename class="directory">/usr/local/httpd/cgi-bin/</filename>.</para>
+
+</listitem>
+</itemizedlist>
+
+<tip><para>To find out where for example <command>htdig</command> is installed
+you can always type <command>whereis htdig</command> on the
+console. <command>whereis</command> will look for the specified command in the
+standard execution path directories. However, directories like <filename
+class="directory">cgi-bin</filename> are often not in the standard execution
+path.</para></tip>
+
+</sect3>
+
+<sect3 id="help-index-use-scope">
+<title>Scope and Search Paths</title>
+
+<para>In this section you can choose which help resources should be indexed,
+<abbrev>i.e.</abbrev> made available to the search engine.</para>
+
+<para>In the <guilabel>Scope</guilabel> frame you can select some typical
+resources you want to be indexed, <abbrev>i.e.</abbrev> the KDE help files, and
+the information offered by the <command>man</command> and
+<command>info</command> commands. Note that some of those may still be disabled,
+which means that support for them has not been added yet.</para>
+
+<para>Maybe you have additional files you want to access using the KDE Help
+Center's fulltext search feature. For example, you might have an
+<abbrev>HTML</abbrev> reference installed in
+<filename>/home/jdoe/docs/selfhtml</filename>.  By adding this path to the list
+of additional search paths you make this documentation available to KDE Help
+Center's fulltext search, too. Just click on the <guibutton>Add</guibutton>
+button and a file dialog will ask you for an additional search directory. Select
+<filename>/home/jdoe/docs/selfhtml</filename> and click
+<guibutton>OK</guibutton>. To remove an additional search path, just select it
+and click <guibutton>Delete</guibutton>.</para>
+
+<important><para>Your changes to the scope and additional search paths will not
+take effect if you don't click on the <guibutton>Generate index ...</guibutton>
+button.</para></important>
+
+
+</sect3>
+<sect3 id="help-index-language">
+<title>Selecting the language</title>
+<para>You can select the language you want the help files in using the combo box labeled <guilabel>Language Settings</guilabel></para>
+</sect3>
+</sect2>
+
+<sect2 id="help-index-author">
+<title>Section Author</title>
+<para>This section written by: Jost Schenck <email>jost@schenck.de</email></para>
+<para>Minor update by: Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+</sect2>
+</sect1>
+

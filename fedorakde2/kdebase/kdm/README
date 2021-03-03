@@ -1,0 +1,127 @@
+$Id: README,v 2.9 2001/07/14 17:59:19 ossi Exp $
+
+This is the KDE Display Manager (kdm) v0.92 for KDE 2.2, 
+the KDE replacement for the X Display Manager (xdm).
+
+
+How to setup kdm
+----------------
+
+KDM's config files are all located in ${kde_confdir}/kdm.
+"make install" will install an example configuration if the directory
+does not exist yet.
+
+You can change the configuration from the KDE Control Center. 
+You will find the Login Manager module in "System" -> "Login Manager".
+
+Have a look at README.pam in the kdebase top level directory if your
+system uses PAM.
+
+
+Running KDM from init
+---------------------
+
+NOTE, that this description applies to RedHat and must be adapted for
+other distributions/systems.
+
+   Edit (as root) /etc/inittab.
+
+   Look for the line: 
+
+       x:5:respawn:/usr/X11/bin/xdm -nodaemon
+
+   Replace it with:
+
+       x:5:respawn:/opt/kde/bin/kdm -nodaemon
+
+   This tells init(8) to respawn KDM, the KDE display manager, when
+   the system is in run level 5. 
+
+   To start KDM, either run (as root) /sbin/telinit 5 (to switch to
+   run level 5), or (this is risky! don't do it until you _know_ you
+   want the system to boot into this every time!) edit /etc/inittab
+   and change the line:
+
+       id:3:initdefault:
+
+   to
+
+       id:5:initdefault:
+
+   If you do the latter step, then every time your system boots 
+   successfully it will go into run level 5 and run KDM, 
+   presenting you the exceedingly cute KDE login screen. 
+
+
+Random rambings and license information
+---------------------------------------
+
+Version 0.1 of kdm is copyright
+	Matthias Ettrich <ettrich@trolltech.com>
+All later versions copyright:
+	(C) 1997-2000 Steffen Hansen <hansen@kde.org>
+Since version 0.90 (KDE 2.1) copyright:
+	(C) 2000-2001 Oswald Buddenhagen <ossi@kde.org>
+
+The files in the backend directory are licensed under the X licence 
+(see www.xfree86.org for more info). 
+The files in the chooser and kfrontend directories are licensed under 
+the GNU GPL.
+
+Thanks to (in no particular order):
+Michael Bach Jensen and Torsten Rahn for drawing icons.
+Duncan Haldane for investigation of PAM issues.
+Stephan Kulow for helping me with the autoconf stuff.
+Martin Baehr for intensive testing and writing the sample Xsession scripts.
+Harald Hoyer <Harald.Hoyer@redhat.de> for the chooser
+... and _many_ others ...
+
+
+"It doesn't work!!"
+-------------------
+
+More input! ;-)
+
+KDM accepts two command line options related to logging. These options
+_must_ come first on the command line, if they are used:
+
+  -debug <n>
+    <n> is a decimal or hexadecimal (prefix 0x) number.
+    The number is a bitfield, i.e., it is formed by summing up the 
+    required values from this table:
+    1 (0x1) - core debugging. probably the most useful one.
+    2 (0x2) - config reader debugging.
+    4 (0x4) - greeter debugging.
+    8 (0x8) - ipc debugging. this logs _all_ communication between the
+	      core, the config reader and the greeter - including the
+	      passwords you type - so edit the log before showing it to
+	      somebody.
+    16 (0x10) - wait after forking session sub-daemon.
+    32 (0x20) - wait after starting config reader.
+    64 (0x40) - wait after starting greeter.
+	the wait options are only useful, if you need to attach a debugger
+	to a process but it crashes before you are able to do so without
+	the delay.
+    256 (0x100) - core Xauth debugging.
+    512 (0x200) - don't fork session sub-daemon, but manage one session
+	in the master daemon. not for real-world use.
+
+  -logfile <file>
+    <file> is the file to log various messages to.
+    For internal reasons there is no option in kdmrc to permanently specify 
+    another log file location. If you redirect KDM's standard error output
+    to a file, KDM will log there.
+    If KDM is configured to use syslog, all internally generated messages 
+    are logged to the "daemon" facility. The log usually can be found in 
+    /var/log/debug.log and /var/log/daemon.log; make sure, that daemon.* 
+    is logged (look at /etc/syslog.conf). 
+
+Send me the logs together with a detailed description what you did and
+what happended. If your problem is related to a specific configuration,
+you should also attach a tar.gz archive of your kdm config directory.
+
+
+-- 
+Have fun with it (and feel free to comment),
+
+	Oswald Buddenhagen <ossi@kde.org>

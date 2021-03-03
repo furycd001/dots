@@ -1,0 +1,203 @@
+<sect1 id="accessibility">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>accessibility</keyword>
+</keywordset>
+</sect1info>
+
+<title>Accessibility</title>
+<sect2 id="accessibility-intro">
+
+<title>Introduction</title>
+
+<para>This module is designed to help users who have difficulty hearing
+audible cues, or who have difficulty using a keyboard or mouse.  </para>
+
+<para>
+The module is divided into three tabs: <link
+linkend="access-bell"><guilabel>Bell</guilabel></link>, <link
+linkend="access-kb"><guilabel>Keyboard</guilabel></link>, <link
+linkend="access-mouse"><guilabel>Mouse</guilabel></link>.
+</para>
+
+<sect3 id="access-bell">
+<title>Bell</title>
+
+<para>
+This panel is divided into an <guilabel>Audio Bell</guilabel> section
+and a <guilabel>Visual Bell</guilabel> Section.
+</para>
+
+<para>
+The top check box labelled <guilabel>System Bell</guilabel>, determines
+whether the normal System bell rings.  If this option is disabled, the
+System bell will be silenced.
+</para>
+
+<para>
+The next check box down can be used to play a different sound whenever
+the system bell is triggered.  To activate, place a mark in the check
+box labelled <guilabel>Use customized bell</guilabel>, and enter the
+complete pathname to the sound file in the blank labelled
+<guilabel>Sound to Play</guilabel>.  If you want, you can select the
+<guibutton>Browse</guibutton> button to navigate through your filesystem
+to find the exact file.
+</para>
+
+<para>
+For those users who have difficulty hearing the System bell, or those
+users who have a silent computer, &kde; offers the Visual bell.  This
+<quote>bell</quote> can be configured to invert the screen, or to flash
+a color across the screen.
+</para>
+
+<para>
+To use the visual bell, first place a mark in the check box labeled
+<guilabel>Use visible bell</guilabel>.
+</para>
+
+<para>
+You can then select between <guilabel>Invert Screen</guilabel>, or
+<guilabel>Flash screen</guilabel>.  If you select Invert screen, all
+colors on the screen will be reversed.  If you choose Flash color, you
+can choose the color by pressing the button to the right of the
+<guilabel>Flash Screen</guilabel> selction.
+</para>
+
+<para>
+The slider bar can be used to adjust the duration of the visual bell.
+</para>
+
+</sect3>
+
+<sect3 id="access-kb">
+<title><guilabel>Keyboard</guilabel></title>
+
+<para>There are three sections to this panel.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Sticky Keys</guilabel></term>
+<listitem>
+<para>
+If this option is enabled, the user can press and release the &Shift;,
+&Alt; or &Ctrl; keys, and then press another key to get a key combo
+(example: <keycombo action="simul">&Ctrl; &Alt;
+<keycap>Del</keycap></keycombo> could be done with &Ctrl; then &Alt;
+then <keycap>Del</keycap>).
+</para>
+
+<para>
+Also in this section is a checkbox labeled <guilabel>Lock Sticky
+Keys</guilabel>.  If this checkbox is enabled, then the &Alt;, &Ctrl;,
+and &Shift; keys stay <quote>selected</quote> until they are
+<quote>de-selected</quote> by the user.
+</para>
+
+<para>
+As an example:
+</para>
+<variablelist>
+<varlistentry>
+<term>With <guilabel>Lock Sticky Keys</guilabel> disabled:</term>
+<listitem>
+<para>The user types the &Shift; key, then presses the
+<keycap>F</keycap> key.  The computer translates this into <keycombo
+action="simul">&Shift;<keycap>F</keycap></keycombo>.  Now if the user
+types a <keycap>p</keycap>, the computer interprets this as the letter p
+(no shift).
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>With <guilabel>Lock Sticky Keys</guilabel> enabled:</term>
+<listitem>
+<para>
+The user types the &Shift; key, then press the <keycap>F</keycap> key.
+The computer translates this into <keycombo
+action="simul">&Shift;<keycap>F</keycap></keycombo>.  Now if the user
+types a <keycap>p</keycap>, the computer interprets this as the letter
+<keycombo action="simul">&Shift;<keycap>P</keycap></keycombo>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Slow keys</guilabel></term>
+<listitem>
+<para>
+If this option is enabled, the user must hold the key down for a
+specified period of time (adjustable with the slider) before the
+keystroke will be accepted). This helps prevent accidental keypresses.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Bounce keys</guilabel></term>
+<listitem>
+<para>
+If this option is enabled, the user must wait a specified delay
+(configurable with the slider), before the next key press can be
+accepted.  This prevents multiple key strokes from people with tremors.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+<sect3 id="access-mouse">
+<title><guilabel>Mouse Navigation</guilabel></title>
+
+<para>
+Keyboard navigation helps people who have difficulty with trackballs,
+digital tablets and mice.  These users can now configure &kde; to use
+the arrow keys on the numeric keypad as a replacement.
+</para>
+
+<para>
+To enable this option, place a mark in the check box labeled
+<guilabel>Move mouse with keyboard</guilabel>.
+</para>
+
+<para>
+You can use the 5 sliders to adjust the <guilabel>Acceleration
+delay</guilabel>, <guilabel>Repeat interval</guilabel>,
+<guilabel>Acceleration time</guilabel>, <guilabel>Maximum
+speed</guilabel> and <guilabel>Acceleration profile</guilabel> to your
+comfort.
+</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="access-author">
+<title>Section Author</title>
+
+<para>
+This section written by Mike McBride <email>mpmcbride7@yahoo.com</email>
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

@@ -1,0 +1,151 @@
+<sect1 id="color">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<author>
+<firstname>Mark</firstname>
+<surname>Donohoe</surname>
+</author>
+
+<author>
+<firstname>Martin</firstname>
+<surname>Jones</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>color</keyword>
+</keywordset>
+</sect1info>
+
+<title>Colors</title>
+<sect2 id="color-intro">
+<title>Introduction</title>
+
+<para>The Color Selection module is comprised of 4 sections:</para>
+
+<orderedlist>
+<listitem><para><link linkend="kcmdisplay-preview">The color scheme
+Preview</link>.</para></listitem>
+<listitem><para><link linkend="kcmdisplay-widget-color">The current 
+<guilabel>Widget
+Color</guilabel></link>.</para>
+</listitem>
+<listitem><para><link linkend="kcmdisplay-contrast">The contrast
+sliders</link>.</para></listitem>
+<listitem><para><link linkend="kcmdisplay-color-schemes">The available Color
+Schemes</link>.</para></listitem>
+</orderedlist>
+
+<note><para>A <emphasis>Widget</emphasis> is a commonly-used
+programmer's term for referring to User Interface elements such as
+buttons, menus, and scroll bars.  You can think of them as the
+fundamental pieces that are assembled to make your
+application.</para></note>
+
+<sect3 id="kcmdisplay-preview">
+<title>Preview</title>
+
+<para>This section of the dialog demonstrates how a color scheme applies
+to a sample selection of widgets. It provides you with a
+<guilabel>preview</guilabel> of your current color choices.</para>
+
+<para>A color scheme consists of a set of 18 colors. </para>
+
+<para>Each of the widgets is labled to help you identify how your
+changes will impact the color scheme.</para>
+
+</sect3>
+
+<sect3 id="kcmdisplay-widget-color">
+<title><guilabel>Widget Color</guilabel></title>
+
+<para>The currently selected member of the color scheme is shown in the
+combo box. This widget color can be changed by clicking on the colored
+box below the combo box. A color selection dialog will then appear, from
+which you may select a new color. When you are happy with your color
+selection, press <guibutton>Ok</guibutton> in the color selection
+dialog.  The color will be updated in the Preview Area.</para>
+
+<para>You may select any member of the color scheme from the 
+color combination box.</para>
+
+</sect3>
+
+<sect3 id="kcmdisplay-contrast">
+<title><guilabel>Contrast</guilabel> Slider</title>
+
+<para>The <guilabel>Contrast</guilabel> slider allows you to change the
+contrast bewteen different shadings of the selected colors.</para>
+
+<para>The Preview area instantly updates to show the effect of your
+change.</para>
+
+</sect3>
+
+<sect3 id="kcmdisplay-color-schemes">
+<title><guilabel>Color schemes</guilabel></title>
+
+<para>Various color schemes are supplied with &kde;. These include:</para>
+<simplelist>
+<member>&kde; default, </member>
+<member>Atlas green</member>
+<member>BeOS,</member>
+<member>Blue slate,</member>
+<member>CDE</member>
+<member>Dark Blue, </member>
+<member>Desert red,</member>
+<member>Digital CDE,</member>
+<member>Pale gray,</member>
+<member>Pumpkin,</member>
+<member>Solaris CDE,</member>
+<member>Storm,</member>
+<member>Redmond,</member>
+<member>System, </member>
+<member>Next, </member>
+<member>Point Reyes Green, </member>
+<member>Media Peach</member>
+<member>EveX</member>
+<member>and KDE 1.</member>
+</simplelist>
+
+<para>To preview a scheme click on its name in the list box. </para>
+
+<para>You can use the &kde;-supplied Color Schemes as a starting point to
+devise your own Scheme. Click on the <guibutton>Add</guibutton> button
+to store the color scheme under a new name, then modify it. </para>
+
+<para>When such a user-created Color Scheme is selected, changes to it
+(as shown in the Preview) can be saved with the <guibutton>Save
+Changes</guibutton> button; it can also be deleted with the
+<guibutton>Remove</guibutton> button.</para>
+
+<note><para>The &kde;-supplied Schemes themselves cannot be changed or
+deleted.</para></note>
+
+</sect3>
+</sect2>
+
+<sect2 id="color-author">
+<title>Section Author</title>
+
+<para>This section written by Mark Donohoe and Martin Jones.</para>
+<para>Updated for KDE 2.0 by Mike McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+
+

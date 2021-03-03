@@ -1,0 +1,16 @@
+HOWTO get the libsmbclient built, so that you can get the new smb ioslave built...
+
+
+1. Check out the samba sources from cvs with ( full directions are at: http://www.samba.org/samba/cvs.html
+   cvs -d :pserver:cvs@pserver.samba.org:/cvsroot login
+   use "cvs" as the password
+   cvs -z5 -d :pserver:cvs@pserver.samba.org:/cvsroot co samba/source
+
+2. cd samba/source
+3. run "./configure"
+4. run "make bin/libsmbclient.so"
+5. when compiling is done- shouldn't take more than 5-15 minutes depending on your machine,
+   you need to install the header file and the library.
+   I use:
+   cp bin/libsmbclient.so /usr/lib/.
+   cp include/libsmbclient.h /usr/include/.

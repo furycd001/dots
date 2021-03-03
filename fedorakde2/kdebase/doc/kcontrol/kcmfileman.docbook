@@ -1,0 +1,234 @@
+<sect1 id="file-manager">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>file manager</keyword>
+</keywordset>
+</sect1info>
+<title>File Manager</title>
+
+<para>In this module, you can configure various aspects of
+&konqueror;'s file manager functionality. </para>
+
+<note><para>&konqueror;'s web browser functionality has its <link
+linkend="konq-browsing">own configuration module</link>.</para></note>
+
+<sect2 id="fileman-use">
+<title>Use</title> 
+
+<para> The configuration options for the file manager are
+organized under three tabs as described below:</para>
+
+<variablelist>
+<varlistentry>
+<term>Behavior</term>
+<listitem><para>This tab contains a couple of &konqueror;
+global options</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Appearance</term>
+<listitem><para>This tab contains options customizing the appearance of
+&konqueror; windows, such as the default font
+text color.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Trash</term>
+<listitem><para>This tab contains options for customizing the default
+ behavior
+of &konqueror; when you <quote>delete</quote> a
+file.</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+<sect3 id="filemane-behav">
+<title>Behavior</title>
+			
+<variablelist>
+<varlistentry>
+<term>Open Directories in Separate Windows</term>
+<listitem> <para>If this option is checked, a new
+&konqueror; window will be created when you open a
+directory, rather than simply showing that directory's contents in the
+ current
+window.</para></listitem>
+</varlistentry>
+					
+<varlistentry>
+<term>Show network operations in a single window</term>
+<listitem>
+<para>If unchecked, and you download a
+file, a dialog box will appear that shows the status of the
+download.</para>
+
+<screenshot>
+  <screeninfo>Download Dialog Box</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="kfileman2.png"
+ format="PNG"/></imageobject>
+  <textobject> <phrase>Download Dialog Box</phrase> </textobject>
+  <caption>
+  <para>Individual Download Dialog Box</para>
+  </caption>
+  </mediaobject>
+</screenshot>
+
+<para>If you start a new transfer, another dialog box will
+appear. (&Netscape; users will be familiar with
+this behavior) </para>
+
+<para>If checked, all transfer status windows will be grouped
+together under a single dialog box.</para>
+<screenshot>
+  <screeninfo>Download Dialog Box</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="kfileman1.png"
+ format="PNG"/></imageobject>
+  <textobject><phrase>Download Dialog Box</phrase></textobject>
+  <caption>
+  <para>Collected Download Dialog Box</para>
+  </caption>
+  </mediaobject>
+</screenshot> 
+
+<para>If you choose to use the Collected download dialog box, you can
+delete transfers by clicking once on the transfer you want to cancel,
+then clicking the <guibutton>Delete</guibutton> Button on the
+left.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Home <abbrev>URL</abbrev></term>
+<listitem><para>This is the <abbrev>URL</abbrev> (&eg; a
+directory or a web page) where &konqueror; will jump to
+when the <guibutton>Home</guibutton> button is pressed.</para><para>The
+default is the users home directory, indicated with a
+<literal>~</literal>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Minimize memory usage</term>
+<listitem>
+<para>This setting determines &konqueror;'s behavior when it comes to
+memory management.  You can choose between the following options:</para>
+
+<variablelist>
+<varlistentry>
+<term>Never</term>
+<listitem>
+<para>&konqueror; will make no attempts whatsoever to minimize it's use
+of memory.  If you have a very large amount of <acronym>RAM</acronym>,
+this might make &konqueror; faster.  If you have insufficient
+<acronym>RAM</acronym>, it might make &konqueror; run much slower, as
+more information is paged to disk.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>For local browsing only (recommended)</term>
+<listitem>
+<para>&konqueror; will try to minimize memory usage when you are
+browsing local filesystems, including network drives.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>For web browsing only</term>
+<listitem>
+<para>&konqueror; will only try to minimize memory usage when you are
+browsing the web.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Always (use with care)</term>
+<listitem>
+<para>This setting is not recommended, and should only be used if you
+are very low on resources.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+				
+<sect3>	
+<title>Appearance</title>
+					
+<para>The following settings determine how text and colors are displayed in
+&konqueror; File Manager mode windows.</para>
+
+<para><guilabel>Font Size</guilabel> Lets you control the size of text,
+ while
+the <guilabel>Standard Font</guilabel> setting determines the font face
+used.</para>
+
+<para>The <guilabel>Normal Text Color</guilabel> determines the standard
+ text
+color.</para>
+
+<para>When <guilabel>Word-wrap icon text</guilabel> is checked, long
+ filenames
+will be wraped onto multiple lines, rather than showing only the part of the
+filename that fits on a single line.</para>
+
+<tip> <para> If you uncheck this option, you can still see word-wrapped
+filenames by pausing the mouse pointer over the icon.</para></tip>
+
+<para>When <guilabel>Underline filenames</guilabel> is checked, filenames
+ will
+be underlined so that they look like links on a web page.</para>
+
+<para>The final check box on this page determines how &konqueror;
+displays file sizes, when you are in one of the file manager modes that
+normally shows this information.  If you check the <guilabel>Show file
+sizes in bytes</guilabel> box, then file sizes are always shown in
+bytes.  If you leave it unchecked, then file sizes are shown in bytes,
+kilobytes, and Megabytes, depending on their size.</para>
+
+</sect3>
+
+<sect3 id="fileman-trash">
+<title>Trash</title>
+
+<para>The <guilabel>Ask confirmation for</guilabel> setting tells
+&konqueror; what to do when you choose to <quote>Delete</quote>,
+<quote>Trash</quote>, or <quote>Shred</quote> a file in a &konqueror;
+window.  If any box is checked, &konqueror; asks for confirmation before
+performing the corresponding action.</para>
+
+</sect3>
+
+</sect2>
+
+<sect2 id="file-author"><title>Section Author</title>
+<para>Ellis Whitehead <email>kde@ellisw.net</email></para>
+<para>Updated by Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

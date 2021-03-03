@@ -1,0 +1,605 @@
+<!DOCTYPE UI><UI>
+<class>ArtsConfig</class>
+<include location="global">kseparator.h</include>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>ArtsConfig</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>386</width>
+            <height>465</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form1</string>
+    </property>
+    <property>
+        <name>layoutMargin</name>
+    </property>
+    <property>
+        <name>layoutSpacing</name>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>0</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>0</number>
+        </property>
+        <widget row="0"  column="0" >
+            <class>QTabWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>tabWidget</cstring>
+            </property>
+            <widget>
+                <class>QWidget</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>general</cstring>
+                </property>
+                <attribute>
+                    <name>title</name>
+                    <string>General</string>
+                </attribute>
+                <grid>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget row="5"  column="2"  rowspan="1"  colspan="2" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>TextLabel1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>seconds</string>
+                        </property>
+                    </widget>
+                    <widget row="2"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>networkTransparent</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Enable &amp;network transparency</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>This option allows sound requests coming in from over the network to be accepted, instead of just limiting the server to the local computer.</string>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>startServer</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Start aRts soundserver on KDE startup</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>If this option is enabled, the arts soundserver will be started on KDE startup. Recommended if you want sound.</string>
+                        </property>
+                    </widget>
+                    <widget row="5"  column="0" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>autoSuspend</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Autosuspend if idle for</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>The sound server will suspend itself if idle for this period of time.</string>
+                        </property>
+                    </widget>
+                    <widget row="1"  column="0"  rowspan="1"  colspan="4" >
+                        <class>KSeparator</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>Line1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Horizontal</enum>
+                        </property>
+                    </widget>
+                    <widget row="5"  column="1" >
+                        <class>QSpinBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>suspendTime</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>maxValue</name>
+                            <number>9999</number>
+                        </property>
+                        <property stdset="1">
+                            <name>value</name>
+                            <number>60</number>
+                        </property>
+                    </widget>
+                    <widget row="4"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>startRealtime</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Run soundserver with &amp;realtime priority</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>On systems which support realtime scheduling, if you have sufficient permissions, this option will enable a very high priority for processing sound requests.</string>
+                        </property>
+                    </widget>
+                    <widget row="3"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>x11Comm</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Exchange security and reference info over the &amp;X11 server</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>If you want network transparency or if you use the soundserver only when you use X11, enable this option.</string>
+                        </property>
+                    </widget>
+                    <widget row="6"  column="1"  rowspan="1"  colspan="3" >
+                        <class>QLineEdit</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>messageApplication</cstring>
+                        </property>
+                    </widget>
+                    <spacer row="8"  column="3" >
+                        <property>
+                            <name>name</name>
+                            <cstring>Spacer2</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Vertical</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>sizeType</name>
+                            <enum>Expanding</enum>
+                        </property>
+                        <property>
+                            <name>sizeHint</name>
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget row="9"  column="3" >
+                        <class>QPushButton</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>testSound</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Test sound</string>
+                        </property>
+                    </widget>
+                    <spacer row="9"  column="0"  rowspan="1"  colspan="3" >
+                        <property>
+                            <name>name</name>
+                            <cstring>Spacer1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>sizeType</name>
+                            <enum>Expanding</enum>
+                        </property>
+                        <property>
+                            <name>sizeHint</name>
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget row="7"  column="1"  rowspan="1"  colspan="3" >
+                        <class>QComboBox</class>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>Errors</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>Warnings</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>Informational</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>Debug</string>
+                            </property>
+                        </item>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>loggingLevel</cstring>
+                        </property>
+                    </widget>
+                    <widget row="6"  column="0" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>displayMessage</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Display &amp;messages using:</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>When enabled, server error, warning, and informational messages will be displayed using this external program.</string>
+                        </property>
+                    </widget>
+                    <widget row="7"  column="0" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>loggingLabel</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Message Display:</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>This controls the level of messages that are output by the sound server. Only messages at the selected level and above will be reported.</string>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget>
+                <class>QWidget</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>soundIO</cstring>
+                </property>
+                <attribute>
+                    <name>title</name>
+                    <string>Sound I/O</string>
+                </attribute>
+                <grid>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget row="4"  column="0"  rowspan="1"  colspan="3" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>customRate</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Use custom s&amp;ampling rate:</string>
+                        </property>
+                    </widget>
+                    <widget row="4"  column="3" >
+                        <class>QLineEdit</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>samplingRate</cstring>
+                        </property>
+                    </widget>
+                    <widget row="1"  column="0"  rowspan="1"  colspan="4" >
+                        <class>KSeparator</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>Line2</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Horizontal</enum>
+                        </property>
+                    </widget>
+                    <widget row="6"  column="3" >
+                        <class>QComboBox</class>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>Autodetect</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>16 bits (high)</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>8 bits (low)</string>
+                            </property>
+                        </item>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>soundQuality</cstring>
+                        </property>
+                    </widget>
+                    <widget row="6"  column="0"  rowspan="1"  colspan="3" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>soundQualityLabel</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Sound quality:</string>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="0" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>audioIOLabel</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Sound I/O method:</string>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="2"  rowspan="1"  colspan="2" >
+                        <class>QComboBox</class>
+                        <item>
+                            <property>
+                                <name>text</name>
+                                <string>Autodetect</string>
+                            </property>
+                        </item>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>audioIO</cstring>
+                        </property>
+                    </widget>
+                    <widget row="9"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>TextLabel5</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>If you are using a Yamaha soundcard, you might need to set the sampling rate to 48000 Hz.</string>
+                        </property>
+                        <property stdset="1">
+                            <name>alignment</name>
+                            <set>WordBreak|AlignVCenter|AlignLeft</set>
+                        </property>
+                        <property>
+                            <name>wordwrap</name>
+                        </property>
+                    </widget>
+                    <spacer row="8"  column="1" >
+                        <property>
+                            <name>name</name>
+                            <cstring>Spacer3</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Vertical</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>sizeType</name>
+                            <enum>Expanding</enum>
+                        </property>
+                        <property>
+                            <name>sizeHint</name>
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget row="7"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QGroupBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>GroupBox1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>title</name>
+                            <string> Audio buffer size (response time) </string>
+                        </property>
+                        <grid>
+                            <property stdset="1">
+                                <name>margin</name>
+                                <number>11</number>
+                            </property>
+                            <property stdset="1">
+                                <name>spacing</name>
+                                <number>6</number>
+                            </property>
+                            <widget row="2"  column="1" >
+                                <class>QLabel</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>TextLabel9_2</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>text</name>
+                                    <string>&lt;ul&gt;
+&lt;li&gt;low CPU usage&lt;/li&gt;
+&lt;li&gt;slow response&lt;/li&gt;
+&lt;li&gt;less dropouts&lt;/li&gt;
+&lt;/ul&gt;</string>
+                                </property>
+                                <property stdset="1">
+                                    <name>alignment</name>
+                                    <set>AlignVCenter|AlignRight</set>
+                                </property>
+                                <property>
+                                    <name>hAlign</name>
+                                </property>
+                            </widget>
+                            <widget row="1"  column="0"  rowspan="1"  colspan="2" >
+                                <class>QSlider</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>latencySlider</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>minValue</name>
+                                    <number>10</number>
+                                </property>
+                                <property stdset="1">
+                                    <name>maxValue</name>
+                                    <number>500</number>
+                                </property>
+                                <property stdset="1">
+                                    <name>pageStep</name>
+                                    <number>10</number>
+                                </property>
+                                <property stdset="1">
+                                    <name>value</name>
+                                    <number>150</number>
+                                </property>
+                                <property stdset="1">
+                                    <name>orientation</name>
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property stdset="1">
+                                    <name>tickmarks</name>
+                                    <enum>Right</enum>
+                                </property>
+                                <property stdset="1">
+                                    <name>tickInterval</name>
+                                    <number>20</number>
+                                </property>
+                            </widget>
+                            <widget row="2"  column="0" >
+                                <class>QLabel</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>TextLabel9</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>text</name>
+                                    <string>&lt;ul&gt;
+&lt;li&gt;high CPU usage&lt;/li&gt;
+&lt;li&gt;fast response&lt;/li&gt;
+&lt;li&gt;more dropouts&lt;/li&gt;
+&lt;/ul&gt;</string>
+                                </property>
+                            </widget>
+                            <widget row="0"  column="0"  rowspan="1"  colspan="2" >
+                                <class>QLabel</class>
+                                <property stdset="1">
+                                    <name>name</name>
+                                    <cstring>latencyLabel</cstring>
+                                </property>
+                                <property stdset="1">
+                                    <name>text</name>
+                                    <string>Latency: 150 milliseconds (7 fragments, 4096 bytes)</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget row="3"  column="3" >
+                        <class>QLineEdit</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>deviceName</cstring>
+                        </property>
+                    </widget>
+                    <widget row="5"  column="0"  rowspan="1"  colspan="3" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>customOptions</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Other custom options:</string>
+                        </property>
+                    </widget>
+                    <widget row="5"  column="3" >
+                        <class>QLineEdit</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>addOptions</cstring>
+                        </property>
+                    </widget>
+                    <widget row="2"  column="0"  rowspan="1"  colspan="4" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>fullDuplex</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>Enable full &amp;duplex operation</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>This enables the soundserver to record and play sound at the same time. If you use applications like internet telephony, voice recognition or similar, you probably want this.</string>
+                        </property>
+                    </widget>
+                    <widget row="3"  column="0"  rowspan="1"  colspan="3" >
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>customDevice</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Use custom sound device:</string>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+</UI>

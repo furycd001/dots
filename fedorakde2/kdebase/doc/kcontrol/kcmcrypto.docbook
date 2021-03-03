@@ -1,0 +1,56 @@
+<sect1 id="crypto">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-11-23</date>
+<releaseinfo>1.00.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>crypto</keyword>
+<keyword>SSL</keyword>
+<keyword>encryption</keyword>
+
+</keywordset>
+</sect1info>
+<title>Encryption Configuration</title>
+
+<sect2 id="crypto-intro">
+<title>Introduction</title>
+<para>Many applications within KDE are capable of exchanging information using
+encrypted files and or network transmissions.</para>
+</sect2>
+<sect2 id="crypto-use">
+<title>Use</title>
+<warning><para>All encryption schemes are only as strong as their weakest link. 
+In general, unless you have some previous training/knowledge, it is better to
+leave this module unchanged.</para></warning>
+
+<para>The options within this module can be divided into two groups.</para>
+<para>Two options along the bottom of the module <guilabel>Warn on entering SSL
+Mode</guilabel> and <guilabel>Warn on leaving SSL mode</guilabel>, allow you to
+determine if KDE should inform you when you enter or leave SSL encryption.</para>
+<para>The remainder of the options are about determining which encryption
+methods to use, and which encryption methods should not be used. Once you have
+selected the appropriate encryption protocolls, simply click
+<guibutton>Apply</guibutton> to commit your changes.</para>
+<tip><para>Only make changes to this module if specific information about the
+strength or weakness of a particular encryption method is given to you from
+<emphasis>a reliable source</emphasis>.</para></tip>
+
+</sect2>
+<sect2 id="crypto-author">
+<title>Section Author</title>
+<para>This section written by Mike McBride <email>mpmcbride7@yahoo.com</email>. </para>
+
+</sect2>
+</sect1>
+

@@ -1,0 +1,20 @@
+<article lang="&language;" id="bzip2">
+<title>bzip2</title>
+
+<para>Bzip2 is a compression program</para>
+
+<para>The bzip2 kioslave is not directly usable, and is intended for use
+as a filter.  For example, the tar kioslave can filter a file through
+the bzip2 kioslave, in order to display the contents of a <literal
+role="extension">tar.bz2</literal> file directly in a &konqueror;
+window.</para>
+
+<para>If you click on a file compressed with a <literal
+role="extension">.bz2</literal> in &konqueror;, this kioslave is used to
+uncompress it and display it as a normal (uncompressed) file.</para>
+
+<para>If you are a developer, and would like to use the bzip2 filter,
+you can find documentation on using kioslaves at <ulink
+url="http://developer.kde.org">http://developer.kde.org</ulink></para>
+
+</article>

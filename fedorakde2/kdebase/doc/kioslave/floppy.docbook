@@ -1,0 +1,41 @@
+<article lang="&language;" id="floppy">
+<title>Floppy</title>
+
+<para>
+The floppy ioslave gives you easy access to the floppy disk drives 
+installed on your system.
+</para>
+
+<para>
+The drive letter becomes the first subdirectory 
+in the floppy &URL;. Let's say there is a file <filename>logo.png</filename> on your floppy 
+disk in drive A, then the &URL; will be <userinput><command>floppy:</command><replaceable>/a/logo.png</replaceable></userinput>
+</para>
+
+<para>
+If you want to access drive B, <userinput><command>floppy:/b</command></userinput> will do it.
+<command>floppy:/</command> is a shortcut for <command>floppy:/a</command>.
+</para>
+
+<note><para>Note that <command>floppy:/logo.png</command> means you have a disk drive 
+named <filename>logo.png</filename>.</para></note>
+
+<para>
+To use it you need to have the mtools package
+installed, and the floppy ioslave supports everything the various mtools 
+command line utilities support. You don't have to mount your floppy disks, 
+simply enter <userinput>floppy:/</userinput> in any &kde; 2.x app and you are able to 
+read and write from your floppy drive.</para>
+
+<para>
+According to the mtools documentation ZIP and JAZ drives are also supported,
+you could try <command>floppy:/z</command> and <command>floppy:/j</command> to access them.
+Due to missing hardware this is not tested.</para>
+
+<para>Currently it is only possible to access one floppy drive exactly once at a moment,
+it is not possible to read and write at the same time on the same floppy.</para>
+
+<para>Author: Alexander Neundorf <email>neundorf@kde.org</email></para>
+
+</article>
+

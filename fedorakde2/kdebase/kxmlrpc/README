@@ -1,0 +1,210 @@
+                        The KDE XmlRpc Daemon
+
+                   Kurt Granroth <granroth@kde.org>
+                          November 12, 1999
+                        (revised May 23, 2001)
+
+Executive Description
+---------------------
+This document describes the KDE XmlRpc Daemon (kxmlrpcd).  This daemon
+permits a client implemented in nearly  any language (python, perl,
+java, etc) on nearly any platform (unix, windows, macos, etc) to
+access KDE DCOP clients (servers).  Neither the client nor the server
+need any modifications (or any extra knowledge) to take advantage of
+this.  Since most KDE applications are or will soon be DCOP client/
+servers, this effectively means that all KDE apps can be remotely
+manipulated (scripted) by any language on any platform.
+
+Background
+==========
+XmlRpc is a standard way of implementing remote procedure calls (RPC)
+using XML and HTTP.  It's goals are to use "commodity" tools for
+everything so that implementation is as simple as possible.  To
+accomplish this, it uses XML to mark up all of the method calls (and
+parameters) as well as the return values.  It then uses HTTP to
+transfer the method call.
+
+The advantage of this approach is that nearly every single decent
+language (scripting or otherwise) has free and easy to use XML parsers
+and HTTP clients.  This makes implementation relatively easy for most
+parts of XmlRpc.  Since it is so easy to implement, there are clients
+and servers for many languages with more coming at a pretty constant
+rate.
+
+Please check out http://www.xmlrpc.com for more info (including the
+spec and a list of clients and servers)
+
+The Problem
+-----------
+XmlRpc seems to be a wonderful way of doing simple remote access to
+KDE applications.  My original plan was to have all KDE apps that
+wanted such access to embed an XmlRpc server.  While this would have
+worked, it probably wouldn't have had all that many takers... at least
+at first.  And after DCOP was introduced, it became obvious that
+application authors wouldn't want to implement the remote functions
+for both XmlRpc and DCOP.
+
+The Solution
+------------
+The DCOP library has one huge advantage over XmlRpc.. it is linked to
+every single KDE application.  This means that many many apps will
+have remote functionality in DCOP if only because it is so incredibly
+easy to use.  I decided to exploit this popularity by creating an
+XmlRpc to DCOP "gateway".  That is, all incoming XmlRpc requests will
+be "translated" to DCOP.. and vice versa
+
+The KDE XmlRpc Daemon
+=====================
+The result was the KDE XmlRpc Daemon (kxmlrpcd).  It is essentially a
+web server running on a (somewhat) random port.  It is both an XmlRpc
+server and a DCOP client.
+
+A typical scenerio looks this: 
+
+xmlrpc client                 kxmlrpcd            dcop client
+     |<=========================>|<===================>|
+              (XmlRpc)                   (DCOP)
+
+The dcop client is registered as 'testDCOP' and has an object name
+'test'.
+
+The XmlRpc client sends a methodCall to the daemon at the URL
+'http://localhost:<port>/testDCOP' with a methodName of
+'test.function' and two strings as params.  The daemon accepts this
+request and "translates" it into DCOP by converting the XmlRpc params
+into Qt types (QString, in this case) and serializing them into a
+QDataStream.  It then will call the dcop client and await a response.
+Once the response comes back from the dcop client, it packages it back
+up as XmlRpc and returns the result to the xmlrpc client.
+
+Note that the XmlRpc client does not know that it is interacting with
+a DCOP client at all.  It thinks that the server is kxmlrpcd.
+Likewise, the DCOP client thinks that it is communicating entirely
+with another DCOP client called 'kxmlrpcd'.
+
+Authentication
+--------------
+Originally, the daemon ran on a fixed port (6242) and accepted all
+requests.  This has two potentially serious problems with it.
+Specifically, the fixed port meant that only *one* person on every
+computer could run the daemon.  This is unacceptable for shared
+computers.
+
+The more serious problem was one of authentication.  That is, there
+was none.  That means that *anybody* on any machine anywhere on the
+'net could directly access your DCOP objects as if they were you.
+This is a terrible security risk!
+
+The way the daemon gets around these problems is to store a (somewhat)
+random port number AND an "authentication token" (seperated by a
+comma) in the file $HOME/.kxmlrpcd.  The token is a 16 byte string of
+random ASCII characters.  This token needs to be included in every
+methodCall as the first string parameter.  If it is NOT the first
+string parameter, then the server will reject the request.
+
+The port number is not truly random, though.  It starts at 18300 and
+will go to 19300.  This should allow network admins to better
+configure their firewall, if necessary.
+
+This method has the advantage of putting the "real" authentication out
+of the realm of the daemon.  This is because it is the client's
+responsibility to get the auth token in the first place.  In order for
+this to happen, the user would have had to go through some means of
+strong authentication already (logging in, mounting a shared drive,
+etc).
+
+There are still at least two ways that this level of security could be
+circumvented.  The easiest way would probably involve packet sniffing
+to just read the auth token as it goes past.  The only way around this
+is to involve something like ssh or ssl... neither of which I'm
+willing to do as they involve crypto -- a scary topic when you're
+working on an international project.
+
+The second way is to just brute force the token.  However, since there
+are 79^16 possible combinations, doing so would take effectively
+forever even at 1000 trys per second (unlikely)
+
+Ease of Use
+-----------
+You may be asking "is it really all that easy to use".  The answer is
+"yes".  Check out the python and Bourne shell scripts in the 'test'
+directory for examples of it.  And yes, you read that right -- you can
+use a plain old shell script to remotely access (script) all KDE
+applications!
+
+Limitations of This Approach
+----------------------------
+This approach is great in the sense that neither the client nor the
+server need to add any code in order to take advantage of this.
+However, this means that there must necessarily be some limitations on
+it's use.
+
+o It is not possible to use Qt types directly
+
+  The only types that are usable are those that have a direct mapping
+  between the XmlRpc type and the Qt type.  Those are:
+
+  ----------------------------------------
+  XmlRpc        Qt/C++
+  ------    =>  ------
+  <int>         int
+  <boolean>     bool
+  <string>      QString (See Unicode)
+  <double>      double
+  <dateTime>    QDateTime
+  <base64>      QByteArray
+  <struct>      QMap (See limited types)
+  <array>       QArray (See limited types)
+
+  ----------------------------------------
+
+  Note that types such as QPixmap, QList, etc are not allowed
+
+o Unicode support is iffy
+
+  I don't know how well Unicode is supported in XML.  As a percaution,
+  I am using QStrings everywhere... but I really don't know if it's
+  worth it.
+
+o <struct> and <array> is severly restricted  
+
+  As described in the XmlRpc spec, structs and arrays can have any
+  number of different types.. including recursive structs and arrays.
+  Unfortunately, there is no way to easily map such structures into
+  C++ types as C++ lacks a simple way to create dynamic types on the
+  fly.
+
+  It is possible to use <struct> and <array> IF the following
+  two restrictions are followed:
+
+  1) Each <struct> or <array> can contain exactly ONE typeo
+  and
+  2) <struct> and <array> may NOT contain other structs or arrays.
+     They may contain only the other simple types
+
+Current Status
+==============
+This section will hopefully be kept up to date as to the current
+status of this daemon.
+
+Current Status as of Oct 25, 1999
+---------------------------------
+Types:
+<int>      -  Fully implemented
+<double>   -  Fully implemented
+<string>   -  Fully implemented
+<boolean>  -  Fully implemented
+<base64>   -  Fully implemented
+<dateTime> -  Fully implemented (YYYYMMDDTHH:MM:SS, at least)
+<struct>   -  Fully implemented / partially tested
+<array>    -  Fully implemented / partially tested
+
+Bugs/Missing Features:
+o There is a memory leak in kxmlrpcserver.. but I can't find it :-( 
+  UPDATE: FOUND IT!  It's a leak in QDomDocument
+o The server 'shutdown()' function doesn't quite work right
+o Each incoming request takes a separate connection... it should use
+  'keepalive' if possible
+o Need either a client library OR a way to translate DCOP requests
+  (not just responses) into XmlRpc
+o This document isn't nearly complete

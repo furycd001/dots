@@ -1,0 +1,614 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+<chapter id="install">
+<title>Installation instructions</title>
+
+<para>These are the generic installation instructions for the K
+Desktop Environment.  Please complement your reading with the
+<filename>README</filename>s and <filename>INSTALL</filename>s that
+come along with the package.  Please read them carefully and try to
+help yourself out if anything goes wrong.  If you need further
+assistance, consider joining the &kde; mailing lists
+(see our web site instructions for joining the &kde;
+<ulink url="http://www.kde.org/mailinglists.html">mailing
+lists</ulink>) or newsgroups.</para>
+
+
+<qandaset>
+
+
+<qandaentry>
+<question>
+<para>To the would-be converts</para>
+</question>
+<answer>
+<para>So you have heard the rumors. Or you have seen the
+screenshots.  And you are dying to get hold of &kde;.  But you know
+next to nothing about this whole "alternative OS" business.  Don't
+worry!  You only need to do some (well, maybe not some) reading,
+that's all!</para>
+<para>&kde; does not run on &Windows; 95/98/NT or OS/2 (yet).  To run
+&kde;, you need to have a &UNIX; system. Please refer to <xref
+linkend="platform"/> for more details.</para>
+
+<para>Decide for a platform and set it up for your system. This FAQ can not help you on this, since &kde;<ulink url=""> is running on many &UNIX;</ulink> platforms. </para>
+
+<!-- Taken out because we can not help with all platforms and KDEisnotLINUX -->
+
+<para>Finally, you are ready to commence the &kde; installation.
+Please start reading from the next section.  To get &kde;, please
+refer to <xref linkend="where-to-get-kde"/>.  Last but not least, if
+you encounter any problems while installing &kde;, please do not
+hesitate to make use of the &kde; <link 
+linkend="mailing-lists">mailing lists</link> and <link
+linkend="newsgroups">newsgroups</link>.  But do bear this in mind: no
+question is too silly to ask, but some are too silly to answer,
+especially when they are already answered in this <acronym>FAQ</acronym>.</para>
+<para>Good luck and have fun!</para>
+
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Available package formats</para>
+</question>
+<answer>
+<para>
+You can find several kinds of binary and source packages for different distributions
+and OS's on the <ulink url="ftp://ftp.kde.org/pub/kde/">KDE FTP server</ulink>.
+The binary packages are not made by the KDE Team, but by the distributors themself or some
+dedicated individuals. Please refer to <ulink 
+url="http://dot.kde.org/986933826/">KDE Package Policy Explained</ulink>
+for informations about the KDE Package Policy. The only "official" release are the
+source tar.bz2 packages. Please refer to the <filename>README</filename>s and <filename>INSTALL</filename>s in the several binaries directories. For a list of the available packages for a release refer to the according info page. For the latest release this is the 
+<ulink url="http://www.kde.org/info/2.2.1.html">&kde; 2.2.1 Info Page</ulink>.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="prerequisites">
+<para>Prerequisites</para>
+</question>
+<answer>
+<para>For &kde; 2.2.1, you need the &Qt; library version 2.2.4 or higher.
+Please make sure you download the correct &Qt;.
+You would also need the header files as well if you want to compile
+&kde; yourself.  They are all available at no cost from <ulink
+url="http://www.trolltech.com/products/download">http://www.trolltech.com/download</ulink>.
+In addition, there are optional libraries that might improve &kde; if
+installed on your system.  An example is OpenSSL which will enable
+&konqueror; to browse web pages securely and is needed in a version >=0.9.6. 
+These should be provided by your distributor, if not, ask for an update.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Description of the base packages</para>
+</question>
+<answer>
+<para>The base distribution currently consists of eleven
+packages.  Some are required, while others are optional.  Each package
+is available in each of the aforementioned package formats.</para>
+<variablelist>
+<varlistentry>
+<term>kdelibs</term>
+<listitem>
+<para>Required</para>
+<para>This package contains shared libraries that are needed by all
+&kde; applications.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdebase</term>
+<listitem>
+<para>Required</para>
+<para>This package contains the base applications that form the core
+of the K Desktop Environment like the window manager, the terminal
+emulator, the control center, the file manager, and the panel.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdeaddons</term>
+<listitem>
+<para>Optional</para>
+<para>Various plugins for kate, kicker, knewsticker, konqueror and noatun </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdeartwork</term>
+<listitem>
+<para>Optional</para>
+<para>Additional wallpapers, themes, styles, sounds ...</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdebindings</term>
+<listitem>
+<para>Optional</para>
+<para>Various bindings for i.e Java, Perl, Python, ...</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdegames</term>
+<listitem>
+<para>Optional</para>
+<para>Various games like mahjongg, snake, asteroids, and
+tetris.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdegraphics</term>
+<listitem>
+<para>Optional</para>
+<para>Various graphics-related programs like &PostScript; previewer,
+&DVI; previewer, and a drawing program.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdeutils</term>
+<listitem>
+<para>Optional</para>
+<para>Various desktop tools like a calculator, an editor and other
+nifty stuff.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdemultimedia</term>
+<listitem>
+<para>Optional</para>
+<para>Multimedia applications like a &CD; player and a mixer.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdenetwork</term>
+<listitem>
+<para>Optional</para>
+<para>Network applications.  Currently contains the mail program, the
+news reader, and several other network-related programs.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdeadmin</term>
+<listitem>
+<para>Optional</para>
+<para>System administration programs.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdetoys</term>
+<listitem>
+<para>Optional</para>
+<para>Toys!</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdevelop</term>
+<listitem>
+<para>Optional</para>
+<para>A complete Integrated Development Environment for &kde; and Qt</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+<para>kdelibs should be installed before everything else. The other packages 
+can be installed in any arbitrary order.</para>
+<!-- no kdesupport in releases anymore -->
+<!--
+<para>kdesupport (if needed) should be installed before everything
+else.  The next (or first) package should be kdelibs.  The other
+packages can be installed in any arbitrary order.</para>
+-->
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Installation instructions for the different package
+formats</para>
+</question>
+<answer>
+<para><important>
+<para>Please do not forget to read the <filename>README</filename> and <filename>INSTALL</filename> files if they are available.</para>
+</important></para>
+<variablelist>
+<varlistentry>
+<term>Installation of the Debian packages</term>
+<listitem>
+<para>The Debian packages install according to the upcoming FHS (File
+Hierarchy Standard).</para>
+<procedure>
+<step performance="required"><para>become superuser</para></step>
+<step performance="required"><para>run <command>dpkg <option>-i
+<replaceable>packagename.deb</replaceable></option></command> for
+every package you want to install.</para></step>
+</procedure>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Installation of the <acronym>RPM</acronym> packages</term>
+<listitem>
+<procedure>
+<title>To install binary <acronym>RPM</acronym>s</title>
+<step performance="required"><para>become superuser</para></step>
+<step performance="required"><para>execute <command>rpm <option>-ivh
+<replaceable>packagename.rpm</replaceable></option></command></para></step>
+</procedure>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Installation of the source <filename>.tar.bz2</filename> files</term>
+<listitem>
+<para>Since there are always changes and updates to the way &kde; is compiled, please
+refer to <ulink url="http://www.kde.org/install-source.html">Download and Install from Source</ulink> for the most up to date installation instructions for the source packages. 
+</para>
+<para>The general approach should work in most cases though.
+</para>
+<para>The source <filename>.tar.bz2</filename> package installs into <filename
+class="directory">/usr/local/kde</filename> by default.  You can
+override this setting by using the <option>--prefix</option> option of
+the <filename>configure</filename> script.</para>
+<procedure>
+<step performance="required"><para>unpack the packages with <command>tar <option>xvf
+<replaceable>packagename.tar.bz2</replaceable></option></command></para></step>
+<step performance="required"><para>change directory to the package directory: <command>cd
+<replaceable>packagename</replaceable></command></para></step>
+<step performance="required"><para>configure the package: <command>./configure</command>
+<note><para>Some packages (notably kdebase) have special configuration
+options that might be applicable to your installation.  Type
+<command>./configure <option>--help</option></command> to see the
+available options.</para></note></para></step>
+<step performance="required"><para>build the package: <command>make</command></para></step>
+<step performance="required"><para>install the package: <command>su <option>-c "make
+install"</option></command> (if you aren't already root).  If you
+already are, just type <command>make
+<option>install</option></command>.</para></step>
+</procedure>
+</listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Post-installation procedures</para>
+</question>
+<answer>
+<para>First of all, please make sure that you have added &kde;'s binary
+installation directory (<abbrev>e.g.</abbrev> <filename
+class="directory">/opt/kde/bin</filename>) to your <envar>PATH</envar>
+and &kde;'s 
+library installation directory to your <envar>LD_LIBRARY_PATH</envar> (only
+necessary on systems that do not support rpath; on &Linux; &ELF;, it 
+should work without).  This environment variable may be called
+differently on some systems, <abbrev>e.g.</abbrev> it is called
+<envar>SHLIB_PATH</envar> on &IRIX;.  Then set the environment variable
+<envar>KDEDIR</envar> to the base of your &kde; tree, <abbrev>e.g.</abbrev> <filename
+class="directory">/opt/kde</filename>.
+<caution>
+<para>Please bear in mind that it is unwise to set
+<envar>LD_LIBRARY_PATH</envar> blindly.  In the vast majority of cases it is
+unnecessary and can do more harm than good.  There is a web page
+written by <ulink url="mailto:barr@cis.ohio-state.edu">Dave
+Barr</ulink> explaining the evils of <envar>LD_LIBRARY_PATH</envar> and it can be
+found at <ulink
+url="http://www.cis.ohio-state.edu/~barr/ldpath.html">http://www.cis.ohio-state.edu/~barr/ldpath.html</ulink>.</para>
+</caution>
+</para>
+<para>Even though you can use most of the &kde; applications simply by
+calling them, you can only benefit fully from &kde;'s advanced
+features if you use the &kde; window manager and its helper
+programs.</para>
+<para>In order to make it easy for you, we have provided a simple
+script called <filename>startkde</filename> which gets installed in <filename
+class="directory">$<envar>KDEDIR</envar>/bin</filename> and is therefore in your
+path.</para>
+<para>Edit the file <filename>.xinitrc</filename> in your home directory (make a backup
+copy first!), remove everything that looks like calling a window
+manager, and insert <command>startkde</command> instead.  Restart the &X-Windows;.  If you use
+&kdm;/<application>xdm</application>, you will have to edit the file <filename>.xsession</filename> instead of
+<filename>.xinitrc</filename>.  And if there is no <filename>.xinitrc</filename> or <filename>.xsession</filename> in your home
+directory, simply create a new one with just one line containing
+<command>startkde</command>.
+<note>
+<para>Some systems (notably &RedHat; &Linux;) use <filename>.Xclients</filename>
+instead.</para>
+</note></para>
+<para>This should present you with a new shining &kde; desktop.  You
+can now start to explore the wonderful world of &kde;.  In case you
+want to read some documentation first, there is a highly recommended 
+<ulink
+url="http://www.kde.org/documentation/quickstart/index.html">Quick Start
+guide</ulink> available.  Furthermore, every application has an online
+help that is available via the help menu.</para>
+</answer>
+</qandaentry>
+
+
+<qandaentry>
+<question>
+<para>Should I remove old version xyz before installing a new
+one?</para>
+</question>
+<answer>
+<para>In principle, this is not necessary.  <acronym>RPM</acronym> and Debian packages
+should take care of all dependencies.</para>
+<para>If you compile the source code yourself, you might take care not
+to compile different versions of the &kde; packages.  So if you
+install a new version, please first make and install kdesupport, then
+kdelibs, then kdebase.</para>
+<para>One thing you should avoid: installing two or more versions of
+&kde; in parallel.  This might happen if you specify a 
+different target directory for one version than for the other.  The
+result may be unpredictable.  The same is true if you have different
+versions of &Qt; installed at the same time.  This happens easily if you
+already have an old &Qt; version installed with a &Linux;
+distribution.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="startkde">
+<para>How do I start &kde;?</para>
+</question>
+<answer>
+<para>The most comfortable method to start &kde; is to use the
+<filename>startkde</filename> script.  Simply put the line <command>startkde</command> at the end of your
+<filename>.xsession</filename> file (or your <filename>.xinitrc</filename> or <filename>.Xclients</filename> file if you are not
+using &kdm; or <application>xdm</application>).  Please also remove the lines that 
+start your previous window manager.  If there is no <filename>.xsession</filename>,
+<filename>.xinitrc</filename>, or <filename>.Xclients</filename> in your home directory, simply create a new
+one that just contain one line saying <command>startkde</command>.</para>
+</answer>
+</qandaentry>
+<!-- Still needed?
+<qandaentry>
+<question>
+<para>Whenever I start &kde;, it complains about "shadow passwords".
+Why?</para>
+</question>
+<answer>
+<para>When your system uses shadow passwords, the screensaver can only
+run properly if the suid bit is set.  This bit gives the screensavers
+root privileges, which are needed to access the shadow passwords.
+<caution><para>The screensavers might be configured to secure the
+machine until the password is entered.</para></caution></para>
+<procedure>
+<title>Setting the suid bit on the screensavers</title>
+<step performance="required"><para>become root</para></step>
+<step performance="required"><para><command>chown root
+$<envar>KDEDIR</envar>/bin/*.kss</command></para></step>
+<step performance="required"><para><command>chmod u+s
+$<envar>KDEDIR</envar>/bin/*.kss</command></para></step>
+</procedure>
+<para>Alternatively, if you compile &kde; from source, you can use
+<command>./configure <option>with-shadow</option></command> to
+configure kdebase.  Then the suid bit is set automatically during
+<command>make install</command>.</para>
+</answer>
+</qandaentry>
+-->
+<qandaentry>
+<question>
+<para>Is it possible to install &kde; in a user directory?</para>
+</question>
+<answer>
+<para>Yes, you can install &kde; in any directory you want.  What you
+have to do depends on the kind of packages you want to install:</para>
+<procedure><title>Source packages</title>
+<step performance="required"><para>Configure and install the package using <command>configure
+<option>--prefix=<replaceable>/users/myhome/kde</replaceable></option>;
+make; make install</command> to install into <filename
+class="directory">/users/myhome/kde</filename>.</para></step>
+<step performance="required"><para>Add the following to your init files.  Please note that if
+it is not necessary for you to set <envar>LD_LIBRARY_PATH</envar>, it
+is better to leave it out.</para>
+
+<para>For csh or tcsh:</para>
+<programlisting>
+setenv KDEDIR /users/myhome/kde
+
+if ( $?LD_LIBRARY_PATH ) then
+   setenv LD_LIBRARY_PATH $KDEDIR/lib:$LD_LIBRARY_PATH
+else
+   setenv LD_LIBRARY_PATH $KDEDIR/lib
+endif
+
+if ( ! $?LIBRARY_PATH ) then
+   setenv LIBRARY_PATH $LD_LIBRARY_PATH
+endif  
+</programlisting>
+<para>For <application>bash</application>:</para>
+<programlisting>
+KDEDIR=/users/myhome/kde
+PATH=$KDEDIR/bin:$PATH
+LD_LIBRARY_PATH=$KDEDIR/lib:$LD_LIBRARY_PATH
+LIBRARY_PATH=$LD_LIBRARY_PATH
+export KDEDIR PATH LD_LIBRARY_PATH LIBRARY_PATH
+</programlisting></step>
+</procedure>
+<procedure><title><acronym>RPM</acronym> packages</title>
+<step performance="required"><para><command>rpm</command> allows you to use the
+<option>--prefix</option> option to select the directory you want to
+install to.  For example, executing <command>rpm <option>-i
+--prefix=<replaceable>/users/myhome/kde
+package.rpm</replaceable></option></command> will install the package
+to <filename
+class="directory">/users/myhome/kde</filename>.</para></step>
+</procedure>
+<para><note>
+<para>Although &kde; will run from a user directory, there are some
+problems with programs that require suid root, <abbrev>e.g.</abbrev> the programs in
+the kdeadmin package.  But since they are not meant to be run by users
+in the first place, this is nothing to worry about.</para>
+<para>However, on systems using shadow passwords, the screensavers
+have to be suid root to enable password access for unlocking the
+screen, so this option will not work.</para>
+</note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para><command>startkde</command> fails with <errorname>can not connect to X
+server</errorname>.  What is wrong?</para>
+</question>
+<answer>
+<para>You probably tried to start the X server with <command>startkde</command>.  The X
+server is started with <command>startx</command>.
+<command>startkde</command> is the 
+script that should be run from your <filename>.xinitrc</filename>, <filename>.xsession</filename>, or
+<filename>.Xclients</filename> to activate the window manager and the necessary server
+daemons for &kde;.  See also <xref linkend="startkde"/>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kde; on &AIX;?</para>
+</question>
+<answer>
+<para>If you have trouble building &kde; on
+&AIX; check out Stefan Westerfeld's <ulink
+url="http://space.twc.de/~stefan/kde/aix.html">Running &kde; on
+Aix</ulink> page for lots of help on building &kde; on this
+exceptional &UNIX; variant.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kde; on a laptop?</para>
+</question>
+<answer>
+<para>If you can get the &X-Windows; to run, you should not have any problem
+getting &kde; to run on it.  In addition, you might find the following
+links helpful:</para>
+<itemizedlist>
+<listitem>
+<para><ulink url="http://www.linux-laptop.net/">http://www.linux-laptop.net/</ulink></para>
+</listitem>
+<listitem>
+<para><ulink url="http://www.sanpei.org/Laptop-X/note-list.html">http://www.sanpei.org/Laptop-X/note-list.html</ulink></para>
+</listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>I do not like the default &kde; directory after installation.  How
+do I move it without breaking anything?</para>
+</question>
+<answer>
+<para>Assuming the default is <filename
+class="directory">/opt/kde</filename> and you want to move it to
+<filename class="directory">/usr/local/kde</filename>, here's what
+you have to do:</para>
+<procedure>
+<step performance="required"><para>change to superuser if you aren't already</para></step>
+<step performance="required"><para><command>mv /opt/kde /usr/local/kde</command></para></step>
+<step performance="required"><para><command>ln -s /usr/local/kde
+/opt/kde</command></para></step>
+</procedure>
+<para>This will put all your &kde; files in <filename
+class="directory">/usr/local/kde</filename> but everything is
+still accessible from <filename
+class="directory">/opt/kde</filename>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What files can I delete from my &kde; install directory?  Can all the
+<filename>*.h</filename>, <filename>*.c</filename> and <filename>*.o</filename>
+files be safely removed?</para>
+</question>
+<answer>
+<para>There should not be any need to keep the <filename>.c</filename> and
+<filename>.o</filename> files, but you might want to keep the
+<filename>.h</filename> files, as they are used by includes if you ever want to
+compile your own &kde; programs.  But if you wish to add patches to the source
+programs as they become available (rather than downloading everything again),
+then they should stay.</para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Will I lose my current settings when I upgrade &kde;?</para>
+</question>
+<answer>
+
+
+<para>There are mixed reports of results when moving to &kde; 2.2.x from
+&kde; 2.0.  Settings are kept in the <filename class="directory">.kde</filename> or 
+<filename class="directory">.kde2</filename> subdirectory in your home
+directory.  There have been some changes to settings both globally and
+inside each application.  For best results we suggest you copy your
+old <filename class="directory">.kde</filename>/<filename class="directory">.kde2</filename> directory to a backup location, install &kde; 2.2.1, and
+then copy back any necessary mail and news settings. That said, there are 
+reports of direct upgrades without removing the old <filename class="directory">.kde</filename>
+directory happening without a hitch.  Your mileage may vary.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Compiling kdebase gives me a <errorname>bin/sh: msgfmt: command
+not found</errorname> error!</para>
+</question>
+<answer>
+<para>You need the <acronym>GNU</acronym> <application>msgfmt</application> which is
+part of the <acronym>GNU</acronym> i18n package <application>gettext</application>.
+You should be able to download it from any decent
+<acronym>GNU</acronym> mirrors.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I uninstall &kde; applications compiled from
+scratch?</para>
+</question>
+<answer>
+<para>You can uninstall your programs by typing <command>make
+uninstall</command> in the directory where you did <command>make
+install</command>.  If you have already nuked away that directory,
+then there is only one way, and it is not good: go to <filename
+class="directory">$<envar>KDEDIR</envar>/bin</filename> and start deleting files
+one by one.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="gif">
+<para>What is up with &GIF; support?</para>
+</question>
+<answer>
+<para>This has something to do with Unisys' &LZW; patent.  &GIF;
+support is turned off from &Qt; 1.44 onwards by default. When you want to use
+&GIF;s and have the according license, recompile &Qt; with &GIF; support.
+<command>./configure <option>-gif</option></command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I install &kde; themes?</para>
+</question>
+<answer>
+<para>
+There is a Theme Manager in &kde; 2.2.1, so please refer to the <application>Control Center</application> Help for further reference, or look at <ulink url="http://kde.themes.org/">kde.themes.org</ulink> for KDE2 themes.
+</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>

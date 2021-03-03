@@ -1,0 +1,312 @@
+<sect1 id="panel">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<author>
+<firstname>Jost</firstname>
+<surname>Schenck</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>panel</keyword>
+</keywordset>
+</sect1info>
+
+<title>Panel</title>
+
+<sect2 id="panel-intro">
+<title>Introduction</title>
+<para>
+The &kde; panel (often referred to as &kicker;) is the bar that you'll
+usually find at the bottom of the screen when you start up &kde; for the
+first time. <!-- FIXME: reference to the kicker manual --> The panel
+gives you quick access to applications and makes it easier for you to
+organize your desktop. Using the &kde; panel you can for example
+</para>
+
+<itemizedlist>
+<listitem><para>launch applications using the <guimenu>K</guimenu> menu or
+the application buttons</para></listitem>
+<listitem><para>switch desktops using the panel's pager applet</para>
+</listitem>
+<listitem><para>switch active windows, and minimize or maximize them</para>
+</listitem>
+<listitem><para>browse directory using the browser menu functionality
+</para></listitem>
+<listitem><para>access panel applets that extend the panel's functionality,
+offering for example mixers, clocks or a system monitor</para> </listitem>
+</itemizedlist>
+
+</sect2>
+
+<sect2 id="panel-position">
+<title>Position</title>
+
+<para>In the <guilabel>Position</guilabel> tab you can configure some
+basic functionality of the &kde; panel (&ie; functionality you'd find in
+other panel applications as well; later we'll come to the more
+interesting features).</para>
+
+<para>In the <guilabel>Panel Location</guilabel> frame you can choose
+which screen border the panel should be attached to. Please note that
+usually the available space is used more efficiently if the panel is
+aligned horizontally, &ie; attached to the top or bottom screen
+border. If you want to play around with different settings you can
+change the panel's position even easier by dragging the panel from one
+border to the other.</para>
+
+<para>The panel's size can be tiny, small, medium or large. Depending on
+which applets you use you may find that some applets work better at
+different panel sizes.</para>
+
+<para>Depending on your screen resolution you may find that the panel
+takes away too much of your precious screen real estate. To save screen
+space, the panel offers an auto hide feature. When this feature is
+enabled, the panel will hide when the mouse cursor has not been moved
+over it for a configurable amount of time. If you move the mouse to the
+panel's screen border it will show up again. Check the <guilabel>Enable
+automatic hide</guilabel> option in the <guilabel>Automatic
+Hide</guilabel> frame to enable this feature. Using the <guilabel>Delay
+in seconds</guilabel> slider you can configure the amount of time the
+panel will wait before it hides.</para>
+
+<para>You can also set the panel to be less than the desktop height or
+width.  Use the slider, or set a percentage directly in the
+spinbox.</para>
+
+<para>As you might imagine, this will result in &kicker; sometimes
+having more entries than it can fit into the space you have allowed it.
+In this case, you will find your panel has scrollbuttons on the end, and
+you need to scroll the panel to see all of it.</para>
+
+<para>The <guilabel>Expand to fit required size</guilabel> checkbox will
+enable &kicker; to always take enough space to display all it's icons,
+even if this is more than the percentage you have set to be used.</para>
+
+<para>Note that if you do this, you then can still set a smaller
+percentage than the amount of space &kicker; requires to show all the
+currently visible items, but it will be ignored.  If you want to make
+&kicker; smaller, you should reduce it's size above in the
+<guilabel>Panel Size</guilabel> section.</para>
+
+<para><guilabel>Preferred terminal application</guilabel> is the default
+terminal program to be used by the QuickBrowser when you select
+<guilabel>Open in Terminal</guilabel>.  It's very likely you don't need
+to change this option.</para>
+
+</sect2>
+
+<sect2 id="panel-hiding">
+<title>Hiding</title>
+
+<para>When the panel's hide buttons are enabled you'll see a button on
+the right hand side of the panel (by default), with an arrow pointing to
+the screen border. If you click on this button, the panel will slide
+away in that direction.  After that, you'll see just a show button in
+that corner, which will make the panel show again.</para>
+
+<para>The default setting is to have only <guilabel>Enable right/bottom
+hide button</guilabel> checked.  You can check the other box to
+<guilabel>Enable left/top hide button</guilabel>.  You can have both
+hide buttons enabled at once, or you can turn both of them off.</para>
+
+<para>Using the <guilabel>Manual Hide Animation</guilabel> (for the hide
+buttons) and <guilabel>Auto Hide Animation</guilabel> (for the auto hide
+functionality) options you can configure whether the panel will softly slide
+away or just disappear. You can enable or disable both animations using the
+<guilabel>Enable</guilabel> options and you can change the speed of the
+animation using the sliders.</para>
+
+</sect2>
+
+<sect2 id="panel-looknfeel">
+<title>Look &amp; Feel</title>
+
+<para>Using the <guilabel>Look &amp; Feel</guilabel> tab you can
+configure the panel's overall appearance.</para>
+
+<para>The &kde; panel supports so-called <quote>tiled buttons</quote>. This means
+that the buttons shown on the panel will be drawn using configurable images. To
+enable button tiling, check the <guilabel>Enable background tiles</guilabel>
+option in the <guilabel>Buttons</guilabel> tab. Then you can configure tiles for
+certain kinds of buttons.</para> 
+
+<para>For every kind of panel button there's a frame offering an
+<guilabel>Enabled</guilabel> option to enable or disable tiled images. If tiles
+are enabled for this kind of button, you can choose a tile in the combo box
+below and the box on the right will show a preview of this tile.</para>
+
+<!-- Don't understand all of those. Maybe add this later or maybe it's not
+all that important, as users will just try.
+
+<para>The different kinds of buttons are:</para>
+
+<itemizedlist>
+<listitem><para></para></listitem>
+<listitem><para></para></listitem>
+<listitem><para></para></listitem>
+<listitem><para></para></listitem>
+<listitem><para></para></listitem>
+<listitem><para></para></listitem>
+</itemizedlist> -->
+
+<para>The <guilabel>Background Image</guilabel> is a picture that will
+be used to draw the panel's background, just like you can use a picture
+for the desktop background. Check the <guilabel>Enable background
+image</guilabel> option to enable this feature. You can specify an image
+file in the line edit box below or choose one by clicking on the
+<guibutton>Browse</guibutton> button. You'll see a preview of the
+selected picture on the right.</para>
+
+</sect2>
+
+<sect2 id="panel-menus">
+<title>Menus</title>
+
+<para>In the <guilabel>Menus</guilabel> tab you can configure the panel
+menu's behavior. This affects the K menu you will often use to launch
+applications, the browser menus you can use to access directories and other
+menus like the recent documents menu.</para>
+
+<para>The <guilabel>K Menu Layout</guilabel> frame offers you some options to
+configure the <guimenu>K</guimenu> menu's functionality. The <guilabel>Show
+&quot;Bookmarks&quot; submenu</guilabel> and <guilabel>Show &quot;Recent
+Documents&quot; submenu</guilabel> options will enable submenus showing your
+<application>konqueror</application> bookmarks and the last documents you've
+opened using &kde; applications respectivly. The <guilabel>Show &quot;Quick
+Browser&quot; submenu</guilabel> option will enable a browser menu.</para>
+
+<para><guilabel>Merge different menu locations</guilabel> will show all
+applications in the same directories, regardless of where the
+corresponding configuration files are stored: for example, enabling this
+option will show system wide applications in your
+<guilabel>Applications</guilabel> menu as well as you own ones. If you'd
+disable this option, there would be one applications menu for the whole
+system and one in a submenu containing only your personal
+entries.</para>
+
+<para>The menu cache is a feature that can make the panel's menus appear
+faster on screen: instead of reading the menu information from disk
+every time you access a menu, the panel will remember menu entries after
+accessing the menus for the first time. However, depending on the amount
+of memory available to your system, you might want this cache to be
+cleared after some time. Check the <guilabel>Clear menu cache</guilabel>
+option if you want the cache to be cleared after some time. You can
+configure the amount of time after which the cache will be cleared using
+the slider below.</para>
+
+<para> In the <guilabel>Browser Menus</guilabel> frame you can configure
+whether the panel's browser menus will show hidden files or not (hidden
+files on unix systems are those whose filenames begin with a dot) as
+well as how many files at most will be shown in a browser menu. The
+latter option may be especially useful if you have a rather small screen
+resolution, as then the browser menus will quickly fill up your screen
+when you browse directories containing many files.</para>
+
+<para>The quick start section in the K menu offers quick access to
+programs you have used often or recently. In the <guilabel>&quot;Quick
+Start&quot; section contains</guilabel> frame you can choose whether
+this section will show the most recently or the most frequently used
+programs. Using the option <guilabel>Max number of &quot;Quick
+Start&quot; entries</guilabel> you can configure how many programs the
+quick start section will remember.</para>
+
+</sect2>
+
+<sect2 id="panel-applets">
+<title>Applets</title>
+
+<para>Applets are small plugins that extend the pager's
+functionality. &kde; comes with some applets but they may be provided by
+third parties as well.  Panel applets can be started using two different
+ways: internal or externally. While <quote>internal</quote> is the
+preferred way to load applets, this can raise stability or security
+problems when you are using poorly programmed third-party applets. To
+address these problems, applets can be marked
+<quote>trusted</quote>. You might want to configure the panel to treat
+trusted applets different from untrusted ones. Your options are:</para>
+
+<itemizedlist>
+<listitem><para><guilabel>Load only trusted applets internal</guilabel>:
+All applets but the ones marked <quote>trusted</quote> will be loaded using an
+external wrapper application.</para></listitem>
+<listitem><para><guilabel>Load startup config applets internal</guilabel>:
+The applets shown on &kde; startup will be loaded internally, others
+will be loaded using an external wrapper application.</para></listitem>
+<listitem><para><guilabel>Load all applets internal</guilabel>: will load
+all applets internally, regardless of whether they're trusted or not.
+</para></listitem>
+</itemizedlist>
+
+<para>For stability and security reasons, we recommend using one of the
+first two options and that you mark only those applets as
+<quote>trusted</quote> that come with the &kde; base packages.</para>
+
+<para>To mark applets <quote>trusted</quote> or <quote>untrusted</quote>
+you can move them from one of the shown listboxes to the other. Just try
+selecting an applet in the list of trusted applets and click the
+<guibutton>&gt;&gt;</guibutton> button. This will move the selected
+applet to the other list, while clicking the
+<guibutton>&lt;&lt;</guibutton> button will move the selected applet of
+the list of available applets to the list of trusted ones.</para>
+
+</sect2>
+
+<sect2 id="panel-extensions">
+<title>Extensions</title>
+
+<para>&kicker; has many extensions, which you normally add by
+<mousebutton>Right</mousebutton> clicking on the panel and choosing
+<menuchoice><guisubmenu>Add</guisubmenu>
+<guisubmenu>Extension</guisubmenu></menuchoice>, and choosing an item.
+Extensions are things like child panels, an external taskbar instead of
+(or as well as) the one embedded in the panel, and much more.</para>
+
+<para>You cannot add extensions in this page of the module, but you can
+configure them.  The options on this page are disabled unless you have
+added a &kicker; extension.</para>
+
+<para>The options available are the same as those for locating the main
+&kicker; panel, on the <link
+linkend="panel-position"><guilabel>Position</guilabel></link> tab of
+this dialog.</para>
+
+<para>You can configure where on the screen the extension should be
+(<guilabel>Left</guilabel>, <guilabel>Right</guilabel>,
+<guilabel>Top</guilabel> or <guilabel>Bottom</guilabel>).</para>
+
+<para>You can also configure if it has hide buttons visible, if it
+should auto hide, and if so, how much delay before it hides
+itself.</para>
+
+<para>These options are configurable on a per extension basis, so you
+can have different options for each one.</para>
+
+</sect2>
+
+<sect2 id="panel-author">
+<title>Section Author</title>
+<para>This section written by: Jost Schenck <email>jost@schenck.de</email></para>
+<para>Minor update by Mike McBride
+<email>mpmcbride7@yahoo.com</email></para>
+
+<para>Some new options added by Lauri Watts
+<email>lauri@kde.org</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>
+

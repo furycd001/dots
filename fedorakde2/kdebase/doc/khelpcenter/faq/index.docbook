@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd" [
+  <!ENTITY kappname "&kde; Frequently Asked Questions">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  <!ENTITY faq-about SYSTEM "about.docbook">
+  <!ENTITY faq-intro SYSTEM "intro.docbook">
+  <!ENTITY faq-getkde SYSTEM "getkde.docbook">
+  <!ENTITY faq-install SYSTEM "install.docbook">
+  <!ENTITY faq-panel SYSTEM "panel.docbook">
+  <!ENTITY faq-desktop SYSTEM "desktop.docbook">
+  <!ENTITY faq-winmng SYSTEM "winmng.docbook">
+  <!ENTITY faq-filemng SYSTEM "filemng.docbook">
+  <!ENTITY faq-configkde SYSTEM "configkde.docbook">
+  <!ENTITY faq-kdeapps SYSTEM "kdeapps.docbook">
+  <!ENTITY faq-nonkdeapps SYSTEM "nonkdeapps.docbook">
+  <!ENTITY faq-tips SYSTEM "tips.docbook">
+  <!ENTITY faq-misc SYSTEM "misc.docbook">
+  <!ENTITY faq-notrelated SYSTEM "notrelated.docbook">
+  <!ENTITY faq-moreinfo SYSTEM "moreinfo.docbook">
+  <!ENTITY faq-contrib SYSTEM "contrib.docbook">
+  <!ENTITY faq-credits SYSTEM "credits.docbook">
+
+
+
+]>
+<!--Time-stamp: "2001-09-03 00:10:00 endres"-->
+<book lang="&language;">
+
+<bookinfo>
+<title>&kde; Frequently Asked Questions</title>
+
+<authorgroup>
+<author>
+<surname>The &kde; Team</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+</authorgroup>
+
+<copyright>
+<year>1997</year>
+<year>1998</year>
+<year>1999</year>
+<year>2000</year>
+<year>2001</year>
+<holder>The &kde; Team</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2001-09-03</date>
+<releaseinfo>2.2.01</releaseinfo>
+
+<abstract>
+<para>This is a compilation of the most frequently asked questions
+about the K Desktop Environment.  Please report any bugs,
+inconsistencies, or omissions you find in this <acronym>FAQ</acronym>
+to <email>kde-faq@kde.org</email>.  Please do not mail your questions
+to this list. Post them to the &kde; mailing lists and newsgroups
+instead. They are monitored for this FAQ.</para> </abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>FAQ</keyword>
+<keyword>question</keyword>
+<keyword>answer</keyword>
+</keywordset>
+</bookinfo>
+
+&faq-about;
+&faq-intro;
+&faq-getkde;
+&faq-install;
+&faq-panel;
+&faq-desktop;
+&faq-winmng;
+&faq-filemng;
+&faq-configkde;
+&faq-kdeapps;
+&faq-nonkdeapps;
+&faq-tips;
+&faq-misc;
+
+<!-- gone in the next "release"-->
+<!--
+&faq-notrelated;
+-->
+
+&faq-moreinfo;
+&faq-contrib;
+
+<chapter id="credits">
+<title>Credits and License</title>
+<!--still has a lot to write-->
+<para>The current <acronym>FAQ</acronym> maintainers are:</para>
+
+<itemizedlist>
+<listitem><para>Rainer Endres
+<email>endres@kde.org</email></para></listitem>
+</itemizedlist>
+
+<para>Many of the answers in this <acronym>FAQ</acronym> are taken
+from the various &kde; mailing lists and newsgroups. Here is a
+<emphasis>big</emphasis> thank-you to all of you who have contributed
+answers that eventually appear in this <acronym>FAQ</acronym>.</para>
+
+<para>Special thanks go to the former FAQ maintainer, who has written most of the 
+stuff in here, and did a tremendious job: Mr. Lee Wee Tiong
+</para>
+
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:("/opt/kde2/share/apps/ksgmltools2/customization/catalog")
+sgml-local-ecat-files:nil
+End:
+-->

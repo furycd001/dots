@@ -1,0 +1,10 @@
+# KDE2 Common Util functions
+macro(DIRLIST dirs)
+    file(GLOB files LIST_DIRECTORIES true *)
+    foreach(thefile ${files})
+        if(IS_DIRECTORY ${thefile})
+            get_filename_component(thedir ${thefile} NAME)
+            list(APPEND dirs ${thedir})
+        endif()
+    endforeach()
+endmacro()

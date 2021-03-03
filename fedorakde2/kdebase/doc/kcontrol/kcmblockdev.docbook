@@ -1,0 +1,117 @@
+<sect1 id="blockdev">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Block Devices</keyword>
+<keyword>Disk space</keyword>
+</keywordset>
+</sect1info>
+
+<title>Block Devices</title>
+
+<para>
+The module window displays the available file devices and some
+information about each device. It also allows you to control mount
+points, and mount/unmount devices.
+</para>
+
+<!-- <para>This module is divided into three tabs: <link
+linkend="block-dev-kdiskfree">KDiskFree</link>, <link
+linkend="block-dev-general">General Settings</link>, <link
+linkend="block-dev-mount">Mount Commands</link>, </para> -->
+
+<para>
+Normally, the following pieces of information are shown in this tab:
+</para>
+
+<itemizedlist>
+<listitem><para>an icon depicting the type of storage</para></listitem>
+<listitem><para>file format</para></listitem>
+<listitem><para>total size</para></listitem>
+<listitem><para>mount point</para></listitem>
+<listitem><para>free disk space</para></listitem>
+<listitem><para>the percentage of space used as a number and as a
+graph.</para></listitem>
+</itemizedlist>
+
+<para>
+<mousebutton>Left</mousebutton> clicking on the header of a particular
+column sorts the devices according to that variable. A second
+<mousebutton>left</mousebutton> click sorts in the opposite order.
+</para>
+
+<para>
+<mousebutton>Right</mousebutton> clicking on a row pops up a menu. If
+that device is not currently mounted, the <guimenuitem>Mount
+device</guimenuitem> option is available. If the device is mounted, it
+can be unmounted by choosing <guimenuitem>Unmount
+device</guimenuitem>. Selecting <guimenuitem>Open
+filemanager</guimenuitem> opens a new window with a graphical view of
+the files on that device.
+</para>
+
+<para>
+The appropriate mount and umount commands, and how the file manager is
+opened from the context menu, can be configured from the &kdf;
+application.
+</para>
+
+<!-- 
+<sect2 id="block-dev-general">
+<title>General Settings</title>
+
+<para>This tab allows you to set which values are shown, and which are hidden in the <guilabel>KDiskFree</guilabel> tab.</para>
+<para>To toggle hidden/visable, simply click on the hidden or visible label below the column desired.</para>
+<para>Below this box, are several settings.</para>
+<variablelist>
+<varlistentry><term>Update frequency</term>
+<listitem><para>Using the slider, determine (in seconds), how often you want this module updated.  The range is 0 - 180 seconds.  
+Setting the value to 0 will prevent future updates.</para></listitem></varlistentry>
+<varlistentry><term>FileManager</term>
+<listitem><para>You can change the default filemanager for each mount point, by entering a command in the text box provided.  
+The example listed beside the text box, will open a konsole window, and run a copy of <application>mc</application> within that window.</para></listitem></varlistentry>
+<varlistentry><term>Open file manager automatically on mount</term>
+<listitem><para>If this option is selected, the filemanager command (above) will automatically be executed everytime you mount a device.</para></listitem></varlistentry>
+<varlistentry><term>Pop up a window when the disk gets critically full.</term>
+<listitem><para>Just like the label says, if the device gets close to running out of space, a warning window will appear in your screen.  
+You can use this option to disable that feature if you desire.</para></listitem></varlistentry>
+</variablelist>
+</sect2>
+<sect2 id="block-dev-mount">
+<title>Mount Commands</title>
+<para>This tab of the module is used to adjust the icons, the mount commands and the unmount commands.</para>
+<para>The listbox at the top of the module shows every device, an icon for the device, its mount point, mount command and unmount command.</para>
+<para>To change these settings, simply click on the device of your choice.  Several text boxes and buttons will appear at the bottom of the 
+screen with the current settings for that device.</para>
+<important><para>At the time this manual was written, the changes could not be made permenant. </para></important>
+</sect2>
+
+-->
+
+<sect2 id="block-dev-author">
+<title>Section Author</title>
+
+<para>This section is modified from the <application>kdf</application>
+documentation which was authored by Jonathan Singer
+<email>jsinger@leeta.net</email></para>
+
+<para>Modified for KDE 2.0 by Mike McBride
+<email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

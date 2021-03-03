@@ -1,0 +1,20 @@
+[Arg0]
+Label=Speed:
+Maximum=100000
+Minimum=0
+Switch=-delay %1
+Type=Range
+Value=10000
+[Arg1]
+Label=3D
+Type=Check
+SwitchOn=-3D
+SwitchOff=
+Value=false            
+[Arg2]
+Label=Broken
+Type=Check
+SwitchOn=-broken
+SwitchOff=
+Value=false
+   

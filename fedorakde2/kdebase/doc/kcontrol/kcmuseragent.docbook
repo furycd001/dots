@@ -1,0 +1,118 @@
+<sect1 id="user-agent">
+
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>
+tateneni@pluto.njcc.com
+</email></address></affiliation>
+</author>
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>user agent</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>User Agent</title>
+
+<sect2 id="user-agent-intro">
+
+<title>Introduction</title>
+
+<para>When &konqueror; connects to a web site to retrieve information,
+some basic identifying information is sent to the web site in the form
+of a <quote>User Agent</quote> header.</para>
+
+<para>Because of minor differences in the way that different web
+browsers function, web sites that rely too much on a single browser may
+sometimes not display as intended when viewed using another
+browser. Some web sites are smart enough to examine the contents of the
+user agent header and incorporate this information in the
+<acronym>HTML</acronym> code so that the content is displayed correctly
+regardless of the browser used.</para>
+
+<para>However, you may find that some web sites refuse to function
+correctly unless you are using a browser recognized as
+<quote>proper</quote> by that site. In these cases, you may find it
+necessary to fool the web site by having &konqueror; report itself to be
+another browser by means of the user agent header.</para>
+
+</sect2>
+
+<sect2 id="user-agent-use">
+
+<title>Use</title>
+
+<para>In this module of the &kde; control center, you can configure the
+type of browser that &konqueror; will report itself to be. You can
+control this information by web site. Usually, the list box that is
+labeled <guilabel>Configured useragent bindings:</guilabel> will be
+empty, so that &konqueror; will always use its default useragent
+string.</para>
+
+<para>To configure a new agent binding, type the name of the server or a
+domain in the text box at the top of the page, which is labeled
+<guilabel>When connecting to:</guilabel>. Note that you can
+<emphasis>not</emphasis> use the wildcard character <token>*</token> in
+this text box. However, the string <userinput>kde.org</userinput> will
+match all hosts in the domain <systemitem>kde.org</systemitem>.</para>
+
+<para>After typing the name of the server, type in the identifying
+string in the next combo box, which is labeled <guilabel>Send useragent
+string:</guilabel> or choose a string from the list. If you don't choose
+a string from the list, you will need to know what a valid string from
+the browser looks like. For example, you could type
+<userinput>Mozilla/4.0 (compatible; MSIE 4.0)</userinput>. </para>
+
+<para>In the field labeled <guilabel>Alias for useragent
+string</guilabel> you can enter a descriptive name for the configured
+binding, &eg; <userinput>Netscape Navigator 4.75 on Linux</userinput>
+for the useragent string <userinput>Mozilla/4.75 (X11; U; Linux 2.2.14
+i686)</userinput>.</para>
+
+<para>You can click on an existing entry in the <guilabel>Configured
+agent bindings</guilabel> list, and then modify the contents of the text
+boxes, followed by clicking <guibutton>Change</guibutton>.</para>
+
+<para>Click the <guibutton>Add</guibutton> button to create a new user
+agent binding. The <guibutton>Delete</guibutton> button can be used to
+delete the selected entry in the list of configured agent bindings. The
+<guibutton>Reset</guibutton> button will clear the upper text fields,
+but won't touch the already configured bindings. Click
+<guibutton>Apply</guibutton> to take your changes in effect.</para>
+
+<para>You can use the checkboxes at the top of the screen to build a
+user agent that is uniquely yours, by choosing your own combination of
+operating system name and version, platform, processor type, and
+language.</para>
+
+<para>In all cases, the user agent that is being sent by default is
+displayed in bold text at the top of the page.</para>
+
+</sect2>
+
+<sect2 id="user-agent-author">
+
+<title>Section Author</title>
+
+<para>This section written by: </para>
+<para>Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>.</para>
+<para>Updated by Jost Schenck <email>jost@schenck.de</email>.</para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+
+</sect1>
+

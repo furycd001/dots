@@ -1,0 +1,66 @@
+Testing the KDE XmlRpc Daemon
+=============================
+So you want to see if this works, eh?  Well, you've come to the right
+place.  This directory contains a few files that you can use for just
+that purpose.
+
+The two files here are:
+testxmlrpc.cpp -- sample DCOP client (server)
+testxmlrpc.py  -- python xmlrpc client
+testxmlrpc.sh  -- Bourne shell(!) xmlrpc client
+
+You'll note that none directly use the kxmlrpcd daemon.  That is
+because the daemon should be *totally* transparent to both the xmlrpc
+client and the dcop client/server.  Neither should have clue that they
+are going through this daemon.
+
+textxmlrpc.cpp
+--------------
+The testxmlrpc.cpp file is a DCOP client/server that acts like a (very
+very) simple address book.  It has three remote functions:
+
+QCString lookup(QCString name)
+  - This will return an email address given a name.  For instance,
+    lookup("Kurt Granroth") will return "granroth@kde.org"
+
+void addAddress(QCString name, QCString address)
+  - Will add an entry
+
+void deleteAddress(QCString name)
+  - Will delete an entry
+
+The server name is 'testxmlrpc' and the object is 'email'
+
+Compile it like so:
+g++ -o testxmlrpc testxmlrpc.cpp -I$KDEDIR/include -I$QTDIR/include -L$KDEDIR/lib -L$QTDIR/lib -lkdecore -lqt
+
+Then, make sure that 'dcopserver' is running and start ./testxmlrpc
+
+testxmlrpc.py
+-------------
+This file is a python xmlrpc client.  It requires a python library to
+run.  You can get it at:
+
+  http://www.pythonware.com/downloads/xmlrpc-0.9.8-990621.zip
+
+Unzip this into your python dir (/usr/lib/python1.5, for instance)
+
+Now make sure that the kxmlrpcd daemon is running and type
+./testxmlrpc.py
+
+testxmlrpc.sh
+-------------
+This is a standard shell script using only /bin/sh, cat, sed, and
+telnet -- all of which are on ALL Unix systems.  Ergo, you don't need
+to download anything.
+
+Make sure kxmlrpcd and kdesktop are running and type
+./testxmlrpc.sh
+
+Notes
+-----
+I included the python client only because python has by *far* the best
+implementation of xmlrpc (check out the code to see how incredibly
+easy it is to use).  There are, however, clients for many many
+different languages.  Check out http://www.xmlrpc.com for more of
+them, if you like

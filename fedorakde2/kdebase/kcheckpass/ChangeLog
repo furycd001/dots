@@ -1,0 +1,35 @@
+1998-12-13  Christian Esken  <esken@kde.org>
+
+	* Adding another return code: 2=Cannot read shadow database. This return code
+	is used by kscreensaver for warning that the screen cannot be locked.
+
+1998-12-04  Alex Zepeda  <garbanzo@hooked.net>
+
+	* README: Removed unneeded whitespace and corrected the spelling.
+	* .cvsignore: Ignore object files too.
+	* checkpas_etcpasswd.cpp: Indent more sanely, and comment a bit more.
+	Attributed the copyright to esken.
+	* kcheckpass.h: Removed comments that are already in README, add a description
+	of what message() does.
+
+1998-11-28  Christian Esken  <esken@kde.org>
+
+	* checkpass_shadow.cpp: Adding endspent() for the error condition execution path
+
+1998-11-26  Alex Zepeda  <garbanzo@hooked.net>
+
+	* kcheckpass.cpp: Don't include malloc.h on FreeBSD boxen.
+
+1998-11-25  Duncan Haldane <f.d.m.haldane@cwix.com>
+	* kcheckpass.cpp  void message() instead of static void message()
+	* kcheckpass.h    void message()
+	* checkpass_pam.cpp various fixes for PAM (from Steffen Hansen's 
+	  "lost" cvs changes), also made PAM service name configurable via
+	  autoconf (uses "xdm" by default, as this is likely to be
+	  configured already); removed #include of pam_misc.h
+	* Makefile.am: Adding $(PAMLIBS)
+	
+1998-11-22  Christian Esken  <esken@kde.org>
+
+	* Makefile.am: Adding $(LIBCRYPT)
+	* Adding #include of <pwd.h> and <sys/types.h>

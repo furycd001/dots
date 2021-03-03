@@ -1,0 +1,86 @@
+<sect1 id="fonts">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-10-21</date>
+<releaseinfo>1.00.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>fonts</keyword>
+</keywordset>
+</sect1info>
+
+<title>Fonts</title>
+
+<para>This module is designed to allow you to easily select different
+fonts for different parts of the KDE Desktop.</para>
+
+<para>The panel consists of 7 different font groups to give you a lot of
+flexibiliity in configuring your fonts:  </para>
+
+<itemizedlist>
+<listitem><para><guilabel>General</guilabel> (Used everywhere the other font
+groups don't apply)</para></listitem>
+
+<listitem><para><guilabel>Fixed width</guilabel> (Anywhere a
+non-proportional font is specified)</para></listitem>
+
+<listitem><para><guilabel>Desktop Icon</guilabel> (Fonts to use for
+Desktop icon text) </para></listitem>
+
+<listitem><para><guilabel>File Manager</guilabel> (Font to use in the
+&kde; file manager)</para></listitem>
+
+<listitem><para><guilabel>Toolbar</guilabel> (Font used in &kde; application
+toolbars)</para></listitem>
+
+<listitem><para><guilabel>Menu</guilabel> (Font used in &kde; application
+menus)</para></listitem>
+
+<listitem><para><guilabel>Window Title</guilabel> (Font used in the window
+title)</para></listitem>
+</itemizedlist>
+
+<para>Each font has a corresponding <guibutton>choose</guibutton>
+button.  By clicking on this button, a dialog box appears.  You can use
+this dialog box to choose a new font, font style, size and character
+set.  Then press <guibutton>OK</guibutton>.</para>
+
+<para>An example of the font you have chosen will be displayed in the space
+between the font group name and the choose button.</para>
+
+<para>When you are done, simply click <guibutton>OK</guibutton>, and
+all necessary components of &kde; will be restarted so your changes can
+take affect immediatly.</para>
+
+<para>Finally, there is a check box to enable Anti Aliasing for fonts.
+The ability to use Anti Aliased fonts and icons requires that you have
+support in both X and the &Qt; toolkit, and that you have suitable fonts
+installed, and are using the built in font serving capabilities of the X
+server.  If you still are having problems, please contact the
+appropriate &kde; mailing list, or check the
+<acronym>FAQ</acronym>.</para>
+
+<sect2 id="fonts-author">
+<title>Section Author</title>
+
+<para>This section written by Mike McBride
+<email>mpmcbride7@yahoo.com</email> </para>
+
+<para>Slightly updated for &kde; 2.2 by Lauri Watts
+<email>lauri@kde.org</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+</sect1>
+

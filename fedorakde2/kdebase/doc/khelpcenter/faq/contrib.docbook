@@ -1,0 +1,186 @@
+<!--
+<?xml version="1.0" ?>
+<!DOCTYPE chapter PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN"
+ "dtd/kdex.dtd">
+-->
+
+
+<chapter id="contribute">
+<title>Contributing</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How can I contribute to &kde;?</para>
+</question>
+<answer>
+<para>&kde; is a free software project that lives from voluntary
+contributions.  Everybody is encouraged to contribute to &kde;.  Not
+only programmers are welcome.  There are lots of ways in which you can
+help to improve &kde;:</para>
+<itemizedlist>
+<listitem><para>Test the software.</para></listitem>
+<listitem><para>Send in bug reports.  For more information on this,
+see <link linkend="bug-report">How do I submit a bug
+report?</link>.</para></listitem>
+<listitem><para>Write documentation or help files.  You can get some
+information by visiting the <ulink
+url="http://i18n.kde.org/teams/en/index.html">&kde; Editorial Team
+Home Page</ulink>.</para></listitem>
+<listitem><para>Translate programs, documentation, and help files.
+For more information on this, you should visit <ulink
+url="http://i18n.kde.org">The &kde; Translators' and Documenters' Web
+Site</ulink>.</para></listitem>
+<listitem><para>Draw nice icons or compose sound effects.  You can
+visit the <ulink url="http://www.kde.org/artist/index.html">&kde;
+artists page</ulink> to find out more.</para></listitem>
+<listitem><para>Write articles and books about &kde;.  If you want to
+help spread the word about &kde;, simply send an email to
+<email>kde-pr@kde.org</email>.  This will get you in touch 
+with the &kde; public relations volunteers.</para></listitem>
+<listitem><para>Program new &kde; applications.  Please refer to <xref
+linkend="programming"/> for more information.</para></listitem>
+<listitem><para> Of course, sponsors are also
+welcome. :-)</para></listitem>
+</itemizedlist>
+<para>There are several places to look for more information if you
+want to get involved in the development.  The first step is to
+subscribe to some of the <ulink  url="http://www.kde.org/mailinglists.html">mailing 
+lists</ulink>.  You will soon see something
+that can be improved or added.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="bug-report">
+<para>How do I submit a bug report?</para>
+</question>
+<answer>
+<para>There is a bug tracking system available at <ulink
+url="http://bugs.kde.org">http://bugs.kde.org</ulink>.  The
+system features a wizard to submit new bug reports and a
+list of all known bugs.</para>
+<para>The easiest way to submit a bug is to select
+<menuchoice><guimenu>Help</guimenu><guimenuitem>Report 
+Bug...</guimenuitem></menuchoice> from the menu bar of the application
+with the bug.  This will open a small dialog box with a link
+to the bug tracking system. Please make sure to follow the
+instructions of the bug reporting wizard.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="programming">
+<para>I want to program for &kde;.  What should I do first?</para>
+</question>
+<answer>
+<para>Everybody is encouraged to develop software for &kde;.  What you
+should do first depends strongly on your experience, <abbrev>e.g.</abbrev> whether you have
+already learned C++ or have experience with the &Qt; toolkit and so
+on.</para>
+<para>To get into &kde; programming, you will need some basic tools:
+<application>automake</application>,
+<application>autoconf</application>, and
+<application>egcs</application>.  You should look to <ulink
+url="http://developer.kde.org/">http://developer.kde.org/</ulink> 
+for more tips.</para>
+<para>Another excellent resource for learning &kde;
+programming is the &Qt; 
+online tutorials.  These are installed along with &Qt;.  To view them,
+open <filename>$<envar>QTDIR</envar>/html/index.html</filename> in 
+&konqueror; and bookmark it.  The tutorials
+can be found under "Using 
+Qt".  The source code for each lesson can be found in the <filename
+class="directory"
+moreinfo="none">$<envar>QTDIR</envar>/tutorial</filename>
+directory.</para>
+<para>There is, however, one thing that everybody interested in
+programming for &kde; should do: <emphasis>subscribe to the developers
+mailing list</emphasis>.  To subscribe, you have to send an email to
+<ulink
+url="mailto:kde-devel-request@kde.org">kde-devel-request@kde.org</ulink>
+with the subject <userinput>subscribe
+<replaceable>your_email_address</replaceable></userinput>.
+<important><para>Please read <link linkend="subscribe">How to
+subscribe/unsubscribe to these lists</link> carefully.  Everything
+said there applies to the development list as
+well.</para></important></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get access to the <acronym>CVS</acronym>?</para>
+</question>
+<answer>
+<para>The &kde; project uses <acronym>CVS</acronym> to develop the core parts of the
+software.  Usually, when you have changed one of the parts (<abbrev>e.g.</abbrev> fixed a
+bug), and you want to commit this change, the best way is to create a
+patch against a current snapshot and send this patch to the
+developer/maintainer of the respective program.</para>
+<para>If you are doing this more or less regularly, you can ask <ulink
+url="mailto:coolo@kde.org">Stephan Kulow</ulink> for direct access to
+the <acronym>CVS</acronym> server.  But be aware that more users will slow down <acronym>CVS</acronym>
+access for all developers, so we want to keep the number of people
+with direct <acronym>CVS</acronym> access reasonably small.  But feel free to
+ask!</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>I am just curious. Can I have read-only access to the <acronym>CVS</acronym>?</para>
+</question>
+<answer>
+<para>Yes.  It is possible to get read-only access to the <acronym>CVS</acronym>
+repository with <application>cvsup</application> or <application>cvs</application> utility.  You can find more information
+about how to set up <application>cvsup</application> for the &kde; repository from <ulink
+url="http://www.kde.org/cvsup.html">How to use <application>cvsup</application> to get
+&kde;</ulink>.</para>
+<para>In addition, anonymous <acronym>CVS</acronym> service is also available.  To find
+out more about how to set up and use anonymous <acronym>CVS</acronym>,
+please see <ulink 
+url="http://www.kde.org/anoncvs.html">here</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Are there any <application>cvs</application> mirror sites for &kde;?</para>
+</question>
+<answer>
+<para>Yes.  The main &kde; server is normally very busy.  Please take a look at 
+<ulink url="http://www.kde.org/cvsupmirrors.html">http://www.kde.org/cvsupmirrors.html</ulink> and <ulink 
+url="http://www.kde.org/anoncvs.html">http://www.kde.org/anoncvs.html</ulink>
+for the list of available mirrors.</para>  
+<para> Once you have selected a new <application>cvsup</application> server, simply replace 
+<screen> 
+*default host=cvs.kde.org
+</screen>
+with
+<screen> 
+*default host=cvsup.your.new.host
+</screen>
+in your <application>cvsup</application> script.</para>
+<para> the instructions to change the anoncvs server can be found on <ulink 
+url="http://www.kde.org/anoncvs.html">http://www.kde.org/anoncvs.html</ulink>, too.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I go about translating &kde; programs into my native
+language?</para>
+</question>
+<answer>
+<para>Go poke around <ulink url="http://i18n.kde.org">The &kde;
+Translators' and Documenters' Web Site</ulink> to see whether your
+program is already translated (most are).  Otherwise you will find 
+information there on how to do it yourself.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+

@@ -1,0 +1,26 @@
+[Arg0]
+Label=Speed:
+Maximum=1000
+Minimum=10
+Switch=-speed %1
+Type=Range
+Value=500
+[Arg1]
+Label=Number of Rocks:
+Maximum=250
+Minimum=10
+Switch=-count %1
+Type=Range
+Value=150
+[Arg2]
+Label=Rotate
+SwitchOn=-rotate
+SwitchOff=-norotate
+Type=Check
+Value=true
+[Arg3]
+Label=Move
+SwitchOn=-move
+SwitchOff=-nomove
+Type=Check
+Value=true

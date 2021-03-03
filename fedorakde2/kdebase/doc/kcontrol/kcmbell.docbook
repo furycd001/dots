@@ -1,0 +1,59 @@
+<sect1 id="bell">
+<sect1info>
+<authorgroup>
+<author>
+<firstname>Pat</firstname>
+<surname>Dowler</surname>
+</author>
+
+<author>
+<firstname>Matthias</firstname>
+<surname>Hoelzer</surname>
+</author>
+
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+<date>2000-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Bell</keyword>
+<keyword>Settings</keyword>
+</keywordset>
+</sect1info>
+<title>System bell</title>
+
+<para>The system bell or beep is a feature of the X server, which attempts to
+make good use of the available hardware. </para>
+
+<note><para>It isn't always possible for the X server to actually make a beep
+sound with exactly the parameters selected due to hardware limitations. For
+example, on most PCs, volume control is not very good so the X server seems to
+fake low volume with a reduced duration of the sound. Thus, if the settings
+don't seem to do anything, this is because the X server and/or the hardware
+don't support anything better.</para></note>
+
+<para>User's are able to set the following parameters for the bell:</para>
+
+<itemizedlist>
+<listitem> <para>volume (percentage of "maximum" volume)</para> </listitem>
+<listitem> <para>pitch (in Hz)</para> </listitem>
+<listitem> <para>duration (in milliseconds)</para> </listitem>
+</itemizedlist>
+
+<para>You can use the <guibutton>test</guibutton> button to hear how
+the current settings will sound.</para>
+
+<sect2 id="bell-author"><title>Section Authors</title>
+<para>Pat Dowler, Matthias Hoelzer <email>mhk@kde.org</email></para>
+<para>Converted to KDE 2.0 by Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

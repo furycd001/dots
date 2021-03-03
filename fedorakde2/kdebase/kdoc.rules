@@ -1,0 +1,17 @@
+# These are the rules used by makekdedoc to generate the kdelibs
+# documentation with KDOC. Please update them if I forget any
+# dependencies.
+#
+# -Taj (Apr 1999)
+#
+# $Id: kdoc.rules,v 1.2 2000/08/13 22:16:32 faure Exp $
+
+#kde_MODULES = libkonq
+kde_MODULES = libkonq kcontrol
+
+libkonq_FILES = *.h
+libkonq_LIBS = -lkdeui -lqt -ldcop -lkparts -lkio
+
+kcontrol_FILES = *.h
+kcontrol_LIBS = -lkdeui -lkdecore -ldcop -lqt
+kcontrol_PATH = kcontrol/kcontrol

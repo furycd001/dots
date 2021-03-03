@@ -1,0 +1,70 @@
+KDesktop Design Document
+
+Author :
+  David Faure, faure@kde.org
+  Martin R. Jones, mjones@kde.org (screensaver)
+  Geert Jansen, g.t.jansen@stud.tue.nl (background code)
+
+Last modified: 24 Oct 1999
+
+Overall design of KDesktop :
+=============================
+
+KDesktop is the program that handles the desktop icons,
+the popup menus for the desktop, the mac menubar, and the
+screensaver system.
+
+Files :
+=======
+
+main.* : main
+desktop.* : the icon container for the desktop icons
+krootwm.* : right and middle mouse button popup menus, Mac menubar
+bg*.*: Background renderer/manager.
+
+icons.* : old code, not used anymore.
+  We need to borrow ideas from it for positioning icons after a DnD
+ (in kiconcontainer so that it works with konqueror as well)
+ - well, only if we want dropped icons to remain where they have been
+ dropped :)
+  We also need to store the desktop icons position, like was done in kfm.
+   and we need to do it for konqy as well.
+
+KDesktopIface* : DCOP interface for kdesktop, used by kfmclient
+
+lock* : screen saver/locker
+
+Libs used by KDesktop
+======================
+ 
+kdecore, kdeui, kfile  - usual stuff :)
+libkio - I/O stuff, mimetypes, services, registry
+libkonq - properties dialog, templates ("new") menu, dir lister, settings
+
+Screensaver
+===========
+
+The screensaver now works in a similar way to xscreensaver, i.e. a driver
+(kdesktop) provides the timeout, locking, and blanking functionality, but
+does no actual drawing.  A separate stand-alone program capable of
+drawing on a supplied window is used to do the actual fancy graphics.
+xscreensaver's "hacks" will work with the KDE screensaver engine.
+
+This makes adding new screensavers trivial, and means one less process that
+must always be running (compared to KDE 1.x).
+
+The screensaver is controlled via DCOP:
+
+KScreensaverIface::configure()  Reloads the screensaver config from desktoprc.
+KScreensaverIface::lock()       Locks the screen immediately.
+KScreensaverIface::save()       Saves the screen immediately.
+KScreensaverIface::isEnabled()  returns true if the screensaver is enabled.
+KScreensaverIface::isBlanked()  returns true if the screen is currently blank.
+
+Backgrounds
+===========
+
+The new background code is in bgrender.cpp and bgmanager.cpp. Some features:
+
+* Support for xearth like programs.
+* Can export a pixmap of the desktop background for pseudo transparency.

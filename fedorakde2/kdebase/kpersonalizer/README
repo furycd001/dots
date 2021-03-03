@@ -1,0 +1,234 @@
+KPersonalizer - Whitepaper
+===================
+
+Questions & Answers:
+
+Torsten Rahn <torsten@kde.org>
+Ralf Nolden <nolden@kde.org>
+Daniel Molkentin <danimo@kde.org>
+
+
+Aim:
+-----
+When the user starts KDE for the very first time the very first impression is
+ critical and will decide whether the user likes or dislikes KDE. While this
+ might not sound very"fair" or "logical" it's the way people think and perceive
+ their environment.
+
+The aim of KPersonalizer is to provide the pleasant look & feel the user expects
+ on the very first startup. To determine which look and feel the user prefers he
+ is guided through a minimal set of steps.
+
+What Kpersonalizer is _not_ about:
+--------------------------------------------
+
+Kpersonalizer is not a wizard which configures your hardware, mount-points or
+any other distribution-related stuff. KPersonalizer is only meant to deal with
+the Look & Feel KDE provides. As soon as we would touch distribution-related
+stuff we risk that distributions might disable KPersonalizer. To encourage
+distributions to make use of it it should easily be possible to extend or change
+the behaviour of KPersonalizer.
+
+KPersonalizer is not meant to be part of KControl
+KControl is rather a graphical registry where you can change every little
+detail in a hierarchically arranged order. One really has to know about the
+details when changing stuff and one only changes things one by one.
+KPersonalizer on the other hand asks the user very basic questions
+that don't require much background-knowledge and tries to guess a set
+of configuration-settings which fit the users needs best.
+
+Layout: KPersonalizer consists of a window which is not set fullscreen.
+This has the advantage that the user sees on the fly which settings he has
+changed and can step back as he sees that something doesn't fit.
+On the left of each dialog there is a decorative 170x430-pixel-bitmap which
+sort of describes the step in a graphical manner.
+
+Step 1:
+=====
+Introduction:
+The Introduction should give the user a warm welcome. It should explain
+what KPersonalizer will do during the next step and that the user will be able
+to refine the settings  afterwards in the last step using kcontrol.
+
+Most distributions I am aware of generally set one language for all users as a
+first default. In certain situations the user might not speak the language
+of the default installation which was done by the Sysadmin.
+Therefore it makes sense to prompt the user for "his" country.
+Judging from the country Kpersonalizer will make all settings according to that
+country (language, currency, etc.).
+As distributions might take care of this step it should stay easy to disable
+that part of the dialog.
+
+Step 2:
+=====
+Here the user is asked for the way his computer should act like in the future.
+Once again this step only deals with the way the computer works - not with the
+look.
+
+Depending on the radiobutton which is enabled you get a description which
+lists the feautres of each setting:
+
+KDE (default):
+
+The default-setting which you would get if you would disable
+KPersonalizer.
+
+Microsoft Windows (TM):
+
+- Double Click
+- Busy Cursor
+- Windows keyboard scheme   (There is none, yet)
+- Copy and Paste in Windows-style
+- Window-Behavior -> Focus on click
+- Titlebar doubleclick -> Maximize
+- windowdecoration Win2k
+- WindowList-menu on MMB
+- Walk trough windows mode: KDE
+- NOT underline IconText
+- NOT change pointer shape over an icon
+
+UNIX (TM):
+- Single Click
+- No busy-cursor
+- UNIX -keyboard-scheme.
+- Copy-by-select, Paste by MMB.
+- Window-Behavior -> Focus follows mouse
+- Titlebar doubleclick -> Shade
+- windowdecoration mwm
+- Application-menu on MMB like in FVWM
+- Walk trough windows mode: CDE
+- NOT underline IconText
+- NOT change pointer shape over an icon
+
+MacOS:
+- Single Click
+- No Busy Cursor
+- Mac- Keyboard-Scheme   (There is none, yet)
+- Copy and Paste in Windows-style
+- Window-Behavior -> Focus on click
+- Titlebar doubleclick -> Shade (for now. MacOS X has Minimize but this isn't offered by kwin yet)
+- Menubar on top
+- windowdecoration ModSystem
+- WindowList-menu on MMB
+- Walk trough windows mode: KDE
+- NOT underline IconText
+- change pointer shape over an icon
+
+Step 3: Eyecandy-O-Meter
+===================
+The most prominent part the user should see is a big slider. Using this slider
+he can easily choose the level of eyecandy. Some people prefer to have a Fast &
+Lean environment with small desktop-items and other prefer a Big, Beautiful and
+resource-wasting behaviour.
+
+To give the advanced user still some control over what is being changed all
+items affected are being displayed in a small listview below. In front of each
+listview-item there is a checkbox.
+These items are being checked or unchecked depending on the position of the
+slider. "Big & Beautiful" means that all items are checked, Fast and Lean means
+that all items are unchecked.
+As soon as the user touches the checkbox of one of the items directly the
+state of that particular checkbox is not being changed by the position of the
+slider anymore. Pressing a "Reset"-button will put all items back into the
+position/state where the dialog started from.
+
+Features which are affected by the slider are being mentioned in the
+following list of Levels:
+
+
+Level 0 (No Eyecandy):
+
+- No animations, no eyecandy, nothing :)
+
+Level 1:
+
+- Show Wallpaper
+(- Animate Shading, Minimize & Restore)
+
+Level 2:
+
+- Show Konqueror/Kicker-backgrounds
+(- Display content in moving/resizing windows)
+
+Level 3:
+
+- Show Iconeffects (Highlightning)
+ - Icon Zooming
+
+
+Level 4 (Default):
+
+- Enable Alpha-Blending for Panel-icons
+---------------Make as default!!!
+- Desktop-Iconsize = 48 (if  Resolution >= 1024x768)
+---------------Make as default!!!
+
+- Panel- Iconsize = 48 if Resolution >= 1280x1024           TODO: check resolution, add to KEyeCandyPage
+
+Level 5:
+
+- Enable Image-Previews
+
+Level 6:
+
+- Enable Animated Combo boxes
+
+Level 7: 
+
+- Enable Antialiased Fonts
+- Enable Fade tool tips
+
+Level 8: 
+
+- Enable Alphablending for Desktop-icons
+- Enable Text-Previews 
+
+Level 9 (Maximum Eyecandy):
+
+- Enable all kinds of File-Previews
+- Enable Fade menus
+- (Kicker-Iconsize = 48 if Resolution >= 1024x768)       TODO: check resolution, add to KEyeCandyPage
+(- Enable Sound)
+
+(The number of events which offer a sound corresponds  directly to the
+"eyecandy-level".)
+
+Idea for the future: The default-position of the slider might depend on the
+measured performance/resources of the computer.
+
+Step 4: Theme-Selection
+=================
+The user can choose from 4-5 themes each of them representing a look and feel
+which is very different from each other and might correspond with the choice
+made in Step 2 a bit :-)
+Basically this changes Icons, the widgetstyle, the WM-decoration, the
+Colourscheme, tiles and Wallpapers.
+
+There is a preview for each theme.
+
+Step 5: Refinement
+==============
+The user is told how he can start KPersonalizer again if the user changes his
+mind on a certain setting later and the advanced user may launch kcontrol to
+refine certain settings.
+
+
+EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

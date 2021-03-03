@@ -1,0 +1,301 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kappname "Visual Guide to &kde;">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  
+  
+]>
+
+<book lang="&language;">
+  
+<bookinfo>
+<title>The &kde; Visual Guide</title>
+<authorgroup>
+<corpauthor>
+The KDE Team
+</corpauthor>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-10-04</date>
+<releaseinfo>2.00.00</releaseinfo>
+
+<copyright>
+<year>2000</year>
+<holder>The KDE Team</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<abstract><para>A visual guide to &kde;'s interface.  This is a very early version
+of the document.  Eventually, this will be a graphic tour of &kde;.</para></abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>Visual</keyword>
+<keyword>Dictionary</keyword>
+<keyword>Guide</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="visual-dictionary">
+
+<!-- Translators please note:  If you have already translated the visual -->
+<!-- dictionary on the i18n website, please make sure the translations here -->
+<!-- match that file exactly. -->
+
+<title>&kde; Visual Dictionary of terms</title>
+
+<para>This project was started to help unify the vocabulary used in &kde;
+documentation.</para>
+
+<para>We provide this for you here as an aid to learning your way around the &kde;
+Graphical User Interface.  These names have been standardised within &kde;
+documentation, so that you will always find interface items referred to in the
+same way.</para>
+
+<tip><para>The term <emphasis>Widget</emphasis> refers to the basic building
+blocks of a computer programs interface.</para><para>Each widget operates in a
+similar manner each time it is used, but the effect that widget has, depends on
+its place within the program.</para></tip>
+
+<sect1 id="widget-table">
+<title>Listing of Common &kde; Widgets</title>
+<para>Currently, this guide consists of a table of the names of the graphical
+elements often found in &kde; documentation, and an example of each one. </para>
+<para>Our hope, eventually, is to make this is much more complete document,
+which will take you on a visual tour of &kde;.</para>
+
+<informaltable>
+<tgroup cols="2">
+<tbody>
+
+<row>
+<entry>Button</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict12.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Check Boxes</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict13.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Color Selector</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict9.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Combo Box</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict2.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Dialog Box</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict6.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Drop Down Box</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict1.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Icon List</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict16.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>List Box</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict7.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Menubar</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict4.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Progress Bar</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict17.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Radio Buttons</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict10.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Scroll Bar</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict18.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Slider</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict15.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Spinbox</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict11.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Status Bar</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict20.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Text Box</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict14.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+
+<row>
+<entry>Toolbar</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict3.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+<row>
+<entry>Tree view</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict19.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+
+<row>
+<entry>Window Titlebar</entry>
+<entry>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="pict5.png" format="PNG"/>
+</imageobject>
+</inlinemediaobject>
+</entry>
+</row>
+
+</tbody>
+</tgroup>
+</informaltable>
+</sect1>
+</chapter>
+<chapter id="credits">
+<title>Credits and Licenses</title>
+<para>&kappname;</para>
+
+<para>Documentation by the KDE Documentation Team.</para>
+
+&underFDL;
+</chapter>
+
+</book>
+

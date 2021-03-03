@@ -1,0 +1,23 @@
+<!DOCTYPE kpartgui>
+<kpartgui name="kdeprint_part">
+<ToolBar name="Kdeprint-Toolbar" newline="false">
+  <Action name="printer_add" />
+  <Action name="printer_add_special" />
+  <Separator lineSeparator="true" />
+  <Action name="printer_disable" />
+  <Action name="printer_enable" />
+  <Separator />
+  <Action name="printer_hard_default" />
+  <Action name="printer_soft_default" />
+  <Action name="printer_remove" />
+  <Separator />
+  <Action name="printer_configure" />
+  <Action name="printer_test" />
+  <Separator lineSeparator="true" />
+  <Action name="server_configure" />
+  <Action name="server_restart" />
+  <Separator lineSeparator="true" />
+  <Action name="manager_configure" />
+  <Action name="view_refresh" />
+</ToolBar>
+</kpartgui>

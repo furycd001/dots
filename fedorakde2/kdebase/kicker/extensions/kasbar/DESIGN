@@ -1,0 +1,42 @@
+KasBar TNG Design
+=================
+
+In order to support both the various features people asked for when I
+discussed Kasbar on dot.kde.org without ending up with a completely
+unmaintainable application, I've decided to rewrite the code. It's a
+fairly small application, so this isn't a big deal. The task management
+side of things (interacting with the window manager etc.) is now handled
+via the standard TaskManager API provided by kicker.
+
+The division of labour between the classes is like this:
+
+* KasBar, KasItem, KasPopup
+
+  These classes implement the KasBar widget. KasBar provides the
+  layout and smart redraws while the KasItem class is an abstract
+  interface for the items forming the bars contents. The KasPopup
+  class provides a self positioning widget that should be subclassed
+  to provide useful information.
+
+  These classes are usable standalone.
+
+* KasTasker, KasTaskItem, KasTaskPopup
+
+  These classes provide the glue linking the task management and
+  karbar modules together.
+
+* KasGroupItem, KasGroupPopup
+
+  These class provide a container item for a group of tasks, and popup
+  window that shows them in a KasTasker widget.
+
+* KasBarExtension
+
+  This class handles integration with kicker and configuration info.
+
+* KasPrefsDlg
+
+  This is the configuration dialog. It acts directly on the kastasker
+  widget to provide immediate feedback of the effects of configuration
+  changes. Any changes being previewed are reverted if the user cancels
+  the dialog because the configuration is reloaded.

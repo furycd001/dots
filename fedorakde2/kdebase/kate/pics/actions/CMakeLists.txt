@@ -1,0 +1,13 @@
+kde2_icon(kate
+    hi16-action-curfiledir.png
+    hi16-action-highlighting.png
+    hi16-action-modified.png
+    hi16-action-null.png
+    hi16-action-save_all.png
+    hi22-action-save_all.png
+    hi32-action-highlighting.png
+    hi32-action-indent.png
+    hi32-action-unindent.png
+    hi48-action-indent.png
+    hi48-action-unindent.png
+    )

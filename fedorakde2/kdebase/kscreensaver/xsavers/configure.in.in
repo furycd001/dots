@@ -1,0 +1,13 @@
+AC_HAVE_GL([
+GL_SAVERS="kmorph3d.kss kspace.kss kpipes.kss"
+ac_save_CPPFLAGS="$CPPFLAGS"
+CPPFLAGS="-I$GL_INCLUDE $CPPFLAGS $X_INCLUDES"
+AC_CHECK_HEADERS(GL/xmesa.h GL/glut.h memory.h)
+CPPFLAGS="$ac_save_CPPFLAGS"
+],
+GL_SAVERS="")
+AC_SUBST(GL_SAVERS)
+
+AC_CHECK_FUNCS(gettimeofday)
+
+AC_HAVE_DPMS()

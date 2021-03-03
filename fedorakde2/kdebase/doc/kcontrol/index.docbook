@@ -1,0 +1,907 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+<!ENTITY access SYSTEM "kcmaccess.docbook">
+<!ENTITY action SYSTEM "kcmaction.docbook">
+<!ENTITY background SYSTEM "kcmbackgnd.docbook">
+<!ENTITY batmon SYSTEM "kcmbatmon.docbook">
+<!ENTITY bell SYSTEM "kcmbell.docbook">
+<!-- <!ENTITY blockdev SYSTEM "kcmblockdev.docbook"> -->
+<!ENTITY colors SYSTEM "kcmcolor.docbook">
+<!ENTITY cookie SYSTEM "kcmcookie.docbook">
+<!ENTITY crypto SYSTEM "kcmcrypto.docbook">
+<!ENTITY datetime SYSTEM "kcmdatetime.docbook">
+<!ENTITY desktop SYSTEM "kcmdesktop.docbook">
+<!ENTITY devices SYSTEM "kcmdeviceinfo.docbook">
+<!ENTITY dma SYSTEM "kcmdmainfo.docbook">
+<!ENTITY email SYSTEM "kcmemail.docbook">
+<!ENTITY energy SYSTEM "kcmenergy.docbook">
+<!ENTITY enhbrowse SYSTEM "kcmebrowse.docbook">
+<!ENTITY fileassoc SYSTEM "kcmfile.docbook">
+<!ENTITY filemanage SYSTEM "kcmfileman.docbook">
+<!ENTITY fonts SYSTEM "kcmfonts.docbook">
+<!ENTITY helpindex SYSTEM "kcmhelpindex.docbook">
+<!ENTITY icon SYSTEM "kcmicon.docbook">
+<!-- <!ENTITY iconstyle SYSTEM  "kcmiconstyle.docbook"> -->
+<!ENTITY thememgr SYSTEM "thememgr.docbook">
+<!ENTITY syscontrol SYSTEM "systemcontrol.docbook">
+<!ENTITY kcmkonsole SYSTEM "kcmkonsole.docbook">
+<!ENTITY print-system SYSTEM "printsystem.docbook">
+<!ENTITY print-manager SYSTEM "printmanager.docbook">
+<!ENTITY stylesheets SYSTEM "kcmcss.docbook">
+<!ENTITY windeco SYSTEM "kcmkwintheme.docbook">
+<!ENTITY lanbrowsing SYSTEM "kcmlisa.docbook">
+<!ENTITY timeouts SYSTEM "nettimeouts.docbook">
+<!ENTITY protocols SYSTEM "protocols.docbook">
+<!ENTITY socks SYSTEM "kcmsocks.docbook">
+<!ENTITY spelling SYSTEM "kcmspellchecking.docbook">
+<!ENTITY interrupts SYSTEM "kcmintinfo.docbook">
+<!ENTITY ioports SYSTEM "kcmioportinfo.docbook">
+<!ENTITY kbd SYSTEM "kcmkbd.docbook">
+<!ENTITY kblayout SYSTEM "kcmkblayout.docbook">
+<!ENTITY keybind SYSTEM "kcmkeybind.docbook">
+<!ENTITY konqbrowse SYSTEM "kcmkbrowse.docbook">
+<!ENTITY locale SYSTEM "kcmlocate.docbook">
+<!ENTITY loginmanager SYSTEM "kcmloginmanage.docbook">
+<!ENTITY lowbatcrit SYSTEM "kcmlowbatcrit.docbook">
+<!ENTITY lowbatwarn SYSTEM "kcmlowbatwarn.docbook">
+<!ENTITY memory SYSTEM "kcmmemoryinfo.docbook">
+<!ENTITY midi SYSTEM "kcmmidi.docbook">
+<!ENTITY mixer SYSTEM "kcmmixer.docbook">
+<!ENTITY mouse SYSTEM "kcmmouse.docbook">
+<!-- <!ENTITY mousebehav SYSTEM "kcmmousebeh.docbook"> --> 
+<!ENTITY nsplugins SYSTEM "kcmnetscapeplugins.docbook">
+<!-- <!ENTITY numbername SYSTEM "kcmnumbername.docbook"> --> 
+<!ENTITY panel SYSTEM "kcmpanel.docbook">
+<!ENTITY partitions SYSTEM "kcmpartitioninfo.docbook">
+<!ENTITY password SYSTEM "kcmpasswd.docbook">
+<!ENTITY pci SYSTEM "kcmpciinfo.docbook">
+<!ENTITY pcmcia SYSTEM "kcmpcmcia.docbook">
+<!ENTITY powerctrl SYSTEM "kcmpowerctrl.docbook">
+<!ENTITY processor SYSTEM "kcmprocinfo.docbook">
+<!ENTITY proxy SYSTEM "kcmproxie.docbook">
+<!ENTITY sambastatus SYSTEM "kcmsmbstat.docbook">
+<!ENTITY screensaver SYSTEM "kcmscnsave.docbook">
+<!ENTITY scsi SYSTEM "kcmscsiinfo.docbook">
+<!ENTITY sessionman SYSTEM "kcmsessionman.docbook">
+<!ENTITY sndserver SYSTEM "kcmsndsrv.docbook">
+<!ENTITY soundinfo SYSTEM "kcmsndinfo.docbook">
+<!ENTITY style SYSTEM "kcmstyle.docbook">
+<!ENTITY sysnotify SYSTEM "kcmsysnotify.docbook">
+<!ENTITY talk SYSTEM "kcmtalk.docbook">
+<!ENTITY taskbar SYSTEM "kcmtaskbar.docbook">
+<!ENTITY useragent SYSTEM "kcmuseragent.docbook">
+<!ENTITY winshares SYSTEM "kcmwinshare.docbook">
+<!ENTITY xserver SYSTEM "kcmxservinfo.docbook">
+<!ENTITY usb SYSTEM "kcmusb.docbook">
+<!ENTITY launch SYSTEM "kcmlaunch.docbook">
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % English "INCLUDE" > <!-- change language only here -->
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title>The &kcontrolcenter;</title>
+
+<authorgroup>
+<author>
+<firstname>Michael</firstname>
+<surname>McBride</surname>
+<affiliation><address><email>mpmcbride7@yahoo.com</email></address></affiliation>
+</author>
+</authorgroup>
+
+<date>2001-02-04</date>
+<releaseinfo>2.00.00</releaseinfo>
+
+<abstract>
+<para>This documentation describes &kde;'s control center.</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kcontrol</keyword>
+<keyword>configuration</keyword>
+<keyword>settings</keyword>
+<keyword>module</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>The &kcontrolcenter;</title>
+
+<para>
+The &kcontrolcenter; (from now on referred to simply as <quote>the
+control center</quote>) provides you with a centralized and convenient
+way to configure all of your &kde; settings.
+</para>
+
+<para>
+The control center is made up of multiple modules.  Each module is a
+separate application, but the control center organizes all of these
+programs into a convenient location.
+</para>
+
+<tip>
+<para>
+Each control center module can be executed individually
+</para>
+
+<para>
+See section entitled <link linkend="control-center-run-indiv">Running
+individual control center modules</link> for more information.
+</para>
+</tip>
+
+<para>
+The control center groups the configuration modules into categories, so
+they are easy to locate.  Within each category, the control center shows
+all the modules in a list, so it is easier to find the right
+configuration module.
+</para>
+</chapter>
+
+<chapter id="control-center">
+<title>Using The &kcontrolcenter;</title>
+
+<para>
+This next section details the use of the control center itself.  For
+information on individual modules, please see <link linkend="module">Control
+Center Modules</link>
+</para>
+
+<sect1 id="control-center-starting">
+<title>Starting the &kcontrol;</title>
+
+<para>
+The &kcontrolcenter; can be started 3 ways:
+</para>
+
+<orderedlist> 
+<listitem>
+<para>
+By selecting <menuchoice><guimenu>K Button</guimenu><guimenuitem>Control
+Center</guimenuitem></menuchoice> from the &kde; Panel.
+</para>
+</listitem>
+<listitem>
+<para>
+By pressing <keycombo
+action="simul">&Alt;<keycap>F2</keycap></keycombo>.
+</para>
+
+<para>
+This will bring up a dialog box.  Type
+<userinput><command>kcontrol</command></userinput>, and click
+<guibutton>Run</guibutton>.
+</para>
+</listitem>
+
+<listitem>
+<para>
+You can type <command>kcontrol &amp;</command> at any command prompt.
+</para>
+</listitem> 
+</orderedlist> 
+
+<para>
+All three of these methods are equivalent, and produce the same result.
+</para>
+
+</sect1>
+
+<sect1 id="control-center-screen"> 
+<title>The &kcontrolcenter; Screen</title>
+
+<para>
+When you start the control center, you are presented with a window,
+which can be divided into 3 functional parts.
+</para>
+
+<screenshot>
+<screeninfo>Screenshot</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="screenshot.png" format="PNG"/> </imageobject>
+<textobject> <phrase>Screenshot</phrase> </textobject>
+<caption>
+<para>The &kde; Control Center Screen</para>
+</caption>
+</mediaobject>
+</screenshot> 
+
+<para>
+Across the top is a menubar.  The menubar will provide you with quick
+access to most of &kcontrolcenter;'s features.  The menus are detailed in
+<link linkend="control-center-menus">The &kde; Control Center
+Menus</link>.
+</para>
+
+<para>
+Along the left hand side, is a column.  This is a where you choose which
+module to configure.  You can learn how to navigate through the modules
+in the section called <link linkend="module-intro">Navigating
+Modules</link>.
+</para>
+
+<para>
+The grey box on the lower right side (with the wizard), shows you some
+useful system information.
+</para>
+
+<para>
+In this example, we are running &kde; 2.2, we started &kcontrolcenter;
+as user <systemitem class="username">wicky</systemitem>, the computer is
+named <systemitem class="systemname">btnrg1</systemitem>, it is a
+&Linux; system, kernel version 2.4.4, on a Pentium II.
+</para>
+
+</sect1>
+
+<sect1 id="control-center-menus">
+<title>The &kcontrol; Menus</title>
+
+<para>
+This next section gives you a brief description of what each menu item
+does.
+</para>
+
+<sect2 id="control-center-menu-file">
+<title><guimenu>File</guimenu> Menu</title>
+
+<para>
+The <guimenu>File</guimenu> menu has a single entry.
+</para>
+
+<variablelist>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu><accel>F</accel>ile</guimenu>
+<guimenuitem><accel>Q</accel>uit</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+<action>Closes the control center.</action>
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="control-center-menu-view">
+<title><guimenu>View</guimenu> Menu</title>
+
+<para>
+These options determine how the module selection looks and acts.
+</para>
+
+<variablelist> 
+<varlistentry> 
+<term><menuchoice><guimenu><accel>V</accel>iew</guimenu> <guimenuitem><accel>M</accel>ode</guimenuitem>
+</menuchoice></term>
+
+<listitem>
+<para>
+Determines whether to use <guimenuitem>Tree</guimenuitem> view,
+or <guimenuitem>Icon</guimenuitem> view for your modules.
+</para>
+
+<para>
+With <guimenuitem>Tree</guimenuitem> view, each submenu appearing as an
+indented list.
+</para>
+
+<para>
+With <guimenuitem>Icon</guimenuitem> view, when you click on a category,
+the categories disappear and are replaced with the module list.  You
+then use an <guiicon>up</guiicon> button to return to your categories.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry> 
+<term><menuchoice> 
+<guimenu><accel>V</accel>iew</guimenu> <guisubmenu>Icon
+<accel>s</accel>ize</guisubmenu> 
+</menuchoice></term> 
+
+<listitem>
+<para>
+Using this option, you can choose
+<guimenuitem>Small</guimenuitem>, <guimenuitem>Medium</guimenuitem>, or
+<guimenuitem>Large</guimenuitem> icons to select your modules.
+</para>
+
+<note><para> 
+This menu item only controls the icon size if you are in
+<guimenuitem>Icon View</guimenuitem>.  Users who use the
+<guimenuitem>Tree View</guimenuitem>, will not observe any effects with
+this option.
+</para>
+</note>
+</listitem>
+
+</varlistentry> 
+</variablelist> 
+</sect2>
+
+<sect2 id="control-center-menu-mod">
+<title><guimenu>Modules</guimenu> Menu</title>
+
+<para>
+The modules menu, is a shortcut to take you directly to any module in
+the control center.
+</para>
+
+</sect2>
+
+<sect2 id="control-center-menu-help">
+<title><guimenu>Help</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul"><keycap>F1</keycap></keycombo>
+</shortcut>
+<guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem><accel>C</accel>ontents</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+<action>Clicking on this, will take you to the top of this
+document.</action>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>F1</keycap></keycombo>
+</shortcut>
+<guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem>What's <accel>T</accel>his?</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+<action>Selecting this option, changes the cursor to an arrow with a
+question mark.  Now if you click on any component of the control panel
+pane, you get short context sensitive help about that item.</action>
+</para>
+<tip>
+<para>
+This is the fastest way to get helpful advice on what any of the
+controls will do.
+</para>
+</tip>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem>Report Bug...</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+<action>If you discover a bug, you can select this option to
+automatically collect bug information and submit it to the &kde;
+developers.</action>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem><accel>A</accel>bout KDE Control Center</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+<action>Selecting this option displays a dialog box containing
+copyright, author and license information.
+</action>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem>About <accel>K</accel>DE</guimenuitem>
+</menuchoice></term>
+<listitem>
+<para>
+<action>This will display a dialog box with contact information</action>
+reguarding the &kde; project.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="control-center-exiting">
+<title>Exiting The &kde; Control Center</title>
+
+<para>
+You can exit the control center one of three ways:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+Select <menuchoice><guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem></menuchoice> from the menu bar.
+</para>
+</listitem>
+
+<listitem>
+<para>Type <keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+on the keyboard.
+</para>
+</listitem>
+
+<listitem>
+<para>
+Click on the <guiicon>Close</guiicon> button on the frame surrounding
+the control center.
+</para>
+</listitem>
+</itemizedlist>
+
+</sect1>
+
+<sect1 id="control-center-run-indiv">
+<title>Running Individual Modules</title>
+
+<para>
+You can run individual modules without running kcontrol by selecting
+<menuchoice><guimenu>K Button</guimenu>
+<guisubmenu>Preferences</guisubmenu> </menuchoice> from the &kde; panel.
+You can then select the module you want to run in the submenus.
+</para>
+
+</sect1>
+
+</chapter>
+
+<!--*****************************************************************-->
+
+<chapter id="module">
+<title>The &kcontrol; Modules</title>
+
+<para>
+In order to make it as easy as possible, the &kcontrol; has organized
+similar options into groups.  Each group is called a module.  When you
+click on the name of a module in the left window, you will be presented
+with the options of the module on the right.
+</para>
+
+<para>
+Each module will have some or all of the following buttons:
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guibutton>Apply</guibutton></term>
+<listitem>
+<para>
+Clicking this button will save all changes to &kde;.  If you have
+changed anything, clicking <guibutton>Apply</guibutton> will take the
+changes in effect.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Reset</guibutton></term>
+<listitem>
+<para>
+This button will <quote>Reset</quote> the module.  The exact effect will
+depend on the module.
+</para>
+</listitem>
+</varlistentry> 
+
+<varlistentry>
+<term>Help</term>
+<listitem>
+<para>
+This button will give you help specific to the current module.  The
+button will show you a short summary help page in the left window.  At
+the bottom of that window, you can click on a link to get more detailed
+help.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Default</guilabel></term> 
+<listitem>
+<para>
+This button will restore this module to its default values.  You must
+click <guibutton>OK</guibutton> to save the options.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note>
+<para>
+You must save the options of one module using
+<guibutton>Apply</guibutton> before you can change to a different
+module.
+</para>
+<para>
+If you try to change without saving your options, you will be asked if
+you want to save your changes, or discard them.
+</para>
+</note>
+
+<sect1 id="module-intro">
+<title>Navigating Modules</title>
+
+<para>
+This is a list of the <emphasis>standard</emphasis> configuration
+modules (sorted by category) provided by the <application
+role="package">KDE base</application> package. Please note that there
+may be many more modules on your system if you install additional
+software.
+</para>
+
+<variablelist>
+<varlistentry>
+<term>File Browsing</term>
+<listitem>
+<para>
+<link linkend="file-assoc">File Associations</link>,
+<link linkend="file-manager">File Manager</link>,
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Help</term><listitem>
+<para>
+<link linkend="help-index">Index</link>,
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Information</term>
+<listitem>
+<para>
+<!-- <link linkend="blockdev">Block Devices</link>, -->
+<link linkend="dma">DMA-Channels</link>,
+<link linkend="devices">Devices</link>,
+<link linkend="ioports">IO-Ports</link>,
+<link linkend="interrupts">Interrupts</link>,
+<link linkend="memory">Memory</link>,
+<link linkend="pci">PCI</link>,
+<link linkend="pcmcia">PCMCIA</link>,
+<link linkend="partitions">Partitions</link>,
+<link linkend="processor">Processor</link>,
+<link linkend="scsi">SCSI</link>,
+<link linkend="sambastatus">Samba Status</link>,
+<link linkend="soundinfo">Sound</link>,
+<link linkend="usb">USB Devices</link>
+<link linkend="xserver">X-Server</link>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Look and Feel</term>
+<listitem>
+<para>
+<link linkend="background">Background</link>,
+<!-- <link linkend="borders">Borders</link>,-->
+<link linkend="color">Colors</link>,
+<link linkend="desktop">Desktop</link>,
+<link linkend="fonts">Fonts</link>,
+<link linkend="icons">Icons</link>,
+<!-- <link linkend="iconstyle">Icon Style</link>, -->
+<link linkend="key-bindings">Key Bindings</link>,
+<link linkend="launch-feedback">Launch feedback</link>,
+<link linkend="panel">Panel</link>,
+<link linkend="screensaver">Screensaver</link>,
+<link linkend="style">Style</link>,
+<link linkend="sys-notify">System Notifications</link>,
+<link linkend="taskbar">Taskbar</link>,
+<link linkend="theme-manager">Theme Manager</link>,
+<!-- <link linkend="numbername">Virtual Desktops</link>,-->
+<link linkend="window-behavior">Window Behavior</link>,
+<link linkend="window-deco">Window Decoration</link>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Network</term>
+<listitem>
+<para>
+<link linkend="e-mail">E-Mail</link>,
+<link linkend="lan-browsing">LAN Browsing</link>,
+<link linkend="timeouts">Preferences</link>, <!-- FIXME -->
+<link linkend="protocols">Protocols</link>,
+<link linkend="socks">SOCKS</link>,
+<link linkend="talk">Talk Configuration</link>
+<link linkend="windows-shares">Windows Shares</link>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Peripherals</term>
+<listitem>
+<para>
+<link linkend="kbd">Keyboard</link>,
+<link linkend="mouse">Mouse</link>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Personalization</term>
+<listitem>
+<para>
+<link linkend="accessibility">Accesibility</link>,
+<link linkend="locale">Country &amp; Language</link>,
+<link linkend="crypto">Crypto</link>,
+<!-- <link linkend="kblayout">Keyboard Layout</link>, -->
+<link linkend="passwords">Passwords</link>
+<link linkend="spell-checking">Spell Checking</link>.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Power Control</term>
+<listitem>
+<para>
+<link linkend="battery-monitor">Battery Monitor</link>,
+<link linkend="energy">Energy</link>,
+<link linkend="powerctrl">Laptop Power Control</link>,
+<link linkend="lowbatcrit">Low Battery Critical</link>,
+<link linkend="lowbatwarn">Low Battery Warning</link>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Sound</term>
+<listitem>
+<para>
+<link linkend="midi">Midi</link>,
+<link linkend="mixer">Mixer</link>,
+<link linkend="sndserver">Sound Server</link>,
+<link linkend="bell">System Bell</link>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>System</term>
+<listitem>
+<para>
+<link linkend="datetime">Date and Time</link>,
+<link linkend="system-control">&kde; System Control</link>,
+<link linkend="konsole">&konsole;</link>,
+<link linkend="login-manager">Login Manager</link>,
+<link linkend="print-system">Print System</link>,
+<link linkend="print-manager">Printing Manager</link>,
+<link linkend="sessions">Session Manager</link>,
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Web Browsing</term>
+<listitem>
+<para>
+<link linkend="cookie">Cookies</link>,
+<link linkend="ebrowse">Enhanced Browsing</link>,
+<link linkend="konq-browsing">Konqueror Browser</link>,
+<link linkend="nsplugins">Netscape Plugins</link>,
+<link linkend="proxies">Proxies &amp; Cache</link>,
+<link linkend="stylesheets">Stylesheets</link>,
+<link linkend="user-agent">User Agent</link>,
+</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+<!--****************************************-->
+
+</chapter>
+
+<chapter id="laptop">
+<title>Laptop Modules Notes</title>
+
+<para>
+In order to use the laptop modules, you must have the kernel
+<acronym>APM</acronym> package installed in your kernel.  Useful information on
+how to do this can be found at
+<ulink url="http://www.cs.utexas.edu/users/kharker/linux-laptop/apm.html">
+http://www.cs.utexas.edu/users/kharker/linux-laptop/apm.html</ulink> and
+in the Battery Powered Linux mini-HOWTO at <ulink
+url="http://metalab.unc.edu/LDP/HOWTO/mini/Battery-Powered.html">
+http://metalab.unc.edu/LDP/HOWTO/mini/Battery-Powered.html</ulink>.
+</para>
+
+<para>
+If you want the <guimenuitem>suspend</guimenuitem> and
+<guimenuitem>standby</guimenuitem> menu commands to work then you should
+install the &Linux; <application>apmd</application> package (version 2.4
+or later). If you want to use them from non-root accounts you must mark
+the <application>apm</application> command <quote>set uid root</quote>.
+</para>
+
+<para>
+To do this log on as <systemitem class="username">root</systemitem> and enter:
+</para>
+
+<screen>
+<prompt>%</prompt><userinput><command>chown</command> <option>root /usr/bin/apm</option>;<command>chmod</command> <option>+s /usr/bin/apm</option></userinput>
+</screen>
+
+<warning>
+<para>
+By doing this you allow any user of your system to put it into the
+suspend states - if you are the only user this should not be a problem.
+</para>
+
+<para>
+Also note that any program which has <systemitem
+class="username">root</systemitem> access, can be a potential security
+problem.  You should carefully determine if there is are any security
+concerns <emphasis>before</emphasis> giving any program <systemitem
+class="username">root</systemitem> permissions.
+</para>
+</warning>
+
+</chapter>
+
+<chapter id="modules">
+<title>Modules</title>
+
+<!-- File Browsing/File Associations -->  &fileassoc;
+<!-- File Browsing/File Manager  -->      &filemanage;
+
+<!-- Help/htmlsearch -->               &helpindex;
+
+<!-- Information/Block Devices         &blockdev; -->
+<!-- Information/DMA-channels -->      &dma;
+<!-- Information/Devices -->           &devices;
+<!-- Information/IO-Ports -->          &ioports;
+<!-- Information/Interrupts -->        &interrupts;
+<!-- Information/Memory -->            &memory;
+<!-- Information/PCI -->               &pci;
+<!-- Information/PCMCIA  -->           &pcmcia;
+<!-- Information/Partitions -->        &partitions;
+<!-- Information/Processor -->         &processor;
+<!-- Information/SCSI -->              &scsi;
+<!-- Information/Samba Status -->      &sambastatus;
+<!-- Information/Sound -->             &soundinfo;
+<!-- Information/USB Devices -->       &usb;    
+<!-- Information/X-Server -->          &xserver;
+
+<!-- LookNFeel/Background -->           &background;
+<!-- LookNFeel/Colors-->                &colors;
+<!-- LookNFeel/Desktop -->              &desktop;
+<!-- LookNFeel/Fonts -->                &fonts;
+<!-- LookNFeel/Icons -->                &icon;
+<!-- LookNFeel/Key bindings -->         &keybind;
+<!-- LookNFeel/Launch Feedback -->      &launch;
+<!-- LookNFeel/Panel -->                &panel;
+<!-- LookNFeel/Screensaver -->          &screensaver;
+<!-- LookNFeel/Style -->                &style;
+<!-- LookNFeel/System Notifications --> &sysnotify;
+<!-- LookNFeel/Taskbar -->              &taskbar;
+<!-- LookNFeel/Theme Manager -->        &thememgr;
+<!-- LookNFeel/Window Behavior -->      &action;
+<!-- LookNFeel/Window Decoration -->    &windeco;
+
+<!-- Network/E-Mail -->                   &email;
+<!-- Network/LAN Browsing -->          &lanbrowsing;
+<!-- Network/Preferences -->           &timeouts;
+<!-- Network/protocols -->             &protocols;
+<!-- Network/SOCKS -->                 &socks;
+<!-- Network/Talk configuration -->    &talk;
+<!-- Network/Windows Shares  -->       &winshares;
+
+<!-- Peripherals/Keyboard -->          &kbd; <!-- and &layout; now --> 
+<!-- Peripherals/Mouse -->             &mouse;
+
+<!-- Personalization/Accessibility -->       &access; 
+<!-- Personalization/Country/language -->    &locale;
+<!-- Personalization/Crypto -->              &crypto;
+<!-- Personalization/Passwords -->           &password;
+<!-- Personalization/Spell Checking -->      &spelling;
+
+<!-- PowerControl/Battery Monitor-->          &batmon;
+<!-- PowerControl/Energy -->                  &energy;
+<!-- PowerControl/Laptop Power Control -->    &powerctrl;
+<!-- PowerControl/Low Batery Critical -->     &lowbatcrit;
+<!-- PowerControl/Low Battery Warning -->     &lowbatwarn;
+
+<!-- Sound/Midi -->                    &midi;
+<!-- Sound/Mixer -->                   &mixer;
+<!-- Sound/Sound Server -->            &sndserver;
+<!-- Sound/System Bell -->             &bell;
+
+<!-- System/Date and Time -->        &datetime;
+<!-- System/KDE System Control -->   &syscontrol;
+<!-- System/Konsole -->              &kcmkonsole;
+<!-- System/Login Manager  -->       &loginmanager;
+<!-- System/Print system -->         &print-system;
+<!-- System/Printing Manager -->     &print-manager;
+<!-- System/Session Manager -->      &sessionman;
+
+<!-- WebBrowsing/Cookies -->             &cookie;
+<!-- WebBrowsing/Enhanced Browsing -->   &enhbrowse;
+<!-- WebBrowsing/Konqueror Browser -->   &konqbrowse;
+<!-- WebBrowsing/Netscape Plugins -->    &nsplugins;
+<!-- WebBrowsing/Proxies and Cache -->   &proxy;
+<!-- WebBrowsing/Stylesheets -->         &stylesheets;
+<!-- WebBrowsing/User Agent -->          &useragent;
+
+
+</chapter>
+
+<chapter id="credits">
+<title>Credits and License</title>
+
+<para><application>Kcontrol</application></para>
+<para>Program copyright 1997 The KDE Control Center Developers</para>
+<para>Contributors:</para>
+
+<itemizedlist>
+<listitem><para>Matthias Hoelzer-Kluepfel <email>hoelzer@kde.org</email></para></listitem>
+<listitem><para>Matthias Elter <email>elter@kde.org</email></para></listitem>
+</itemizedlist>
+
+<para>Documentation <trademark class="copyright">copyright 2000 Michael
+McBride</trademark> <email>mpmcbride7@yahoo.com</email></para>
+
+<para>Contributors:</para>
+
+<itemizedlist>
+<listitem><para>Paul Campbell <email>paul@taniwha.com</email></para></listitem>
+<listitem><para>Helge Deller <email>helge.deller@ruhruni-bochum.de</email></para></listitem>
+<listitem><para>Mark Donohoe </para></listitem>
+<listitem><para>Pat Dowler</para></listitem>
+<listitem><para>Duncan Haldane <email>duncan@kde.org</email></para></listitem>
+<listitem><para>Steffen Hansen <email>stefh@mip.ou.dk</email>.</para></listitem>
+<listitem><para>Matthias Hoelzer-Kluepfel <email>hoelzer@kde.org</email></para></listitem>
+<listitem><para>Martin Jones <email>mjones@kde.org</email></para></listitem>
+<listitem><para>Jost Schenck <email>jost@schenck.de</email></para></listitem>
+<listitem><para>Jonathan Singer <email>jsinger@leeta.net</email></para></listitem>
+<listitem><para>Thomas Tanghus <email>tanghus@earthling.net</email></para></listitem>
+<listitem><para>Krishna Tateneni <email>tateneni@pluto.njcc.com></email></para></listitem>
+<listitem><para>Ellis Whitehead <email>ewhitehe@uni-freiburg.de</email></para></listitem>
+
+</itemizedlist>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+&underGPL;
+</chapter>
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+End:
+-->

@@ -1,0 +1,185 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="kate" version="1">
+
+<MenuBar noMerge="1">
+  <Menu name="file"><text>&amp;File</text>
+    <Action name="file_new" />
+    <Action name="file_open" />
+    <Action name="file_open_recent" />
+    <Separator/>
+    <Action name="file_save"/>
+    <Action name="file_save_as"/>
+    <Action name="file_save_all"/>
+    <Separator />
+    <Action name="file_reload" />
+    <Action name="file_open_with" />
+    <Separator/>
+    <Action name="file_print"/>
+    <Separator/>
+    <Action name="file_close"/>
+    <Action name="file_close_all"/>
+    <Separator/>
+    <Merge/>
+    <Separator/>
+    <Action name="file_newWindow"/>
+    <Separator/>
+    <Action name="file_quit"/>
+  </Menu>
+
+  <Menu name="edit" noMerge="1"><text>&amp;Edit</text>
+    <Action name="edit_undo" />
+    <Action name="edit_redo" />
+    <Action name="edit_undoHistory" />
+    <Separator />
+    <Action name="edit_cut" />
+    <Action name="edit_copy" />
+    <Action name="edit_paste" />
+    <Action name="edit_select_all" />
+    <Action name="edit_deselectAll"/>
+    <Action name="edit_invertSelection" />
+    <Separator />
+    <Action name="edit_find" />
+    <Action name="edit_find_next" />
+    <Action name="edit_find_prev" />
+    <Action name="edit_replace" />
+    <Separator />
+    <Action name="edit_indent" />
+    <Action name="edit_unindent" />
+    <Action name="edit_comment" />
+    <Action name="edit_uncomment" />
+    <Separator />
+    <Action name="edit_apply_wordwrap"/>
+    <Action name="edit_cmd"/>
+    <Separator/>
+    <Action name="go_goto_line"/>
+    <Separator />
+    <Action name="tools_spelling" />
+  </Menu>
+
+  <Menu name="documents"><text>&amp;Document</text>
+    <Action name="go_back"/>
+    <Action name="go_forward"/>
+    <Separator />
+    <Action name="set_highlight"/>
+    <Action name="set_eol"/>
+    <Separator />
+  </Menu>
+
+  <Menu name="view"><text>&amp;View</text>
+     <Action name="view_split_vert"/>
+     <Action name="view_split_horiz"/>
+     <Separator />
+     <Action name="view_border"/>
+     <Separator />
+     <Action name="view_close_current_space" />
+  	<Menu name="go"><text>&amp;Go</text>
+     	  <Action name="go_next"/>
+     	  <Action name="go_prev"/>
+  	</Menu>
+  </Menu>
+
+  <Menu name="bookmarks"><text>&amp;Bookmarks</text>
+    <Action name="edit_bookmarkToggle" />
+    <Action name="edit_bookmarksClear" />
+    <Separator />
+  </Menu>
+
+  <Merge/>
+
+  <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
+    <Action name="settings_show_toolbar" />
+    <Action name="settings_show_filelist" />
+    <Action name="settings_show_fileselector" />
+    <Action name="settings_show_console" />
+    <Separator />
+    <Action name="settings_show_full_path" />
+    <Action name="settings_show_fullscreen" />
+    <Separator />
+    <Action name="set_verticalSelect"/>
+    <Action name="options_configure_keybinding"/>
+    <Action name="set_configure_toolbars"/>
+    <Action name="settings_configure" />
+  </Menu>
+
+  <Menu name="help"><text>&amp;Help</text>
+    <Action name="help_contents"/>
+    <Action name="help_plugins_contents"/>
+    <Action name="help_whats_this"/>
+    <Separator/>
+    <Action name="help_report_bug"/>
+    <Separator/>
+    <Action name="help_about_app"/>
+    <Action name="help_about_kde"/>
+  </Menu>
+</MenuBar>
+
+<ToolBar name="mainToolBar" noMerge="1"><text>Main Toolbar</text>
+  <Action name="file_new" group="file_operations" />
+  <Action name="file_open" group="file_operations" />
+  <Action name="file_save" group="file_operations" />
+  <Action name="file_close" group="file_operations" />
+  <Separator/>
+  <Action name="file_print"/>
+  <Separator/>
+  <Action name="edit_undo" />
+  <Action name="edit_redo" />
+  <Action name="edit_undoHistory" />
+  <Separator/>
+  <Action name="edit_cut" />
+  <Action name="edit_copy" />
+  <Action name="edit_paste" />
+  <Separator />
+  <Action name="edit_find" />
+  <Separator />
+  <Action name="go_back" />
+  <Action name="go_forward" />
+  <Separator />
+  <Action name="view_split_vert"/>
+  <Action name="view_split_horiz"/>
+  <Separator />
+  <Action name="view_close_current_space" />
+</ToolBar>
+
+<Menu name="view_popup" noMerge="1">
+  <Action name="edit_undo" />
+  <Action name="edit_redo" />
+  <Action name="edit_undoHistory" />
+  <Separator />
+  <Action name="edit_cut"/>
+  <Action name="edit_copy"/>
+  <Action name="edit_paste"/>
+  <Separator />
+  <Action name="set_highlight"/>
+  <Separator />
+  <Action name="view_border"/>
+  <Separator />
+  <Action name="go_back"/>
+  <Action name="go_forward"/>
+</Menu>
+
+<Menu name="viewspace_popup" noMerge="1">
+  <Action name="view_split_vert"/>
+  <Action name="view_split_horiz"/>
+  <Separator />
+  <Action name="view_close_current_space" />
+  <Separator />
+  <Action name="go_back"/>
+  <Action name="go_forward"/>
+  <Action name="doc_list"/>
+</Menu>
+
+<Menu name="filelist_popup" noMerge="1">
+  <Action name="file_save"/>
+  <Action name="file_save_as"/>
+  <Action name="file_save_all"/>
+  <Separator/>
+  <Action name="file_reload" />
+  <Action name="file_open_with" />
+  <Separator/>
+  <Action name="file_print"/>
+  <Separator/>
+  <Action name="file_close"/>
+  <Action name="file_close_all"/>
+</Menu>
+
+</kpartgui>

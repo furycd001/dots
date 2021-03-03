@@ -1,0 +1,70 @@
+METADATA
+========
+
+Applications can provide "metadata" to the slaves. Metadata can influence
+the behaviour of a slave and is usally protocol dependent. MetaData consists
+of two strings: a "key" and a "value".
+
+
+The following keys are currently in use:
+
+Key             Value(s)        Description
+----            --------        -----------
+
+referrer        string          The URL from which the request originates. (read by http)
+
+modified        string          The modification date of the document (set by http)
+
+accept          string          List of mimetypes to accept seperated by a ", ". (read by http)
+
+UserAgent       string          The user agent name to send to remote host (read by http)
+
+content-type    string          The content type of the data to be uploaded (read by http)
+
+cache           "cache"         Use entry from cache if available.
+                "cacheonly"     Do not do any remote lookups, fail if not in cache. (read by http)
+                "verify"        Use entry from after verifying with remote server
+                "reload"        Do not do any cache lookups.
+
+no-cache        bool            Flag that indicates whether caching is enabled/disabled
+
+window-id       number          winId() of the window the request is associated with.
+
+resume          number          Try to get the file starting at the given offset (set by TransferJob)
+
+ssl_*           *               Many SSL metadata fields (see khtml_part and kio_http)
+
+charset         string          Charset of the current content as returned by a HTTP Header Response.
+
+content-
+disposition     string          Suggested name to Save a file as as returned by a HTTP Header Response.
+
+http-refresh    string          Passes HTTP Refresh meta-data back to the application.
+
+cookies		"auto"		Use kcookiejar to lookup and collect cookies (default)
+		"manual"	Cookies set in "setcookies" are send, received cookies are reported via "setcookies".
+		"none"		No cookies are send, received cookies are discarded.
+
+setcookies	string		Used to send/receive HTTP cookies when "cookies" is set to "manual".
+
+errorPage	bool		Flag that indicates that an errorPage() is preferred over an error(). (default:true)
+
+** NOTE: Anything in quotes ("") under Value(s) indicates literal value.
+
+
+Examples:
+
+E.g. the following disables cookies:
+job = KIO::get( KURL("http://www.kde.org"), false, false);
+job->addMetaData("cookies", "none");
+
+If you want to handle cookies yourself, you can do:
+job = KIO::get( KURL("http://www.kde.org"), false, false);
+job->addMetaData("cookies", "manual");
+job->addMetaData("setcookies", "Cookie: foo=bar; gnat=gnork");
+
+The above sends two cookies along with the request, any cookies send back by
+the server can be retrieved with job->queryMetaData("cookies") after
+receiving the mimetype() signal or when the job is finished.
+
+The cookiejar is not used in this case.

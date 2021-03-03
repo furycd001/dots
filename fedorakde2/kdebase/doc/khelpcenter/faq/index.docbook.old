@@ -1,0 +1,3600 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY kappname "&kde; Frequently Asked Questions">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  
+  
+]>
+<!--Time-stamp: "2000-11-29 01:57:01 weetiong"-->
+
+<book lang="&language;">
+
+<bookinfo>
+<title>&kde; Frequently Asked Questions</title>
+
+<authorgroup>
+<author>
+<surname>The &kde; Team</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+</authorgroup>
+
+<copyright>
+<year>1997</year>
+<year>1998</year>
+<year>1999</year>
+<year>2000</year>
+<year>2001</year>
+<holder>The &kde; Team</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2001-05-18</date>
+<releaseinfo>2.01.00</releaseinfo>
+
+<abstract>
+<para>This is a compilation of the most frequently asked questions
+about the K Desktop Environment.  Please report any bugs,
+inconsistencies, or omissions you find in this <acronym>FAQ</acronym> to
+<email>kde-faq@kde.org</email>.  Please do not, however, mail us your
+questions; post them to the &kde; mailing lists and newsgroups
+instead.</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>FAQ</keyword>
+<keyword>question</keyword>
+<keyword>answer</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="about">
+<title>About this <acronym>FAQ</acronym></title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>What can I do to help out with this <acronym>FAQ</acronym>?</para>
+</question>
+<answer>
+<para>First, send us any errors that you may find.  Also, any suggestions
+that you might have are also appreciated.  Better yet, anything that
+you think is unclear, and if possible, send us what you think is
+clear.  Our email address is <email>kde-faq@kde.org</email>.</para>
+<para>Second, send us your solutions of those frequently-asked
+questions which are still not in this <acronym>FAQ</acronym>.  We will put them in as
+soon as possible.</para>
+<para>Last but not least, please make full use of this <acronym>FAQ</acronym>.  Read this
+<acronym>FAQ</acronym> (and other relevant documentation) well before asking questions on
+the various &kde; mailing lists or newsgroups.</para>
+<para><note>
+<para>You might also want to consider becoming a <acronym>FAQ</acronym> maintainer.
+Please refer to <xref linkend="FAQ-maintainer-HOWTO"/> for more
+details.</para>
+</note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="FAQ-maintainer-HOWTO">
+<para>How do I become a <acronym>FAQ</acronym> maintainer?</para>
+</question>
+<answer>
+<para>Actually, it is very easy to become an <acronym>FAQ</acronym> maintainer.  And we
+are always in need of fresh blood. :-)  Just send us an email at
+<email>kde-faq@kde.org</email>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>What is &kde;?</para>
+</question>
+<answer>
+<para>&kde; is the K Desktop Environment.  It is a project initiated
+by <ulink url="mailto:ettrich@kde.org">Matthias Ettrich</ulink> in
+1996.  The aim of the &kde; project is to connect the
+power of the &UNIX; operating systems with the comfort of a modern user
+interface.</para>
+<para>In short, &kde; will bring &UNIX; to the desktop!</para>
+<para>If you want further information about &kde;, have a look at
+<ulink url="http://www.kde.org/whatiskde/index.html">What is
+&kde;?</ulink></para>
+</answer>
+</qandaentry>
+
+<!-- fixme: is this correct? URL is invalid anyway.
+<qandaentry>
+<question>
+<para>What does the K in &kde; stand for?</para>
+</question>
+<answer>
+<para>It stands for Kool.  Take a look at the <ulink
+url="http://www.via.ecp.fr/lyx/archive/9610/msg00368.html">message</ulink>
+that started it all.</para>
+</answer>
+</qandaentry>
+-->
+
+<qandaentry>
+<question id="platform">
+<para>On which platforms can I expect &kde; to work?</para>
+</question>
+<answer>
+<para>&kde; is a Desktop Environment for all flavors of &UNIX;.  While
+it is true that most &kde; developers use &Linux;, &kde; runs smoothly
+on a wide range of systems.  You may, however, need to tweak the
+source code a bit to get &kde; to compile on a not-so-popular variant
+of &UNIX;, or if you are not using the &GNU; development tools, in
+particular the &gcc; compiler.</para>
+<para>Some of systems on which &kde; is running are:</para>
+<itemizedlist>
+<listitem><para>&Linux;</para></listitem>
+<listitem><para>&Solaris;</para></listitem>
+<listitem><para>FreeBSD</para></listitem>
+<listitem><para>&IRIX;</para></listitem>
+<listitem><para>&HP-UX;</para></listitem>
+<listitem><para>MKLinux</para></listitem>
+<listitem><para>&LinuxPPC;</para></listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is &kde; a window manager?</para>
+</question>
+<answer>
+<para>No, &kde; is not a window manager.  While &kde; includes a very
+sophisticated window manager (&kwin;), &kde; is much more than
+that.  It is a full-blown Integrated Desktop Environment.</para>
+<para>&kde; provides a complete desktop environment, including a web
+browser, a file
+manager, a window manager, a help system, a configuration system,
+uncountable tools and utilities, and an ever increasing number of
+applications, including but not limited to mail and news clients,
+drawing programs, a &PostScript; and a &DVI; viewer and so
+forth.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is &kde; a <acronym>CDE</acronym>, &Windows; 95
+or &Mac; <acronym>OS</acronym> clone?</para>
+</question>
+<answer>
+<para>No, &kde; is not a clone. Specifically
+&kde; is not a <acronym>CDE</acronym> or &Windows; 
+clone. While the &kde; developers have and will continue to glean the
+best features from all existing desktop environments, &kde; is a truly
+unique environment that has and will continue to go its own
+way.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is &kde; free software?</para>
+</question>
+<answer>
+
+<para>Yes, &kde; is free software according to the
+&GNU; General Public License.  All &kde; libraries
+are available under the <acronym>LGPL</acronym> making commercial
+software development for the &kde; desktop possible,
+but all &kde; applications are licensed under the
+<acronym>GPL</acronym>.</para>
+<para>&kde; uses the <link linkend="qt">&Qt; C++ crossplatform
+toolkit</link>, which is also released (since version 2.2) under the
+<acronym>GPL</acronym>.</para>
+<para>It is absolutely legal to make &kde; and &Qt;
+available on &CD-ROM; free of charge.  No runtime fees of any kind are
+incurred.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="getting-kde">
+<title>Getting &kde;</title>
+
+<qandaset>
+<qandaentry>
+<question id="where-to-get-kde">
+<para>Where do I get &kde;?</para>
+</question>
+<answer>
+<para>The main distribution site for &kde; is <ulink
+url="ftp://ftp.kde.org">ftp.kde.org</ulink>.  However, this site is
+often under heavy load, so you might prefer one of the 
+<ulink url="http://www.kde.org/mirrors.html"> &kde; mirror
+sites</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Are there &Linux; distributions that come with &kde;?</para>
+</question>
+<answer>
+<para>Yes, major &Linux; distributions already ship &kde;.  As
+building a distribution takes some time, they might not always contain
+the latest version, but for a start or to avoid downloading from the
+Internet, they do provide a good starting point.</para>
+<para>You can find an up-to-date list of distributions that ship
+with &kde; <ulink
+url="http://www.kde.org/kdeships.html">here</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What is the current version?</para>
+</question>
+<answer>
+<para>Currently, the latest stable version is 2.1.1.</para>
+<para>The <ulink
+url="http://www.kde.org/info/2.1.1.html">&kde; 2.1.1 Info
+Page</ulink> contains a lot of information specific to this
+release.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Where do I find &kde; snapshots?</para>
+</question>
+<answer>
+<para>You can get the latest snapshots from <ulink
+url="ftp://ftp.kde.org/pub/kde/unstable/CVS/snapshots">ftp://ftp.kde.org/pub/kde/unstable/CVS/snapshots</ulink>.
+You might also want to consider setting up your own <acronym>CVS</acronym> client in order to
+maintain the latest snapshot at all times.  Please refer to <ulink
+url="http://www.kde.org/cvsup.html">How to use <application>cvsup</application> to get &kde;</ulink> on
+doing that.</para>
+
+<para>By the way, if you want to know what <acronym>CVS</acronym> is, please refer to
+<link linkend="CVS">What is <acronym>CVS</acronym>?</link>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="where-to-get-qt">
+<para>Where do I get &Qt;?</para>
+</question>
+<answer>
+<para>&Qt; is a product of a Norwegian company, Troll Tech.  You can
+always get the latest &Qt; version from their <ulink
+url="ftp://ftp.troll.no">&FTP; server</ulink>.</para>
+<para>However, you should also be able to get &Qt; from the
+above-mentioned <link linkend="where-to-get-kde">&kde; sites</link>.
+And with most up-to-date &Linux; distributions, &Qt; is already
+included.  Please see <xref linkend="prerequisites"/> for the version
+of &Qt; you need.</para>
+</answer>
+</qandaentry>
+
+<!--throw this into the glossary as well? ;)  maybe not.-->
+<qandaentry>
+<question id="qt">
+<para>What is &Qt;, by the way?</para>
+</question>
+<answer>
+<para>&Qt; is a C++-based class library to build user interfaces. It
+also includes many utility classes like string classes and classes 
+to handle input and output. It
+provides most of the widgets you will see in a &kde; application:
+menus, buttons, sliders, <abbrev>etc.</abbrev>  &Qt; is a cross-platform library that
+allows you to write code that will compile on &UNIX; systems as well as
+&Windows;.  You can learn more about &Qt; at <ulink 
+url="http://www.troll.no">http://www.troll.no</ulink>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="install">
+<title>Installation instructions</title>
+
+<para>These are the generic installation instructions for the K
+Desktop Environment.  Please complement your reading with the
+<filename>README</filename>s and <filename>INSTALL</filename>s that
+come along with the package.  Please read them carefully and try to
+help yourself out if anything goes wrong.  If you need further
+assistance, consider joining the &kde; mailing lists
+(see our web site instructions for joining the &kde;
+<ulink url="http://www.kde.org/mailinglists.html">mailing
+lists</ulink>) or newsgroups.</para>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>To the would-be converts</para>
+</question>
+<answer>
+<para>So you have heard the rumors.  Or you have seen the
+screenshots.  And you are dying to get hold of &kde;.  But you know
+next to nothing about this whole "alternative OS" business.  Don't
+worry!  You only need to do some (well, maybe not some) reading,
+that's all!</para>
+<para>&kde; does not run on &Windows; 95/98/NT or OS/2 (yet).  To run
+&kde;, you need to have a &UNIX; system.  Please refer to <xref
+linkend="platform"/> for more details.</para>
+<para>Let's say you have decided to install &Linux;.  You can either
+download it from the Internet, or buy a &CD-ROM; set that contains the
+distribution of your choice.  You might find the following resources
+useful:</para>
+<itemizedlist>
+<listitem><para><ulink
+url="http://www.control-escape.com/">Control-Escape: Alternative
+Software, &Linux; Help</ulink></para></listitem>
+<listitem><para><ulink url="http://www.linuxdoc.org/">&Linux;
+Documentation Project</ulink></para></listitem>
+<listitem><para><ulink url="http://www.mainmatter.com/">&Linux;
+Frequently Asked Questions with Answers</ulink></para></listitem>
+<listitem><para><ulink url="http://www.linux.org/index.html">The
+&Linux; Home  Page at &Linux; Online</ulink></para></listitem>
+<listitem><para>Usenet newsgroups like
+comp.os.linux.*</para></listitem>
+</itemizedlist>
+<para>In order to run &kde; on &Linux;, you need to set up the X
+first.  The &X-Windows; is the de facto &GUI; on &UNIX; systems.  You might
+want to take a look at the following resources:</para>
+<itemizedlist>
+<listitem><para><ulink
+url="http://www.x.org/">X.org</ulink></para></listitem>
+<listitem><para><ulink url="http://www.xfree86.org/">XFree86(TM): Home
+Page</ulink></para></listitem>
+<listitem><para>Usenet newsgroups like comp.os.linux.x and
+comp.windows.x.*.</para></listitem>
+</itemizedlist>
+<para>Finally, you are ready to commence the &kde; installation.
+Please start reading from the next section.  To get &kde;, please
+refer to <xref linkend="where-to-get-kde"/>.  Last but not least, if
+you encounter any problems while installing &kde;, please do not
+hesitate to make use of the &kde; <link
+linkend="mailing-lists">mailing lists</link> and <link
+linkend="newsgroups">newsgroups</link>.  But do bear this in mind: no
+question is too silly to ask, but some are too silly to answer,
+especially when they are already answered in this <acronym>FAQ</acronym>.</para>
+<para>Good luck and have fun!</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Available package formats</para>
+</question>
+<answer>
+
+<para>The &kde; team provides six different kinds of packages: source and binary
+<acronym>RPM</acronym>s, source and binary <filename>.tgz</filename>
+(<filename>.tar.gz</filename>) files, and source and binary Debian files.  The
+first to be released are usually the source <filename>.tgz</filename> files, but
+other formats will appear soon after.  Recently, source and binary
+<filename>.tar.bz2</filename> files are also being made available.  Please refer
+to <xref linkend="bzip2"/> for more information on unzipping tarballs with
+<filename>.bz2</filename> extension.  In addition, <filename>pkg</filename>
+packages for &Solaris; 2.6 and 7 have also appeared.</para> 
+<para>The installation process depends on which package format you choose.
+After the installation, there are post-installation procedures that apply for
+all package formats.  Note that if you are an inexperienced &UNIX; user and have
+a <acronym>RPM</acronym>-based system, you are probably best off choosing the binary <acronym>RPM</acronym>
+packages being provided by your distribution vendor.  At least Caldera, Delix,
+and S.u.S.E. will make binary <acronym>RPM</acronym>s available via
+their &FTP; servers.</para>
+<para>If you need special configuration options (<abbrev>e.g.</abbrev> because you have shadow
+passwords and want to use the screensavers), your best bet is to use the source
+packages and compile &kde; yourself.  <note><para><ulink
+url="mailto:bill.mote@bigfoot.com">Bill Mote</ulink> has published a home page
+called "KDE 1.1 Installation via RPM".  Go see it <ulink
+url="http://home.fuse.net/bmote/kde.htm">here</ulink>.</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="prerequisites">
+<para>Prerequisites</para>
+</question>
+<answer>
+<para>For &kde; 2.0, you need the &Qt; library version 2.2 or higher,
+while for &kde; 1.1, &kde; 1.1.1, and &kde; 1.1.2, you need version
+1.42 or higher. Please make sure you download the correct &Qt;.
+<caution><para>&kde; 1.x will not work with
+&Qt; 2.0 or higher.</para></caution>
+You would also need the header files as well if you want to compile
+&kde; yourself.  They are all available at no cost from <ulink
+url="http://www.trolltech.com/products/download">http://www.trolltech.com/download</ulink>.
+ In addition, there are optional libraries that might improve &kde; if
+ installed on your system.  An example is libssl which will enable
+ &konqueror; to browse web pages securely.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Description of the base packages</para>
+</question>
+<answer>
+<para>The base distribution currently consists of eleven
+packages.  Some are required, while others are optional.  Each package
+is available in each of the aforementioned package formats.</para>
+<variablelist>
+<varlistentry>
+<term>kdesupport</term>
+<listitem>
+<para>Recommended</para>
+<para>This package contains support libraries that have not been
+written as part of the &kde; project, but are needed nevertheless.  If
+you already have the libraries (libgif, libjpeg, libmime, libuu,
+libgdbm) in this package in the required versions, then you do not
+need to install this package.  When in doubt, install it.  Note that
+for the Debian packages, this package is required.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdelibs</term>
+<listitem>
+<para>Required</para>
+<para>This package contains shared libraries that are needed by all
+&kde; applications.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdebase</term>
+<listitem>
+<para>Required</para>
+<para>This package contains the base applications that form the core
+of the K Desktop Environment like the window manager, the terminal
+emulator, the control center, the file manager, and the panel.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdegames</term>
+<listitem>
+<para>Optional</para>
+<para>Various games like mahjongg, snake, asteroids, and
+tetris.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdegraphics</term>
+<listitem>
+<para>Optional</para>
+<para>Various graphics-related programs like &PostScript; previewer,
+&DVI; previewer, and a drawing program.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdeutils</term>
+<listitem>
+<para>Optional</para>
+<para>Various desktop tools like a calculator, an editor and other
+nifty stuff.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdemultimedia</term>
+<listitem>
+<para>Optional</para>
+<para>Multimedia applications like a &CD; player and a mixer.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdenetwork</term>
+<listitem>
+<para>Optional</para>
+<para>Network applications.  Currently contains the mail program, the
+news reader, and several other network-related programs.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdeadmin</term>
+<listitem>
+<para>Optional</para>
+<para>System administration programs.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>kdetoys</term>
+<listitem>
+<para>Optional</para>
+<para>Toys!</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>&korganizer;</term>
+<listitem>
+<para>Optional</para>
+<para>Your desktop would never be complete without an organizer,
+right?</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>kdesupport (if needed) should be installed before everything
+else.  The next (or first) package should be kdelibs.  The other
+packages can be installed in any arbitrary order.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Installation instructions for the different package
+formats</para>
+</question>
+<answer>
+<para><important>
+<para>Please do not forget to read the <filename>README</filename> and <filename>INSTALL</filename> files if
+they are available.</para>
+</important></para>
+<variablelist>
+<varlistentry>
+<term>Installation of the Debian packages</term>
+<listitem>
+<para>The Debian packages install according to the upcoming FHS (File
+Hierarchy Standard).</para>
+<procedure>
+<step performance="required"><para>become superuser</para></step>
+<step performance="required"><para>run <command>dpkg <option>-i
+<replaceable>packagename.deb</replaceable></option></command> for
+every package you want to install.</para></step>
+</procedure>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Installation of the <acronym>RPM</acronym> packages</term>
+<listitem>
+<procedure>
+<title>To install binary <acronym>RPM</acronym>s</title>
+<step performance="required"><para>become superuser</para></step>
+<step performance="required"><para>execute <command>rpm <option>-ivh
+<replaceable>packagename.rpm</replaceable></option></command></para></step>
+</procedure>
+<procedure>
+<title>To create and install a binary <acronym>RPM</acronym> from the source
+<acronym>RPM</acronym></title>
+<step performance="required"><para>become superuser</para></step>
+<step performance="required"><para>run <command>rpm <option>-ivh
+<replaceable>packagename.src.rpm</replaceable></option></command></para></step>
+<step performance="required"><para><command>cd /usr/src/redhat/SPECS</command></para></step>
+<step performance="required"><para><command>rpm <option>-bb
+<replaceable>packagename.spec</replaceable></option></command></para></step>
+<step performance="required"><para><command>cd
+../RPMS/<replaceable>i386</replaceable></command> (or whatever
+architecture you use)</para></step>
+<step performance="required"><para><command>rpm <option>-ivh <replaceable>packagename.i386.rpm</replaceable></option></command></para></step>
+</procedure>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Installation of the source <filename>.tar.gz</filename> files</term>
+<listitem>
+<para>The source <filename>.tgz</filename> package installs into <filename
+class="directory">/usr/local/kde</filename> by default.  You can
+override this setting by using the <option>--prefix</option> option of
+the <filename>configure</filename> script.</para>
+<procedure>
+<step performance="required"><para>unpack the packages with <command>tar <option>xvzf
+<replaceable>packagename.tar.gz</replaceable></option></command></para></step>
+<step performance="required"><para>change directory to the package directory: <command>cd
+<replaceable>packagename</replaceable></command></para></step>
+<step performance="required"><para>configure the package: <command>./configure</command>
+<note><para>Some packages (notably kdebase) have special configuration
+options that might be applicable to your installation.  Type
+<command>./configure <option>--help</option></command> to see the
+available options.</para></note></para></step>
+<step performance="required"><para>build the package: <command>make</command></para></step>
+<step performance="required"><para>install the package: <command>su <option>-c "make
+install"</option></command> (if you aren't already root).  If you
+already are, just type <command>make
+<option>install</option></command>.</para></step>
+</procedure>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Installation of the binary <filename>.tar.gz</filename> files</term>
+<listitem>
+<para>The binary .tar.gz package installs into <filename
+class="directory">/opt/kde</filename>.</para>
+<procedure>
+<step performance="required"><para>become superuser</para></step>
+<step performance="required"><para><command>cd /</command></para></step>
+<step performance="required"><para><command>tar <option>xvzf <replaceable>packagename.tar.gz</replaceable></option></command></para></step>
+</procedure>
+</listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Post-installation procedures</para>
+</question>
+<answer>
+<para>First of all, please make sure that you have added &kde;'s binary
+installation directory (<abbrev>e.g.</abbrev> <filename
+class="directory">/opt/kde/bin</filename>) to your <envar>PATH</envar>
+and &kde;'s 
+library installation directory to your <envar>LD_LIBRARY_PATH</envar> (only
+necessary on systems that do not support rpath; on &Linux; &ELF;, it 
+should work without).  This environment variable may be called
+differently on some systems, <abbrev>e.g.</abbrev> it is called
+<envar>SHLIB_PATH</envar> on &IRIX;.  Then set the environment variable
+<envar>KDEDIR</envar> to the base of your &kde; tree, <abbrev>e.g.</abbrev> <filename
+class="directory">/opt/kde</filename>.
+<caution>
+<para>Please bear in mind that it is unwise to set
+<envar>LD_LIBRARY_PATH</envar> blindly.  In the vast majority of cases it is
+unnecessary and can do more harm than good.  There is a web page
+written by <ulink url="mailto:barr@cis.ohio-state.edu">Dave
+Barr</ulink> explaining the evils of <envar>LD_LIBRARY_PATH</envar> and it can be
+found at <ulink
+url="http://www.cis.ohio-state.edu/~barr/ldpath.html">http://www.cis.ohio-state.edu/~barr/ldpath.html</ulink>.</para>
+</caution>
+</para>
+<para>Even though you can use most of the &kde; applications simply by
+calling them, you can only benefit fully from &kde;'s advanced
+features if you use the &kde; window manager and its helper
+programs.</para>
+<para>In order to make it easy for you, we have provided a simple
+script called <filename>startkde</filename> which gets installed in <filename
+class="directory">$<envar>KDEDIR</envar>/bin</filename> and is therefore in your
+path.</para>
+<para>Edit the file <filename>.xinitrc</filename> in your home directory (make a backup
+copy first!), remove everything that looks like calling a window
+manager, and insert <command>startkde</command> instead.  Restart the &X-Windows;.  If you use
+&kdm;/<application>xdm</application>, you will have to edit the file <filename>.xsession</filename> instead of
+<filename>.xinitrc</filename>.  And if there is no <filename>.xinitrc</filename> or <filename>.xsession</filename> in your home
+directory, simply create a new one with just one line containing
+<command>startkde</command>.
+<note>
+<para>Some systems (notably &RedHat; &Linux;) use <filename>.Xclients</filename>
+instead.</para>
+</note></para>
+<para>This should present you with a new shining &kde; desktop.  You
+can now start to explore the wonderful world of &kde;.  In case you
+want to read some documentation first, there is a highly recommended 
+<ulink
+url="http://www.kde.org/documentation/quickstart/index.html">Quick Start
+guide</ulink> available.  Furthermore, every application has an online
+help that is available via the help menu.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Micro-HOWTO: Compiling &kde; 1.1.1 on
+&SGI; &IRIX; 6.x</para>
+</question>
+<answer>
+<para><ulink url="mailto:berry@ieeecs.concordia.ca">Chris Berry</ulink> posted
+the following updated micro-HOWTO (edited for layout) to
+comp.windows.x.kde.</para>
+<para>This is a (blatant) modification of the original Micro-HOWTO posted by
+<ulink url="mailto:sterritt@mrj.com">Chris Sterritt</ulink>.  This is
+valid for &kde;-1.1.1 running on &IRIX; 6.5.  I haven't attempted it on
+other platforms.  There are some items of contention:  I get many,
+many warnings about &Qt; definitions being preempted, about libkdecore
+definitions being preempted, <abbrev>etc.</abbrev>  (So many definitions have been
+preempted I could have written a dictionary), the i18n stuff doesn't
+work (while it did in v1.0) and &kikbd; chokes in &konsole; (it works fine
+otherwise).  Any comments or questions can be directed to
+<email>berry@ieeecs.concordia.ca</email>.  I will also keep a copy of this
+HOWTO on my personal web-page: <ulink url="http://alcor.concordia.ca/~c_berry/">http://alcor.concordia.ca/~c_berry/</ulink>.</para>
+<para>Also, if this isn't your cup of tea, I have uploaded binaries of
+kde-1.1.1 and egcs-1.1.2 to <ulink url="ftp://ftp.cmc.ec.gc.ca/pub/hbc/sgi/">ftp://ftp.cmc.ec.gc.ca/pub/hbc/sgi/</ulink>.  &kde; has been compiled
+with shared libraries, so if you don't have libstdc++.so.2.9.0 I would
+suggest downloading the egcs binary as well. Please also download and
+<emphasis>read</emphasis> the README in the directory, as it contains important
+installation information.</para>
+<para>Finally, neither I nor Environment Canada accept any responsibility vis
+a vis the worthiness of these instructions.  They have worked for me. 
+If they work for you, that's good, if they don't work, I can't help you,
+neither can anybody at EC.  Note that several things don't work the way
+they are supposed to work.  If you find a way around these problems, let
+someone else know.  I personally won't be able to test any fixes after
+August 20, 1999 as I will be returning to school (and using SunOS).  </para>
+<para>Enjoy!</para>
+
+<procedure>
+<title>Compiling &kde; 1.1.1 on &SGI; &IRIX; 6.x</title>
+<step performance="required">
+<para>Install &Qt; 1.42 or higher</para>
+</step>
+<step performance="required">
+<para> I am installing &kde; as me (not root) so I have a <envar>KDEDIR</envar>
+environmental variable which is set to something other than /usr/local/ or
+whatever is the default.  So I'll mention it below, but you may not have
+to.  Also, &SGI; has a jpeg and a png library, but they're out of date
+or otherwise wrong.  So you'll have to track down the libpng and libz
+sources (jpeg comes in kdesupport); I found them as source
+<acronym>RPM</acronym>s in one of the &RedHat; &FTP; mirrors.</para>
+</step>
+<step performance="required">
+<para> Get <application>egcs</application> 1.1.1 or later and compile it with <option>-fsquangle</option> support on.  This is because &SGI;'s assembler can't handle the huge object names produced by normal <application>g++</application>, and <application>gas</application> doesn't evidently work yet for &SGI;s. 
+You'll have to build &gcc;'s libraries using this binary as well.
+Make sure your <envar>PATH</envar> gets this compiler only (if you
+have another &gcc; installed somewhere).  When I do a <command>g++ <option>-v</option></command> I get:</para>
+<screen><computeroutput>gcc version egcs-2.91.60 19981201 (egcs-1.1.1 release)</computeroutput>
+</screen>
+</step>
+<step performance="required">
+<para> Do a <command>setenv <option>LDFLAGS " "</option></command>
+because the configure scripts insist on trying <command>g++
+<option>-s</option></command> when compiling a test program, which always fails
+on the &SGI;s.</para>
+</step>
+<step performance="required">
+<para> Unpack "kdesupport" and enter its directory.  Run its configure
+with <option>--prefix</option> if you need to:</para>
+<screen>./configure --prefix=$KDEDIR --x-includes=/usr/include/X11 \
+--x-libraries=/usr/lib32 --with-qt-includes=/opt/kde-1.1.1 \
+--with-qt-libs=/opt/kde-1.1.1 --enable-shared
+</screen>
+
+<para>Modify this to reflect your reality.  In my case, I have &Qt; stuck in
+the same dir as &kde;, so I had to explicitly name the includes and libs
+dir.  Sometimes the configure will still not see the &Qt; includes dir. 
+Source your <filename>.login</filename> file to correct this (You did set up
+your <filename>.login</filename> file as the instructions in the &Qt;
+installation asked?).</para>
+</step>
+<step performance="required">
+<para> Run the script (which I'll include below) as follows:</para>
+
+<screen><command>find <option>. -name Makefile -exec ../FixMakesSq {} \;</option></command></screen>
+
+<para>This fixes all the compile lines so that all the "replicated"
+libraries (jpeg and png) are replaced with full paths so they won't be
+linked with the &SGI; ones.</para>
+
+<note><para>In the original HOWTO, <option>-fsquangle</option> was
+added to each makefile.  This caused compilation errors.  I found that
+it was really only needed in one makefile.  It will be noted below.</para>
+</note>
+
+<para>Here's the FixMakesSq script:</para>
+<programlisting>#!/bin/perl -ni.bak
+ 
+if ((/-lpng/) || (/-ljpeg/))
+{
+    if (/^(.*)-lpng(.*)$/)
+    {
+        $b4 = $1;
+        $af = $2;
+        print "$b4 /path/to/KDE/libs/libpng.a $af\n";
+    }
+    if (/^(.*)-ljpeg(.*)$/)
+    {
+        $b4 = $1;
+        $af = $2;
+        print "$b4 /path/to/KDE/libs/libjpeg.a $af\n";
+    }
+}
+        
+#NOTE!! Uncomment this section if you want to add
+#-D_LANGUAGE_C_PLUS_PLUS to all 
+#makefiles.  I personally have not tried this, but it should not break 
+#anything.
+# Alternately, add the flag in the places noted below.
+
+#elsif (/cxxflags\s*=(.*)$/i)
+#{
+#    print "CXXFLAGS =  -D_LANGUAGE_C_PLUS_PLUS $1\n";
+#}
+else
+{
+    print;
+}
+</programlisting>
+
+<para> Do:</para> 
+<screen><command>gmake</command>
+<command>gmake <option>install</option></command>
+</screen>
+</step>
+<step performance="required">
+<para> Go to the <filename>libz</filename> source directory, do:</para>
+<screen><command>./configure <option>--prefix=$KDEDIR</option></command>
+<command>gmake</command>
+<command>gmake install</command>
+</screen>
+
+</step>
+<step performance="required">
+<para> Go to the <filename>libpng</filename> source directory, do:</para>
+<screen><command>./configure <option>--prefix=$KDEDIR</option></command>
+<command>gmake</command>
+<command>gmake <option>install</option></command>
+</screen>
+
+</step>
+<step performance="required">
+<para> Unpack kdelibs and enter its directory.  Note the
+<option>--enable-new-stuff</option> argument to <command>./configure</command>
+(this might not be needed, but nothing complains if you use it): </para>
+
+<screen><command>./configure <option>--prefix=$KDEDIR --x-includes=/usr/include/X11 \
+--x-libraries=/usr/lib32 --with-qt-includes=/opt/kde-1.1.1 \
+--with-qt-libs=/opt/kde-1.1.1 --enable-shared --enable-new-stuff</option></command>
+<command>find <option>. -name Makefile -exec ../FixMakesSq {} \;</option></command>
+</screen>
+</step>
+<step performance="required">
+<para>Find <filename>kprocctrl.cpp</filename>, and fix the
+<filename>Makefile</filename> in that directory. Only if you did not uncomment
+the section that accomplishes this in the FixMakesSq script, add
+<option>-D_LANGUAGE_C_PLUS_PLUS</option> to the CXXFLAGS line. This makes it get
+the right definition for signal functions (has an int arg).</para>
+</step>
+<step performance="required">
+<para> Find <filename>addressbook.cc</filename>, and fix the
+<filename>Makefile</filename> in that directory. Add <option>-fsquangle</option>
+to the CXXFLAGS line. This makes it able to handle the huge name that's going to
+pop out.</para> 
+<screen><command>gmake</command>
+<command>gmake <option>install</option></command>
+</screen>
+</step>
+<step performance="required">
+<para> Unpack kdebase and enter its directory.  Do:</para>
+<screen><command>./configure <option>--prefix=$KDEDIR  --x-includes=/usr/include/X11 \
+--x-libraries=/usr/lib32 --with-qt-includes=/opt/kde-1.1.1 \
+--with-qt-libs=/opt/kde-1.1.1 --enable-shared </option></command>
+<command>find <option>. -name Makefile -exec ../FixMakesSq {} \;</option></command>
+</screen>
+</step>
+<step performance="required">
+<para> Fix <filename>memory_sgi.cpp</filename> (do a find from
+<filename>kdebase</filename> directory).  I just #ifdef'd out the contents of
+the whole function... it doesn't compile on my machine, and I never open that
+part of &kpanel; anyway :-).</para> 
+</step>
+<step performance="required">
+<para> Fix <filename>TEShell.C</filename> (in
+<filename>kdebase-1.1.1/konsole/src/</filename> directory).  It is the operation
+for getting a pty for the new &konsole;. Alas, it was not written with
+&IRIX; in 
+mind, and needs to be patched with the diff included below:</para>
+<programlisting>*** TEShell.C   Mon Apr 12 00:12:37 1999
+--- /users/dor/aspg/ber/data/kdedown/kdebase-1.1.1/konsole/src/TEShell.C
+Wed Jul 14 15:15:35 1999
+***************
+*** 169,174 ****
+--- 169,177 ----
+    pid_t pid = waitpid(-1,&amp;status,WNOHANG);
+    Shell* sh = shells.find(pid);
+    if (sh) { shells.remove(pid); sh-&gt;doneShell(status); }
++ #if defined(sgi)
++   signal(SIGCHLD,catchChild);
++ #endif
+  }
+  
+  void Shell::doneShell(int status)
+***************
+*** 234,239 ****
+--- 237,252 ----
+        }
+      }
+    }
++ #endif
++ 
++ #if defined(sgi) /* Irix */
++  
++   needGrantPty = FALSE;
++   char* line;
++   line = _getpty(&amp;ptyfd, O_RDWR|O_NDELAY, 0600, 0);
++   strcpy(ptynam,"/dev/ptc");
++   strcpy(ttynam,line);
++  
+  #endif
+  
+    if (ptyfd &lt; 0) // Linux, FIXME: Trouble on other systems?
+</programlisting>
+<para>Then: </para>
+<screen><command>gmake</command>
+<command>gmake <option>install</option></command>
+</screen>
+</step>
+<step performance="required">
+<para> Unpack kdeutils.</para> 
+<screen><command>./configure <option>--prefix=$KDEDIR  --x-includes=/usr/include/X11 \
+--x-libraries=/usr/lib32 --with-qt-includes=/opt/kde-1.1.1 \
+--with-qt-libs=/opt/kde-1.1.1 --enable-shared </option></command>
+<command>find <option>. -name Makefile -exec ../FixMakesSq {} \;</option></command>
+</screen>
+</step>
+<step performance="required">
+<para> Find <filename>kcalc_core.cpp</filename> and fix its
+<filename>Makefile</filename> like you did for
+<filename>kprocctrl.cpp</filename> above. </para>
+
+<screen>gmake
+gmake install
+</screen>
+</step>
+<step performance="required">
+<para> Unpack kdegames, kdegraphics, and kdetoys and for each one,
+enter its directory and do: </para>
+<screen><command>./configure <option>--prefix=$KDEDIR  --x-includes=/usr/include/X11 \
+--x-libraries=/usr/lib32 --with-qt-includes=/opt/kde-1.1.1 \
+--with-qt-libs=/opt/kde-1.1.1 --enable-shared</option></command>
+<command>find <option>. -name Makefile -exec ../FixMakesSq {}</option></command>
+<command>gmake</command>
+<command>gmake <option>install</option></command>
+</screen>
+</step>
+<step performance="required">
+<para> This step is optional for &kde;-1.1.  I don't think it is necessary
+for &kde;-1.1.1.  &knotes; has never crashed on me.  I
+have left it here for completeness . Find where the <filename>knotes</filename>
+directory is. Go there, do a <command>make <option>clean</option></command>,
+then change the CXXFLAGS in its <filename>Makefile</filename>. The CXXFLAGS line has 
+<option>-O2</option>, change that to <option>-g</option>. Then do a
+<command>make</command> and <command>make <option>install</option></command>. The reason
+for this is that I found &knotes; crashed within a few
+minutes of it starting up; however, when I recompiled it with
+<option>-g</option> (<abbrev>i.e.</abbrev> debugging support) instead of <option>-O2</option>
+(optimization) it ran fine. Go figure :-). </para>
+</step>
+</procedure>
+<para>And that's it.  You should now be able to run &kde;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Should I remove old version xyz before installing a new
+one?</para>
+</question>
+<answer>
+<para>In principle, this is not necessary.  <acronym>RPM</acronym> and Debian packages
+should take care of all dependencies.</para>
+<para>If you compile the source code yourself, you might take care not
+to compile different versions of the &kde; packages.  So if you
+install a new version, please first make and install kdesupport, then
+kdelibs, then kdebase.</para>
+<para>One thing you should avoid: installing two or more versions of
+&kde; in parallel.  This might happen if you specify a 
+different target directory for one version than for the other.  The
+result may be unpredictable.  The same is true if you have different
+versions of &Qt; installed at the same time.  This happens easily if you
+already have an old &Qt; version installed with a &Linux;
+distribution.</para>
+<!--create a new entry called "how to make KDE 1.x coexist with KDE 2"
+and link it from here-->
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="startkde">
+<para>How do I start &kde;?</para>
+</question>
+<answer>
+<para>The most comfortable method to start &kde; is to use the
+<filename>startkde</filename> script.  Simply put the line <command>startkde</command> at the end of your
+<filename>.xsession</filename> file (or your <filename>.xinitrc</filename> or <filename>.Xclients</filename> file if you are not
+using &kdm; or <application>xdm</application>).  Please also remove the lines that 
+start your previous window manager.  If there is no <filename>.xsession</filename>,
+<filename>.xinitrc</filename>, or <filename>.Xclients</filename> in your home directory, simply create a new
+one that just contain one line saying <command>startkde</command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Whenever I start &kde;, it complains about "shadow passwords".
+Why?</para>
+</question>
+<answer>
+<para>When your system uses shadow passwords, the screensaver can only
+run properly if the suid bit is set.  This bit gives the screensavers
+root privileges, which are needed to access the shadow passwords.
+<caution><para>The screensavers might be configured to secure the
+machine until the password is entered.</para></caution></para>
+<procedure>
+<title>Setting the suid bit on the screensavers</title>
+<step performance="required"><para>become root</para></step>
+<step performance="required"><para><command>chown root
+$<envar>KDEDIR</envar>/bin/*.kss</command></para></step>
+<step performance="required"><para><command>chmod u+s
+$<envar>KDEDIR</envar>/bin/*.kss</command></para></step>
+</procedure>
+<para>Alternatively, if you compile &kde; from source, you can use
+<command>./configure <option>--with-shadow</option></command> to
+configure kdebase.  Then the suid bit is set automatically during
+<command>make install</command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to install &kde; in a user directory?</para>
+</question>
+<answer>
+<para>Yes, you can install &kde; in any directory you want.  What you
+have to do depends on the kind of packages you want to install:</para>
+<procedure><title>Source packages</title>
+<step performance="required"><para>Configure and install the package using <command>configure
+<option>--prefix=<replaceable>/users/myhome/kde</replaceable></option>;
+make; make install</command> to install into <filename
+class="directory">/users/myhome/kde</filename>.</para></step>
+<step performance="required"><para>Add the following to your init files.  Please note that if
+it is not necessary for you to set <envar>LD_LIBRARY_PATH</envar>, it
+is better to leave it out.</para>
+
+<para>For csh or tcsh:</para>
+<programlisting>
+setenv KDEDIR /users/myhome/kde
+
+if ( $?LD_LIBRARY_PATH ) then
+   setenv LD_LIBRARY_PATH $KDEDIR/lib:$LD_LIBRARY_PATH
+else
+   setenv LD_LIBRARY_PATH $KDEDIR/lib
+endif
+
+if ( ! $?LIBRARY_PATH ) then
+   setenv LIBRARY_PATH $LD_LIBRARY_PATH
+endif  
+</programlisting>
+<para>For <application>bash</application>:</para>
+<programlisting>
+KDEDIR=/users/myhome/kde
+PATH=$KDEDIR/bin:$PATH
+LD_LIBRARY_PATH=$KDEDIR/lib:$LD_LIBRARY_PATH
+LIBRARY_PATH=$LD_LIBRARY_PATH
+export KDEDIR PATH LD_LIBRARY_PATH LIBRARY_PATH
+</programlisting></step>
+</procedure>
+<procedure><title><acronym>RPM</acronym> packages</title>
+<step performance="required"><para><command>rpm</command> allows you to use the
+<option>--prefix</option> option to select the directory you want to
+install to.  For example, executing <command>rpm <option>-i
+--prefix=<replaceable>/users/myhome/kde
+package.rpm</replaceable></option></command> will install the package
+to <filename
+class="directory">/users/myhome/kde</filename>.</para></step>
+</procedure>
+<para><note>
+<para>Although &kde; will run from a user directory, there are some
+problems with programs that require suid root, <abbrev>e.g.</abbrev> the programs in
+the kdeadmin package.  But since they are not meant to be run by users
+in the first place, this is nothing to worry about.</para>
+<para>However, on systems using shadow passwords, the screensavers
+have to be suid root to enable password access for unlocking the
+screen, so this option will not work.</para>
+</note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para><command>startkde</command> fails with <errorname>can not connect to X
+server</errorname>.  What is wrong?</para>
+</question>
+<answer>
+<para>You probably tried to start the X server with <command>startkde</command>.  The X
+server is started with <command>startx</command>.
+<command>startkde</command> is the 
+script that should be run from your <filename>.xinitrc</filename>, <filename>.xsession</filename>, or
+<filename>.Xclients</filename> to activate the window manager and the necessary server
+daemons for &kde;.  See also <xref linkend="startkde"/>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Installing Debian packages with <command>dpkg</command> says
+<errorname>giflib2 is missing</errorname></para>
+</question>
+<answer>
+<para>Sometimes when installing &kde; Debian packages,
+<command>dpkg</command> complains about <errorname>dependency
+problems: giflib2 is missing</errorname>.  As giflib2 is not needed,
+the solution is simple: <command>dpkg <option>-i
+--ignore-depends=giflib2
+<replaceable>package.deb</replaceable></option></command>
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kde; on &AIX;?</para>
+</question>
+<answer>
+<para>If you have trouble building &kde; on
+&AIX; check out Stefan Westerfeld's <ulink
+url="http://space.twc.de/~stefan/kde/aix.html">Running &kde; on
+Aix</ulink> page for lots of help on building &kde; on this
+exceptional &UNIX; variant.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Installing &RedHat; packages says <errorname>libncurses.so.3.0 is
+needed</errorname></para>
+</question>
+<answer>
+<para>If there is no rpm for it on your &RedHat; &CD-ROM;, poke around 
+the &RedHat; &FTP; site and its mirrors to get it.  Do bear in mind
+that libncurses-3 and -4 coexist so there is no need to replace one
+with the other, <abbrev>i.e.</abbrev> a plain <command>rpm -i</command> will do.</para>
+<para>Or you might try the following (as root):</para>
+<procedure>
+<step performance="required"><para><command>cd /usr/lib</command></para></step>
+<step performance="required"><para><command>ln <option>-s libncurses.so.4
+libncurses.so.3</option></command></para></step>
+<step performance="required"><para><command>ldconfig</command></para></step>
+</procedure>
+<para>Since libncurses-3 and -4 are 100% compatible both at binary and
+at source level, installing both is just a waste of space.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kde; on a laptop?</para>
+</question>
+<answer>
+<para>If you can get the &X-Windows; to run, you should not have any problem
+getting &kde; to run on it.  In addition, you might find the following
+links helpful:</para>
+<itemizedlist>
+<listitem>
+<para><ulink url="http://www.cs.utexas.edu/users/kharker/linux-laptop/">http://www.cs.utexas.edu/users/kharker/linux-laptop/</ulink></para>
+</listitem>
+<listitem>
+<para><ulink url="http://www.yy.cs.keio.ac.jp/~sanpei/how2800x600.html">http://www.yy.cs.keio.ac.jp/~sanpei/how2800x600.html</ulink></para>
+</listitem>
+</itemizedlist>
+<para>For laptops with exotic resolution like 1024x600, you can try
+editing the <filename>XF86Config</filename> file (in <filename
+class="directory">/etc/X11</filename> if you use &RedHat;).  If you
+have some experience with this file, you will know that there are
+several different "Modeline" lines in it.  You only have to add a
+Modeline for your resolution.  Unfortunately, the format of the
+Modeline lines is pretty esoteric; <abbrev>i.e.</abbrev> you have to read up a
+lot.  One source of information could be the <ulink
+url="http://sunsite.unc.edu/LDP/HOWTO/XFree86-Video-Timings-HOWTO.html">XFree86
+Video Timings HOWTO</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>I do not like the default &kde; directory after installation.  How
+do I move it without breaking anything?</para>
+</question>
+<answer>
+<para>Assuming the default is <filename
+class="directory">/opt/kde</filename> and you want to move it to
+<filename class="directory">/usr/local/kde</filename>, here's what
+you have to do:</para>
+<procedure>
+<step performance="required"><para>change to superuser if you aren't already</para></step>
+<step performance="required"><para><command>mv /opt/kde /usr/local/kde</command></para></step>
+<step performance="required"><para><command>ln -s /usr/local/kde
+/opt/kde</command></para></step>
+</procedure>
+<para>This will put all your &kde; files in <filename
+class="directory">/usr/local/kde</filename> but everything is
+still accessible from <filename
+class="directory">/opt/kde</filename>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Where has the snapshot configure script gone?</para>
+</question>
+<answer>
+<para>Maybe this has already been rectified, but just in case it isn't,
+here's the solution: <command>make <option>-f admin/Makefile.common
+cvs</option></command></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="bzip2">
+<para>How do I unzip tarballs with the bz2 extension?</para>
+</question>
+<answer>
+<para>First, you need the bzip2 package.  Get it from your favorite
+&FTP; site if you have not already got one.  Next, to view the
+contents, simply do this: <command>bzip2 -cd
+<replaceable>files.tar.bz2</replaceable> | tar tvf -</command>.  To
+extract, do this instead: <command>bzip2 -cd
+<replaceable>files.tar.bz2</replaceable> | tar xvf -</command>.  Of
+course, you might be able to use something like <command>tar
+--use-compress-program bzip2 -xvf
+<replaceable>files.tar.bz2</replaceable></command> if your <application>tar</application> supports it.  Please <command>man tar</command>
+and <command>man bzip2</command> for further information, and you 
+might also want to read up the Bzip2 mini-HOWTO.  By the way, the
+bzip2 home page is at <ulink
+url="http://sources.redhat.com/bzip2/index.html">http://sources.redhat.com/bzip2/index.html</ulink>.</para>
+<!--add a link to Bzip2 mini-HOWTO-->
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What files can I delete from my &kde; install directory?  Can all the
+<filename>*.h</filename>, <filename>*.c</filename> and <filename>*.o</filename>
+files be safely removed?</para>
+</question>
+<answer>
+<para>There should not be any need to keep the <filename>.c</filename> and
+<filename>.o</filename> files, but you might want to keep the
+<filename>.h</filename> files, as they are used by includes if you ever want to
+compile your own &kde; programs.  But if you wish to add patches to the source
+programs as they become available (rather than downloading everything again),
+then they should stay.</para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Will I lose my current settings when I upgrade &kde;?</para>
+</question>
+<answer>
+<para>There are mixed reports of results when moving to &kde; 2.0 from
+&kde; 1.x.  Settings are kept in the <filename class="directory">.kde</filename> subdirectory in your home
+directory.  There have been many changes to settings both globally and
+inside each application.  For best results we suggest you copy your
+old <filename class="directory">.kde</filename> directory to a backup location, install &kde; 2.0, and
+then copy back any necessary mail and news settings.  Most other
+settings are so different that it is best to configure them directly
+within &kde; 2.0.  That said, there are reports of direct upgrades
+without removing the old <filename class="directory">.kde</filename>
+directory happening without a hitch.  Your mileage may vary.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Compiling kdebase gives me a <errorname>bin/sh: msgfmt: command
+not found</errorname> error!</para>
+</question>
+<answer>
+<para>You need the <acronym>GNU</acronym> <application>msgfmt</application> which is
+part of the <acronym>GNU</acronym> i18n package <application>gettext</application>.
+You should be able to download it from any decent
+<acronym>GNU</acronym> mirrors.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I uninstall &kde; applications compiled from
+scratch?</para>
+</question>
+<answer>
+<para>You can uninstall your programs by typing <command>make
+uninstall</command> in the directory where you did <command>make
+install</command>.  If you have already nuked away that directory,
+then there is only one way, and it is not good: go to <filename
+class="directory">$<envar>KDEDIR</envar>/bin</filename> and start deleting files
+one by one.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="gif">
+<para>What is up with &GIF; support?</para>
+</question>
+<answer>
+<para>This has something to do with Unisys' &LZW; patent.  &GIF;
+support is turned off from &Qt; 1.44 onwards by default.  Either use 
+an older &Qt; (if you are still using &kde; 1.x), or
+recompile it with &GIF; support turned on using
+<command>./configure <option>-gif</option></command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I install &kde; themes?</para>
+</question>
+<answer>
+<para>There is no theme manager in &kde; 2 yet; please refer to <ulink
+url="http://kde.themes.org/php/comments.phtml?forum=news.26.34">http://kde.themes.org/php/comments.phtml?forum=news.26.34</ulink>
+instead.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="panel">
+<title>The panel</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I add applications to the panel?</para>
+</question>
+<answer>
+<para>There are several ways to add an application to the
+panel:</para>
+<variablelist>
+<varlistentry><term>Using the panel menu</term>
+<listitem>
+<para>Perhaps the easiest method is to use the entry
+<menuchoice><guimenu>Panel</guimenu><guimenuitem>Add
+application</guimenuitem></menuchoice> in the panel menu (the
+menu that appears when pressing the <guibutton>K</guibutton> button on the panel).  The
+menu shows all installed &kde; applications.  To add a button to the
+menu, simply click on the application.</para> 
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Using the file manager</term>
+<listitem>
+<para>You can also simply drag a <filename>.desktop</filename> file from a window of the
+file manager to the panel.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why is the panel clock showing the wrong time?</para>
+</question>
+<answer>
+<para>On some &RedHat; systems, the clock in the panel always shows the
+time in &GMT;.  This is a bug in the &RedHat; setup. To solve it, just
+create this symbolic link: <command>ln -s /usr/share/zoneinfo
+/usr/lib/zoneinfo</command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to run &kpanel; in a non-&kde;-compliant window
+manager?</para>
+</question>
+<answer>
+<para>Yes.  Try starting it with something like this:
+<command>kpanel <option>-no-KDE-compliant-window-manager</option></command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to change the <guibutton>K</guibutton> button of
+the panel to another picture?</para>
+</question>
+<answer>
+<para>Look for
+<filename>$<envar>HOME</envar>/.kde/share/apps/kicker/pics/go.png</filename> and
+<filename>$<envar>HOME</envar>/.kde/share/apps/kicker/pics/mini/go.png</filename>
+and replace them.  Do not forget to flatten the replacements to one
+layer, or else you will not see anything.  Create the directories if
+they do not already exist.  Then restart &kicker;.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+<chapter id="desktop">
+<title>The desktop</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I add an application to the desktop?</para>
+</question>
+<answer>
+<para>This is a simple exercise: click on the desktop with the
+&RMB;.  In the menu, select
+<menuchoice><guimenu>New</guimenu><guimenuitem>Program</guimenuitem></menuchoice>.
+Enter the title of the program, and it will appear on the
+desktop.</para>
+<para>You might want to change the new icon's properties, so click on
+the program name with the &RMB; , and select
+<guimenuitem>Properties</guimenuitem>.  In the 
+dialog, you should at least change the program to execute and the
+icon.  That's it.</para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I mount/unmount a device from the desktop?</para>
+</question>
+<answer>
+<para>There are two steps involved:</para>
+<procedure>
+<step performance="required"><para>Make sure you are allowed to mount/unmount the device.
+Normally, only root is allowed to mount/unmount devices.  If you 
+are not running &kde; as root (and you should not, by the way), you
+must set the right for users to mount a device in
+<filename>/etc/fstab</filename>.  This means to add the option 
+<option>user</option> to the options of the filesystem you want to
+mount.</para>
+<para>For example, to mount the floppy, your 
+<filename>/etc/fstab</filename> should include:</para>
+<screen>
+/dev/fd0   /floppy   msdos   noauto,user,sync 0 0
+</screen>
+</step>
+<step performance="required">
+<para>Create a <filename>.desktop</filename> file for the filesystem.  An example for a
+device <filename>.desktop</filename> file is:</para>
+<screen>
+# KDE Config File
+[KDE Desktop Entry]
+UnmountIcon=3floppy_unmount.xpm
+MountPoint=/floppy
+Icon=3floppy_mount.xpm
+Dev=/dev/fd0
+ReadOnly=0
+FSType=default
+Type=FSDevice
+Comment=Floppy Disc
+</screen>
+</step>
+</procedure>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I use a screensaver as background?</para>
+</question>
+<answer>
+<para>It is possible to use a screensaver instead of a background
+image.  To do this, call any screensaver with the
+<option>-inroot</option> parameter, for example <command>kswarm.kss
+<option>-inroot</option> &amp;</command>.  Most screensavers will look
+best if you set the background color to black.  However, using a
+screensaver as background might eat some CPU and X time....</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Where are the icons kept?</para>
+</question>
+<answer>
+<para>The icons can be found only in <filename
+class="directory">$<envar>KDEDIR</envar>/share/icons</filename> or <filename
+class="directory">$<envar>HOME</envar>/.kde/share/icons</filename>.  To use icons
+stored in other locations, you must either copy them into one of the
+above-mentioned fixed &kde; locations or make symlinks.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I change the standard menu items as non-root?</para>
+</question>
+<answer>
+<para>Try changing the permission and/or ownership of the directories
+and files in <filename
+class="directory">$<envar>KDEDIR</envar>/share/applnk</filename>.  Alternatively,
+you can create a trusted group (<abbrev>e.g.</abbrev>, friends) and try <command>chgrp <option>-R friends $<envar>KDEDIR</envar>/share/applnk</option>; chmod <option>-R g+w
+$<envar>KDEDIR</envar>/share/applnk</option></command> and make all your trusted
+users members of friends.  Note that you would still need superuser
+privileges to do the above, however.  If it is impossible
+for you to obtain root privileges, then you would have to settle for
+editing your personal menu.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I use the mouse scroll wheel in &kde;?</para>
+</question>
+<answer>
+<para>Mouse wheel support comes with &Qt; 2.0 and above, so &kde; based on
+that will automagically support the use of the mouse scroll wheel. For
+non-&kde; applications like &Emacs;, try getting 
+<application>IMWheel</application> from <ulink
+url="http://jonatkins.org/imwheel/">http://jonatkins.org/imwheel/</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What exactly is the <filename class="directory">Templates</filename> folder?</para>
+</question>
+<answer>
+<para>The <filename class="directory">Templates</filename> folder holds items that you can create easily
+anywhere (on the Desktop or in a file manager window) by selecting
+<guisubmenu>New</guisubmenu> from the context menu
+(<mousebutton>right</mousebutton> click menu) of the place you want
+the item to be.</para>
+<para>You can put both files and directories in the <filename class="directory">Templates</filename>
+folder, and they will automagically appear in the
+<guisubmenu>New</guisubmenu> submenu.  When you select them from the
+submenu, they are copied to the current location.</para>
+<para>This is exactly like opening the <filename class="directory">Templates</filename> directory and
+copying the items from there directly, only it is slightly easier.  By
+default, the <filename class="directory">Templates</filename>
+directory is populated with only <filename>.desktop</filename> 
+files.  These files are there to allow you to immediately begin
+creating devices, programs, &URL; links, and new &MIME; types, but you
+can put anything you want there.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why can't I get system sound to work, like for opening
+windows?</para>
+</question>
+<answer>
+<para>System sound currently does not work on non-FreeBSD and
+non-&Linux; systems.  This is being worked on.  If you use FreeBSD or
+&Linux;, you have found a bug, so please report it.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I launch applications in a particular desktop?</para>
+</question>
+<answer>
+<para>&kde; 1.1 and above comes with a program called &kstart;.
+You can use it in a <filename>.kdelnk</filename> (<filename>.desktop</filename> for &kde; 2) file
+like this:</para>
+<screen>
+Name=Netscape
+Exec=kstart "netscape" -window ".*Netscape.*" -desktop 2 -maximize
+BinaryPattern=netscape;
+Icon=netscape.xpm
+Path=
+Type=Application
+Terminal=0
+</screen>
+<para>Or just run the following: <command>kstart <option>"netscape" -desktop
+2 -activate</option></command>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>I have played with the fonts section in the &kde; Control Center
+but the fonts are still way too small.  What can I do?</para>
+</question>
+<answer>
+<para>Many users use the 75 <acronym>dpi</acronym> fonts as the default.  If you have
+installed the 100 <acronym>dpi</acronym> fonts, make sure your <filename>XF86Config</filename> file has
+those fonts in the path before the 75 <acronym>dpi</acronym> fonts.  Here is a step-by-step procedure on how to do it:</para>
+<procedure>
+<step performance="required"><para>Open <filename>/etc/Xll/XF86Config</filename> using your
+favorite editor.</para></step>
+<step performance="required"><para>Near the top of the file is a several-row listing of fonts:
+type1, speedo, <abbrev>etc.</abbrev>, and at the bottom there are two entries: 75dpi
+and 100dpi.  Reverse their order.  And while you are at it, move the
+Type 1 fonts to the bottom of the list (or somewhere below the 75 and
+100 <acronym>dpi</acronym> fonts).  That makes an improvement
+too!</para></step>
+</procedure>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to extend the Desktop Icon Menus?</para>
+</question>
+<answer>
+<para>Yes.  Just add the applnk for the required command to
+<filename class="directory">$<envar>KDEDIR</envar>/share/applnk</filename>, or use
+&kmenuedit;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Can I get rid of the
+<guiicon>Trash</guiicon>/<guiicon>Templates</guiicon>/<guiicon>Autostart</guiicon>
+icons?</para>
+</question>
+<answer>
+<para>Yes.  Open the <application>&kde; Control Center</application> and select
+<guisubmenu>Desktop</guisubmenu> (under <guimenu>Look and
+Feel</guimenu>) in the left hand pane. Here you can type in new paths
+for these items, and &kde; will automatically move them to the new
+location.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Where do I save my files if I want them to appear directly on
+the desktop?</para>
+</question>
+<answer>
+<para><filename class="directory">$<envar>HOME</envar>/Desktop</filename>.  You might
+need to refresh your desktop after you have saved your files.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="windowmanager">
+<title>The window manager</title>
+
+<para>The default window manager provided by &kde; is the K Window
+Manager (&kwm; in &kde; 1.x and &kwin; in &kde; 2).  Please read "The
+K Window Manager Handbook" (should be accessible from the
+<application>&kde; Help Center</application>) for usage information.</para>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Are there keyboard shortcuts for &kwm; (&kwin;) operations?</para>
+</question>
+<answer>
+<para>Yes.  Please refer to "The K Window Manager Handbook" for the
+list of shortcuts available.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Can I define my own set of keyboard shortcuts?</para>
+</question>
+<answer>
+<para>Yes, if you are using &kde; 1.1 and above.  Launch the
+<application>&kde; Control Center</application> and select <menuchoice><guimenu>Look and
+Feel</guimenu><guimenuitem>Key bindings</guimenuitem></menuchoice> to
+configure window manager bindings like maximizing windows, <abbrev>etc.</abbrev>  For
+starting applications, you might need to install
+<application>KHotKeys</application>, though.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>When I "iconify" a window, it disappears.  Where does it
+go?</para>
+</question>
+<answer>
+<para>With many &X-Windows; &GUI;, the minimize button (a little dot) will
+erase the window that the program is running in and create, instead,
+an icon on the desktop.  &kde; does not do this.  Instead, when a
+window is iconified it is simply hidden (but the program is still
+running).</para>
+<para>There are a few ways to access "disappeared" windows:</para>
+<itemizedlist>
+<listitem>
+<para>If you are running the taskbar part of &kpanel; (or &kicker;),
+you can choose to have a list of tasks displayed on your desktop.
+Iconified tasks will have their names surrounded by parentheses.</para>
+</listitem>
+<listitem>
+<para>If you click the &MMB; on the root window (<abbrev>i.e.</abbrev>
+the background of the desktop), &kwm; (or &kwin;) will give you a list
+of all available tasks (and again, the names of the iconified tasks
+will be bracketed).</para>
+</listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get a sticky window with no border and focus?</para>
+</question>
+<answer>
+<para>If you have &kde; 1.x, you can use &kstart;.  Assuming
+the application you want to start is
+<application>xosview</application>, just execute <command>kstart 
+xosview <option>-window xosview -sticky -decoration
+none</option></command>.  Type <command>kstart <option>--help</option></command> for
+additional help.  In addition, you can set these settings in the
+<application>&kde; Control Center</application> under <guimenu>Windows</guimenu>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I kill &kwmpager;?</para>
+</question>
+<answer>
+<para>Click on the border frame with the
+&RMB; to bring up a menu that
+will let you close the pager.  By the way, &kwmpager; is obsolete and
+has been replaced by <application>kpager</application>.</para>
+<para>In addition, if you prefer working through a terminal, type
+<command>ps ax | grep kwmpager</command> to find it and then kill it
+using <command>kill <replaceable>pid</replaceable></command>.  Or if
+you dread the idea of using the console, just press <keycombo
+action="simul">&Ctrl;&Alt;&Esc;</keycombo>
+and move the pirate-skull mouse pointer over
+&kwmpager; and click to kill it.  To abort (not undo!) the kill, just
+press <keycombo action="simul">&Ctrl;&Alt;&Esc;</keycombo> again.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I maximize windows only vertically or horizontally?</para>
+</question>
+<answer>
+<para>Provided your window is not already maximized, clicking on the
+maximize button with the &LMB;/&MMB;/&RMB; will
+maximize fully/vertically/horizontally respectively.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What is "shading" a window?</para>
+</question>
+<answer>
+<para>By "shading" a window we mean "rolling up" a window leaving just
+the title bar visible.  You can do this by double clicking on the
+window title bar.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to have FVWM2-like shadow frameworks for the
+placement of windows?</para>
+</question>
+<answer>
+<para>Yes.  Run <application>&kde; Control Center</application> and select <guimenu>Look and Feel</guimenu>
+followed by <guisubmenu>Window Behavior</guisubmenu> and finally
+<guimenuitem>Actions</guimenuitem>.  There is a dialog option that
+allows you to set the placement policy you want.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="filemanager">
+<title>The file manager</title>
+
+<para>The file manager of choice for &kde; 1.x is
+&kfm; while for &kde; 2 is
+&konqueror;.  The
+&konqueror; home page is located at <ulink 
+url="http://www.konqueror.org">http://www.konqueror.org</ulink> where
+a &konqueror;-specific <acronym>FAQ</acronym>
+can be found.</para>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I use &konqueror; as a web browser with proxy?</para>
+</question>
+<answer>
+<para>&konqueror; can be used with &HTTP; and &FTP; proxies.  
+To set up the proxy server in &konqueror;, just select
+<menuchoice><guimenu>Settings</guimenu><guisubmenu>Configure &konqueror;...</guisubmenu></menuchoice>
+from the &konqueror; menu and go to the <guilabel>Proxies</guilabel> tab.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I change the appearance of a directory in
+&kfm; and &konqueror;?</para>
+</question>
+<answer>
+<para>When displaying a directory, both &kfm; and &konqueror; look for
+a hidden file called <filename>.directory</filename> inside the
+directory.  You can create such a file yourself to modify the way in
+which the directory is displayed.  The file is simply a kdelnk (or
+<filename>.desktop</filename> for &kde; 2) file.  For example:</para>
+<screen>
+# KDE Config File
+[KDE Desktop Entry]
+Name=Settings
+Name[de]=Einstellungen
+Name[pl]=Ustawienia
+MiniIcon=kcontrol.xpm
+SortOrder=Desktop,Input_Devices,KWM,Network,Information,Sound
+Icon=kcontrol.xpm
+</screen>
+<para>This is the file used to describe the Settings directory.  It
+changes the icon used to display the directory, sets the (displayed)
+name of the directory according to the national language, and fixes
+the order in which the subdirectories are displayed.</para>
+<para>For the directories that build up the <guimenu>K</guimenu> menu, you can
+also use &kmenuedit; to change the appearance.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I do non-anonymous &FTP; transfers with
+&kfm; and &konqueror;?</para>
+</question>
+<answer>
+<para>Normally, if you enter a &URL; like
+<userinput>ftp://<replaceable>ftp.somehost.com</replaceable></userinput>,
+&kfm; and &konqueror; will attempt an
+anonymous login to the &FTP; server.  If you want to login as a
+particular user, enter a &URL; like
+<userinput>ftp://<replaceable>username@ftp.somehost.com</replaceable></userinput>
+instead.  &kfm; and &konqueror; will ask for
+your password and connect to the server.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What causes <errorname>KFM cannot connect to
+"localhost"</errorname>?</para>
+</question>
+<answer>
+<para>In most cases, this is due to an incorrectly configured loopback
+route on your system.</para>
+<variablelist>
+<varlistentry><term>How to check for problems</term>
+<listitem>
+<para>Check if <command>ping localhost</command> returns similar
+output:</para>
+<screen><computeroutput>
+PING localhost (127.0.0.1): 56 data bytes
+64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.3 ms
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.2 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.2 ms 
+...
+</computeroutput></screen>
+<para>If it does not, your loopback interface or route is not properly
+configured.</para>
+<para>The output of the <command>/sbin/route</command> command should
+contain lines like the following:</para>
+<screen><computeroutput>
+Destination     Gateway         Genmask         Flags MSS    Window Use Ifac
+loopback        *               255.0.0.0       U     3584   0       13 lo
+</computeroutput></screen>
+<para>The important fields are the Destination, Gateway, Genmask, and
+Iface.  The above means that the system is properly configured to
+route all loopback traffic through the loopback interface (lo).</para>
+<para>The output of the <command>/sbin/ifconfig</command> command
+should contain the following lines:</para>
+<screen><computeroutput>
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Bcast:127.255.255.255  Mask:255.0.0.0
+          UP BROADCAST LOOPBACK RUNNING  MTU:3584  Metric:1
+</computeroutput></screen>
+<para>This indicates that the loopback interface is up and running.</para>
+<para>Your <filename>/etc/hosts</filename> file should contain the
+following line:</para>
+<screen>
+127.0.0.1       localhost
+</screen>
+<para>This ensures that the "localhost" hostname is associated with
+your system loopback address (127.0.0.1).</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>Fixing these problems</term>
+<listitem>
+<para>Execute <command>/sbin/ifconfig <option>lo
+127.0.0.1</option></command> followed by <command>/sbin/route
+<option>add -net 127.0.0.0</option></command>.  Both commands should,
+on a healthy system, be executed for you at the bootup of your
+computer.  If this is not happening, check your network startup files
+in <filename class="directory">/etc/rc.d</filename>.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>If it <emphasis>still</emphasis> does not
+work</term>
+<listitem>
+<para>If none of these work, please send a full report to the <ulink
+url="http://bugs.kde.org">&kde; bug tracking system</ulink>.  Do not
+forget to mention that you have checked all these
+things.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What are <option>%i</option> and <option>%m</option> in the
+Execute line?</para>
+</question>
+<answer>
+<para>They are used by all &kde; applications (since they are
+implemented in <classname>KApplication</classname> and all good &kde;
+programs create a <classname>KApplication</classname> object before
+they even look at the command line arguments).</para>
+<para>A standard line for a &kde; application looks like this:
+<command>foo <option>... %i %m -caption \"%c\"</option></command>.
+Pretty confusing, but it has been designed in that way so that it can 
+integrate legacy, non-&kde; applications as smoothly as possible.
+&kfm; and &konqueror; when executing the line above will extend the
+command to <command>foo <option>-icon something.xpm -miniicon
+something_mini.xpm -caption \"The Foo\"</option></command>.  Both the
+icon and the mini-icon as well as "The Foo" are properties defined in
+the <filename>.desktop</filename> file.  If the icons are not defined, they simply default
+to the executable name "foo".</para>
+<para>This way a user can change these things in &kmenuedit; for his
+or her applications.  <option>-caption</option> is important, because
+no user will accept that the menu item
+<guimenuitem>Editor</guimenuitem> starts something called
+<guilabel>kedit-0.9pl4-build47</guilabel>.  Instead, he expects a
+window called <guilabel>Editor</guilabel>.  Furthermore these names
+are localized, <abbrev>i.e.</abbrev> an American user launches
+<guimenuitem>CD-Player</guimenuitem> and gets a window called
+<guilabel>CD-Player</guilabel> while a German user launches
+<guimenuitem>CD Spieler</guimenuitem> and gets a window called
+<guilabel>CD-Spieler</guilabel>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I specify the startup directory for &kfm; and
+&konqueror;?</para>
+</question>
+<answer>
+<para><mousebutton>Right</mousebutton> click on the &kfm; (or
+&konqueror;) icon and choose <guimenuitem>Properties</guimenuitem>.  Under the
+<guilabel>Execute</guilabel> tab you would probably find something
+like <command>kfmclient folder %u file:/root</command>; just change
+<filename class="directory">/root</filename> to wherever you would
+like &kfm; (or &konqueror;) to start.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="nsbookmark">
+<para>How do I import &Netscape; bookmarks?</para>
+</question>
+<answer>
+<para>There is no need to import anything at all. &Netscape; bookmarks are
+automatically available under the <guimenu>Bookmarks</guimenu> menu in
+&konqueror; with no configuration on your part necessary.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I fool a site into believing
+&konqueror; is &Netscape; or some other
+browsers?</para>
+</question>
+<answer>
+<para>Fire up the <application>&kde; Control
+Center</application> and select <menuchoice><guimenu>Web
+Browsing</guimenu><guimenuitem>User Agent</guimenuitem></menuchoice>.
+Add the desired user agent accordingly.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I configure &konqueror; to run
+&Java; applets?</para>
+</question>
+<answer>
+<para>Choose
+<menuchoice><guimenu>Settings</guimenu><guisubmenu>Configure &konqueror;</guisubmenu><guimenuitem>&konqueror; Browser</guimenuitem></menuchoice>
+from &konqueror;'s menubar.  Note that you
+have to be viewing a web page for the <guimenu>Settings</guimenu> menu
+not to be greyed out. If it doesn't work please check the
+<ulink url="http://www.konqueror.org/konq-java.html">Konqueror + Java HOWTO</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why can't &konqueror; render
+&GIF; images?</para>
+</question>
+<answer>
+<para>It is because you did not enable &GIF; support
+in &Qt;.  Please see <xref linkend="gif"/> for more details.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I rename files?</para>
+</question>
+<answer>
+<para>Simply right click on the file and select
+<guimenuitem>Rename</guimenuitem>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configure">
+<title>Configuring &kde;</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I set the language used by &kde;?</para>
+</question>
+<answer>
+<para>There are two ways to set the language &kde; uses in the
+messages it will display:</para>
+<variablelist>
+<varlistentry><term>Using the <application>&kde; Control Center</application></term>
+<listitem><para>Fire up the <application>&kde; Control Center</application> and select
+<guimenu>Personalization</guimenu> followed by <guimenuitem>Country
+and Language</guimenuitem>.  You can select your language and location
+here.  If &kde; cannot find a translation in the first language
+chosen, it will fall back on the default language.  This will usually
+be (American) English.</para>
+<note><para>Using the <application>&kde; Control Center</application> is the preferred way of choosing
+languages in &kde;.</para></note></listitem>
+</varlistentry>
+<varlistentry><term>Using the <envar>LANG</envar> environment variable</term>
+<listitem><para>The second method uses the standard locale setting on
+your system.  To change the language, simply set the environment
+variable <envar>LANG</envar> accordingly.  For example, if your shell 
+is <application>bash</application>, execute <command>export
+LANG=de</command> to set German as the language used.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there any keyboard switcher for international keyboards for
+&kde;?</para>
+</question>
+<answer>
+<para>&kde; 1.x used to come with &kikbd; but that has since 
+been completely removed and one should use
+<application>xkb</application> instead.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I replace the standard &Linux; text login screen with the
+&kde; login screen?</para>
+</question>
+<answer>
+<para>First, you need to change to the "xdm runlevel" (runlevel 5 on
+&RedHat; systems, 3 on S.u.S.E.) by editing your
+<filename>/etc/inittab</filename> file.  In the file, you should have
+a line saying <userinput>id:3:initdefault:</userinput>.  Change it to
+<userinput>id:5:initdefault:</userinput>.  Now at the end of the file,
+comment out the following line:
+<userinput>x:5:respawn:/usr/bin/X11/xdm -nodaemon</userinput> and
+replace it with
+<userinput>x:5:respawn:<replaceable>/opt/kde/</replaceable>bin/kdm
+-nodaemon</userinput>.
+<note><para>The location of &kdm; may differ on your
+system.</para></note></para>
+<para>For changes to take effect immediately, type <command>init
+5</command> (for &RedHat; systems) at the shell prompt. 
+<caution><para>It is risky to initiate a graphical login without
+checking beforehand whether it works.  If it fails to work, you would
+be in for a hard time getting back....</para></caution></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I replace &kwm; or &kwin; with another &kde;-compliant
+window manager like <application>Blackbox</application> and
+&windowmaker;?</para>
+</question>
+<answer>
+<para>First, download the source code and compile them.  You would
+probably need to specify some option when you execute the 
+<filename>configure</filename> script in order to produce
+&kde;-compliant binaries.  Read the
+<filename>README</filename> and
+<filename>INSTALL</filename> files for
+instructions.  Then simply replace the <command>kwm</command> command
+in the <filename>startkde</filename> script with the command that runs the
+new window manager and you are done.  For &kde; 2 you rewrite the line
+that executes <application>ksmserver</application> in <filename>startkde</filename> to
+call the session manager with the option <option>--windowmanager
+<replaceable>my_window_manager</replaceable></option> specified
+instead.</para>
+<para><application>Blackbox</application> is yet another addition to the list of window
+managers for the &X-Windows;.  It is built with C++ and shares no common code
+with any other window manager (even though the graphics implementation
+is similar to that of &windowmaker;).  <application>Blackbox</application> became &kde;
+compliant at its 0.50.2 release.  Please visit <ulink
+url="http://blackbox.alug.org/">Blackbox @ alug.org</ulink> for
+further information.  You might also find this website <ulink
+url="http://www.draknor.net/kbb/">KBB - getting <application>Blackbox</application> to work
+with &kde;</ulink> useful.</para>
+<para>To use <application>Blackbox</application> with &kde;, download the source tarball,
+untar it, enter the newly created directory, and run
+<command>./configure <option>--with-kde</option> ; make ; su -c 'make
+install'</command> (the <option>--with-kde</option> flag enables 
+&kde; support).</para>
+<para>Next, edit the <filename>startkde</filename> script as mentioned
+above to call <command>blackbox</command> instead.  Save the new script as, for
+example, <filename>$<envar>KDEDIR</envar>/bin/startbb</filename> and change the
+bottom line of your X startup file so that it runs the new script
+instead of the old one.  Fire up the &X-Windows; and you are away.</para>
+<para>&windowmaker; is an X11 window manager designed to give
+additional integration support for <ulink
+url="http://www.gnustep.org/">GNUstep</ulink> applications.  It tries
+to emulate the elegant look and feel of the &NeXTSTEP; &GUI;.  It is 
+relatively fast, rich in features, and easy to configure and use.
+&windowmaker; became &kde; compliant at its 0.50.0 release.  Please
+visit the <ulink url="http://www.windowmaker.org/">Official Window
+Maker Website</ulink> for more information.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I change the &RedHat; &Linux; logo bootup screen image?</para>
+</question>
+<answer>
+<para>&RedHat; uses <application>xbanner</application> to display its
+logo, so to disable it, just comment out the line calling
+<application>xbanner</application> from the configuration 
+file <application>xdm</application> reads, which is <filename>/etc/X11/xdm/Xsetup_0</filename>
+(may vary).  If you want something else to run there, put it in
+instead, for example <command><replaceable>/opt/kde</replaceable>/bin/kdmdesktop</command>.
+</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+
+<para>I would like to click the &LMB; anywhere on the
+desktop and have the <guimenu>K</guimenu> menu displayed.</para>
+</question>
+<answer>
+<variablelist>
+<varlistentry><term>&kde; 1.x</term>
+<listitem><para>First, edit
+<filename>$<envar>HOME</envar>/.kde/share/config/krootwmrc</filename> and add the
+following two lines:</para>
+<screen>
+[MouseButtons]
+Left=Menu
+</screen>
+<para>Then restart &kde;.</para></listitem>
+</varlistentry>
+<varlistentry><term>&kde; 2</term>
+<listitem><para>Open the <application>&kde; Control Center</application> and choose
+<menuchoice><guisubmenu>Look and
+Feel</guisubmenu><guisubmenu>Desktop</guisubmenu>
+<guisubmenu>General</guisubmenu></menuchoice>.  You can now choose the
+behavior of mouse clicks on the desktop.  To have the
+<guimenu>K</guimenu> menu open from a single &LMB;
+click, change the entry labeled <guilabel>Left button</guilabel> to
+say <guilabel>Application Menu</guilabel>.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I use the three extra keys on my &Windows; keyboard in
+&kde;?</para>
+</question>
+<answer>
+<para>You may have to configure your X server via
+<command>xmodmap</command> to bind the keycodes of the &Windows; keys
+to useful X key symbols (<command>xev</command> is your friend!).</para>
+<para>First, create a file <filename>$<envar>HOME</envar>/.Xmodmap</filename>
+containing the entries:</para>
+<screen>
+keycode 115=F13
+keycode 117=F15
+</screen>
+<para>Then run <command>xmodmap ~/.Xmodmap</command>.  This sets
+the <keycap>Start</keycap> key to emit <keysym>F13</keysym> and the
+<keycap>Windows</keycap> key to emit <keysym>F15</keysym>.  Next, fire
+up the <application>&kde; Control Center</application> and select <menuchoice><guimenu>Shortcut
+Keys</guimenu><guimenuitem>Global Shortcut</guimenuitem></menuchoice>.
+Set <guilabel>Pop-up system menu</guilabel> to <keysym>F13</keysym>
+and <guilabel>Window operations menu</guilabel> to
+<keysym>F15</keysym>.  That is it.
+<note><para>The numbers 115 and 117 may depend on the keyboard.  If
+you are not sure, please check using <command>xev</command>.  In
+addition, the above procedure requires &kde; 1.1 and above.</para>
+<para>&kikbd; is able to do this too, but keymaps have to be edited.
+The advantage of &kikbd; is that one can choose whether to use these
+mappings on several custom keymaps and have them hotswappable.</para>
+<para>It would be interesting to make a little script that will
+automatically do the keymap modifications on demand.  &kikbd; should
+be able to read/understand user-side keymap files.</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>After installing &kde;, the &RedHat; start menu disappears!</para>
+</question>
+<answer>
+<para>Just run the command <command>wmconfig <option>--output
+kde</option></command>.  This will put the &RedHat;-specific icons
+into your &kde; menu.  If you run this within &kde;, you will need to
+restart your panel.  They are installed by default into the <filename
+class="directory">applnk</filename> folder after you run that 
+command, but then you can copy and paste them wherever you like with
+&kmenuedit;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Where do I find information regarding &kde; themes?</para>
+</question>
+<answer>
+<para>Go see <ulink
+url="http://kde.themes.org/">http://kde.themes.org/</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I change &MIME; Types?</para>
+</question>
+<answer>
+<para>If you are using &kfm;, first open a &kfm; window and choose
+<menuchoice><guimenu>Edit</guimenu><guimenuitem>Mime
+Types</guimenuitem></menuchoice>.  Find the type you want to change
+(<abbrev>e.g.</abbrev> text/english or image/gif), click the &RMB;, 
+select <guimenuitem>Properties</guimenuitem>, choose the
+<guilabel>Binding</guilabel> tab, and set Default Application to
+whatever you want.</para>
+<para>If you are using &konqueror;, do this instead: first, open a
+&konqueror; window and choose
+<menuchoice><guimenu>Edit</guimenu><guimenuitem>File
+Type</guimenuitem></menuchoice>.  Find the type you want to change
+(<abbrev>e.g.</abbrev> text/english or image/gif), click the &RMB;,
+select <guilabel>General</guilabel>, and set the application
+preference order to whatever you want.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kde; (&kdm;) does not read my
+<filename>.bash_profile</filename>!</para>
+</question>
+<answer>
+<para>Well, <application>xdm</application> (and &kdm;) does not run a login shell, so
+<filename>.profile</filename>, <filename>.bash_profile</filename>,
+<abbrev>etc.</abbrev> are not sourced.  When the user logs in, <application>xdm</application> runs
+<command>Xstartup</command> as root and then
+<command>Xsession</command> as user.  So the normal practice is to add
+statements in <filename>Xsession</filename> to source the user profile.
+Please edit your <filename>Xsession</filename> and
+<filename>.xsession</filename> files.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I use &TrueType; fonts in &kde;?</para>
+</question>
+<answer>
+<para>You need to install &TrueType; font support to your &X-Windows;.  Please
+take a look at <ulink url="http://x.themes.org/">x.themes.org</ulink>
+for the fonts, and <ulink
+url="http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/">xfsft:
+&TrueType; Font Support For X11</ulink> or <ulink
+url="http://X-TT.dsl.gr.jp/">X-&TrueType; Server Project Home
+Page</ulink> for the font servers.</para>
+<para>If you have a bunch of &TrueType; fonts from &Microsoft;
+&Windows;, edit the <filename>XF86Config</filename> file to get the fonts from the font
+folder.  Then just tell &kde; to use these new fonts with the font
+administrator utility.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it possible to enter, show and work with the Euro Symbol in
+&kde;?</para>
+</question>
+<answer>
+<para>Yes and no.  For details, look here: <ulink
+url="http://monitor.blvk.ch/euro/">http://monitor.blvk.ch/euro/</ulink>.</para>
+<!-- todo: maybe also/instead link http://www.koffice.org/kword/euro.phtml -->
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="applications">
+<title>&kde; applications</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>&kppp;</para>
+</question>
+<answer>
+<para>Many &kde; users report problems using &kppp;.  But before you
+complain about &kppp;, make sure you have already checked the
+following:</para>
+<itemizedlist>
+<listitem><para>Can you dialup to your <acronym>ISP</acronym> without using &kppp;?  If
+you cannot, then perhaps &kppp; is not the culprit after
+all.</para></listitem>
+<listitem><para>Have you gone through the &kppp; documentation at
+least three times and follow its instructions and trouble-shooting
+suggestions?</para></listitem>
+</itemizedlist>
+<para>The &kppp; documentation can be accessed through the 
+<application>&kde; Help Center</application> or going directly to the documentation directory, usually
+<filename
+class="directory">$<envar>KDEDIR</envar>/share/doc/HTML/default/kppp</filename>.
+In addition, there is a web page "How to set up kppp with ISPs in the
+UK" at <ulink
+url="http://www.kppp-archive.freeserve.co.uk/">http://www.kppp-archive.freeserve.co.uk/</ulink>.
+ Last but not least, the &kppp; homepage is at <ulink
+ url="http://devel-home.kde.org/~kppp/">http://devel-home.kde.org/~kppp/</ulink>.</para>
+<para>Now, if you still encounter problems, here's what might help you
+solve them:</para>
+<variablelist>
+<varlistentry><term>How do I change the &MTU; setting in &kppp;?</term>
+<listitem><para>Open up the &kppp; dialog box and select
+<guibutton>Setup</guibutton>.  Choose an existing account and click
+<guibutton>Edit</guibutton>, or <guibutton>New</guibutton> to create a
+new dialup account.  Select the <guilabel>Dial</guilabel> tab and
+click <guibutton>Arguments</guibutton>.  Type what you want to change
+in the Argument textbox (<abbrev>e.g.</abbrev> <userinput>mtu 296</userinput>) and
+click <guibutton>Add</guibutton>.  When you are satisfied, click
+<guibutton>Close</guibutton>.</para>
+<para>To check whether the options "took", do one of the followings:</para>
+<itemizedlist>
+<listitem><para>In a terminal window, run <command>/sbin/ifconfig
+ppp0</command> and look at the reported &MTU; in the output.  It
+should match your request.</para></listitem>
+<listitem><para>Add <option>debug</option> and <option>kdebug</option>
+(each on a separate line) to your
+<filename>/etc/ppp/options</filename> file and restart your
+&PPP; session.  You will find debugging messages in
+<filename>/var/log/messages</filename>, including &MRU; and &MTU;
+settings.</para></listitem>
+</itemizedlist>
+<para>If you want, the &MRU; and &MTU; settings can be added to the
+<filename>options</filename> file, one complete setting per line, no
+quotes or dashes.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>&kppp; connects at a slower speed than
+normal.</term>
+<listitem><para>The following might do the trick:</para>
+<itemizedlist>
+<listitem><para>Try executing <command>setserial
+spd_hi</command>.</para></listitem>
+<listitem><para>The default &MTU; value is 1500,
+which maybe too large 
+for a dialup connection.  Try changing it to a smaller value like
+<userinput>296</userinput>
+or <userinput>576</userinput>.</para></listitem>
+<listitem><para>Check in your <filename
+class="directory">$<envar>HOME</envar>/.kde/share/config</filename> for the 
+<filename>kppprc</filename>.  Ensure the correct modem speed is
+actually defined there.</para></listitem>
+</itemizedlist></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&konsole;</para>
+</question>
+<answer>
+<variablelist>
+<varlistentry>
+<term>How do I page-up or page-down?</term>
+<listitem><para>Use <keycombo
+action="simul"><keycap>Shift</keycap><keycap>Pg Up</keycap></keycombo>
+and <keycombo action="simul"><keycap>Shift</keycap><keycap>Pg
+Dn</keycap></keycombo>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>How do I toggle the behaviour of &Backspace; and
+<keycap>Delete</keycap>?</term>
+<listitem><para>Look under
+<menuchoice><guimenu>Options</guimenu><guimenuitem>Terminal</guimenuitem></menuchoice>
+of your console window.<!-- fixme: doesn't exist anymore --></para></listitem>
+</varlistentry>
+<varlistentry>
+<term>How do I perform a simple "copy" from &konsole; to
+anything else?</term>
+<listitem><para>When I do a <command>ls</command>, first I select with
+the mouse the desired text, press <keycombo
+action="simul">&Ctrl;<keycap>C</keycap></keycombo>,
+then I make the target application active, point the mouse to the
+relevant part and press <keycombo
+action="simul">&Ctrl;<keycap>V</keycap></keycombo>.
+Alternatively, highlight the text by dragging with the &LMB; down and
+paste by clicking with the &MMB; (or both 
+buttons if you have 3 button emulation set and you are using a two
+button mouse).</para></listitem>
+</varlistentry>
+<!-- fixme: it's not possible anymore??
+<varlistentry>
+<term>How do I set the size of the scroll-back buffer?</term>
+<listitem>
+<para>Try <command>kvt <option>-sl
+<replaceable>size</replaceable></option></command> for &kvt; and
+<command>konsole <option>-sl <replaceable>size</replaceable></option></command> for
+&konsole;.</para>
+<tip><para>If you execute &kvt; with some unknown option (<abbrev>e.g.</abbrev>
+<command>kvt <option>-x</option></command>),
+&kvt; will print out a list of valid options.</para></tip></listitem>
+</varlistentry>
+-->
+</variablelist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kmail;</para>
+</question>
+<answer>
+<para>&kmail; has its own home page at <ulink
+url="http://kmail.kde.org">http://kmail.kde.org</ulink> where an
+<acronym>FAQ</acronym> is available.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&kbiff;</para>
+</question>
+<answer>
+<para>&kbiff; is a mail notification utility and its home page is at
+<ulink
+url="http://www.granroth.org/kbiff">http://www.granroth.org/kbiff</ulink>.</para>
+<variablelist>
+<varlistentry><term>How can one instance of &kbiff; monitor two
+mailboxes and take the appropriate action when new messages arrive?</term>
+<listitem><para>Are you getting many messages in both mailboxes?  If
+so, it would be better to use two instances to monitor them.  If not,
+then go to the <guilabel>Mailbox</guilabel> tab and click on the little
+mailbox icon.  This will create another mailbox in that instance.
+Now, whenever either of them gets new mail, &kbiff; will do all of its
+new mail stuff.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+
+<!-- fixme: does ktop still exist? is this bug fixed?
+<qandaentry>
+<question>
+<para>&ktop;</para>
+</question>
+<answer>
+<para>Why can't I see anything on it?</para>
+<para>It is a bug, albeit easily fixed.  Just resize it by a few pixels and
+everything would be all right.</para>
+</answer>
+</qandaentry>
+-->
+
+<qandaentry>
+<question>
+<para>&knode;</para>
+</question>
+<answer>
+<variablelist>
+<varlistentry><term>How do I killfile someone?</term>
+<listitem><para>This feature is not yet implemented, and probably will
+not be implemented before &kde; 2.1.</para></listitem>
+</varlistentry>
+<varlistentry><term>Does &knode; support multiple selections in the
+article list?</term>
+<listitem><para>As of the time of this writing, no.  It might be
+implemented for &kde; 2.1 though.</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="non-kde-apps">
+<title>&kde; with non-&kde; applications</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>My non-&kde; applications like
+&Emacs; and
+<application>kterm</application> are running amok with large windows
+and strange fonts!</para>
+</question>
+<answer>
+<para>It probably has to do with &kde; trying to "apply &kde; defaults
+to non-&kde; apps", which means it uses <command>xrdb</command> to apply
+X defaults that are supposed to mimic the color, font, and other
+settings that you have set for &kde;.  However, experience tells us
+that this usually breaks things, particularly if you have carefully
+tuned the X resources of your non-&kde; applications.</para>
+<para>The official solution for &kde; 1.x is click the <guibutton>K</guibutton> button, select
+<menuchoice><guimenu>Settings</guimenu><guisubmenu>Desktop</guisubmenu><guimenuitem>Style</guimenuitem></menuchoice> 
+and disable the <guilabel>apply KDE settings to non-KDE apps</guilabel> checkbox.  For
+&kde; 2, click the <guibutton>K</guibutton> button, select
+<menuchoice><guimenu>Preferences</guimenu><guisubmenu>Look and
+Feel</guisubmenu><guisubmenu>Themes</guisubmenu><guimenuitem>Style</guimenuitem></menuchoice>
+and disable the <guilabel>apply fonts and colors to non-&kde; apps</guilabel> checkbox
+instead.  If the new setting does not seem to stick, make sure you
+have clicked <guibutton>OK</guibutton> directly without clicking
+<guibutton>Apply</guibutton> after making the change.  If it still
+refuses to work, there is a brute-force solution: rename or delete the
+<filename
+class="directory">$<envar>KDEDIR</envar>/share/apps/kdisplay/app-defaults</filename>
+directory.  This will prevent &kde; from finding the X resource files
+it applies, and solve the problem.  You have to exit your session and
+log back in for everything to return to normal.</para>
+<para>If you do not want to, or cannot rename or delete the
+system-wide <filename class="directory">app-defaults</filename>
+directory, you can always copy it to your personal &kde; 
+directory (<abbrev>e.g.</abbrev> <filename
+class="directory">$<envar>HOME</envar>/.kde/share/apps/kdisplay/app-defaults</filename>)
+and then edit/add/remove files to taste.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>&Netscape;</para>
+</question>
+<answer>
+<variablelist>
+<varlistentry>
+<term>Why does &Netscape; load so slow?</term>
+<listitem><para>&Netscape; loads slow because it is statically linked
+with &Motif; and has to load
+all the widgets, <abbrev>etc.</abbrev> when it loads.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Why does &Netscape; crash when I visit certain websites?</term>
+<listitem><para>What websites are you visiting?  &Java; applets and Javascript will
+often cause &Netscape; to crash.  Since most people use &Java; applets and Javascript 
+for spinning buttons instead of something useful, just turn
+them off in &Netscape;.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Why does &Netscape; display images in a pixelated manner?</term>
+<listitem><para>When you run &Netscape;, try using the
+<option>-install</option> switch <abbrev>e.g.</abbrev> <command>netscape
+<option>-install</option> &amp;</command>.  This will force &Netscape; to
+allocate its own colormap which would hopefully solve the
+problem.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>How do I make &kde; use &Netscape; when I create a WWWUrl kdelnk
+instead of &kfm;?</term>
+<listitem>
+<para>You need to create a <filename>.kdelnk</filename> for &Netscape;, then
+edit it (using &kfm;, <mousebutton>right</mousebutton> click and go to
+<guimenuitem>Properties</guimenuitem>)
+and select the right &MIME; type for &URL;s (in
+<guilabel>Application</guilabel> tab pick text/html and text/sgml).
+Then select <menuchoice><guimenu>Edit</guimenu><guimenuitem>MIME
+Types</guimenuitem></menuchoice> from the &kfm; menu, enter <filename
+class="directory">text</filename> and edit the properties for
+<filename>html</filename> and <filename>sgml</filename>: in
+<guilabel>Binding</guilabel> tab select the default application in the
+list box (since you have added the appropriate &MIME; type to
+&Netscape;'s <filename>.kdelnk</filename> file, it should appear
+there).</para></listitem>
+</varlistentry>
+</variablelist>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="tips">
+<title>Useful tips</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Reading man pages in &kde;</para>
+</question>
+<answer>
+<para>Pop up the minicli window (<keycombo
+action="simul">&Alt;<keycap>F2</keycap></keycombo> by
+default) and type
+<command>man:<replaceable>command</replaceable></command>.  It
+even unpacks on the fly if the man pages are gzipped.</para>
+<para>Or you can use the <application>&kde; Help Center</application> if you are using &kde;
+2.  Simply start the <application>&kde; Help Center</application> by clicking on the icon (the blue
+book with the yellow key) on the toolbar.  Once the <application>&kde; Help Center</application> has
+loaded, the window on the left will contain an entry called
+<guilabel>Unix manual pages</guilabel>.  Click once on this entry, and
+you can browse through all the installed manual pages on your
+system.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Move or resize windows quickly</para>
+</question>
+<answer>
+<para>To move a window, use <keycombo
+action="simul">&Alt;<mousebutton>left</mousebutton></keycombo> mouse
+button.  <keycombo
+action="simul">&Alt;<mousebutton>right</mousebutton></keycombo> mouse
+button will resize the window.  Last but not least, <keycombo
+action="simul">&Alt;<mousebutton>middle</mousebutton></keycombo> mouse button
+raises/lowers the window. The <application>&kde; Control Center</application>
+allows you to change these mouse bindings.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Killing windows in &kde;</para>
+</question>
+<answer>
+<para>There is a standard keybinding (<keycombo
+action="simul">&Ctrl;&Alt;&Esc;</keycombo>) 
+that gives you a skull/crossbones cursor.  Click that cursor on a
+window to kill it.  The keybindings are viewable/changeable from the
+<application>&kde; Control Center</application>.
+<!-- fixme: use only if necessary; processes might remain --></para>
+</answer>
+</qandaentry>
+
+<!-- fixme: how to do in KDE2.x
+<qandaentry>
+<question>
+<para>Switching window managers on the fly in &kde; 1.x</para>
+</question>
+<answer>
+<para>If you want to switch your window manager on the fly, type the
+following into a terminal window: <command>kwmcom
+go:<replaceable>blackbox</replaceable></command>.  This switches to
+Blackbox, but you can substitute any window manager you like.</para>
+</answer>
+</qandaentry>
+-->
+</qandaset>
+</chapter>
+
+<chapter id="misc">
+<title>Miscellaneous questions</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Why does &kde; use &Qt;?</para>
+</question>
+<answer>
+<para>&Qt; is a very sophisticated toolkit that provides everything that
+is needed to build a modern user interface.  &Qt; is written in C++, thus
+allowing object-oriented development which ensures efficiency and
+code reuse in a project the size and scope of &kde;.  In our opinion
+there is no better toolkit available for &UNIX; systems and that it
+would have been a grave mistake to try to build &kde; on anything but
+the best.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Why does &kde; not use gtk, xforms, xlib, whatever?</para>
+</question>
+<answer>
+<para>There are a number of toolkits available.  To provide a
+consistent user interface and to keep used resources such as memory to
+a minimum, &kde; can use only one of them.  &Qt; was selected for the
+reasons mentioned above.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>But &Qt; isn't free, is it?</para>
+</question>
+<answer>
+<para>It is!  As of September 4, 2000, version 2.2 of the &Qt;
+libraries were licensed under the <acronym>GPL</acronym>, thereby
+fulfilling all aspects of "free software".</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I mount filesystems (<abbrev>e.g.</abbrev> my <hardware>CD-ROM drive</hardware>) in &kde;?</para>
+</question>
+<answer>
+<para>To mount your <hardware>CD-ROM drive</hardware>, first, you (as root) need to add
+the following line to <filename>/etc/fstab</filename>:</para>
+<screen>
+/dev/cdrom     /cdrom     iso9660  ro,user,noauto,unhide
+</screen>
+<para>Please make sure that you have a soft link from <filename
+class="symlink">/dev/cdrom</filename> to whatever /dev/hd? your <hardware>CD-ROM drive</hardware>
+is (assuming you are using an &ATAPI; <hardware>CD-ROM drive</hardware>).  You
+should see 
+something like this when you <command>ls -l /dev/cdrom</command>:</para>
+<screen>
+lrwxrwxrwx   1 root     root            8 Jul 28 22:21 /dev/cdrom -> /dev/hdb
+</screen>
+<para>The above would be done with <command>ln -s /dev/hdb
+/dev/cdrom</command> (as root).  Last but not least, make sure a valid
+mount point exists for the <hardware>CD-ROM drive</hardware> to be mounted on, for example:</para>
+<screen>
+% ls -la /cdrom
+total 2
+drwxrwsr-x   2 root     cdrom        1024 Sep 14  1995 ./
+drwxr-xr-x  24 root     root         1024 Dec  1 21:00 ../
+</screen>
+<para>Now you can mount it from the command prompt by typing
+<command>mount /cdrom</command>.  Or if you prefer, create a &kde;
+device link to your <hardware>CD-ROM drive</hardware> and place it on your desktop.  Clicking on
+it will automatically mount the drive for you.  Okay, concerning the
+question of how to make a &kde; device link to your <hardware>CD-ROM drive</hardware>, please
+look to the &kde; User Guide for the answers.</para>
+<para>More information on mounting filesystems can be found by running
+<command>man fstab</command> and <command>man mount</command>
+respectively.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Does &kde; have terminal emulators with transparent
+background?</para>
+</question>
+<answer>
+<para>Yes and no.  &konsole; has the ability to simulate transparency
+by redrawing the background of the window inside the &konsole; window.
+This gives the illusion of transparency, but if you place
+&konsole; on top of another window, the transparency is lost.  <ulink
+url="http://www.eterm.org">Eterm</ulink> should work fine under &kde;
+if you desire more complete transparency.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there a way to get various kinds of information about my
+drive contents: free space, directory size, <abbrev>etc.</abbrev>?</para>
+</question>
+<answer>
+<para>The &kde; control panel will let you look at each drive and will
+give you information concerning free space, space used,
+<abbrev>etc.</abbrev>  To 
+determine how large a single directory is, you should use the
+<command>du</command> command.  Details about its usage can be found
+by typing <command>man du</command> at a command prompt.  If you just
+want to know how much space the directory takes up, simply type
+<command>du <option>-h
+<replaceable>directory</replaceable></option></command>.</para>
+
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I get &Backspace; to work correctly under &kde;?</para>
+</question>
+<answer>
+<para>Try running <command>xmodmap <option>-e 'keycode 22 =
+BackSpace'</option></command> and see if that fixes it (applications will have
+to be restarted for that to take effect).  You should be able to just
+stick that into your X startup files like <filename>.xinitrc</filename>.</para>
+<para>Or simply upgrade to XFree86-3.3.3.1-1 and above.</para>
+<para><note><para>Also, concerning the &Backspace;-Bug (Bug number:
+kb704): the bug is fixed somehow by putting the following line into
+<filename>$<envar>HOME</envar>/.xinitrc</filename>:
+<screen>
+xmodmap -  "keysym Delete = BackSpace"
+</screen>
+</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I create icons for non-&kde; applications that I can put
+in the <guimenu>K</guimenu> menu?  Where do these icons (or kdelnk)
+go?</para>
+</question>
+<answer>
+<para>Create using your favorite image manipulator, for example,
+<application>GIMP</application>, and put them in <filename
+class="directory">$<envar>KDEDIR</envar>/share/icons(/mini)</filename>
+or <filename
+class="directory">$<envar>HOME</envar>/.kde/share/icons(/mini)</filename>.
+By the way, The <application>&kde; Icon
+Editor</application> is being 
+developed by the &kde; team.  More information can be found at <ulink
+url="http://w1.1358.telia.com/~u135800018/prog.html#KICONEDIT">
+http://w1.1358.telia.com/~u135800018/prog.html#KICONEDIT</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What about &kde; programs that do not have icons? How do I get
+them into the menu?</para>
+</question>
+<answer>
+<para>Use &kmenuedit;. To access it use the &RMB; on the 
+<guibutton>K</guibutton> button and select <guimenu>Preferences...</guimenu>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Does &kde; have a graphical &FTP; client?</para>
+</question>
+<answer>
+<para>Yes, and it is none other than your favorite file
+manager, &konqueror;. You can drag and drop remote files into local
+directories.<!-- fixme: write more about how to use it --></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I exit &kde;?</para>
+</question>
+<answer>
+<para>Simply click on the <guibutton>K</guibutton> button and select
+<guimenu>Logout</guimenu>.  In addition, if you
+<mousebutton>right</mousebutton> click on an
+empty area of the desktop, you will be presented with a menu
+containing logout as one of the options.
+<note><para>Depending on your configuration of &X-Windows;, <keycombo
+action="simul">&Ctrl;&Alt;&Backspace;</keycombo>
+might also do the trick by killing the X server, but its use prevents
+session management and cannot be recommended.</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there a program that checks for new mails at my
+<acronym>ISP</acronym> if and only if I am online?</para>
+</question>
+<answer>
+<para>Either &kbiff; or &korn; will do the job.  If you are not
+connected, they will just sit there (idling).</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is it really necessary to upgrade to the latest version?</para>
+</question>
+<answer>
+<para>We recommend to always use the latest stable release. If you don't, it will 
+probably be difficult to get answers to your questions. If you have a problem
+with an old version, the answer will probably be <quote>Please upgrade and try again</quote>.
+Note that new versions also sometimes fix security problems.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I copy and paste in &kde;?</para>
+</question>
+<answer>
+<para>The simplest method is to use your mouse:</para>
+<procedure>
+<step performance="required"><para>Highlight the text you want to copy by holding down the
+&LMB; and dragging across the text.</para></step>
+<step performance="required"><para>Go to the destination area; depending on your configuration,
+you might need to click it using the &LMB; to give it
+focus.</para></step>
+<step performance="required"><para>Click the &MMB; to paste.  If you have a two
+button mouse and are emulating a three button mouse, push both buttons
+simultaneously.</para></step>
+</procedure>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I convert the default &RedHat; menus into a menu in the
+<guimenu>K</guimenu> menu?</para>
+</question>
+<answer>
+<para>Click on the <guibutton>K</guibutton> button and select
+<menuchoice><guimenu>System</guimenu><guimenuitem>Appfinder</guimenuitem></menuchoice>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="CVS">
+<para>What is <acronym>CVS</acronym>?</para>
+</question>
+<answer>
+<para>It stands for Concurrent Versions System.  It is a version 
+control system and is based on <acronym>RCS</acronym> (Revision
+Control System), but 
+offers more functionality.  It is used to maintain source code under
+development.  It will keep multiple versions of things (handy if you
+broke something and have to back up and get a clean old version), and
+allows people remote access over the Net to pick up the latest source
+code and even to check in new stuff if they have permission.  It is
+also open source (you pay for support if you want it), and since it is
+free it is the system of choice for people writing more free products,
+such as &kde;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Does &kde; support dual screen (Xinerama)?</para>
+</question>
+<answer>
+<para>You need to have the a multi-headed X server
+(<abbrev>e.g.</abbrev> MetroX or XFree86 4.0 and above) and a window
+manager that understands multi-headed display (<abbrev>e.g.</abbrev>
+&windowmaker;).</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I check which version of &kde; I am using?</para>
+</question>
+<answer>
+<para>Fire up your <application>&kde; Control
+Center</application>.  If there is no mention of a version on
+the first screen, you have version 1.0 (and it is time to
+upgrade!).</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Can I write commerical software for &kde;?</para>
+</question>
+<answer>
+<para>You can use the &kde; libraries to write "commercial and closed
+source" as well as "commercial and open source" software.  If you
+write open source software you can use the &Qt; free edition.  But if
+you write closed source software you may not use the &Qt; free edition;
+you'd have to obtain the &Qt; professional edition from Troll Tech. </para>
+<para>If you want more information, please contact <ulink
+url="http://www.trolltech.com">Troll Tech</ulink> directly.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I go about creating themes and icons?</para>
+</question>
+<answer>
+<para>Go see <ulink
+url="http://artist.kde.org">http://artist.kde.org</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is <application>KLyX</application> dead?</para>
+</question>
+<answer>
+<para>Yes.  But future versions of <application>LyX</application>
+will be &GUI; independent.  Check the progress of the various &GUI;
+frontends <ulink url="http://devel.lyx.org/guii.php3">here</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How can I get to know about development updates?</para>
+</question>
+<answer>
+<para>You might want to subscribe to the various &kde; mailing lists
+available, especially kde-cvs, which lists all commits done to the
+&kde; <acronym>CVS</acronym> repository.  Check <ulink
+url="http://lists.kde.org">http://lists.kde.org</ulink> if you want to
+read without subscribing.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="not-kde">
+<title>Not really &kde;-related, but frequently asked nevertheless
+:-)</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How do I change the screen resolution?</para>
+</question>
+<answer>
+<para>Use <keycombo
+action="simul">&Ctrl;&Alt;<keycap>+</keycap></keycombo> and <keycombo
+action="simul">&Ctrl;&Alt;<keycap>-</keycap></keycombo> to cycle among
+the resolutions you have defined in <filename>XF86Config</filename> (maybe under
+<filename class="directory">/etc/X11</filename>; poke around first).
+If you prefer to get your hands dirty, you can always edit the file
+directly.  By placing your favorite resolution at the beginning (or
+making it the only one listed), the &X-Windows; will always start up with that
+resolution.
+<caution><para>Always make a backup copy of your <filename>XF86Config</filename> file
+<emphasis>before</emphasis> you start editing it.  Errors in this file
+can render your &X-Windows; unusable.</para></caution>
+<note><para>These instructions are only valid if you are running
+version 3.3.x of the XFree86 server.  If you are running XFree86 4.x,
+you must consult with the <ulink url="http://xfree.org">XFree86(TM):
+Home Page</ulink>.</para></note></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I change the color depth?</para>
+</question>
+<answer>
+<para>AFAIK, there is no way you can do it on the fly.  You can either
+start the &X-Windows; using <command>startx <option> -bpp
+<replaceable>number</replaceable></option></command> where
+<replaceable>number</replaceable> can be 8, 16, 24, or 32 depending on
+the depth you want, or if you are using
+<application>xdm</application>/&kdm;, you
+have to edit 
+<filename>/etc/X11/xdm/Xservers</filename> (may vary) by putting
+<userinput>:0 local /usr/X11R6/bin/X -bpp 16</userinput> for color
+depth 16.</para>
+<para>Alternatively, you can edit the <filename>XF86Config</filename> file and add a line
+like <userinput>DefaultColorDepth
+<replaceable>number</replaceable></userinput> to Section "Screen".
+The next time you start X, it will run with the newly-configured color
+depth.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What can I do if I am using a 2-button mouse?</para>
+</question>
+<answer>
+<para>Go buy a 3-button one, or use third button emulation.  The third
+button is emulated by pressing both the &LMB; and the &RMB; 
+together.  You would need to enable <option>Emulate3Buttons</option>
+in your <filename>XF86Config</filename> file. </para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What is a "sticky" window?</para>
+</question>
+<answer>
+<para>In a virtual desktop environment with multiple virtual desktops, a
+"sticky" window will stay put on the screen when you switch between
+desktops, as if sticking to the glass of the screen.
+<application>Xclock</application> is a typical candidate for sticking,
+as you need to run only one instance of it, and it always stays with
+you. </para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I replace the "X" mouse pointer with an arrow?</para>
+</question>
+<answer>
+<para>The various types of cursor available in X are defined in
+<filename class="headerfile">X11/cursorfont.h</filename>.  You can
+change it using <command>xsetroot -cursor_name
+<replaceable>name_of_cursor</replaceable></command>.  For example, I
+have the following in my <filename>.Xclients</filename>:</para>
+<screen>
+xsetroot -cursor_name left_ptr
+</screen>
+<para>This will create the common left-angled pointer.  To see other
+alternatives, type <command>xfd -fn cursor</command>.  And of course,
+do not forget that <command>man xsetroot</command> is your
+friend.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I extract/install diff files?</para>
+</question>
+<answer>
+<para>To generate a context-diff suitable for patching, use
+<command>diff -u <replaceable>old-file new-file</replaceable> &gt;
+<replaceable>patchfile</replaceable></command>.  To apply the diff to
+a file (<abbrev>i.e.</abbrev> "patch the file"), execute
+<command>patch &lt; <replaceable>patchfile</replaceable></command>.</para> 
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get &Linux; to mount the floppy device both in dos and
+ext2 floppies?</para>
+</question>
+<answer>
+<para>Just specify the filesystem type as auto in
+<filename>/etc/fstab</filename>.  Auto detection works fine for dos and
+ext2.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I start &kde; with the <keycap>Num Lock</keycap> on?</para>
+</question>
+<answer>
+<para>Have you tried <command>man setleds</command>?  In addition, you
+might want to edit your
+<filename>$<envar>HOME</envar>/.Xmodmap</filename> and put the
+following lines in:</para>
+<screen>
+! redefines numeric keypad to be used without NumLock
+keycode 79 = 7
+keycode 80 = 8
+keycode 81 = 9
+
+keycode 83 = 4
+keycode 84 = 5
+keycode 85 = 6
+
+keycode 87 = 1
+keycode 88 = 2
+keycode 89 = 3
+
+keycode 90 = 0
+keycode 91 = comma
+keycode 86 = plus
+
+! deactivates NumLock key
+keycode 77 =            
+</screen>
+<para>Other possible alternatives:</para>
+<itemizedlist>
+<listitem><para><application>xkeycaps</application>:
+<mousebutton>right</mousebutton> clicking should allow edits.  May
+have to do this as root.</para></listitem>
+<listitem><para><command>man XF86Config</command> and look under
+section Keyboard.</para></listitem>
+<listitem><para>Install <application>NumLockX</application> which is
+available from <ulink
+url="http://dforce.sh.cvut.cz/~seli/en/numlockx">http://dforce.sh.cvut.cz/~seli/en/numlockx</ulink>.</para></listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I take window or desktop screenshots?</para>
+</question>
+<answer>
+<para>Use &ksnapshot;.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there a tool to make webpages?</para>
+</question>
+<answer>
+<para>Yes, and there are a lot of them out there, including
+<application>StarOffice</application>, <application>&Netscape; Composer</application>, and
+<application>XEmacs</application>. 
+There are also many &kde; applications.  To find the most current
+list, go to <ulink url="http://apps.kde.com">APPS.&kde;.com: The
+Latest in &kde; Applications</ulink> and search for <emphasis>web
+development</emphasis>.  Try as many as possible and choose the one
+most suitable to your needs.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>What do all those acronyms like AFAIK mean?</para>
+</question>
+<answer>
+<para><screen>
+AAMOF: as a matter of fact
+AFAIK: as far as I know
+AISE: as I see it
+BFN: bye for now
+BION: believe it or not
+BRB: be right back
+BTW: by the way
+CMIIW: correct me if I am wrong
+FUD: fear, uncertainty, and doubt
+FWIW: for what it's worth
+FYI: for your information
+HTH: hope this helps
+IIRC: if I recall correctly
+IMHO: in my humble opinion
+LOL: laughing out loud
+MYOB: mind your own business
+PITA: pain in the ass
+ROTFL: rolling on the floor laughing
+RTFM: read the fine manual
+SOP: standard operating procedure
+TIA: thanks in advance
+YMMV: your mileage may vary
+</screen></para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="more-info">
+<title>Getting more information</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>Where is the &kde; homepage?</para>
+</question>
+<answer>
+<para>The &kde; homepage is located at <ulink
+url="http://www.kde.org">http://www.kde.org</ulink>.  If you prefer a
+local mirror, there are several to choose from.  For a current list of
+web site mirrors sorted by location, please visit <ulink
+url="http://www.kde.org/webmirrors.html">http://www.kde.org/webmirrors.html</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="mailing-lists">
+<para>Is there a &kde; mailing list?</para>
+</question>
+<answer>
+<para>Well, there are more than one.  Each focuses on a different
+aspect of &kde;.  Some of them are for the developers, so they are not
+discussed in detail.  Some of the more important lists that users
+might be interested in are:</para>
+<variablelist>
+<varlistentry><term>kde</term>
+<listitem><para>This is the main &kde; mailing list for general
+discussions.</para></listitem>
+</varlistentry>
+<varlistentry><term>kde-announce</term>
+<listitem><para>This list is used to announce new versions of &kde; as
+well as new tools and applications.</para></listitem>
+</varlistentry>
+<varlistentry><term>kde-user</term>
+<listitem><para>This list is intented for users helping other
+users.</para></listitem>
+</varlistentry>
+<varlistentry><term>kde-look</term>
+<listitem><para>This is the list that deals with questions of look and
+feel and general user interface considerations.</para></listitem>
+</varlistentry>
+</variablelist>
+<para>For the complete list of mailing lists available, please refer
+to <ulink
+url="http://www.kde.org/contact.html">http://www.kde.org/contact.html</ulink>.</para>
+<para>Please note that it is not a good idea to ask questions which are
+already answered in this <acronym>FAQ</acronym>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="subscribe">
+<para>How do I subscribe/unsubscribe to these lists?</para>
+</question>
+<answer>
+<para>To subscribe, send an email to list-request, that is:</para>
+<itemizedlist>
+<listitem><para><ulink
+url="mailto:kde-request@kde.org">kde-request@kde.org</ulink></para></listitem>
+<listitem><para><ulink url="mailto:kde-announce-request@kde.org">kde-announce-request@kde.org</ulink></para></listitem>
+<listitem><para><ulink
+url="mailto:kde-user-request@kde.org">kde-user-request@kde.org</ulink></para></listitem>
+<listitem><para><ulink url="mailto:kde-look-request@kde.org">kde-look-request@kde.org</ulink></para></listitem>
+</itemizedlist>
+<para>The email must contain <userinput>subscribe
+<replaceable>your_email_address</replaceable></userinput> in the
+subject.</para>
+<para>To unsubscribe, send an email to list-request, that is:</para>
+<itemizedlist>
+<listitem><para><ulink url="mailto:kde-request@kde.org">kde-request@kde.org</ulink></para></listitem>
+<listitem><para><ulink url="mailto:kde-announce-request@kde.org">kde-announce-request@kde.org</ulink></para></listitem>
+<listitem><para><ulink url="mailto:kde-user-request@kde.org">kde-user-request@kde.org</ulink></para></listitem>
+<listitem><para><ulink url="mailto:kde-look-request@kde.org">kde-look-request@kde.org</ulink></para></listitem>
+</itemizedlist>
+<para>The email must contain <userinput>unsubscribe
+<replaceable>your_email_address</replaceable></userinput> in the
+subject.
+<important><para>Never send subscribe/unsubscribe request to the
+mailing lists directly! Use the list-request
+instead.</para></important></para>
+<para>There is also a complete list of all &kde;-related mailing
+lists, and a web interface for subscribing and unsubscribing located
+at <ulink url="http://master.kde.org/mailman/listinfo">http://master.kde.org/mailman/listinfo</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Is there a mailing list archive?</para>
+</question>
+<answer>
+<para>Yes, there is a searchable mailing list archive hosted by <ulink
+url="http://www.progressive-comp.com">Progressive Computer
+Concepts</ulink>.  The &URL; is <ulink 
+url="http://lists.kde.org">http://lists.kde.org</ulink>.  There you
+will see a directory listing of the mailing lists.  Note that you can 
+only do a subject/author search at this level.  You probably will not
+find what you want doing this kind of search.</para>
+<para>To do a body search, you have to enter one of the mailing lists.
+Just click on the folder you want to search (<abbrev>e.g.</abbrev> "kde" or "kde-user") and
+then the pull-down menu by the search box will default to "Body"
+searches.  To be thorough you should probably search the "kde",
+"kde-user", and "kde-devel" folders. </para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="newsgroups">
+<para>Is there a newsgroup about &kde;?</para>
+</question>
+<answer>
+<para>Yes, there is!  It is at <literal>comp.windows.x.kde</literal>.
+In addition, there is also a German newsgroup at
+<literal>de.alt.comp.kde</literal>.  Please note that it is not a good
+idea to ask questions which are already answered in this <acronym>FAQ</acronym>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Are there any other &kde;-related
+<acronym>FAQ</acronym>s?</para>
+</question>
+<answer>
+<para>Yes.  Here is a list of them:</para>
+<itemizedlist>
+<listitem><para><ulink
+url="http://www.kde.org/info/faq.html">&kde; 2.0
+<acronym>FAQ</acronym></ulink></para></listitem>
+<listitem><para><ulink
+url="http://www.konqueror.org/faq.html">&konqueror;
+<acronym>FAQ</acronym></ulink></para></listitem>
+<listitem><para><ulink
+url="http://www.arts-project.org/doc/mcop-doc/artsd-faq.html">aRts
+sound server <acronym>FAQ</acronym></ulink></para></listitem>
+<listitem><para><ulink
+url="http://kmail.kde.org/manual/faq.html">&kmail;
+<acronym>FAQ</acronym></ulink></para></listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+<chapter id="contribute">
+<title>Contributing</title>
+
+<qandaset>
+<qandaentry>
+<question>
+<para>How can I contribute to &kde;?</para>
+</question>
+<answer>
+<para>&kde; is a free software project that lives from voluntary
+contributions.  Everybody is encouraged to contribute to &kde;.  Not
+only programmers are welcome.  There are lots of ways in which you can
+help to improve &kde;:</para>
+<itemizedlist>
+<listitem><para>Test the software.</para></listitem>
+<listitem><para>Send in bug reports.  For more information on this,
+see <link linkend="bug-report">How do I submit a bug
+report?</link>.</para></listitem>
+<listitem><para>Write documentation or help files.  You can get some
+information by visiting the <ulink
+url="http://i18n.kde.org/teams/en/index.html">&kde; Editorial Team
+Home Page</ulink>.</para></listitem>
+<listitem><para>Translate programs, documentation, and help files.
+For more information on this, you should visit <ulink
+url="http://i18n.kde.org">The &kde; Translators' and Documenters' Web
+Site</ulink>.</para></listitem>
+<listitem><para>Draw nice icons or compose sound effects.  You can
+visit the <ulink url="http://www.kde.org/artist/index.html">&kde;
+artists page</ulink> to find out more.</para></listitem>
+<listitem><para>Write articles and books about &kde;.  If you want to
+help spread the word about &kde;, simply send an email to
+<email>kde-pr@kde.org</email>.  This will get you in touch 
+with the &kde; public relations volunteers.</para></listitem>
+<listitem><para>Program new &kde; applications.  Please refer to <xref
+linkend="programming"/> for more information.</para></listitem>
+<listitem><para> Of course, sponsors are also
+welcome. :-)</para></listitem>
+</itemizedlist>
+<para>There are several places to look for more information if you
+want to get involved in the development.  The first step is to
+subscribe to some of the <ulink  url="http://www.kde.org/mailinglists.html">mailing 
+lists</ulink>.  You will soon see something
+that can be improved or added.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="bug-report">
+<para>How do I submit a bug report?</para>
+</question>
+<answer>
+<para>There is a bug tracking system available at <ulink
+url="http://bugs.kde.org">http://bugs.kde.org</ulink>.  The
+system features a wizard to submit new bug reports and a
+list of all known bugs.</para>
+<para>The easiest way to submit a bug is to select
+<menuchoice><guimenu>Help</guimenu><guimenuitem>Report 
+Bug...</guimenuitem></menuchoice> from the menu bar of the application
+with the bug.  This will open a small dialog box with a link
+to the bug tracking system. Please make sure to follow the
+instructions of the bug reporting wizard.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question id="programming">
+<para>I want to program for &kde;.  What should I do first?</para>
+</question>
+<answer>
+<para>Everybody is encouraged to develop software for &kde;.  What you
+should do first depends strongly on your experience, <abbrev>e.g.</abbrev> whether you have
+already learned C++ or have experience with the &Qt; toolkit and so
+on.</para>
+<para>To get into &kde; programming, you will need some basic tools:
+<application>automake</application>,
+<application>autoconf</application>, and
+<application>egcs</application>.  You should look to <ulink
+url="http://developer.kde.org/">http://developer.kde.org/</ulink> and
+<ulink
+url="http://www.ph.unimelb.edu.au/~ssk/kde/devel/">http://www.ph.unimelb.edu.au/~ssk/kde/devel/</ulink>
+for more tips.</para>
+<para>Another excellent resource for learning &kde;
+programming is the &Qt; 
+online tutorials.  These are installed along with &Qt;.  To view them,
+open <filename>$<envar>QTDIR</envar>/html/index.html</filename> in 
+&kfm; or &konqueror; and bookmark it.  The tutorials
+can be found under "Using 
+Qt".  The source code for each lesson can be found in the <filename
+class="directory"
+moreinfo="none">$<envar>QTDIR</envar>/tutorial</filename>
+directory.</para>
+<para>There is, however, one thing that everybody interested in
+programming for &kde; should do: <emphasis>subscribe to the developers
+mailing list</emphasis>.  To subscribe, you have to send an email to
+<ulink
+url="mailto:kde-devel-request@kde.org">kde-devel-request@kde.org</ulink>
+with the subject <userinput>subscribe
+<replaceable>your_email_address</replaceable></userinput>.
+<important><para>Please read <link linkend="subscribe">How to
+subscribe/unsubscribe to these lists</link> carefully.  Everything
+said there applies to the development list as
+well.</para></important></para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I get access to the <acronym>CVS</acronym>?</para>
+</question>
+<answer>
+<para>The &kde; project uses <acronym>CVS</acronym> to develop the core parts of the
+software.  Usually, when you have changed one of the parts (<abbrev>e.g.</abbrev> fixed a
+bug), and you want to commit this change, the best way is to create a
+patch against a current snapshot and send this patch to the
+developer/maintainer of the respective program.</para>
+<para>If you are doing this more or less regularly, you can ask <ulink
+url="mailto:coolo@kde.org">Stephan Kulow</ulink> for direct access to
+the <acronym>CVS</acronym> server.  But be aware that more users will slow down <acronym>CVS</acronym>
+access for all developers, so we want to keep the number of people
+with direct <acronym>CVS</acronym> access reasonably small.  But feel free to
+ask!</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>I am just curious. Can I have read-only access to the <acronym>CVS</acronym>?</para>
+</question>
+<answer>
+<para>Yes.  It is possible to get read-only access to the <acronym>CVS</acronym>
+repository with the <application>cvsup</application> utility.  You can find more information
+about how to set up <application>cvsup</application> for the &kde; repository from <ulink
+url="http://www.kde.org/cvsup.html">How to use <application>cvsup</application> to get
+&kde;</ulink>.</para>
+<para>In addition, anonymous <acronym>CVS</acronym> service is also available.  To find
+out more about how to set up and use anonymous <acronym>CVS</acronym>,
+please see <ulink 
+url="http://www.kde.org/anoncvs.html">here</ulink>.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>Are there any <application>cvsup</application> mirror sites for &kde;?</para>
+</question>
+<answer>
+<para>Yes.  The main &kde; server is normally very busy and
+unresponsive.  Please take a look at <ulink url="http://www.kde.org/cvsupmirrors.html">http://www.kde.org/cvsupmirrors.html</ulink>
+for the list of available mirrors.</para>  
+<para> Once you have selected a new <application>cvsup</application> server, simply replace 
+<screen> 
+*default host=cvs.kde.org
+</screen>
+with
+<screen> 
+*default host=cvsup.your.new.host
+</screen>
+in your <application>cvsup</application> script.</para>
+</answer>
+</qandaentry>
+
+<qandaentry>
+<question>
+<para>How do I go about translating &kde; programs into my native
+language?</para>
+</question>
+<answer>
+<para>Go poke around <ulink url="http://i18n.kde.org">The &kde;
+Translators' and Documenters' Web Site</ulink> to see whether your
+program is already translated (most are).  Otherwise you will find 
+information there on how to do it yourself.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="credits">
+<title>Credits and License</title>
+<!--still has a lot to write-->
+<para>The current <acronym>FAQ</acronym> maintainers are:</para>
+
+<itemizedlist>
+<listitem><para>Lee Wee Tiong
+<email>t29v1051@ip.media.kyoto-u.ac.jp</email></para></listitem>
+<listitem><para>Michael Demers
+<email>mdemers@nitemaster.yi.org</email></para></listitem>
+</itemizedlist>
+
+<para>Many of the answers in this <acronym>FAQ</acronym> are taken
+from the various &kde; mailing lists and newsgroups.
+Here is a <emphasis>big</emphasis> thank-you to all of you who have
+contributed answers that eventually appear in this
+<acronym>FAQ</acronym>.</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+End:
+-->
+

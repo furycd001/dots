@@ -1,0 +1,136 @@
+[Action_0]
+Description=Jpeg-Image
+Number of commands=1
+Regexp=^\\/.+\\.jpg$
+
+[Action_0/Command_0]
+Commandline=kview "%s"
+Description=Launch K&View
+Enabled=true
+
+[Action_1]
+Description=Web-URL
+Number of commands=5
+Regexp=^https?:\\/\\/
+
+[Action_1/Command_0]
+Commandline=kfmclient exec '%s'
+Description=Open with &Konqueror
+Enabled=true
+
+[Action_1/Command_1]
+Commandline=netscape -no-about-splash -remote "openURL(%s, new-window)"
+Description=Open with &Netscape
+Enabled=true
+
+[Action_1/Command_2]
+Commandline=mozilla -remote "openURL(%s, new-window)"
+Description=Open with &Mozilla
+Enabled=true
+
+[Action_1/Command_3]
+Commandline=kmail --body  '%s'
+Description=Send &URL
+Enabled=true
+
+[Action_1/Command_4]
+Commandline=kmail  --attach '%s'
+Description=Send &Page
+Enabled=true
+
+[Action_2]
+Description=Mail-URL
+Number of commands=2
+Regexp=^mailto:
+
+[Action_2/Command_0]
+Commandline=kmail --composer %s
+Description=Launch &Kmail
+Enabled=true
+
+[Action_2/Command_1]
+Commandline=konsole2 -e mutt `echo "%s" | sed 's/mailto://g'`
+Description=Launch &mutt
+Enabled=true
+
+[Action_3]
+Description=Text File
+Number of commands=2
+Regexp=^\\/.+\\.txt$
+
+[Action_3/Command_0]
+Commandline=kedit "%s"
+Description=Launch K&Edit
+Enabled=true
+
+[Action_3/Command_1]
+Commandline=kwrite2 "%s"
+Description=Launch K&Write
+Enabled=true
+
+[Action_4]
+Description=URI
+Number of commands=2
+Regexp=^file:.
+
+[Action_4/Command_0]
+Commandline=kmail --body  '%s'
+Description=Send &URL
+Enabled=true
+
+[Action_4/Command_1]
+Commandline=kmail  --attach '%s'
+Description=Send &File
+Enabled=true
+
+[Action_5]
+Description=URI
+Number of commands=2
+Regexp=^gopher:.
+
+[Action_5/Command_0]
+Commandline=kmail --body  '%s'
+Description=Send &URL
+Enabled=true
+
+[Action_5/Command_1]
+Commandline=kmail  --attach '%s'
+Description=Send &File
+Enabled=true
+
+[Action_6]
+Description=URI
+Number of commands=5
+Regexp=^ftp:\\/\\/
+
+[Action_6/Command_0]
+Commandline=kfmclient exec '%s'
+Description=Open with &Konqueror
+Enabled=true
+
+[Action_6/Command_1]
+Commandline=netscape -no-about-splash -remote "openURL(%s, new-window)"
+Description=Open with &Netscape
+Enabled=true
+
+[Action_6/Command_2]
+Commandline=mozilla -remote "openURL(%s, new-window)"
+Description=Open with &Mozilla
+Enabled=true
+
+[Action_6/Command_3]
+Commandline=kmail --body  '%s'
+Description=Send &URL
+Enabled=true
+
+[Action_6/Command_4]
+Commandline=kmail  --attach '%s'
+Description=Send &File
+Enabled=true
+
+[General]
+KeepClipboardContents=true
+No Actions for WM_CLASS=Navigator,konqueror,keditbookmarks,mozilla-bin,Opera main window,opera,gnumeric,Gnumeric
+Number of Actions=7
+PopupAtMousePosition=false
+URLGrabberEnabled=true

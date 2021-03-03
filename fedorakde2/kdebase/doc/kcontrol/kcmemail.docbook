@@ -1,0 +1,169 @@
+<sect1 id="e-mail">
+
+<sect1info>
+<authorgroup>
+<author>
+<firstname>Krishna</firstname>
+<surname>Tateneni</surname>
+<affiliation><address><email>
+tateneni@pluto.njcc.com
+</email></address></affiliation>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-23</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>email</keyword>
+<keyword>e-mail</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>E-Mail</title>
+
+
+<sect2 id="email-intro">
+<title>Introduction</title>
+
+<para>The e-mail module of the &kcontrol; allows you to enter and save some
+basic e-mail information. This information is used when performing functions
+related to e-mail within &kde;, for example, when sending bug reports from the
+&kde; crash handler application.</para>
+
+<para>Programs such as &kmail;, which are used for reading and sending
+e-mail, may offer many more options for customizing the way in which
+e-mail is handled. These options depend upon the specific program being
+used.  &kmail;, for instance, offers its own configuration
+facilities.</para>
+
+<para>Some of the information needed for configuring e-mail should have
+been provided by your internet service provider
+(<acronym>ISP</acronym>). If you are connected to a local network, then
+the system administrator of your network should be able to help
+you.</para>
+
+</sect2>
+
+<sect2 id="email-use">
+<title>Use</title>
+
+<para>There are two areas of configuration in this module.  To help you
+get started, some of the fields are automatically filled in using the
+login information on the system.  Looking at the page from top to
+bottom, these areas are:</para>
+
+<variablelist>
+
+<!-- <varlistentry>
+<term>Profiles:</term>
+<listitem><para>Profiles are different <quote>sets</quote> of email
+configuration, which you can &eg; use if you send mail via different providers
+or if you have to send private as well as business mails. Profiles then allow
+you to use different settings, &eg; for your Name or Organization. You can
+either choose a profile (using the <guilabel>Current profile</guilabel> combo
+box) to change its settings, or you can create a new profile by clicking
+<guibutton>New Profile...</guibutton>. If you create a new profile, you will be
+prompted for a name. </para></listitem>
+</varlistentry> -->
+
+<varlistentry>
+<term><guilabel>User Information</guilabel>:</term>
+<listitem><para>Details for the user currently logged in.</para>
+<para>In the text box labeled <guilabel>Full Name</guilabel>,
+type your full name as you would like it to appear in the e-mail
+messages that you send. If you work for a company or
+organization, you can enter its name in the text box labeled
+<guilabel>Organization</guilabel>.</para>
+
+<para>To be able to use e-mail, you must enter your e-mail
+address in the text box labeled <guilabel>e-mail address</guilabel>.
+If replies to your e-mail messages should be sent to a different
+address, you can enter that address in the text box labeled
+<guilabel>Reply Address</guilabel>. Usually, however, this text
+box should simply be left blank, and replies will go to your
+e-mail address as typed.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Preferred e-mail Client</guilabel>:</term>
+<listitem><para>The e-mail program which you use to send and
+receive e-mail (there may be more than one available on your
+system.)</para>
+<para>The default e-mail program is <application>KMail</application>,
+but you can change this either by typing the name of the program
+in the provided text box, or by clicking on the
+<guilabel>Browse...</guilabel> button, and selecting the
+program using the dialog box that pops up.</para>
+<para>If the program you want to use for e-mail is a console or
+text-based application (for example, the
+<application>Pine</application> e-mail program), check the
+<guilabel>Run in terminal</guilabel> option.</para></listitem>
+</varlistentry>
+
+<!-- 
+<varlistentry>
+<term><guilabel>Incoming Mail</guilabel>:</term>
+<listitem><para>The internet protocol used by the server which
+receives e-mail for you.</para>
+<para>Your incoming mail server may use either the
+<acronym>IMAP</acronym> or the <acronym>POP3</acronym> protocol for
+e-mail messages. Again, your <acronym>ISP</acronym> should have
+provided this information. If you are connected to a local network
+which handles your e-mail for you, select <guilabel>Local
+Mailbox</guilabel> instead. Click <guibutton>Incoming mailbox
+settings...</guibutton> to configure the host information.</para></listitem>
+</varlistentry>
+--> 
+
+<!-- 
+<varlistentry>
+<term><guilabel>Outgoing Mail</guilabel>:</term>
+<listitem><para>The internet protocol used to deliver outgoing
+email.</para>
+<para>You may either choose <guilabel>SMTP</guilabel> or <guilabel>Local
+Delivery</guilabel>. Click <guibutton>Outgoing mailbox settings...</guibutton> to
+configure the host information.</para></listitem>
+</varlistentry>
+--> 
+
+</variablelist>
+
+<!-- <para>When you click <guibutton>Incoming mailbox settings...</guibutton>
+or <guibutton>Outgoing mailbox settings...</guibutton>, a dialog will
+pop up where you can enter all information necessary to use a specific
+mail server. If you are connected to a local network, and e-mail is
+handled locally, you probably won't need to do anything to configure the
+server.</para> -->
+
+<para>Your <acronym>ISP</acronym> should have given you a user name and
+a password to log into the e-mail server. Often, the user name is the
+same as the part of the e-mail address that comes before the
+<literal>@</literal> character. </para>
+
+<!-- <para>In addition to your user name and password, you will also
+need to enter the name of the mail server. Sometimes, the same server
+is used for both sending and receiving mail, but more often than not,
+your <acronym>ISP</acronym> gives different host names for sending and
+receiving. The outgoing host may be called the <acronym>SMTP</acronym>
+server, while the incoming host may be called the <acronym>POP</acronym>
+server or <abbrev>IMAP</abbrev> server.</para> -->
+
+</sect2>
+
+<sect2 id="email-author">
+<title>Section Author</title>
+
+<para>This section written by:</para>
+<para>Krishna Tateneni
+<email>tateneni@pluto.njcc.com</email>.</para>
+<para>Updated by Jost Schenck <email>jost@schenck.de</email>.</para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+</sect2>
+
+</sect1>

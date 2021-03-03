@@ -1,0 +1,105 @@
+<sect1 id="energy">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>energy</keyword>
+</keywordset>
+</sect1info>
+<title>Energy</title>
+
+<sect2 id="energy-intro">
+<title>Introduction</title>
+
+<para>This module is useful for any computer having a monitor labeled Energy Star
+Compliant.  (Energy Star Compliant equipment is equipment that can be configured
+to automatically enter a power saving mode when appropriate, without human
+intervention.)</para>
+
+<tip><para>Energy Star Compliance can be applied to nearly any electrical
+device.  This module, however, does not spin down hard drives, does not shutdown
+printers, <abbrev>etc.</abbrev> These settings only affect the behavior of your
+monitor.</para><para>For information on shutting down components on a laptop, do
+not use this module.  Instead, refer to the module entitled <link
+linkend="powerctrl">Laptop Power Control Center</link>, for
+details.</para></tip>
+
+<para>In the case of computer monitors, the computer can control the monitor,
+switching it between 4 states: On, Standby, Suspend, and Off.</para>
+
+<note><para>The following lists of states is a generalization, and you may find
+that your monitor will differ from the descriptions below.</para></note>
+
+<para>"ON", is the normal operation of your monitor while you are using
+it.</para>
+
+<para>"STANDBY" is usually a minor power saving level.  This setting
+usually involves blanking the screen, and not firing the electron gun,
+but keeping the electron gun "energized" and ready to go. When you need
+to use the monitor again, the monitor will come back on very
+quickly.</para>
+
+<para>"SUSPEND" mode, is a very low power alternative. With most
+monitors, the screen is blanked, the electron gun is shut down, and the
+magnets that control the electron gun are powered down.  While the power
+saving is substantial, to reactivate the monitor may take up to 10-15
+seconds.  The computer should always be able to return the monitor to On
+or Standby while in suspend mode..</para>
+
+<para>"OFF", usually means just that.  The computer monitor is turned
+off.  This usually means that the computer will not be able to turn the
+monitor back on by itself.  Obviously, this keeps power consumption to a
+bare minimum (zero).</para>
+
+</sect2>
+<sect2 id="energy-use">
+<title>Use</title>
+
+<para>To use this module, is very simple:</para>
+
+<para>If your monitor is Energy Star Compliant, then you should put a
+mark in the check box labeled "<guilabel>Enable Display Energy
+Saving</guilabel>".  This will activate the Energy saving
+commands. </para>
+
+<para>The next three slider bars, tell the computer how many minutes of
+inactivity before automatically switching to a new state.  These numbers
+can be adjusted with either the sliders, or the spin boxes.</para>
+
+<note><para>These times are not additive, but all start counting at
+zero.</para> 
+
+<para>As an example:</para> 
+
+<para>If you set the Standby Mode to 10 minutes, the Suspend mode to 20
+minutes, and the Power off at 30 minutes, and you stop using your
+computer at 9:00, then the monitor will:</para> <para>Enter Standby mode
+at 9:10, enter Suspend mode at 9:20, and shut the power off at
+9:30</para></note>
+
+<para>When you are happy with the settings, click
+"<guibutton>OK</guibutton>".</para>
+
+</sect2>
+
+<sect2 id="energy-author">
+<title>Section Author</title>
+<para>Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+
+</sect2>
+</sect1>
+

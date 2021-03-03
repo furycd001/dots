@@ -1,0 +1,116 @@
+
+/* this is needed for Solaris and others */
+#ifndef HAVE_GETDOMAINNAME_PROTO
+#define HAVE_GETDOMAINNAME_PROTO
+#ifdef __cplusplus  
+extern "C" 
+#endif
+int getdomainname (char *Name, int Namelen);
+#endif  
+
+#ifndef HAVE_GETHOSTNAME_PROTO
+#define HAVE_GETHOSTNAME_PROTO
+#ifdef __cplusplus  
+extern "C" 
+#endif
+int gethostname (char *Name, int Namelen);
+#endif  
+
+/*
+ * On HP-UX/Tru64, the declaration of vsnprintf() is needed every time !
+ */
+ 
+#if !defined(HAVE_VSNPRINTF) || defined(hpux) || defined(__osf__)
+#define HAVE_VSNPRINTF
+#if __STDC__
+#include <stdarg.h>
+#include <stdlib.h>
+#else
+#include <varargs.h>
+#endif
+#ifdef __cplusplus
+extern "C"
+#endif
+int vsnprintf(char *str, size_t n, char const *fmt, va_list ap);
+#ifdef __cplusplus
+extern "C"
+#endif
+int snprintf(char *str, size_t n, char const *fmt, ...);
+#endif
+
+#ifndef HAVE_SETENV
+#define HAVE_SETENV
+#ifdef __cplusplus
+extern "C"
+#endif
+int setenv(const char *name, const char *value, int overwrite);
+#endif
+
+#ifndef HAVE_UNSETENV
+#define HAVE_UNSETENV
+#ifdef __cplusplus
+extern "C"
+#endif
+int unsetenv(const char *name);
+#endif
+
+/*
+ * jpeg.h needs HAVE_BOOLEAN, when the system uses boolean in system
+ * headers and I'm too lazy to write a configure test as long as only
+ * unixware is related
+ */
+#ifdef _UNIXWARE
+#define HAVE_BOOLEAN
+#endif
+
+#if !defined(HAVE_SETEUID)
+#define seteuid(_eu) setresuid(-1, _eu, -1)
+#endif
+
+#ifndef HAVE_S_ISSOCK
+#define HAVE_S_ISSOCK
+#define S_ISSOCK(mode) (1==0)
+#endif
+
+#ifdef __osf__
+#ifndef OSF_INT32_DEFINED
+#define OSF_INT32_DEFINED
+typedef int int32_t;
+#endif
+#if __STDC__
+#include <stdarg.h>
+#include <stdlib.h>
+#else
+#include <varargs.h>
+#endif
+#ifdef __cplusplus  
+extern "C" char* getusershell(void);
+extern "C" int vsnprintf(char *str, size_t n, char const *fmt, va_list ap);
+extern "C" int snprintf(char *str, size_t n, char const *fmt, ...);
+#else
+extern char* getusershell(void);
+int vsnprintf(char *str, size_t n, char const *fmt, va_list ap);
+int snprintf(char *str, size_t n, char const *fmt, ...);
+#endif
+#ifndef HAVE_USLEEP                 /* usleep not defined in Tru64  */ 
+#ifdef __cplusplus  
+extern "C" void usleep(unsigned int);
+#else
+void usleep(unsigned int);
+#endif
+#endif
+#endif
+
+/*
+ * AIX defines FD_SET in terms of bzero, but fails to include <strings.h>
+ * that defines bzero. 
+ */
+
+#if defined(_AIX)
+#include <strings.h>
+#endif
+
+#if defined(__SVR4) && !defined(__svr4__)
+#define __svr4__ 1
+#endif
+

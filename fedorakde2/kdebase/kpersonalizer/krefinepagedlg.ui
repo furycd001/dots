@@ -1,0 +1,203 @@
+<!DOCTYPE UI><UI>
+<class>KRefinePageDlg</class>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>KRefinePageDlg</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>469</width>
+            <height>452</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form5</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="0"  column="1" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextLabel11</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&lt;h3&gt;Finished&lt;/H3&gt; You can refine the settings you made by starting the KDE Control Center using the button below.  After closing this dialog you can always restart this Wizard by choosing the entry "Desktop Settings Wizard" from the System menu.</string>
+            </property>
+            <property stdset="1">
+                <name>alignment</name>
+                <set>WordBreak|AlignTop|AlignLeft</set>
+            </property>
+            <property>
+                <name>vAlign</name>
+            </property>
+            <property>
+                <name>wordwrap</name>
+            </property>
+        </widget>
+        <widget row="0"  column="0"  rowspan="4"  colspan="1" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>px_finishSidebar</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>minimumSize</name>
+                <size>
+                    <width>170</width>
+                    <height>430</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>Panel</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Sunken</enum>
+            </property>
+            <property stdset="1">
+                <name>scaledContents</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>indent</name>
+                <number>0</number>
+            </property>
+        </widget>
+        <spacer row="3"  column="1" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer11</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Expanding</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget row="2"  column="1" >
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout2</cstring>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>PixmapLabel1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>pixmap</name>
+                        <pixmap>image0</pixmap>
+                    </property>
+                    <property stdset="1">
+                        <name>scaledContents</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>pb_kcontrol</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Launch KDE Control Center</string>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer10</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                    <property>
+                        <name>sizeHint</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+            </hbox>
+        </widget>
+        <spacer row="1"  column="1" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer5</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+            <property stdset="1">
+                <name>sizeType</name>
+                <enum>Fixed</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>30</width>
+                    <height>15</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="6526">789cbd97db72da481086effd1454fa2eb535414212526ded05c60eb2e3634e76b2b51792468ac1186c8c64c3d6befbf674b7045e1b231c6ff207990f49fd4f77cf0ce2dddbc6f9c961e3edbbaddb6934ed278de4229a34deeafcea6af6e75f7ffcbdf5c6f11bf8df6aba0dfbcd6f5b6f4ea78da471341ea50614204093fe19864b66cbcf323a7fcadc4a5a01b1cbec591e05539f987d8bef571f4bf65b146f973928cfb799135bd82b3971e9fa0be62c93f1fc2899c703fb86ada611dd6f0b3bcc7040ec1bd1f9efc289b065d86e1ad1f59970c2feea92d90d647c09735b0b533e7660fb36d7a3299c30c30e33d683fca023ec0acf8403e1fb9265fc77c25af2db33dcb25acd96457c24ec30c39839b0e4fe91b02b7c5531fb69e1403811d6529f6fc441cb977e1f0a4bff21628e2cae9f72845de19670247c2c9c4a7dde336791e443f11ccb693acce7c28ef00e736c4bbdbbc29e7047b88c37174e85c9cf891cdf89880f8413e13be6c4967cfbc29ef09961d7769b2ecff70fc4911bb87cff89b0168e99b527f169be7a76b95e20167685af99abf542fdf6224f7b7cffd070bbd576db7c9efad18edbba1dd3f9af86fd56b97ed567e6723d4258b2c4a7f1fbb11ff8743f6c0b6b61aa6fe00456e010cf855de18238098220211e0a6be1d470e44456c4d783b0cbaca6c449353fc29223ba5ff58453e19c39f6a41e13c3b113db31c7bb11f684697ec73a8e624d9c09a7cca00c27b81a79fda92fccd57af799abfde9ba64d91f6e853d19ffb864395f08a7528f097396c9fe7653b2ecafb45e139d44098ff74a38151e30eb88ebaf68bfd06eb9ff408f597b9af773da2f759ada526fda4f532fb5b9bf6abbe4d423a6fdc8ecb6926fc05ccd9f017314f1fc869cb9daafa7cc5afa057de66affbe2d59ea9396ccf99f4eff5ffd6a0f053515d5bdf2a1877c1aaf5582576995d652c62e4b1e3fd485eaabc11a5de2954375a546a831e99a94a134e90635210d1f79dcaaa9ca55a1eed4bd9ae16b8e2a54476d57eafeb407e771879aa39771e8e0df0e4636daa1177becaaf76b3451bd67f3301529c8215cd21e3a941eeb945216bd9579cc298f0e2954fbea833a5087ea08cfefa8e38d3cd6e56132c9d1e3041d2274d8c5f3c795c7a9fa88c74f28509f51a0bea0407d45b1478fb42a8f0e7580bb10aa3375aebea1c3f70d3d4ca5c2b5790cc8c3383495a56cf2686d94c7531e9c475734c0fa9f3fa8726b238f706d1e66061de331a7c8e6e890eaf67c95c7228f02a31754ff822a5490d3c2c3551e1edb28503e0a548002135e3cd001e0090fa33ead821c23e7521b8eec40a4eef155db03e0498fb256398da18773cacca31679984f6774b69607c00a0fae95a95008313ad81493f2800812cc2379a53cb0d778f60ce7accdd14b0f94aedb733448215d9987a98ec9c12e3dcce8c921abf2f8083f70d4177081c73ef4f13880017e3e433defc1df51dc65ecb11147e77ec065d58ff51e46c3471e11eefcec41a2c883a53c34e6a16be7f1b487e9d4228f01d52961e13b0d573082d1061ec3e73c246a397a6d466fe2631ee3da3d5fe3a1b62b8f11ebbffd806bb8c1e3042678bc855b3c4e0123400eb978a00314b53c380ff480310af380bb57f428307251e55198e8a4fb9a1e85d1b31e23ac0cbd68fc637cc70e3398bda287d9b1427540d50969a73e5be451a3e705cc61bed683762c13171df6abddabeebcaae5414f2336e631a36f75dcbda0031df680ed754fa1353ceeca1d8bf228df2f3c627a26e8f1ee4aff6465f37c32f1a10bdd67d620f597fa8c3d369131971c8f3b503ec3edcb3341c8df774b0ed46bf298d7f0583c9fd0d3967178ec51e530ac72d825759fcda3581ee183a751d3a3423cc2250758ca628ef1dfa34cadb6577ae458ffd533265f782c756251a5aa172b3cae8d47b99e2b752a71b58c47a48635f5c043bea5128cb14e2ffeadb6c9ef41e8e1ef9d0c6b14c21ef668cf3ca9d6fdcdf958186f1f9f768ff057cb07d8c3985d9c0737e4718d1dc1cfb07b4770f0731e38c6435ce5df1e1c977588fafe128fba555bd581f51e348f5faa275c5678642f566d0f382485f277a170c5fb4a1be4f113da745ebd8e7e89c73fbf6ffd0bf7e354ea</data>
+    </image>
+</images>
+</UI>

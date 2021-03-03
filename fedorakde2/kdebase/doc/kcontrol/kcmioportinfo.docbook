@@ -1,0 +1,76 @@
+<sect1 id="ioports">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>ioports</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+<title>Input/Output Port Information</title>
+
+<para>This page displays information about the I/O-ports.</para>
+
+<para>I/O Ports are memory addresses used by the processor for direct
+communication with a device that has sent an
+interrupt signal to the processor.</para>
+
+<para>The exchange of commands or data between the processor and the device
+takes place through the I/O port address of the device, which is a
+ hexadecimal
+number.  No two devices can share the same I/O port.  Many devices use
+ multiple
+I/O port addresses, which are expressed as a range of hexadecimal
+numbers. </para>
+
+<note><para>The exact information displayed is system-dependent. On some
+systems, I/O-port information can not yet be displayed.</para></note>
+
+<para>On &Linux;, this information is read from <filename
+class="devicefile">/proc/ioports</filename> which is only available if
+the <filename class="devicefile">/proc</filename> pseudo-filesystem is
+compiled into the kernel.  A list of all currently-registered I/O port
+regions that are in use is shown.</para>
+
+<para>The first column is the I/O port (or the range of I/O ports), the
+second column identifies the device that uses these I/O ports.</para>
+
+<para>The user cannot modify any settings on this page.</para>
+
+<sect2 id="ioports-author"> 
+<title>Section Authors</title> 
+
+<para> Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, Helge Deller
+<email>helge.deller@ruhruni-bochum.de</email>, Duncan Haldane
+<email>duncan@kde.org</email>,and Michael McBride
+<email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+
+</sect2>
+</sect1>
+

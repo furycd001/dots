@@ -1,0 +1,66 @@
+<sect1 id="powerctrl">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2000-10-21</date>
+<releaseinfo>1.00.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>Laptop</keyword>
+<keyword>Power</keyword>
+</keywordset>
+</sect1info>
+<title>Laptop Power Control</title>
+<note><para>The laptop modules require the correct installation of the apm modules.  For more information see the section entitled <link linkend="laptop">Laptop Information</link>.</para></note>
+<sect2 id="powerctrl-intro">
+<title>Introduction</title>
+
+<para>This tab provides a screensaver-style interface to the APM suspend/standby
+modes.  It allows you to configure different wait times and/or actions depending
+on whether or not your laptop's plugged into the wall. It's intended to be used
+in addition to the existing KDE screensavers - you could for example disable
+suspend/standby when plugged in to the wall, but enable suspend with a shorter
+time than your normal screensaver kicks in while running on batteries.</para>
+
+<warning><para>Standby mode seems to do different things on different laptops -
+in particular on some it may not stay in standby mode and your laptop may be
+continually waking/sleeping if you leave it in this mode.</para></warning>
+
+</sect2>
+<sect2 id="powerctrl-use">
+<title>Use</title>
+
+<para>This panel configures the power-down feature of your laptop.  It works as
+a sort of extreme screen saver.</para>
+<para>You can configure different timeouts and behaviors depending one whether
+your computer is plugged in or running on battery power.</para>
+<para>For both the "Powered" and "Not Powered", you should select one of the
+following options:</para>
+<itemizedlist>
+<listitem><para>Standby - Puts your laptop into standby state</para></listitem>
+<listitem><para>Suspend - Puts your laptop into suspend state</para></listitem>
+<listitem><para>Off - Nothing happens at the specified time.</para></listitem>
+</itemizedlist>
+
+<para>Below that, is a text box labled "<guilabel>Wait for</guilabel>".  Enter
+the time in minutes, that your computer should remain unused, before the laptop
+is powered down.</para>
+
+</sect2>
+<sect2 id="powerctrl-author">
+<title>Section Author</title>
+<para>This section written by Paul Campbell <email>paul@taniwha.com</email></para>
+<para>Converted to Docbook by Mike McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

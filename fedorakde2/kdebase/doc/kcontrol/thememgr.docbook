@@ -1,0 +1,135 @@
+<sect1 id="theme-manager">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname></firstname>
+<surname></surname>
+</author>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS --> 
+
+</authorgroup>
+
+</sect1info>
+
+<title>Theme Manager</title>
+
+<para>With this module you can install, view, and even create, &kde;
+themes.</para>
+
+<para>This page is divided into three tabs, the
+<guilabel>Installer</guilabel>, <guilabel>Contents</guilabel>, and
+<guilabel>About</guilabel></para>
+
+<sect2 id="theme-installer">
+<title>Installer</title>
+
+<para>Here you can install, preview and create &kde; themes.  Themes
+created this way may not cover all the configurable options that &kde;
+has to offer, but they do cover most, and are a great way to get
+started.</para>
+
+<para>On the left, you can see a list of themes that &kde; is aware of.
+Selecting one of the names will change the preview image in the middle
+of the pane, to give you a small taste of what the theme looks like.
+Any information the author has provided about the theme, for example, a
+longer or more descriptive name, is displayed in the bottom of the
+pane.</para>
+
+<para>Along with the normal &kcontrol; buttons at the bottom, you have
+four new ones to the right of the module.  <guibutton>Add...</guibutton>
+allows you to add a new theme to the list on the left.  Pressing it will
+open a normal &kde; file dialog, where you can browse to the location of
+themes you have downloaded or created.</para>
+
+<para>The <guibutton>Save As...</guibutton> button allows you to save an
+existing theme with a new name, for example to allow you to easily
+modify it without damaging the original.  It is strongly recommended
+that you use this if you intend creating themes by hand, you can get
+very unexpected results if there are errors in a theme file.</para>
+
+<para><guibutton>Create</guibutton> will create a theme that contains
+your current desktop settings.  Themes created this way are fairly
+unsophisticated, but they are a very good start to learning to make your
+own.</para>
+
+<para>Finally, it's very easy to collect a lot of themes that look
+rather nice on a website, but aren't to your taste once you've tried
+them.  The <guibutton>Remove...</guibutton> will remedy this situation,
+removing the theme from the list on the left.</para>
+
+</sect2>
+
+<sect2>
+<title>Contents</title>
+
+<para>This page works together with the previous one, allowing you to
+custom fit a theme to your own needs.</para>
+
+<para>Not all themes contain instructions (or images) for all the
+configurable parts of &kde;.  For example, some contain a color scheme,
+a desktop wallpaper, and a tile for the panel, but they don't have any
+icons or Window Decoration instructions.</para>
+
+<para>Another common situation is to find you have finally got your own
+icon theme or color scheme or window decoration arrangement <quote>Just
+so</quote>, and although you'd like to try out a theme, you don't want
+to mess up your current installation.</para>
+
+<para>Using this page, you can see immediately what categories of
+changes the theme will make, and you can enable or disable it's effects
+on those categories.</para>
+
+<para>The list under the heading <guilabel>Work on thefollowing
+parts</guilabel> will show you to the left a checkbox if the theme is
+going to affect that item, and on the right, if the theme actually
+contains any contents for that category.</para>
+
+<para>You can use the <guibutton>Clear</guibutton> button to clear all
+the checkboxes, and the <guibutton>Invert</guibutton> to check all the
+boxes that are currently empty, and to clear those that were
+checked.</para>
+
+<para>For example, the <quote>Eclipse</quote> theme that comes with a
+base &kde; installation contains contents for all the configurable
+items, and is by default set up to change them all to it's own settings.
+The <quote>MGBreizh</quote> theme, contains contents for everything
+except the icons.  The <quote>Technical</quote> theme, which you can
+find in the kdeartwork package, contains <emphasis>only</emphasis> the
+icons, so if you were to install <quote>MGBreizh</quote>, and then
+<quote>Technical</quote>, you would find you still had mostly the
+<quote>MGBreizh</quote> theme in place, but with new icons.</para>
+
+<para>Taking this same scenario, what if you really didn't want the
+<quote>MGBreizh</quote> theme anymore, and wanted to remove it, and just
+use the <quote>Technical</quote> icon theme with a plain desktop.</para>
+
+<para>You have two choices here.  You can check the <guilabel>Uninstall
+parts of previous theme</guilabel> box, and then any installed theme
+will be entirely removed before the new one is installed.  Or you could
+just install the <quote>Default</quote> theme, which really isn't a
+theme, it's more of a theme cleaner - it removes all other themes, and
+resets all your desktop theme settings to the &kde; default
+appearance.</para>
+
+</sect2>
+
+<sect2 id="theme-about">
+<title>About</title>
+
+<para>This tab shows you some information about the developers of the
+theme module, and of the current theme.</para>
+
+</sect2>
+
+<sect2 id="theme-author">
+<title>Section Author</title>
+
+<para>This section was written by Lauri Watts
+<email>lauri@kde.org</email>.</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->         
+</sect2>
+
+</sect1>

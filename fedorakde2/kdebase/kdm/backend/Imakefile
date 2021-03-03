@@ -1,0 +1,189 @@
+XCOMM $Xorg: Imakefile,v 1.3 2000/08/17 19:54:14 cpqbld Exp $
+XCOMM $XFree86: xc/programs/xdm/Imakefile,v 3.43 2001/03/06 17:31:39 dawes Exp $
+XCOMM $Id: Imakefile,v 2.6 2001/06/14 07:44:15 ossi Exp $
+
+/* well, we have no subdirs ...
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+*/
+
+#ifdef DEBUG
+CDEBUGFLAGS := $(CDEBUGFLAGS) -g
+#endif
+
+#ifndef LinuxShadowSuite
+#define LinuxShadowSuite NO
+#endif
+
+#if FSUseSyslog
+LOG_DEFINES = -DUSE_SYSLOG
+#endif
+
+#ifdef NOXDMCP
+XDMCPLIB =
+#else
+XDMCP_DEFINES = -DXDMCP
+#endif
+
+#if HasXdmAuth
+XDMAUTH_DEFINES = -DHASXDMAUTH
+XDMAUTHOBJS = xdmauth.o
+XDMAUTHSRCS = xdmauth.c
+#endif
+
+#if HasSecureRPC
+RPC_DEFINES = -DSECURE_RPC
+RPCOBJS = rpcauth.o
+RPCSRCS = rpcauth.c
+RPCLIB = -lrpcsvc
+#endif
+
+#ifdef USEKRB4
+#undef HasKrbIV
+#define HasKrbIV USEKRB4
+#endif
+#if HasKrbIV
+#if NOAFS
+KRBIV_DEFINES = KrbIVDefines -DNO_AFS
+#else
+KRBIV_DEFINES = KrbIVDefines
+#endif
+KRBIV_INCLUDES = KrbIVIncludes
+KRBIVLIB = KrbIVLibraries
+#endif
+
+#if HasKrb5
+KRB5_DEFINES = Krb5Defines
+KRB5_INCLUDE = Krb5Includes
+KRB5OBJS = krb5auth.o
+KRB5SRCS = krb5auth.c
+#endif
+
+#ifdef USEPAM
+#undef HasPam
+#undef PamLibraries
+#define HasPam USEPAM
+#define PamLibraries PAMLIBS
+#endif
+
+/* This is correct for Linux and FreeBSD */
+#if HasPam
+PAM_LIBRARIES = PamLibraries
+PAM_DEFINES = -DUSE_PAM
+#endif
+
+#ifdef USESHADOW
+#undef HasShadowPasswd
+#define HasShadowPasswd USESHADOW
+#endif
+
+#if HasPam
+#undef HasShadowPasswd
+#define HasShadowPasswd NO
+#undef HasLibCrypt
+#define HasLibCrypt NO
+#endif
+
+#if SystemV4 || HasShadowPasswd
+
+#if !LinuxShadowSuite
+PWD_DEFINES = -DUSESHADOW
+#else
+PWD_DEFINES = -DUSESHADOW -DSHADOWSUITE
+#endif
+
+#if !defined(i386IscArchitecture) && !defined(i386ScoArchitecture) && !defined(LinuxArchitecture) && !defined(NTOArchitecture) && !defined(SGIArchitecture)
+SYS_LIBRARIES3 = -lresolv
+#endif
+#if SystemV || defined(SequentArchitecture)
+SYS_LIBRARIES1 = -lsec
+#endif
+#if defined(LinuxArchitecture) && (!UseElfFormat || LinuxShadowSuite)
+SYS_LIBRARIES1 = -lshadow
+#endif
+
+#endif
+
+#if defined(UltrixArchitecture)
+SYS_LIBRARIES1 = -lauth
+#endif
+
+#if (defined(AIXArchitecture) && (OSMajorVersion >= 3))
+SYS_LIBRARIES1 = -ls
+#endif
+
+#if HasLibCrypt
+#ifdef SpecialLibCrypt
+CRYPT_LIBRARIES = SpecialLibCrypt
+#else
+CRYPT_LIBRARIES = -lcrypt
+#if defined(LynxOSArchitecture)
+CRYPT_DEFINES = -DHAS_CRYPT
+#endif
+#endif
+#endif
+
+#if HasBSD44Sockets
+SOCK_DEFINES = -DBSD44SOCKETS
+#endif
+
+#if defined(i386Architecture) || defined(AmigaArchitecture)
+FRAGILE_DEFINES = -DFRAGILE_DEV_MEM
+#endif
+
+#ifdef OpenBSDArchitecture
+RANDOM_DEFINES = -DARC4_RANDOM
+#elif defined(LinuxArchitecture)
+RANDOM_DEFINES = -DDEV_RANDOM
+#endif
+
+#if HasSetUserContext
+USER_CONTEXT_DEFINES = -DHAS_SETUSERCONTEXT
+SYS_LIBRARIES1 = -lutil
+#endif
+
+  SYS_LIBRARIES = $(SYS_LIBRARIES1) $(SYS_LIBRARIES2) $(SYS_LIBRARIES3)
+
+  INCLUDES = $(KRBIV_INCLUDES) $(KRB5_INCLUDE)
+   DEPLIBS = $(DEPXLIB) $(DEPXAUTHLIB) $(DEPXDMCPLIB) $(XINDEPLIBS)
+   LOCAL_LIBRARIES = $(XLIB) $(XAUTHLIB) \
+ $(XDMCPLIB) $(RPCLIB) $(PAM_LIBRARIES) \
+ $(CRYPT_LIBRARIES) $(KRBIVLIB) $(XINLIBS)
+
+          SRCS = auth.c daemon.c server.c dpylist.c dm.c error.c file.c \
+		 netaddr.c reset.c resource.c protodpy.c policy.c \
+		 session.c socket.c streams.c util.c client.c xdmcp.c \
+		 process.c mitauth.c \
+		 genauth.c access.c choose.c \
+		 $(XDMAUTHSRCS) $(RPCSRCS) $(KRB5SRCS)
+          OBJS = auth.o daemon.o server.o dpylist.o dm.o error.o file.o \
+		 netaddr.o reset.o resource.o protodpy.o policy.o \
+		 session.o socket.o streams.o util.o client.o xdmcp.o \
+		 process.o mitauth.o \
+		 genauth.o access.o choose.o \
+		 $(XDMAUTHOBJS) $(RPCOBJS) $(KRB5OBJS)
+
+       PROGRAMS = xdm
+
+ OSMAJORVERSION = OSMajorVersion
+ OSMINORVERSION = OSMinorVersion
+   CONN_DEFINES = $(CONNECTION_FLAGS)
+        DEFINES = $(SIGNAL_DEFINES) $(LOG_DEFINES) $(CRYPT_DEFINES) \
+  $(XDMAUTH_DEFINES) $(RPC_DEFINES) $(KRB5_DEFINES) \
+  $(PWD_DEFINES) $(PAM_DEFINES) $(USER_CONTEXT_DEFINES) $(CONN_DEFINES) \
+  $(FRAGILE_DEFINES) $(RANDOM_DEFINES) $(XDMCP_DEFINES) \
+  -DOSMAJORVERSION=$(OSMAJORVERSION) -DOSMINORVERSION=$(OSMINORVERSION)
+
+#ifdef ComplexProgramTargetNoMan
+ComplexProgramTargetNoMan(xdm)
+#else
+ComplexProgramTarget(xdm)
+#endif
+
+#if defined(FreeBSDArchitecture) && (OSMajorVersion < 2)
+XCOMM only for daemon.c? it's used in some other places, too.
+SpecialCObjectRule(daemon,$(ICONFIGFILES),-UCSRG_BASED)
+#endif
+SpecialCObjectRule(auth,$(ICONFIGFILES),$(SOCK_DEFINES))
+SpecialCObjectRule(policy,$(ICONFIGFILES),$(_NOOP_))
+SpecialCObjectRule(socket,$(ICONFIGFILES),$(SOCK_DEFINES))
+SpecialCObjectRule(xdmcp,$(ICONFIGFILES),$(SOCK_DEFINES))

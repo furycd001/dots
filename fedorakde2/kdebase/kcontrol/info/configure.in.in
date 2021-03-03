@@ -1,0 +1,10 @@
+dnl libmach for Tru64
+case "$host" in
+  *-*-osf*)
+    AC_CHECK_LIB(mach, vm_statistics, LIB_TRU64_MACH="-lmach")dnl
+    ;;
+esac
+AC_SUBST(LIB_TRU64_MACH)
+
+KDE_CHECK_LONG_LONG
+

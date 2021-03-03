@@ -1,0 +1,82 @@
+<!-- <?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd"> -->
+<sect1 id="dma">
+<sect1info>
+
+<authorgroup>
+<author>
+
+<firstname>Matthias</firstname>
+<surname>H&ouml;lzer</surname>
+</author>
+
+<author>
+<firstname>Helge</firstname>
+<surname>Deller</surname>
+</author>
+
+<author>
+<firstname>Duncan</firstname>
+<surname>Haldane</surname>
+</author>
+
+<author>
+<firstname>Mike</firstname>
+<surname>McBride</surname>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-22</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KControl</keyword>
+<keyword>DMA</keyword>
+<keyword>system information</keyword>
+</keywordset>
+</sect1info>
+
+<title><acronym>DMA</acronym> Channel Information</title>
+
+<para> This page displays information about the <acronym>DMA</acronym>
+(Direct Memory Access) Channels.  A <acronym>DMA</acronym> channel is a
+direct connection that allows devices to transfer data to and from
+memory without going through the processor. Typically, i386-architecture
+systems (<acronym>PC</acronym>'s) have eight <acronym>DMA</acronym>
+channels (0-7).  </para>
+
+<note> <para> The exact information displayed is system-dependent.  On
+some systems, <acronym>DMA</acronym> Channel information cannot be
+displayed yet.  </para> </note>
+
+<para> On &Linux;, this information is read from <filename
+class="devicefile">/proc/dma</filename>, which is only available if the
+<filename class="directory">/proc</filename> pseudo-filesystem is
+compiled into the kernel.  </para>
+
+<para> A list of all currently-registered (<acronym>ISA</acronym> bus)
+<acronym>DMA</acronym> channels that are in use is shown. The first
+column shows the <acronym>DMA</acronym> channel, and the second column
+shows the device which uses that channel.  </para>
+
+<para>
+Unused <acronym>DMA</acronym> channels are not listed.
+</para>
+
+<para>
+The user cannot modify any settings on this page.
+</para>
+
+<sect2 id="dma-author">
+<title>Section Authors</title>
+<para>
+Matthias H&ouml;lzer <email>hoelzer@kde.org</email>, 
+Helge Deller <email>helge.deller@ruhruni-bochum.de</email>, 
+Duncan Haldane <email>duncan@kde.org</email>,and
+Michael McBride <email>mpmcbride7@yahoo.com</email></para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+</sect1>
+

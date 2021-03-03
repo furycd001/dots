@@ -1,0 +1,168 @@
+#MIN_CONFIG
+
+dnl PAM, shadow passwords, libcrypt
+KDE_PASSWDLIBS
+
+DEF_PAM_SERVICE(kdm, kdm, KDM)
+DEF_PAM_SERVICE(kcp, kcheckpass, KCHECKPASS)
+DEF_PAM_SERVICE(kss, kscreensaver, KSCREENSAVER)
+
+dnl Image readers/writers
+KDE_CHECK_KIMGIO
+
+dnl Checks for header files.
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_CHECK_HEADERS(sys/time.h crypt.h \
+	sys/select.h sys/ioctl.h sys/stropts.h stropts.h termio.h termios.h sys/termios.h \
+	lastlog.h sys/socket.h sys/sockio.h krb5/krb5.h rpc/rpc.h rpc/key_prot.h \
+	sys/m_wait.h ncurses.h paths.h login_cap.h syslog.h \
+	sys/wait.h sys/ucred.h sys/mount.h floatingpoint.h fstab.h mntent.h \
+	Alib.h libutil.h util.h time.h limits.h vfork.h string.h float.h \
+	math.h nan.h ieeefp.h
+)
+
+
+dnl Checks for Alib on HP-UX (added by deller, Apr 29 1999)
+AC_CHECK_LIB(Alib, main, [LIBALIB="-lAlib"]) dnl HP-UX network audio server
+AC_SUBST(LIBALIB)
+
+dnl Check for ossaudio on NetBSD
+AC_CHECK_LIB(ossaudio, main, [LIBOSSAUDIO="-lossaudio"])
+AC_SUBST(LIBOSSAUDIO)
+
+dnl Check for AIX stuff
+AC_CHECK_LIB(cfg, main, [LIBCFG="-lcfg"]) dnl for AIX
+AC_SUBST(LIBCFG)
+AC_CHECK_LIB(odm, main, [LIBODM="-lodm"]) dnl for AIX
+AC_SUBST(LIBODM)
+
+dnl SMB checks moved to their own configure.in.in
+
+kde_have_setupterm=yes
+AC_CHECK_LIB(curses, setupterm, [LIBCURSES=-lcurses],
+  AC_CHECK_LIB(ncurses, setupterm, [LIBCURSES=-lncurses],
+    AC_CHECK_LIB(mytinfo, setupterm, [LIBCURSES=-lmytinfo],
+       kde_have_setupterm=no)))
+
+AC_SUBST(LIBCURSES)
+
+if test "$kde_have_setupterm" = "yes"; then
+  AC_DEFINE_UNQUOTED(HAVE_SETUPTERM, 1, [Define if you have setupterm in -l(n)curses])
+fi
+
+kde_have_utempter=yes
+AC_CHECK_LIB(utempter, addToUtmp, [LIBUTEMPTER=-lutempter], kde_have_utempter=no)
+AC_SUBST(LIBUTEMPTER)
+if test "$kde_have_utempter" = "yes"; then
+  AC_DEFINE_UNQUOTED(HAVE_UTEMPTER, 1, [Define if you have the utempter helper for utmp managment])
+fi
+
+AC_CHECK_FUNC(res_init, ,
+  AC_CHECK_LIB(resolv, res_init, [LIBRESOLV="-lresolv"], , $LIBSOCKET)) dnl for Sun
+
+AC_SUBST(LIBRESOLV)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_LANG_CPLUSPLUS
+AC_HEADER_TIME
+
+dnl check if the compiler has bool
+AC_CHECK_BOOL
+AC_LANG_C
+AC_C_LONG_DOUBLE
+AC_TYPE_GETGROUPS
+
+dnl for libsmb
+AC_CHECK_SIZEOF(char,1)
+AC_CHECK_SIZEOF(short,2)
+AC_CHECK_SIZEOF(int,4)
+AC_CHECK_SIZEOF(long,4)
+AC_C_BIGENDIAN
+
+AC_CHECK_FUNCS(socket powl sqrtl strdup getdtablesize vsnprintf setpgid nice seteuid snprintf vsyslog initgroups setgroups getgroups grantpt pw_encrypt setpriority getpt unlockpt ptsname setenv unsetenv waitpid mkstemp openpty)
+AC_CHECK_GETDOMAINNAME
+AC_CHECK_GETHOSTNAME
+AC_CHECK_USLEEP
+AC_CHECK_RANDOM
+AC_CHECK_S_ISSOCK
+AC_CHECK_KDEMAXPATHLEN
+
+dnl Perform program name transformation
+AC_ARG_PROGRAM
+
+AC_MSG_CHECKING([if it's safe to enable UTMP])
+
+case "$host_os" in
+linux*) utmp_support=yes;
+     ;;
+freebsd*) utmp_support=yes;
+     ;;
+*) utmp_support=no;
+esac
+
+AC_MSG_RESULT($utmp_support)
+
+if test "$utmp_support" = yes; then
+   AC_DEFINE_UNQUOTED(UTMP_SUPPORT, 1, [Define if you want to use utmp entries])
+fi
+
+AC_CHECK_UTMP_FILE
+
+dnl Checks for Solaris' libkstat
+kde_have_kstat=yes
+AC_CHECK_LIB(kstat, kstat_open, [LIBKSTAT=-lkstat], kde_have_kstat=no)
+AC_SUBST(LIBKSTAT)
+if test "$kde_have_kstat" = "yes"; then
+  AC_DEFINE(HAVE_KSTAT, 1, [Defines if you have Solaris' libkstat])
+fi
+
+dnl Checks for libdevinfo (Solaris 7 and later)
+dnl since the library is available on earlier Solaris releases (but
+dnl with a completely different and undocumented interface),
+dnl we have to verfy that the required header is present as well
+AC_CHECK_HEADER(libdevinfo.h,
+	kde_have_libdevinfo_h=yes,
+	kde_have_libdevinfo_h=no)
+if test "$kde_have_libdevinfo_h" = "yes"; then
+   kde_have_libdevinfo_lib=yes
+   AC_CHECK_LIB(devinfo, di_init, [LIBDEVINFO=-ldevinfo], kde_have_libdevinfo_lib=no)
+   if test "$kde_have_libdevinfo_lib" = "yes"; then
+      AC_DEFINE(HAVE_LIBDEVINFO_H, 1, [Defines if you have libdevinfo of Solaris 7 or later])
+      AC_SUBST(LIBDEVINFO)
+   fi
+fi
+
+dnl Mico, mini STL, python checks
+dnl KDE_CHECK_MICO()
+
+
+dnl -----  Checks for X11 extensions -----
+ac_save_ldflags="$LDFLAGS"
+LDFLAGS="$X_LDFLAGS"
+
+dnl --- XTEST check
+XTESTLIB=
+KDE_CHECK_HEADER(X11/extensions/XTest.h, 
+    [AC_CHECK_LIB( Xtst, XTestFakeKeyEvent,
+	[AC_DEFINE(HAVE_XTEST, 1, [Define if you have the XTest extension])
+	 XTESTLIB=-lXtst], 
+	, [ -lXext -lX11 $X_PRE_LIBS ])
+    ])
+AC_SUBST(XTESTLIB)
+
+dnl --- XKB check
+KDE_CHECK_HEADER(X11/XKBlib.h, 
+    [AC_CHECK_LIB( X11, XkbLockModifiers,
+	[AC_DEFINE(HAVE_XKB, 1, [Define if you have the XKB extension])], 
+	, [ -lXext -lX11 $X_PRE_LIBS ])
+     AC_CHECK_LIB( X11, XkbSetPerClientControls,
+	[AC_DEFINE(HAVE_XKBSETPERCLIENTCONTROLS, 1, [Define if you have XkbSetPerClientControls])],
+	, [ -lXext -lX11 $X_PRE_LIBS ])
+    ])
+
+LDFLAGS="$ac_save_ldflags"
+dnl ----- end of X11 extension checks -----
+
+
+CXXFLAGS="$CXXFLAGS -DQT_CLEAN_NAMESPACE -DQT_NO_COMPAT -DQT_NO_ASCII_CAST"

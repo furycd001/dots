@@ -1,0 +1,4 @@
+ac_save_LIBS="$LIBS"
+LIBS="$LIBS $X_LDFLAGS -lICE"
+AC_CHECK_FUNCS(_IceTransNoListen)
+LIBS="$ac_save_LIBS"

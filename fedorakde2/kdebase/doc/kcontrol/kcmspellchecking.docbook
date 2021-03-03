@@ -1,0 +1,90 @@
+<sect1 id="spell-checking">
+<sect1info>
+
+<authorgroup>
+<author>
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+</author>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2001-07-24</date>
+<releaseinfo>2.20.00</releaseinfo>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>Spelling</keyword>
+<keyword>dictionary</keyword>
+</keywordset>
+
+</sect1info>
+
+<title>Spell Checking</title>
+
+<para>The configuration options available here are used by all &kde;
+applications that use &kspell;, which is a front end to
+<command>ispell</command> or <command>aspell</command>.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Create root/affix combinations not in
+dictionary</guilabel></term>
+<listitem>
+<para>  </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Consider run-together words as spelling
+errors</guilabel></term>
+<listitem><para>If this is selected, than words that appear in the
+dictionary separately, but have been run together, are considered to be
+spelling errors.  For example, even though <quote>alarm</quote> and
+<quote>clock</quote> might be in your dictionary, if
+<quote>alarmclock</quote> is not, it will be flagged as a spelling
+error.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Dictionary:</guilabel></term>
+<listitem>
+<para>Choose from the available dictionaries, which one to use for
+&kspell;</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Encoding:</guilabel></term>
+<listitem>
+<para>You should select the one that matches the character set you are
+using.  In some cases, dictionaries will support more than one encoding.
+A dictionary might, for example, accept accented characters when
+<emphasis>Latin1</emphasis> is selected, but accept email-style
+character combinations (like <userinput>'a</userinput> for an accented
+<emphasis>a</emphasis>) when <emphasis>7-Bit-ASCII</emphasis> is
+selected.  Please see your dictionary's disctribution for more
+information.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Client:</guilabel></term>
+<listitem>
+<para>You can choose between the installed client applications on your
+system, which one to use. <command>ispell</command> </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<sect2>
+<title>Section Author</title>
+<para>This section was written by Lauri Watts
+<email>lauri@kde.org</email>, based on the &kspell; manual by David
+Sweet.</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+</sect2>
+
+</sect1>

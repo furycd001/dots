@@ -1,0 +1,1 @@
+../src/dialogs/qinputdialog.h

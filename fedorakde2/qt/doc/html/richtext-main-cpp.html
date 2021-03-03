@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - richtext/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Richtext</h1><br clear="all">
+
+  In this examples it's demonstrated how to display rich text, using
+  Qt, in a widget. In this example some sayings taken from the famous
+  Unix "Fortune" are displayed nicely formatted.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/richtext/richtext.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef RICHTEXT_H
+#define RICHTEXT_H
+
+#include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+
+class QTextView;
+class QPushButton;
+
+class MyRichText : public QVBox
+{
+    Q_OBJECT
+
+public:
+    MyRichText( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0 );
+
+protected:
+    <a href="qtextview.html">QTextView</a> *view;
+    <a href="qpushbutton.html">QPushButton</a> *bClose, *bNext, *bPrev;
+    int num;
+
+protected slots:
+    void prev();
+    void next();
+
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/richtext/richtext.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "richtext.h"
+
+#include &lt;<a href="qhbox-h.html">qhbox.h</a>&gt;
+#include &lt;<a href="qhbox-h.html">qhbox.h</a>&gt;
+#include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a href="qtextview-h.html">qtextview.h</a>&gt;
+#include &lt;<a href="qbrush-h.html">qbrush.h</a>&gt;
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+
+static const char* sayings[] = {
+    "&lt;b&gt;Saying 1:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;Evil is that which one believes of others.  It is a sin to believe evil "
+    "of others, but it is seldom a mistake.&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- H.L. Mencken&lt;/i&gt;&lt;/center&gt;",
+
+    "&lt;b&gt;Saying 2:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;A well-used door needs no oil on its hinges.&lt;br&gt;"
+    "A swift-flowing steam does not grow stagnant.&lt;br&gt;"
+    "Neither sound nor thoughts can travel through a vacuum.&lt;br&gt;"
+    "Software rots if not used.&lt;br&gt;&lt;br&gt;"
+    "These are great mysteries.&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- Geoffrey James, \"The Tao of Programming\"&lt;/i&gt;&lt;/center&gt;",
+
+    "&lt;b&gt;Saying 3:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;Show business is just like high school, except you get paid.&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- Martin Mull&lt;/i&gt;&lt;/center&gt;",
+
+    "&lt;b&gt;Saying 4:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;&lt;b&gt;The Least Successful Executions&lt;/b&gt;&lt;br&gt;"
+    "&lt;twocolumn&gt;&lt;p&gt;      History has furnished us with two executioners worthy of attention. "
+    "The first performed in Sydney in Australia.  In 1803 three attempts were "
+    "made to hang a Mr. Joseph Samuels.  On the first two of these the rope "
+    "snapped, while on the third Mr. Samuels just hung there peacefully until he "
+    "and everyone else got bored.  Since he had proved unsusceptible to capital "
+    "punishment, he was reprieved.&lt;/p&gt;"
+    "&lt;p&gt;        The most important British executioner was Mr. James Berry who "
+    "tried three times in 1885 to hang Mr. John Lee at Exeter Jail, but on each "
+    "occasion failed to get the trap door open.&lt;!p&gt;"
+    "&lt;p&gt;        In recognition of this achievement, the Home Secretary commuted "
+    "Lee's sentence to \"life\" imprisonment.  He was released in 1917, emigrated "
+    "to America and lived until 1933.&lt;/p&gt;&lt;/twocolumn&gt;&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- Stephen Pile, \"The Book of Heroic Failures\"&lt;/i&gt;&lt;/center&gt;",
+
+    "&lt;b&gt;Saying 5:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;If you can, help others.  If you can't, at least don't hurt others.&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- the Dalai Lama&lt;/i&gt;&lt;/center&gt;",
+
+    "&lt;b&gt;Saying 6:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;Television has brought back murder into the home -- where it belongs.&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- Alfred Hitchcock&lt;/i&gt;&lt;/center&gt;",
+
+    "&lt;b&gt;Saying 7:&lt;/b&gt;&lt;br&gt;"
+    "&lt;hr&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;big&gt;I don't know who my grandfather was; I am much more concerned to know "
+    "what his grandson will be.&lt;/big&gt;&lt;br&gt;&lt;br&gt;"
+    "&lt;center&gt;&lt;i&gt;-- Abraham Lincoln&lt;/i&gt;&lt;/center&gt;",
+
+    0
+};
+
+MyRichText::MyRichText( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qvbox.html">QVBox</a>( parent, name )
+{
+    <a href="qframe.html#b11d00">setMargin</a>( 5 );
+
+    view = new <a href="qtextview.html">QTextView</a>( this );
+    view-&gt;setText( "This is a &lt;b&gt;Test&lt;/b&gt; with &lt;i&gt;italic&lt;/i&gt; &lt;u&gt;stuff&lt;/u&gt;" );
+    <a href="qbrush.html">QBrush</a> paper;
+    paper.<a href="qbrush.html#406414">setPixmap</a>( <a href="qpixmap.html">QPixmap</a>( "../richtext/marble.png" ) );
+    view-&gt;setPaper( paper );
+
+    view-&gt;setText( sayings[0] );
+    view-&gt;setMinimumSize( 450, 250 );
+
+    <a href="qhbox.html">QHBox</a> *buttons = new <a href="qhbox.html">QHBox</a>( this );
+    buttons-&gt;<a href="qframe.html#b11d00">setMargin</a>( 5 );
+
+    bClose = new <a href="qpushbutton.html">QPushButton</a>( "&amp;Close", buttons );
+    bPrev = new <a href="qpushbutton.html">QPushButton</a>( "&lt;&lt; &amp;Prev", buttons );
+    bNext = new <a href="qpushbutton.html">QPushButton</a>( "&amp;Next &gt;&gt;", buttons );
+
+    bPrev-&gt;setEnabled( FALSE );
+
+    <a href="qobject.html#7f8e37">connect</a>( bClose, SIGNAL( clicked() ), qApp, SLOT( quit() ) );
+    <a href="qobject.html#7f8e37">connect</a>( bPrev, SIGNAL( clicked() ), this, SLOT( <a href=#316>prev</a>() ) );
+    <a href="qobject.html#7f8e37">connect</a>( bNext, SIGNAL( clicked() ), this, SLOT( <a href=#317>next</a>() ) );
+
+    num = 0;
+}
+
+void <a name="316"></a>MyRichText::prev()
+{
+    if ( num &lt;= 0 )
+        return;
+
+    num--;
+
+    view-&gt;setText( sayings[num] );
+
+    if ( num == 0 )
+        bPrev-&gt;setEnabled( FALSE );
+
+    bNext-&gt;setEnabled( TRUE );
+}
+
+void <a name="317"></a>MyRichText::next()
+{
+    if ( !sayings[++num] )
+        return;
+
+    view-&gt;setText( sayings[num] );
+
+    if ( !sayings[num + 1] )
+        bNext-&gt;setEnabled( FALSE );
+
+    bPrev-&gt;setEnabled( TRUE );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/richtext/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "richtext.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    MyRichText richtext;
+    richtext.<a name="resize"></a><a href="qwidget.html#ff9d07">resize</a>( 450, 350 );
+    richtext.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Richtext" );
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;richtext );
+    richtext.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

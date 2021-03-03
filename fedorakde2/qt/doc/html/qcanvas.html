@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QCanvas Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QCanvas Class Reference<br><small>[ <a href="canvas.html">canvas module</a> ]</small></h1><br clear="all">
+<p>
+The QCanvas class is a 2D graphic area upon which <a href="qcanvasitem.html">QCanvasItem</a> objects exist.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qcanvas-h.html">qcanvas.h</a>&gt;</code>
+<p>
+Inherits <a href="qobject.html">QObject</a>.
+<p><a href="qcanvas-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#a54cbd"><b>QCanvas</b></a> ( QObject * parent = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#671218"><b>QCanvas</b></a> ( int w, int h ) </div>
+<li><div class="fn"><a href="#d08931"><b>QCanvas</b></a> ( QPixmap p, int h, int v, int tilewidth, int tileheight ) </div>
+<li><div class="fn">virtual <a href="#591f67"><b>~QCanvas</b></a> () </div>
+<li><div class="fn">virtual void <a href="#6d12f0"><b>setTiles</b></a> ( QPixmap tiles, int h, int v, int tilewidth, int tileheight ) </div>
+<li><div class="fn">virtual void <a href="#c9fae8"><b>setBackgroundPixmap</b></a> ( const QPixmap &amp; p ) </div>
+<li><div class="fn">QPixmap <a href="#9b411e"><b>backgroundPixmap</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#e54d66"><b>setBackgroundColor</b></a> ( const QColor &amp; c ) </div>
+<li><div class="fn">QColor <a href="#09f2f9"><b>backgroundColor</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#02d528"><b>setTile</b></a> ( int x, int y, int tilenum ) </div>
+<li><div class="fn">int <a href="#3ab1ee"><b>tile</b></a> ( int x, int y ) const</div>
+<li><div class="fn">int <a href="#4aeda7"><b>tilesHorizontally</b></a> () const</div>
+<li><div class="fn">int <a href="#7c95d2"><b>tilesVertically</b></a> () const</div>
+<li><div class="fn">int <a href="#01280e"><b>tileWidth</b></a> () const</div>
+<li><div class="fn">int <a href="#10e73b"><b>tileHeight</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#b34c7b"><b>resize</b></a> ( int width, int height ) </div>
+<li><div class="fn">int <a href="#274355"><b>width</b></a> () const</div>
+<li><div class="fn">int <a href="#69f34f"><b>height</b></a> () const</div>
+<li><div class="fn">QSize <a href="#c36672"><b>size</b></a> () const</div>
+<li><div class="fn">bool <a href="#5dc8c7"><b>onCanvas</b></a> ( int x, int y ) const</div>
+<li><div class="fn">bool <a href="#d90fa0"><b>onCanvas</b></a> ( const QPoint &amp; p ) const</div>
+<li><div class="fn">bool <a href="#888c39"><b>validChunk</b></a> ( int x, int y ) const</div>
+<li><div class="fn">bool <a href="#2c6ac2"><b>validChunk</b></a> ( const QPoint &amp; p ) const</div>
+<li><div class="fn">int <a href="#a3c936"><b>chunkSize</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#505fb6"><b>retune</b></a> ( int chunksize, int maxclusters=100 ) </div>
+<li><div class="fn">bool <b>sameChunk</b> ( int x1, int y1, int x2, int y2 ) const (internal)</div>
+<li><div class="fn">virtual void <b>setChangedChunk</b> ( int i, int j ) (internal)</div>
+<li><div class="fn">virtual void <b>setChangedChunkContaining</b> ( int x, int y ) (internal)</div>
+<li><div class="fn">virtual void <a href="#885be6"><b>setAllChanged</b></a> () </div>
+<li><div class="fn">virtual void <a href="#695ead"><b>setChanged</b></a> ( const QRect &amp; inarea ) </div>
+<li><div class="fn">void <b>addItemToChunk</b> ( QCanvasItem *, int i, int j ) (internal)</div>
+<li><div class="fn">void <b>removeItemFromChunk</b> ( QCanvasItem *, int i, int j ) (internal)</div>
+<li><div class="fn">void <b>addItemToChunkContaining</b> ( QCanvasItem *, int x, int y ) (internal)</div>
+<li><div class="fn">void <b>removeItemFromChunkContaining</b> ( QCanvasItem *, int x, int y ) (internal)</div>
+<li><div class="fn">QCanvasItemList <a href="#471657"><b>allItems</b></a> () </div>
+<li><div class="fn">QCanvasItemList <a href="#59f4a6"><b>collisions</b></a> ( const QPoint &amp; ) const</div>
+<li><div class="fn">QCanvasItemList <a href="#bab397"><b>collisions</b></a> ( const QRect &amp; ) const</div>
+<li><div class="fn">QCanvasItemList <a href="#f745b0"><b>collisions</b></a> ( const QPointArray &amp; pa, const QCanvasItem * item, bool exact ) const</div>
+<li><div class="fn">virtual void <b>addView</b> ( QCanvasView * ) (internal)</div>
+<li><div class="fn">virtual void <b>removeView</b> ( QCanvasView * ) (internal)</div>
+<li><div class="fn">void <b>drawArea</b> ( const QRect &amp;, QPainter * p=0, bool double_buffer=TRUE ) (internal)</div>
+<li><div class="fn">virtual void <b>addItem</b> ( QCanvasItem * ) (internal)</div>
+<li><div class="fn">virtual void <b>addAnimation</b> ( QCanvasItem * ) (internal)</div>
+<li><div class="fn">virtual void <b>removeItem</b> ( QCanvasItem * ) (internal)</div>
+<li><div class="fn">virtual void <b>removeAnimation</b> ( QCanvasItem * ) (internal)</div>
+<li><div class="fn">virtual void <a href="#d0b96b"><b>setAdvancePeriod</b></a> ( int ms ) </div>
+<li><div class="fn">virtual void <a href="#ed8439"><b>setUpdatePeriod</b></a> ( int ms ) </div>
+<li><div class="fn">virtual void <a href="#ee851f"><b>setDoubleBuffering</b></a> ( bool y ) </div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#292e63"><b>advance</b></a> () </div>
+<li><div class="fn">virtual void <a href="#16e8be"><b>update</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#da3946"><b>resized</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#4d393e"><b>drawBackground</b></a> ( QPainter &amp;, const QRect &amp; area ) </div>
+<li><div class="fn">virtual void <a href="#dc77cc"><b>drawForeground</b></a> ( QPainter &amp;, const QRect &amp; area ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QCanvas class is a 2D graphic area upon which <a href="qcanvasitem.html">QCanvasItem</a> objects exist.
+<p>
+A QCanvas contains any number of QCanvasItem subclassed objects and has
+any number of <a href="qcanvasview.html">QCanvasView</a> widgets observing some part of the canvas.
+<p>A canvas containing
+many items is different to a widgets containing many subwidgets in the
+following ways:
+<p><ul>
+<li>Items are drawn much faster than widgets, especially when non-rectangular.
+<li>Items use less memory than widgets.
+<li>You can do efficient item-to-item hit tests ("collision detection")
+with items in a canvas.
+<li>Finding items in an area is efficient.
+<li>You can have multiple views of a canvas.
+</ul>
+<p>Widgets of course offer richer functionality, such as hierarchies,
+events, layout, etc.
+<p><h3>Drawing</h3>
+<p>A canvas has a solid background and a foreground. By default, the canvas will
+have a white background, which can be changed with <a href="#e54d66">setBackgroundColor</a>().
+If you want an image, use <a href="#c9fae8">setBackgroundPixmap</a>(). A third option is to use
+<i>tiles</i>, where the canvas background is
+a matrix of small images all the same size,
+each chosen from a defined larger pixmap. See <a href="#6d12f0">setTiles</a>().
+<p>On top of the background are objects of QCanvasItems subclasses. Each item
+has a Z-height (see <a href="qcanvasitem.html#929f06">QCanvasItem::z</a>()), with the lower-Z items on the background
+and higher-Z items on top of them.
+<p>Above everything in the canvas is the foreground, as defined by the
+<a href="#dc77cc">drawForeground</a>() function. By default this function draws nothing.
+<p>Changes to the items on the canvas are refreshed to the views whenever
+<a href="#16e8be">update</a>() is called, including creation of new items,
+movement of item, change of shape,
+change of visibility, and destruction.
+<p>Note that like QWidgets, QCanvasItems are always hidden when they are created,
+so you must show() them some time after creating them if you wish them to
+be visible.
+<p><h3>Animation</h3>
+<p>QCanvas has some built-in animation features. If you call <a href="qcanvasitem.html#eb673b">QCanvasItem::setVelocity</a>()
+on an item, it will move forward whenever <a href="#292e63">advance</a>() is call.  The advance() function
+also calls update(), so you only need to call one or the other. If no items
+have a velocity, then advance() is the same as update().
+<p>You can have advance() or update() called automatically with <a href="#d0b96b">setAdvancePeriod</a>()
+or <a href="#ed8439">setUpdatePeriod</a>() respectively.
+<p><h3>Collision Detection</h3>
+<p>Items on the canvas can be tested for collisions with these functions, each of
+which returns a list of items which match the hit, sorted from top to bottom
+(ie. by decreasing QCanvasItem::z() value).
+<p><ul>
+<li><a href="#59f4a6">collisions</a>(<a href="qpoint.html">QPoint</a>) - items which will collide with a point.
+<li>collisions(<a href="qrect.html">QRect</a>) - items which will collide with a rectangle.
+</ul>
+<p>You can also test for item-to-item collisions with <a href="qcanvasitem.html#62cd80">QCanvasItem::collisions</a>().
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a54cbd"></a>QCanvas::QCanvas ( <a href="qobject.html">QObject</a> * parent = 0, const char * name = 0 )</h3>
+<p>Create a QCanvas with no size.
+You will want to call <a href="#b34c7b">resize</a>(int,int) at some time after creation.
+<h3 class="fn"><a name="d08931"></a>QCanvas::QCanvas ( <a href="qpixmap.html">QPixmap</a> p, int h, int v, int tilewidth, int tileheight )</h3>
+<p>Constructs a QCanvas which will be composed of
+<em>h</em> tiles horizontally and <em>v</em> tiles vertically.  Each tile
+will be an image <em>tilewidth</em> by <em>tileheight</em> pixels from
+pixmap <em>p.</em>
+<p>The pixmap <em>p</em> is a list of tiles, arranged left to right,
+top to bottom, with tile 0 in the top-left corner, tile 1 next
+to the right, and so on.
+<p>The QCanvas is initially sized to show exactly the given number
+of tiles horizontally and vertically.  If it is resized to be larger,
+the entire matrix of tiles will be repeated as much as necessary to
+cover the area.  If it is smaller, tiles to
+the right and bottom will not be visible.
+<h3 class="fn"><a name="671218"></a>QCanvas::QCanvas ( int w, int h )</h3>
+<p>Constructs a QCanvas with that is <code>w</code> pixels wide and <code>h</code> pixels high.
+<h3 class="fn"><a name="591f67"></a>QCanvas::~QCanvas () <code>[virtual]</code></h3>
+<p>Destructs the canvas.  Does also destroy all items on the canvas.
+<h3 class="fn">void <a name="292e63"></a>QCanvas::advance () <code>[virtual slot]</code></h3>
+<p>Advances the animation of items on the canvas and refreshes all
+changes to all views of the canvas.
+<p>The advance is done in two phases.  In phase 0, the
+QCanvasItem:advance() function of each animated item is called with
+paramater 0. Then all items are called again, with parameter 1. In
+phase 0, the items should not change position, merely examine other
+items on the canvas for which special processing is required, such
+as collisions between items. In phase 1, all items should change
+positions, ignoring any other items on the canvas.  This two-phase
+approach allows for considerations of "fairness", though no
+<a href="qcanvasitem.html">QCanvasItem</a> subclasses supplied with Qt do anything interesting in
+phase 0.
+<p>The canvas can be configured to call this function periodically with
+<a href="#d0b96b">setAdvancePeriod</a>().
+<p>See also  <a href="#16e8be">update</a>().
+<h3 class="fn">QCanvasItemList <a name="471657"></a>QCanvas::allItems ()</h3>
+<p>Returns a list of all items in the canvas.
+<h3 class="fn"><a href="qcolor.html">QColor</a> <a name="09f2f9"></a>QCanvas::backgroundColor () const</h3>
+<p>Returns the color set by <a href="#e54d66">setBackgroundColor</a>().
+By default, this is white.
+<p>Note that this function is not a reimplementation
+of <a href="qwidget.html#d5be64">QWidget::backgroundColor</a>() (QCanvas is not a subclass
+of <a href="qwidget.html">QWidget</a>), but all QCanvasViews that are viewing the
+canvas will set their backgrounds to this
+<p>See also  <a href="#e54d66">setBackgroundColor</a>() and <a href="#9b411e">backgroundPixmap</a>().
+<h3 class="fn"><a href="qpixmap.html">QPixmap</a> <a name="9b411e"></a>QCanvas::backgroundPixmap () const</h3>
+<p>Returns the pixmap set by <a href="#c9fae8">setBackgroundPixmap</a>().  By default,
+this is a null pixmap.
+<p>See also  <a href="#c9fae8">setBackgroundPixmap</a>() and <a href="#09f2f9">backgroundColor</a>().
+<h3 class="fn">int <a name="a3c936"></a>QCanvas::chunkSize () const</h3>
+<p>Returns the chunk size of the canvas as set at construction.
+<p>See also  <a href="#505fb6">retune</a>().
+<h3 class="fn">QCanvasItemList <a name="59f4a6"></a>QCanvas::collisions ( const <a href="qpoint.html">QPoint</a> &amp; p ) const</h3>
+<p>Returns a list of items which intersect with the point <em>p,</em>
+sorted from shallowest to deepest.
+<h3 class="fn">QCanvasItemList <a name="f745b0"></a>QCanvas::collisions ( const <a href="qpointarray.html">QPointArray</a> &amp; chunklist, const <a href="qcanvasitem.html">QCanvasItem</a> * item, bool exact ) const</h3>
+<p>Returns a list of items which intersect with the chunks listed
+in <em>chunklist,</em> excluding <em>item.</em>  If <em>exact</em> is TRUE, only
+only those which actually <a href="qcanvasitem.html#1d22d3">QCanvasItem::collidesWith</a>() <em>item</em>
+are returned, otherwise items are included just for being in the
+chunks.
+<p>This is a utility function mainly used to implement the simpler
+<a href="qcanvasitem.html#62cd80">QCanvasItem::collisions</a>() function.
+<h3 class="fn">QCanvasItemList <a name="bab397"></a>QCanvas::collisions ( const <a href="qrect.html">QRect</a> &amp; r ) const</h3>
+<p>Returns a list of items which intersect with the rectangle <em>r,</em>
+sorted from shallowest to deepest.
+<h3 class="fn">void <a name="4d393e"></a>QCanvas::drawBackground ( <a href="qpainter.html">QPainter</a> &amp; painter, const <a href="qrect.html">QRect</a> &amp; clip ) <code>[virtual protected]</code></h3>
+<p>This virtual function is called for all updates of the QCanvas.
+It renders any background graphics.  If the canvas has a background
+pixmap or a tiled background, that graphic is used, otherwise the
+canvas is cleared in the background color.
+<p>If the graphics for an area change, you must explicitly call
+<a href="#695ead">setChanged</a>(const <a href="qrect.html">QRect</a>&) for the result to be visible when <a href="#16e8be">update</a>()
+is next called.
+<p>See also  <a href="#e54d66">setBackgroundColor</a>(), <a href="#c9fae8">setBackgroundPixmap</a>() and <a href="#6d12f0">setTiles</a>().
+<h3 class="fn">void <a name="dc77cc"></a>QCanvas::drawForeground ( <a href="qpainter.html">QPainter</a> &amp; painter, const <a href="qrect.html">QRect</a> &amp; clip ) <code>[virtual protected]</code></h3>
+<p>This virtual function is called for all updates of the QCanvas.
+It renders any foreground graphics.
+<p>The same warnings regarding change apply to this method as for
+<a href="#4d393e">drawBackground</a>().
+<p>The default is to draw nothing.
+<h3 class="fn">int <a name="69f34f"></a>QCanvas::height () const</h3>
+<p>Returns the height of the canvas, in pixels.
+<h3 class="fn">bool <a name="d90fa0"></a>QCanvas::onCanvas ( const <a href="qpoint.html">QPoint</a> &amp; p ) const</h3>
+<p>Returns whether the pixel position <em>p</em> is on the canvas.
+<h3 class="fn">bool <a name="5dc8c7"></a>QCanvas::onCanvas ( int x, int y ) const</h3>
+<p>Returns whether the pixel position (<em>x, y)</em> is on the canvas.
+<h3 class="fn">void <a name="b34c7b"></a>QCanvas::resize ( int w, int h ) <code>[virtual]</code></h3>
+<p>Changes the size of the QCanvas. This is a slow operation.
+<h3 class="fn">void <a name="da3946"></a>QCanvas::resized () <code>[signal]</code></h3>
+<p>This signal is emitted whenever the canvas is resized.  Each <a href="qcanvasview.html">QCanvasView</a>
+connects to this signal to keep the scrollview size correct.
+<h3 class="fn">void <a name="505fb6"></a>QCanvas::retune ( int chunksze, int mxclusters=100 ) <code>[virtual]</code></h3>
+<p>Change the efficiency tuning parameters to <em>mxclusters</em> clusters,
+each of size <em>chunksze</em> (square).  This is a slow operation if you
+have many objects on the canvas.
+<p>Internally, a canvas uses a low-resolution "chunk matrix" to keep
+track of all the items in the canvas. In Qt 2.2, the default for a
+1024x1024 pixel canvas is to have a 64x64 chunk matrix, where each of
+those chunks collects items in a 16x16 pixel square.
+<p>This default is also affected by <a href="#6d12f0">setTiles</a>(). You can tune this default
+by using retune(), for example if you have a very large canvas and
+want to trade off speed for memory then you might set the chunk size
+to 32 or 64.
+<p><em>chunksze</em> is the size of square chunk used to break up the QCanvas
+into area to be considered for redrawing.  It should be about the
+average size of items in the QCanvas.  Chunks too small increase the
+amount of calculation required when drawing.  Chunks too large
+increase the amount of drawing that is needed.
+<p><em>mxclusters</em> is the number of rectangular groups of chunks that will
+be separately drawn.  If the QCanvas has a large number of small,
+dispersed items, this should be about that number.  The more clusters
+the slower the redraw, but also the bigger clusters are the slower the
+redraw, so a balance is needed.  Testing indicates that a large number
+of clusters is almost always best.
+<h3 class="fn">void <a name="d0b96b"></a>QCanvas::setAdvancePeriod ( int ms ) <code>[virtual]</code></h3>
+<p>Sets the canvas to call <a href="#292e63">advance</a>() every <em>ms</em> milliseconds.
+Any previous setting by setAdvancePeriod() or <a href="#ed8439">setUpdatePeriod</a>() is cancelled.
+<h3 class="fn">void <a name="885be6"></a>QCanvas::setAllChanged () <code>[virtual]</code></h3>
+<p>Sets all views of the canvas to be entirely redrawn when
+<a href="#16e8be">update</a>() is next called.
+<h3 class="fn">void <a name="e54d66"></a>QCanvas::setBackgroundColor ( const <a href="qcolor.html">QColor</a> &amp; c ) <code>[virtual]</code></h3>
+<p>Sets the solid background to be the color <em>c.</em>
+<p>See also  <a href="#09f2f9">backgroundColor</a>(), <a href="#c9fae8">setBackgroundPixmap</a>() and <a href="#6d12f0">setTiles</a>().
+<h3 class="fn">void <a name="c9fae8"></a>QCanvas::setBackgroundPixmap ( const <a href="qpixmap.html">QPixmap</a> &amp; p ) <code>[virtual]</code></h3>
+<p>Sets the solid background to be <em>p,</em> repeated as necessary to
+cover the entire canvas.
+<p>See also  <a href="#9b411e">backgroundPixmap</a>(), <a href="#e54d66">setBackgroundColor</a>() and <a href="#6d12f0">setTiles</a>().
+<h3 class="fn">void <a name="695ead"></a>QCanvas::setChanged ( const <a href="qrect.html">QRect</a> &amp; area ) <code>[virtual]</code></h3>
+<p>Sets all views of <em>area</em> to be entirely redrawn when
+<a href="#16e8be">update</a>() is next called.
+<h3 class="fn">void <a name="ee851f"></a>QCanvas::setDoubleBuffering ( bool y ) <code>[virtual]</code></h3>
+<p>Turns double-buffering on if <em>y</em> is TRUE, or off if it is
+FALSE. The default is to use double-buffering.
+<p>Turning off double-buffering casuses the redrawn areas to flicker a
+bit.  This can help understand the the optimizations made by QCanvas
+and also gives a (usually small) performance improvement.
+<h3 class="fn">void <a name="02d528"></a>QCanvas::setTile ( int x, int y, int tilenum ) <code>[virtual]</code></h3>
+<p>Sets the tile at (<em>x, y)</em> to use tile number <em>tilenum,</em>
+which is an index into the tile pixmaps.  The canvas will update
+appropriately when <a href="#16e8be">update</a>() is next called.
+<p>The images are taken from the pixmap set by <a href="#6d12f0">setTiles</a>() and are
+arranged in the pixmap left to right, top to bottom, with tile 0 in
+the top-left corner, tile 1 next to the right, and so on.
+<p>See also  <a href="#3ab1ee">tile</a>() and <a href="#6d12f0">setTiles</a>().
+<h3 class="fn">void <a name="6d12f0"></a>QCanvas::setTiles ( <a href="qpixmap.html">QPixmap</a> p, int h, int v, int tilewidth, int tileheight ) <code>[virtual]</code></h3>
+<p>Sets the QCanvas to be composed of <em>h</em> tiles horizontally and <em>v</em> tiles vertically.  Each tile will be an image <em>tilewidth</em> by <em>tileheight</em> pixels from pixmap <em>p.</em>
+<p>The pixmap <em>p</em> contains the tiles arranged left to right, top to
+bottom, with tile 0 in the top-left corner, tile 1 to the right of
+tile 0, and so on.
+<p>If the QCanvas is larger than the matrix of tiles, the entire matrix
+is repeated as necessary to cover the area.  If it is smaller, tiles
+to the right and bottom are not visible.
+<p>The width and height of <em>p</em> must be multiples of <em>tilewidth</em> and
+<em>tileheight.</em> If they are not, the action of this function is
+unspecified.
+<h3 class="fn">void <a name="ed8439"></a>QCanvas::setUpdatePeriod ( int ms ) <code>[virtual]</code></h3>
+<p>Sets the canvas to call <a href="#16e8be">update</a>() every <em>ms</em> milliseconds.
+Any previous setting by <a href="#d0b96b">setAdvancePeriod</a>() or setUpdatePeriod() is cancelled.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="c36672"></a>QCanvas::size () const</h3>
+<p>Returns the size of the canvas, in pixels.
+<h3 class="fn">int <a name="3ab1ee"></a>QCanvas::tile ( int x, int y ) const</h3>
+<p>Returns the tile at (<em>x, y).</em> Initially, all tiles are 0.<p><b>Warning:</b> The parameters must be within range.
+<p>See also  <a href="#02d528">setTile</a>().
+<h3 class="fn">int <a name="10e73b"></a>QCanvas::tileHeight () const</h3>
+<p>Returns the height of each tile.
+<h3 class="fn">int <a name="01280e"></a>QCanvas::tileWidth () const</h3>
+<p>Returns the width of each tile.
+<h3 class="fn">int <a name="4aeda7"></a>QCanvas::tilesHorizontally () const</h3>
+<p>Returns the number of tiles horizontally.
+<h3 class="fn">int <a name="7c95d2"></a>QCanvas::tilesVertically () const</h3>
+<p>Returns the number of tiles vertically.
+<h3 class="fn">void <a name="16e8be"></a>QCanvas::update () <code>[virtual slot]</code></h3>
+<p>Refreshes all changes to all views of the canvas.
+<p>See also  <a href="#292e63">advance</a>().
+<h3 class="fn">bool <a name="2c6ac2"></a>QCanvas::validChunk ( const <a href="qpoint.html">QPoint</a> &amp; p ) const</h3>
+<p>Returns whether the chunk position <em>p</em> is on the canvas.
+<h3 class="fn">bool <a name="888c39"></a>QCanvas::validChunk ( int x, int y ) const</h3>
+<p>Returns whether the chunk position (<em>x, y)</em> is on the canvas.
+<h3 class="fn">int <a name="274355"></a>QCanvas::width () const</h3>
+<p>Returns the width of the canvas, in pixels.
+<h3 class="fn">void <a name="bd0643"></a>QCanvas::addAnimation ( <a href="qcanvasitem.html">QCanvasItem</a> * item ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="e50afd"></a>QCanvas::addItem ( <a href="qcanvasitem.html">QCanvasItem</a> * item ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="5f878e"></a>QCanvas::addItemToChunk ( <a href="qcanvasitem.html">QCanvasItem</a> * g, int x, int y )</h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="7078d6"></a>QCanvas::addItemToChunkContaining ( <a href="qcanvasitem.html">QCanvasItem</a> * g, int x, int y )</h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="5b4af3"></a>QCanvas::addView ( <a href="qcanvasview.html">QCanvasView</a> * view ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="fbf3aa"></a>QCanvas::drawArea ( const <a href="qrect.html">QRect</a> &amp; inarea, <a href="qpainter.html">QPainter</a> * p=0, bool double_buffer=TRUE )</h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="0adbc7"></a>QCanvas::removeAnimation ( <a href="qcanvasitem.html">QCanvasItem</a> * item ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="8efb0e"></a>QCanvas::removeItem ( <a href="qcanvasitem.html">QCanvasItem</a> * item ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="db072b"></a>QCanvas::removeItemFromChunk ( <a href="qcanvasitem.html">QCanvasItem</a> * g, int x, int y )</h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="87b332"></a>QCanvas::removeItemFromChunkContaining ( <a href="qcanvasitem.html">QCanvasItem</a> * g, int x, int y )</h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="b5fec3"></a>QCanvas::removeView ( <a href="qcanvasview.html">QCanvasView</a> * view ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">bool <a name="13ea9d"></a>QCanvas::sameChunk ( int x1, int y1, int x2, int y2 ) const</h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="611ae7"></a>QCanvas::setChangedChunk ( int x, int y ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="3a3fea"></a>QCanvas::setChangedChunkContaining ( int x, int y ) <code>[virtual]</code></h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

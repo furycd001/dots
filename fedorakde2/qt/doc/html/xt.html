@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Xt/Motif Support Extension</title>
+</head>
+<p>
+<body bgcolor=#ffffff>
+<h1 align=center>Qt Xt/Motif Support Extension</h1>
+<p>
+<hr>
+<p>
+The Qt Xt/Motif Support Extension assists the migration of old
+Xt and Motif based code to the more comfortable Qt toolkit.
+<p>
+<h2>Information</h2>
+<p>
+The Qt Xt/Motif Extension consists of the following classes:
+<ul>
+  <li><a href=qxtapplication.html>QXtApplication</a> Allows mixing of Xt/Motif and Qt widgets
+  <li><a href=qxtwidget.html>QXtWidget</a> Base widget for Xt/Motif and Qt combination
+</ul>
+<p>
+<h2>How-to</h2>
+<p>
+<ol>
+ <li>Ensure you are using X11R6.
+ <li>Ensure the programs you wish to port are compilable by a C++
+        compiler, or at least that this is the case for the parts
+        which need migration.
+ <li>Decide whether you are writing a new Qt application reusing
+        old Xt widgets, or introducing new Qt widgets into an existing
+        Xt/Motif application. See the corresponding example program.
+<p>
+</ol>
+<p>
+<h2>Example Programs</h2>
+<p>
+<ul>
+<li><a href="mainlyQt-editor-cpp.html">mainlyQt</a>
+<li><a href="mainlyXt-editor-cpp.html">mainlyXt</a>
+<li><a href="mainlyMotif-editor-cpp.html">mainlyMotif</a>
+</ul>
+<p>
+<h2>Known Bugs</h2>
+<p>
+This extension is under development.  The following problems exist:
+<p>
+<ul>
+ <li> The different focus models of Xt, Motif, and Qt interfere.
+ <li> Clipboard handling between Xt/Motif and Qt does not work properly.
+</ul>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

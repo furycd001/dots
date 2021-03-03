@@ -1,0 +1,348 @@
+'\" t
+.TH QMenuBar 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QMenuBar \- Horizontal menu bar
+.br
+.PP
+\fC#include <qmenubar.h>\fR
+.PP
+Inherits QFrame and QMenuData.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQMenuBar\fR ( QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QMenuBar\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBupdateItem\fR ( int id ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBshow\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBhide\fR () "
+.br
+.ti -1c
+.BI "virtual bool \fBeventFilter\fR ( QObject *, QEvent * ) "
+.br
+.ti -1c
+.BI "virtual int \fBheightForWidth\fR ( int ) const"
+.br
+.ti -1c
+.BI "enum \fBSeparator\fR { Never=0, InWindowsStyle=1 }"
+.br
+.ti -1c
+.BI "Separator \fBseparator\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSeparator\fR ( Separator when ) "
+.br
+.ti -1c
+.BI "void \fBsetDefaultUp\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBisDefaultUp\fR () const"
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBactivated\fR ( int itemId ) "
+.br
+.ti -1c
+.BI "void \fBhighlighted\fR ( int itemId ) "
+.br
+.in -1c
+.SS "Important Inherited Members"
+.in +1c
+.ti -1c
+.BI "int \fBinsertItem\fR ( QCustomMenuItem * " "custom" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( QWidget * " "widget" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", QCustomMenuItem * " "custom" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", const QPixmap & " "pixmap" ", QPopupMenu * " "popup" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", const QPixmap & " "pixmap" ", const QObject * " "receiver" ", const char * " "member" ", int " "accel" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", const QPixmap & " "pixmap" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", const QString & " "text" ", QPopupMenu * " "popup" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", const QString & " "text" ", const QObject * " "receiver" ", const char * " "member" ", int " "accel" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QIconSet & " "icon" ", const QString & " "text" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QPixmap & " "pixmap" ", QPopupMenu * " "popup" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QPixmap & " "pixmap" ", const QObject * " "receiver" ", const char * " "member" ", int " "accel" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QPixmap & " "pixmap" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QString & " "text" ", QPopupMenu * " "popup" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QString & " "text" ", const QObject * " "receiver" ", const char * " "member" ", int " "accel" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "int \fBinsertItem\fR ( const QString & " "text" ", int " "id" ", int index ) "
+.br
+.ti -1c
+.BI "void \fBremoveItem\fR ( int id ) "
+.br
+.ti -1c
+.BI "void \fBclear\fR () "
+.br
+.ti -1c
+.BI "int \fBinsertSeparator\fR ( int index ) "
+.br
+.ti -1c
+.BI "void \fBsetItemEnabled\fR ( int " "id" ", bool enable ) "
+.br
+.ti -1c
+.BI "bool \fBisItemEnabled\fR ( int id ) const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawContents\fR ( QPainter * ) "
+.br
+.ti -1c
+.BI "virtual void \fBfontChange\fR ( const QFont & ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBmenuContentsChanged\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBmenuStateChanged\fR () "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+Separator	separator	separator	setSeparator
+bool	defaultUp	isDefaultUp	setDefaultUp
+.TE
+.fi
+
+.SH DESCRIPTION
+The QMenuBar class provides a horizontal menu bar.
+.PP
+A menu bar consists of a list of submenu items, so-called pulldown menus. You add submenu items with insertItem(). Assuming that \fCmenubar\fR is a pointer to a QMenuBar and \fCfilemenu\fR a pointer to a QPopupMenu,
+.PP
+.nf
+.br
+  menubar->insertItem( "&File", filemenu );
+.fi
+.PP
+inserts the menu into the menu bar. The ampersand in the item text declares Alt-f as shortcut for this menu. Use "&&" to get a real ampsend in the menubar.
+.PP
+Items are either enabled or disabled. You toggle their state with setItemEnabled().
+.PP
+Note that there is no need to layout a menu bar. It automatically sets its own geometry to the top of the parent widget and changes it appropriately whenever the parent is resized.
+.PP
+menu/menu.cpp is a typical example of QMenuBar and QPopupMenu use.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QPopupMenu and GUI Design Handbook: Menu Bar
+.PP
+Examples:
+.(l
+grapher/grapher.cpp layout/layout.cpp menu/menu.cpp progress/progress.cpp scrollview/scrollview.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QMenuBar::Separator"
+This enum type is used to decide whether QMenuBar should draw a separator line at its bottom. The possible values are: 
+.TP
+\fCNever\fR - in many applications, there already is a separator, and two looks stupid.
+.TP
+\fCInWindowsStyle\fR - in some other applications, a separator looks good in Windows style but not else.
+.IP
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QMenuBar::QMenuBar ( QWidget * parent=0, const char * name=0 )"
+Constructs a menu bar with a \fIparent\fR and a \fIname.\fR
+.SH "QMenuBar::~QMenuBar ()"
+Destroys the menu bar.
+.SH "void QMenuBar::activateItemAt ( int index )"
+Reimplemented for internal reasons; the API is not affected.
+.SH "void QMenuBar::activated ( int id ) \fC[signal]\fR"
+This signal is emitted when a menu item is selected; \fIid\fR is the id of the selected item.
+.PP
+Normally, you will connect each menu item to a single slot using QMenuData::insertItem(), but sometimes you will want to connect several items to a single slot (most often if the user selects from an array). This signal is handy in such cases.
+.PP
+See also highlighted() and QMenuData::insertItem().
+.SH "bool QMenuBar::customWhatsThis () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::drawContents ( QPainter * p ) \fC[virtual protected]\fR"
+Called from QFrame::paintEvent().
+.PP
+Reimplemented from QFrame.
+.SH "bool QMenuBar::eventFilter ( QObject * object, QEvent * event ) \fC[virtual]\fR"
+This function is used to adjust the menu bar's geometry to the parent widget's. Note that this is \fInot\fR part of the public interface - the function is \fCpublic\fR only because QObject::eventFilter() is.
+.PP
+Reimplemented from QObject.
+.SH "void QMenuBar::focusInEvent ( QFocusEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::focusOutEvent ( QFocusEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "int QMenuBar::heightForWidth ( int max_width ) const \fC[virtual]\fR"
+Returns the height that the menu would resize itself to if its parent (and hence itself) resized to the given width. This can be useful for simple layout tasks where the height of the menubar is needed after items have been inserted. See examples/showimg/showimg.cpp for an example of the usage.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::hide () \fC[virtual]\fR"
+Reimplements QWidget::hide() in order to deselect any selected item and calls setUpLayout() for the mainwindow.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::highlighted ( int id ) \fC[signal]\fR"
+This signal is emitted when a menu item is highlighted; \fIid\fR is the id of the highlighted item.
+.PP
+Normally, you will connect each menu item to a single slot using QMenuData::insertItem(), but sometimes you will want to connect several items to a single slot (most often if the user selects from an array). This signal is handy in such cases.
+.PP
+See also activated() and QMenuData::insertItem().
+.SH "bool QMenuBar::isDefaultUp () const"
+Returns whether the menus default to popping "down" the screen (the default), or "up".
+.PP
+See also setDefaultUp();.
+.SH "void QMenuBar::keyPressEvent ( QKeyEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::leaveEvent ( QEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::menuContentsChanged () \fC[virtual protected]\fR"
+Recomputes the menu bar's display data according to the new contents.
+.PP
+You should never need to call this, it is called automatically by QMenuData whenever it needs to be called.
+.PP
+Reimplemented from QMenuData.
+.SH "void QMenuBar::menuStateChanged () \fC[virtual protected]\fR"
+Recomputes the menu bar's display data according to the new state.
+.PP
+You should never need to call this, it is called automatically by QMenuData whenever it needs to be called.
+.PP
+Reimplemented from QMenuData.
+.SH "QSize QMenuBar::minimumSize () const"
+Reimplemented for internal reasons; the API is not affected.
+.SH "QSize QMenuBar::minimumSizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::mouseMoveEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::mousePressEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::mouseReleaseEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::resizeEvent ( QResizeEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QMenuBar::Separator QMenuBar::separator() const"
+Returns the currently set Separator usage.
+.PP
+See also Separator and setSeparator().
+.SH "void QMenuBar::setDefaultUp ( bool on )"
+Sets the default popup orientation. By default, menus pop "down" the screen. By calling setDefaultUp(TRUE) the menu will pop "up". You might call this for menus that are \fIbelow\fR the document to which they refer.
+.PP
+If the menu would not fit on the screen, the other direction is used rather than the default.
+.PP
+See also defaultUp();.
+.SH "void QMenuBar::setSeparator ( Separator when )"
+When a menubar is used above an unframed widget, it may look better with a separating line when displayed with WindowsStyle.
+.PP
+This function sets the usage of such a separator to appear either QMenuBar::Never, or QMenuBar::InWindowsStyle.
+.PP
+The default is QMenuBar::Never.
+.PP
+See also Separator and separator().
+.PP
+Examples:
+.(l
+layout/layout.cpp scrollview/scrollview.cpp
+.)l
+.SH "void QMenuBar::show () \fC[virtual]\fR"
+Reimplements QWidget::show() in order to set up the correct keyboard accelerators and raise itself to the top of the widget stack.
+.PP
+Reimplemented from QWidget.
+.SH "QSize QMenuBar::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::styleChange ( QStyle & old ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::fontChange ( const QFont & f ) \fC[virtual protected]\fR"
+For internal use only.
+.PP
+Reimplemented from QWidget.
+.SH "void QMenuBar::updateItem ( int id ) \fC[virtual]\fR"
+For internal use only.
+.PP
+Reimplemented from QMenuData.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qmenubar.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qmenubar.3qt) and the Qt
+version (2.3.2).

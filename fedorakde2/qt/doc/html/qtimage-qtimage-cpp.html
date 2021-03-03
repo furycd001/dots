@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qtimage/qtimage.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Display Images in Qt-supported Formats</h1>
+  <p>
+  This example displays images which are in any format
+  supported by Qt.  Combining this with the Qt ImageIO
+  Extension adds PNG image support to your browser.
+  It demonstrates the use of the QNPInstance::streamAsFile()
+  function.
+  <p>
+  To build the example, you must first build the
+  <a href=nsplugin.html>Qt Netscape Plugin Extension</a> library.
+  Then type <tt>make</tt> in <tt>extensions/nsplugin/examples/qtimage/</tt>
+  and copy the resulting <tt>qtimage.so</tt> or <tt>npqtimage.dll</tt>
+  to the Plugins directory of your WWW browser.
+  <p>
+<table>
+<tr>
+<td valign=top><EMBED src=pnglogo.png WIDTH=256 HEIGHT=192>
+<td valign=top>
+  This plugin displays a <a href=http://www.cdrom.com/pub/png/>PNG format</a> image.
+  <p>
+  New image format can be supported by
+  adding new image I/O handlers to the Qt library
+  (see QImage::defineIOHandler), thus providing the functionality in both
+  applications and WWW plugins from the same code.
+</table>
+  <p>
+This plugin supports transparency and scaling of the image, just like
+GIFs in most WWW browsers.
+
+<br>
+<EMBED align=middle src=test.png WIDTH=182 HEIGHT=138>
+<EMBED align=middle src=test.png WIDTH=137 HEIGHT=104>
+<EMBED align=middle src=test.png WIDTH=91 HEIGHT=69>
+<EMBED align=middle src=test.png WIDTH=46 HEIGHT=35>
+<pre>// Qt stuff
+#include "<a name="qnp.h"></a><a href="qnp-h.html">qnp.h</a>"
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qimage.h"></a><a href="qimage-h.html">qimage.h</a>&gt;
+#include &lt;<a name="qpixmap.h"></a><a href="qpixmap-h.html">qpixmap.h</a>&gt;
+#include &lt;<a name="qmessagebox.h"></a><a href="qmessagebox-h.html">qmessagebox.h</a>&gt;
+#include &lt;<a name="qpopupmenu.h"></a><a href="qpopupmenu-h.html">qpopupmenu.h</a>&gt;
+#include "<a name="qpngio.h"></a><a href="qpngio-h.html">qpngio.h</a>"
+
+#include &lt;math.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+class ImageView : public QNPWidget {
+public:
+    ImageView()
+    {
+        popup = new <a name="QPopupMenu"></a><a href="qpopupmenu.html">QPopupMenu</a>;
+        popup-&gt;<a name="insertItem"></a><a href="qmenudata.html#0076cb">insertItem</a>("Left as");
+        popup-&gt;<a href="qmenudata.html#0076cb">insertItem</a>("An exercise");
+        popup-&gt;<a href="qmenudata.html#0076cb">insertItem</a>("For the");
+        popup-&gt;<a href="qmenudata.html#0076cb">insertItem</a>("Reader!");
+    }
+
+    void paintEvent(<a name="QPaintEvent"></a><a href="qpaintevent.html">QPaintEvent</a>* event)
+    {
+        <a name="QPainter"></a><a href="qpainter.html">QPainter</a> p(this);
+        p.<a name="setClipRect"></a><a href="qpainter.html#898839">setClipRect</a>(event-&gt;<a name="rect"></a><a href="qpaintevent.html#2d6e18">rect</a>());
+
+        if ( pm.<a name="size"></a><a href="qpixmap.html#60b65f">size</a>() == size() ) {
+            p.<a name="drawPixmap"></a><a href="qpainter.html#c64b89">drawPixmap</a>(0,0,pm);
+        } else {
+            if ( pmScaled.<a href="qpixmap.html#60b65f">size</a>() != size() ) {
+                <a name="QWMatrix"></a><a href="qwmatrix.html">QWMatrix</a> m;
+                m.<a name="scale"></a><a href="qwmatrix.html#41a356">scale</a>((double)width()/pm.<a name="width"></a><a href="qpixmap.html#86dbc5">width</a>(),
+                        (double)height()/pm.<a name="height"></a><a href="qpixmap.html#d5bb33">height</a>());
+                pmScaled = pm.<a name="xForm"></a><a href="qpixmap.html#ff5fcf">xForm</a>(m);
+            }
+            p.<a href="qpainter.html#c64b89">drawPixmap</a>(0,0,pmScaled);
+        }
+    }
+
+    void mousePressEvent(<a name="QMouseEvent"></a><a href="qmouseevent.html">QMouseEvent</a>* e)
+    {
+        popup-&gt;<a name="popup"></a><a href="qpopupmenu.html#0d7b5f">popup</a>(mapToGlobal(e-&gt;<a name="pos"></a><a href="qmouseevent.html#ac6f25">pos</a>()));
+    }
+
+    void showImage(const QImage&amp; image)
+    {
+        pm.<a name="convertFromImage"></a><a href="qpixmap.html#00951a">convertFromImage</a>(image, QPixmap::Color);
+        repaint( FALSE );
+    }
+
+private:
+    <a name="QPixmap"></a><a href="qpixmap.html">QPixmap</a> pm;
+    <a href="qpixmap.html">QPixmap</a> pmScaled;
+    <a href="qpopupmenu.html">QPopupMenu</a>* popup;
+};
+
+class ImageLoader : public QNPInstance {
+    ImageView* iv;
+    <a name="QImage"></a><a href="qimage.html">QImage</a> image;
+
+public:
+    ImageLoader() : iv(0)
+    {
+    }
+
+    <a name="QNPWidget"></a><a href="qnpwidget.html">QNPWidget</a>* newWindow()
+    {
+        iv = new ImageView;
+        imageToIV();
+        return iv;
+    }
+
+    void imageToIV()
+    {
+        if (!iv || image.<a name="isNull"></a><a href="qimage.html#2f0bdd">isNull</a>()) return;
+
+        iv-&gt;showImage(image);
+        image.<a name="reset"></a><a href="qimage.html#4533e3">reset</a>();
+    }
+
+    bool newStreamCreated(<a name="QNPStream"></a><a href="qnpstream.html">QNPStream</a>*, StreamMode&amp; smode)
+    {
+        smode = AsFileOnly;
+        return TRUE;
+    }
+
+    void streamAsFile(<a href="qnpstream.html">QNPStream</a>*, const char* fname)
+    {
+        qInitPngIO();
+
+        image = QImage(fname);
+        if ( image.<a href="qimage.html#2f0bdd">isNull</a>() )
+            fprintf(stderr, "Could not convert file: %s\n", fname);
+        imageToIV();
+    }
+};
+
+class ImagePlugin : public QNPlugin {
+
+public:
+    ImagePlugin()
+    {
+    }
+
+    <a name="QNPInstance"></a><a href="qnpinstance.html">QNPInstance</a>* newInstance()
+    {
+        return new ImageLoader;
+    }
+
+    const char* getMIMEDescription() const
+    {
+        return "image/x-png:png:PNG Image;"
+               "image/png:png:PNG Image;"
+               "image/x-portable-bitmap:pbm:PBM Image;"
+               "image/x-portable-graymap:pgm:PGM Image;"
+               "image/x-portable-pixmap:ppm:PPM Image;"
+               "image/bmp:bmp:BMP Image;"
+               "image/x-ms-bmp:bmp:BMP Image;"
+               "image/x-xpixmap:xpm:XPM Image;"
+               "image/xpm:xpm:XPM Image";
+    }
+
+    const char * getPluginNameString() const
+    {
+        return "Qt-based Image Plugin";
+    }
+
+    const char * getPluginDescriptionString() const
+    {
+        return "Supports all image formats supported by Qt";
+    }
+};
+
+<a name="QNPlugin"></a><a href="qnplugin.html">QNPlugin</a>* QNPlugin::create()
+{
+    return new ImagePlugin;
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

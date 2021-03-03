@@ -1,0 +1,203 @@
+'\" t
+.TH QProgressBar 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QProgressBar \- Horizontal progress bar
+.br
+.PP
+\fC#include <qprogressbar.h>\fR
+.PP
+Inherits QFrame.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQProgressBar\fR ( QWidget * " "parent" "=0, const char * " "name" "=0, WFlags " "f" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQProgressBar\fR ( int " "totalSteps" ", QWidget * " "parent" "=0, const char * " "name" "=0, WFlags " "f" "=0 ) "
+.br
+.ti -1c
+.BI "int \fBtotalSteps\fR () const"
+.br
+.ti -1c
+.BI "int \fBprogress\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetCenterIndicator\fR ( bool on ) "
+.br
+.ti -1c
+.BI "bool \fBcenterIndicator\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetIndicatorFollowsStyle\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBindicatorFollowsStyle\fR () const"
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "void \fBreset\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetTotalSteps\fR ( int totalSteps ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetProgress\fR ( int progress ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawContentsMask\fR ( QPainter * ) "
+.br
+.ti -1c
+.BI "virtual bool \fBsetIndicator\fR ( QString & " "progress_str" ", int " "progress" ", int totalSteps ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+int	totalSteps	totalSteps	setTotalSteps
+int	progress	progress	setProgress
+bool	centerIndicator	centerIndicator	setCenterIndicator
+bool	indicatorFollowsStyle	indicatorFollowsStyle	setIndicatorFollowsStyle
+.TE
+.fi
+
+.SH DESCRIPTION
+The QProgressBar widget provides a horizontal progress bar.
+.PP
+A progress bar is used to give the user an indication of progress of an operation. To reassure them that the application has not crashed.
+.PP
+QProgressBar only implements the basic progress display, while QProgressDialog provides a fuller encapsulation.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QProgressDialog and GUI Design Handbook: Progress Indicator
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QProgressBar::QProgressBar ( QWidget * parent=0, const char * name=0, WFlags f=0 )"
+Constructs a progress bar.
+.PP
+The total number of steps is set to 100 by default.
+.PP
+\fIparent, name\fR and \fIf\fR are sent to the QFrame::QFrame() constructor.
+.PP
+See also setTotalSteps().
+.SH "QProgressBar::QProgressBar ( int totalSteps, QWidget * parent=0, const char * name=0, WFlags f=0 )"
+Constructs a progress bar.
+.PP
+\fItotalSteps\fR is the total number of steps in the operation of which this progress bar shows the progress. For example, if the operation is to examine 50 files, this value would be 50, then before examining the first file, call setProgress(0), and after examining the last file call setProgress(50).
+.PP
+\fIparent, name\fR and \fIf\fR are sent to the QFrame::QFrame() constructor.
+.PP
+See also setTotalSteps() and setProgress().
+.SH "bool QProgressBar::centerIndicator () const"
+Returns where the indicator string should be displayed if indicatorFollowsStyle() is TRUE.
+.PP
+See also setCenterIndicator(), indicatorFollowsStyle(), setIndicatorFollowsStyle() and setIndicator().
+.SH "void QProgressBar::drawContents ( QPainter * p ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QFrame.
+.SH "void QProgressBar::drawContentsMask ( QPainter * p ) \fC[virtual protected]\fR"
+Draws the progressbar contents mask using the painter \fIp.\fR Used only in transparent mode.
+.PP
+See also QWidget::setAutoMask();.
+.PP
+Reimplemented from QFrame.
+.SH "bool QProgressBar::indicatorFollowsStyle () const"
+Returns whether the display of the indicator string should follow the GUI style or not.
+.PP
+See also setIndicatorFollowsStyle(), setCenterIndicator(), centerIndicator() and setIndicator().
+.SH "QSize QProgressBar::minimumSizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "int QProgressBar::progress () const"
+Returns the current amount of progress, or -1 if the progress counting has not started.
+.PP
+See also setProgress().
+.SH "void QProgressBar::reset () \fC[slot]\fR"
+Reset the progress bar. The progress bar `rewinds'.
+.SH "void QProgressBar::setCenterIndicator ( bool on )"
+If set to TRUE (the default) the progress bar always shows the indicator text at the center of the progress bar, regardless of the GUI style currently set. If set to FALSE the progress bar always shows the indicator text outside the progress bar, regardless of the GUI style currently set.
+.PP
+Calling this function always sets indicatorFollowsStyle() to FALSE.
+.PP
+See also centerIndicator(), indicatorFollowsStyle(), setIndicatorFollowsStyle() and setIndicator().
+.SH "bool QProgressBar::setIndicator ( QString & indicator, int progress, int totalSteps ) \fC[virtual protected]\fR"
+This method is called to generate the text displayed in the center of the progress bar.
+.PP
+The progress may be negative, indicating that the bar is in the "reset" state before any progress is set.
+.PP
+The default implementation it is the percentage of completion or blank in the reset state.
+.PP
+This method should return FALSE if the string is unchanged since the last call to the method, to allow efficient repainting of the progress bar.
+.SH "void QProgressBar::setIndicatorFollowsStyle ( bool on )"
+When set to TRUE (the default) the positioning of the indicator string follows the GUI style. When set to FALSE the indicator position is decided by the value of indicatorFollowsStyle().
+.PP
+See also indicatorFollowsStyle(), centerIndicator(), setCenterIndicator() and setIndicator().
+.SH "void QProgressBar::setProgress ( int progress ) \fC[virtual slot]\fR"
+Sets the current amount of progress made to \fIprogress\fR units of the total number of steps.
+.PP
+See also progress() and totalSteps().
+.SH "void QProgressBar::setTotalSteps ( int totalSteps ) \fC[virtual slot]\fR"
+Sets the total number of steps to \fItotalSteps.\fR
+.PP
+See also totalSteps().
+.SH "void QProgressBar::show () \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSize QProgressBar::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSizePolicy QProgressBar::sizePolicy () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QProgressBar::styleChange ( QStyle & old ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "int QProgressBar::totalSteps () const"
+Returns the total number of steps.
+.PP
+See also  setTotalSteps().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qprogressbar.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qprogressbar.3qt) and the Qt
+version (2.3.2).

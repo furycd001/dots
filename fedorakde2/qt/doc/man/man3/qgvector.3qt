@@ -1,0 +1,224 @@
+'\" t
+.TH QGVector 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QGVector \- Internal class for implementing Qt collection classes
+.br
+.PP
+\fC#include <qgvector.h>\fR
+.PP
+Inherits QCollection.
+.PP
+Inherited by QVector.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "QDataStream& \fBread\fR ( QDataStream & ) (internal)"
+.br
+.ti -1c
+.BI "QDataStream& \fBwrite\fR ( QDataStream & ) const (internal)"
+.br
+.ti -1c
+.BI "virtual int \fBcompareItems\fR ( Item, Item ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQGVector\fR () (internal)"
+.br
+.ti -1c
+.BI "\fBQGVector\fR ( uint size ) (internal)"
+.br
+.ti -1c
+.BI "\fBQGVector\fR ( const QGVector & v ) (internal)"
+.br
+.ti -1c
+.BI "\fB~QGVector\fR () (internal)"
+.br
+.ti -1c
+.BI "QGVector& \fBoperator=\fR ( const QGVector & v ) (internal)"
+.br
+.ti -1c
+.BI "Item* \fBdata\fR () const"
+.br
+.ti -1c
+.BI "uint \fBsize\fR () const"
+.br
+.ti -1c
+.BI "virtual uint \fBcount\fR () const"
+.br
+.ti -1c
+.BI "bool \fBinsert\fR ( uint " "index" ", Item ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBremove\fR ( uint index ) (internal)"
+.br
+.ti -1c
+.BI "Item \fBtake\fR ( uint index ) "
+.br
+.ti -1c
+.BI "virtual void \fBclear\fR () (internal)"
+.br
+.ti -1c
+.BI "bool \fBresize\fR ( uint newsize ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBfill\fR ( Item, int flen ) (internal)"
+.br
+.ti -1c
+.BI "void \fBsort\fR () (internal)"
+.br
+.ti -1c
+.BI "int \fBbsearch\fR ( Item ) const (internal)"
+.br
+.ti -1c
+.BI "int \fBfindRef\fR ( Item, uint index ) const (internal)"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( Item, uint index ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBcontainsRef\fR ( Item ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBcontains\fR ( Item ) const (internal)"
+.br
+.ti -1c
+.BI "Item \fBat\fR ( uint index ) const"
+.br
+.ti -1c
+.BI "bool \fBinsertExpand\fR ( uint " "index" ", Item ) (internal)"
+.br
+.ti -1c
+.BI "void \fBtoList\fR ( QGList * ) const (internal)"
+.br
+.ti -1c
+.BI "virtual QDataStream& \fBread\fR ( QDataStream &, Item & ) "
+.br
+.ti -1c
+.BI "virtual QDataStream& \fBwrite\fR ( QDataStream &, Item ) const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QGVector class is an internal class for implementing Qt collection classes.
+.PP
+QGVector is a strictly internal class that acts as a base class for the QVector collection class.
+.PP
+QGVector has some virtual functions that may be reimplemented in subclasses to customize behavior.
+.TP
+compareItems() compares two collection/vector items.
+.TP
+read() reads a collection/vector item from a QDataStream.
+.TP
+write() writes a collection/vector item to a QDataStream.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "Item QGVector::at ( uint index ) const \fC[protected]\fR"
+For internal use only.
+.SH "int QGVector::compareItems ( Item d1, Item d2 ) \fC[virtual]\fR"
+This virtual function compares two list items.
+.PP
+Returns:
+.TP
+0 if \fIitem1\fR == \fIitem2\fR
+.TP
+non-zero if \fIitem1\fR != \fIitem2\fR
+.PP
+This function returns \fIint\fR rather than \fIbool\fR so that reimplementations can return one of three values and use it to sort by:
+.TP
+0 if \fIitem1\fR == \fIitem2\fR
+.TP
+> 0 (positive integer) if \fIitem1\fR > \fIitem2\fR
+.TP
+< 0 (negative integer) if \fIitem1\fR < \fIitem2\fR
+.PP
+The QVector::sort() and QVector::bsearch() functions require that compareItems() is implemented as described here.
+.PP
+This function should not modify the vector because some const functions call compareItems().
+.SH "uint QGVector::count () const \fC[virtual protected]\fR"
+For internal use only.
+.PP
+Reimplemented from QCollection.
+.SH "Item * QGVector::data () const \fC[protected]\fR"
+For internal use only.
+.SH "QDataStream & QGVector::read ( QDataStream & s, Item & d ) \fC[virtual protected]\fR"
+Reads a collection/vector item from the stream \fIs\fR and returns a reference to the stream.
+.PP
+The default implementation sets \fIitem\fR to 0.
+.PP
+See also write().
+.SH "uint QGVector::size () const \fC[protected]\fR"
+For internal use only.
+.SH "QDataStream & QGVector::write ( QDataStream & s, Item ) const \fC[virtual protected]\fR"
+Writes a collection/vector item to the stream \fIs\fR and returns a reference to the stream.
+.PP
+The default implementation does nothing.
+.PP
+See also read().
+.SH "QGVector::QGVector () \fC[protected]\fR"
+For internal use only.
+.SH "QGVector::QGVector ( const QGVector & a ) \fC[protected]\fR"
+For internal use only.
+.SH "QGVector::QGVector ( uint size ) \fC[protected]\fR"
+For internal use only.
+.SH "QGVector::~QGVector () \fC[protected]\fR"
+For internal use only.
+.SH "int QGVector::bsearch ( Item d ) const \fC[protected]\fR"
+For internal use only.
+.SH "void QGVector::clear () \fC[virtual protected]\fR"
+For internal use only.
+.PP
+Reimplemented from QCollection.
+.SH "uint QGVector::contains ( Item d ) const \fC[protected]\fR"
+For internal use only.
+.SH "uint QGVector::containsRef ( Item d ) const \fC[protected]\fR"
+For internal use only.
+.SH "bool QGVector::fill ( Item d, int flen ) \fC[protected]\fR"
+For internal use only.
+.SH "int QGVector::find ( Item d, uint index ) const \fC[protected]\fR"
+For internal use only.
+.SH "int QGVector::findRef ( Item d, uint index ) const \fC[protected]\fR"
+For internal use only.
+.SH "bool QGVector::insert ( uint index, Item d ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGVector::insertExpand ( uint index, Item d ) \fC[protected]\fR"
+For internal use only.
+.SH "QGVector& QGVector::operator= ( const QGVector & v ) \fC[protected]\fR"
+For internal use only.
+.SH "QDataStream & QGVector::read ( QDataStream & s )"
+For internal use only.
+.SH "bool QGVector::remove ( uint index ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGVector::resize ( uint newsize ) \fC[protected]\fR"
+For internal use only.
+.SH "void QGVector::sort () \fC[protected]\fR"
+For internal use only.
+.SH "void QGVector::toList ( QGList * list ) const \fC[protected]\fR"
+For internal use only.
+.SH "QDataStream & QGVector::write ( QDataStream & s ) const"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qgvector.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qgvector.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,101 @@
+'\" t
+.TH QCommonStyle 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCommonStyle \- Encapsulates common Look and Feel of a GUI
+.br
+.PP
+\fC#include <qcommonstyle.h>\fR
+.PP
+Inherits QStyle.
+.PP
+Inherited by QMotifStyle and QWindowsStyle.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "ScrollControl \fBscrollBarPointOver\fR ( const QScrollBar * " "sb" ", int " "sliderStart" ", const QPoint & p ) "
+.br
+.ti -1c
+.BI "void \fBdrawMenuBarItem\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", QMenuItem * " "mi" ", QColorGroup & " "g" ", bool " "enabled" ", bool active ) "
+.br
+.in -1c
+.SH DESCRIPTION
+Encapsulates common Look and Feel of a GUI.
+.PP
+This abstract class implements some of the widget's look and feel that is common to all GUI styles provided and shipped as part of Qt.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QRect QCommonStyle::comboButtonFocusRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "QRect QCommonStyle::comboButtonRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QCommonStyle::defaultFrameWidth () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::drawComboButton ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken = FALSE, bool = FALSE, bool = TRUE, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::drawComboButtonMask ( QPainter * p, int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::drawPushButtonLabel ( QPushButton * btn, QPainter * p ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::drawSliderGrooveMask ( QPainter * p, int x, int y, int w, int h, QCOORD c, Orientation orient ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::drawSliderMask ( QPainter * p, int x, int y, int w, int h, Orientation, bool, bool ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::drawTab ( QPainter * p, const QTabBar * tb, QTab * t, bool selected )"
+Reimplemented for internal reasons; the API is not affected.
+.SH "void QCommonStyle::drawTabMask ( QPainter * p, const QTabBar *, QTab * t, bool )"
+Reimplemented for internal reasons; the API is not affected.
+.SH "void QCommonStyle::getButtonShift ( int & x, int & y ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QCommonStyle::maximumSliderDragDistance () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QCommonStyle::popupSubmenuIndicatorWidth ( const QFontMetrics & fm ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QCommonStyle::tabbarMetrics ( const QTabBar * t, int & hframe, int & vframe, int & overlap )"
+Reimplemented for internal reasons; the API is not affected.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcommonstyle.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcommonstyle.3qt) and the Qt
+version (2.3.2).

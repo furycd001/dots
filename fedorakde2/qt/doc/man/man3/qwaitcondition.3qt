@@ -1,0 +1,190 @@
+'\" t
+.TH QWaitCondition 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QWaitCondition \- Allows waiting/waking for conditions between threads
+.br
+.PP
+\fC#include <qthread.h>\fR
+.PP
+Inherits Qt.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQWaitCondition\fR () "
+.br
+.ti -1c
+.BI "virtual \fB~QWaitCondition\fR () "
+.br
+.ti -1c
+.BI "bool \fBwait\fR ( unsigned long " "time" " = ULONG_MAX ) "
+.br
+.ti -1c
+.BI "bool \fBwait\fR ( QMutex * " "mutex" ", unsigned long " "time" " = ULONG_MAX ) "
+.br
+.ti -1c
+.BI "void \fBwakeOne\fR () "
+.br
+.ti -1c
+.BI "void \fBwakeAll\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QWaitCondition class allows waiting/waking for conditions between threads
+.PP
+QWaitConditions allow a thread to tell other threads that some sort of condition has been met; one or many threads can block waiting for a QWaitCondition to set a condition with wakeOne() or wakeAll. Use wakeOne() to wake one randomly-selected event or wakeAll() to wake them all. For example, say we have three tasks that should be performed every time the user presses a key; each task could be split into a thread, each of which would have a run() body like so:
+.PP
+.nf
+.br
+  QWaitCondition key_pressed;
+.br
+.br
+  for (;;) {
+.br
+     key_pressed.wait();    // This is a QWaitCondition global variable
+.br
+     // Key was pressed, do something interesting
+.br
+     do_something();
+.br
+  }
+.fi
+.PP
+A fourth thread would read key presses and wake the other three threads up every time it receives one, like so:
+.PP
+.nf
+.br
+  QWaitCondition key_pressed;
+.br
+.br
+  for (;;) {
+.br
+     getchar();
+.br
+     // Causes any thread in key_pressed.wait() to return from
+.br
+     // that method and continue processing
+.br
+     key_pressed.wakeAll();
+.br
+  }
+.fi
+.PP
+Note that the order the three threads are woken up in is undefined, and that if some or all of the threads are still in do_something() when the key is pressed, they won't be woken up (since they're not waiting on the condition variable) and so the task will not be performed for that key press. This can be avoided by, for example, doing something like this:
+.PP
+.nf
+.br
+  QMutex mymutex;
+.br
+  QWaitCondition key_pressed;
+.br
+  int mycount=0;
+.br
+.br
+  // Worker thread code
+.br
+  for (;;) {
+.br
+     key_pressed.wait();    // This is a QWaitCondition global variable
+.br
+     mymutex.lock();
+.br
+     mycount++;
+.br
+     mymutex.unlock();
+.br
+     do_something();
+.br
+     mymutex.lock();
+.br
+     mycount--;
+.br
+     mymutex.unlock();
+.br
+  }
+.br
+.br
+  // Key reading thread code
+.br
+  for (;;) {
+.br
+     getchar();
+.br
+     mymutex.lock();
+.br
+     // Sleep until there are no busy worker threads
+.br
+     while(count>0) {
+.br
+       mymutex.unlock();
+.br
+       sleep(1);
+.br
+       mymutex.lock();
+.br
+     }
+.br
+     mymutex.unlock();
+.br
+     key_pressed.wakeAll();
+.br
+  }
+.fi
+.PP
+The mutexes are necessary because the results if two threads attempt to change the value of the same variable simultaneously are unpredictable.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QWaitCondition::QWaitCondition ()"
+Constructs a new event signalling object.
+.SH "QWaitCondition::~QWaitCondition () \fC[virtual]\fR"
+Deletes the event signalling object.
+.SH "bool QWaitCondition::wait ( QMutex * mutex, unsigned long time = ULONG_MAX )"
+Release the locked \fImutex\fR and wait on the thread event object. The \fImutex\fR must be initially locked by the calling thread. If \fImutex\fR is not in a locked state, this function returns immediately. The \fImutex\fR will be unlocked, and the thread calling will block until one of 2 conditions is met:
+.TP
+Another thread signals it using wakeOne() or wakeAll(). This function will return TRUE in this case.
+.TP
+\fItime\fR milliseconds has elapsed. If \fItime\fR is ULONG_MAX (default argument), then the wait will never timeout (the event must signalled). This function will return FALSE if the wait timed out.
+.PP
+The mutex will be returned to the same locked state. This function is provided to allow the atomic transition from the locked state to the wait state.
+.PP
+See also wakeOne() and wakeAll().
+.SH "bool QWaitCondition::wait ( unsigned long time = ULONG_MAX )"
+Wait on the thread event object. The thread calling this will block until one of 2 conditions is met:
+.TP
+Another thread signals it using wakeOne() or wakeAll(). This function will return TRUE in this case.
+.TP
+\fItime\fR milliseconds has elapsed. If \fItime\fR is ULONG_MAX (default argument), then the wait will never timeout (the event must signalled). This function will return FALSE if the wait timed out.
+.PP
+See also wakeOne() and wakeAll().
+.SH "void QWaitCondition::wakeAll ()"
+This wakes all threads waiting on the QWaitCondition. The order in which the threads are woken up depends on the operating system's scheduling policies, and cannot be controlled or predicted.
+.PP
+See also wakeOne().
+.SH "void QWaitCondition::wakeOne ()"
+This wakes one thread waiting on the QWaitCondition. The thread that woken up depends on the operating system's scheduling policies, and cannot be controlled or predicted.
+.PP
+See also  wakeAll().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qwaitcondition.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qwaitcondition.3qt) and the Qt
+version (2.3.2).

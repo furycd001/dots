@@ -1,0 +1,380 @@
+/****************************************************************************
+** $Id: qt/doc/signalsandslots.doc   2.3.2   edited 2001-01-26 $
+**
+** Explanation of moc and the meta object system
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page signalsandslots.html
+
+\title Signals and Slots
+
+Signals and slots are used for communication between objects.  The
+signal/slot mechanism is a central feature of Qt and probably the
+part that differs most from other toolkits.
+
+In most GUI toolkits widgets have a callback for each action they can
+trigger. This callback is a pointer to a function. In Qt, signals and
+slots have taken over from these messy function pointers.
+
+Signals and slots can take any number of arguments of any type. They are
+completely typesafe: no more callback core dumps!
+
+All classes that inherit from QObject or one of its subclasses
+(e.g. QWidget) can contain signals and slots.  Signals are emitted by
+objects when they change their state in a way that may be interesting
+to the outside world.  This is all the object does to communicate.  It
+does not know if anything is receiving the signal at the other end.
+This is true information encapsulation, and ensures that the object
+can be used as a software component.
+
+Slots can be used for receiving signals, but they are normal member
+functions. A slot does not know if it has any signal(s) connected to
+it. Again, the object does not know about the communication mechanism and
+can be used as a true software component.
+
+You can connect as many signals as you want to a single slot, and a
+signal can be connected to as many slots as you desire. It is even
+possible to connect a signal directly to another signal.  (This will
+emit the second signal immediately whenever the first is emitted.)
+
+Together, signals and slots make up a powerful component programming
+mechanism.
+
+<h2>A Small Example</h2>
+
+A minimal C++ class declaration might read:
+
+\code
+    class Foo
+    {
+    public:
+	Foo();
+	int  value() const { return val; }
+	void setValue( int );
+    private:
+	int  val;
+    };
+\endcode
+
+A small Qt class might read:
+
+\code
+    class Foo : public QObject
+    {
+	Q_OBJECT
+    public:
+	Foo();
+	int  value() const { return val; }
+    public slots:
+	void setValue( int );
+    signals:
+	void valueChanged( int );
+    private:
+	int  val;
+    };
+\endcode
+
+This class has the same internal state, and public methods to access the
+state, but in addition it has support for component programming using
+signals and slots: This class can tell the outside world that its state
+has changed by emitting a signal, <code>valueChanged()</code>, and it has
+a slot which other objects may send signals to.
+
+All classes that contain signals and/or slots must mention Q_OBJECT in
+their declaration.
+
+Slots are implemented by the application programmer (that's you).
+Here is a possible implementation of Foo::setValue():
+
+\code
+    void Foo::setValue( int v )
+    {
+	if ( v != val ) {
+	    val = v;
+	    emit valueChanged(v);
+	}
+    }
+\endcode
+
+The line <code>emit valueChanged(v)</code> emits the signal
+<code>valueChanged</code> from the object.  As you can see, you emit a
+signal by using <code>emit signal(arguments)</code>.
+
+Here is one way to connect two of these objects together:
+
+\code
+    Foo a, b;
+    connect(&a, SIGNAL(valueChanged(int)), &b, SLOT(setValue(int)));
+    b.setValue( 11 );
+    a.setValue( 79 );
+    b.value();		// this would now be 79, why?
+\endcode
+
+Calling <code>a.setValue(79)</code> will make <code>a</code> emit a
+signal, which <code>b</code> will receive,
+i.e. <code>b.setValue(79)</code> is invoked. <code>b</code> will in turn
+emit the same signal, which nobody receives, since no slot has been
+connected to it, so it disappears into hyperspace.
+
+Note that the <code>setValue()</code> function sets the value and emits
+the signal only if <code>v != val</code>. This prevents infinite looping
+in the case of cyclic connections (e.g. if <code>b.valueChanged()</code>
+were connected to <code>a.setValue()</code>).
+
+This example illustrates that objects can work together without knowing
+each other, as long as there is someone around to set up a connection
+between them initially.
+
+The preprocessor changes or removes the <code>signals</code>,
+<code>slots</code> and <code>emit</code> keywords so the compiler won't
+see anything it can't digest.
+
+Run the <a href="moc.html">moc</a> on class definitions that contains
+signals or slots. This produces a C++ source file which should be compiled
+and linked with the other object files for the application.
+
+<h2>Signals</h2>
+
+Signals are emitted by an object when its internal state has changed
+in some way that might be interesting to the object's client or owner.
+Only the class that defines a signal and its subclasses can emit the
+signal.
+
+A list box, for instance, emits both <code>highlighted()</code> and
+<code>activated()</code> signals.  Most object will probably only be
+interested in <code>activated()</code> but some may want to know about
+which item in the list box is currently highlighted.  If the signal is
+interesting to two different objects you just connect the signal to
+slots in both objects.
+
+When a signal is emitted, the slots connected to it are executed
+immediately, just like a normal function call. The signal/slot
+mechanism is totally independent of any GUI event loop. The
+<code>emit</code> will return when all slots have returned.
+
+If several slots are connected to one signal, the slots will be
+executed one after the other, in an arbitrary order, when the signal
+is emitted.
+
+Signals are automatically generated by the moc and must not be implemented
+in the .cpp file. They can never have return types (i.e. use \c void).
+
+A word about arguments: Our experience shows that signals and slots
+are more reusable if they do \e not use special types.  If \l
+QScrollBar::valueChanged() were to use a special type such as the
+hypothetical QRangeControl::Range, it could only be connected to slots
+designed specifically for QRangeControl.  Something as simple as the
+program in <a href="t5.html">Tutorial 5</a> would be impossible.
+
+<h2>Slots</h2>
+
+A slot is called when a signal connected to it is emitted.  Slots are
+normal C++ functions and can be called normally; their only special
+feature is that signals can be connected to them.  A slot's arguments
+cannot have default values, and as for signals, it is generally a bad
+idea to use custom types for slot arguments.
+
+Since slots are normal member functions with just a little extra
+spice, they have access rights like everyone else.  A slot's access
+right determines who can connect to it:
+
+A <code>public slots:</code> section contains slots that anyone can
+connect signals to.  This is very useful for component programming:
+You create objects that know nothing about each other, connect their
+signals and slots so information is passed correctly, and, like a
+model railway, turn it on and leave it running.
+
+A <code>protected slots:</code> section contains slots that this class
+and its subclasses may connect signals to.  This is intended for
+slots that are part of the class' implementation rather than its
+interface towards the rest of the world.
+
+A <code>private slots:</code> section contains slots that only the
+class itself may connect signals to.  This is intended for very
+tightly connected classes, where even subclasses aren't trusted to get
+the connections right.
+
+Of course, you can also define slots to be virtual.  We have found
+this to be very useful.
+
+Signals and slots are fairly efficient. Of course there's some loss of
+speed compared to "real" callbacks due to the increased flexibility, but
+the loss is fairly small, we measured it to approximately 10 microseconds
+on a i586-133 running Linux (less than 1 microsecond when no slot has been
+connected) , so the simplicity and flexibility the mechanism affords is
+well worth it.
+
+<h2>Meta Object Information</h2>
+
+The meta object compiler (moc) parses the class declaration in a C++
+file and generates C++ code that initializes the meta object. The meta
+object contains names of all signal and slot members, as well as
+pointers to these functions.
+
+The meta object contains additional information such as the object's \link
+QObject::className() class name\endlink. You can also check if an object
+\link QObject::inherits() inherits\endlink a specific class, for example:
+
+\code
+  if ( widget->inherits("QButton") ) {
+	// yes, it is a push button, radio button etc.
+  }
+\endcode
+
+<h2>A Real Example</h2>
+
+Here is a simple commented example (code fragments from \l qlcdnumber.h ).
+
+\code
+    #include "qframe.h"
+    #include "qbitarray.h"
+
+    class QLCDNumber : public QFrame
+\endcode
+
+QLCDNumber inherits QObject, which has most of the signal/slot
+knowledge, via QFrame and QWidget, and #include's the relevant
+declarations.
+
+\code
+    {
+	Q_OBJECT
+\endcode
+
+Q_OBJECT is expanded by the preprocessor to declare several member
+functions that are implemented by the moc; if you get compiler errors
+along the lines of "virtual function QButton::className not defined"
+you have probably forgotten to <a href="moc.html">run the moc</a> or to
+include the moc output in the link command.
+
+\code
+    public:
+	QLCDNumber( QWidget *parent=0, const char *name=0 );
+	QLCDNumber( uint numDigits, QWidget *parent=0, const char *name=0 );
+\endcode
+
+It's not obviously relevant to the moc, but if you inherit QWidget you
+almost certainly want to have <em>parent</em> and <em>name</em>
+arguments to your constructors, and pass them to the parent
+constructor.
+
+Some destructors and member functions are omitted here, the moc
+ignores member functions.
+
+\code
+    signals:
+	void	overflow();
+\endcode
+
+QLCDNumber emits a signal when it is asked to show an impossible
+value.
+
+"But I don't care about overflow," or "But I know the number won't
+overflow."  Very well, then you don't connect the signal to any slot,
+and everything will be fine.
+
+"But I want to call two different error functions when the number
+overflows."  Then you connect the signal to two different slots.  Qt
+will call both (in arbitrary order).
+
+\code
+    public slots:
+	void	display( int num );
+	void	display( double num );
+	void	display( const char *str );
+	void    setHexMode();
+	void    setDecMode();
+	void    setOctMode();
+	void    setBinMode();
+	void	smallDecimalPoint( bool );
+\endcode
+
+A slot is a receiving function, used to get information about state
+changes in other widgets.  QLCDNumber uses it, as you can see, to set
+the displayed number.  Since <code>display()</code> is part of the
+class' interface with the rest of the program, the slot is public.
+
+Several of the example program connect the newValue signal of a
+QScrollBar to the display slot, so the LCD number continuously shows
+the value of the scroll bar.
+
+Note that display() is overloaded; Qt will select the appropriate version
+when you connect a signal to the slot.With callbacks, you'd have to find
+five different names and keep track of the types yourself.
+
+Some more irrelevant member functions have been omitted from this
+example.
+
+\code
+    };
+\endcode
+
+<h2>Moc output</h2>
+
+This is really internal to Qt, but for the curious, here is the meat
+of the resulting mlcdnum.cpp:
+
+\code
+    const char *QLCDNumber::className() const
+    {
+	return "QLCDNumber";
+    }
+
+    QMetaObject *QLCDNumber::metaObj = 0;
+
+    void QLCDNumber::initMetaObject()
+    {
+	if ( metaObj )
+	    return;
+	if ( !QFrame::metaObject() )
+	    QFrame::initMetaObject();
+\endcode
+
+That last line is because QLCDNumber inherits QFrame.  The next part,
+which sets up the table/signal structures, has been deleted for
+brevity.
+
+\code
+    }
+
+    // SIGNAL overflow
+    void QLCDNumber::overflow()
+    {
+	activate_signal( "overflow()" );
+    }
+\endcode
+
+One function is generated for each signal, and at present it almost always
+is a single call to the internal Qt function activate_signal(), which
+finds the appropriate slot or slots and passes on the call.  It is not
+recommended to call activate_signal() directly.
+*/

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QGLContext Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QGLContext Class Reference<br><small>[ <a href="opengl.html">OpenGL module</a> ]</small></h1><br clear="all">
+<p>
+The QGLContext class encapsulates an OpenGL rendering context.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qgl-h.html">qgl.h</a>&gt;</code>
+<p>
+Inherits <a href="qgl.html">QGL</a>.
+<p><a href="qglcontext-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#cd1859"><b>QGLContext</b></a> ( const QGLFormat &amp; format, QPaintDevice * device ) </div>
+<li><div class="fn">virtual <a href="#ad3237"><b>~QGLContext</b></a> () </div>
+<li><div class="fn">virtual bool <a href="#ebdd54"><b>create</b></a> ( const QGLContext * shareContext = 0 ) </div>
+<li><div class="fn">bool <a href="#8a42ec"><b>isValid</b></a> () const</div>
+<li><div class="fn">bool <a href="#bf8d5f"><b>isSharing</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#0283b5"><b>reset</b></a> () </div>
+<li><div class="fn">QGLFormat <a href="#df01e6"><b>format</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#87cf0f"><b>setFormat</b></a> ( const QGLFormat &amp; format ) </div>
+<li><div class="fn">virtual void <a href="#fba7ee"><b>makeCurrent</b></a> () </div>
+<li><div class="fn">virtual void <a href="#35dbed"><b>swapBuffers</b></a> () const</div>
+<li><div class="fn">QPaintDevice* <a href="#4cbbbd"><b>device</b></a> () const</div>
+<li><div class="fn">QColor <a href="#d4abe1"><b>overlayTransparentColor</b></a> () const</div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">const QGLContext* <a href="#8859cd"><b>currentContext</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual bool <a href="#664a3c"><b>chooseContext</b></a> ( const QGLContext * shareContext = 0 ) </div>
+<li><div class="fn">virtual void <a href="#7bc880"><b>doneCurrent</b></a> () </div>
+<li><div class="fn">bool <a href="#1c27f5"><b>deviceIsPixmap</b></a> () const</div>
+<li><div class="fn">bool <a href="#2bad53"><b>windowCreated</b></a> () const</div>
+<li><div class="fn">void <a href="#26ab67"><b>setWindowCreated</b></a> ( bool on ) </div>
+<li><div class="fn">bool <a href="#f7fb11"><b>initialized</b></a> () const</div>
+<li><div class="fn">void <a href="#b0b908"><b>setInitialized</b></a> ( bool on ) </div>
+<li><div class="fn">uint <b>colorIndex</b> ( const QColor &amp; c ) const (internal)</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QGLContext class encapsulates an OpenGL rendering context.
+<p>
+An OpenGL rendering context is a complete set of OpenGL state
+variables.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="cd1859"></a>QGLContext::QGLContext ( const <a href="qglformat.html">QGLFormat</a> &amp; format, <a href="qpaintdevice.html">QPaintDevice</a> * device )</h3>
+<p>Constructs an OpenGL context for the paint device <em>device,</em> which
+can be a widget or a pixmap. The <em>format</em> specifies several display
+options for this context.
+<p>If the underlying OpenGL/Window system cannot satisfy all the
+features requested in <em>format,</em> the nearest subset of features will
+be used. After creation, the <a href="#df01e6">format</a>() method will return the actual
+format obtained.
+<p>The context will be <a href="#8a42ec">invalid</a> if it was not
+possible to obtain a GL context at all.
+<p>See also  <a href="#df01e6">format</a>() and <a href="#8a42ec">isValid</a>().
+<h3 class="fn"><a name="ad3237"></a>QGLContext::~QGLContext () <code>[virtual]</code></h3>
+<p>Destroys the OpenGL context.
+<h3 class="fn">bool <a name="664a3c"></a>QGLContext::chooseContext ( const QGLContext * shareContext = 0 = 0 ) <code>[virtual protected]</code></h3>
+<p>This semi-internal function is called by <a href="#ebdd54">create</a>(). It creates a
+system-dependent OpenGL handle that matches the specified <a href="#df01e6">format</a> as closely as possible.
+<p><strong>Windows</strong>: Calls choosePixelFormat() which finds a
+matching pixel format identifier.
+<p><strong>X11</strong>: Calls chooseVisual() which finds an appropriate
+X visual.
+<p>choosePixelFormat() and chooseVisual() can be reimplemented in a
+subclass if you need to choose a very custom context.
+<h3 class="fn">bool <a name="ebdd54"></a>QGLContext::create ( const QGLContext * shareContext = 0 ) <code>[virtual]</code></h3>
+<p>Creates the GL context. Returns TRUE if it was successful in
+creating a GL rendering context on the paint device specified in the
+constructor, otherwise FALSE is returned (the context is invalid).
+<p>After successful creation, <a href="#df01e6">format</a>() returns the set of features of
+the created GL rendering context.
+<p>If <em>shareContext</em> points to a valid QGLContext, this method will
+try to establish OpenGL display list sharing between this context
+and <em>shareContext.</em> Note that this may fail if the two contexts
+have different formats. Use <a href="#bf8d5f">isSharing</a>() to test.
+<p><strong>Implementation note:</strong> Initialization of C++ class members
+usually takes place in the class constructor. QGLContext is an exception
+because it must be simple to customize. The virtual functions
+<a href="#664a3c">chooseContext</a>() (and chooseVisual() for X11) can be reimplemented in a
+subclass to select a particular context. The trouble is that virtual
+functions are not properly called during construction (which is indeed
+correct C++), hence we need a create() function.
+<p>See also  <a href="#664a3c">chooseContext</a>(), <a href="#df01e6">format</a>() and <a href="#8a42ec">isValid</a>().
+<h3 class="fn">const QGLContext* <a name="8859cd"></a>QGLContext::currentContext () <code>[static]</code></h3>
+<p>Returns the current context, i.e. the context to which any OpenGL
+commands will currently be directed to. Returns 0 if no context is
+current.
+<p>See also  <a href="#fba7ee">makeCurrent</a>().
+<h3 class="fn"><a href="qpaintdevice.html">QPaintDevice</a>* <a name="4cbbbd"></a>QGLContext::device () const</h3>
+<p>Returns the paint device set for this context.
+<p>See also  <a href="#cd1859">QGLContext::QGLContext</a>().
+<h3 class="fn">bool <a name="1c27f5"></a>QGLContext::deviceIsPixmap () const <code>[protected]</code></h3>
+<p>Returns TRUE if the paint device of this context is a pixmap,
+otherwise FALSE.
+<h3 class="fn">void <a name="7bc880"></a>QGLContext::doneCurrent () <code>[virtual protected]</code></h3>
+<p>Makes no GL context the current context. Normally, you do not need
+to call this function, QGLContext calls it as necessary.
+<h3 class="fn"><a href="qglformat.html">QGLFormat</a> <a name="df01e6"></a>QGLContext::format () const</h3>
+<p>Returns the format.
+<h3 class="fn">bool <a name="f7fb11"></a>QGLContext::initialized () const <code>[protected]</code></h3>
+<p>Returns TRUE if this context has been initialized, i.e. if
+<a href="qglwidget.html#97a643">QGLWidget::initializeGL</a>() has been performed on it.
+<p>See also  <a href="#b0b908">setInitialized</a>().
+<h3 class="fn">bool <a name="bf8d5f"></a>QGLContext::isSharing () const</h3>
+<p>Returns TRUE if display list sharing with another context was
+requested in the <a href="#ebdd54">create</a>() call, and the GL system was able to
+fulfill this request. Note that display list sharing may possibly
+not be supported between contexts with different formats.
+<h3 class="fn">bool <a name="8a42ec"></a>QGLContext::isValid () const</h3>
+<p>Returns TRUE if a GL rendering context has been successfully created.
+<h3 class="fn">void <a name="fba7ee"></a>QGLContext::makeCurrent () <code>[virtual]</code></h3>
+<p>Makes this context the current OpenGL rendering context.  All GL
+functions you call operate on this context until another context is
+made current.
+<h3 class="fn"><a href="qcolor.html">QColor</a> <a name="d4abe1"></a>QGLContext::overlayTransparentColor () const</h3>
+<p>If this context is a valid context in an overlay plane, returns the
+plane's transparent color. Otherwise returns an <a href="qcolor.html#5cd295">invalid</a> color.
+<p>The returned color's <a href="qcolor.html#4cec2b">pixel</a> value is
+the index of the transparent color in the colormap of the overlay
+plane. The color's RGB values are meaningless, of course.
+<p>The returned <a href="qcolor.html">QColor</a> object will generally only work as expected when
+passed as the argument to <a href="qglwidget.html#f60400">QGLWidget::qglColor</a>() or
+<a href="qglwidget.html#83fed2">QGLWidget::qglClearColor</a>(). Under certain circumstances it can also
+be used to draw transparent graphics with a <a href="qpainter.html">QPainter</a>; see the
+"overlay_x11" example for details.
+<h3 class="fn">void <a name="0283b5"></a>QGLContext::reset () <code>[virtual]</code></h3>
+<p>Resets the context and makes it invalid.
+<p>See also  <a href="#ebdd54">create</a>() and <a href="#8a42ec">isValid</a>().
+<h3 class="fn">void <a name="87cf0f"></a>QGLContext::setFormat ( const <a href="qglformat.html">QGLFormat</a> &amp; format ) <code>[virtual]</code></h3>
+<p>Sets a <em>format</em> for this context. The context is <a href="#0283b5">reset</a>.
+<p>Call <a href="#ebdd54">create</a>() to create a new GL context that tries to match the new
+format.
+<p><pre>    <a href="qglcontext.html">QGLContext</a> *cx;
+      ...
+    <a href="qglformat.html">QGLFormat</a> f;
+    f.<a href="qglformat.html#82dd03">setStereo</a>( TRUE );
+    cx-&gt;<a href="#87cf0f">setFormat</a>( f );
+    if ( !cx-&gt;<a href="#ebdd54">create</a>() )
+        exit(); // no OpenGL support, or cannot render on specified paintdevice
+    if ( !cx-&gt;<a href="#df01e6">format</a>().stereo() )
+        exit(); // could not create stereo context
+</pre>
+<p>See also  <a href="#df01e6">format</a>(), <a href="#0283b5">reset</a>() and <a href="#ebdd54">create</a>().
+<h3 class="fn">void <a name="b0b908"></a>QGLContext::setInitialized ( bool on ) <code>[protected]</code></h3>
+<p>Tells the context whether it has been initialized, i.e. whether
+<a href="qglwidget.html#97a643">QGLWidget::initializeGL</a>() has been performed on it.
+<p>See also  <a href="#f7fb11">initialized</a>().
+<h3 class="fn">void <a name="26ab67"></a>QGLContext::setWindowCreated ( bool on ) <code>[protected]</code></h3>
+<p>Tells the context whether a window has already been created for it.
+<p>See also  <a href="#2bad53">windowCreated</a>().
+<h3 class="fn">void <a name="35dbed"></a>QGLContext::swapBuffers () const <code>[virtual]</code></h3>
+<p>Swaps the screen contents with an off-screen buffer. Works only if
+the context is in double buffer mode.
+<p>See also  <a href="qglformat.html#38644f">QGLFormat::setDoubleBuffer</a>().
+<h3 class="fn">bool <a name="2bad53"></a>QGLContext::windowCreated () const <code>[protected]</code></h3>
+<p>Returns TRUE if a window has been created for this context,
+otherwise FALSE.
+<p>See also  <a href="#26ab67">setWindowCreated</a>().
+<h3 class="fn">uint <a name="8a428b"></a>QGLContext::colorIndex ( const <a href="qcolor.html">QColor</a> &amp; c ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,60 @@
+#=============================================================================
+# Copyright 2017       Helio Chissini de Castro <helio@kde.org>
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+# 1. Redistributions of source code must retain the copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
+set(NETWORK_SRCS
+    qdns.cpp
+    qftp.cpp
+    qhostaddress.cpp
+    qnetwork.cpp
+    qserversocket.cpp
+    qsocket.cpp
+    qsocketdevice.cpp
+    qsocketdevice_unix.cpp
+    )
+
+set(NETWORK_HEADERS
+    qdns.h
+    qftp.h
+    qhostaddress.h
+    qnetwork.h
+    qserversocket.h
+    qsocketdevice.h
+    qsocket.h
+)
+install(FILES ${NETWORK_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/qt2)
+
+qt2_wrap_moc(NETWORK_SRCS
+    SOURCES ${NETWORK_HEADERS})
+
+
+add_qt2_object_library(network
+    SOURCES
+        ${NETWORK_SRCS}
+    COMPILE_DEFINITIONS
+        ${QT_DEFINITIONS}
+    )

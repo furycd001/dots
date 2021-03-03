@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - progressbar/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Progress Bar</h1><br clear="all">
+
+  This example shows how to use a progressbar.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/progressbar/progressbar.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef PROGRESSBAR_H
+#define PROGRESSBAR_H
+
+#include &lt;<a href="qbuttongroup-h.html">qbuttongroup.h</a>&gt;
+#include &lt;<a href="qtimer-h.html">qtimer.h</a>&gt;
+
+class QRadioButton;
+class QPushButton;
+class QProgressBar;
+
+class ProgressBar : public QButtonGroup
+{
+    Q_OBJECT
+
+public:
+    ProgressBar( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0 );
+
+protected:
+    <a href="qradiobutton.html">QRadioButton</a> *slow, *normal, *fast;
+    <a href="qpushbutton.html">QPushButton</a> *start, *pause, *reset;
+    <a href="qprogressbar.html">QProgressBar</a> *progress;
+    <a href="qtimer.html">QTimer</a> timer;
+
+protected slots:
+    void slotStart();
+    void slotReset();
+    void slotTimeout();
+
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/progressbar/progressbar.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "progressbar.h"
+
+#include &lt;<a href="qradiobutton-h.html">qradiobutton.h</a>&gt;
+#include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a href="qprogressbar-h.html">qprogressbar.h</a>&gt;
+#include &lt;<a href="qlayout-h.html">qlayout.h</a>&gt;
+
+/*
+ * Constructor
+ *
+ * Creates child widgets of the ProgressBar widget
+ */
+
+ProgressBar::ProgressBar( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qbuttongroup.html">QButtonGroup</a>( 0, Horizontal, "Progress Bar", parent, name ), timer()
+{
+    <a href="qframe.html#b11d00">setMargin</a>( 10 );
+
+    <a href="qgridlayout.html">QGridLayout</a>* toplayout = new <a href="qgridlayout.html">QGridLayout</a>( <a href="qwidget.html#839758">layout</a>(), 2, 2, 5);
+
+    <a href="qbuttongroup.html#d67431">setRadioButtonExclusive</a>( TRUE );
+
+    // insert three radiobuttons which the user can use
+    // to set the speed of the progress and two pushbuttons
+    // to start/pause/continue and reset the progress 
+    slow = new <a href="qradiobutton.html">QRadioButton</a>( "&amp;Slow", this );
+    normal = new <a href="qradiobutton.html">QRadioButton</a>( "&amp;Normal", this );
+    fast = new <a href="qradiobutton.html">QRadioButton</a>( "&amp;Fast", this );
+    <a href="qvboxlayout.html">QVBoxLayout</a>* vb1 = new <a href="qvboxlayout.html">QVBoxLayout</a>;
+    toplayout-&gt;<a href="qgridlayout.html#a409bc">addLayout</a>( vb1, 0, 0 );
+    vb1-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( slow );
+    vb1-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( normal );
+    vb1-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( fast );
+
+    // two push buttons, one for start, for for reset.
+    start = new <a href="qpushbutton.html">QPushButton</a>( "&amp;Start", this );
+    reset = new <a href="qpushbutton.html">QPushButton</a>( "&amp;Reset", this );
+    <a href="qvboxlayout.html">QVBoxLayout</a>* vb2 = new <a href="qvboxlayout.html">QVBoxLayout</a>;
+    toplayout-&gt;<a href="qgridlayout.html#a409bc">addLayout</a>( vb2, 0, 1 );
+    vb2-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( start );
+    vb2-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( reset );
+
+    // Create the progressbar
+    progress = new <a href="qprogressbar.html">QProgressBar</a>( 100, this );
+    toplayout-&gt;<a href="qgridlayout.html#92faca">addMultiCellWidget</a>( progress, 1, 1, 0, 1 );
+
+    // connect the clicked() SIGNALs of the pushbuttons to SLOTs
+    <a href="qobject.html#7f8e37">connect</a>( start, SIGNAL( <a href="qbuttongroup.html#c8e107">clicked</a>() ), this, SLOT( <a href=#307>slotStart</a>() ) );
+    <a href="qobject.html#7f8e37">connect</a>( reset, SIGNAL( <a href="qbuttongroup.html#c8e107">clicked</a>() ), this, SLOT( <a href=#308>slotReset</a>() ) );
+
+    // connect the timeout() SIGNAL of the progress-timer to a SLOT
+    <a href="qobject.html#7f8e37">connect</a>( &amp;timer, SIGNAL( timeout() ), this, SLOT( <a href=#309>slotTimeout</a>() ) );
+
+    // Let's start with normal speed...
+    normal-&gt;setChecked( TRUE );
+
+    // some contraints
+    start-&gt;setFixedWidth( 80 );
+    <a href="qwidget.html#893704">setMinimumWidth</a>( 300 );
+}
+
+/*
+ * SLOT slotStart
+ *
+ * This SLOT is called if the user clicks start/pause/continue
+ * button
+ */
+
+void <a name="307"></a>ProgressBar::slotStart()
+{
+    // If the progress bar is at the beginning...
+    if ( progress-&gt;progress() == -1 ) {
+        // ...set according to the checked speed-radiobutton
+        // the number of steps which are needed to complete the process
+        if ( slow-&gt;isChecked() )
+            progress-&gt;setTotalSteps( 10000 );
+        else if ( normal-&gt;isChecked() )
+            progress-&gt;setTotalSteps( 1000 );
+        else
+            progress-&gt;setTotalSteps( 50 );
+
+        // disable the speed-radiobuttons
+        slow-&gt;setEnabled( FALSE );
+        normal-&gt;setEnabled( FALSE );
+        fast-&gt;setEnabled( FALSE );
+    }
+
+    // If the progress is not running...
+    if ( !timer.isActive() ) {
+        // ...start the timer (and so the progress) with a interval of 1 ms...
+        timer.start( 1 );
+        // ...and rename the start/pause/continue button to Pause
+        start-&gt;setText( "&amp;Pause" );
+    } else { // if the prgress is running...
+        // ...stop the timer (and so the prgress)...
+        timer.stop();
+        // ...and rename the start/pause/continue button to Continue
+        start-&gt;setText( "&amp;Continue" );
+    }
+}
+
+/*
+ * SLOT slotReset
+ *
+ * This SLOT is called when the user clicks the reset button
+ */
+
+void <a name="308"></a>ProgressBar::slotReset()
+{
+    // stop the timer and progress
+    timer.stop();
+
+    // rename the start/pause/continue button to Start...
+    start-&gt;setText( "&amp;Start" );
+    // ...and enable this button
+    start-&gt;setEnabled( TRUE );
+
+    // enable the speed-radiobuttons
+    slow-&gt;setEnabled( TRUE );
+    normal-&gt;setEnabled( TRUE );
+    fast-&gt;setEnabled( TRUE );
+
+    // reset the progressbar
+    progress-&gt;reset();
+}
+
+/*
+ * SLOT slotTimeout
+ *
+ * This SLOT is called each ms when the timer is 
+ * active (== progress is running)
+ */
+
+void <a name="309"></a>ProgressBar::slotTimeout()
+{
+    int p = progress-&gt;progress();
+
+    // If the progress is complete...
+    if ( p == progress-&gt;totalSteps() )  {
+        // ...rename the start/pause/continue button to Start...
+        start-&gt;setText( "&amp;Start" );
+        // ...and disable it...
+        start-&gt;setEnabled( FALSE );
+        // ...and return
+        return;
+    }
+
+    // If the process is not complete increase it
+    progress-&gt;setProgress( ++p );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/progressbar/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "progressbar.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+int main(int argc,char **argv)
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a(argc,argv);
+
+    ProgressBar progressbar;
+    progressbar.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - ProgressBar");
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>(&amp;progressbar);
+    progressbar.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

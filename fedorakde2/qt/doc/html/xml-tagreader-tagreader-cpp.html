@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - xml/tagreader/tagreader.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>A tiny SAX2 parser</h1><br clear="all">    
+ 
+  This example presents a small <a href="xml-sax.html">SAX2</a> 
+  reader that outputs the names of all elements in an
+  XML document on the command line. The element names are 
+  indented corresponding to their nesting
+ 
+  This example is thoroughly explained in a 
+  <a href="xml-sax-walkthrough.html">walkthrough</a>.
+ 
+  <hr>
+ 
+  Header file: <pre>/*
+&#36;Id&#58; qt/examples/xml/tagreader/structureparser.h   2.3.2   edited 2001-01-26 $
+*/  
+
+#include &lt;<a href="qxml-h.html">qxml.h</a>&gt;
+
+class QString;
+
+class StructureParser : public QXmlDefaultHandler
+{
+public:
+    bool startDocument();
+    bool startElement( const QString&amp;, const QString&amp;, const QString&amp; , 
+                       const QXmlAttributes&amp; );
+    bool endElement( const QString&amp;, const QString&amp;, const QString&amp; );
+
+private:
+    <a href="qstring.html">QString</a> indent;
+};
+</pre>
+
+ 
+  <hr>
+ 
+  Implementation: <pre>/*
+&#36;Id&#58; qt/examples/xml/tagreader/structureparser.cpp   2.3.2   edited 2001-01-26 $
+*/
+
+#include "structureparser.h"
+
+#include &lt;iostream.h&gt;
+#include &lt;<a href="qstring-h.html">qstring.h</a>&gt;
+
+bool <a name="163"></a>StructureParser::startDocument()
+{
+    indent = "";
+    return TRUE;
+}
+
+bool <a name="164"></a>StructureParser::startElement( const QString&amp;, const QString&amp;, 
+                                    const QString&amp; qName, 
+                                    const QXmlAttributes&amp; )
+{
+    cout &lt;&lt; indent &lt;&lt; qName &lt;&lt; endl;
+    indent += "    ";
+    return TRUE;
+}
+
+bool <a name="165"></a>StructureParser::endElement( const QString&amp;, const QString&amp;, const QString&amp; )
+{
+    indent.remove( 0, 4 );
+    return TRUE;
+}
+</pre>
+
+ 
+  <hr>
+ 
+  Main:
+<pre>/*
+&#36;Id&#58; qt/examples/xml/tagreader/tagreader.cpp   2.3.2   edited 2001-01-26 $
+*/
+
+#include "structureparser.h"
+#include &lt;<a name="qfile.h"></a><a href="qfile-h.html">qfile.h</a>&gt;
+#include &lt;<a name="qxml.h"></a><a href="qxml-h.html">qxml.h</a>&gt;
+
+int main( int argc, char **argv )
+{
+    for ( int i=1; i &lt; argc; i++ ) {
+        StructureParser handler;
+        <a name="QFile"></a><a href="qfile.html">QFile</a> xmlFile( argv[i] );
+        <a name="QXmlInputSource"></a><a href="qxmlinputsource.html">QXmlInputSource</a> source( xmlFile );
+        <a name="QXmlSimpleReader"></a><a href="qxmlsimplereader.html">QXmlSimpleReader</a> reader;
+        reader.<a name="setContentHandler"></a><a href="qxmlsimplereader.html#3ce23b">setContentHandler</a>( &amp;handler );
+        reader.<a name="parse"></a><a href="qxmlsimplereader.html#2d6b2a">parse</a>( source );
+    }
+    return 0;
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

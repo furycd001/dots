@@ -1,0 +1,375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QIconViewItem Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QIconViewItem Class Reference<br><small>[ <a href="iconview.html">iconview module</a> ]</small></h1><br clear="all">
+<p>
+The QIconViewItem class implements an iconview item.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qiconview-h.html">qiconview.h</a>&gt;</code>
+<p>
+Inherits <a href="qt.html">Qt</a>.
+<p><a href="qiconviewitem-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#c5a67e"><b>QIconViewItem</b></a> ( QIconView * parent ) </div>
+<li><div class="fn"><a href="#048b0f"><b>QIconViewItem</b></a> ( QIconView * parent, QIconViewItem * after ) </div>
+<li><div class="fn"><a href="#fa6f77"><b>QIconViewItem</b></a> ( QIconView * parent, const QString &amp; text ) </div>
+<li><div class="fn"><a href="#f95da1"><b>QIconViewItem</b></a> ( QIconView * parent, QIconViewItem * after, const QString &amp; text ) </div>
+<li><div class="fn"><a href="#dd0dbe"><b>QIconViewItem</b></a> ( QIconView * parent, const QString &amp; text, const QPixmap &amp; icon ) </div>
+<li><div class="fn"><a href="#33c461"><b>QIconViewItem</b></a> ( QIconView * parent, QIconViewItem * after, const QString &amp; text, const QPixmap &amp; icon ) </div>
+<li><div class="fn">virtual <a href="#6c92b6"><b>~QIconViewItem</b></a> () </div>
+<li><div class="fn">virtual void <a href="#2eb423"><b>setRenameEnabled</b></a> ( bool allow ) </div>
+<li><div class="fn">virtual void <a href="#b9937a"><b>setDragEnabled</b></a> ( bool allow ) </div>
+<li><div class="fn">virtual void <a href="#015768"><b>setDropEnabled</b></a> ( bool allow ) </div>
+<li><div class="fn">virtual QString <a href="#3715d1"><b>text</b></a> () const</div>
+<li><div class="fn">virtual QPixmap* <a href="#9bf48d"><b>pixmap</b></a> () const</div>
+<li><div class="fn">virtual QString <a href="#f40531"><b>key</b></a> () const</div>
+<li><div class="fn">bool <a href="#ec7f4e"><b>renameEnabled</b></a> () const</div>
+<li><div class="fn">bool <a href="#e83dc1"><b>dragEnabled</b></a> () const</div>
+<li><div class="fn">bool <a href="#eca4f0"><b>dropEnabled</b></a> () const</div>
+<li><div class="fn">QIconView* <a href="#cc030e"><b>iconView</b></a> () const</div>
+<li><div class="fn">QIconViewItem* <a href="#d62158"><b>prevItem</b></a> () const</div>
+<li><div class="fn">QIconViewItem* <a href="#005b99"><b>nextItem</b></a> () const</div>
+<li><div class="fn">int <a href="#f420b8"><b>index</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#44f4f6"><b>setSelected</b></a> ( bool s, bool cb ) </div>
+<li><div class="fn">virtual void <a href="#7fa1b0"><b>setSelected</b></a> ( bool s ) </div>
+<li><div class="fn">virtual void <a href="#bcdc29"><b>setSelectable</b></a> ( bool s ) </div>
+<li><div class="fn">bool <a href="#8fd9c9"><b>isSelected</b></a> () const</div>
+<li><div class="fn">bool <a href="#3ff63a"><b>isSelectable</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#949fe0"><b>repaint</b></a> () </div>
+<li><div class="fn">virtual void <a href="#932cb6"><b>move</b></a> ( int x, int y ) </div>
+<li><div class="fn">virtual void <a href="#ee1f37"><b>moveBy</b></a> ( int dx, int dy ) </div>
+<li><div class="fn">virtual void <a href="#1d057a"><b>move</b></a> ( const QPoint &amp; pnt ) </div>
+<li><div class="fn">virtual void <a href="#a4936a"><b>moveBy</b></a> ( const QPoint &amp; pnt ) </div>
+<li><div class="fn">QRect <a href="#3ec4b6"><b>rect</b></a> () const</div>
+<li><div class="fn">int <a href="#0c37c3"><b>x</b></a> () const</div>
+<li><div class="fn">int <a href="#aa6c52"><b>y</b></a> () const</div>
+<li><div class="fn">int <a href="#46a2ec"><b>width</b></a> () const</div>
+<li><div class="fn">int <a href="#c393db"><b>height</b></a> () const</div>
+<li><div class="fn">QSize <a href="#c1d022"><b>size</b></a> () const</div>
+<li><div class="fn">QPoint <a href="#59f250"><b>pos</b></a> () const</div>
+<li><div class="fn">QRect <a href="#09025a"><b>textRect</b></a> ( bool relative = TRUE ) const</div>
+<li><div class="fn">QRect <a href="#a9db94"><b>pixmapRect</b></a> ( bool relative = TRUE ) const</div>
+<li><div class="fn">bool <a href="#6a39af"><b>contains</b></a> ( QPoint pnt ) const</div>
+<li><div class="fn">bool <a href="#970a04"><b>intersects</b></a> ( QRect r ) const</div>
+<li><div class="fn">virtual bool <a href="#7ca2b9"><b>acceptDrop</b></a> ( const QMimeSource * mime ) const</div>
+<li><div class="fn">void <a href="#c6b054"><b>rename</b></a> () </div>
+<li><div class="fn">virtual int <a href="#d3dc25"><b>compare</b></a> ( QIconViewItem * i ) const</div>
+<li><div class="fn">virtual void <a href="#c17602"><b>setText</b></a> ( const QString &amp; text ) </div>
+<li><div class="fn">virtual void <a href="#8e9e83"><b>setPixmap</b></a> ( const QPixmap &amp; icon ) </div>
+<li><div class="fn">virtual void <a href="#3ecbc5"><b>setText</b></a> ( const QString &amp; text, bool recalc, bool redraw = TRUE ) </div>
+<li><div class="fn">virtual void <a href="#ed08bc"><b>setPixmap</b></a> ( const QPixmap &amp; icon, bool recalc, bool redraw = TRUE ) </div>
+<li><div class="fn">virtual void <a href="#4782f9"><b>setKey</b></a> ( const QString &amp; k ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#edf6b3"><b>removeRenameBox</b></a> () </div>
+<li><div class="fn">virtual void <a href="#c2e4a4"><b>calcRect</b></a> ( const QString &amp; text_ = QString::null ) </div>
+<li><div class="fn">virtual void <a href="#9f712d"><b>paintItem</b></a> ( QPainter * p, const QColorGroup &amp; cg ) </div>
+<li><div class="fn">virtual void <a href="#0ee58a"><b>paintFocus</b></a> ( QPainter * p, const QColorGroup &amp; cg ) </div>
+<li><div class="fn">virtual void <a href="#741a24"><b>dropped</b></a> ( QDropEvent * e, const QValueList&lt;QIconDragItem&gt; &amp; lst ) </div>
+<li><div class="fn">virtual void <a href="#7f85a2"><b>dragEntered</b></a> () </div>
+<li><div class="fn">virtual void <a href="#25f2ac"><b>dragLeft</b></a> () </div>
+<li><div class="fn">void <a href="#ded641"><b>setItemRect</b></a> ( const QRect &amp; r ) </div>
+<li><div class="fn">void <a href="#63a514"><b>setTextRect</b></a> ( const QRect &amp; r ) </div>
+<li><div class="fn">void <a href="#ebff83"><b>setPixmapRect</b></a> ( const QRect &amp; r ) </div>
+<li><div class="fn">void <b>calcTmpText</b> () (internal)</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QIconViewItem class implements an iconview item.
+<p>
+An iconview item is a object containing an icon and a text, which can
+display itself in an iconview.
+<p>The simplest way to create an iconview item and insert it into an
+iconview is to construct it with a pointer to the iconview, a string
+and an icon:
+<p><pre>    // parent is a pointer to our iconview, pixmap a QPixmap,
+    // which we want to use as icon
+    (void) new <a href="qiconviewitem.html">QIconViewItem</a>( parent,
+                              "This is the text of the item",
+                              pixmap );
+</pre>
+<p>When the iconview is deleted, all items of it are deleted automatically,
+so the programmer need not delete the iconview items itself.
+<p>To iterate over all items of an iconview do something like
+<p><pre>    <a href="qiconviewitem.html">QIconViewItem</a> *item;
+    for ( item = iconview-&gt;firstItem(); item; item = item-&gt;<a href="#005b99">nextItem</a>() )
+      do_something_with( item );
+</pre>
+<p>To remove an item from an iconview, just delete the item. The
+destructor of the QIconViewItem does all the work for removing it
+from the iconview.
+<p>As the iconview is designed to use DnD, the iconview item has
+methods for DnD too which may be reimplemented.
+<p>The class is designed to be very similar to <a href="qlistview.html">QListView</a> and <a href="qlistbox.html">QListBox</a>
+in use, both via instantiation and subclassing.
+<p>Examples:
+ <a href="iconview-main-cpp.html#QIconViewItem">iconview/main.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="c5a67e"></a>QIconViewItem::QIconViewItem ( <a href="qiconview.html">QIconView</a> * parent )</h3>
+<p>Constructs an iconview item with no text and a default icon, and
+inserts it into the iconview <em>parent.</em>
+<h3 class="fn"><a name="048b0f"></a>QIconViewItem::QIconViewItem ( <a href="qiconview.html">QIconView</a> * parent, QIconViewItem * after )</h3>
+<p>Constructs an iconview item with no text and a default icon, and inserts
+it into the iconview <em>parent</em> after the iconview item <em>after.</em>
+<h3 class="fn"><a name="f95da1"></a>QIconViewItem::QIconViewItem ( <a href="qiconview.html">QIconView</a> * parent, QIconViewItem * after, const <a href="qstring.html">QString</a> &amp; text )</h3>
+<p>Constructs an iconview item using <em>text</em> as text and a default icon, and
+inserts it into the iconview <em>parent</em> after the iconview item <em>after.</em>
+<h3 class="fn"><a name="33c461"></a>QIconViewItem::QIconViewItem ( <a href="qiconview.html">QIconView</a> * parent, QIconViewItem * after, const <a href="qstring.html">QString</a> &amp; text, const <a href="qpixmap.html">QPixmap</a> &amp; icon )</h3>
+<p>Constructs an iconview item using <em>text</em> as text and <em>icon</em> as icon,
+and inserts it into the iconview <em>parent</em> after the iconview item <em>after.</em>
+<h3 class="fn"><a name="fa6f77"></a>QIconViewItem::QIconViewItem ( <a href="qiconview.html">QIconView</a> * parent, const <a href="qstring.html">QString</a> &amp; text )</h3>
+<p>Constructs an iconview item using <em>text</em> as text and a default icon,
+and inserts it into the iconview <em>parent.</em>
+<h3 class="fn"><a name="dd0dbe"></a>QIconViewItem::QIconViewItem ( <a href="qiconview.html">QIconView</a> * parent, const <a href="qstring.html">QString</a> &amp; text, const <a href="qpixmap.html">QPixmap</a> &amp; icon )</h3>
+<p>Constructs an iconview item using <em>text</em> as text and <em>icon</em> as icon,
+and inserts it into the iconview <em>parent.</em>
+<h3 class="fn"><a name="6c92b6"></a>QIconViewItem::~QIconViewItem () <code>[virtual]</code></h3>
+<p>Destructs the iconview item and tells the iconview about it.
+<h3 class="fn">bool <a name="7ca2b9"></a>QIconViewItem::acceptDrop ( const <a href="qmimesource.html">QMimeSource</a> * mime ) const <code>[virtual]</code></h3>
+<p>Returns TRUE if the item accepts the <a href="qmimesource.html">QMimeSource</a> <em>mime</em> (so it
+could be dropped on the item), and FALSE if it does not.
+<p>The default implementation does nothing and returns always TRUE. A
+subclass must reimplement this to accept drops.
+<h3 class="fn">void <a name="c2e4a4"></a>QIconViewItem::calcRect ( const <a href="qstring.html">QString</a> &amp; text_ = QString::null ) <code>[virtual protected]</code></h3>
+<p>This virtual function is responsible for calculating the
+rectangles returned by <a href="#3ec4b6">rect</a>(), <a href="#09025a">textRect</a>() and <a href="#a9db94">pixmapRect</a>().
+setRect(), <a href="#63a514">setTextRect</a>() and <a href="#ebff83">setPixmapRect</a>() are provided mainly for
+reimplementations of this function.
+<h3 class="fn">int <a name="d3dc25"></a>QIconViewItem::compare ( QIconViewItem * i ) const <code>[virtual]</code></h3>
+<p>Compares this iconview item to <em>i.</em> Returns -1 if this item
+is less than <em>i,</em> 0 if they are equal and 1 if this iconview item
+is greater than <em>i.</em>
+<p>The default implementation uses <a href="#f40531">QIconViewItem::key</a>() to compare the
+items. A reimplementation may use different values.
+<p>See also  <a href="#f40531">key</a>().
+<h3 class="fn">bool <a name="6a39af"></a>QIconViewItem::contains ( <a href="qpoint.html">QPoint</a> pnt ) const</h3>
+<p>Returns TRUE if the item contains the point <em>pnt</em> (in contents
+coordinates), and FALSE if it does not.
+<h3 class="fn">bool <a name="e83dc1"></a>QIconViewItem::dragEnabled () const</h3>
+<p>Returns TRUE if the user is allowed to drag the iconview item, or else
+FALSE.
+<p>See also  <a href="#b9937a">setDragEnabled</a>().
+<h3 class="fn">void <a name="7f85a2"></a>QIconViewItem::dragEntered () <code>[virtual protected]</code></h3>
+<p>This method is called, when a drag entered the item's bounding rect.
+<p>The default implementation does nothing, subclasses should reimplement
+this method.
+<h3 class="fn">void <a name="25f2ac"></a>QIconViewItem::dragLeft () <code>[virtual protected]</code></h3>
+<p>This method is called, when a drag left the item's bounding rect.
+<p>The default implementation does nothing, subclasses should reimplement
+this method.
+<h3 class="fn">bool <a name="eca4f0"></a>QIconViewItem::dropEnabled () const</h3>
+<p>Returns TRUE if the user is allowed to drop something onto the item,
+otherwise FALSE.
+<p>See also  <a href="#015768">setDropEnabled</a>().
+<h3 class="fn">void <a name="741a24"></a>QIconViewItem::dropped ( <a href="qdropevent.html">QDropEvent</a> * e, const <a href="qvaluelist.html">QValueList</a>&lt;<a href="qicondragitem.html">QIconDragItem</a>&gt; &amp; lst ) <code>[virtual protected]</code></h3>
+<p>This method is called when something was dropped on the item.  <em>e</em>
+contains all the information about the drop.  If the drag object of the drop
+was a <a href="qicondrag.html">QIconDrag</a>, <em>lst</em> contains the list of the dropped items.  You can get
+the data using <a href="qicondragitem.html#c00cb9">QIconDragItem::data</a>() of each item then.
+<p>So if <em>lst</em> is not empty, use this data for further operations,
+else the drag was not a QIconDrag, so you have to decode <em>e</em>
+yourself and work with that.
+<p>The default implementation does nothing, subclasses should reimplement this
+method.
+<h3 class="fn">int <a name="c393db"></a>QIconViewItem::height () const</h3>
+<p>Returns the height of the item.
+<h3 class="fn"><a href="qiconview.html">QIconView</a> * <a name="cc030e"></a>QIconViewItem::iconView () const</h3>
+<p>Returns a pointer to this items' iconview parent.
+<h3 class="fn">int <a name="f420b8"></a>QIconViewItem::index () const</h3>
+<p>Returns the index of this item in the iconview, or -1 if an error occurred.
+<h3 class="fn">bool <a name="970a04"></a>QIconViewItem::intersects ( <a href="qrect.html">QRect</a> r ) const</h3>
+<p>Returns TRUE, if the item intersects the rectangle <em>r</em> (in contents
+coordinates), and FALSE if it does not.
+<h3 class="fn">bool <a name="3ff63a"></a>QIconViewItem::isSelectable () const</h3>
+<p>Returns TRUE if the item is selectable, or else FALSE.
+<p>See also  <a href="#bcdc29">setSelectable</a>().
+<h3 class="fn">bool <a name="8fd9c9"></a>QIconViewItem::isSelected () const</h3>
+<p>Returns TRUE if the item is selected, or else FALSE.
+<p>See also  <a href="#44f4f6">setSelected</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="f40531"></a>QIconViewItem::key () const <code>[virtual]</code></h3>
+<p>Returns the key of the iconview item.
+<p>See also  <a href="#4782f9">setKey</a>() and compareItems().
+<h3 class="fn">void <a name="932cb6"></a>QIconViewItem::move ( int x, int y ) <code>[virtual]</code></h3>
+<p>Moves the item to <em>x</em> and <em>y</em> in the iconview (these are contents
+coordinates).
+<h3 class="fn">void <a name="1d057a"></a>QIconViewItem::move ( const <a href="qpoint.html">QPoint</a> &amp; pnt ) <code>[virtual]</code></h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<h3 class="fn">void <a name="ee1f37"></a>QIconViewItem::moveBy ( int dx, int dy ) <code>[virtual]</code></h3>
+<p>Moves the item by the distance <em>dx</em> and <em>dy.</em>
+<h3 class="fn">void <a name="a4936a"></a>QIconViewItem::moveBy ( const <a href="qpoint.html">QPoint</a> &amp; pnt ) <code>[virtual]</code></h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<h3 class="fn">QIconViewItem * <a name="005b99"></a>QIconViewItem::nextItem () const</h3>
+<p>Returns a pointer to the next item, or 0 if this is the last item
+of the iconview.
+<h3 class="fn">void <a name="0ee58a"></a>QIconViewItem::paintFocus ( <a href="qpainter.html">QPainter</a> * p, const <a href="qcolorgroup.html">QColorGroup</a> &amp; cg ) <code>[virtual protected]</code></h3>
+<p>Paints the focus rect of the item using the painter <em>p</em> and the color group <em>cg.</em>
+<h3 class="fn">void <a name="9f712d"></a>QIconViewItem::paintItem ( <a href="qpainter.html">QPainter</a> * p, const <a href="qcolorgroup.html">QColorGroup</a> &amp; cg ) <code>[virtual protected]</code></h3>
+<p>Paints the item using the painter <em>p</em> and the color group <em>cg.</em> If
+you want the item to be drawn with a different font or color,
+reimplement this method and change the values of the color group or
+the painter's font, and call then the QIconViewItem::paintItem()
+with the changed values.
+<h3 class="fn"><a href="qpixmap.html">QPixmap</a> * <a name="9bf48d"></a>QIconViewItem::pixmap () const <code>[virtual]</code></h3>
+<p>Returns the icon of the iconview item. Normally you will set the
+pixmap if the item with <a href="#8e9e83">setPixmap</a>(), but sometimes it's inconvenient
+to call <a href="#3ecbc5">setText</a>() for each item, so you can subclass QIconViewItem,
+reimplement this method and return a pointer to the item's pixmap.
+If you do this you have to call <a href="#c2e4a4">calcRect</a>() manually each time the
+size of this pixmap changes!
+<p>See also  <a href="#8e9e83">setPixmap</a>().
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="a9db94"></a>QIconViewItem::pixmapRect ( bool relative = TRUE ) const</h3>
+<p>Returns the bounding rectangle of the item's icon.
+<p>If <em>relative</em> is FALSE the returned rectangle is relative to the
+origin of the iconview's contents coordinate system. If <em>relative</em>
+is TRUE the rectangle is relative to the origin of the item's
+rectangle.
+<h3 class="fn"><a href="qpoint.html">QPoint</a> <a name="59f250"></a>QIconViewItem::pos () const</h3>
+<p>Returns the position of the item (in contents coordinates).
+<h3 class="fn">QIconViewItem * <a name="d62158"></a>QIconViewItem::prevItem () const</h3>
+<p>Returns a pointer to the previous item, or 0 if this is the first item
+of the iconview.
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="3ec4b6"></a>QIconViewItem::rect () const</h3>
+<p>Returns the bounding rect of the item (in contents coordinates).
+<h3 class="fn">void <a name="edf6b3"></a>QIconViewItem::removeRenameBox () <code>[virtual protected]</code></h3>
+<p>Removes the editbox which is used for in-place renaming.
+<h3 class="fn">void <a name="c6b054"></a>QIconViewItem::rename ()</h3>
+<p>Starts in-place renaming an icon, if allowed.
+<p>This function sets the icon view up so that the user can edit the
+item text, and then returns. When the user is done, <a href="#3ecbc5">setText</a>() will
+be called and <a href="qiconview.html#0b5c7c">QIconView::itemRenamed</a>() be emitted.
+<h3 class="fn">bool <a name="ec7f4e"></a>QIconViewItem::renameEnabled () const</h3>
+<p>Returns TRUE if the item can be renamed by the user with in-place
+renaming, or else FALSE.
+<p>See also  <a href="#2eb423">setRenameEnabled</a>().
+<h3 class="fn">void <a name="949fe0"></a>QIconViewItem::repaint () <code>[virtual]</code></h3>
+<p>Repaints the item.
+<h3 class="fn">void <a name="b9937a"></a>QIconViewItem::setDragEnabled ( bool allow ) <code>[virtual]</code></h3>
+<p>If <em>allow</em> is TRUE, the iconview lets the user to drag the iconview
+item (inside the iconview and outside of it). if <em>allow</em> is FALSE,
+the item cannot be dragged.
+<h3 class="fn">void <a name="015768"></a>QIconViewItem::setDropEnabled ( bool allow ) <code>[virtual]</code></h3>
+<p>If <em>allow</em> is TRUE, the iconview lets the user drop something on
+this iconview item.
+<h3 class="fn">void <a name="ded641"></a>QIconViewItem::setItemRect ( const <a href="qrect.html">QRect</a> &amp; r ) <code>[protected]</code></h3>
+<p>Sets the bounding rectangle of the whole item.  This should be only used in
+subclasses, which reimplement <a href="#c2e4a4">calcRect</a>() to be able to set the calculated
+rectangle.
+<h3 class="fn">void <a name="4782f9"></a>QIconViewItem::setKey ( const <a href="qstring.html">QString</a> &amp; k ) <code>[virtual]</code></h3>
+<p>Sets <em>k</em> as key of the iconview item. This is used for sorting.
+<p>See also  compareItems().
+<h3 class="fn">void <a name="8e9e83"></a>QIconViewItem::setPixmap ( const <a href="qpixmap.html">QPixmap</a> &amp; icon ) <code>[virtual]</code></h3>
+<p>Sets <em>icon</em> as item icon of the iconview item. This method might be
+a no-op if you reimplement <a href="#9bf48d">pixmap</a>().
+<p>See also  <a href="#9bf48d">pixmap</a>().
+<h3 class="fn">void <a name="ed08bc"></a>QIconViewItem::setPixmap ( const <a href="qpixmap.html">QPixmap</a> &amp; icon, bool recalc, bool redraw = TRUE ) <code>[virtual]</code></h3>
+<p>Sets <em>icon</em> as item icon of the iconview item. If <em>recalc</em> is TRUE, the
+iconview's layout is recalculated. If <em>redraw</em> is TRUE (the
+default), the icon view is repainted.
+<p>See also  <a href="#9bf48d">pixmap</a>().
+<h3 class="fn">void <a name="ebff83"></a>QIconViewItem::setPixmapRect ( const <a href="qrect.html">QRect</a> &amp; r ) <code>[protected]</code></h3>
+<p>Sets the bounding rectangle of the item icon.  This should be only used in
+subclasses, which reimplement <a href="#c2e4a4">calcRect</a>() to be able to set the calculated
+rectangle.
+<h3 class="fn">void <a name="2eb423"></a>QIconViewItem::setRenameEnabled ( bool allow ) <code>[virtual]</code></h3>
+<p>If <em>allow</em> is TRUE, the user can rename the iconview item by clicking
+on the text while the item is selected (in-place renaming). If <em>allow</em> is FALSE, in-place renaming is not possible.
+<p>Examples:
+ <a href="iconview-main-cpp.html#setRenameEnabled">iconview/main.cpp</a>
+<h3 class="fn">void <a name="bcdc29"></a>QIconViewItem::setSelectable ( bool enable ) <code>[virtual]</code></h3>
+<p>Sets this items to be selectable if <em>enable</em> is TRUE (the
+default) or not to be selectable if <em>enable</em> is FALSE.
+<p>The user is not able to select a non-selectable item using either
+the keyboard or mouse.  The application programmer still can, of
+course.
+<p>See also  <a href="#3ff63a">isSelectable</a>().
+<h3 class="fn">void <a name="44f4f6"></a>QIconViewItem::setSelected ( bool s, bool cb ) <code>[virtual]</code></h3>
+<p>Selects or unselects the item depending on <em>s,</em> and may also
+unselect other items, depending on <a href="qiconview.html#0040a8">QIconView::selectionMode</a>() and <em>cb.</em>
+<p>If <em>s</em> is FALSE, the item is unselected.
+<p>If <em>s</em> is TRUE and QIconView::selectionMode() is <code>Single,</code> the item
+is selected, and the item which was selected is unselected.
+<p>If <em>s</em> is TRUE and QIconView::selectionMode() is <code>Extended,</code> the item
+is selected. If <em>cb</em> is TRUE, the other items of the iconview are
+not touched. If <em>cb</em> is FALSE all other items are unselected.
+<p>If <em>s</em> is TRUE and QIconView::selectionMode() is <code>Multi</code> the item
+is selected.
+<p>Note that <em>cb</em> is used only if QIconView::selectionMode() is <code>Extended.</code>
+<p>All items whose selection status change repaint themselves.
+<h3 class="fn">void <a name="7fa1b0"></a>QIconViewItem::setSelected ( bool s ) <code>[virtual]</code></h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>This variant is equivalent to calling the other variant with <em>cb</em>
+set to FALSE.
+<h3 class="fn">void <a name="c17602"></a>QIconViewItem::setText ( const <a href="qstring.html">QString</a> &amp; text ) <code>[virtual]</code></h3>
+<p>Sets <em>text</em> as text of the iconview item.  This method might be a no-op
+if you reimplement <a href="#3715d1">text</a>().
+<p>See also  <a href="#3715d1">text</a>().
+<h3 class="fn">void <a name="3ecbc5"></a>QIconViewItem::setText ( const <a href="qstring.html">QString</a> &amp; text, bool recalc, bool redraw = TRUE ) <code>[virtual]</code></h3>
+<p>Sets <em>text</em> as text of the iconview item. If <em>recalc</em> is TRUE, the
+iconview's layout is recalculated. If <em>redraw</em> is TRUE (the
+default), the icon view is repainted.
+<p>See also  <a href="#3715d1">text</a>().
+<h3 class="fn">void <a name="63a514"></a>QIconViewItem::setTextRect ( const <a href="qrect.html">QRect</a> &amp; r ) <code>[protected]</code></h3>
+<p>Sets the bounding rectangle of the item text.  This should be only used in
+subclasses, which reimplement <a href="#c2e4a4">calcRect</a>() to be able to set the calculated
+rectangle.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="c1d022"></a>QIconViewItem::size () const</h3>
+<p>Returns the size of the item.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="3715d1"></a>QIconViewItem::text () const <code>[virtual]</code></h3>
+<p>Returns the text of the iconview item. Normally you will set the
+text if the item with <a href="#3ecbc5">setText</a>(), but sometimes it's inconvenient to
+call setText() for each item, so you can subclass QIconViewItem,
+reimplement this method and return the text of the item. If you do
+this you have to call <a href="#c2e4a4">calcRect</a>() manually each time the text (and so
+the size of it) changes.
+<p>See also  <a href="#3ecbc5">setText</a>().
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="09025a"></a>QIconViewItem::textRect ( bool relative = TRUE ) const</h3>
+<p>Returns the bounding rectangle of the item's text.
+<p>If <em>relative</em> is FALSE the returned rectangle is relative to the
+origin of the iconview's contents coordinate system. If <em>relative</em>
+is TRUE the rectangle is relative to the origin of the item's
+rectangle.
+<h3 class="fn">int <a name="46a2ec"></a>QIconViewItem::width () const</h3>
+<p>Returns the width of the item.
+<h3 class="fn">int <a name="0c37c3"></a>QIconViewItem::x () const</h3>
+<p>Returns the X-Coordinate of the item (in contents coordinates).
+<h3 class="fn">int <a name="aa6c52"></a>QIconViewItem::y () const</h3>
+<p>Returns the Y-Coordinate of the item (in contents coordinates).
+<h3 class="fn">void <a name="27eae1"></a>QIconViewItem::calcTmpText () <code>[protected]</code></h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

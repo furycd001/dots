@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  The Qt/Embedded fontdir file</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> The Qt/Embedded fontdir file</h1><br clear="all">
+<p>
+In order for Qt/Embedded to run a file called fontdir needs to exist.
+It should be in either $QTDIR/etc/fonts/ if QTDIR is defined when the
+Qt/Embedded program is run, or /usr/local/qt-embedded/etc/fonts/ if not.
+<p>
+The format is as follows (also documented in qfontmanager_qws.cpp):
+<p>
+<name> <file> <renderer> <italic> <weight> <size> <flags>
+<p>
+name is the name that Qt/Embedded will use for the font in font dialogues
+and from the point of view of QFont - e.g. Times
+<p>
+file is the path to the file, for example times.ttf or 
+/etc/fonts/times.ttf (the two are equivalent if QTDIR is defined to /
+for example)
+<p>
+renderer is the name of the font renderer for the font - for Truetype
+and Type 1 font files this should be FT, for Freetype, and for .bdf
+files it should be BDF
+<p>
+italic is either y to indicate this is an italic font or n to indicate
+that it is not
+<p>
+weight is a value between 0 and 100 - 50 is normal text, 75 is bold
+text
+<p>
+size is either 0 for a scalable font (i.e. any Truetype/Type 1 fonts)
+or 10 times the point size of the font for BDFs (e.g. 120 for a 12 point
+font)
+<p>
+flags consist of a series of characters -
+s indicates this font should be anti-aliased
+u is the unicode range when saving to a .qpf file (default is Latin1,
+i.e. 0-255)
+a is the ascii range when saving to a .qpf file (default is again Latin1)
+<p>
+Note that QPF files need not feature in the fontdir file, and indeed
+you can have an empty fontdir file and only use QPF files (in which case
+you don't need to link in either of the font rendering libraries). These
+should be stored in the same directory as fontdir and are loaded automatically
+when available. They can be generated with the -savefonts option when
+running a Qt/Embedded program.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

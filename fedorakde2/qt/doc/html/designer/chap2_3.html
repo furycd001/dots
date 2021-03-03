@@ -1,0 +1,479 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Generating C++ Source Code From The Qt Designer File</title>
+		<meta name="generator" content="Adobe GoLive 4">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="Tutorial: Creating A Simple Application With The Help Of
+	  Qt Designer" href="chap2_1.html">
+		<link rel="PREVIOUS" title="More Widgets For Our Form" href="chap2_2.html">
+		<link rel="NEXT" title="Putting It All Together" href="chap2_4.html">
+		
+	</head>
+
+	<body class="SECT1" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top"><a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a></td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom"><a href="chap2_2.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="80%" align="center" valign="bottom"><font color="white"><b>Chapter 2. Tutorial: Creating A Simple Application With The Help Of Qt Designer</b></font></td>
+					<td width="10%" align="right" valign="bottom"><a href="chap2_4.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="SECT1">
+			<h1 class="SECT1"><a name="AEN336"></a>Generating C++ Source Code From The Qt Designer File</h1>
+			<p>As you might have guessed from the filename extension <tt class="FILENAME">.ui</tt>, Qt Designer does not generate C++ source code right away. While this would be possible, it would make it much more difficult to change the dialogs later by using Qt Designer.</p>
+			<p>Out of curiosity, you might be wondering what it is that Qt Designer saves in its <tt class="FILENAME">.ui</tt> files. These files are a textual description of the dialog you just created. The format used is the markup language XML. Here is what <tt class="FILENAME">pizza.ui</tt> can look like; your file might have slightly different values for sizes and positions:</p>
+			<pre class="SCREEN">&lt;!DOCTYPE UI&gt;&lt;UI&gt;
+&lt;class&gt;PizzaEntry&lt;/class&gt;
+&lt;widget&gt;
+    &lt;class&gt;QDialog&lt;/class&gt;
+    &lt;property&gt;
+        &lt;name&gt;name&lt;/name&gt;
+        &lt;cstring&gt;PizzaEntry&lt;/cstring&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;geometry&lt;/name&gt;
+        &lt;rect&gt;
+            &lt;x&gt;0&lt;/x&gt;
+            &lt;y&gt;0&lt;/y&gt;
+            &lt;width&gt;310&lt;/width&gt;
+            &lt;height&gt;222&lt;/height&gt;
+        &lt;/rect&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;caption&lt;/name&gt;
+        &lt;string&gt;Form1&lt;/string&gt;
+    &lt;/property&gt;
+    &lt;widget&gt;
+        &lt;class&gt;QButtonGroup&lt;/class&gt;
+        &lt;property&gt;
+            &lt;name&gt;name&lt;/name&gt;
+            &lt;cstring&gt;ButtonGroup1&lt;/cstring&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;geometry&lt;/name&gt;
+            &lt;rect&gt;
+                &lt;x&gt;30&lt;/x&gt;
+                &lt;y&gt;10&lt;/y&gt;
+                &lt;width&gt;122&lt;/width&gt;
+                &lt;height&gt;119&lt;/height&gt;
+            &lt;/rect&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;title&lt;/name&gt;
+            &lt;string&gt;Toppings&lt;/string&gt;
+        &lt;/property&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QCheckBox&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;CheckBox1&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;20&lt;/y&gt;
+                    &lt;width&gt;102&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Mushrooms&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QCheckBox&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;CheckBox2&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;40&lt;/y&gt;
+                    &lt;width&gt;51&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Ham&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QCheckBox&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;CheckBox3&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;60&lt;/y&gt;
+                    &lt;width&gt;88&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Pineapple&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QCheckBox&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;CheckBox4&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;80&lt;/y&gt;
+                    &lt;width&gt;79&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Anchovies&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+    &lt;/widget&gt;
+    &lt;widget&gt;
+        &lt;class&gt;QButtonGroup&lt;/class&gt;
+        &lt;property&gt;
+            &lt;name&gt;name&lt;/name&gt;
+            &lt;cstring&gt;ButtonGroup2&lt;/cstring&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;geometry&lt;/name&gt;
+            &lt;rect&gt;
+                &lt;x&gt;180&lt;/x&gt;
+                &lt;y&gt;20&lt;/y&gt;
+                &lt;width&gt;100&lt;/width&gt;
+                &lt;height&gt;99&lt;/height&gt;
+            &lt;/rect&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;title&lt;/name&gt;
+            &lt;string&gt;Size&lt;/string&gt;
+        &lt;/property&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QRadioButton&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;RadioButton1&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;20&lt;/y&gt;
+                    &lt;width&gt;56&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Junior&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QRadioButton&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;RadioButton2&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;40&lt;/y&gt;
+                    &lt;width&gt;71&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Standard&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+        &lt;widget&gt;
+            &lt;class&gt;QRadioButton&lt;/class&gt;
+            &lt;property&gt;
+                &lt;name&gt;name&lt;/name&gt;
+                &lt;cstring&gt;RadioButton3&lt;/cstring&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;geometry&lt;/name&gt;
+                &lt;rect&gt;
+                    &lt;x&gt;10&lt;/x&gt;
+                    &lt;y&gt;60&lt;/y&gt;
+                    &lt;width&gt;58&lt;/width&gt;
+                    &lt;height&gt;19&lt;/height&gt;
+                &lt;/rect&gt;
+            &lt;/property&gt;
+            &lt;property&gt;
+                &lt;name&gt;text&lt;/name&gt;
+                &lt;string&gt;Family&lt;/string&gt;
+            &lt;/property&gt;
+        &lt;/widget&gt;
+    &lt;/widget&gt;
+    &lt;widget&gt;
+        &lt;class&gt;QCheckBox&lt;/class&gt;
+        &lt;property&gt;
+            &lt;name&gt;name&lt;/name&gt;
+            &lt;cstring&gt;CheckBox5&lt;/cstring&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;geometry&lt;/name&gt;
+            &lt;rect&gt;
+                &lt;x&gt;110&lt;/x&gt;
+                &lt;y&gt;150&lt;/y&gt;
+                &lt;width&gt;101&lt;/width&gt;
+                &lt;height&gt;19&lt;/height&gt;
+            &lt;/rect&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;text&lt;/name&gt;
+            &lt;string&gt;Extra Cheese&lt;/string&gt;
+        &lt;/property&gt;
+    &lt;/widget&gt;
+    &lt;widget&gt;
+        &lt;class&gt;QPushButton&lt;/class&gt;
+        &lt;property&gt;
+            &lt;name&gt;name&lt;/name&gt;
+            &lt;cstring&gt;PushButton1_2_2&lt;/cstring&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;geometry&lt;/name&gt;
+            &lt;rect&gt;
+                &lt;x&gt;50&lt;/x&gt;
+                &lt;y&gt;180&lt;/y&gt;
+                &lt;width&gt;108&lt;/width&gt;
+                &lt;height&gt;32&lt;/height&gt;
+            &lt;/rect&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;text&lt;/name&gt;
+            &lt;string&gt;OK&lt;/string&gt;
+        &lt;/property&gt;
+    &lt;/widget&gt;
+    &lt;widget&gt;
+        &lt;class&gt;QPushButton&lt;/class&gt;
+        &lt;property&gt;
+            &lt;name&gt;name&lt;/name&gt;
+            &lt;cstring&gt;PushButton1_2&lt;/cstring&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;geometry&lt;/name&gt;
+            &lt;rect&gt;
+                &lt;x&gt;170&lt;/x&gt;
+                &lt;y&gt;180&lt;/y&gt;
+                &lt;width&gt;108&lt;/width&gt;
+                &lt;height&gt;32&lt;/height&gt;
+            &lt;/rect&gt;
+        &lt;/property&gt;
+        &lt;property&gt;
+            &lt;name&gt;text&lt;/name&gt;
+            &lt;string&gt;Cancel&lt;/string&gt;
+        &lt;/property&gt;
+    &lt;/widget&gt;
+&lt;/widget&gt;
+&lt;/UI&gt;</pre>
+			<p>The first few lines specify that this is a Qt Designer file and that it describes a dialog that should be called <span class="GUILABEL">PizzaEntry</span>. The rest describe the individual widgets by listing their names, their classes, and some of their properties. Only those properties that are different from the default&#151;i.e., those values that were automatically set when you created the widget in the form&#151;are listed here. You could in theory change values here, but this is not recommended, since you might break the format if you do not know exactly what you are doing. It's better to edit these files with Qt Designer.</p>
+			<p>Of course, no C++ compiler can use such a file, so you will have to convert it first. This is the task of another program that comes with Qt Designer: <b class="COMMAND">uic</b>, the user interface compiler.</p>
+			<p>You need to call <b class="COMMAND">uic</b> twice to generate both the header file and the implementation file of your dialog class. Assuming that <b class="COMMAND">uic</b> is in your search path, you can generate the header file as follows:</p>
+			<pre class="SCREEN">uic -o PizzaEntry.h pizza.ui</pre>
+			<p>The option <tt>-o</tt> tells <b class="COMMAND">uic</b> how to name the header file, and <tt class="FILENAME">pizza.ui</tt> is the name of the file you saved with Qt Designer. As with the XML file, let's have a brief look at the generated file:</p>
+			<pre class="SCREEN">/****************************************************************************
+** Form interface generated from reading ui file 'pizza.ui'
+**
+** Created: Tue Jun 20 13:22:32 2000
+**      by:  The User Interface Compiler (uic)
+**
+** WARNING! All changes made in this file will be lost!
+****************************************************************************/
+
+#ifndef PIZZAENTRY_H
+#define PIZZAENTRY_H
+
+#include &lt;qdialog.h&gt;
+
+class QVBoxLayout;
+class QHBoxLayout;
+class QGridLayout;
+class QButtonGroup;
+class QCheckBox;
+class QPushButton;
+class QRadioButton;
+
+class PizzaEntry : public QDialog
+{
+    Q_OBJECT
+
+public:
+    PizzaEntry( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, WFlags f = 0 );
+    ~PizzaEntry();
+
+    QButtonGroup* ButtonGroup1;
+    QCheckBox* CheckBox1;
+    QCheckBox* CheckBox2;
+    QCheckBox* CheckBox3;
+    QCheckBox* CheckBox4;
+    QButtonGroup* ButtonGroup2;
+    QRadioButton* RadioButton1;
+    QRadioButton* RadioButton2;
+    QRadioButton* RadioButton3;
+    QCheckBox* CheckBox5;
+    QPushButton* PushButton1_2_2;
+    QPushButton* PushButton1_2;
+protected:
+};
+
+#endif // PIZZAENTRY_H</pre>
+			<p>If you have programmed with Qt before, the only thing that might surprise you here is the fact that all the widget members of the dialog are made <tt class="LITERAL">public</tt>. We'll discuss later why this is so.</p>
+			<p>The next step is to create the implementation file. You tell <b class="COMMAND">uic</b> that you want to create an implementation file instead of a header file by specifying the option <tt class="OPTION">-i</tt> and passing the name of the already generated header file:</p>
+			<pre class="SCREEN">uic -i PizzaEntry.h -o PizzaEntry.cpp pizza.ui</pre>
+			<p>As before, the option <tt class="OPTION">-o</tt> determines the name of the generated file. Again, let's look at the result:</p>
+			<pre class="SCREEN">/****************************************************************************
+** Form implementation generated from reading ui file 'pizza.ui'
+**
+** Created: Tue Jun 20 13:23:00 2000
+**      by:  The User Interface Compiler (uic)
+**
+** WARNING! All changes made in this file will be lost!
+****************************************************************************/
+
+#include &quot;PizzaEntry.h&quot;
+#include &lt;qbuttongroup.h&gt;
+#include &lt;qcheckbox.h&gt;
+#include &lt;qpushbutton.h&gt;
+#include &lt;qradiobutton.h&gt;
+#include &lt;qlayout.h&gt;
+#include &lt;qvariant.h&gt;
+#include &lt;qtooltip.h&gt;
+#include &lt;qwhatsthis.h&gt;
+
+/*
+ *  Constructs a PizzaEntry which is a child of 'parent', with the
+ *  name 'name' and widget flags set to 'f'
+ *
+ *  The dialog will by default be modeless, unless you set 'modal' to
+ *  TRUE to construct a modal dialog.
+ */
+
+PizzaEntry::PizzaEntry( QWidget* parent,  const char* name, bool modal, WFlags f )
+    : QDialog( parent, name, modal, f )
+{
+    if ( !name )
+        setName( &quot;PizzaEntry&quot; );
+
+    resize( 310, 222 );
+
+    setCaption( tr( &quot;Form1&quot;  ) );
+
+    ButtonGroup1 = new QButtonGroup( this, &quot;ButtonGroup1&quot; );
+    ButtonGroup1-&gt;setGeometry( QRect( 30, 10, 122, 119 ) );
+    ButtonGroup1-&gt;setTitle( tr( &quot;Toppings&quot;  ) );
+
+    CheckBox1 = new QCheckBox( ButtonGroup1, &quot;CheckBox1&quot; );
+    CheckBox1-&gt;setGeometry( QRect( 10, 20, 102, 19 ) );
+    CheckBox1-&gt;setText( tr( &quot;Mushrooms&quot;  ) );
+
+    CheckBox2 = new QCheckBox( ButtonGroup1, &quot;CheckBox2&quot; );
+    CheckBox2-&gt;setGeometry( QRect( 10, 40, 51, 19 ) );
+    CheckBox2-&gt;setText( tr( &quot;Ham&quot;  ) );
+
+    CheckBox3 = new QCheckBox( ButtonGroup1, &quot;CheckBox3&quot; );
+    CheckBox3-&gt;setGeometry( QRect( 10, 60, 88, 19 ) );
+    CheckBox3-&gt;setText( tr( &quot;Pineapple&quot;  ) );
+
+    CheckBox4 = new QCheckBox( ButtonGroup1, &quot;CheckBox4&quot; );
+    CheckBox4-&gt;setGeometry( QRect( 10, 80, 79, 19 ) );
+    CheckBox4-&gt;setText( tr( &quot;Anchovies&quot;  ) );
+
+    ButtonGroup2 = new QButtonGroup( this, &quot;ButtonGroup2&quot; );
+    ButtonGroup2-&gt;setGeometry( QRect( 180, 20, 100, 99 ) );
+    ButtonGroup2-&gt;setTitle( tr( &quot;Size&quot;  ) );
+
+    RadioButton1 = new QRadioButton( ButtonGroup2, &quot;RadioButton1&quot; );
+    RadioButton1-&gt;setGeometry( QRect( 10, 20, 56, 19 ) );
+    RadioButton1-&gt;setText( tr( &quot;Junior&quot;  ) );
+
+    RadioButton2 = new QRadioButton( ButtonGroup2, &quot;RadioButton2&quot; );
+    RadioButton2-&gt;setGeometry( QRect( 10, 40, 71, 19 ) );
+    RadioButton2-&gt;setText( tr( &quot;Standard&quot;  ) );
+
+    RadioButton3 = new QRadioButton( ButtonGroup2, &quot;RadioButton3&quot; );
+    RadioButton3-&gt;setGeometry( QRect( 10, 60, 58, 19 ) );
+    RadioButton3-&gt;setText( tr( &quot;Family&quot;  ) );
+
+    CheckBox5 = new QCheckBox( this, &quot;CheckBox5&quot; );
+    CheckBox5-&gt;setGeometry( QRect( 110, 150, 101, 19 ) );
+    CheckBox5-&gt;setText( tr( &quot;Extra Cheese&quot;  ) );
+
+    PushButton1_2_2 = new QPushButton( this, &quot;PushButton1_2_2&quot; );
+    PushButton1_2_2-&gt;setGeometry( QRect( 50, 180, 108, 32 ) );
+    PushButton1_2_2-&gt;setText( tr( &quot;OK&quot;  ) );
+
+    PushButton1_2 = new QPushButton( this, &quot;PushButton1_2&quot; );
+    PushButton1_2-&gt;setGeometry( QRect( 170, 180, 108, 32 ) );
+    PushButton1_2-&gt;setText( tr( &quot;Cancel&quot;  ) );
+}
+
+/*
+ *  Destroys the object and frees any allocated resources
+ */
+
+PizzaEntry::~PizzaEntry()
+{
+    // no need to delete child widgets, Qt does it all for us
+}</pre>
+			<p>You might feel that this source code is a bit more verbose than handcrafted code, but this is always the price you pay for the convenience of machine-generated code.</p>
+		</div>
+		<div class="NAVFOOTER">
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top"><a href="chap2_2.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="34%" align="center" valign="top"><a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><a href="chap2_4.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font  color="white">More Widgets For Our Form</font></td>
+					<td width="34%" align="center" valign="top"><a href="chap2_1.html"><img height="20" width="20" src="arrows/up.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><font  color="white">Putting It All Together</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

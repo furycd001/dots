@@ -1,0 +1,110 @@
+'\" t
+.TH QCopChannel 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCopChannel \- This class provides communication capabilities between several clients
+.br
+.PP
+\fC#include <qcopchannel_qws.h>\fR
+.PP
+Inherits QObject.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCopChannel\fR ( const QCString & " "channel" ", QObject * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "virtual \fB~QCopChannel\fR () "
+.br
+.ti -1c
+.BI "QCString \fBchannel\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBreceive\fR ( const QCString & " "msg" ", const QByteArray & data ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBreceived\fR ( const QCString & " "msg" ", const QByteArray & data ) "
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "bool \fBisRegistered\fR ( const QCString & channel ) "
+.br
+.ti -1c
+.BI "bool \fBsend\fR ( const QCString & " "channel" ", const QCString & msg ) "
+.br
+.ti -1c
+.BI "bool \fBsend\fR ( const QCString & " "channel" ", const QCString & " "msg" ", const QByteArray & data ) "
+.br
+.ti -1c
+.BI "void \fBsendLocally\fR ( const QCString & " "ch" ", const QCString & " "msg" ", const QByteArray & data ) (internal)"
+.br
+.in -1c
+.SH DESCRIPTION
+This class provides communication capabilities between several clients.
+.PP
+The Qt Cop (QCOP) is a COmmunication Protocol, allowing clients to communicate inside of the same address space or between different processes.
+.PP
+Currently, this facility is only available on Qt/Embedded as on X11 and Windows we are exploring the use of existing standard such as DCOP and COM.
+.PP
+QCopChannel contains important functions like send() and isRegistered() which are static and therefore usable without an object.
+.PP
+In order to \fIlisten\fR to the traffic on the channel, you should either subclass from QCopChannel and provide an re-implementation for receive(), or you should connect() to the received() signal.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCopChannel::QCopChannel ( const QCString & channel, QObject * parent=0, const char * name=0 )"
+Constructs a QCop channel and registers it with the server under the name \fIchannel.\fR The standard \fIparent\fR and \fIname\fR arguments are passed on to the QObject constructor.
+.SH "QCopChannel::~QCopChannel () \fC[virtual]\fR"
+Destructs the client's side end of the channel and notifies the server about the closing. The server itself keeps the channel open until the last registered client detaches.
+.SH "QCString QCopChannel::channel () const"
+Returns the name of the channel.
+.SH "bool QCopChannel::isRegistered ( const QCString & channel ) \fC[static]\fR"
+Queries the server for the existance of \fIchannel.\fR
+.PP
+Returns TRUE if \fIchannel\fR is registered.
+.SH "void QCopChannel::receive ( const QCString & msg, const QByteArray & data ) \fC[virtual]\fR"
+This virtual function allows subclasses of QCopChannel to process data received from their channel.
+.PP
+The default implementation emits the received() signal.
+.PP
+Note that the format of \fIdata\fR has to be well defined in order to demarshall the contained information.
+.PP
+See also send().
+.SH "void QCopChannel::received ( const QCString & msg, const QByteArray & data ) \fC[signal]\fR"
+This signal is emitted whenever the receive() function gets incoming data.
+.SH "bool QCopChannel::send ( const QCString & channel, const QCString & msg ) \fC[static]\fR"
+Send the message \fImsg\fR on \fIchannel.\fR The message will be distributed to all clients subscribed to the channel.
+.PP
+See also receive().
+.SH "bool QCopChannel::send ( const QCString & channel, const QCString & msg, const QByteArray & data ) \fC[static]\fR"
+Same as above function except the additional \fIdata\fR parameter. QDataStream provides a convenient way to fill the byte array with auxiliary data.
+.SH "void QCopChannel::sendLocally ( const QCString & ch, const QCString & msg, const QByteArray & data ) \fC[static]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcopchannel.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcopchannel.3qt) and the Qt
+version (2.3.2).

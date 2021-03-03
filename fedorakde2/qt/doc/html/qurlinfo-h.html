@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qurlinfo.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qurlinfo.h</h1><br clear="all">
+This is the verbatim text of the qurlinfo.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/kernel/qurlinfo.h   2.3.2   edited 2001-01-26 $
+**
+** Definition of QUrlInfo class
+**
+** Created : 950429
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the kernel module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QURLINFO_H
+#define QURLINFO_H
+
+#ifndef QT_H
+#include "qdatetime.h"
+#include "qstring.h"
+#endif // QT_H
+
+class <a href="qurloperator.html">QUrlOperator</a>;
+struct QUrlInfoPrivate;
+class <a href="qurl.html">QUrl</a>;
+
+class Q_EXPORT <a href="qurlinfo.html">QUrlInfo</a>
+{
+public:
+    QUrlInfo();
+    QUrlInfo( const QUrlOperator &amp;path, const QString &amp;file );
+    QUrlInfo( const QUrlInfo &amp;ui );
+    QUrlInfo( const QString &amp;name, int permissions, const QString &amp;owner,
+              const QString &amp;group, uint size, const QDateTime &amp;lastModified,
+              const QDateTime &amp;lastRead, bool isDir, bool isFile, bool isSymLink,
+              bool isWritable, bool isReadable, bool isExecutable );
+    QUrlInfo( const QUrl &amp;url, int permissions, const QString &amp;owner,
+              const QString &amp;group, uint size, const QDateTime &amp;lastModified,
+              const QDateTime &amp;lastRead, bool isDir, bool isFile, bool isSymLink,
+              bool isWritable, bool isReadable, bool isExecutable );
+    QUrlInfo &amp;operator=( const QUrlInfo &amp;ui );
+    virtual ~QUrlInfo();
+
+    virtual void setName( const QString &amp;name );
+    virtual void setDir( bool b );
+    virtual void setFile( bool b );
+    virtual void setSymLink( bool b );
+    virtual void setOwner( const QString &amp;s );
+    virtual void setGroup( const QString &amp;s );
+    virtual void setSize( uint s );
+    virtual void setWritable( bool b );
+    virtual void setReadable( bool b );
+    virtual void setPermissions( int p );
+    virtual void setLastModified( const QDateTime &amp;dt );
+
+    QString name() const;
+    int permissions() const;
+    QString owner() const;
+    QString group() const;
+    uint size() const;
+    QDateTime lastModified() const;
+    QDateTime lastRead() const;
+    bool isDir() const;
+    bool isFile() const;
+    bool isSymLink() const;
+    bool isWritable() const;
+    bool isReadable() const;
+    bool isExecutable() const;
+
+    static bool greaterThan( const QUrlInfo &amp;i1, const QUrlInfo &amp;i2,
+                             int sortBy );
+    static bool lessThan( const QUrlInfo &amp;i1, const QUrlInfo &amp;i2,
+                          int sortBy );
+    static bool equal( const QUrlInfo &amp;i1, const QUrlInfo &amp;i2,
+                       int sortBy );
+
+    bool operator==( const QUrlInfo &amp;i ) const;
+private:
+    QUrlInfoPrivate *d;
+
+};
+
+#endif
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

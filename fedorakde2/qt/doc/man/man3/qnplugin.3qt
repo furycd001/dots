@@ -1,0 +1,155 @@
+'\" t
+.TH QNPlugin 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QNPlugin \- The plugin central factory
+.br
+.PP
+\fC#include <qnp.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual \fB~QNPlugin\fR () "
+.br
+.ti -1c
+.BI "void \fBgetVersionInfo\fR ( int & " "plugin_major" ", int & " "plugin_minor" ", int & " "browser_major" ", int & browser_minor ) "
+.br
+.ti -1c
+.BI "virtual QNPInstance* \fBnewInstance\fR () "
+.br
+.ti -1c
+.BI "virtual const char* \fBgetMIMEDescription\fR () const"
+.br
+.ti -1c
+.BI "virtual const char* \fBgetPluginNameString\fR () const"
+.br
+.ti -1c
+.BI "virtual const char* \fBgetPluginDescriptionString\fR () const"
+.br
+.ti -1c
+.BI "virtual void* \fBgetJavaClass\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBunuseJavaClass\fR () "
+.br
+.ti -1c
+.BI "void* \fBgetJavaEnv\fR () const"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QNPlugin* \fBcreate\fR () "
+.br
+.ti -1c
+.BI "QNPlugin* \fBactual\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQNPlugin\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+This class is defined in the \fBQt NSPlugin Extension\fR, which can be found in the \fCqt/extensions\fR directory. It is not included in the main Qt API.
+.PP
+The plugin central factory.
+.PP
+This class is the heart of the plugin. One instance of this object is created when the plugin is \fIfirst\fR needed, by calling QNPlugin::create(), which must be implemented in your plugin code to return some derived class of QNPlugin. The one QNPlugin object creates all instances for a single running Web-browser process.
+.PP
+Additionally, if Qt is linked to the plugin as a dynamic library, only one instance of QApplication will exist \fIacross all plugins that have been made with Qt.\fR So, your plugin should tread lightly on global settings - do not for example, use QApplication::setFont() - that will change the font in every widget of every Qt-based plugin currently loaded!.
+.PP
+Examples:
+.(l
+qtimage/qtimage.cpp grapher/grapher.cpp trivial/trivial.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QNPlugin::QNPlugin () \fC[protected]\fR"
+Creates a QNPlugin. This may only be used by the constructor derived class returned by plugin's implementation of the QNPlugin::create() function.
+.SH "QNPlugin::~QNPlugin () \fC[virtual]\fR"
+Destroys the QNPlugin. This is called by the plugin binding code just before the plugin is about to be unloaded from memory. If newWindow() has been called, a QApplication will still exist at this time, but will be deleted shortly after before the plugin is deleted.
+.SH "QNPlugin* QNPlugin::actual () \fC[static]\fR"
+Returns the plugin most recently returns by QNPlugin::create().
+.SH "QNPlugin* QNPlugin::create () \fC[static]\fR"
+This must be implemented by your plugin code. It should return a derived class of QNPlugin.
+.SH "void* QNPlugin::getJavaClass () \fC[virtual]\fR"
+Override to return a reference to the Java class that represents the plugin. The default returns 0, indicating no class.
+.PP
+If you override this class, you must also override QNPlugin::unuseJavaClass().
+.PP
+The return value is actually a \fCjref\fR we use \fCvoid*\fR so as to avoid burdening plugins which do not require Java.
+.PP
+See also getJavaEnv() and QNPInstance::getJavaPeer().
+.SH "void* QNPlugin::getJavaEnv () const"
+Returns a pointer to the Java execution environment, or 0 if Java is disabled or an error occurred.
+.PP
+The return value is actually a \fCJRIEnv*\fR we use \fCvoid*\fR so as to avoid burdening plugins which do not require Java.
+.PP
+See also getJavaClass() and QNPInstance::getJavaPeer().
+.SH "const char* QNPlugin::getMIMEDescription () const \fC[virtual]\fR"
+Override this to return the MIME description of the data formats supported by your plugin. The format of this string is described by the following example:
+.PP
+.nf
+.br
+    const char* getMIMEDescription() const
+.br
+    {
+.br
+        return "image/x-png:png:PNG Image;"
+.br
+               "image/png:png:PNG Image;"
+.br
+               "image/x-portable-bitmap:pbm:PBM Image;"
+.br
+               "image/x-portable-graymap:pgm:PGM Image;"
+.br
+               "image/x-portable-pixmap:ppm:PPM Image;"
+.br
+               "image/bmp:bmp:BMP Image;"
+.br
+               "image/x-ms-bmp:bmp:BMP Image;"
+.br
+               "image/x-xpixmap:xpm:XPM Image;"
+.br
+               "image/xpm:xpm:XPM Image";
+.br
+    }
+.fi
+.SH "const char* QNPlugin::getPluginDescriptionString () const \fC[virtual]\fR"
+Returns a plain-text description of the plugin.
+.SH "const char* QNPlugin::getPluginNameString () const \fC[virtual]\fR"
+Returns the plain-text name of the plugin.
+.SH "void QNPlugin::getVersionInfo ( int & plugin_major, int & plugin_minor, int & browser_major, int & browser_minor )"
+Returns the version information - the version of the plugin API, and the version of the browser.
+.SH "QNPInstance* QNPlugin::newInstance () \fC[virtual]\fR"
+Override this to return an appropriate derived class of QNPInstance.
+.SH "void QNPlugin::unuseJavaClass () \fC[virtual]\fR"
+This function is called when the plugin is shutting down,
+with \fIjc\fR set to the value returned earlier by getJavaClass().
+The function should \fIunuse\fR the Java class and return 0.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qnplugin.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qnplugin.3qt) and the Qt
+version (2.3.2).

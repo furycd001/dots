@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QXmlAttributes Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QXmlAttributes Class Reference<br><small>[ <a href="xml.html">XML module</a> ]</small></h1><br clear="all">
+<p>
+The QXmlAttributes class provides XML attributes.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qxml-h.html">qxml.h</a>&gt;</code>
+<p><a href="qxmlattributes-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#a2ee71"><b>QXmlAttributes</b></a> () </div>
+<li><div class="fn">virtual <a href="#a08ff2"><b>~QXmlAttributes</b></a> () </div>
+<li><div class="fn">int <a href="#8d856d"><b>index</b></a> ( const QString &amp; qName ) const</div>
+<li><div class="fn">int <a href="#c2ac4e"><b>index</b></a> ( const QString &amp; uri, const QString &amp; localPart ) const</div>
+<li><div class="fn">int <a href="#ca0007"><b>length</b></a> () const</div>
+<li><div class="fn">QString <a href="#fef0ab"><b>localName</b></a> ( int index ) const</div>
+<li><div class="fn">QString <a href="#250b8b"><b>qName</b></a> ( int index ) const</div>
+<li><div class="fn">QString <a href="#a1dce5"><b>uri</b></a> ( int index ) const</div>
+<li><div class="fn">QString <a href="#1cdb18"><b>type</b></a> ( int index ) const</div>
+<li><div class="fn">QString <a href="#120bcb"><b>type</b></a> ( const QString &amp; qName ) const</div>
+<li><div class="fn">QString <a href="#83abd5"><b>type</b></a> ( const QString &amp; uri, const QString &amp; localName ) const</div>
+<li><div class="fn">QString <a href="#9a2501"><b>value</b></a> ( int index ) const</div>
+<li><div class="fn">QString <a href="#ce05ed"><b>value</b></a> ( const QString &amp; qName ) const</div>
+<li><div class="fn">QString <a href="#5442e3"><b>value</b></a> ( const QString &amp; uri, const QString &amp; localName ) const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QXmlAttributes class provides XML attributes.
+<p>
+If attributes are reported by <a href="qxmlcontenthandler.html#4cb897">QXmlContentHandler::startElement</a>() this
+class is used to pass the attribute values. It provides you with different
+functions to access the attribute names and values.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a2ee71"></a>QXmlAttributes::QXmlAttributes ()</h3>
+<p>Constructs an empty attribute list.
+<h3 class="fn"><a name="a08ff2"></a>QXmlAttributes::~QXmlAttributes () <code>[virtual]</code></h3>
+<p>Destructs attributes.
+<h3 class="fn">int <a name="8d856d"></a>QXmlAttributes::index ( const <a href="qstring.html">QString</a> &amp; qName ) const</h3>
+<p>Look up the index of an attribute by an XML 1.0 qualified name.
+<p>Returns the index of the attribute (starting with 0) or -1 if it wasn't
+found.
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn">int <a name="c2ac4e"></a>QXmlAttributes::index ( const <a href="qstring.html">QString</a> &amp; uri, const <a href="qstring.html">QString</a> &amp; localPart ) const</h3>
+<p>Looks up the index of an attribute by a namespace name.
+<p><em>uri</em> specifies the namespace URI, or the empty string if the name has no
+namespace URI. <em>localPart</em> specifies the attribute's local name.
+<p>Returns the index of the attribute (starting with 0) or -1 if it wasn't
+found.
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn">int <a name="ca0007"></a>QXmlAttributes::length () const</h3>
+<p>Returns the number of attributes in the list.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="fef0ab"></a>QXmlAttributes::localName ( int index ) const</h3>
+<p>Looks up an attribute's local name by index (starting with 0).
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="250b8b"></a>QXmlAttributes::qName ( int index ) const</h3>
+<p>Looks up an attribute's XML 1.0 qualified name by index (starting with 0).
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="120bcb"></a>QXmlAttributes::type ( const <a href="qstring.html">QString</a> &amp; ) const</h3>
+<p>Looks up an attribute's type by XML 1.0 qualified name.
+<p>At the moment only 'CDATA' is returned.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="83abd5"></a>QXmlAttributes::type ( const <a href="qstring.html">QString</a> &amp;, const <a href="qstring.html">QString</a> &amp; ) const</h3>
+<p>Looks up an attribute's type by namespace name.
+<p>The first parameter specifies the namespace URI, or the empty string if
+the name has no namespace URI. The second parameter specifies the
+attribute's local name.
+<p>At the moment only 'CDATA' is returned.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="1cdb18"></a>QXmlAttributes::type ( int ) const</h3>
+<p>Looks up an attribute's type by index (starting with 0).
+<p>At the moment only 'CDATA' is returned.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="a1dce5"></a>QXmlAttributes::uri ( int index ) const</h3>
+<p>Looks up an attribute's namespace URI by index (starting with 0).
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="ce05ed"></a>QXmlAttributes::value ( const <a href="qstring.html">QString</a> &amp; qName ) const</h3>
+<p>Looks up an attribute's value by XML 1.0 qualified name.
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="5442e3"></a>QXmlAttributes::value ( const <a href="qstring.html">QString</a> &amp; uri, const <a href="qstring.html">QString</a> &amp; localName ) const</h3>
+<p>Looks up an attribute's value by namespace name.
+<p><em>uri</em> specifies the namespace URI, or the empty string if the name has no
+namespace URI. <em>localName</em> specifies the attribute's local name.
+<p>See also the <a href="xml-sax.html#namespaces">namespace description</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="9a2501"></a>QXmlAttributes::value ( int index ) const</h3>
+<p>Looks up an attribute's value by index (starting with 0).
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

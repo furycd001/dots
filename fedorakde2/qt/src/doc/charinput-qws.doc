@@ -1,0 +1,145 @@
+/****************************************************************************
+** $Id: qt/doc/charinput-qws.doc   2.3.2   edited 2001-01-26 $
+**
+** Documentation of
+**
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#if defined(DEBUG)
+static char ident[] = "$Id: qt/doc/charinput-qws.doc   2.3.2   edited 2001-01-26 $";
+#endif
+
+/*! \page charinput-qws.html
+
+\title Character input in Qt/Embedded
+
+Internally in the client/server protocol, each key press and key
+release is sent as a <tt>QWSKeyEvent</tt>. A QWSKeyEvent contains the
+following fields:
+
+<ul>
+ <li> <tt>unicode</tt>: Unicode value
+ <li> <tt>keycode</tt>: Qt keycode value as defined in qnamespace.h
+ <li> <tt>modifier</tt>: A bitfield consisting of some of Qt::ShiftButton,
+	Qt::ControlButton, and Qt::AltButton.
+ <li> <tt>is_press</tt>: TRUE if this is a key press, FALSE if it is a
+	key release.
+ <li> <tt>is_auto_repeat</tt>: TRUE if this event is caused by auto repeat.
+</ul>
+
+When the server receives a key event, it is sent to each client
+process, which is responsible for processing the key event and sending
+it to the right window, if any. Key events may come from several
+different sources.
+
+
+<h3>Keyboard drivers</h3>
+
+A keyboard driver reads data from a device and gives key events to the
+server.
+<p>
+Keyboard drivers are currently compiled into the library.
+They are defined in the file src/kernel/qkeyboard_qws.cpp.
+At the time of writing, the following drivers are defined:
+<dl>
+   <dt><tt>QWSTtyKeyboardHandler</tt>
+      <dd>Input from the system console (tty)
+   <dt><tt>QWSVr41xxButtonsHandler</tt>
+      <dd>Input handler for the buttons on Cassiopeia-style PDAs
+   <dt><tt>QWSVFbKeyboardHandler</tt>
+      <dd>Virtual framebuffer key input
+</dl>
+
+The keyboard drivers all follow the same pattern. They read keyboard
+data from a device, find out which keys were pressed, and then call
+the static function QWSServer::processKeyEvent() with the key information.
+<p>
+At present, the console keyboard driver also handles console switching
+(Ctrl-Alt-F1...F10) and termination (Ctrl-Alt-Backspace).
+<p>
+To add a keyboard driver for a new device, make a subclass of
+<tt>QWSKeyboardHandler</tt> and instantiate it in
+<tt>QWSServer::newKeyboardHandler()</tt> (in qkeyboard_qws.cpp).
+
+<h3>Key event filters (input methods)</h3>
+
+When the server receives a key event from a keyboard driver, it first
+passes it through a filter. 
+
+This can be used to implement input methods, providing input of
+characters that are not on the keyboard.
+<p>
+To make an input method, subclass QWSServer::KeyboardFilter (in
+src/kernel/qwindowsystem_qws.h) and implement the virtual function
+filter(). If filter() returns FALSE, the event will be sent to the
+clients (using QWSServer::sendKeyEvent()). If filter() returns TRUE,
+the event will be stopped. To generate new key events, use
+QWSServer::sendKeyEvent(). (Do not use processKeyEvent(), since this
+will lead to infinite recursion.)
+<p>
+To install a keyboard event filter, use
+<tt>QWSServer::setKeyboardFilter()</tt>. Currently, only one filter
+can be installed at a time.
+
+Filtering must be done in the server process.
+<p>
+The launcher example contains an example of a simple input method,
+<tt>SimpleIM</tt> which reads a substitution table from a file.
+
+<h3>Pen input</h3>
+
+Key events do not need to come from a keyboard device. The server
+process may call QWSServer::sendKeyEvent() at any time. 
+
+Typically, this is done by popping up a widget, and letting the user
+specify characters with the pointer device.
+<p>
+<b>Note:</b> the key input widget should not take focus, since the
+server would then just send the key events back to the input widget.
+One way to make sure that the input widget never takes focus is to set
+the <tt>WStyle_Customize</tt> and <tt>WStyle_Tool</tt> widget flags in
+the QWidget constructor.
+<p>
+The compact example contains three example input widgets:
+<ul>
+<li> A simple handwriting recognition example.
+<li> A virtual keyboard example.
+<li> An example Unicode input widget. 
+</ul>
+
+
+
+
+
+
+
+
+*/

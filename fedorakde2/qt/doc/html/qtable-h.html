@@ -1,0 +1,474 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qtable.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qtable.h</h1><br clear="all">
+This is the verbatim text of the qtable.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+**
+** Definition of QTable widget class
+**
+** Created : 000607
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the table module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition licenses may use this
+** file in accordance with the Qt Commercial License Agreement provided
+** with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QTABLE_H
+#define QTABLE_H
+
+#ifndef QT_H
+#include &lt;qscrollview.h&gt;
+#include &lt;qpixmap.h&gt;
+#include &lt;qvector.h&gt;
+#include &lt;qheader.h&gt;
+#include &lt;qarray.h&gt;
+#include &lt;qlist.h&gt;
+#include &lt;qguardedptr.h&gt;
+#include &lt;qshared.h&gt;
+#endif // QT_H
+
+
+#ifndef QT_NO_TABLE
+
+class QTableHeader;
+class <a href="qvalidator.html">QValidator</a>;
+class <a href="qtable.html">QTable</a>;
+class <a href="qpaintevent.html">QPaintEvent</a>;
+class <a href="qtimer.html">QTimer</a>;
+class <a href="qresizeevent.html">QResizeEvent</a>;
+
+
+struct QTablePrivate;
+struct QTableHeaderPrivate;
+
+
+class Q_EXPORT <a href="qtableselection.html">QTableSelection</a>
+{
+public:
+    QTableSelection();
+    void init( int row, int col );
+    void expandTo( int row, int col );
+    bool operator==( const QTableSelection &amp;s ) const;
+
+    int topRow() const { return tRow; }
+    int bottomRow() const { return bRow; }
+    int leftCol() const { return lCol; }
+    int rightCol() const { return rCol; }
+    int anchorRow() const { return aRow; }
+    int anchorCol() const { return aCol; }
+
+    bool isActive() const { return active; }
+
+private:
+    uint active : 1;
+    uint inited : 1;
+    int tRow, lCol, bRow, rCol;
+    int aRow, aCol;
+};
+
+
+class Q_EXPORT <a href="qtableitem.html">QTableItem</a> : public <a href="qt.html">Qt</a>
+{
+public:
+    enum EditType { Never, OnTyping, WhenCurrent, Always };
+
+    QTableItem( QTable *table, EditType et, const QString &amp;text );
+    QTableItem( QTable *table, EditType et, const QString &amp;text,
+                const QPixmap &amp;p );
+    virtual ~QTableItem();
+
+    virtual QPixmap pixmap() const;
+    virtual QString text() const;
+    virtual void setPixmap( const QPixmap &amp;p );
+    virtual void setText( const QString &amp;t );
+    QTable *table() const { return t; }
+
+    virtual int alignment() const;
+    virtual void setWordWrap( bool b );
+    bool wordWrap() const;
+
+    EditType editType() const;
+    virtual QWidget *createEditor() const;
+    virtual void setContentFromEditor( QWidget *w );
+    virtual void setReplaceable( bool );
+    bool isReplaceable() const;
+
+    virtual QString key() const;
+    virtual QSize sizeHint() const;
+
+    virtual void setSpan( int rs, int cs );
+    int rowSpan() const;
+    int colSpan() const;
+
+    virtual void setRow( int r );
+    virtual void setCol( int c );
+    int row() const;
+    int col() const;
+
+    virtual void paint( QPainter *p, const QColorGroup &amp;cg,
+                        const QRect &amp;cr, bool selected );
+
+    void updateEditor( int oldRow, int oldCol );
+
+private:
+    QString txt;
+    QPixmap pix;
+    QTable *t;
+    EditType edType;
+    uint wordwrap : 1;
+    uint tcha : 1;
+    int rw, cl;
+    int rowspan, colspan;
+
+};
+
+
+#if defined(Q_TEMPLATEDLL)
+// MOC_SKIP_BEGIN
+template class Q_EXPORT QVector&lt;QTableItem&gt;;
+template class Q_EXPORT QVector&lt;QWidget&gt;;
+template class Q_EXPORT QList&lt;QTableSelection&gt;;
+// MOC_SKIP_END
+#endif
+
+
+class Q_EXPORT <a href="qtable.html">QTable</a> : public <a href="qscrollview.html">QScrollView</a>
+{
+    Q_OBJECT
+    Q_PROPERTY( int numRows READ numRows WRITE setNumRows )
+    Q_PROPERTY( int numCols READ numCols WRITE setNumCols )
+    Q_PROPERTY( bool showGrid READ showGrid WRITE setShowGrid )
+    Q_PROPERTY( bool rowMovingEnabled READ rowMovingEnabled WRITE setRowMovingEnabled )
+    Q_PROPERTY( bool columnMovingEnabled READ columnMovingEnabled WRITE setColumnMovingEnabled )
+
+    friend class QTableHeader;
+
+public:
+    QTable( QWidget *parent = 0, const char *name = 0 );
+    QTable( int numRows, int numCols,
+            QWidget *parent = 0, const char *name = 0 );
+    ~QTable();
+
+    QHeader *horizontalHeader() const;
+    QHeader *verticalHeader() const;
+
+    enum SelectionMode { Single, Multi, NoSelection  };
+    virtual void setSelectionMode( SelectionMode mode );
+    SelectionMode selectionMode() const;
+
+    virtual void setItem( int row, int col, QTableItem *item );
+    virtual void setText( int row, int col, const QString &amp;text );
+    virtual void setPixmap( int row, int col, const QPixmap &amp;pix );
+    virtual QTableItem *item( int row, int col ) const;
+    virtual QString text( int row, int col ) const;
+    virtual QPixmap pixmap( int row, int col ) const;
+    virtual void clearCell( int row, int col );
+
+    virtual QRect cellGeometry( int row, int col ) const;
+    virtual int columnWidth( int col ) const;
+    virtual int rowHeight( int row ) const;
+    virtual int columnPos( int col ) const;
+    virtual int rowPos( int row ) const;
+    virtual int columnAt( int pos ) const;
+    virtual int rowAt( int pos ) const;
+
+    int numRows() const;
+    int numCols() const;
+
+    void updateCell( int row, int col );
+
+    bool eventFilter( QObject * o, QEvent * );
+
+    int currentRow() const { return curRow; }
+    int currentColumn() const { return curCol; }
+    void ensureCellVisible( int row, int col );
+
+    bool isSelected( int row, int col ) const;
+    bool isRowSelected( int row, bool full = FALSE ) const;
+    bool isColumnSelected( int col, bool full = FALSE ) const;
+    int numSelections() const;
+    QTableSelection selection( int num ) const;
+    virtual int addSelection( const QTableSelection &amp;s );
+    virtual void removeSelection( const QTableSelection &amp;s );
+    virtual void removeSelection( int num );
+    virtual int currentSelection() const;
+
+    bool showGrid() const;
+
+    bool columnMovingEnabled() const;
+    bool rowMovingEnabled() const;
+
+    virtual void sortColumn( int col, bool ascending = TRUE,
+                             bool wholeRows = FALSE );
+    bool sorting() const;
+
+    virtual void takeItem( QTableItem *i );
+
+    virtual void setCellWidget( int row, int col, QWidget *e );
+    virtual QWidget *cellWidget( int row, int col ) const;
+    virtual void clearCellWidget( int row, int col );
+
+    virtual void paintCell( QPainter *p, int row, int col,
+                            const QRect &amp;cr, bool selected );
+    virtual void paintFocus( QPainter *p, const QRect &amp;r );
+    QSize sizeHint() const;
+
+public slots:
+    virtual void setNumRows( int r );
+    virtual void setNumCols( int r );
+    virtual void setShowGrid( bool b );
+    virtual void hideRow( int row );
+    virtual void hideColumn( int col );
+    virtual void showRow( int row );
+    virtual void showColumn( int col );
+
+    virtual void setColumnWidth( int col, int w );
+    virtual void setRowHeight( int row, int h );
+
+    virtual void adjustColumn( int col );
+    virtual void adjustRow( int row );
+
+    virtual void setColumnStretchable( int col, bool stretch );
+    virtual void setRowStretchable( int row, bool stretch );
+    bool isColumnStretchable( int col ) const;
+    bool isRowStretchable( int row ) const;
+    virtual void setSorting( bool b );
+    virtual void swapRows( int row1, int row2 );
+    virtual void swapColumns( int col1, int col2 );
+    virtual void swapCells( int row1, int col1, int row2, int col2 );
+
+    virtual void setLeftMargin( int m );
+    virtual void setTopMargin( int m );
+    virtual void setCurrentCell( int row, int col );
+    void clearSelection( bool repaint = TRUE );
+    virtual void setColumnMovingEnabled( bool b );
+    virtual void setRowMovingEnabled( bool b );
+
+protected:
+    void drawContents( QPainter *p, int cx, int cy, int cw, int ch );
+    void contentsMousePressEvent( QMouseEvent* );
+    void contentsMouseMoveEvent( QMouseEvent* );
+    void contentsMouseDoubleClickEvent( QMouseEvent* );
+    void contentsMouseReleaseEvent( QMouseEvent* );
+    void keyPressEvent( QKeyEvent* );
+    void focusInEvent( QFocusEvent* );
+    void focusOutEvent( QFocusEvent* );
+    void resizeEvent( QResizeEvent * );
+    void showEvent( QShowEvent *e );
+
+    virtual void paintEmptyArea( QPainter *p, int cx, int cy, int cw, int ch );
+    virtual void activateNextCell();
+    virtual QWidget *createEditor( int row, int col, bool initFromCell ) const;
+    virtual void setCellContentFromEditor( int row, int col );
+    virtual QWidget *beginEdit( int row, int col, bool replace );
+    virtual void endEdit( int row, int col, bool accept, bool replace );
+
+    virtual void resizeData( int len );
+    virtual void insertWidget( int row, int col, QWidget *w );
+    int indexOf( int row, int col ) const;
+
+protected slots:
+    virtual void columnWidthChanged( int col );
+    virtual void rowHeightChanged( int row );
+    virtual void columnIndexChanged( int s, int oi, int ni );
+    virtual void rowIndexChanged( int s, int oi, int ni );
+    virtual void columnClicked( int col );
+
+signals:
+    void currentChanged( int row, int col );
+    void clicked( int row, int col, int button, const QPoint &amp;mousePos );
+    void doubleClicked( int row, int col, int button, const QPoint &amp;mousePos );
+    void pressed( int row, int col, int button, const QPoint &amp;mousePos );
+    void selectionChanged();
+    void valueChanged( int row, int col );
+
+private slots:
+    void doAutoScroll();
+
+private:
+    enum EditMode { NotEditing, Editing, Replacing };
+
+    void updateGeometries();
+    void repaintSelections( QTableSelection *oldSelection,
+                            QTableSelection *newSelection,
+                            bool updateVertical = TRUE,
+                            bool updateHorizontal = TRUE );
+    QRect rangeGeometry( int topRow, int leftCol,
+                         int bottomRow, int rightCol, bool &amp;optimize );
+    void fixRow( int &amp;row, int y );
+    void fixCol( int &amp;col, int x );
+
+    void init( int numRows, int numCols );
+    QSize tableSize() const;
+    bool isEditing() const;
+    void repaintCell( int row, int col );
+    void contentsToViewport2( int x, int y, int&amp; vx, int&amp; vy );
+    QPoint contentsToViewport2( const QPoint &amp;p );
+    void viewportToContents2( int vx, int vy, int&amp; x, int&amp; y );
+    QPoint viewportToContents2( const QPoint &amp;p );
+
+    void updateRowWidgets( int row );
+    void updateColWidgets( int col );
+
+    bool isRowHidden( int ) const;
+    bool isColumnHidden( int ) const;
+private:
+    QVector&lt;QTableItem&gt; contents;
+    QVector&lt;QWidget&gt; widgets;
+    int curRow;
+    int curCol;
+    QTableHeader *leftHeader, *topHeader;
+    EditMode edMode;
+    int editCol, editRow;
+    QList&lt;QTableSelection&gt; selections;
+    QTableSelection *currentSel;
+    QTimer *autoScrollTimer;
+    bool sGrid, mRows, mCols;
+    int lastSortCol;
+    bool asc;
+    bool doSort;
+    bool mousePressed;
+    SelectionMode selMode;
+    int pressedRow, pressedCol;
+    QTablePrivate *d;
+
+};
+
+
+#if defined(Q_TEMPLATEDLL)
+// MOC_SKIP_BEGIN
+template class Q_EXPORT QArray&lt;int&gt;;
+template class Q_EXPORT QArray&lt;bool&gt;;
+// MOC_SKIP_END
+#endif
+
+
+class Q_EXPORT QTableHeader : public <a href="qheader.html">QHeader</a>
+{
+    Q_OBJECT
+public:
+    enum SectionState {
+        Normal,
+        Bold,
+        Selected
+    };
+
+    QTableHeader( int, QTable *t, QWidget *parent=0, const char *name=0 );
+    ~QTableHeader() {};
+    void addLabel( const QString &amp;s , int size );
+
+    void setSectionState( int s, SectionState state );
+    SectionState sectionState( int s ) const;
+
+    int sectionSize( int section ) const;
+    int sectionPos( int section ) const;
+    int sectionAt( int section ) const;
+
+    void setSectionStretchable( int s, bool b );
+    bool isSectionStretchable( int s ) const;
+
+signals:
+    void sectionSizeChanged( int s );
+
+protected:
+    void paintEvent( QPaintEvent *e );
+    void paintSection( QPainter *p, int index, QRect fr );
+    void mousePressEvent( QMouseEvent *e );
+    void mouseMoveEvent( QMouseEvent *e );
+    void mouseReleaseEvent( QMouseEvent *e );
+    void mouseDoubleClickEvent( QMouseEvent *e );
+    void resizeEvent( QResizeEvent *e );
+
+private slots:
+    void doAutoScroll();
+    void sectionWidthChanged( int col, int os, int ns );
+    void indexChanged( int sec, int oldIdx, int newIdx );
+    void updateStretches();
+    void updateWidgetStretches();
+
+private:
+    void updateSelections();
+    void saveStates();
+    void setCaching( bool b );
+    void swapSections( int oldIdx, int newIdx );
+    bool doSelection( QMouseEvent *e );
+
+private:
+    QArray&lt;int&gt; states, oldStates;
+    QArray&lt;bool&gt; stretchable;
+    QArray&lt;int&gt; sectionSizes, sectionPoses;
+    bool mousePressed;
+    int pressPos, startPos, endPos;
+    QTable *table;
+    QTimer *autoScrollTimer;
+    QWidget *line1, *line2;
+    bool caching;
+    int resizedSection;
+    bool isResizing;
+    int numStretches;
+    QTimer *stretchTimer, *widgetStretchTimer;
+    QTableHeaderPrivate *d;
+
+};
+
+#endif // QT_NO_TABLE
+#endif // TABLE_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

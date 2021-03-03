@@ -1,0 +1,79 @@
+'\" t
+.TH QSortedList 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QSortedList \- List sorted by operator
+.br
+.PP
+\fC#include <qsortedlist.h>\fR
+.PP
+Inherits QList.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQSortedList\fR () "
+.br
+.ti -1c
+.BI "\fBQSortedList\fR ( const QSortedList<type> & list ) "
+.br
+.ti -1c
+.BI "\fB~QSortedList\fR () "
+.br
+.ti -1c
+.BI "QSortedList<type>& \fBoperator=\fR ( const QSortedList<type> & list ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QSortedList class provides a list sorted by operator< and operator==
+.PP
+If you want to sort a QList you have to reimplement the QGList::compareItems() method. If the elements of your list support operator<() and operator==() then you can use QSortedList instead. Its compareItems() calls operator<() and operator==() and returns an appropriate result.
+.PP
+Otherwise, this is as QList.
+.PP
+See also QList and Collection Classes
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QSortedList::QSortedList ()"
+Constructs an empty list.
+.SH "QSortedList::QSortedList ( const QSortedList<type> & list )"
+Constructs a copy of \fIlist.\fR
+.PP
+Each item in \fIlist\fR is copied to this new list.
+.SH "QSortedList::~QSortedList ()"
+Removes all items from the list and destroys the list.
+.PP
+All list iterators that access this list will be reset.
+.SH "int QSortedList::compareItems ( QCollection::Item s1, QCollection::Item s2 ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+This reimplementation uses operator< and operator== to compare.
+.SH "QSortedList<type>& QSortedList::operator= ( const QSortedList<type> & list )"
+Assigns \fIlist\fR to this list and returns a reference to this list.
+.PP
+This list is first cleared, then each item in \fIlist\fR is
+appended to this list.  Only the pointers are copied
+(shallow copy), unless newItem() has been reimplemented().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qsortedlist.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qsortedlist.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,1 @@
+../src/widgets/qprogressbar.h

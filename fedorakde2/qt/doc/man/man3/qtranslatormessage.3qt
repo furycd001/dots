@@ -1,0 +1,174 @@
+'\" t
+.TH QTranslatorMessage 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QTranslatorMessage \- Translator message and its properties
+.br
+.PP
+\fC#include <qtranslator.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQTranslatorMessage\fR () "
+.br
+.ti -1c
+.BI "\fBQTranslatorMessage\fR ( const char * " "context" ", const char * " "sourceText" ", const char * " "comment" ", const QString & translation = QString::null ) "
+.br
+.ti -1c
+.BI "\fBQTranslatorMessage\fR ( QDataStream & ) "
+.br
+.ti -1c
+.BI "\fBQTranslatorMessage\fR ( const QTranslatorMessage & m ) "
+.br
+.ti -1c
+.BI "QTranslatorMessage& \fBoperator=\fR ( const QTranslatorMessage & m ) "
+.br
+.ti -1c
+.BI "uint \fBhash\fR () const"
+.br
+.ti -1c
+.BI "const char* \fBcontext\fR () const"
+.br
+.ti -1c
+.BI "const char* \fBsourceText\fR () const"
+.br
+.ti -1c
+.BI "const char* \fBcomment\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetTranslation\fR ( const QString & translation ) "
+.br
+.ti -1c
+.BI "QString \fBtranslation\fR () const"
+.br
+.ti -1c
+.BI "enum \fBPrefix\fR { NoPrefix, Hash, HashContext, HashContextSourceText, HashContextSourceTextComment }"
+.br
+.ti -1c
+.BI "void \fBwrite\fR ( QDataStream & " "s" ", bool " "strip" ", Prefix " "prefix" " = HashContextSourceTextComment ) const"
+.br
+.ti -1c
+.BI "Prefix \fBcommonPrefix\fR ( const QTranslatorMessage & ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QTranslatorMessage & m ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QTranslatorMessage & m ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator<\fR ( const QTranslatorMessage & m ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator<=\fR ( const QTranslatorMessage & m ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator>\fR ( const QTranslatorMessage & m ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator>=\fR ( const QTranslatorMessage & m ) const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QTranslatorMessage class contains a translator message and its properties.
+.PP
+This class is of no interest to most applications, just for translation tools, e.g. Qt Linguist. It is provided simply to make the API complete and regular.
+.PP
+For a QTranslator object, a lookup key is a triple ( \fIcontext, source text, comment\fR ) that uniquely identifies a message. An extended key is a quadruple ( \fIhash, context, source text, comment\fR ), where \fIhash\fR is computed from the source text and the comment. Unless you plan to read and write messages yourself, you need not worry about the hash value.
+.PP
+QTranslatorMessage stores theis triple or quadruple, the relevant translation if there is any, and the status of the message.
+.PP
+See also QTranslator.
+.SS "Member Type Documentation"
+.SH "QTranslatorMessage::Prefix"
+Let ( \fIh, c, s, m\fR ) be the extended key. The possible prefixes are
+.TP
+\fCNoPrefix\fR - no prefix
+.TP
+\fCHash\fR - only ( \fIh\fR )
+.TP
+\fCHashContext\fR - only ( \fIh, c\fR )
+.TP
+\fCHashContextSourceText\fR - only ( \fIh, c, s\fR )
+.TP
+\fCHashContextSourceTextComment\fR - the whole extended key, ( \fIh, c, s, m\fR )
+.PP
+See also write() and commonPrefix().
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QTranslatorMessage::QTranslatorMessage ()"
+Constructs a translator message with extended key ( 0, "", "", "" ) and QString::null as translation.
+.SH "QTranslatorMessage::QTranslatorMessage ( QDataStream & stream )"
+Constructs a translator message read from a \fIstream.\fR The resulting message may have any combination of content.
+.PP
+See also save().
+.SH "QTranslatorMessage::QTranslatorMessage ( const QTranslatorMessage & m )"
+Constructs a copy of translator message \fIm.\fR
+.SH "QTranslatorMessage::QTranslatorMessage ( const char * context, const char * sourceText, const char * comment, const QString & translation = QString::null )"
+Constructs an translator message with extended key ( \fIh, context, sourceText, comment\fR ), where \fIh\fR is computed from \fIsourceText\fR and \fIcomment,\fR and possibly with a \fItranslation.\fR
+.SH "const char * QTranslatorMessage::comment () const"
+Returns the comment for this message (e.g., "File > Save").
+.SH "QTranslatorMessage::Prefix QTranslatorMessage::commonPrefix( const QTranslatorMessage & m ) const"
+Returns the widest lookup prefix that is common to this translator message and message \fIm.\fR
+.PP
+For example, if the extended key is for this message is ( 42, "FunnyDialog"," Yes", "Funny?" ) and that for \fIm\fR is ( 42, "FunnyDialog", "No", "Funny?" ), returns \fCHashContext.\fR
+.PP
+See also write().
+.SH "const char * QTranslatorMessage::context () const"
+Returns the context for this message (e.g., "FunnyDialog").
+.SH "uint QTranslatorMessage::hash () const"
+Returns the hash value used internally to represent the lookup key. This value is zero only if this translator message was constructed from a stream containing invalid data.
+.PP
+The hashing function is unspecified, but it will remain unchanged in future versions of Qt.
+.SH "bool QTranslatorMessage::operator!= ( const QTranslatorMessage & m ) const"
+Returns TRUE if the extended key of this object is different from that of \fIm,\fR otherwise FALSE.
+.SH "bool QTranslatorMessage::operator< ( const QTranslatorMessage & m ) const"
+Returns TRUE if the extended key of this object is lexicographically before than that of \fIm,\fR otherwise FALSE.
+.SH "bool QTranslatorMessage::operator<= ( const QTranslatorMessage & m ) const"
+Returns TRUE if the extended key of this object is lexicographically before that of \fIm\fR or if they are equal, otherwise FALSE.
+.SH "QTranslatorMessage & QTranslatorMessage::operator= ( const QTranslatorMessage & m )"
+Assigns \fIm\fR to this translator message and returns a reference to this translator message.
+.SH "bool QTranslatorMessage::operator== ( const QTranslatorMessage & m ) const"
+Returns TRUE if the extended key of this object is equal to that of \fIm,\fR otherwise FALSE.
+.SH "bool QTranslatorMessage::operator> ( const QTranslatorMessage & m ) const"
+Returns TRUE if the extended key of this object is lexicographically after that of \fIm,\fR otherwise FALSE.
+.SH "bool QTranslatorMessage::operator>= ( const QTranslatorMessage & m ) const"
+Returns TRUE if the extended key of this object is lexicographically after that of \fIm\fR or if they are equal, otherwise FALSE.
+.SH "void QTranslatorMessage::setTranslation ( const QString & translation )"
+Sets the translation of the source text.
+.PP
+See also translation().
+.SH "const char * QTranslatorMessage::sourceText () const"
+Returns the source text of this message (e.g., "&Save").
+.SH "QString QTranslatorMessage::translation () const"
+Returns the translation of the source text (e.g., "&Sauvegarder").
+.PP
+See also setTranslation().
+.SH "void QTranslatorMessage::write ( QDataStream & stream, bool strip, Prefix prefix = HashContextSourceTextComment ) const"
+Writes this translator message to a \fIstream.\fR If \fIstrip\fR is FALSE (the default), all the information in the message is written. If \fIstrip\fR is TRUE, only the part of the extended key specified by \fIprefix\fR is written with the translation (\fCHashContextSourceTextComment\fR by default).
+.PP
+See also  commonPrefix().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qtranslatormessage.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qtranslatormessage.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,89 @@
+'\" t
+.TH QDomImplementation 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDomImplementation \- Information about the features of the DOM implementation
+.br
+.PP
+\fC#include <qdom.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDomImplementation\fR () "
+.br
+.ti -1c
+.BI "\fBQDomImplementation\fR ( const QDomImplementation & ) "
+.br
+.ti -1c
+.BI "virtual \fB~QDomImplementation\fR () "
+.br
+.ti -1c
+.BI "QDomImplementation& \fBoperator=\fR ( const QDomImplementation & ) "
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QDomImplementation & ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QDomImplementation & ) const"
+.br
+.ti -1c
+.BI "virtual bool \fBhasFeature\fR ( const QString & " "feature" ", const QString & version ) "
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QDomImplementation class provides information about the features of the DOM implementation.
+.PP
+This class describes the features that are supported by the DOM implementation. Currently only the XML subset of DOM Level 1 is supported.
+.PP
+Normally you will use the function QDomDocument::implementation() to get the implementation object.
+.PP
+For further information about the Document Objct Model see http://www.w3.org/TR/REC-DOM-Level-1/. For a more general introduction of the DOM implementation see the QDomDocument documentation.
+.PP
+See also hasFeature().
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDomImplementation::QDomImplementation ()"
+Constructs a QDomImplementation object.
+.SH "QDomImplementation::QDomImplementation ( const QDomImplementation & x )"
+Copy constructor.
+.SH "QDomImplementation::~QDomImplementation () \fC[virtual]\fR"
+Destructor.
+.SH "bool QDomImplementation::hasFeature ( const QString & feature, const QString & version ) \fC[virtual]\fR"
+The function returns TRUE if QDom implements the requested \fIversion\fR of a \fIfeature.\fR
+.PP
+Currently only the feature "XML" in version "1.0" is supported.
+.SH "bool QDomImplementation::isNull ()"
+Returns TRUE if the object was not created by QDomDocument::implementation().
+.SH "bool QDomImplementation::operator!= ( const QDomImplementation & x ) const"
+Returns TRUE if both objects were created from different QDomDocuments.
+.SH "QDomImplementation& QDomImplementation::operator= ( const QDomImplementation & x )"
+Assignment operator.
+.SH "bool QDomImplementation::operator== ( const QDomImplementation & x ) const"
+Returns TRUE if both objects were created from the same QDomDocument.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdomimplementation.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdomimplementation.3qt) and the Qt
+version (2.3.2).

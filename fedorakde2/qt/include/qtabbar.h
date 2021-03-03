@@ -1,0 +1,1 @@
+../src/widgets/qtabbar.h

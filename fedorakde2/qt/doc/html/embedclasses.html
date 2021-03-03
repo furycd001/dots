@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  The Qt/Embedded-specific classes</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> The Qt/Embedded-specific classes</h1><br clear="all">
+<p>
+Qt/Embedded classes fall into two classes - the majority are used by
+every Qt/Embedded program, some are used only by the Qt/Embedded server. 
+The Qt/Embedded server program can be a client as well, as in the case of a
+single-process installation. All Qt/Embedded specific source files live
+in src/kernel and are suffixed _qws. -> indicates inheritance.
+<p>
+Client classes:
+<p>
+QFontManager
+  There is one of these per application. At application startup time
+it reads the font definition file from $QTDIR/etc/fonts/fontdir
+(or /usr/local/etc/qt-embedded/fonts/fontdir if QTDIR is undefined). It keeps
+track of all font information and holds a cache of rendered fonts.
+It also creates the font factories - QFontManager::QFontManager is the place
+to add constructors for new factories. It provides a high-level interface
+to requesting a particular font and calls QFontFactories to load fonts
+from disk on demand. Note that this only applies to BDF and Truetype fonts;
+Qt/Embedded's optimised .qpf font file format bypasses the QFontManager
+mechanism altogether.
+<p>
+QDiskFont
+  This contains information about a single on-disk font file (e.g.
+/usr/local/etc/qt-embedded/times.ttf, would be an example). It holds the file 
+path, information about whether the font is scalable, its weight, size and
+Qt/Embedded name and so on. This information is used so that QFontManager
+can find the closest match disk font (it uses a scoring mechanism
+weighted towards matching names, then whether the font's italic, then
+weight)
+<p>
+QRenderedFont
+There is one and only one QRenderedFont for every unique font currently
+loaded by the system (that is, each unique combination of name,
+size, weight, italic or not, anti-aliased or not)
+QRenderedFonts are reference counted; once noone is using the QRenderedFont
+it is deleted along with its cache of glyph bitmaps. The QDiskFont
+it was loaded from remains opened by its QFontFactory however.
+<p>
+QFontFactory (and descendants QFontFactoryBDF,QFontFactoryTtf)
+These provide support for particular font formats, for instance the
+scalable Truetype and Type1 formats (both supported in QFontFactoryTtf,
+which uses Freetype 2) and the bitmap BDF format used by X.
+It's called to open an on-disk font; once a font is opened it remains
+opened, for quickness in creating new font instances from the disk font.
+It can also create a QRenderedFont and convert from unicode values
+to an index into the font file - glyphs are stored in the order and indexes 
+they are defined in the font rather than in unicode order for compactness.
+<p>
+QGlyph
+This describes a particular image of a character from a QRenderedFont -
+for example, the letter 'A' at 10 points in Times New Roman, bold italic,
+anti-aliased. It contains pointers to a QGlyphMetrics structure with
+information about the character and to the raw data for the glyph -
+this is either a 1-bit mask or an 8-bit alpha channel. Each QRenderedFont
+creates these on demand and caches them once created (note that this is
+not currently implemented for Truetype fonts)
+<p>
+QMemoryManagerPixmap/QMemoryManager
+This handles requests for space for pixmaps and also keeps track of
+QPF format fonts (these are small 'state dumps' of QRenderedFonts,
+typically 2-20k in size; they can be mmap'd direct from disk in order
+to save memory usage). If a QPF font is found which matches a font request
+no new QRenderedFont need be created for it. It's possible to strip out
+all QFontFactory support and simply use QPFs if your font needs are modest
+(for instance, if you only require a few fixed point sizes). Note that
+no best-match loading is performed with QPFs, as opposed to those
+loaded via QFontManager, so if you don't have the correct QPF for a point
+size text in that size will simply not be displayed.
+<p>
+QScreen -> QLinuxFbScreen -> accelerated screens, QTransformedScreen
+        -> QVfbScreen
+<p>
+These encapsulate the framebuffer Qt/Embedded is drawing to, provide
+support for mapping of coordinates for rotating framebuffers, allow
+manipulation of the colour palette and provide access to offscreen
+graphics memory for devices with separate framebuffer memories.
+This is used for cacheing pixmaps and allowing accelerated pixmap->screen
+blt's. QLinuxFbScreen and the accelerated screens use the Linux /dev/fb
+interface to get access to graphics memory and information about the
+characteristics of the device. The framebuffer device to open is specified
+by QWS_DISPLAY. Only QTransformedScreen implements the support for rotated
+framebuffers. QVfbScreen provides an X window containing an emulated
+framebuffer (a chunk of shared memory is set aside as the 'framebuffer'
+and blt'd into the X window) - this is intended as a debugging device
+allowing users to debug their applications under Qt/Embedded without leaving 
+X. The accelerated screen drivers check to see if they can drive the
+device specified by QWS_CARD_SLOT (which defaults to the usual position
+of an AGP slot if not specified) and mmap its on-chip registers from
+/dev/mem. They may also do chip-specific setup (initialising registers to
+known values and so on). Finally, QScreen's are used to create new
+QScreenCursors and QGfxes.
+<p>
+QScreenCursor -> accelerated cursor
+              -> QVfbCursor
+This handles drawing the on-screen mouse cursor, saving and restoring
+the screen under it for the non-accelerated cursor types.
+<p>
+QGfx -> RasterBase -> Raster -> accelerated driver
+                             -> QGfxVfb
+                             -> QGfxTransformedRaster
+This class encapsulates drawing operations, a little like a low-level
+QPainter. QGfxRaster and its descendants are specifically intended
+for drawing into a raw framebuffer. They can take an offset for drawing
+operations and a clipping region in order to support drawing into windows.
+<p>
+QLock, QLockHolder
+This encapsulates a System V semaphore, used for synchronising access
+to memory shared between Qt/Embedded clients. QLockHolder is a utility class
+to make managing and destroying QLocks easier.
+<p>
+QDirectPainter
+This is a QPainter which also gives you a pointer to the framebuffer
+of the window it's pointing to, the window's clip region and so on.
+It's intended to easily allow you to do your own pixel-level manipulation
+of window contents
+<p>
+QWSSoundServer,Client
+The Qt/Embedded server contains a simple sound player and mixer. Clients
+can request the server play sounds specified as files.
+<p>
+QWSWindow
+This contains the server's notion of an individual top level window -
+the region of the framebuffer it's allocated, the client that created it
+and so forth
+<p>
+QWSKeyboardHandler->subtypes
+This handles keyboard/button input. QWSKeyboardHandler is subclassed
+to provide for reading /dev/tty, an arbitrary low-level USB event device
+(for USB keyboards) and some PDA button devices.
+<p>
+QWSMouseHandler->QCalibratedMouseHandler->mouse types
+               ->mouse types
+This handles mouse/touchpanel input. Descendants of QCalibratedMouseHandler
+make use of filtering code which pretends 'jittering' of the pointer on
+touchscreens; some embedded devices do this filtering in the kernel in
+which case the driver doesn't need to inherit from QCalibratedMouseHandler.
+<p>
+QWSDisplay
+This class exists only in the Qt/Embedded server and keeps track of
+all the top-level windows in the system, as well as the keyboard and mouse.
+<p>
+QWSServer 
+This manages the Qt/Embedded server's Unix-domain socket connections to
+clients. It sends and receives QWS protocol events and calls QWSDisplay
+in order to do such things as change the allocation region of windows.
+<p>
+QWSClient
+This encapsulates the client side of a Qt/Embedded connection and can
+marshal and demarshal events.
+<p>
+QWSDisplayData
+This manages a client's QWSClient, reading and interpreting events
+from the QWS server. It connects to the QWS server on application startup,
+getting information about the framebuffer and creating the memory manager.
+Other information about the framebuffer comes directly from /dev/fb
+in QLinuxFbScreen.
+<p>
+QWSCommands
+These encapsulate the data sent to and from the QWS server
+<p>
+QCopChannel
+QCop is a simple IPC mechanism for communication between Qt/Embedded
+applications. String messages with optional binary data can be sent
+to different channels.
+<p>
+QWSManager
+This provides Qt/Embedded window management, drawing a title bar
+and handling user requests to move, resize the window and so on.
+<p>
+QWSDecoration
+Descendants of this class are different styles for the Qt/Embedded
+window manager, for instance QWSWindowsDecoration draws Qt/Embedded
+window frames in the style of Windows CE.
+<p>
+QWSPropertyManager
+This provides the QWS client's interface to the QWS property system
+(a simpler version of the X property system, it allows you to attach
+arbitrary data to top-level windows, keyed by an integer)
+<p>
+QWSRegionManager
+Used by both client and server to help manage top-level window regions
+<p>
+QWSSocket, QWSServerSocket
+Provide Unix-domain sockets
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

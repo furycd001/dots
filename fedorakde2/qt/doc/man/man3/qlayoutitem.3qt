@@ -1,0 +1,201 @@
+'\" t
+.TH QLayoutItem 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QLayoutItem \- The abstract items which a
+.br
+.PP
+\fC#include <qabstractlayout.h>\fR
+.PP
+Inherited by QLayout, QSpacerItem and QWidgetItem.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQLayoutItem\fR ( int " "alignment" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual \fB~QLayoutItem\fR () "
+.br
+.ti -1c
+.BI "virtual QSize \fBsizeHint\fR () const"
+.br
+.ti -1c
+.BI "virtual QSize \fBminimumSize\fR () const"
+.br
+.ti -1c
+.BI "virtual QSize \fBmaximumSize\fR () const"
+.br
+.ti -1c
+.BI "virtual QSizePolicy::ExpandData \fBexpanding\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetGeometry\fR ( const QRect & ) "
+.br
+.ti -1c
+.BI "virtual QRect \fBgeometry\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBhasHeightForWidth\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBheightForWidth\fR ( int ) const"
+.br
+.ti -1c
+.BI "virtual void \fBinvalidate\fR () "
+.br
+.ti -1c
+.BI "virtual QWidget* \fBwidget\fR () "
+.br
+.ti -1c
+.BI "virtual QLayoutIterator \fBiterator\fR () "
+.br
+.ti -1c
+.BI "virtual QLayout* \fBlayout\fR () "
+.br
+.ti -1c
+.BI "virtual QSpacerItem* \fBspacerItem\fR () "
+.br
+.ti -1c
+.BI "int \fBalignment\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetAlignment\fR ( int a ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The abstract items which a QLayout manipulates.
+.PP
+For custom layouts.
+.PP
+See also QLayout.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QLayoutItem::QLayoutItem ( int alignment = 0 )"
+Constructs a layout item with an \fIalignment\fR that is a bitwise OR of Qt::AlignmentFlags. Alignment may not be supported by all subclasses.
+.SH "QLayoutItem::~QLayoutItem () \fC[virtual]\fR"
+Destructs the QLayoutItem.
+.SH "int QLayoutItem::alignment () const"
+Returns the alignment of this item.
+.SH "QSizePolicy::ExpandData QLayoutItem::expanding() const \fC[virtual]\fR"
+Implemented in subclasses to return whether this item "wants" to expand.
+.PP
+Reimplemented in QSpacerItem, QWidgetItem, QBoxLayout, QLayout and QGridLayout.
+.SH "QRect QLayoutItem::geometry () const \fC[virtual]\fR"
+Returns the rectangle covered by this layout item.
+.PP
+Reimplemented in QWidgetItem, QLayout and QSpacerItem.
+.SH "bool QLayoutItem::hasHeightForWidth () const \fC[virtual]\fR"
+Returns TRUE if this layout's preferred height depends on its width. The default implementation returns FALSE;
+.PP
+Reimplement this function in layout managers that support height for width.
+.PP
+See also heightForWidth() and QWidget::heightForWidth().
+.PP
+Reimplemented in QBoxLayout, QWidgetItem and QGridLayout.
+.SH "int QLayoutItem::heightForWidth ( int ) const \fC[virtual]\fR"
+Returns the preferred height for this layout item, given the width \fIw.\fR
+.PP
+The default implementation returns -1, indicating that the preferred height is independent of the width of the item. Using the function hasHeightForWidth() will typically be much faster than calling this function and testing for -1.
+.PP
+Reimplement this function in layout managers that support height for width. A typical implementation will look like this:
+.PP
+.nf
+.br
+  int MyLayout::heightForWidth( int w ) const
+.br
+  {
+.br
+      if ( cache_dirty || cached_width != w ) {
+.br
+          //Not all C++ compilers support "mutable" yet:
+.br
+          MyLayout * mthis = (MyLayout*)this;
+.br
+          int h = calculateHeightForWidth( w );
+.br
+          mthis->cached_hfw = h;
+.br
+          return h;
+.br
+      }
+.br
+      return cached_hfw;
+.br
+  }
+.fi
+.PP
+Caching is strongly recommended, without it layout will take exponential time.
+.PP
+See also hasHeightForWidth().
+.PP
+Reimplemented in QWidgetItem, QGridLayout and QBoxLayout.
+.SH "void QLayoutItem::invalidate () \fC[virtual]\fR"
+Invalidates any cached information in this layout item.
+.PP
+Reimplemented in QGridLayout, QLayout and QBoxLayout.
+.SH "virtual bool QLayoutItem::isEmpty () const \fC[virtual]\fR"
+Implemented in subclasses to return whether this item is empty, i.e. whether it contains any widgets.
+.PP
+Reimplemented in QWidgetItem, QSpacerItem and QLayout.
+.SH "QLayoutIterator QLayoutItem::iterator () \fC[virtual]\fR"
+Returns an iterator over this item's QLayoutItem children. The default implementation returns an empty iterator.
+.PP
+Reimplement this function in subclasses that can have children.
+.PP
+Reimplemented in QGridLayout, QLayout and QBoxLayout.
+.SH "QLayout * QLayoutItem::layout () \fC[virtual]\fR"
+If this item is a QLayout, return it as a QLayout, otherwise return 0. This function provides type-safe casting.
+.PP
+Reimplemented in QLayout.
+.SH "QSize QLayoutItem::maximumSize () const \fC[virtual]\fR"
+Implemented in subclasses to return the maximum size of this item.
+.PP
+Reimplemented in QBoxLayout, QLayout, QGridLayout, QWidgetItem and QSpacerItem.
+.SH "QSize QLayoutItem::minimumSize () const \fC[virtual]\fR"
+Implemented in subclasses to return the minimum size of this item.
+.PP
+Reimplemented in QBoxLayout, QGridLayout, QLayout, QWidgetItem and QSpacerItem.
+.SH "void QLayoutItem::setAlignment ( int a ) \fC[virtual]\fR"
+Sets the alignment of this item to \fIa,\fR which is a bitwise OR of Qt::AlignmentFlags.
+.SH "void QLayoutItem::setGeometry ( const QRect & r ) \fC[virtual]\fR"
+Implemented in subclasses to set this item's geometry to \fIr.\fR
+.PP
+Reimplemented in QBoxLayout, QLayout, QGridLayout, QSpacerItem and QWidgetItem.
+.SH "QSize QLayoutItem::sizeHint () const \fC[virtual]\fR"
+Implemented in subclasses to return the preferred size of this item.
+.PP
+Reimplemented in QBoxLayout, QWidgetItem, QSpacerItem and QGridLayout.
+.SH "QSpacerItem * QLayoutItem::spacerItem () \fC[virtual]\fR"
+If this item is a QSpacerItem, return it as a QSpacerItem, otherwise return 0. This function provides type-safe casting.
+.PP
+Reimplemented in QSpacerItem.
+.SH "QWidget * QLayoutItem::widget () \fC[virtual]\fR"
+If this item is a QWidgetItem, the managed widget is returned.
+The default implementation returns 0;.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qlayoutitem.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qlayoutitem.3qt) and the Qt
+version (2.3.2).

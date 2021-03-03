@@ -1,0 +1,91 @@
+'\" t
+.TH QCanvasPixmap 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvasPixmap \- Pixmap with an offset
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+Inherits QPixmap.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvasPixmap\fR ( const QString & datafilename ) "
+.br
+.ti -1c
+.BI "\fBQCanvasPixmap\fR ( const QImage & image ) "
+.br
+.ti -1c
+.BI "\fBQCanvasPixmap\fR ( const QPixmap &, QPoint hotspot ) "
+.br
+.ti -1c
+.BI "\fB~QCanvasPixmap\fR () "
+.br
+.ti -1c
+.BI "int \fBoffsetX\fR () const"
+.br
+.ti -1c
+.BI "int \fBoffsetY\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetOffset\fR ( int " "x" ", int y ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QCanvasPixmap class provides a pixmap with an offset.
+.PP
+QImage has an offset or "hot spot", but QPixmap does not. This class adds the notion of an offset to QPixmap as this is very useful for the canvas sprites where QCanvasPixmap is used. It also keeps a copy of the display mask for use in collision detection.
+.PP
+Note that PNG format files already have support for an offset.
+.PP
+See also QCanvasPixmapArray, QCanvasItem and QCanvasSprite.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvasPixmap::QCanvasPixmap ( const QImage & image )"
+Constructs a QCanvasPixmap from an image.
+.SH "QCanvasPixmap::QCanvasPixmap ( const QPixmap & pm, QPoint offset )"
+Constructs a QCanvasPixmap from a pixmap and an offset.
+.SH "QCanvasPixmap::QCanvasPixmap ( const QString & datafilename )"
+Constructs a QCanvasPixmap from an image file by loading it.
+.SH "QCanvasPixmap::~QCanvasPixmap ()"
+Destructs the pixmap.
+.SH "int QCanvasPixmap::offsetX () const"
+Returns the X-offset of the pixmap.
+.PP
+See also setOffset().
+.SH "int QCanvasPixmap::offsetY () const"
+Returns the Y-offset of the pixmap.
+.PP
+See also setOffset().
+.SH "void QCanvasPixmap::setOffset ( int x, int y )"
+Sets the offset to (\fIx, y).\fR
+.PP
+The offset position or "hot spot" defines the origin pixel in the image
+For example, if the offset is (10,5), it will be displayed
+drawn 10 pixels to the left of and 5 pixels above the actual
+(x,y) coordinate of the sprite.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvaspixmap.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvaspixmap.3qt) and the Qt
+version (2.3.2).

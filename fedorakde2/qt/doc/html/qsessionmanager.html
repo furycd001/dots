@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QSessionManager Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QSessionManager Class Reference</h1><br clear="all">
+<p>
+The QSessionManager class provides access to the session manager.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qsessionmanager-h.html">qsessionmanager.h</a>&gt;</code>
+<p>
+Inherits <a href="qobject.html">QObject</a>.
+<p><a href="qsessionmanager-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">QString <a href="#ce7817"><b>sessionId</b></a> () const</div>
+<li><div class="fn">bool <a href="#25f903"><b>allowsInteraction</b></a> () </div>
+<li><div class="fn">bool <a href="#8110b0"><b>allowsErrorInteraction</b></a> () </div>
+<li><div class="fn">void <a href="#bd16c3"><b>release</b></a> () </div>
+<li><div class="fn">void <a href="#01f3da"><b>cancel</b></a> () </div>
+<li><div class="fn">enum <a href="#RestartHint"><b>RestartHint</b></a> { RestartIfRunning, RestartAnyway, RestartImmediately, RestartNever }</div>
+<li><div class="fn">void <a href="#052511"><b>setRestartHint</b></a> ( RestartHint ) </div>
+<li><div class="fn">RestartHint <a href="#ca07aa"><b>restartHint</b></a> () const</div>
+<li><div class="fn">void <a href="#594575"><b>setRestartCommand</b></a> ( const QStringList &amp; ) </div>
+<li><div class="fn">QStringList <a href="#68241e"><b>restartCommand</b></a> () const</div>
+<li><div class="fn">void <a href="#1752ac"><b>setDiscardCommand</b></a> ( const QStringList &amp; ) </div>
+<li><div class="fn">QStringList <a href="#914710"><b>discardCommand</b></a> () const</div>
+<li><div class="fn">void <a href="#91420e"><b>setProperty</b></a> ( const QString &amp; name, const QString &amp; value ) </div>
+<li><div class="fn">void <a href="#1da046"><b>setProperty</b></a> ( const QString &amp; name, const QStringList &amp; value ) </div>
+<li><div class="fn">bool <a href="#c2610d"><b>isPhase2</b></a> () const</div>
+<li><div class="fn">void <a href="#b8b5a6"><b>requestPhase2</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QSessionManager class provides access to the session manager.
+<p>
+The session manager is responsible for session management, most
+importantly interruption and resumption.
+<p>QSessionManager provides an interface between the application and
+the session manager, so that the program can work well with the
+session manager. In Qt, the session management requests for action
+are handled by the two virtual functions <a href="qapplication.html#6163c1">QApplication::commitData</a>()
+and <a href="qapplication.html#437e1b">QApplication::saveState</a>(). Both functions provide a reference to
+a session manager object as argument, thus allowing the application
+to communicate with the session manager.
+<p>During a session management action, i.e. within one of the two
+mentioned functions, no user interaction is possible, <em>unless</em> the
+application got explicit permission from the session manager. You
+can ask for permission by calling <a href="#25f903">allowsInteraction</a>() or, if it's
+really urgent, <a href="#8110b0">allowsErrorInteraction</a>(). Qt does not enforce this,
+but the session manager may. Perhaps.
+<p>You can try to abort the shutdown process by calling cancel. The
+default commitData() function does that if some top-level window
+rejected its closeEvent().
+<p>For sophisticated session managers as provided on Unix/X11,
+QSessionManager offers further possibilities to fine-tune an
+application's session management behaviour: <a href="#594575">setRestartCommand</a>(),
+<a href="#1752ac">setDiscardCommand</a>(), <a href="#052511">setRestartHint</a>(), <a href="#1da046">setProperty</a>(),
+<a href="#b8b5a6">requestPhase2</a>().  Please see the respective function descriptions
+for further details.
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="RestartHint">QSessionManager::RestartHint</a></h3>
+This enum type defines the circumstances under which this
+application wants to be restarted by the session manager.  The
+current values are: <ul>
+<li> <code>RestartIfRunning</code> - if the application still runs by the time
+the session is shut down, it wants to be restarted at the start of
+the next session.
+<li> <code>RestartAnyway</code> - the application wants to be started at the
+start of the next session, no matter what.  (This is useful for
+utilities that run just after startup, then quit.)
+<li> <code>RestartImmediately</code> - the application wants to be started
+immediately whenever it is not running.
+<li> <code>RestartNever</code> - the application does not want to be restarted
+automatically.
+<p></ul>
+<p>The default hint is <code>RestartIfRunning.</code>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn">bool <a name="8110b0"></a>QSessionManager::allowsErrorInteraction ()</h3>
+<p>Like <a href="#25f903">allowsInteraction</a>() but tells the session manager in addition
+that an error occurred. Session managers may give error interaction
+request higher priority. That means it is more likely that an error
+interaction is granted. However, you are still not guaranteed that
+the session manager will grant your request.
+<p>See also  <a href="#25f903">allowsInteraction</a>(), <a href="#bd16c3">release</a>() and <a href="#01f3da">cancel</a>().
+<h3 class="fn">bool <a name="25f903"></a>QSessionManager::allowsInteraction ()</h3>
+<p>Asks the session manager for permission to interact with the
+user.  Returns TRUE if the interaction was granted, FALSE
+otherwise.
+<p>The rationale behind this mechanism is to make it possible to
+synchronize user interaction during a shutdown. Advanced session
+managers may ask all applications simultaneously to commit their
+data, resulting in a much faster shutdown.
+<p>When the interaction is done we strongly recommend releasing the
+user interaction semaphore with a call to <a href="#bd16c3">release</a>(). This way, other
+applications may get the chance to interact with the user while your
+application is still busy saving data. (The semaphore is implicitly
+released when the application exits.)
+<p>If the user decides to cancel the shutdown process during the
+interaction phase, you must tell the session manager so by calling
+<a href="#01f3da">cancel</a>().
+<p>Here's an example usage of the mentioned functions that may occur
+in the <a href="qapplication.html#6163c1">QApplication::commitData</a>() function of an application:
+<p><pre>void MyApplication::commitData( <a href="qsessionmanager.html">QSessionManager</a>&amp; sm ) {
+    if ( sm.allowsInteraction() ) {
+        switch ( <a href="qmessagebox.html#63edba">QMessageBox::warning</a>( yourMainWindow, "Application Name",
+                                        "Save changes to Document Foo?",
+                                        tr("&amp;Yes"),
+                                        tr("&amp;No"),
+                                        tr("Cancel"),
+                                        0, 2) ) {
+        case 0: // yes
+            sm.release();
+            // save document here. If saving fails, call sm.cancel()
+            break;
+        case 1: // no
+            break;
+        default: // cancel
+            sm.cancel();
+            break;
+        }
+    } else {
+        // we did not get permission to interact, then
+        // do something reasonable instead.
+    }
+}
+</pre>
+<p>If an error occurred within the application while saving its data,
+you may want to try <a href="#8110b0">allowsErrorInteraction</a>() instead.
+<p>See also  <a href="qapplication.html#6163c1">QApplication::commitData</a>(), <a href="#bd16c3">release</a>() and <a href="#01f3da">cancel</a>().
+<h3 class="fn">void <a name="01f3da"></a>QSessionManager::cancel ()</h3>
+<p>Tells the session manager to cancel the shutdown process.   Applications
+should not call this function without asking the user first.
+<p>See also  <a href="#25f903">allowsInteraction</a>() and <a href="#8110b0">allowsErrorInteraction</a>().
+<h3 class="fn"><a href="qstringlist.html">QStringList</a> <a name="914710"></a>QSessionManager::discardCommand () const</h3>
+<p>Returns the currently set discard command.
+<p>See also  <a href="#1752ac">setDiscardCommand</a>(), <a href="#68241e">restartCommand</a>() and <a href="#594575">setRestartCommand</a>().
+<h3 class="fn">bool <a name="c2610d"></a>QSessionManager::isPhase2 () const</h3>
+<p>Returns whether the session manager is currently performing a second
+session management phase.
+<p>See also  <a href="#b8b5a6">requestPhase2</a>().
+<h3 class="fn">void <a name="bd16c3"></a>QSessionManager::release ()</h3>
+<p>Releases the session manager's interaction semaphore after an
+interaction phase.
+<p>See also  <a href="#25f903">allowsInteraction</a>() and <a href="#8110b0">allowsErrorInteraction</a>().
+<h3 class="fn">void <a name="b8b5a6"></a>QSessionManager::requestPhase2 ()</h3>
+<p>Requests a second session management phase for the application. The
+application may then return immediately from the
+<a href="qapplication.html#6163c1">QApplication::commitData</a>() or <a href="qapplication.html#437e1b">QApplication::saveState</a>() function,
+and they will be called again once most/all other applications have
+finished their session management.
+<p>The two phases are useful for applications like X11 window manager,
+that need to store informations about other application's windows
+and therefore have to wait until these applications finished their
+respective session management tasks.
+<p>Note that if another application has requested a second phase, it
+may get called before, simultaneously with, or after your
+application's second phase.
+<p>See also  <a href="#c2610d">isPhase2</a>().
+<h3 class="fn"><a href="qstringlist.html">QStringList</a> <a name="68241e"></a>QSessionManager::restartCommand () const</h3>
+<p>Returns the currently set restart command.
+<p>See also  <a href="#594575">setRestartCommand</a>() and <a href="#ca07aa">restartHint</a>().
+<h3 class="fn">QSessionManager::RestartHint <a name="ca07aa"></a>QSessionManager::restartHint() const</h3>
+<p>Returns the application's current restart hint. The default is
+<code>RestartIfRunning.</code>
+<p>See also  <a href="#052511">setRestartHint</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="ce7817"></a>QSessionManager::sessionId () const</h3>
+<p>Returns the identifier of the current session.
+<p>If the application has been restored from an earlier session, this
+identifier is the same as it was in that previous session.
+<p>See also  <a href="qapplication.html#a6fd61">QApplication::sessionId</a>().
+<h3 class="fn">void <a name="1752ac"></a>QSessionManager::setDiscardCommand ( const <a href="qstringlist.html">QStringList</a> &amp; )</h3>
+<p>See also  <a href="#914710">discardCommand</a>() and <a href="#594575">setRestartCommand</a>().
+<h3 class="fn">void <a name="91420e"></a>QSessionManager::setProperty ( const <a href="qstring.html">QString</a> &amp; name, const <a href="qstring.html">QString</a> &amp; value )</h3>
+<p>Low-level write access to the application's identification and state
+record kept in the session manager.
+<h3 class="fn">void <a name="1da046"></a>QSessionManager::setProperty ( const <a href="qstring.html">QString</a> &amp; name, const <a href="qstringlist.html">QStringList</a> &amp; value )</h3>
+<p>Low-level write access to the application's identification and state
+record kept in the session manager.
+<h3 class="fn">void <a name="594575"></a>QSessionManager::setRestartCommand ( const <a href="qstringlist.html">QStringList</a> &amp; command )</h3>
+<p>If the session manager is capable of restoring sessions, it will
+execute <em>command</em> in order to restore the application.  The command
+defaults to
+<p><pre>               appname -session id
+</pre>
+<p>The <code>-session</code> option is mandatory, otherwise <a href="qapplication.html">QApplication</a> can not
+tell whether it has been restored or what the current session
+identifier is.  See <a href="qapplication.html#aa8893">QApplication::isSessionRestored</a>() and
+<a href="qapplication.html#a6fd61">QApplication::sessionId</a>() for details.  If your application is very
+simple, it may be possible to store the entire application state in
+additional command line options.  In general, this is a very bad
+idea, since command lines are often limited to a few hundred bytes.
+Instead, use temporary files or a database for this purpose.  By
+marking the data with the unique <a href="#ce7817">sessionId</a>(), you will be able to
+restore the application in a future session.
+<p>See also  <a href="#68241e">restartCommand</a>(), <a href="#1752ac">setDiscardCommand</a>() and <a href="#052511">setRestartHint</a>().
+<h3 class="fn">void <a name="052511"></a>QSessionManager::setRestartHint ( <a href="qsessionmanager.html#RestartHint">RestartHint</a> hint )</h3>
+<p>Sets the application's restart hint to <em>hint.</em> On application
+start-up the hint is set to <code>RestartIfRunning.</code>
+<p>Note that these flags are only hints, a session manager may or may
+not obey them.
+<p>We recommend setting the restart hint in <a href="qapplication.html#437e1b">QApplication::saveState</a>()
+since most session managers perform a checkpoint shortly after an
+application's startup.
+<p>See also  <a href="#ca07aa">restartHint</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

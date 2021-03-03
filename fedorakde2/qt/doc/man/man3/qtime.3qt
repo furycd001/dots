@@ -1,0 +1,291 @@
+'\" t
+.TH QTime 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QTime \- Clock time functions
+.br
+.PP
+\fC#include <qdatetime.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQTime\fR () "
+.br
+.ti -1c
+.BI "\fBQTime\fR ( int " "h" ", int " "m" ", int " "s" "=0, int " "ms" "=0 ) "
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisValid\fR () const"
+.br
+.ti -1c
+.BI "int \fBhour\fR () const"
+.br
+.ti -1c
+.BI "int \fBminute\fR () const"
+.br
+.ti -1c
+.BI "int \fBsecond\fR () const"
+.br
+.ti -1c
+.BI "int \fBmsec\fR () const"
+.br
+.ti -1c
+.BI "QString \fBtoString\fR () const"
+.br
+.ti -1c
+.BI "bool \fBsetHMS\fR ( int " "h" ", int " "m" ", int " "s" ", int " "ms" "=0 ) "
+.br
+.ti -1c
+.BI "QTime \fBaddSecs\fR ( int secs ) const"
+.br
+.ti -1c
+.BI "int \fBsecsTo\fR ( const QTime & ) const"
+.br
+.ti -1c
+.BI "QTime \fBaddMSecs\fR ( int ms ) const"
+.br
+.ti -1c
+.BI "int \fBmsecsTo\fR ( const QTime & ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QTime & d ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QTime & d ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator<\fR ( const QTime & d ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator<=\fR ( const QTime & d ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator>\fR ( const QTime & d ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator>=\fR ( const QTime & d ) const"
+.br
+.ti -1c
+.BI "void \fBstart\fR () "
+.br
+.ti -1c
+.BI "int \fBrestart\fR () "
+.br
+.ti -1c
+.BI "int \fBelapsed\fR () "
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QTime \fBcurrentTime\fR () "
+.br
+.ti -1c
+.BI "bool \fBisValid\fR ( int " "h" ", int " "m" ", int " "s" ", int " "ms" "=0 ) "
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QTime & " "t" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QTime & " "t" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QTime class provides clock time functions.
+.PP
+A QTime object contains a clock time, i.e. a number of hours, minutes, seconds and milliseconds since midnight. It can read the current time from the system clock, and measure a span of elapsed time. It provides functions for comparing times and for manipulating a time by adding a number of (milli)seconds.
+.PP
+QTime operates with 24-hour clock format; it has no concept of AM/PM. It operates with local time; it does not know anything about time zones or daylight savings time.
+.PP
+A QTime object is typically created either by giving the number of hours, minutes, seconds, and milliseconds explicitly, or by using the static function currentTime(), which makes a QTime object which contains the system's clock time. Note that the accuracy depends on the accuracy of the underlying operating system; not all systems provide 1-millisecond accuracy.
+.PP
+The hour(), minute(), second(), and msec() functions provide access to the number of hours, minutes, seconds, and milliseconds of the time. The same information is provided in textual format by the toString() function.
+.PP
+QTime provides a full set of operators to compare two QTime objects. A time is considered smaller than another if it is earlier than the other.
+.PP
+The time a given number of seconds or milliseconds later than a given time can be found using the addSecs() or addMSecs() functions. Correspondingly, the number of (milli)seconds between two times can be found using the secsTo() or msecsTo() functions.
+.PP
+QTime can be used to measure a span of elapsed time using the start(), restart(), and elapsed() functions.
+.PP
+See also QDate and QDateTime.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QTime::QTime ()"
+Constructs the time 0 hours, minutes, seconds and milliseconds, i.e. 00:00:00.000 (midnight). This is a valid time.
+.PP
+See also isValid().
+.SH "QTime::QTime ( int h, int m, int s=0, int ms=0 )"
+Constructs a time with hour \fIh,\fR minute \fIm,\fR seconds \fIs\fR and milliseconds \fIms.\fR
+.PP
+\fIh\fR must be in the range 0-23, \fIm\fR and \fIs\fR must be in the range 0-59, and \fIms\fR must be in the range 0-999.
+.PP
+See also isValid().
+.SH "QTime QTime::addMSecs ( int ms ) const"
+Returns a QTime object containing a time \fIms\fR milliseconds later than the time of this object (or earlier if \fIms\fR is negative).
+.PP
+Note that the time will wrap if it passes midnight. See addSecs() for an example.
+.PP
+See also addSecs() and msecsTo().
+.SH "QTime QTime::addSecs ( int nsecs ) const"
+Returns a QTime object containing a time \fInsecs\fR seconds later than the time of this object (or earlier if \fIms\fR is negative).
+.PP
+Note that the time will wrap if it passes midnight.
+.PP
+Example:
+.PP
+.nf
+.br
+    QTime n( 14, 0, 0 );                // n == 14:00:00
+.br
+    QTime t;
+.br
+    t = n.addSecs( 70 );                // t == 14:01:10
+.br
+    t = n.addSecs( -70 );               // t == 13:58:50
+.br
+    t = n.addSecs( 10*60*60 + 5 );      // t == 00:00:05
+.br
+    t = n.addSecs( -15*60*60 );         // t == 23:00:00
+.fi
+.PP
+See also addMSecs(), secsTo() and QDateTime::addSecs().
+.SH "QTime QTime::currentTime () \fC[static]\fR"
+Returns the current time, as reported by the system clock.
+.PP
+Note that the accuracy depends on the accuracy of the underlying operating system; not all systems provide 1-millisecond accuracy.
+.SH "int QTime::elapsed ()"
+Returns the number of milliseconds that have elapsed since the last time start() or restart() was called.
+.PP
+Note that the counter wraps to zero 24 hours after the last call to start() or restart.
+.PP
+Note that the accuracy depends on the accuracy of the underlying operating system; not all systems provide 1-millisecond accuracy.
+.PP
+\fBWarning:\fR If the system's clock setting has been changed since the last time start() or restart() was called, the result is undefined. This can happen e.g. when daylight saving is turned on or off.
+.PP
+See also start() and restart().
+.SH "int QTime::hour () const"
+Returns the hour part (0..23) of the time.
+.SH "bool QTime::isNull () const"
+Returns TRUE if the time is equal to 00:00:00.000. A null time is valid.
+.PP
+See also isValid().
+.SH "bool QTime::isValid () const"
+Returns TRUE if the time is valid, or FALSE if the time is invalid. The time 23:30:55.746 is valid, while 24:12:30 is invalid.
+.PP
+See also isNull().
+.SH "bool QTime::isValid ( int h, int m, int s, int ms=0 ) \fC[static]\fR"
+Returns TRUE if the specified time is valid, otherwise FALSE.
+.PP
+The time is valid if \fIh\fR is in the range 0-23, \fIm\fR and \fIs\fR are in the range 0-59, and \fIms\fR is in the range 0-999.
+.PP
+Example:
+.PP
+.nf
+.br
+    QTime::isValid(21, 10, 30);         // returns TRUE
+.br
+    QTime::isValid(22, 5,  62);         // returns FALSE
+.fi
+.SH "int QTime::minute () const"
+Returns the minute part (0..59) of the time.
+.SH "int QTime::msec () const"
+Returns the millisecond part (0..999) of the time.
+.SH "int QTime::msecsTo ( const QTime & t ) const"
+Returns the number of milliseconds from this time to \fIt\fR (which is negative if \fIt\fR is earlier than this time).
+.PP
+Since QTime measures time within a day and there are 86400000 milliseconds in a day, the result is between -86400000 and 86400000.
+.PP
+See also secsTo().
+.SH "bool QTime::operator!= ( const QTime & t ) const"
+Returns TRUE if this time is different from \fIt,\fR or FALSE if they are equal.
+.SH "bool QTime::operator< ( const QTime & t ) const"
+Returns TRUE if this time is earlier than \fIt,\fR otherwise FALSE.
+.SH "bool QTime::operator<= ( const QTime & t ) const"
+Returns TRUE if this time is earlier than or equal to \fIt,\fR otherwise FALSE.
+.SH "bool QTime::operator== ( const QTime & t ) const"
+Returns TRUE if this time is equal to \fIt,\fR or FALSE if they are different.
+.SH "bool QTime::operator> ( const QTime & t ) const"
+Returns TRUE if this time is later than \fIt,\fR otherwise FALSE.
+.SH "bool QTime::operator>= ( const QTime & t ) const"
+Returns TRUE if this time is later than or equal to \fIt,\fR otherwise FALSE.
+.SH "int QTime::restart ()"
+Sets this time to the current time, and returns the number of milliseconds that have elapsed since the last time start() or restart() was called.
+.PP
+This function is guaranteed to be atomic, and is thus very handy for repeated measurements: call start() to start the first measurement, then restart() for each later measurement.
+.PP
+Note that the counter wraps to zero 24 hours after the last call to start() or restart().
+.PP
+\fBWarning:\fR If the system's clock setting has been changed since the last time start() or restart() was called, the result is undefined. This can happen e.g. when daylight saving is turned on or off.
+.PP
+See also start(), elapsed() and currentTime().
+.SH "int QTime::second () const"
+Returns the second part (0..59) of the time.
+.SH "int QTime::secsTo ( const QTime & t ) const"
+Returns the number of seconds from this time to \fIt\fR (which is negative if \fIt\fR is earlier than this time).
+.PP
+Since QTime measures time within a day and there are 86400 seconds in a day, the result is between -86400 and 86400.
+.PP
+See also addSecs() and QDateTime::secsTo().
+.SH "bool QTime::setHMS ( int h, int m, int s, int ms=0 )"
+Sets the time to hour \fIh,\fR minute \fIm,\fR seconds \fIs\fR and milliseconds \fIms.\fR
+.PP
+\fIh\fR must be in the range 0-23, \fIm\fR and \fIs\fR must be in the range 0-59, and \fIms\fR must be in the range 0-999. Returns TRUE if the set time is valid, otherwise FALSE.
+.PP
+See also isValid().
+.SH "void QTime::start ()"
+Sets this time to the current time. This is practical for timing:
+.PP
+.nf
+.br
+    QTime t;
+.br
+    t.start();                          // start clock
+.br
+    ... // some lengthy task
+.br
+    qDebug( "%d\\n", t.elapsed() );      // prints # msecs elapsed
+.fi
+.PP
+See also restart(), elapsed() and currentTime().
+.SH "QString QTime::toString () const"
+Returns the time of this object in a textual format. Milliseconds are not included. The string format is HH:MM:SS, e.g. 1 second before midnight would be "23:59:59".
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "QDataStream & operator<< (QDataStream & s, const QTime & t)"
+Writes a time to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "QDataStream & operator>> (QDataStream & s, QTime & t)"
+Reads a time from the stream.
+.PP
+See also  Format of the QDataStream operators
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qtime.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qtime.3qt) and the Qt
+version (2.3.2).

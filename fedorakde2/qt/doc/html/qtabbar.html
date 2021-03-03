@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QTabBar Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QTabBar Class Reference</h1><br clear="all">
+<p>
+The QTabBar class provides a tab bar, for use in e.g. tabbed dialogs.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qtabbar-h.html">qtabbar.h</a>&gt;</code>
+<p>
+Inherits <a href="qwidget.html">QWidget</a>.
+<p><a href="qtabbar-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#271589"><b>QTabBar</b></a> ( QWidget * parent = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#62c2f1"><b>~QTabBar</b></a> () </div>
+<li><div class="fn">enum <a href="#Shape"><b>Shape</b></a> { RoundedAbove, RoundedBelow, TriangularAbove, TriangularBelow }</div>
+<li><div class="fn">Shape <a href="#be3014"><b>shape</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#ecd92e"><b>setShape</b></a> ( Shape ) </div>
+<li><div class="fn">virtual int <a href="#966442"><b>addTab</b></a> ( QTab * ) </div>
+<li><div class="fn">virtual int <a href="#ecbb38"><b>insertTab</b></a> ( QTab *, int index = -1 ) </div>
+<li><div class="fn">virtual void <a href="#e07855"><b>removeTab</b></a> ( QTab * ) </div>
+<li><div class="fn">virtual void <a href="#5086b3"><b>setTabEnabled</b></a> ( int, bool ) </div>
+<li><div class="fn">bool <a href="#a9ff25"><b>isTabEnabled</b></a> ( int ) const</div>
+<li><div class="fn">int <a href="#4a783f"><b>currentTab</b></a> () const</div>
+<li><div class="fn">int <a href="#42c846"><b>keyboardFocusTab</b></a> () const</div>
+<li><div class="fn">QTab* <a href="#77438b"><b>tab</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#62601b"><b>count</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#af237b"><b>layoutTabs</b></a> () </div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#5b027a"><b>setCurrentTab</b></a> ( int ) </div>
+<li><div class="fn">virtual void <a href="#23184d"><b>setCurrentTab</b></a> ( QTab * ) </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#5537cd"><b>selected</b></a> ( int ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#cc2aeb"><b>paint</b></a> ( QPainter *, QTab *, bool ) const</div>
+<li><div class="fn">virtual void <a href="#922b10"><b>paintLabel</b></a> ( QPainter *, const QRect &amp;, QTab *, bool ) const</div>
+<li><div class="fn">virtual QTab* <a href="#d61837"><b>selectTab</b></a> ( const QPoint &amp; p ) const</div>
+<li><div class="fn">virtual void <a href="#6c9c68"><b>updateMask</b></a> () </div>
+<li><div class="fn">virtual void <a href="#f42e48"><b>paintEvent</b></a> ( QPaintEvent * ) </div>
+<li><div class="fn">QList&lt;QTab&gt;* <a href="#57cb12"><b>tabList</b></a> () </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>Shape<td>shape<td>shape<td>setShape<td>&nbsp;
+<tr><td>int<td>currentTab<td>currentTab<td>setCurrentTab<td>&nbsp;
+<tr><td>int<td>count<td>count<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>keyboardFocusTab<td>keyboardFocusTab<td>&nbsp;<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QTabBar class provides a tab bar, for use in e.g. tabbed dialogs.
+<p>
+The class is quite simple; it draws the tabs in one of four shapes
+and emits a signal when one is selected.  It can be subclassed to
+tailor the look and feel.
+<p>QTabBar itself support four possible shapes, described in the
+<a href="#Shape">QTabBar::Shape</a> documentation.
+<p>The choice of tab shape is still a matter of taste, to a large
+degree.  Tab dialogs (preferences and the like) invariably use <code>RoundedAbove</code> and nobody uses <code>TriangularAbove.</code>  Tab controls in
+windows other than dialogs almost always either <code>RoundedBelow</code> or
+<code>TriangularBelow.</code>  Many spreadsheets and other tab controls where
+all the pages are essentially similar to use <code>TriangularBelow,</code>
+while <code>RoundedBelow</code> is used mostly when the pages are different
+(e.g. a multi-page tool palette).  There is no strong tradition yet,
+however, so use your taste and create the tradition.
+<p>The most important part of QTabBar's API is the signal <a href="#5537cd">selected</a>().
+It's emitted whenever the selected page changes (even at startup,
+when the selected page changes from 'none').  There are also a slot,
+<a href="#23184d">setCurrentTab</a>(), which can be used to select a page
+programmatically.
+<p>QTabBar creates automatic accelerator keys in the manner of <a href="qbutton.html">QButton</a>;
+e.g. if a tab's label is "&amp;Graphics" Alt-G becomes an accelerator
+key for switching to that tab.
+<p>The following virtual functions may need to be reimplemented: <ul>
+<li> <a href="#cc2aeb">paint</a>() paints a single tab.  <a href="#f42e48">paintEvent</a>() calls paint() for
+each tab in such a way that any overlap will look right.  <li>
+<a href="#966442">addTab</a>() creates a new tab and adds it to the bar. <li> <a href="#d61837">selectTab</a>()
+decides which, if any, tab the user selects with the mouse. </ul>
+<p><img src=qtabbar-m.png> <img src=qtabbar-w.png>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="Shape">QTabBar::Shape</a></h3>
+This enum type lists the built-in shapes supported by QTabBar:<ul>
+<li> <code>RoundedAbove</code> - the normal rounded look, above the pages
+<li> <code>RoundedBelow</code> - the normal rounded look, below the pages
+<li> <code>TriangularAbove</code> - triangular tabs, above the pages (very
+unusual, included for completeness)
+<li> <code>TriangularBelow</code> - triangular tabs, similar to those used in
+e.g. the spreadsheet Excel
+<p></ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="271589"></a>QTabBar::QTabBar ( <a href="qwidget.html">QWidget</a> * parent = 0, const char * name = 0 )</h3>
+<p>Constructs a new, empty tab bar.
+<h3 class="fn"><a name="62c2f1"></a>QTabBar::~QTabBar ()</h3>
+<p>Destroys the tab control, freeing memory used.
+<h3 class="fn">int <a name="966442"></a>QTabBar::addTab ( <a href="qtab.html">QTab</a> * newTab ) <code>[virtual]</code></h3>
+<p>Adds <em>newTab</em> to the tab control.
+<p>Allocates a new id, sets <em>newTab's</em> id, locates it just to the right of the
+existing tabs, inserts an accelerator if the tab's label contains the
+string "&p" for some value of p, adds it to the bar, and returns the
+newly allocated id.
+<h3 class="fn">int <a name="62601b"></a>QTabBar::count () const</h3>
+<p>Returns the number of tabs in the tab bar.
+<p>See also  <a href="#77438b">tab</a>().
+<h3 class="fn">int <a name="4a783f"></a>QTabBar::currentTab () const</h3>
+<p>If a page is currently visible, returns its ID.  If no page is
+currently visible, returns either -1 or the ID of one of the pages.
+<p>Even if the return value is not -1, you cannot assume either that
+the user can see the relevant page, or that the tab <a href="#a9ff25">is enabled.</a>
+<p>When you need to display something, the return value from this
+function represents the best page to display.  That's all.
+<p>See also  <a href="#5537cd">selected</a>().
+<h3 class="fn">void <a name="91c126"></a>QTabBar::focusInEvent ( <a href="qfocusevent.html">QFocusEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#21a4b8">QWidget.</a>
+<h3 class="fn">void <a name="51b4dc"></a>QTabBar::focusOutEvent ( <a href="qfocusevent.html">QFocusEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#de664a">QWidget.</a>
+<h3 class="fn">int <a name="ecbb38"></a>QTabBar::insertTab ( <a href="qtab.html">QTab</a> * newTab, int index = -1 ) <code>[virtual]</code></h3>
+<p>Inserts <em>newTab</em> to the tab control.
+<p>If <em>index</em> is not specified, the tab is simply added. Otherwise
+it's inserted at the specified position.
+<p>Allocates a new id, sets <em>newTab's</em> id, locates it respectively,
+inserts an accelerator if the tab's label contains the string "&p"
+for some value of p, adds it to the bar, and returns the newly
+allocated id.
+<h3 class="fn">bool <a name="a9ff25"></a>QTabBar::isTabEnabled ( int id ) const</h3>
+<p>Returns TRUE if the tab with id <em>id</em> is enabled, or FALSE if it
+is disabled or there is no such tab.
+<p>See also  <a href="#5086b3">setTabEnabled</a>().
+<h3 class="fn">void <a name="2e33c6"></a>QTabBar::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#0a4482">QWidget.</a>
+<h3 class="fn">int <a name="42c846"></a>QTabBar::keyboardFocusTab () const</h3>
+<p>If this tab control has keyboard focus, returns the ID of the
+tab Space will select.  Otherwise, returns -1.
+<h3 class="fn">void <a name="af237b"></a>QTabBar::layoutTabs () <code>[virtual]</code></h3>
+<p>Layout all existing tabs (i.e. setting their <code>r</code> attribute) according
+to their label and their iconset.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="9536f1"></a>QTabBar::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn">void <a name="39000e"></a>QTabBar::mousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#2ecc04">QWidget.</a>
+<h3 class="fn">void <a name="d2f1fa"></a>QTabBar::mouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#9aa77f">QWidget.</a>
+<h3 class="fn">void <a name="cc2aeb"></a>QTabBar::paint ( <a href="qpainter.html">QPainter</a> * p, <a href="qtab.html">QTab</a> * t, bool selected ) const <code>[virtual protected]</code></h3>
+<p>Paint the single tab <em>t</em> using <em>p.</em>  If and only if <em>selected</em>
+is TRUE, <em>t</em> is currently selected.
+<p>This virtual function may be reimplemented to change the look of
+QTabBar.  If you decide to reimplement it, you may also need to
+reimplement <a href="#735cb5">sizeHint</a>().
+<h3 class="fn">void <a name="f42e48"></a>QTabBar::paintEvent ( <a href="qpaintevent.html">QPaintEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Repaints the tab row.  All the painting is done by <a href="#cc2aeb">paint</a>();
+paintEvent() only decides which tabs need painting and in what
+order.
+<p>See also  <a href="#cc2aeb">paint</a>().
+<p>Reimplemented from <a href="qwidget.html#e3d821">QWidget.</a>
+<h3 class="fn">void <a name="922b10"></a>QTabBar::paintLabel ( <a href="qpainter.html">QPainter</a> * p, const <a href="qrect.html">QRect</a> &amp; br, <a href="qtab.html">QTab</a> * t, bool has_focus ) const <code>[virtual protected]</code></h3>
+<p>Paints the label of tab <em>t</em> centered in rectangle <em>br</em> using
+painter <em>p</em> and draws a focus indication if <em>has_focus</em> is TRUE.
+<h3 class="fn">void <a name="e07855"></a>QTabBar::removeTab ( <a href="qtab.html">QTab</a> * t ) <code>[virtual]</code></h3>
+<p>Removes tab <em>t</em> from the tab control.
+<h3 class="fn">void <a name="3e8389"></a>QTabBar::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn"><a href="qtab.html">QTab</a> * <a name="d61837"></a>QTabBar::selectTab ( const <a href="qpoint.html">QPoint</a> &amp; p ) const <code>[virtual protected]</code></h3>
+<p>This virtual functions is called by the mouse event handlers to
+determine which tab is pressed.  The default implementation returns
+a pointer to the tab whose bounding rectangle contains <em>p,</em> if
+exactly one tab's bounding rectangle contains <em>p.</em>  It returns 0
+else.
+<p>See also  <a href="#39000e">mousePressEvent</a>() and <a href="#d2f1fa">mouseReleaseEvent</a>().
+<h3 class="fn">void <a name="5537cd"></a>QTabBar::selected ( int id ) <code>[signal]</code></h3>
+<p>QTabBar emits this signal whenever any tab is selected, whether by
+the program or the user.  The argument <em>id</em> is the ID if the tab
+as returned by <a href="#966442">addTab</a>().
+<p><a href="#7cf229">show</a>() is guaranteed to emit this signal, so that you can display
+your page in a slot connected to this signal.
+<h3 class="fn">void <a name="23184d"></a>QTabBar::setCurrentTab ( <a href="qtab.html">QTab</a> * tab ) <code>[virtual slot]</code></h3>
+<p>Raises <em>tab</em> and emits the <a href="#5537cd">selected</a>() signal unless the tab was
+already current.
+<p>See also  <a href="#4a783f">currentTab</a>() and <a href="#5537cd">selected</a>().
+<h3 class="fn">void <a name="5b027a"></a>QTabBar::setCurrentTab ( int id ) <code>[virtual slot]</code></h3>
+<p>Raises the tab with ID <em>id</em> and emits the <a href="#5537cd">selected</a>() signal.
+<p>See also  <a href="#4a783f">currentTab</a>(), <a href="#5537cd">selected</a>() and <a href="#77438b">tab</a>().
+<h3 class="fn">void <a name="ecd92e"></a>QTabBar::setShape ( <a href="qtabbar.html#Shape">Shape</a> s )</h3>
+<p>Sets the shape of this tab bar to <em>s</em> and refreshes the bar.
+<h3 class="fn">void <a name="5086b3"></a>QTabBar::setTabEnabled ( int id, bool enabled ) <code>[virtual]</code></h3>
+<p>Enable tab <em>id</em> if <em>enable</em> is TRUE, or disable it if <em>enable</em> is
+FALSE.  If <em>id</em> is currently selected, setTabEnabled() makes
+another tab selected.
+<p>setTabEnabled() updates the display respectively if this causes a
+change in <em>id's</em> status.
+<p>See also  <a href="qwidget.html#f3f721">update</a>() and <a href="#a9ff25">isTabEnabled</a>().
+<h3 class="fn">QTabBar::Shape <a name="be3014"></a>QTabBar::shape() const</h3>
+<p>Returns the shape of this tab bar.
+<p>See also  <a href="#ecd92e">setShape</a>().
+<h3 class="fn">void <a name="7cf229"></a>QTabBar::show () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#200ee5">QWidget.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="735cb5"></a>QTabBar::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="d9f8d3"></a>QTabBar::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn">void <a name="6a2bd4"></a>QTabBar::styleChange ( <a href="qstyle.html">QStyle</a> &amp; old ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#5e2e23">QWidget.</a>
+<h3 class="fn"><a href="qtab.html">QTab</a> * <a name="77438b"></a>QTabBar::tab ( int id )</h3>
+<p>Returns a pointer to the tab with ID <em>id,</em> or 0 if there is no
+such tab.
+<p>See also  <a href="#62601b">count</a>().
+<h3 class="fn"><a href="qlist.html">QList</a>&lt;<a href="qtab.html">QTab</a>&gt; * <a name="57cb12"></a>QTabBar::tabList () <code>[protected]</code></h3>
+<p>The list of <a href="qtab.html">QTab</a> objects added.
+<h3 class="fn">void <a name="6c9c68"></a>QTabBar::updateMask () <code>[virtual protected]</code></h3>
+<p>Draws the mask for this tab bar.
+<p>Reimplemented from <a href="qwidget.html#b8a07f">QWidget.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

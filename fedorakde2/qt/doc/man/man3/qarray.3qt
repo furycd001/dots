@@ -1,0 +1,478 @@
+'\" t
+.TH QArray 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QArray \- Template class that provides arrays of simple types
+.br
+.PP
+\fC#include <qarray.h>\fR
+.PP
+Inherits QGArray.
+.PP
+Inherited by QByteArray and QPointArray.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQArray\fR () "
+.br
+.ti -1c
+.BI "\fBQArray\fR ( int size ) "
+.br
+.ti -1c
+.BI "\fBQArray\fR ( const QArray<type> & a ) "
+.br
+.ti -1c
+.BI "\fB~QArray\fR () "
+.br
+.ti -1c
+.BI "QArray<type>& \fBoperator=\fR ( const QArray<type> & a ) "
+.br
+.ti -1c
+.BI "type* \fBdata\fR () const"
+.br
+.ti -1c
+.BI "uint \fBnrefs\fR () const"
+.br
+.ti -1c
+.BI "uint \fBsize\fR () const"
+.br
+.ti -1c
+.BI "uint \fBcount\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "bool \fBresize\fR ( uint size ) "
+.br
+.ti -1c
+.BI "bool \fBtruncate\fR ( uint pos ) "
+.br
+.ti -1c
+.BI "bool \fBfill\fR ( const type & " "v" ", int " "size" " = -1 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdetach\fR () "
+.br
+.ti -1c
+.BI "QArray<type> \fBcopy\fR () const"
+.br
+.ti -1c
+.BI "QArray<type>& \fBassign\fR ( const QArray<type> & a ) "
+.br
+.ti -1c
+.BI "QArray<type>& \fBassign\fR ( const type * " "data" ", uint size ) "
+.br
+.ti -1c
+.BI "QArray<type>& \fBduplicate\fR ( const QArray<type> & a ) "
+.br
+.ti -1c
+.BI "QArray<type>& \fBduplicate\fR ( const type * " "data" ", uint size ) "
+.br
+.ti -1c
+.BI "QArray<type>& \fBsetRawData\fR ( const type * " "data" ", uint size ) "
+.br
+.ti -1c
+.BI "void \fBresetRawData\fR ( const type * " "data" ", uint size ) "
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const type & " "v" ", uint " "index" "=0 ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( const type & v ) const"
+.br
+.ti -1c
+.BI "void \fBsort\fR () "
+.br
+.ti -1c
+.BI "int \fBbsearch\fR ( const type & v ) const"
+.br
+.ti -1c
+.BI "type& \fBoperator[]\fR ( int index ) const"
+.br
+.ti -1c
+.BI "type& \fBat\fR ( uint index ) const"
+.br
+.ti -1c
+.BI "operator \fBconst type*\fR ()const"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QArray<type> & a ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QArray<type> & a ) const"
+.br
+.ti -1c
+.BI "Iterator \fBbegin\fR () "
+.br
+.ti -1c
+.BI "Iterator \fBend\fR () "
+.br
+.ti -1c
+.BI "ConstIterator \fBbegin\fR () const"
+.br
+.ti -1c
+.BI "ConstIterator \fBend\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQArray\fR ( int, int ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QArray class is a template class that provides arrays of simple types.
+.PP
+QArray is implemented as a template class. Define a template instance QArray<X> to create an array that contains X items.
+.PP
+QArray stores the array elements directly in the array. It can only deal with simple types, i.e. C++ types, structs and classes that have no constructors, destructors or virtual functions. QArray uses bitwise operations to copy and compare array elements.
+.PP
+The QVector collection class is also a kind of array. Like most collection classes, it has pointers to the contained items.
+.PP
+QArray uses explicit sharing with a reference count. If more than one array share common data, and one array is modified, all arrays will be modified.
+.PP
+The benefit of sharing is that a program does not need to duplicate data when it is not required, which results in less memory usage and less copying of data.
+.PP
+Example:
+.PP
+.nf
+.br
+    #include <qarray.h>
+.br
+    #include <stdio.h>
+.br
+.br
+    QArray<int> fib( int num )                  // returns fibonacci array
+.br
+    {
+.br
+        ASSERT( num > 2 );
+.br
+        QArray<int> f( num );                   // array of ints
+.br
+.br
+        f[0] = f[1] = 1;                        // initialize first two numbers
+.br
+        for ( int i=2; i<num; i++ )
+.br
+            f[i] = f[i-1] + f[i-2];
+.br
+.br
+.br
+        return f;
+.br
+    }
+.br
+.br
+    void main()
+.br
+    {
+.br
+        QArray<int> a = fib( 6 );               // get 6 first fibonaccis
+.br
+        int i;
+.br
+.br
+        for ( i=0; i<a.size(); i++ )            // print them
+.br
+            prinf( "%d: %d\\n", i, a[i] );
+.br
+.br
+        printf( "1 is found %d time(s)\\n", a.contains(1) );
+.br
+        printf( "5 is found at index %d\\n", a.find(5) );
+.br
+    }
+.fi
+.PP
+Program output:
+.PP
+.nf
+.br
+        0: 1
+.br
+        1: 1
+.br
+        2: 2
+.br
+        3: 3
+.br
+        4: 5
+.br
+        5: 8
+.br
+        1 is found 2 times
+.br
+        5 is found at index 4
+.fi
+.PP
+Note about using QArray for manipulating structs or classes: Compilers will often pad the size of structs of odd sizes up to the nearest word boundary. This will then be the size QArray will use for its bitwise element comparisons. Since the remaining bytes will typically be uninitialized, this can cause find() etc. to fail to find the element. Example:
+.PP
+.nf
+.br
+    struct MyStruct
+.br
+    {
+.br
+      short i;                    // 2 bytes
+.br
+      char c;                     // 1 byte
+.br
+    };                            // sizeof(MyStruct) may be padded to 4 bytes
+.br
+.br
+    QArray<MyStruct> a(1);
+.br
+    a[0].i = 5;
+.br
+    a[0].c = 't';
+.br
+.br
+    MyStruct x;
+.br
+    x.i = '5';
+.br
+    x.c = 't';
+.br
+    int i = a.find( x );          // May return -1 if the pad bytes differ
+.fi
+.PP
+To workaround this, make sure that you use a struct where sizeof() returns the same as the sum of the sizes of the members, either by changing the types of the struct members or by adding dummy members.
+.PP
+See also Shared Classes
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QArray::QArray ()"
+Constructs a null array.
+.PP
+See also isNull().
+.SH "QArray::QArray ( const QArray<type> & a )"
+Constructs a shallow copy of \fIa.\fR
+.PP
+See also assign().
+.SH "QArray::QArray ( int size )"
+Constructs an array with room for \fIsize\fR elements. Makes a null array if \fIsize\fR == 0.
+.PP
+Note that the elements are not initialized.
+.PP
+See also resize() and isNull().
+.SH "QArray::QArray ( int, int ) \fC[protected]\fR"
+Constructs an array \fIwithout allocating\fR array space. The arguments should be (0, 0). Use at own risk.
+.SH "QArray::~QArray ()"
+Dereferences the array data and deletes it if this was the last reference.
+.SH "QArray::operator const type * () const"
+Cast operator. Returns a pointer to the array.
+.PP
+See also data().
+.SH "QArray<type> & QArray::assign ( const QArray<type> & a )"
+Shallow copy. Dereferences the current array and references the data contained in \fIa\fR instead. Returns a reference to this array.
+.PP
+See also operator=().
+.SH "QArray<type> & QArray::assign ( const type * data, uint size )"
+Shallow copy. Dereferences the current array and references the array data \fIdata,\fR which contains \fIsize\fR elements. Returns a reference to this array.
+.PP
+Do not delete \fIdata\fR later, QArray takes care of that.
+.SH "type & QArray::at ( uint index ) const"
+Returns a reference to the element at position \fIindex\fR in the array.
+.PP
+This can be used to both read and set an element.
+.PP
+See also operator[]().
+.SH "ConstIterator QArray::begin () const"
+Returns a const iterator pointing at the beginning of this array. This iterator can be used as the iterators of QValueList and QMap for example. In fact it does not only behave like a usual pointer: It is a pointer.
+.SH "Iterator QArray::begin ()"
+Returns an iterator pointing at the beginning of this array. This iterator can be used as the iterators of QValueList and QMap for example. In fact it does not only behave like a usual pointer: It is a pointer.
+.SH "int QArray::bsearch ( const type & v ) const"
+In a sorted array, finds the first occurrence of \fIv\fR using binary search. For a sorted array, this is generally much faster than find(), which does a linear search.
+.PP
+Returns the position of \fIv,\fR or -1 if \fIv\fR could not be found.
+.PP
+See also sort() and find().
+.SH "int QArray::contains ( const type & v ) const"
+Returns the number of times \fIv\fR occurs in the array.
+.PP
+See also find().
+.SH "QArray<type> QArray::copy () const"
+Returns a deep copy of this array.
+.PP
+See also detach() and duplicate().
+.SH "uint QArray::count () const"
+Returns the same as size().
+.PP
+See also size().
+.SH "type * QArray::data () const"
+Returns a pointer to the actual array data.
+.PP
+The array is a null array if data() == 0 (null pointer).
+.PP
+See also isNull().
+.SH "void QArray::detach () \fC[virtual]\fR"
+Detaches this array from shared array data, i.e. makes a private, deep copy of the data.
+.PP
+Copying will only be performed if the reference count is greater than one.
+.PP
+See also copy().
+.PP
+Reimplemented from QGArray.
+.SH "QArray<type> & QArray::duplicate ( const QArray<type> & a )"
+Deep copy. Dereferences the current array and obtains a copy of the data contained in \fIa\fR instead. Returns a reference to this array.
+.PP
+See also copy().
+.SH "QArray<type> & QArray::duplicate ( const type * data, uint size )"
+Deep copy. Dereferences the current array and obtains a copy of the array data \fIdata\fR instead. Returns a reference to this array.
+.PP
+See also copy().
+.SH "ConstIterator QArray::end () const"
+Returns a const iterator pointing behind the last element of this array. This iterator can be used as the iterators of QValueList and QMap for example. In fact it does not only behave like a usual pointer: It is a pointer.
+.SH "Iterator QArray::end ()"
+Returns an iterator pointing behind the last element of this array. This iterator can be used as the iterators of QValueList and QMap for example. In fact it does not only behave like a usual pointer: It is a pointer.
+.SH "bool QArray::fill ( const type & v, int size = -1 )"
+Fills the array with the value \fIv.\fR If \fIsize\fR is specified as different from -1, then the array will be resized before filled.
+.PP
+Returns TRUE if successful, or FALSE if the memory cannot be allocated (only when \fIsize\fR != -1).
+.PP
+See also resize().
+.SH "int QArray::find ( const type & v, uint index=0 ) const"
+Finds the first occurrence of \fIv,\fR starting at position \fIindex.\fR
+.PP
+Returns the position of \fIv,\fR or -1 if \fIv\fR could not be found.
+.PP
+See also contains().
+.SH "bool QArray::isEmpty () const"
+Returns TRUE if the array is empty, i.e. size() == 0, otherwise FALSE.
+.PP
+isEmpty() is equivalent with isNull() for QArray. Note that this is not the case for QCString::isEmpty().
+.SH "bool QArray::isNull () const"
+Returns TRUE if the array is null, otherwise FALSE.
+.PP
+A null array has size() == 0 and data() == 0.
+.SH "uint QArray::nrefs () const"
+Returns the reference count for the shared array data. This reference count is always greater than zero.
+.SH "bool QArray::operator!= ( const QArray<type> & a ) const"
+Returns TRUE if this array is different from \fIa,\fR otherwise FALSE.
+.PP
+The two arrays are bitwise compared.
+.PP
+See also operator==().
+.SH "QArray<type> & QArray::operator= ( const QArray<type> & a )"
+Assigns a shallow copy of \fIa\fR to this array and returns a reference to this array.
+.PP
+Equivalent to assign( a ).
+.SH "bool QArray::operator== ( const QArray<type> & a ) const"
+Returns TRUE if this array is equal to \fIa,\fR otherwise FALSE.
+.PP
+The two arrays are bitwise compared.
+.PP
+See also operator!=().
+.SH "type & QArray::operator[] ( int index ) const"
+Returns a reference to the element at position \fIindex\fR in the array.
+.PP
+This can be used to both read and set an element. Equivalent to at().
+.PP
+See also at().
+.SH "void QArray::resetRawData ( const type * data, uint size )"
+Resets raw data that was set using setRawData().
+.PP
+The arguments must be the data and length that were passed to setRawData(). This is for consistency checking.
+.PP
+See also setRawData().
+.SH "bool QArray::resize ( uint size )"
+Resizes (expands or shrinks) the array to \fIsize\fR elements. The array becomes a null array if \fIsize\fR == 0.
+.PP
+Returns TRUE if successful, or FALSE if the memory cannot be allocated.
+.PP
+New elements will not be initialized.
+.PP
+See also size().
+.SH "QArray<type> & QArray::setRawData ( const type * data, uint size )"
+Sets raw data and returns a reference to the array.
+.PP
+Dereferences the current array and sets the new array data to \fIdata\fR and the new array size to \fIsize.\fR Do not attempt to resize or re-assign the array data when raw data has been set. Call resetRawData(d,len) to reset the array.
+.PP
+Setting raw data is useful because it sets QArray data without allocating memory or copying data.
+.PP
+Example I (intended use):
+.PP
+.nf
+.br
+    static char bindata[] = { 231, 1, 44, ... };
+.br
+    QByteArray  a;
+.br
+    a.setRawData( bindata, sizeof(bindata) );   // a points to bindata
+.br
+    QDataStream s( a, IO_ReadOnly );            // open on a's data
+.br
+    s >> <something>;                           // read raw bindata
+.br
+    a.resetRawData( bindata, sizeof(bindata) ); // finished
+.fi
+.PP
+Example II (you don't want to do this):
+.PP
+.nf
+.br
+    static char bindata[] = { 231, 1, 44, ... };
+.br
+    QByteArray  a, b;
+.br
+    a.setRawData( bindata, sizeof(bindata) );   // a points to bindata
+.br
+    a.resize( 8 );                              // will crash
+.br
+    b = a;                                      // will crash
+.br
+    a[2] = 123;                                 // might crash
+.br
+      // forget to resetRawData - will crash
+.fi
+.PP
+\fBWarning:\fR If you do not call resetRawData(), QArray will attempt to deallocate or reallocate the raw data, which might not be too good. Be careful.
+.PP
+See also resetRawData().
+.SH "uint QArray::size () const"
+Returns the size of the array (max number of elements).
+.PP
+The array is a null array if size() == 0.
+.PP
+See also isNull() and resize().
+.SH "void QArray::sort ()"
+Sorts the array elements in ascending order, using bitwise comparison (memcmp()).
+.PP
+See also bsearch().
+.SH "bool QArray::truncate ( uint pos )"
+Truncates the array at position \fIpos.\fR
+.PP
+Returns TRUE if successful, or FALSE if the memory cannot be allocated.
+.PP
+Equivalent to resize(\fIpos).\fR
+.PP
+See also  resize().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qarray.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qarray.3qt) and the Qt
+version (2.3.2).

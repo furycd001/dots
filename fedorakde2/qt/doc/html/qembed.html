@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>QEmbed - File and Image Embedder</title>
+</head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>QEmbed - File and Image Embedder</h1><br clear="all">
+<p>
+The QEmbed tool, found in <tt>qt/tools/qembed</tt>
+converts arbitrary files into C++ code.
+This is useful for including image files
+and other resources directly into your application rather than loading the data
+from external files.
+<p>
+QEmbed can also generate uncompressed versions of
+images that can be included directly into your application, thus avoiding
+both the external file and the need to parse the image file format. This
+is useful for small images such as icons for which compression is not
+a great gain.
+<p>
+<h2>Usage</h2>
+<pre>
+    qembed <i>[ general-files ] [ </i>--images<i> image-files ]</i>
+</pre>
+<p>
+<dl>
+ <dt><tt><i>general-files</i></tt>
+    <dd>These files can be any type of file.
+ <dt><tt>--images <i>image-files</i></tt>
+    <dd>These files must be in image formats supported by Qt.
+</dl>
+<p>
+<h2>Output</h2>
+The output from QEmbed is a C++ header file which you should
+include in a C++ source file. In that file, you should make a wrapper
+function that suites your application. Two inline functions are provided,
+and your wrapper function could just call one of these, or you can
+implement your own. To use the inline functions in the simplest way:
+<p>
+<pre>
+    #include "generated_qembed_file.h"
+<p>
+    // Just call the generated function
+    // "name" is the original image filename WITHOUT the extension
+    QImage myFindImage(const char* name)
+    {
+        return qembed_findImage(name);
+    }
+<p>
+    // Just call the generated function
+    // "name" is the original filename WITH the extension
+    QByteArray myFindData(const char* name)
+    {
+        return qembed_findData(name);
+    }
+</pre>
+<p>
+Alternatively, look at the output from QEmbed and write a function more
+tailored to the needs of your application.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

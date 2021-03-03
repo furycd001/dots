@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Tutorial - t7/main.cpp</title>
+</head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>Source code for <a href="t7.html">tutorial 7</a>: main.cpp</h1><br clear="all">
+<hr> <pre>/****************************************************************
+**
+** Qt tutorial 7
+**
+****************************************************************/
+
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a href="qlcdnumber-h.html">qlcdnumber.h</a>&gt;
+#include &lt;<a href="qfont-h.html">qfont.h</a>&gt;
+#include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+#include &lt;<a href="qgrid-h.html">qgrid.h</a>&gt;
+
+#include "lcdrange.h"
+
+class MyWidget : public QVBox
+{
+public:
+    MyWidget( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+};
+
+MyWidget::MyWidget( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+        : <a href="qvbox.html">QVBox</a>( parent, name )
+{
+    <a href="qpushbutton.html">QPushButton</a> *quit = new <a href="qpushbutton.html">QPushButton</a>( "Quit", this, "quit" );
+    quit-&gt;<a href="qwidget.html#c52788">setFont</a>( <a href="qfont.html">QFont</a>( "Times", 18, QFont::Bold ) );
+
+    <a href="qobject.html#7f8e37">connect</a>( quit, SIGNAL(clicked()), qApp, SLOT(quit()) );
+
+    <a href="qgrid.html">QGrid</a> *grid = new <a href="qgrid.html">QGrid</a>( 4, this );
+
+    LCDRange *previous = 0;
+    for( int r = 0 ; r &lt; 4 ; r++ ) {
+        for( int c = 0 ; c &lt; 4 ; c++ ) {
+            LCDRange* lr = new LCDRange( grid );
+            if ( previous )
+                <a href="qobject.html#7f8e37">connect</a>( lr, SIGNAL(valueChanged(int)),
+                         previous, SLOT(setValue(int)) );
+            previous = lr;
+        }
+    }
+}
+
+int main( int argc, char **argv )
+{
+    <a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    MyWidget w;
+    a.<a href="qapplication.html#7ad759">setMainWidget</a>( &amp;w );
+    w.<a href="qwidget.html#200ee5">show</a>();
+    return a.<a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

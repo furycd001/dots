@@ -1,0 +1,187 @@
+'\" t
+.TH QPlatinumStyle 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QPlatinumStyle \- Platinum Look and Feel
+.br
+.PP
+\fC#include <qplatinumstyle.h>\fR
+.PP
+Inherits QWindowsStyle.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQPlatinumStyle\fR () "
+.br
+.ti -1c
+.BI "virtual \fB~QPlatinumStyle\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBdrawButton\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "sunken" " = FALSE, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "ScrollControl \fBscrollBarPointOver\fR ( const QScrollBar * " "sb" ", int " "sliderStart" ", const QPoint & p ) "
+.br
+.ti -1c
+.BI "virtual int \fBmaximumSliderDragDistance\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "QColor \fBmixedColor\fR ( const QColor &, const QColor & ) "
+.br
+.ti -1c
+.BI "void \fBdrawRiffles\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool horizontal ) "
+.br
+.in -1c
+.SH DESCRIPTION
+Platinum Look and Feel
+.PP
+This class implements the Platinum look and feel. It's an experimental class that tries to resemble a Macinosh-like GUI style with the QStyle system. The emulation is, however, far from being perfect yet.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QPlatinumStyle::QPlatinumStyle ()"
+Constructs a QPlatinumStyle.
+.SH "QPlatinumStyle::~QPlatinumStyle () \fC[virtual]\fR"
+Destructs the style.
+.SH "QRect QPlatinumStyle::buttonRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "QRect QPlatinumStyle::comboButtonFocusRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "QRect QPlatinumStyle::comboButtonRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawBevelButton ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken = FALSE, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawButton ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken = FALSE, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws a press-sensitive shape.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawCheckMark ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool act, bool dis ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawComboButton ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool = FALSE, bool editable = FALSE, bool = TRUE, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawExclusiveIndicator ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool on, bool down = FALSE, bool = TRUE ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawIndicator ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, int s, bool down = FALSE, bool = TRUE ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawIndicatorMask ( QPainter * p, int x, int y, int w, int h, int s ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawPopupMenuItem ( QPainter * p, bool checkable, int maxpmw, int tab, QMenuItem * mi, const QPalette & pal, bool act, bool enabled, int x, int y, int w, int h ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawPopupPanel ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, int lineWidth = 2, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawPushButton ( QPushButton * btn, QPainter * p ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawPushButtonLabel ( QPushButton * btn, QPainter * p ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawRiffles ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool horizontal ) \fC[protected]\fR"
+draw the nifty Macintosh decoration used on sliders.
+.SH "void QPlatinumStyle::drawScrollBarBackground ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool horizontal, const QBrush * fill = 0 ) \fC[protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.SH "void QPlatinumStyle::drawScrollBarControls ( QPainter * p, const QScrollBar * sb, int sliderStart, uint controls, uint activeControl ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawSlider ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, Orientation orient, bool, bool ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawSliderGroove ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, QCOORD c, Orientation orient ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::drawSliderMask ( QPainter * p, int x, int y, int w, int h, Orientation orient, bool, bool ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "QSize QPlatinumStyle::exclusiveIndicatorSize () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QPlatinumStyle::extraPopupMenuItemWidth ( bool checkable, int maxpmw, QMenuItem * mi, const QFontMetrics & fm ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::getButtonShift ( int & x, int & y ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "QSize QPlatinumStyle::indicatorSize () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QPlatinumStyle::maximumSliderDragDistance () const \fC[virtual]\fR"
+Reimplementation from QWindowsStyle to disable the Windows typical jump back when dragging controls.
+.PP
+See also QStyle.
+.PP
+Reimplemented from QStyle.
+.SH "QColor QPlatinumStyle::mixedColor ( const QColor & c1, const QColor & c2 ) \fC[protected]\fR"
+mixes two colors to a new colors.
+.SH "void QPlatinumStyle::polishPopupMenu ( QPopupMenu * p ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QPlatinumStyle::popupMenuItemHeight ( bool checkable, QMenuItem * mi, const QFontMetrics & fm ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "void QPlatinumStyle::scrollBarMetrics ( const QScrollBar * sb, int & sliderMin, int & sliderMax, int & sliderLength, int & buttonDim ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "int QPlatinumStyle::sliderLength () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QStyle.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qplatinumstyle.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qplatinumstyle.3qt) and the Qt
+version (2.3.2).

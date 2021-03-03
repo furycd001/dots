@@ -1,0 +1,817 @@
+<!DOCTYPE UI><UI>
+<class>FormSettingsBase</class><comment>*********************************************************************
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of Qt Designer.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+*********************************************************************</comment>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>FormSettingsBase</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>623</width>
+            <height>457</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form Settings</string>
+    </property>
+    <property stdset="1">
+        <name>sizeGripEnabled</name>
+        <bool>true</bool>
+    </property>
+    <property>
+        <name>whatsThis</name>
+        <string>&lt;b&gt;Form Settings&lt;/b&gt;&lt;p&gt;Change settings for the form. Settings like &lt;b&gt;Comment&lt;/b&gt; and &lt;b&gt;Author&lt;/b&gt; are for personal use and not required.&lt;/p&gt;</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="0"  column="0" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>GroupBox1</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>&amp;Settings</string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>editClassName</cstring>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Change class name</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>&lt;b&gt;Enter the name of the class that will be created.&lt;/b&gt;&lt;p&gt;&lt;em&gt;classname.h&lt;/em&gt; and &lt;em&gt;classname.cpp&lt;/em&gt; will be generated as C++-output when it is compiled with the uic.&lt;/p&gt;</string>
+                    </property>
+                </widget>
+                <widget row="3"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1_2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>A&amp;uthor:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>editAuthor</cstring>
+                    </property>
+                </widget>
+                <widget row="3"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>editAuthor</cstring>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Enter your name</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Enter your name here.</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Class &amp;Name:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>editClassName</cstring>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Co&amp;mment:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>editComment</cstring>
+                    </property>
+                </widget>
+                <widget row="1"  column="1"  rowspan="2"  colspan="1" >
+                    <class>QMultiLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>editComment</cstring>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Enter a comment about the form.</string>
+                    </property>
+                </widget>
+                <spacer row="2"  column="0" >
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>36</x>
+                            <y>68</y>
+                            <width>20</width>
+                            <height>87</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Vertical</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                </spacer>
+            </grid>
+        </widget>
+        <widget row="1"  column="0" >
+            <class>QButtonGroup</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ButtonGroup1</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>&amp;Pixmaps</string>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>radioPixmapInline</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Save In&amp;line</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Save pixmaps into the .ui files</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>&lt;b&gt;Save Inline&lt;/b&gt;&lt;p&gt;Saves the pixmaps you choose as binary data into the .ui files. &lt;em&gt;This is the suggested option!&lt;/em&gt;</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>radioPixmapFunction</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Use &amp;Function</string>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Use a defined function to load pixmaps</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>&lt;b&gt;Use a defined function to open pixmaps&lt;/b&gt;&lt;p&gt;If you choose this option you have to define a function in the lineedit at the right which will be used in the generated code for loading pixmaps. When choosing a pixmap in the Qt Designer you will be asked then to specify the arguments which will be passed to that function in the generated code.&lt;p&gt; This way makes it possible to use an own icon-loader function for loading pixmaps, but of course the preview in the Qt Designer can't show the correct image.</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>editPixmapFunction</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>enabled</name>
+                        <bool>false</bool>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Specify Pixmap-Loader function (only function-name, no parentheses!)</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>&lt;b&gt;Specify Pixmap-Loader function&lt;/b&gt;&lt;p&gt;Specify the function which should be used for loading a pixmap in the generated code. &lt;em&gt;Only enter the function-name, no parentheses!&lt;/em&gt;</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="0"  column="1" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>GroupBox2</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>&amp;Includes</string>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Sunken</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>Box</enum>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0"  rowspan="1"  colspan="3" >
+                    <class>QListView</class>
+                    <column>
+                        <property>
+                            <name>text</name>
+                            <string>Include-File</string>
+                        </property>
+                        <property>
+                            <name>clickable</name>
+                            <bool>true</bool>
+                        </property>
+                        <property>
+                            <name>resizeable</name>
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <column>
+                        <property>
+                            <name>text</name>
+                            <string>Access</string>
+                        </property>
+                        <property>
+                            <name>clickable</name>
+                            <bool>true</bool>
+                        </property>
+                        <property>
+                            <name>resizeable</name>
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>listIncludes</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>allColumnsShowFocus</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>showSortIndicator</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>List of all files that will be included in the &lt;em&gt;classname.cpp&lt;/em&gt;-file.</string>
+                    </property>
+                </widget>
+                <widget row="2"  column="2" >
+                    <class>QComboBox</class>
+                    <item>
+                        <property>
+                            <name>text</name>
+                            <string>global</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property>
+                            <name>text</name>
+                            <string>local</string>
+                        </property>
+                    </item>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>comboLocation</cstring>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Select access mode</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>&lt;b&gt;Change how the include file will be included.&lt;/b&gt;&lt;p&gt;Global include-files will be included using &amp;lt;&amp;gt;-brackets, while local files will included using quotation marks.&lt;/p&gt;</string>
+                    </property>
+                </widget>
+                <widget row="2"  column="0"  rowspan="1"  colspan="2" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>editInclude</cstring>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Change file</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Change the name of the selected include-file.</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="2" >
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonRemove</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Delete Include</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Delete include-file</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Delete the selected include-file from the list</string>
+                    </property>
+                </widget>
+                <spacer row="1"  column="0" >
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>132</y>
+                            <width>38</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                </spacer>
+                <widget row="1"  column="1" >
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonAdd</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>N&amp;ew Include</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Add include-file</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Add a new include-file.</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="1"  column="1" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>GroupBox2_2</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>Forwa&amp;rds</string>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Sunken</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>Box</enum>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="0"  column="0"  rowspan="1"  colspan="3" >
+                    <class>QListView</class>
+                    <column>
+                        <property>
+                            <name>text</name>
+                            <string>Forward Declaration</string>
+                        </property>
+                        <property>
+                            <name>clickable</name>
+                            <bool>true</bool>
+                        </property>
+                        <property>
+                            <name>resizeable</name>
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>listForwards</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>allColumnsShowFocus</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>showSortIndicator</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>List of all forward declarations that will be included in the &lt;em&gt;classname.h&lt;/em&gt;-file.</string>
+                    </property>
+                </widget>
+                <widget row="2"  column="0"  rowspan="1"  colspan="3" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>editForward</cstring>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Change forward declaration</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Change the name of the selected forward declaration. This should be something like &lt;pre&gt;class MyClass&lt;/pre&gt;</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="2" >
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonRemoveForward</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Dele&amp;te Forward</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Delete forward declaration</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Delete the selected forward declaration from the list</string>
+                    </property>
+                </widget>
+                <spacer row="1"  column="0" >
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer2_2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>11</x>
+                            <y>139</y>
+                            <width>28</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                </spacer>
+                <widget row="1"  column="1" >
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonAddForward</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Ne&amp;w Forward</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Add forward declaration</string>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Add a new forward declaration.</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget row="2"  column="0"  rowspan="1"  colspan="2" >
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout4</cstring>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonHelp</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Help</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>87</x>
+                            <y>4</y>
+                            <width>341</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                </spacer>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonOk</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;OK</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>default</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Close dialog and apply all changes.</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonCancel</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Close dialog and discard all changes.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>buttonCancel</sender>
+        <signal>clicked()</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>buttonOk</sender>
+        <signal>clicked()</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>okClicked()</slot>
+    </connection>
+    <connection>
+        <sender>buttonAdd</sender>
+        <signal>clicked()</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>addInclude()</slot>
+    </connection>
+    <connection>
+        <sender>buttonRemove</sender>
+        <signal>clicked()</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>removeInclude()</slot>
+    </connection>
+    <connection>
+        <sender>listIncludes</sender>
+        <signal>currentChanged(QListViewItem*)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>currentIncludeChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listIncludes</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>currentIncludeChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>editInclude</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>includeNameChanged( const QString &amp; )</slot>
+    </connection>
+    <connection>
+        <sender>comboLocation</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>includeAccessChanged( const QString &amp; )</slot>
+    </connection>
+    <connection>
+        <sender>radioPixmapFunction</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>editPixmapFunction</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>buttonAddForward</sender>
+        <signal>clicked()</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>addForward()</slot>
+    </connection>
+    <connection>
+        <sender>buttonRemoveForward</sender>
+        <signal>clicked()</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>removeForward()</slot>
+    </connection>
+    <connection>
+        <sender>editForward</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>forwardNameChanged( const QString &amp; )</slot>
+    </connection>
+    <connection>
+        <sender>listForwards</sender>
+        <signal>currentChanged(QListViewItem*)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>currentForwardChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listForwards</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>FormSettingsBase</receiver>
+        <slot>currentForwardChanged( QListViewItem * )</slot>
+    </connection>
+    <slot access="protected">addForward()</slot>
+    <slot access="protected">addInclude()</slot>
+    <slot access="protected">currentIncludeChanged( QListViewItem * )</slot>
+    <slot access="protected">forwardNameChanged( const QString &amp; )</slot>
+    <slot access="protected">includeAccessChanged( const QString &amp; )</slot>
+    <slot access="protected">includeNameChanged( const QString &amp; )</slot>
+    <slot access="protected">currentForwardChanged( QListViewItem * )</slot>
+    <slot access="protected">okClicked()</slot>
+    <slot access="protected">removeForward()</slot>
+    <slot access="protected">removeInclude()</slot>
+</connections>
+<tabstops>
+    <tabstop>editClassName</tabstop>
+    <tabstop>editComment</tabstop>
+    <tabstop>editAuthor</tabstop>
+    <tabstop>radioPixmapInline</tabstop>
+    <tabstop>radioPixmapFunction</tabstop>
+    <tabstop>editPixmapFunction</tabstop>
+    <tabstop>listIncludes</tabstop>
+    <tabstop>buttonAdd</tabstop>
+    <tabstop>buttonRemove</tabstop>
+    <tabstop>editInclude</tabstop>
+    <tabstop>comboLocation</tabstop>
+    <tabstop>listForwards</tabstop>
+    <tabstop>buttonAddForward</tabstop>
+    <tabstop>buttonRemoveForward</tabstop>
+    <tabstop>editForward</tabstop>
+    <tabstop>buttonHelp</tabstop>
+    <tabstop>buttonOk</tabstop>
+    <tabstop>buttonCancel</tabstop>
+</tabstops>
+</UI>

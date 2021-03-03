@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QFtp Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QFtp Class Reference<br><small>[ <a href="network.html">network module</a> ]</small></h1><br clear="all">
+<p>
+The QFtp class implements the FTP protocol
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qftp-h.html">qftp.h</a>&gt;</code>
+<p>
+Inherits <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<p><a href="qftp-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#d8257c"><b>QFtp</b></a> () </div>
+<li><div class="fn">virtual <a href="#e93c39"><b>~QFtp</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">void <a href="#ab6db8"><b>parseDir</b></a> ( const QString &amp; buffer, QUrlInfo &amp; info ) </div>
+</ul>
+<h2>Protected Slots</h2>
+<ul>
+<li><div class="fn">void <b>hostFound</b> () (internal)</div>
+<li><div class="fn">void <b>connected</b> () (internal)</div>
+<li><div class="fn">void <b>closed</b> () (internal)</div>
+<li><div class="fn">void <a href="#0c4e22"><b>readyRead</b></a> () </div>
+<li><div class="fn">void <b>dataHostFound</b> () (internal)</div>
+<li><div class="fn">void <a href="#ee7b0d"><b>dataConnected</b></a> () </div>
+<li><div class="fn">void <a href="#e69d96"><b>dataClosed</b></a> () </div>
+<li><div class="fn">void <a href="#5882f3"><b>dataReadyRead</b></a> () </div>
+<li><div class="fn">void <a href="#321ba2"><b>dataBytesWritten</b></a> ( int nbytes ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QFtp class implements the FTP protocol
+<p>
+The QFtp class implements the FTP protocol. This class
+is derived from <a href="qnetworkprotocol.html">QNetworkProtocol</a> and can be
+used with <a href="qurloperator.html">QUrlOperator</a>. In fact, you normally will not
+use the QFtp class directly, but rather use it through
+the QUrlOperator like
+<p><pre>  <a href="qurloperator.html">QUrlOperator</a> op( "ftp://ftp.trolltech.com" );
+  op.<a href="qurloperator.html#42b8a8">listChildren</a>();
+</pre>
+<p>If you really need to use QFtp directly, don't forget
+to set the QUrlOperator on which it works using
+<a href="qnetworkprotocol.html#60363e">setUrl</a>().
+<p>See also the <a href="network.html">Qt Network Documentation</a>
+<p>See also  <a href="qnetworkprotocol.html">QNetworkProtocol</a> and <a href="qurloperator.html">QUrlOperator</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="d8257c"></a>QFtp::QFtp ()</h3>
+<p>Constructs a QFtp object.
+<h3 class="fn"><a name="e93c39"></a>QFtp::~QFtp () <code>[virtual]</code></h3>
+<p>Destructor.
+<h3 class="fn">void <a name="321ba2"></a>QFtp::dataBytesWritten ( int nbytes ) <code>[protected slot]</code></h3>
+<p>This method is called, when <em>nbytes</em> have been successfully written to the
+data socket.
+<h3 class="fn">void <a name="e69d96"></a>QFtp::dataClosed () <code>[protected slot]</code></h3>
+<p>Called when the data connection has been closed.
+<h3 class="fn">void <a name="ee7b0d"></a>QFtp::dataConnected () <code>[protected slot]</code></h3>
+<p>Some operations require a data connection to the server. If this connection
+could be opened, this method handles the rest.
+<h3 class="fn">void <a name="5882f3"></a>QFtp::dataReadyRead () <code>[protected slot]</code></h3>
+<p>This method is called when new data arrived on the data socket.
+<h3 class="fn">void <a name="d7f8fa"></a>QFtp::error ( int code ) <code>[protected slot]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="e3e9e8"></a>QFtp::operationGet ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="b0d275"></a>QFtp::operationListChildren ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="a752b6"></a>QFtp::operationMkDir ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="83036d"></a>QFtp::operationPut ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="0f938f"></a>QFtp::operationRemove ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="a649a0"></a>QFtp::operationRename ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="ab6db8"></a>QFtp::parseDir ( const <a href="qstring.html">QString</a> &amp; buffer, <a href="qurlinfo.html">QUrlInfo</a> &amp; info ) <code>[protected]</code></h3>
+<p>Parses <em>buffer,</em> which is one line of a directory list
+which came from the FTP server, and sets the
+values which have been parsed to <em>info.</em>
+<h3 class="fn">void <a name="0c4e22"></a>QFtp::readyRead () <code>[protected slot]</code></h3>
+<p>If data arrived on the command socket, this slot is called. It looks at
+the data and passes it to the correct method which can handle it.
+<h3 class="fn">int <a name="5b2cb6"></a>QFtp::supportedOperations () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="24f0c0"></a>QFtp::closed () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="4f634b"></a>QFtp::connected () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="c79082"></a>QFtp::dataHostFound () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="ab5a10"></a>QFtp::hostFound () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

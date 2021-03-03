@@ -1,0 +1,43 @@
+'\" t
+.TH QShared 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QShared \- The QShared struct is internally used for implementing shared classes
+.br
+.PP
+\fC#include <qshared.h>\fR
+.PP
+Inherited by QGLayoutIterator, QGuardedPtrPrivate, QMapPrivateBase, QStringData, QValueListPrivate and QVariantPrivate.
+.PP
+.SH DESCRIPTION
+The QShared struct is internally used for implementing shared classes.
+.PP
+It only contains a reference count and member functions to increment and decrement it.
+.PP
+Shared classes normally have internal classes that inherit QShared and add the shared data.
+.PP
+See also  Shared Classes
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qshared.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qshared.3qt) and the Qt
+version (2.3.2).

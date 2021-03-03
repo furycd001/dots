@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QToolBar Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QToolBar Class Reference</h1><br clear="all">
+<p>
+The QToolBar class provides a tool bar.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qtoolbar-h.html">qtoolbar.h</a>&gt;</code>
+<p>
+Inherits <a href="qwidget.html">QWidget</a>.
+<p><a href="qtoolbar-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#233c06"><b>QToolBar</b></a> ( const QString &amp; label, QMainWindow *, QMainWindow::ToolBarDock = QMainWindow::Top, bool newLine = FALSE, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#881c68"><b>QToolBar</b></a> ( const QString &amp; label, QMainWindow *, QWidget *, bool newLine = FALSE, const char * name = 0, WFlags f = 0 ) </div>
+<li><div class="fn"><a href="#fb9a67"><b>QToolBar</b></a> ( QMainWindow * parent = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#5a009b"><b>~QToolBar</b></a> () </div>
+<li><div class="fn">void <a href="#af219d"><b>addSeparator</b></a> () </div>
+<li><div class="fn">virtual void <a href="#3e90be"><b>setOrientation</b></a> ( Orientation ) </div>
+<li><div class="fn">Orientation <a href="#2a30ec"><b>orientation</b></a> () const</div>
+<li><div class="fn">QMainWindow* <a href="#8c931d"><b>mainWindow</b></a> () </div>
+<li><div class="fn">virtual void <a href="#7b948e"><b>setStretchableWidget</b></a> ( QWidget * ) </div>
+<li><div class="fn">void <a href="#29d728"><b>setHorizontalStretchable</b></a> ( bool b ) </div>
+<li><div class="fn">void <a href="#c58c81"><b>setVerticalStretchable</b></a> ( bool b ) </div>
+<li><div class="fn">bool <a href="#ec4dd8"><b>isHorizontalStretchable</b></a> () const</div>
+<li><div class="fn">bool <a href="#5d0986"><b>isVerticalStretchable</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#260438"><b>setLabel</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">QString <a href="#78b177"><b>label</b></a> () const</div>
+<li><div class="fn">void <a href="#c9e0ef"><b>clear</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#ad18fa"><b>orientationChanged</b></a> ( Orientation ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#76ae69"><b>paintEvent</b></a> ( QPaintEvent * ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>QString<td>label<td>label<td>setLabel<td>&nbsp;
+<tr><td>bool<td>hStretchable<td>isHorizontalStretchable<td>setHorizontalStretchable<td>&nbsp;
+<tr><td>bool<td>vStretchable<td>isVerticalStretchable<td>setVerticalStretchable<td>&nbsp;
+<tr><td>Orientation<td>orientation<td>orientation<td>setOrientation<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QToolBar class provides a tool bar.
+<p>
+A toolbar is a panel that contains a set of controls, usually
+represented by small icons.  Its purpose is to provide quick access
+to frequently used commands or options. Within a main window, the
+user can drag toolbars freely around and hide them with a click on
+the toolbar handle.
+<p>To use QToolBar, you simply create a QToolBar as child of a
+<a href="qmainwindow.html">QMainWindow</a>, create a number of <a href="qtoolbutton.html">QToolButton</a> widgets (or other
+widgets) in left to right (or top to bottom) order, call
+<a href="#af219d">addSeparator</a>() when you want a separator, and that's all.
+<p>The application/application.cpp example does precisely this.
+<p>You may use any kind of widget within a toolbar, with QToolButton
+and <a href="qcombobox.html">QComboBox</a> being the two most common ones.
+<p>Each QToolBar lives in a <a href="qmainwindow.html">dock</a> in a
+QMainWindow, and can optionally start a new line in its dock.  Tool
+bars that start a new line are always positioned at the left end or
+top of the tool bar dock; others are placed next to the previous
+tool bar and word-wrapped as necessary. The main window can
+be resized to a smaller size than a toolbar would need to show all
+items. If this happens QToolbar shows a little arrow button at the
+right or bottom end. When clicking on that button, a popup menu is
+opened which shows all items of the toolbar which are
+outside the visible area of the mainwindow.
+<p>Usually, a toolbar gets just the space it needs. However, with
+<a href="#29d728">setHorizontalStretchable</a>()/<a href="#c58c81">setVerticalStretchable</a>() or
+<a href="#7b948e">setStretchableWidget</a>() you can advise the main window to expand
+the toolbar to fill all available width in the specified orientation.
+<p>The tool bar arranges its buttons either horizontally or vertically
+(see <a href="#3e90be">setOrientation</a>() for details). Generally, QMainWindow will set
+the orientation correctly for you. The toolbar emits a signal
+<a href="#ad18fa">orientationChanged</a>() each time the orientation changes, in case some
+child widgets need adjustments.
+<p>To remove all items from a toolbar, you can use the <a href="#c9e0ef">clear</a>() method.
+<p>See also  <a href="qtoolbutton.html">QToolButton</a>, <a href="qmainwindow.html">QMainWindow</a>, <a href="http://www.iarchitect.com/visual.htm">Parts of Isys on Visual Design</a> and <a href="guibooks.html#fowler">GUI Design Handbook: Tool Bar.</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="fb9a67"></a>QToolBar::QToolBar ( <a href="qmainwindow.html">QMainWindow</a> * parent = 0, const char * name = 0 )</h3>
+<p>Constructs an empty tool bar in the top dock of its parent,
+without any label and without requiring a newline.  This is mostly
+useless.
+<h3 class="fn"><a name="881c68"></a>QToolBar::QToolBar ( const <a href="qstring.html">QString</a> &amp; label, <a href="qmainwindow.html">QMainWindow</a> * mainWindow, <a href="qwidget.html">QWidget</a> * parent, bool newLine = FALSE, const char * name = 0, WFlags f = 0 )</h3>
+<p>Constructs an empty horizontal tool bar with a parent of <em>parent</em> and managed by <em>mainWindow.</em>  The <em>label</em> and <em>newLine</em>
+are passed straight to <a href="qmainwindow.html#cf504f">QMainWindow::addToolBar</a>().  <em>name</em> is the
+object name and <em>f</em> is the widget flags.
+<p>This is the constructor to use if you want to create torn-off
+toolbars, or toolbars in the status bar.
+<h3 class="fn"><a name="233c06"></a>QToolBar::QToolBar ( const <a href="qstring.html">QString</a> &amp; label, <a href="qmainwindow.html">QMainWindow</a> * parent, <a href="qmainwindow.html#ToolBarDock">QMainWindow::ToolBarDock</a> dock = QMainWindow::Top, bool newLine = FALSE, const char * name = 0 )</h3>
+<p>Constructs an empty tool bar which is a child of <em>parent</em> and
+managed by <em>parent,</em> initially in <em>dock,</em> labelled <em>and</em> starting
+a new line in the dock if <em>newLine</em> is TRUE.  <em>name</em> is the object
+name, as usual.
+<h3 class="fn"><a name="5a009b"></a>QToolBar::~QToolBar ()</h3>
+<p>Destructs the object and frees any allocated resources.
+<h3 class="fn">void <a name="af219d"></a>QToolBar::addSeparator ()</h3>
+<p>Adds a separator to the end of the toolbar.
+<h3 class="fn">void <a name="c9e0ef"></a>QToolBar::clear ()</h3>
+<p>Clears the toolbar, deleting all childwidgets.
+<h3 class="fn">bool <a name="3cb8e8"></a>QToolBar::event ( <a href="qevent.html">QEvent</a> * e ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#c67adb">QObject.</a>
+<h3 class="fn">bool <a name="632f5a"></a>QToolBar::eventFilter ( <a href="qobject.html">QObject</a> * obj, <a href="qevent.html">QEvent</a> * e ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#bd20fe">QObject.</a>
+<h3 class="fn">void <a name="9f9323"></a>QToolBar::hide () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#410481">QWidget.</a>
+<h3 class="fn">bool <a name="ec4dd8"></a>QToolBar::isHorizontalStretchable () const</h3>
+<p>Returns whether the toolbar is stretchable horizontally.
+<p>A stretchable toolbar fills all available width in a toolbar dock. A
+non-stretchable toolbar usually gets just the space it needs.
+<p>See also  <a href="#29d728">setHorizontalStretchable</a>(), <a href="#c58c81">setVerticalStretchable</a>() and <a href="#5d0986">isVerticalStretchable</a>().
+<h3 class="fn">bool <a name="5d0986"></a>QToolBar::isVerticalStretchable () const</h3>
+<p>Returns whether the toolbar is stretchable vertically.
+<p>A stretchable toolbar fills all available height in a toolbar dock. A
+non-stretchable toolbar usually gets just the space it needs.
+<p>See also  <a href="#29d728">setHorizontalStretchable</a>(), <a href="#c58c81">setVerticalStretchable</a>() and <a href="#ec4dd8">isHorizontalStretchable</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="78b177"></a>QToolBar::label () const</h3>
+<p>Returns the label of this tool bar.
+<p>See also  <a href="#260438">setLabel</a>().
+<h3 class="fn"><a href="qmainwindow.html">QMainWindow</a> * <a name="8c931d"></a>QToolBar::mainWindow ()</h3>
+<p>Returns a pointer to the <a href="qmainwindow.html">QMainWindow</a> which controls this tool bar.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="8499ca"></a>QToolBar::minimumSize () const</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="cf462a"></a>QToolBar::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn"><a href="qt.html#Orientation">Orientation</a> <a name="2a30ec"></a>QToolBar::orientation () const</h3>
+<p>Returns the current orientation of the toolbar.
+<h3 class="fn">void <a name="ad18fa"></a>QToolBar::orientationChanged ( <a href="qt.html#Orientation">Orientation</a> newOrientation ) <code>[signal]</code></h3>
+<p>This signal is emitted when the toolbar changed its orientation to
+<em>newOrientation.</em>
+<h3 class="fn">void <a name="76ae69"></a>QToolBar::paintEvent ( <a href="qpaintevent.html">QPaintEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Paint the handle.  The Motif style is rather close to Netscape
+and even closer to KDE.
+<p>Reimplemented from <a href="qwidget.html#e3d821">QWidget.</a>
+<h3 class="fn">void <a name="73bd54"></a>QToolBar::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">void <a name="29d728"></a>QToolBar::setHorizontalStretchable ( bool b )</h3>
+<p>Sets the toolbar to be horizontally stretchable if <em>b</em> is TRUE, or
+non-stretchable otherwise.
+<p>A stretchable toolbar fills the available width in a toolbar dock. A
+non-stretchable toolbar usually gets just the space it needs.
+<p>The default is FALSE.
+<p>See also  <a href="qmainwindow.html#edcb2d">QMainWindow::setRightJustification</a>(), <a href="#ec4dd8">isHorizontalStretchable</a>(), <a href="#c58c81">setVerticalStretchable</a>() and <a href="#5d0986">isVerticalStretchable</a>().
+<h3 class="fn">void <a name="260438"></a>QToolBar::setLabel ( const <a href="qstring.html">QString</a> &amp; label ) <code>[virtual]</code></h3>
+<p>Sets the label of this tool bar to <em>label.</em>  The label is not
+currently used; it will be used in a forthcoming tool bar
+configuration dialog.
+<p>See also  <a href="#78b177">label</a>().
+<h3 class="fn">void <a name="3e90be"></a>QToolBar::setOrientation ( <a href="qt.html#Orientation">Orientation</a> newOrientation ) <code>[virtual]</code></h3>
+<p>Sets this toolbar to organize its content vertically if <em>newOrientation</em> is <code>Vertical</code> and horizontally if <em>newOrientation</em>
+is <code>Horizontal.</code>
+<p>Emits the <a href="#ad18fa">orientationChanged</a>() signal.
+<p>See also  <a href="#2a30ec">orientation</a>().
+<h3 class="fn">void <a name="7b948e"></a>QToolBar::setStretchableWidget ( <a href="qwidget.html">QWidget</a> * w ) <code>[virtual]</code></h3>
+<p>Sets <em>w</em> to be expanded if this toolbar is requested to stretch
+(because <a href="qmainwindow.html">QMainWindow</a> right-justifies the dock it's in or <a href="#5d0986">isVerticalStretchable</a>()
+or <a href="#ec4dd8">isHorizontalStretchable</a>() of this toolbar is TRUE).
+<p>If you call setStretchableWidget() and the toolbar is not stretchable
+yet, setStretchable(  ) is called.
+<p>See also  <a href="qmainwindow.html#edcb2d">QMainWindow::setRightJustification</a>(), <a href="#c58c81">setVerticalStretchable</a>() and <a href="#29d728">setHorizontalStretchable</a>().
+<h3 class="fn">void <a name="c58c81"></a>QToolBar::setVerticalStretchable ( bool b )</h3>
+<p>Sets the toolbar to be vertically stretchable if <em>b</em> is TRUE, or
+non-stretchable otherwise.
+<p>A stretchable toolbar fills the available height in a toolbar dock. A
+non-stretchable toolbar usually gets just the space it needs.
+<p>The default is FALSE.
+<p>See also  <a href="qmainwindow.html#edcb2d">QMainWindow::setRightJustification</a>(), <a href="#5d0986">isVerticalStretchable</a>(), <a href="#29d728">setHorizontalStretchable</a>() and <a href="#ec4dd8">isHorizontalStretchable</a>().
+<h3 class="fn">void <a name="63ffb3"></a>QToolBar::show () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#200ee5">QWidget.</a>
+<h3 class="fn">void <a name="1675f6"></a>QToolBar::styleChange ( <a href="qstyle.html">QStyle</a> &amp; ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#5e2e23">QWidget.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

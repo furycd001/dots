@@ -1,0 +1,1 @@
+../src/kernel/qwidget.h

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QTextBrowser Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QTextBrowser Class Reference</h1><br clear="all">
+<p>
+A rich text  browser with simple navigation.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qtextbrowser-h.html">qtextbrowser.h</a>&gt;</code>
+<p>
+Inherits <a href="qtextview.html">QTextView</a>.
+<p><a href="qtextbrowser-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#1284ac"><b>QTextBrowser</b></a> ( QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#f6e563"><b>~QTextBrowser</b></a> () </div>
+<li><div class="fn">virtual void <a href="#23cc02"><b>setSource</b></a> ( const QString &amp; name ) </div>
+<li><div class="fn">QString <a href="#69403d"><b>source</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#270211"><b>setText</b></a> ( const QString &amp; contents, const QString &amp; context=QString::null ) </div>
+<li><div class="fn">void <a href="#b0325e"><b>scrollToAnchor</b></a> ( const QString &amp; name ) </div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#16999b"><b>backward</b></a> () </div>
+<li><div class="fn">virtual void <a href="#62973f"><b>forward</b></a> () </div>
+<li><div class="fn">virtual void <a href="#9e6f33"><b>home</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#7d08f1"><b>backwardAvailable</b></a> ( bool ) </div>
+<li><div class="fn">void <a href="#f822a5"><b>forwardAvailable</b></a> ( bool ) </div>
+<li><div class="fn">void <a href="#6fa522"><b>highlighted</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">void <a href="#914fe0"><b>textChanged</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#54715c"><b>viewportMousePressEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#7ccf73"><b>viewportMouseReleaseEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#73358f"><b>viewportMouseMoveEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#9010ef"><b>keyPressEvent</b></a> ( QKeyEvent * e ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>QString<td>source<td>source<td>setSource<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+A rich text  browser with simple navigation.
+<p>
+This class is the same as the <a href="qtextview.html">QTextView</a> it inherits, with the
+addition that it provides basic navigation features to follow links
+in hypertext documents that link to other rich text documents. While
+QTextView only allows to set its contents with <a href="#270211">setText</a>(),
+QTextBrowser has an additional function <a href="#23cc02">setSource</a>(), that makes it
+possible to set documents by name. These names are looked up in the
+text view's mime source factory. If a document name ends with an
+anchor, for example "<code>#anchor",</code> the text browser will
+automatically scroll accordingly ( using <a href="#b0325e">scrollToAnchor</a>() ). When
+the user clicks on a hyperlink, the browser will call setSource()
+itself, with the link's <code>href</code> value as argument.
+<p>QTextBrowser doesn't provide actual Back and Forward buttons, but it
+has <a href="#16999b">backward</a>() and <a href="#62973f">forward</a>() slots that implement the
+functionality. The <a href="#9e6f33">home</a>() slots brings it back to its very first
+document displayed.
+<p>By using <a href="qtextview.html#8d1f6b">QTextView::setMimeSourceFactory</a>(), you can provide your own
+subclass of <a href="qmimesourcefactory.html">QMimeSourceFactory</a>. This makes it possible to access
+data from anywhere you need to, may it be the network or a
+database. See <a href="qmimesourcefactory.html#91bb48">QMimeSourceFactory::data</a>() for details.
+<p>If you intend to use the mime factory to read the data directly from
+the file system, you may have to specify the encoding for the file
+extension you are using. For example
+<pre>  mimeSourceFactory()-&gt;setExtensionType("qml", "text/utf8");
+</pre>
+<p>Otherwise, the factory will not be able to resolve the document names.
+<p>For simpler richt text use, see <a href="qlabel.html">QLabel</a>, QTextView or <a href="qsimplerichtext.html">QSimpleRichText</a>.
+<p><img src=qtextbrowser-m.png> <img src=qtextbrowser-w.png>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="1284ac"></a>QTextBrowser::QTextBrowser ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs an empty QTextBrowser.
+<h3 class="fn"><a name="f6e563"></a>QTextBrowser::~QTextBrowser ()</h3>
+<p>Destructs the browser.
+<h3 class="fn">void <a name="16999b"></a>QTextBrowser::backward () <code>[virtual slot]</code></h3>
+<p>Changes the document displayed to be the previous document
+in the list of documents build by navigating links.
+<p>See also  <a href="#62973f">forward</a>() and <a href="#7d08f1">backwardAvailable</a>().
+<h3 class="fn">void <a name="7d08f1"></a>QTextBrowser::backwardAvailable ( bool available ) <code>[signal]</code></h3>
+<p>This signal is emitted when the availability of the <a href="#16999b">backward</a>()
+changes.  It becomes available when the user navigates forward,
+and unavailable when the user is at the <a href="#9e6f33">home</a>().
+<h3 class="fn">void <a name="62973f"></a>QTextBrowser::forward () <code>[virtual slot]</code></h3>
+<p>Changes the document displayed to be the next document
+in the list of documents build by navigating links.
+<p>See also  <a href="#16999b">backward</a>() and <a href="#f822a5">forwardAvailable</a>().
+<h3 class="fn">void <a name="f822a5"></a>QTextBrowser::forwardAvailable ( bool available ) <code>[signal]</code></h3>
+<p>This signal is emitted when the availability of the <a href="#62973f">forward</a>()
+changes.  It becomes available after <a href="#16999b">backward</a>() is activated,
+and unavailable when the user navigates or goes forward() to
+the last navigated document.
+<h3 class="fn">void <a name="6fa522"></a>QTextBrowser::highlighted ( const <a href="qstring.html">QString</a> &amp; href ) <code>[signal]</code></h3>
+<p>This signal is emitted when the user has selected but not activated
+a link in the document.  <em>href</em> is the value of the href tag
+in the link.
+<h3 class="fn">void <a name="9e6f33"></a>QTextBrowser::home () <code>[virtual slot]</code></h3>
+<p>Changes the document displayed to be the first document the
+browser displayed.
+<h3 class="fn">void <a name="9010ef"></a>QTextBrowser::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Add Backward and Forward on ALT-Left and ALT-Right respectively.
+<p>Reimplemented from <a href="qwidget.html#0a4482">QWidget.</a>
+<h3 class="fn">void <a name="b0325e"></a>QTextBrowser::scrollToAnchor ( const <a href="qstring.html">QString</a> &amp; name )</h3>
+<p>Scrolls the browser so that the part of the document named
+<em>name</em> is at the top of the view (or as close to the top
+as the size of the document allows).
+<h3 class="fn">void <a name="23cc02"></a>QTextBrowser::setSource ( const <a href="qstring.html">QString</a> &amp; name ) <code>[virtual]</code></h3>
+<p>Sets the text document with the given <em>name</em> to be displayed.  The
+name is looked up in the <a href="qtextview.html#3fa4aa">mimeSourceFactory</a>() of the browser.
+<p>In addition to the factory lookup, this functions also checks for
+optional anchors and scrolls the document accordingly.
+<p>If the first tag in the document is <code>&lt;qt type=detail&gt;,</code> it is
+displayed as a popup rather than as new document in the browser
+window itself. Otherwise, the document is set normally via
+<a href="#270211">setText</a>(), with <em>name</em> as new context.
+<p>If you are using the filesystem access capabilities of the mime
+source factory, you have to ensure that the factory knows about the
+encoding of specified text files, otherwise no data will be
+available. The default factory handles a couple of common file
+extensions such as <code>*.html</code> and <code>*.txt</code> with reasonable defaults. See
+<a href="qmimesourcefactory.html#91bb48">QMimeSourceFactory::data</a>() for details.
+<h3 class="fn">void <a name="270211"></a>QTextBrowser::setText ( const <a href="qstring.html">QString</a> &amp; text, const <a href="qstring.html">QString</a> &amp; context=QString::null ) <code>[virtual]</code></h3>
+<p>Sets the contents of the browser to <em>text,</em> and emits the
+<a href="#914fe0">textChanged</a>() signal.
+<p>Reimplemented from <a href="qtextview.html#c27a5a">QTextView.</a>
+<h3 class="fn">void <a name="e33c57"></a>QTextBrowser::showEvent ( <a href="qshowevent.html">QShowEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#542dc0">QWidget.</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="69403d"></a>QTextBrowser::source () const</h3>
+<p>Returns the source of the currently display document. If no document is displayed or
+the source is unknown, a null string is returned.
+<p>See also  <a href="#23cc02">setSource</a>().
+<h3 class="fn">void <a name="914fe0"></a>QTextBrowser::textChanged () <code>[signal]</code></h3>
+<p>This signal is emitted whenever the <a href="#270211">setText</a>() changes the
+contents (eg. because the user clicked on a link).
+<h3 class="fn">void <a name="73358f"></a>QTextBrowser::viewportMouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Activate to emit <a href="#6fa522">highlighted</a>().
+<p>Reimplemented from <a href="qscrollview.html#d850f6">QScrollView.</a>
+<h3 class="fn">void <a name="54715c"></a>QTextBrowser::viewportMousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p><em>override</em> to press anchors.
+<p>Reimplemented from <a href="qscrollview.html#013843">QScrollView.</a>
+<h3 class="fn">void <a name="7ccf73"></a>QTextBrowser::viewportMouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p><em>override</em> to activate anchors.
+<p>Reimplemented from <a href="qscrollview.html#ff7b46">QScrollView.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

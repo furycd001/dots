@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QUrlOperator Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QUrlOperator Class Reference</h1><br clear="all">
+<p>
+The QUrlOperator class provides common operations on URLs (<a href="#439da2">get</a>() and more).
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qurloperator-h.html">qurloperator.h</a>&gt;</code>
+<p>
+Inherits <a href="qobject.html">QObject</a> and <a href="qurl.html">QUrl</a>.
+<p><a href="qurloperator-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#94f05c"><b>QUrlOperator</b></a> () </div>
+<li><div class="fn"><a href="#b027f3"><b>QUrlOperator</b></a> ( const QString &amp; urL ) </div>
+<li><div class="fn"><a href="#690bfa"><b>QUrlOperator</b></a> ( const QUrlOperator &amp; url ) </div>
+<li><div class="fn"><a href="#40644d"><b>QUrlOperator</b></a> ( const QUrlOperator &amp; url, const QString &amp; relUrl, bool checkSlash = FALSE ) </div>
+<li><div class="fn">virtual <a href="#a70cff"><b>~QUrlOperator</b></a> () </div>
+<li><div class="fn">virtual const QNetworkOperation* <a href="#42b8a8"><b>listChildren</b></a> () </div>
+<li><div class="fn">virtual const QNetworkOperation* <a href="#9867b2"><b>mkdir</b></a> ( const QString &amp; dirname ) </div>
+<li><div class="fn">virtual const QNetworkOperation* <a href="#6626fa"><b>remove</b></a> ( const QString &amp; filename ) </div>
+<li><div class="fn">virtual const QNetworkOperation* <a href="#5adc96"><b>rename</b></a> ( const QString &amp; oldname, const QString &amp; newname ) </div>
+<li><div class="fn">virtual const QNetworkOperation* <a href="#439da2"><b>get</b></a> ( const QString &amp; location = QString::null ) </div>
+<li><div class="fn">virtual const QNetworkOperation* <a href="#0679d4"><b>put</b></a> ( const QByteArray &amp; data, const QString &amp; location = QString::null ) </div>
+<li><div class="fn">virtual QList&lt;QNetworkOperation&gt; <a href="#871eb9"><b>copy</b></a> ( const QString &amp; from, const QString &amp; to, bool move = FALSE ) </div>
+<li><div class="fn">virtual void <a href="#3a9681"><b>copy</b></a> ( const QStringList &amp; files, const QString &amp; dest, bool move = FALSE ) </div>
+<li><div class="fn">virtual bool <a href="#b0f772"><b>isDir</b></a> ( bool * ok = 0 ) </div>
+<li><div class="fn">virtual void <a href="#6ecbeb"><b>setNameFilter</b></a> ( const QString &amp; nameFilter ) </div>
+<li><div class="fn">QString <a href="#ff51a4"><b>nameFilter</b></a> () const</div>
+<li><div class="fn">virtual QUrlInfo <a href="#39a097"><b>info</b></a> ( const QString &amp; entry ) const</div>
+<li><div class="fn">virtual void <a href="#79e6b3"><b>stop</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#ffed09"><b>newChildren</b></a> ( const QValueList&lt;QUrlInfo&gt; &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#4d1622"><b>finished</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#de8943"><b>start</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#b98019"><b>createdDirectory</b></a> ( const QUrlInfo &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#9624ad"><b>removed</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#66f6c4"><b>itemChanged</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#8ac3fe"><b>data</b></a> ( const QByteArray &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#5e9941"><b>dataTransferProgress</b></a> ( int bytesDone, int bytesTotal, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#0b3b2f"><b>startedNextCopy</b></a> ( const QList&lt;QNetworkOperation&gt; &amp; lst ) </div>
+<li><div class="fn">void <a href="#0cd61c"><b>connectionStateChanged</b></a> ( int state, const QString &amp; data ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#42a4e3"><b>clearEntries</b></a> () </div>
+<li><div class="fn">void <a href="#d41e8e"><b>getNetworkProtocol</b></a> () </div>
+<li><div class="fn">void <a href="#585d35"><b>deleteNetworkProtocol</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QUrlOperator class provides common operations on URLs (<a href="#439da2">get</a>() and more).
+<p>
+This class operates on hierarchical structures (like filesystems)
+using URLs. Its API allows do all common operations on it
+(listing children, removing children, renaming, etc.). But
+the class itself contains no functionality for that. It uses
+the functionality of registered network protocols. This means,
+depending of the protocol of the URL, it uses a fitting
+network protocol class for the operations. In detail, each of
+the operation methods of QUrlOperator create a
+<a href="qnetworkoperation.html">QNetworkOperation</a> object which describes the operation and
+puts it into the operation queue of the used network protocol.
+If no fitting protocol could be found (because no implementation
+of the needed network protocol is registered), the url operator
+emits errors. Also not each protocol supports each operation -
+but the error handling deals with this problem.
+<p>A QUrlOperator can be used like this (for e.g. downloading a file)
+<pre>  <a href="qurloperator.html">QUrlOperator</a> op;
+  op.<a href="#3a9681">copy</a>( <a href="qstring.html">QString</a>("ftp://ftp.trolltech.com/qt/source/qt-2.1.0.tar.gz"), "file:/tmp", FALSE );
+</pre>
+<p>Now, you also will connect to some signals of the QUrlOperator to get
+informed about success, errors, progress and more things.
+<p>Of course an implementation for the FTP protocol has to be registered for
+this example.  In the Qt Network Extension Library there is an implementation
+of the FTP protocol.
+<p>For more information about the Qt Network Architecture take a look
+at the <a href="network.html">Qt Network Documentation</a>.
+<p>See also  <a href="qnetworkprotocol.html">QNetworkProtocol</a> and <a href="qnetworkoperation.html">QNetworkOperation</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="94f05c"></a>QUrlOperator::QUrlOperator ()</h3>
+<p>Constructs a QUrlOperator with an empty (i.e. invalid) URL.
+<h3 class="fn"><a name="b027f3"></a>QUrlOperator::QUrlOperator ( const <a href="qstring.html">QString</a> &amp; url )</h3>
+<p>Constructs a QUrlOperator using <em>url</em> and parses this string.
+<p>You can pass strings such as "/home/qt": in this case the protocol "file" is
+assumed.
+<h3 class="fn"><a name="690bfa"></a>QUrlOperator::QUrlOperator ( const QUrlOperator &amp; url )</h3>
+<p>Copy constructor.
+<h3 class="fn"><a name="40644d"></a>QUrlOperator::QUrlOperator ( const QUrlOperator &amp; url, const <a href="qstring.html">QString</a> &amp; relUrl, bool checkSlash = FALSE )</h3>
+<p>Constructs a QUrlOperator. The URL on which this QUrlOperator works on is
+constructed out of the arguments <em>url, relUrl</em> and <em>checkSlash;</em> the
+meaning of those arguments is the same as the corresponding <a href="qurl.html">QUrl</a> constructor
+takes.
+<h3 class="fn"><a name="a70cff"></a>QUrlOperator::~QUrlOperator () <code>[virtual]</code></h3>
+<p>Destructor.
+<h3 class="fn">bool <a name="7b04c5"></a>QUrlOperator::cdUp () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">bool <a name="2f4254"></a>QUrlOperator::checkValid () <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="42a4e3"></a>QUrlOperator::clearEntries () <code>[virtual protected]</code></h3>
+<p>Clears the cache of children.
+<h3 class="fn">void <a name="0cd61c"></a>QUrlOperator::connectionStateChanged ( int state, const <a href="qstring.html">QString</a> &amp; data ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the state of the connection of
+the network protocol of the url operator is changed. <em>state</em> describes the new state,
+which is one of
+QNetworkProtocol::ConHostFound,
+QNetworkProtocol::ConConnected,
+QNetworkProtocol::ConClosed
+This enum is defined in <a href="qnetworkprotocol.html">QNetworkProtocol</a>
+<em>data</em> is a message text.
+<h3 class="fn"><a href="qlist.html">QList</a>&lt;<a href="qnetworkoperation.html">QNetworkOperation</a>&gt; <a name="871eb9"></a>QUrlOperator::copy ( const <a href="qstring.html">QString</a> &amp; from, const <a href="qstring.html">QString</a> &amp; to, bool move = FALSE ) <code>[virtual]</code></h3>
+<p>Copies the file <em>from</em> to <em>to.</em> If <em>move</em> is TRUE,
+the file is moved (copied and removed). <em>from</em> has to point to a file and
+<em>to</em> must point to a directory (into which <em>from</em> is copied).
+The copying is done using <a href="#439da2">get</a>() and <a href="#0679d4">put</a>() operations. If you want to get notified
+about the progress of the operation, connect to the <a href="#5e9941">dataTransferProgress</a>()
+signal. But you have to know, that the get() and the put() operations emit
+this signal through the QUrlOperator! So, the number of transferred and total bytes
+which you get as argument in this signal isn't related to the the whole copy operation, but
+first to the get() and then to the put() operation. So always check for the type of
+the operation from which the signal comes (you get this by asking for the type of the
+<a href="qnetworkoperation.html">QNetworkOperation</a> pointer you also get as last argument of this signal).
+<p>Also at the end <a href="#4d1622">finished</a>() (on success or failure) is emitted,
+so check the state of the network operation object to see if the
+operation was successful or not.
+<p>As a copy operation consists of multiple operations (get(), put() and maybe <a href="#6626fa">remove</a>()
+(depending if you copy or move)) this method doesn't return a single QNetworkOperation,
+but a list of them. They are in the order get(), put(), remove(). As discussed, the third one
+(remove) is optional.
+<p>See also  <a href="#439da2">get</a>() and <a href="#0679d4">put</a>().
+<h3 class="fn">void <a name="3a9681"></a>QUrlOperator::copy ( const <a href="qstringlist.html">QStringList</a> &amp; files, const <a href="qstring.html">QString</a> &amp; dest, bool move = FALSE ) <code>[virtual]</code></h3>
+<p>Copies <em>files</em> to the directory <em>dest.</em> If <em>move</em> is TRUE,
+the files are moved and not copied. <em>dest</em> has to point to a directory.
+<p>This method is just a convenience function of the copy method above. It
+calls the copy above for each entry in <em>files</em> one after the other. You
+don't get a result from this method, but each time a new copy is started,
+<a href="#0b3b2f">startedNextCopy</a>() is emitted, with a list of QNetworkOperations which
+describe the new copy operation.
+<h3 class="fn">void <a name="b98019"></a>QUrlOperator::createdDirectory ( const <a href="qurlinfo.html">QUrlInfo</a> &amp; i, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when <a href="#9867b2">mkdir</a>() has been succesful
+and the directory has been created. <em>i</em> holds the information
+about the new directory.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on and using op->arg( 0 )
+you also get the filename of the new directory.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">void <a name="8ac3fe"></a>QUrlOperator::data ( const <a href="qbytearray.html">QByteArray</a> &amp; data, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when new <em>data</em> has been received
+after e.g. calling <a href="#439da2">get</a>() or <a href="#0679d4">put</a>(). <em>op</em> holds the name of the file which data
+is retrieved in the first argument and the data in the second argument (raw).
+You get them with op->arg( 0 ) and op->rawArg( 1 ).
+<p><em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">void <a name="5e9941"></a>QUrlOperator::dataTransferProgress ( int bytesDone, int bytesTotal, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>When transferring data (using <a href="#0679d4">put</a>() or <a href="#439da2">get</a>()) this signal is emitted during the progress.
+<em>bytesDone</em> tells how many bytes of <em>bytesTotal</em> are transferred. More information
+about the operation is stored in the <em>op,</em> the pointer to the network operation
+which is processed. <em>bytesTotal</em> may be -1, which means that the number of total
+bytes is not known.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">void <a name="585d35"></a>QUrlOperator::deleteNetworkProtocol () <code>[protected]</code></h3>
+<p>Delete the currently used network protocol.
+<h3 class="fn">void <a name="4d1622"></a>QUrlOperator::finished ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when an operation of some sort finished.
+This signal is emitted always, this means on success and on failure.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation which has been finished, including the state and so on.
+To check if the operation was successful or not, check the state and
+error code of the operation object.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">const <a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="439da2"></a>QUrlOperator::get ( const <a href="qstring.html">QString</a> &amp; location = QString::null ) <code>[virtual]</code></h3>
+<p>Tells the network protocol to get data from <em>location</em> or, if this
+is QString::null, to get data from the location to which this
+URL points (see <a href="qurl.html#5472a4">QUrl::fileName</a>() and <a href="qurl.html#4088da">QUrl::encodedPathAndQuery</a>()). What
+exactly happens then is depending on the network protocol.
+When data comes in, the <a href="#8ac3fe">data</a>() signal
+is emitted. As it's unlikely that all the data comes in at once, multiple
+data() signals will be emitted.
+During processing the operation the <a href="#5e9941">dataTransferProgress</a>() is emitted.
+Also at the end <a href="#4d1622">finished</a>() (on success or failure) is emitted,
+so check the state of the network operation object to see if the
+operation was successful or not.
+<p>Now, if <em>location</em> is QString::null, the path of this QUrlOperator should point to a file
+when you use this operation. If <em>location</em> is not empty, it can be relative (a child of
+the path to which the QUrlOperator points) or an absolute URL.
+<p>E.g. for getting a Web page you might do something like
+<p><pre>  <a href="qurloperator.html">QUrlOperator</a> op( "http://www.whatever.org/cgi-bin/search.pl?cmd=Hallo" );
+  op.<a href="#439da2">get</a>();
+</pre>
+<p>But as for the most other operations it is required that the path of the
+QUrlOperator points to a directory, you could do following if you
+want e.g. download a file
+<p><pre>  <a href="qurloperator.html">QUrlOperator</a> op( "ftp://ftp.whatever.org/pub" );
+  // do some other stuff like op.<a href="#42b8a8">listChildren</a>() or op.<a href="#9867b2">mkdir</a>( "new Dir" )
+  op.<a href="#439da2">get</a>( "a_file.txt" );
+</pre>
+<p>This will get the data of ftp://ftp.whatever.org/pub/a_file.txt.
+<p>But <b>never</b> do something like
+<p><pre>  <a href="qurloperator.html">QUrlOperator</a> op( "http://www.whatever.org/cgi-bin" );
+  op.<a href="#439da2">get</a>( "search.pl?cmd=Hallo" );
+</pre>
+<p>This means if <em>location</em> is not empty and relative, it must not
+contain any queries or references, just the name of a child. So,
+if you need to specify a query or reference do it like in the first
+example or specify the full URL (like
+http://www.whatever.org/cgi-bin/search.pl?cmd=Hallo) as <em>location.</em>
+<p>See also  <a href="#3a9681">copy</a>().
+<h3 class="fn">void <a name="d41e8e"></a>QUrlOperator::getNetworkProtocol () <code>[protected]</code></h3>
+<p>Finds a network protocol for the URL and deletes the old network protocol.
+<h3 class="fn"><a href="qurlinfo.html">QUrlInfo</a> <a name="39a097"></a>QUrlOperator::info ( const <a href="qstring.html">QString</a> &amp; entry ) const <code>[virtual]</code></h3>
+<p>Returns the URL information for the child <em>entry</em> or en
+empty <a href="qurlinfo.html">QUrlInfo</a> object of there is no information available
+about <em>entry.</em>
+<h3 class="fn">bool <a name="b0f772"></a>QUrlOperator::isDir ( bool * ok = 0 ) <code>[virtual]</code></h3>
+<p>Returns TRUE if the url is a directory, else
+returns FALSE. This may not always work correctly,
+if the protocol of the URL is something else than file
+(local filesystem)! If you pass a bool as <em>ok</em> argument,
+this is set to TRUE, if the result of this method is correct
+for sure, else <em>ok</em> is set to FALSE.
+<h3 class="fn">void <a name="66f6c4"></a>QUrlOperator::itemChanged ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever a file, which is a child of this URL,
+has been changed e.g. by successfully calling <a href="#5adc96">rename</a>(). <em>op</em> holds
+the original and the new filenames in the first and second arguments.
+You get them with op->arg( 0 ) and op->arg( 1 ).
+<p><em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">const <a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="42b8a8"></a>QUrlOperator::listChildren () <code>[virtual]</code></h3>
+<p>Starts listing the children of this URL (e.g. of a directory). The signal
+<a href="#de8943">start</a>()  is emitted, before the first entry is listed,
+and after the last one <a href="#4d1622">finished</a>() is emitted.
+For each list of new entries, the <a href="#ffed09">newChildren</a>()
+signals is emitted.
+If an error occurs, also the signal finished()
+is emitted, so check the state of the network operation pointer!
+<p>As the operation will not be executed immediately, a pointer to the
+<a href="qnetworkoperation.html">QNetworkOperation</a> object, which is created by this method, is
+returned. This object contains all data about the operation and is
+used to refer to this operation later (e.g. in the signals which are emitted
+by the QUrlOperator). The return value can be also 0 if the operation object
+couldn't be created.
+<p>The path of this QUrlOperator has to point to a directory, because the children
+of this directory will be listed, and not to a file, else this operation might not work!.
+<h3 class="fn">const <a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="9867b2"></a>QUrlOperator::mkdir ( const <a href="qstring.html">QString</a> &amp; dirname ) <code>[virtual]</code></h3>
+<p>Tries to create a directory (child) with the name <em>dirname.</em>
+If it has been successful a <a href="#ffed09">newChildren</a>()
+signal with the new child is emitted, and the
+<a href="#b98019">createdDirectory</a>() signal with
+the information about the new child is emitted too.
+Also <a href="#4d1622">finished</a>() (on success or failure) is emitted,
+after the operation has been processed, so check the state of the network
+operation object to see if the operation was successful or not.
+<p>As the operation will not be executed immediately, a pointer to the
+<a href="qnetworkoperation.html">QNetworkOperation</a> object, which is created by this method, is
+returned. This object contains all data about the operation and is
+used to refer to this operation later (e.g. in the signals which are emitted
+by the QUrlOperator). The return value can be also 0 if the operation object
+couldn't be created.
+<p>This path of this QUrlOperator has to point to a directory, as the new directory
+will be created in this path, and not to a file,
+else this operation might not work!.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="ff51a4"></a>QUrlOperator::nameFilter () const</h3>
+<p>Returns the name filter of the URL
+<p>See also  <a href="#6ecbeb">QUrlOperator::setNameFilter</a>() and <a href="qdir.html#cee483">QDir::nameFilter</a>().
+<h3 class="fn">void <a name="ffed09"></a>QUrlOperator::newChildren ( const <a href="qvaluelist.html">QValueList</a>&lt;<a href="qurlinfo.html">QUrlInfo</a>&gt; &amp; i, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted after <a href="#42b8a8">listChildren</a>() was called and
+new children (e.g. files) have been read from a list of files. <em>i</em>
+holds the information about the new children.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">QUrlOperator&amp; <a name="889d10"></a>QUrlOperator::operator= ( const <a href="qstring.html">QString</a> &amp; url )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">QUrlOperator&amp; <a name="4a39eb"></a>QUrlOperator::operator= ( const QUrlOperator &amp; url )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">bool <a name="30b949"></a>QUrlOperator::parse ( const <a href="qstring.html">QString</a> &amp; url ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">const <a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="0679d4"></a>QUrlOperator::put ( const <a href="qbytearray.html">QByteArray</a> &amp; data, const <a href="qstring.html">QString</a> &amp; location = QString::null ) <code>[virtual]</code></h3>
+<p>Tells the network protocol to put <em>data</em> to <em>location,</em> or if this is
+empty (QString::null) it puts the <em>data</em> to the location to which the
+URL points. What exactly happens is depending on the network
+protocol. Also depending on the network protocol
+after putting data some data might come back. In this case the
+<a href="#8ac3fe">data</a>() signal is emitted.
+During processing the operation the <a href="#5e9941">dataTransferProgress</a>() is emitted.
+Also at the end <a href="#4d1622">finished</a>() (on success or failure) is emitted,
+so check the state of the network operation object to see if the
+operation was successful or not.
+<p>Now, if <em>location</em> is QString::null, the path of this QUrlOperator should point to a file
+when you use this operation. If <em>location</em> is not empty, it can be relative (a child of
+the path to which the QUrlOperator points) or an absolute URL.
+<p>E.g. for putting some data to a file you can do
+<p><pre>  <a href="qurloperator.html">QUrlOperator</a> op( "ftp://ftp.whatever.com/home/me/filename" );
+  op.<a href="#0679d4">put</a>( data );
+</pre>
+<p>But as for the most other operations it is required that the path of the
+QUrlOperator points to a directory, you could do following if you
+want e.g. upload data to a file
+<p><pre>  <a href="qurloperator.html">QUrlOperator</a> op( "ftp://ftp.whatever.com/home/me" );
+  // do some other stuff like op.<a href="#42b8a8">listChildren</a>() or op.<a href="#9867b2">mkdir</a>( "new Dir" )
+  op.<a href="#0679d4">put</a>( data, "filename" );
+</pre>
+<p>This will upload the data to ftp://ftp.whatever.com/home/me/filename.
+<p>See also  <a href="#3a9681">copy</a>().
+<h3 class="fn">const <a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="6626fa"></a>QUrlOperator::remove ( const <a href="qstring.html">QString</a> &amp; filename ) <code>[virtual]</code></h3>
+<p>Tries to remove the file (child) <em>filename.</em>
+If it has been successful the signal <a href="#9624ad">removed</a>() is emitted.
+Also <a href="#4d1622">finished</a>() (on success or failure) is emitted after
+the operation has been processed, so check the state of the network operation
+object to see if the operation was successful or not.
+<p>As the operation will not be executed immediately, a pointer to the
+<a href="qnetworkoperation.html">QNetworkOperation</a> object, which is created by this method, is
+returned. This object contains all data about the operation and is
+used to refer to this operation later (e.g. in the signals which are emitted
+by the QUrlOperator). The return value can be also 0 if the operation object
+couldn't be created.
+<p>This path of this QUrlOperator has to point to a directory, because if <em>filename</em>
+is relative, it will be tried to remove it in this directory, and not to a file,
+else this operation might not work!.
+<h3 class="fn">void <a name="9624ad"></a>QUrlOperator::removed ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when <a href="#6626fa">remove</a>() has been succesful
+and the file has been removed. <em>op</em> holds the filename
+of the removed file in the first argument, you get it
+with op->arg( 0 ).
+<p><em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">const <a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="5adc96"></a>QUrlOperator::rename ( const <a href="qstring.html">QString</a> &amp; oldname, const <a href="qstring.html">QString</a> &amp; newname ) <code>[virtual]</code></h3>
+<p>Tries to rename the file (child) <em>oldname</em> by <em>newname.</em>
+If it has been successful the signal <a href="#66f6c4">itemChanged</a>()
+is emitted.
+Also <a href="#4d1622">finished</a>() (on success or failure) is emitted after
+the operation has been processed, so check the state of the network operation
+object to see if the operation was successful or not.
+<p>As the operation will not be executed immediately, a pointer to the
+<a href="qnetworkoperation.html">QNetworkOperation</a> object, which is created by this method, is
+returned. This object contains all data about the operation and is
+used to refer to this operation later (e.g. in the signals which are emitted
+by the QUrlOperator). The return value can be also 0 if the operation object
+couldn't be created.
+<p>This path of this QUrlOperator has to point to a directory, as <em>oldname</em> and
+<em>newname</em> are handled relatively to this directory, and not to a file,
+else this operation might not work!.
+<h3 class="fn">void <a name="d80ede"></a>QUrlOperator::reset () <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="6ecbeb"></a>QUrlOperator::setNameFilter ( const <a href="qstring.html">QString</a> &amp; nameFilter ) <code>[virtual]</code></h3>
+<p>Sets the name filter of the URL
+<p>See also  <a href="qdir.html#7e369a">QDir::setNameFilter</a>().
+<h3 class="fn">void <a name="b60f8c"></a>QUrlOperator::setPath ( const <a href="qstring.html">QString</a> &amp; path ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="de8943"></a>QUrlOperator::start ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>Some operations (like <a href="#42b8a8">listChildren</a>()) emit this signal
+when they start processing the operation.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>See also  <a href="qnetworkoperation.html">QNetworkOperation</a> and <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+<h3 class="fn">void <a name="0b3b2f"></a>QUrlOperator::startedNextCopy ( const <a href="qlist.html">QList</a>&lt;<a href="qnetworkoperation.html">QNetworkOperation</a>&gt; &amp; lst ) <code>[signal]</code></h3>
+<p>This signal is emitted if <a href="#3a9681">copy</a>() started a new copy operation. <em>lst</em> contains all
+QNetworkOperations which describe this copy operation.
+<p>See also  <a href="#3a9681">copy</a>().
+<h3 class="fn">void <a name="79e6b3"></a>QUrlOperator::stop () <code>[virtual]</code></h3>
+<p>Stops the current network operation which is just processed and
+removes all waiting network operations of this QUrlOperator.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

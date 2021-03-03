@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qwindowdefs.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qwindowdefs.h</h1><br clear="all">
+This is the verbatim text of the qwindowdefs.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/kernel/qwindowdefs.h   2.3.2   edited 2001-07-23 $
+**
+** Definition of general window system dependent functions, types and
+** constants
+**
+** Created : 931029
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the kernel module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QWINDOWDEFS_H
+#define QWINDOWDEFS_H
+
+#ifndef QT_H
+#include "qobjectdefs.h"
+#include "qstring.h"
+#include "qnamespace.h"
+#endif // QT_H
+
+#include &lt;limits.h&gt;
+
+// Class forward definitions
+
+class <a href="qpaintdevice.html">QPaintDevice</a>;
+class <a href="qpaintdevicemetrics.html">QPaintDeviceMetrics</a>;
+class <a href="qwidget.html">QWidget</a>;
+class QWidgetMapper;
+class <a href="qdialog.html">QDialog</a>;
+class <a href="qcolor.html">QColor</a>;
+class <a href="qcolorgroup.html">QColorGroup</a>;
+class <a href="qpalette.html">QPalette</a>;
+class <a href="qcursor.html">QCursor</a>;
+class <a href="qpoint.html">QPoint</a>;
+class <a href="qsize.html">QSize</a>;
+class <a href="qrect.html">QRect</a>;
+class <a href="qpointarray.html">QPointArray</a>;
+class <a href="qpainter.html">QPainter</a>;
+class <a href="qregion.html">QRegion</a>;
+class <a href="qfont.html">QFont</a>;
+class <a href="qfontmetrics.html">QFontMetrics</a>;
+class <a href="qfontinfo.html">QFontInfo</a>;
+class <a href="qpen.html">QPen</a>;
+class <a href="qbrush.html">QBrush</a>;
+class <a href="qwmatrix.html">QWMatrix</a>;
+class <a href="qpixmap.html">QPixmap</a>;
+class <a href="qbitmap.html">QBitmap</a>;
+class <a href="qmovie.html">QMovie</a>;
+class <a href="qimage.html">QImage</a>;
+class <a href="qimageio.html">QImageIO</a>;
+class <a href="qpicture.html">QPicture</a>;
+class <a href="qprinter.html">QPrinter</a>;
+class <a href="qaccel.html">QAccel</a>;
+class <a href="qtimer.html">QTimer</a>;
+class <a href="qtime.html">QTime</a>;
+class <a href="qclipboard.html">QClipboard</a>;
+
+
+// Widget list (defined in qwidgetlist.h)
+
+class QWidgetList;
+class QWidgetListIt;
+
+
+// Window system dependent definitions
+
+#if defined(_WS_MAC_)
+
+typedef void * HANDLE;
+typedef int WId;
+typedef void * MSG;
+
+#endif
+
+
+#if defined(_WS_WIN_)
+#include "qwindowdefs_win.h"
+#endif // _WS_WIN_
+
+
+#if defined(_WS_X11_)
+
+#if QT_VERSION &gt; 290
+#error "define WId and friends to ulong always"
+#endif
+
+#if defined(UINT_MAX) &amp;&amp; defined(ULONG_MAX) &amp;&amp; (ULONG_MAX &gt; UINT_MAX) || \
+    (defined(__SUNPRO_CC) &amp;&amp; defined(_LP64))
+typedef unsigned long  WId;
+typedef unsigned long  HANDLE;
+#else
+typedef unsigned int  WId;
+typedef unsigned int  HANDLE;
+#endif
+
+typedef struct _XDisplay Display;
+typedef union  _XEvent XEvent;
+typedef struct _XGC *GC;
+typedef struct _XRegion *Region;
+
+Q_EXPORT Display *qt_xdisplay();
+Q_EXPORT int     qt_xscreen();
+Q_EXPORT WId     qt_xrootwin();
+Q_EXPORT GC      qt_xget_readonly_gc( bool monochrome=FALSE );
+Q_EXPORT GC      qt_xget_temp_gc( bool monochrome=FALSE );
+
+#endif // _WS_X11_
+
+#if defined(_WS_QWS_)
+
+struct QWSEvent;
+typedef unsigned int WId;
+typedef void* HANDLE;
+class QGfx;
+
+#endif // _WS_QWS_
+
+class <a href="qapplication.html">QApplication</a>;
+
+#if defined(NEEDS_QMAIN)
+#define main qMain
+#endif
+
+// Global platform-independent types and functions
+
+
+typedef Q_INT32 QCOORD;                         // coordinate type
+const QCOORD QCOORD_MAX =  2147483647;
+const QCOORD QCOORD_MIN = -QCOORD_MAX - 1;
+
+typedef unsigned int QRgb;                      // RGB triplet
+
+Q_EXPORT char *qAppName();                      // get application name
+
+
+// Misc functions
+
+typedef void (*Q_CleanUpFunction)();
+Q_EXPORT void qAddPostRoutine( Q_CleanUpFunction );
+Q_EXPORT void qRemovePostRoutine( Q_CleanUpFunction );
+
+// ### remove 3.0
+Q_EXPORT void *qt_find_obj_child( QObject *, const char *, const char * );
+#define Q_CHILD(parent,type,name) \
+        ((type*)qt_find_obj_child(parent,#type,name))
+
+
+#endif // QWINDOWDEFS_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,90 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Custom Widgets</title>
+		<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.49">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="Useful Techniques" href="chap5_1.html">
+		<link rel="PREVIOUS" title="Accessing The Help System" href="chap5_5.html">
+		<link rel="NEXT" title="Qt Designer Reference Manual" href="part2index.html">
+		
+	</head>
+
+	<body class="SECT1" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top"> <a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a></td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom"> <a href="chap5_5.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="80%" align="center" valign="bottom"><font color="white"><b>Chapter 5. Useful Techniques</b></font></td>
+					<td width="10%" align="right" valign="bottom"> <a href="part2index.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="SECT1">
+			<h1 class="SECT1"><a name="AEN1173"></a>Custom Widgets</h1>
+			<p>So far, we have only used widgets that are part of Qt&#151;radio buttons, check boxes, push buttons, etc. But in many projects, you will be using widgets that you have defined yourself; so-called custom widgets, which should not be a surprise, since Qt makes defining custom widgets very easy.</p>
+			<p>To make these custom widgets accessible for Qt Designer, you need to write <i class="FIRSTTERM">descriptions</i> for them. Writing these descriptions is rather easy, and Qt Designer facilitates it by providing a special dialog.</p>
+			<p>You reach this dialog by selecting <span class="GUIMENU">Tools/Custom/Edit Custom Widgets</span> from the menu bar. The dialog shown in <a href="#QT-DESIGNER-FIG-EDITCUSTOMWIDGETS">Figure 5-4</a> opens. It consists of three parts. On the left is a list of all custom widgets that are currently known to Qt Designer. When you open this dialog for the first time, this list will of course be empty. To the right of this list are four action buttons for creating a new custom widget description, deleting an existing description, loading a description file, and saving the current descriptions to a file.</p>
+			<div class="FIGURE">
+				<a name="QT-DESIGNER-FIG-EDITCUSTOMWIDGETS"></a>
+				<p><b>Figure 5-4. The dialog for describing custom widgets</b></p>
+				<p><img src="figures/editcustomwidgets.png"></p>
+			</div>
+			<p>Probably the most interesting part is in the right half of this dialog, where all the properties of a custom widget can be defined on four tab pages: <span class="GUILABEL">Definition</span>, <span class="GUILABEL">Signals</span>, <span class="GUILABEL">Slots</span>, and <span class="GUILABEL">Properties</span>.</p>
+			<p>In most cases, your widget will already be finished when you write a Qt Designer description for it. Thus all you need to do is mechanically go through all the fields, look for the information in (mostly) the header file of the widget, and fill it in.</p>
+			<p>You start this process by clicking the <span class="GUILABEL">New Widget</span> button. Qt Designer will create an entry for a class called <tt class="LITERAL">MyCustomWidget</tt> that has default values. Now go to the <span class="GUILABEL">Definition</span> tab page. The two pieces of data that you will want to change in every custom widget are of course the class name and the header file. You can assign a pixmap to this widget that will then be used in the menus and the toolbar, where you can select your new custom widget. If your widget has a size hint and/or a size policy, you can set these on this tab page as well. <a href="#FTN.AEN1197" name="AEN1197">[1]</a></p>
+			<p>On the <span class="GUILABEL">Signals</span> tab page, you enter all the signals that your widget has. This will make it possible later to connect these signals to slots in other widgets by means of the ordinary Qt Designer technique. Just click on the <span class="GUILABEL">New Signal</span> button and change the default signal name <tt class="LITERAL">clicked()</tt> to the name of your signal. Add the parameter types in the parentheses.</p>
+			<p>The <span class="GUILABEL">Slots</span> tab page works the same&#151;you can define all the slots here that your custom widget defines. In addition to the slot name and parameters, you also need to specify the access. Remember that all this is already determined in your class definition; you just need to copy this information from the header file.</p>
+			<p>Finally, you can set the properties on the last tab page. Again, just copy the information from your class declaration.</p>
+			<p>Once you are done entering the data for all your custom widgets, you can save them to a file by clicking the <span class="GUILABEL">Save Descriptions</span> button. If you want to access these definitions later, you can load them again via the <span class="GUILABEL">Load Descriptions</span> button. This also makes it possible to load custom widget definitions that others have provided. It is even thinkable that any third-party Qt widgets shipped in the future will be shipped with Qt Designer description files. You can load as many description files as you like. But all description files that you have loaded once will be loaded again automatically next time. Also, when you open a form with custom widgets that are not yet loaded into Qt Designer, they are loaded automatically as well.</p>
+			<p>After you have defined your custom widgets or loaded a description file, you can access the custom widgets from the toolbar or via the <span class="GUIMENU">Tools/Custom</span> submenu.</p>
+		</div>
+		<h3 class="FOOTNOTES">Notes</h3>
+		<p>
+		<table border="0" class="FOOTNOTES" width="100%">
+			<tr>
+				<td align="left" valign="top" width="5%"> <a href="#AEN1197" name="FTN.AEN1197">[1]</a></td>
+				<td align="left" valign="top" width="95%">If you are unsure what size hints and size policies are, please see the Qt reference documentation.</td>
+			</tr>
+		</table>
+		</p>
+		<div class="NAVFOOTER">
+			<br>
+			<br>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top"> <a href="chap5_5.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="34%" align="center" valign="top"> <a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"> <a href="part2index.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font color="white" >Accessing The Help System</font></td>
+					<td width="34%" align="center" valign="top"> <a href="chap5_1.html"><img height="20" width="20" src="arrows/up.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><font color="white" >Qt Designer Reference Manual</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

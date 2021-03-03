@@ -1,0 +1,97 @@
+'\" t
+.TH QCanvasPixmapArray 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvasPixmapArray \- An array of
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvasPixmapArray\fR () "
+.br
+.ti -1c
+.BI "\fBQCanvasPixmapArray\fR ( const QString & " "datafilenamepattern" ", int " "framecount" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQCanvasPixmapArray\fR ( QList<QPixmap>, QList<QPoint> hotspots ) "
+.br
+.ti -1c
+.BI "\fB~QCanvasPixmapArray\fR () "
+.br
+.ti -1c
+.BI "bool \fBreadPixmaps\fR ( const QString & " "datafilenamepattern" ", int " "framecount" "=0 ) "
+.br
+.ti -1c
+.BI "bool \fBreadCollisionMasks\fR ( const QString & filenamepattern ) "
+.br
+.ti -1c
+.BI "int \fBoperator!\fR () "
+.br
+.ti -1c
+.BI "QCanvasPixmap* \fBimage\fR ( int i ) const"
+.br
+.ti -1c
+.BI "void \fBsetImage\fR ( int " "i" ", QCanvasPixmap * p ) "
+.br
+.ti -1c
+.BI "uint \fBcount\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+An array of QCanvasPixmap to have multiple frames for animation.
+.PP
+This allows sprite objects to have multiple frames for animation.
+.PP
+QCanvasPixmaps for sprite objects are collected into QCanvasPixmapArrays, which are the set of images a sprite will use, indexed by the sprite's frame. This allows sprites to simply have animated forms.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvasPixmapArray::QCanvasPixmapArray ()"
+Constructs a null array. You should call readPixmaps() before using it further.
+.SH "QCanvasPixmapArray::QCanvasPixmapArray ( QList<QPixmap> list, QList<QPoint> hotspots )"
+Constructs a QCanvasPixmapArray from QPixmaps.
+.SH "QCanvasPixmapArray::QCanvasPixmapArray ( const QString & datafilenamepattern, int fc=0 )"
+Constructs a QCanvasPixmapArray from files. See readPixmaps() for details.
+.SH "QCanvasPixmapArray::~QCanvasPixmapArray ()"
+Destructs the pixmap array.
+.SH "uint QCanvasPixmapArray::count () const"
+Returns the length of the array.
+.SH "QCanvasPixmap* QCanvasPixmapArray::image ( int i ) const"
+Returns the \fIi-th\fR pixmap in the array.
+.SH "int QCanvasPixmapArray::operator! ()"
+Constructor failure check.
+.SH "bool QCanvasPixmapArray::readCollisionMasks ( const QString & fname )"
+When testing sprite collision detection the default is to use the image mask of the sprite. By using readCollisionMasks(), an alternate mask can be used. The images must be 1-bit deep.
+.SH "bool QCanvasPixmapArray::readPixmaps ( const QString & datafilenamepattern, int fc=0 )"
+Sets the array to \fIfc\fR pixmaps, read from files.
+.PP
+If \fIfc\fR is not 0, the filenames should contain a "%1", strings such as "foo%1.png". The actual filenames are formed by replacing the %1 with each integer from 0 to fc-1, with leading zeroes sufficient for 4 digits. eg. foo0000.png, foo0001.png, foo0002.png, etc.
+.SH "void QCanvasPixmapArray::setImage ( int i, QCanvasPixmap * p )"
+Replaces the \fIi-th\fR pixmap by \fIp.\fR Note that \fIp\fR becomes owned by the array - it will be deleted later.
+.PP
+If \fIi\fR is more than count()-1, the array is extended to make room.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvaspixmaparray.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvaspixmaparray.3qt) and the Qt
+version (2.3.2).

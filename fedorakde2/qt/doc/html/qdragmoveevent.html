@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QDragMoveEvent Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QDragMoveEvent Class Reference</h1><br clear="all">
+<p>
+Event sent as a drag-and-drop is in progress.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qevent-h.html">qevent.h</a>&gt;</code>
+<p>
+Inherits <a href="qdropevent.html">QDropEvent</a>.
+<p>Inherited by <a href="qdragenterevent.html">QDragEnterEvent</a>.
+<p><a href="qdragmoveevent-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#e9e9ae"><b>QDragMoveEvent</b></a> ( const QPoint &amp; pos, Type typ=DragMove ) </div>
+<li><div class="fn">QRect <a href="#2b3e0d"><b>answerRect</b></a> () const</div>
+<li><div class="fn">void <a href="#250cc4"><b>accept</b></a> ( const QRect &amp; r ) </div>
+<li><div class="fn">void <a href="#2a033b"><b>ignore</b></a> ( const QRect &amp; r ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Event sent as a drag-and-drop is in progress.
+<p>
+When a widget <a href="qwidget.html#8169cb">accepts drop events</a>,
+it will receive this event repeatedly while the the drag is inside that
+widget.  The widget should examine the event, especially
+seeing what data it <a href="qdropevent.html#e9bf16">provides</a>,
+and <a href="#250cc4">accept</a>() the drop if appropriate.
+<p>Note that this class inherits most of its functionality from <a href="qdropevent.html">QDropEvent</a>.
+<p>Examples:
+ <a href="desktop-desktop-cpp.html#QDragMoveEvent">desktop/desktop.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="e9e9ae"></a>QDragMoveEvent::QDragMoveEvent ( const <a href="qpoint.html">QPoint</a> &amp; pos, <a href="qevent.html#Type">Type</a> type=DragMove )</h3>
+<p>Creates a QDragMoveEvent for which the mouse is at point <em>pos,</em>
+and the given event <em>type.</em>
+<p>Note that internal state is also involved with QDragMoveEvent,
+so it is not useful to create these yourself.
+<h3 class="fn">void <a name="e15ecc"></a>QDragMoveEvent::accept ( bool y=TRUE )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="250cc4"></a>QDragMoveEvent::accept ( const <a href="qrect.html">QRect</a> &amp; r )</h3>
+<p>The same as accept(), but also notifies that future moves will
+also be acceptable if they remain within the rectangle <em>r</em> on the
+widget - this can improve performance, but may also be ignored by
+the underlying system.
+<p>If the rectangle <a href="qrect.html#e4fa7c">is empty</a>, then drag
+move events will be sent continuously.  This is useful if the source is
+scrolling in a timer event.
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="2b3e0d"></a>QDragMoveEvent::answerRect () const</h3>
+<p>Returns the rectangle for which the acceptance of
+the move event applies.
+<h3 class="fn">void <a name="b85981"></a>QDragMoveEvent::ignore ()</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="2a033b"></a>QDragMoveEvent::ignore ( const <a href="qrect.html">QRect</a> &amp; r )</h3>
+<p>The opposite of <a href="#250cc4">accept</a>(const <a href="qrect.html">QRect</a>&).
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

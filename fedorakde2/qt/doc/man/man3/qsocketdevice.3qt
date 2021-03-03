@@ -1,0 +1,395 @@
+'\" t
+.TH QSocketDevice 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QSocketDevice \- Platform-independent low-level socket API
+.br
+.PP
+\fC#include <qsocketdevice.h>\fR
+.PP
+Inherits QIODevice.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBType\fR { Stream, Datagram }"
+.br
+.ti -1c
+.BI "\fBQSocketDevice\fR ( Type " "type" " = Stream ) "
+.br
+.ti -1c
+.BI "\fBQSocketDevice\fR ( int " "socket" ", Type type ) "
+.br
+.ti -1c
+.BI "virtual \fB~QSocketDevice\fR () "
+.br
+.ti -1c
+.BI "bool \fBisValid\fR () const"
+.br
+.ti -1c
+.BI "Type \fBtype\fR () const"
+.br
+.ti -1c
+.BI "int \fBsocket\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSocket\fR ( int " "socket" ", Type type ) "
+.br
+.ti -1c
+.BI "bool \fBblocking\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetBlocking\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBaddressReusable\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetAddressReusable\fR ( bool ) "
+.br
+.ti -1c
+.BI "int \fBreceiveBufferSize\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetReceiveBufferSize\fR ( uint ) "
+.br
+.ti -1c
+.BI "int \fBsendBufferSize\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSendBufferSize\fR ( uint ) "
+.br
+.ti -1c
+.BI "virtual bool \fBconnect\fR ( const QHostAddress &, Q_UINT16 ) "
+.br
+.ti -1c
+.BI "virtual bool \fBbind\fR ( const QHostAddress &, Q_UINT16 ) "
+.br
+.ti -1c
+.BI "virtual bool \fBlisten\fR ( int backlog ) "
+.br
+.ti -1c
+.BI "virtual int \fBaccept\fR () "
+.br
+.ti -1c
+.BI "int \fBbytesAvailable\fR () const"
+.br
+.ti -1c
+.BI "int \fBwaitForMore\fR ( int msecs ) const"
+.br
+.ti -1c
+.BI "virtual int \fBreadBlock\fR ( char * " "data" ", uint maxlen ) "
+.br
+.ti -1c
+.BI "virtual int \fBwriteBlock\fR ( const char * " "data" ", uint len ) "
+.br
+.ti -1c
+.BI "virtual int \fBwriteBlock\fR ( const char * " "data" ", uint " "len" ", const QHostAddress & " "host" ", Q_UINT16 port ) "
+.br
+.ti -1c
+.BI "Q_UINT16 \fBport\fR () const"
+.br
+.ti -1c
+.BI "Q_UINT16 \fBpeerPort\fR () const"
+.br
+.ti -1c
+.BI "QHostAddress \fBaddress\fR () const"
+.br
+.ti -1c
+.BI "QHostAddress \fBpeerAddress\fR () const"
+.br
+.ti -1c
+.BI "enum \fBError\fR { NoError, AlreadyBound, Inaccessible, NoResources, Bug, Impossible, NoFiles, ConnectionRefused, NetworkFailure, UnknownError }"
+.br
+.ti -1c
+.BI "Error \fBerror\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "void \fBsetError\fR ( Error err ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QSocketDevice class provides a platform-independent low-level socket API.
+.PP
+This class is not really meant for use outside Qt. It can be used to achieve some things that QSocket does not provide, but it's not particularly easy to understand or use.
+.PP
+The basic purpose of the class is to provide a QIODevice that works on sockets, wrapped in a platform-independent API.
+.PP
+See also QSocket, QSocketNotifier and QHostAddress.
+.SS "Member Type Documentation"
+.SH "QSocketDevice::Error"
+This enum type describes the error states of QSocketDevice. At present these errors are defined:
+.TP
+\fCNoError\fR - all is fine.
+.TP
+\fCAlreadyBound\fR - bind() said so.
+.TP
+\fCInaccessible\fR - the operating system or firewall prohibits something.
+.TP
+\fCNoResources\fR - the operating system ran out of something.
+.TP
+\fCBug\fR - there seems to be a bug in QSocketDevice.
+.TP
+\fCImpossible\fR - the impossible happened, usually because you confused QSocketDevice horribly. Simple example:
+.IP
+.nf
+.br
+  ::close( sd->socket() );
+.br
+  sd->writeBlock( someData, 42 );
+.fi
+.IP
+The libc ::close() closes the socket, but QSocketDevice is not aware of that. So when you call writeBlock(), the impossible happens.
+.TP
+\fCNoFiles\fR - the operating system will not let QSocketDevice open another file.
+.TP
+\fCConnectionRefused\fR - a connection attempt was rejected by the peer.
+.TP
+\fCNetworkFailure\fR - there is a network failure between this host and... and whatever.
+.TP
+\fCUnknownError\fR - the operating system reacted in a way that the Qt developers did not foresee.
+.SH "QSocketDevice::Type"
+This enum type describes the type of the socket:
+.TP
+\fCStream\fR - a stream socket
+.TP
+\fCDatagram\fR - a datagram socket
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QSocketDevice::QSocketDevice ( Type type = Stream )"
+Creates a QSocketDevice object for a stream or datagram socket.
+.PP
+The \fItype\fR argument must be either \fCQSocketDevice::Stream\fR for a reliable, connection-oriented TCP socket, or \fCQSocketDevice::Datagram\fR for an unreliable UDP socket.
+.PP
+See also blocking().
+.SH "QSocketDevice::QSocketDevice ( int socket, Type type )"
+Creates a QSocketDevice object for an existing socket.
+.PP
+The \fItype\fR argument must match the actual socket type; \fCQSocketDevice::Stream\fR for a reliable, connection-oriented TCP socket, or \fCQSocketDevice::Datagram\fR for an unreliable, connectionless UDP socket.
+.SH "QSocketDevice::~QSocketDevice () \fC[virtual]\fR"
+Destroys the socket device and closes the socket if it is open.
+.SH "int QSocketDevice::accept () \fC[virtual]\fR"
+Extracts the first connection from the queue of pending connections for this socket and returns a new socket identifier. Returns -1 if the operation failed.
+.PP
+See also bind() and listen().
+.SH "QHostAddress QSocketDevice::address () const"
+Returns the address of this socket device. This may be 0.0.0.0 for a while, but is set to something sensible when there is a sensible value it can have.
+.SH "bool QSocketDevice::addressReusable () const"
+Returns TRUE if the address of this socket can be used by other sockets at the same time, and FALSE if this socket claims exclusive ownership.
+.PP
+See also setAddressReusable().
+.SH "bool QSocketDevice::at ( int ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+The read/write index is meaningless for a socket, therefore this function does nothing and returns TRUE.
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::at () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+The read/write index is meaningless for a socket, therefore this function returns 0.
+.PP
+Reimplemented from QIODevice.
+.SH "bool QSocketDevice::atEnd () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+The read/write index is meaningless for a socket, therefore this always returns FALSE.
+.PP
+Reimplemented from QIODevice.
+.SH "bool QSocketDevice::bind ( const QHostAddress & address, Q_UINT16 port ) \fC[virtual]\fR"
+Assigns a name to an unnamed socket. If the operation succeeds, bind() returns TRUE. Otherwise, it returns FALSE without changing what port() and address() return.
+.PP
+bind() is used by servers for setting up incoming connections. Call bind() before listen().
+.SH "bool QSocketDevice::blocking () const"
+Returns TRUE if the socket is in blocking mode, or FALSE if it is in nonblocking mode or if the socket is invalid.
+.PP
+Note that this function does not set error().
+.PP
+\fBWarning:\fR On Windows, this function always returns TRUE since the ioctlsocket() function is broken.
+.PP
+See also setBlocking() and isValid().
+.SH "int QSocketDevice::bytesAvailable () const"
+Returns the number of bytes available for reading, or -1 if an error occurred.
+.PP
+\fBWarning:\fR On Microsoft Windows, we use the ioctlsocket() function to determine the number of bytes queued on the socket. According to Microsoft (KB Q125486), ioctlsocket() sometimes return an incorrect number. The only safe way to determine the amount of data on the socket is to read it using readBlock(). QSocket has workarounds to deal with this problem.
+.SH "void QSocketDevice::close () \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Closes the socket and sets the socket identifier to -1 (invalid).
+.PP
+(This function ignores errors; if there are any then a file descriptor leakage might result. As far as we know, the only error that can arise is EBADF, and that would of course not cause leakage. There may be OS-specfic errors that we haven't come across, however.)
+.PP
+See also open().
+.PP
+Reimplemented from QIODevice.
+.SH "bool QSocketDevice::connect ( const QHostAddress & addr, Q_UINT16 port ) \fC[virtual]\fR"
+Connects to the IP address and port specified by \fIaddr.\fR Returns TRUE if it establishes a connection, and FALSE if not. error() explains why.
+.PP
+Note that error() commonly returns NoError for non-blocking sockets; this just means that you can call connect() again in a little while and it'll probably succeed.
+.SH "QSocketDevice::Error QSocketDevice::error() const"
+Returns the first error seen.
+.SH "void QSocketDevice::flush () \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+QSocketDevice does not buffer at all, so this is a no-op.
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::getch () \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+\fBWarning:\fR getch() is implemented as a one-byte readBlock(), so it may be very slow if you call it more than a few times.
+.PP
+See also putch() and readBlock().
+.PP
+Reimplemented from QIODevice.
+.SH "bool QSocketDevice::isValid () const"
+Returns TRUE if this is a valid socket or FALSE if it is an invalid socket. This is actually a shortcut for socket() == -1.
+.PP
+See also socket().
+.SH "bool QSocketDevice::listen ( int backlog ) \fC[virtual]\fR"
+Specifies how many pending connections a server socket can have. Returns TRUE if the operation was successful, otherwise FALSE.
+.PP
+The listen() call only applies to sockets where type() is \fCStream,\fR not \fCDatagram\fR sockets. listen() must not be called before bind() or after accept(). It is common to use a \fIbacklog\fR value of 50 on most Unix systems.
+.PP
+See also bind() and accept().
+.SH "bool QSocketDevice::open ( int mode ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Opens the socket using the specified QIODevice file \fImode.\fR This function is called from the QSocketDevice constructors and from the setSocket() function. You should not call it yourself.
+.PP
+See also close().
+.PP
+Reimplemented from QIODevice.
+.SH "QHostAddress QSocketDevice::peerAddress () const"
+Returns the address of the port this socket device is connected to. This may be 0.0.0.0 for a while, but is set to something sensible when there is a sensible value it can have.
+.PP
+Note that for Datagram sockets, this is the source address of the last packet received.
+.SH "Q_UINT16 QSocketDevice::peerPort () const"
+Returns the port number of the port this socket device is connected to. This may be 0 for a while, but is set to something sensible when there is a sensible value it can have.
+.PP
+Note that for Datagram sockets, this is the source port of the last packet received.
+.SH "Q_UINT16 QSocketDevice::port () const"
+Returns the port number of this socket device. This may be 0 for a while, but is set to something sensible when there is a sensible value it can have.
+.SH "int QSocketDevice::putch ( int ch ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+\fBWarning:\fR putch() is implemented as a one-byte writeBlock(), so it may be very slow if you call it more than a few times.
+.PP
+See also getch().
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::readBlock ( char * data, uint maxlen ) \fC[virtual]\fR"
+Reads max \fImaxlen\fR bytes from the socket into \fIdata\fR and returns the number of bytes read. Returns -1 if an error occurred.
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::receiveBufferSize () const"
+Returns the size of the OS receive buffer.
+.PP
+See also setReceiveBufferSize().
+.SH "int QSocketDevice::sendBufferSize () const"
+Returns the size of the OS send buffer.
+.PP
+See also setSendBufferSize().
+.SH "void QSocketDevice::setAddressReusable ( bool enable ) \fC[virtual]\fR"
+Sets the address of this socket to be usable by other sockets too if \fIenable\fR is TRUE, and to be used exclusively by this socket if \fIenable\fR is FALSE.
+.PP
+When a socket is reusable, other sockets can use the same port number (and IP address), which is in general good. Of course other sockets cannot use the same (address,port,peer-address,peer-port) 4-tuple as this socket, so there is no risk of confusing the two TCP connections.
+.PP
+See also addressReusable().
+.SH "void QSocketDevice::setBlocking ( bool enable ) \fC[virtual]\fR"
+Makes the socket blocking if \fIenable\fR is TRUE or nonblocking if \fIenable\fR is FALSE.
+.PP
+Sockets are blocking by default, but we recommend using nonblocking socket operations, especially for GUI programs that need to be responsive.
+.PP
+\fBWarning:\fR On Windows, this function does nothing since the ioctlsocket() function is broken.
+.PP
+Whenever you use a QSocketNotifier on Windows, the socket is immediately made nonblocking.
+.PP
+See also blocking() and isValid().
+.SH "void QSocketDevice::setError ( Error err ) \fC[protected]\fR"
+Allows subclasses to set the error state.
+.SH "void QSocketDevice::setReceiveBufferSize ( uint size ) \fC[virtual]\fR"
+Sets the size of the OS receive buffer to \fIsize.\fR
+.PP
+The OS receive buffer size effectively limits two things: How much data can be in transit at any one moment, and how much data can be received in one iteration of the main event loop.
+.PP
+The default is OS-dependent. A socket that receives large amounts of data is probably best off with a buffer size of 49152.
+.SH "void QSocketDevice::setSendBufferSize ( uint size ) \fC[virtual]\fR"
+Sets the size of the OS send buffer to \fIsize.\fR
+.PP
+The OS send buffer size effectively limits how much data can be in transit at any one moment.
+.PP
+The default is OS-dependent. A socket that sends large amounts of data is probably best off with a buffer size of 49152.
+.SH "void QSocketDevice::setSocket ( int socket, Type type )"
+Sets an existing socket.
+.PP
+The \fItype\fR argument must match the actual socket type; \fCQSocketDevice::Stream\fR for a reliable, connection-oriented TCP socket, or \fCQSocketDevice::Datagram\fR for an unreliable, connectionless UDP socket.
+.PP
+Any existing socket is closed.
+.PP
+See also isValid() and close().
+.SH "uint QSocketDevice::size () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+The size is meaningless for a socket, therefore this function returns 0.
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::socket () const"
+Returns the socket number, or -1 if it is an invalid socket.
+.PP
+See also isValid() and type().
+.SH "Type QSocketDevice::type () const"
+Returns the socket type; \fCQSocketDevice::Stream\fR for a reliable, connection-oriented TCP socket, or \fCQSocketDevice::Datagram\fR for an unreliable UDP socket.
+.PP
+See also socket().
+.SH "int QSocketDevice::ungetch ( int ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+This implementation of ungetch returns -1 (error). A socket is a sequential device and does not allow any ungetch operation.
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::waitForMore ( int msecs ) const"
+Wait up to \fImsecs\fR milliseconds for more data to be available. If \fImsecs\fR is -1 the call will block indefinitely.
+.PP
+This is a blocking call and should be avoided in event driven applications.
+.PP
+Returns the number of bytes available for reading, or -1 if an error occurred.
+.PP
+See also bytesAvailable().
+.SH "int QSocketDevice::writeBlock ( const char * data, uint len ) \fC[virtual]\fR"
+Writes \fIlen\fR bytes to the socket from \fIdata\fR and returns the number of bytes written. Returns -1 if an error occurred.
+.PP
+This is used for \fCQSocketDevice::Stream\fR sockets.
+.PP
+Reimplemented from QIODevice.
+.SH "int QSocketDevice::writeBlock ( const char * data, uint len, const QHostAddress & host, Q_UINT16 port ) \fC[virtual]\fR"
+Writes \fIlen\fR bytes to the socket from \fIdata\fR and returns the number of bytes written. Returns -1 if an error occurred.
+.PP
+This is used for \fCQSocketDevice::Datagram\fR sockets. You have to specify the
+\fIhost\fR and \fIport\fR of the destination of the data.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qsocketdevice.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qsocketdevice.3qt) and the Qt
+version (2.3.2).

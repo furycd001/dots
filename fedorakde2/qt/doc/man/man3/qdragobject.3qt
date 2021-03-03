@@ -1,0 +1,156 @@
+'\" t
+.TH QDragObject 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDragObject \- Encapsulates MIME-based information transfer
+.br
+.PP
+\fC#include <qdragobject.h>\fR
+.PP
+Inherits QMimeSource and QObject.
+.PP
+Inherited by QIconDrag, QImageDrag, QStoredDrag and QTextDrag.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDragObject\fR ( QWidget * " "dragSource" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual \fB~QDragObject\fR () "
+.br
+.ti -1c
+.BI "bool \fBdrag\fR () "
+.br
+.ti -1c
+.BI "bool \fBdragMove\fR () "
+.br
+.ti -1c
+.BI "void \fBdragCopy\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetPixmap\fR ( QPixmap ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetPixmap\fR ( QPixmap, QPoint hotspot ) "
+.br
+.ti -1c
+.BI "QPixmap \fBpixmap\fR () const"
+.br
+.ti -1c
+.BI "QPoint \fBpixmapHotSpot\fR () const"
+.br
+.ti -1c
+.BI "QWidget* \fBsource\fR () "
+.br
+.ti -1c
+.BI "enum \fBDragMode\fR { DragDefault, DragCopy, DragMove, DragCopyOrMove }"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QWidget* \fBtarget\fR () "
+.br
+.ti -1c
+.BI "void \fBsetTarget\fR ( QWidget * ) (internal)"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual bool \fBdrag\fR ( DragMode ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QDragObject class encapsulates MIME-based information transfer.
+.PP
+QDragObject is the base class for all data that needs to be transferred between and within applications, both for drag-and-drop and for the clipboard.
+.PP
+See the Drag-and-drop documentation for an overview of how to provide drag-and-drop in your application.
+.PP
+See the QClipboard documentation for an overview of how to provide cut-and-paste in your application.
+.SS "Member Type Documentation"
+.SH "QDragObject::DragMode"
+This enum type decides which of several types of drag each individual drag is. The available types are: 
+.TP
+\fCDragDefault\fR - the mode is determined heuristically.
+.TP
+\fCDragCopy\fR - the data is copied, never moved.
+.TP
+\fCDragMove\fR - the data is moved, if dragged at all.
+.TP
+\fCDragCopyOrMove\fR - the user chooses the mode by using control key to switch from the default.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDragObject::QDragObject ( QWidget * dragSource = 0, const char * name = 0 )"
+Constructs a drag object which is a child of \fIdragSource\fR and named \fIname.\fR
+.PP
+Note that the drag object will be deleted when \fIdragSource\fR is.
+.SH "QDragObject::~QDragObject () \fC[virtual]\fR"
+Destructs the drag object, canceling any drag-and-drop operation in which it is involved, and frees up the storage used.
+.SH "bool QDragObject::drag ()"
+Starts a drag operation using the contents of this object, using DragDefault mode.
+.PP
+The function returns TRUE if the caller should delete the original copy of the dragged data (but also note target()).
+.PP
+Note that if the drag contains \fIreferences\fR to information (eg. file names is a QUriDrag are references) then the return value should always be ignored, as the target is expected to manipulate the referred-to content directly. On X11 the return value should always be correct anyway, but on Windows this is not necessarily the case (eg. the file manager starts a background process to move files, so the source \fImust not\fR delete the files!).
+.SH "bool QDragObject::drag ( DragMode mode ) \fC[virtual protected]\fR"
+Starts a drag operation using the contents of this object.
+.PP
+At this point, the object becomes owned by Qt, not the application. You should not delete the drag object nor anything it references. The actual transfer of data to the target application will be done during future event processing - after that time the drag object will be deleted.
+.PP
+Returns TRUE if the dragged data was dragged as a \fImove,\fR indicating that the caller should remove the original source of the data (the drag object must continue to have a copy).
+.PP
+Normally one of simpler drag(), dragMove(), or dragCopy() functions would be used instead.
+.PP
+\fBWarning:\fR in Qt 1.x, drag operations all return FALSE. This will change in later versions - the functions are provided in this way to assist preemptive development - code both move and copy with Qt 1.x to be prepared.
+.SH "void QDragObject::dragCopy ()"
+Starts a drag operation using the contents of this object, using DragCopy mode.
+.PP
+See drag(DragMove) for important further information.
+.SH "bool QDragObject::dragMove ()"
+Starts a drag operation using the contents of this object, using DragMove mode.
+.SH "QPixmap QDragObject::pixmap () const"
+Returns the currently set pixmap (which isNull() if none is set).
+.SH "QPoint QDragObject::pixmapHotSpot () const"
+Returns the currently set pixmap hotspot.
+.SH "void QDragObject::setPixmap ( QPixmap pm, QPoint hotspot ) \fC[virtual]\fR"
+Set the pixmap \fIpm\fR to display while dragging the object. The platform-specific implementation will use this in a loose fashion - so provide a small masked pixmap, but do not require that the user ever sees it in all its splendor. In particular, cursors on Windows 95 are of limited size.
+.PP
+The \fIhotspot\fR is the point on (or off) the pixmap that should be under the cursor as it is dragged. It is relative to the top-left pixel of the pixmap.
+.SH "void QDragObject::setPixmap ( QPixmap pm ) \fC[virtual]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+Uses a hotspot that positions the pixmap below and to the right of the mouse pointer. This allows the user to clearly see the point on the window which they are dragging the data onto.
+.SH "QWidget * QDragObject::source ()"
+Returns a pointer to the drag source where this object originated.
+.SH "QWidget * QDragObject::target () \fC[static]\fR"
+After the drag completes, this function will return the QWidget which received the drop, or 0 if the data was dropped on some other program.
+.PP
+This can be useful for detecting the case where drag-and-drop is to and from the same widget.
+.SH "void QDragObject::setTarget ( QWidget * t ) \fC[static]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdragobject.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdragobject.3qt) and the Qt
+version (2.3.2).

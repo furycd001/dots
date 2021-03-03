@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Tutorial - Chapter 13: Game Over
+</title></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>Chapter 13: Game Over</h1><br clear="all">
+<p>
+<center><img src="t13.png" alt="Screenshot of tutorial thirteen"></center>
+<p>
+In this example we start to approach a real playable game, with a
+score.  We give MyWidget a new name (GameBoard) and add some slots.
+<p>
+We put the definition in gamebrd.h and the implementation in gamebrd.cpp.
+<p>
+The CannonField now has a game over state.
+<p>
+The layout problems in LCDRange are fixed.
+<p>
+<ul>
+<li><a href="t13-lcdrange-h.html">lcdrange.h</a> contains the LCDRange
+class definition
+<li><a href="t13-lcdrange-cpp.html">lcdrange.cpp</a> contains the LCDRange
+implementation
+<li><a href="t13-cannon-h.html">cannon.h</a> contains the CannonField class
+definition
+<li><a href="t13-cannon-cpp.html">cannon.cpp</a> contains the CannonField
+implementation
+<li><a href="t13-gamebrd-h.html">gamebrd.h</a> contains the GameBoard
+class definition
+<li><a href="t13-gamebrd-cpp.html">gamebrd.cpp</a> contains the GameBoard
+implementation
+<li><a href="t13-main-cpp.html">main.cpp</a> contains MyWidget and main.
+<li><a href="t13-makefile.html">Makefile</a> contains some rules for
+generating the meta object information necessary for <a
+href="signalsandslots.html">signal/slot creation.</a>
+</ul>
+<p>
+<h2>Line by Line Walk-Through</h2>
+<p>
+<h3><a href="t13-lcdrange-h.html">lcdrange.h</a></h3>   <pre>
+    #include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+    
+    class QSlider;
+    class QLabel;
+    
+    class LCDRange : public QWidget
+</pre>
+<p>
+We inherit QWidget rather than QVBox: QVBox is very easy to use, but
+again it showed its limitations, so we switch to the more powerful and
+slightly harder to use QVBoxLayout.  (As you remember, QVBoxLayout is
+not a widget, it manages one.)
+<p>
+<h3><a href="t13-lcdrange-cpp.html">lcdrange.cpp</a></h3>   <pre>
+    #include &lt;<a href="qlayout-h.html">qlayout.h</a>&gt;
+</pre>
+<p>
+We need to include qlayout.h now, to get the other layout management
+API. <pre>
+    LCDRange::LCDRange( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+            : <a href="qwidget.html">QWidget</a>( parent, name )
+</pre>
+<p>
+We inherit QWidget in the usual way.
+<p>
+The other constructor has the same change.  init() is unchanged,
+except that we've added some lines at the end:  <pre>
+        <a href="qvboxlayout.html">QVBoxLayout</a> * l = new <a href="qvboxlayout.html">QVBoxLayout</a>( this );
+</pre>
+<p>
+We create a QVBoxLayout with all the default values, managing this
+widget's children. <pre>
+        l-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( lcd, 1 );
+</pre>
+<p>
+At the top, we add the QLCDNumber, with a non-zero stretch. <pre>
+        l-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( slider );
+        l-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( label );
+</pre>
+<p>
+Then we add the other two, both with the default zero stretch.
+<p>
+This stretch control is something QVBoxLayout (and QHBoxLayout, and
+QGridLayout) offers, but classes like QVBox do not.  In this case,
+we're saying that the QLCDNumber should stretch and the others should
+not.
+<p>
+<h3><a href="t13-cannon-h.html">cannon.h</a></h3>
+<p>
+The CannonField now has a game over state and a few new functions.   <pre>
+        bool  gameOver() const { return gameEnded; }
+</pre>
+<p>
+This function returns TRUE if the game is over, or FALSE if a game
+is going on.  <pre>
+        void  setGameOver();
+        void  restartGame();
+</pre>
+<p>
+Here are two new slots; setGameOver() and restartGame().  <pre>
+        void  canShoot( bool );
+</pre>
+<p>
+This new signal indicates that the CannonField is in a state where the
+shoot() slot makes sense.  We'll use it below to enable/disable the
+Shoot button.  <pre>
+        bool gameEnded;
+</pre>
+<p>
+This private variable contains the game state.  TRUE means that the
+game is over, and FALSE means that a game is going on.
+<p>
+<h3><a href="t13-cannon-cpp.html">cannon.cpp</a></h3>    <pre>
+        gameEnded = FALSE;
+</pre>
+<p>
+This line has been added to the constructor.  Initially, the game is not
+over (luckily for the player :-).  <pre>
+    void CannonField::shoot()
+    {
+        if ( isShooting() )
+            return;
+        timerCount = 0;
+        shoot_ang = ang;
+        shoot_f = f;
+        autoShootTimer-&gt;start( 50 );
+        emit canShoot( FALSE );
+    }
+</pre>
+<p>
+We added a new isShooting() function, so shoot() uses it instead of
+testing directly.  Also, shoot tells the world that the CannonField
+cannot shot now.  <pre>
+    void CannonField::setGameOver()
+    {
+        if ( gameEnded )
+            return;
+        if ( isShooting() )
+            autoShootTimer-&gt;stop();
+        gameEnded = TRUE;
+        <a href="qwidget.html#7569b1">repaint</a>();
+    }
+</pre>
+<p>
+This slot ends the game.  It must be called from outside CannonField,
+because this widget does not know when to end the game.  This is is an
+important design principle in component programming.  We choose to
+make the component as flexible as possible to make it usable with
+different rules.  For example, a multi-player version of this, where
+the first one to hit ten times could use the CannonField unchanged.
+<p>
+If the game has already been ended, we return immediately.  If a game is
+going on, we stop the shot, set the game over flag and repaint the entire
+widget.  <pre>
+    void CannonField::restartGame()
+    {
+        if ( isShooting() )
+            autoShootTimer-&gt;stop();
+        gameEnded = FALSE;
+        <a href="qwidget.html#7569b1">repaint</a>();
+        emit canShoot( TRUE );
+    }
+</pre>
+<p>
+This slot starts a new game.  If a shot is in the air, we stop shooting.
+We then reset the <code>gameEnded</code> variable and repaint the widget.
+<p>
+moveShot() too emits the new canShoot(TRUE) signal at the same time as
+either hit() or miss().
+<p>
+Modifications in CannonField::paintEvent():  <pre>
+    void CannonField::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> *e )
+    {
+        <a href="qrect.html">QRect</a> updateR = e-&gt;<a href="qpaintevent.html#2d6e18">rect</a>();
+        <a href="qpainter.html">QPainter</a> p( this );
+    
+        if ( gameEnded ) {
+            p.<a href="qpainter.html#0183e4">setPen</a>( black );
+            p.<a href="qpainter.html#998df2">setFont</a>( <a href="qfont.html">QFont</a>( "Courier", 48, QFont::Bold ) );
+            p.<a href="qpainter.html#0f088f">drawText</a>( <a href="qwidget.html#75ae71">rect</a>(), AlignCenter, "Game Over" );
+        }
+</pre>
+<p>
+The paint event has been enhanced to display the text "Game Over" if
+the game is over, i.e.  <code>gameEnded</code> is TRUE.  We don't bother to
+check the update rectangle here, because speed is not critical when
+the game is over.
+<p>
+To draw the text, we first set a black pen.  The pen color is used
+when drawing text.  Next, we choose a 48 point bold font from the
+Courier family.  Finally, we draw the text centered in the widget's
+rectangle.  Unfortunately, on some systems (especially X servers with
+Unicode fonts) it can take a while to load such a large font.  Since
+Qt caches fonts, you will only notice this the first time the font is
+used. <pre>
+        if ( updateR.<a href="qrect.html#5b3d2b">intersects</a>( cannonRect() ) )
+            paintCannon( &amp;p );
+        if ( isShooting() &amp;&amp; updateR.<a href="qrect.html#5b3d2b">intersects</a>( shotRect() ) )
+            paintShot( &amp;p );
+        if ( !gameEnded &amp;&amp; updateR.<a href="qrect.html#5b3d2b">intersects</a>( targetRect() ) )
+            paintTarget( &amp;p );
+    }
+</pre>
+<p>
+We only draw the shot when shooting and the target only when playing
+(that is, when the game is not ended).
+<p>
+<h3><a href="t13-gamebrd-h.html">gamebrd.h</a></h3>
+<p>
+This file is new.  It contains the definition of the GameBoard class,
+which was last seen as MyWidget.    <pre>
+    class QPushButton;
+    class LCDRange;
+    class QLCDNumber;
+    class CannonField;
+    
+    #include "lcdrange.h"
+    #include "cannon.h"
+    
+    class GameBoard : public QWidget
+    {
+        Q_OBJECT
+    public:
+        GameBoard( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+    
+    protected slots:
+        void  fire();
+        void  hit();
+        void  missed();
+        void  newGame();
+    
+    private:
+        <a href="qlcdnumber.html">QLCDNumber</a>  *hits;
+        <a href="qlcdnumber.html">QLCDNumber</a>  *shotsLeft;
+        CannonField *cannonField;
+    };
+</pre>
+<p>
+We have now added four slots.  These are protected and are used internally.
+We have also added two QLCDNumbers: <code>hits</code> and <code>shotsLeft,</code> which display
+the game status.
+<p>
+<h3><a href="t13-gamebrd-cpp.html">gamebrd.cpp</a></h3>
+<p>
+This file is new.  It contains the implementation of the GameBoard
+class, which was last seen as MyWidget. 
+<p>
+We have made some changes in the GameBoard constructor.   <pre>
+        cannonField = new CannonField( this, "cannonField" );
+</pre>
+<p>
+<code>cannonField</code> is now a member variable, so we carefully change the
+constructor to use it.  (The <em>good</em> programmers at Trolltech never
+forget this, but I do.  Caveat programmor.  If "programmor" is latin,
+at least.  Anyway, back to the code.)  <pre>
+        <a href="qobject.html#7f8e37">connect</a>( cannonField, SIGNAL(hit()),
+                 this, SLOT(hit()) );
+        <a href="qobject.html#7f8e37">connect</a>( cannonField, SIGNAL(missed()),
+                 this, SLOT(missed()) );
+</pre>
+<p>
+This time we want to do something when the shot has hit or missed the
+target.  Thus we connect the hit() and missed() signals of the
+CannonField to two protected slots with the same names in this class.   <pre>
+        <a href="qobject.html#7f8e37">connect</a>( shoot, SIGNAL(clicked()), SLOT(fire()) );
+</pre>
+<p>
+Previously, we connected the shoot button's clicked() signal directly
+to the CannonField's shoot() slot.  This time we want to keep track of
+the number of shots fired, so we connect it to a protected slot in
+this class instead.
+<p>
+Notice how easy it is to change the behavior of a program when you are
+working with self-contained components. <pre>
+        <a href="qobject.html#7f8e37">connect</a>( cannonField, SIGNAL(canShoot(bool)),
+                 shoot, SLOT(<a href="qwidget.html#4b103c">setEnabled</a>(bool)) );
+</pre>
+<p>
+We also use the cannonField's canShoot() signal to enable or disable
+the Shoot button appropriately.  <pre>
+        <a href="qpushbutton.html">QPushButton</a> *restart 
+            = new <a href="qpushbutton.html">QPushButton</a>( "&amp;New Game", this, "newgame" );
+        restart-&gt;<a href="qwidget.html#c52788">setFont</a>( <a href="qfont.html">QFont</a>( "Times", 18, QFont::Bold ) );
+    
+        <a href="qobject.html#7f8e37">connect</a>( restart, SIGNAL(clicked()), this, SLOT(newGame()) );
+</pre>
+<p>
+We create, set up and connect the New Game button like we have done
+with the other buttons.  Clicking this button will activate the
+newGame() slot in this widget. <pre>
+        hits = new <a href="qlcdnumber.html">QLCDNumber</a>( 2, this, "hits" );
+        shotsLeft = new <a href="qlcdnumber.html">QLCDNumber</a>( 2, this, "shotsleft" );
+        <a href="qlabel.html">QLabel</a> *hitsL = new <a href="qlabel.html">QLabel</a>( "HITS", this, "hitsLabel" );
+        <a href="qlabel.html">QLabel</a> *shotsLeftL 
+            = new <a href="qlabel.html">QLabel</a>( "SHOTS LEFT", this, "shotsleftLabel" );
+</pre>
+<p>
+We create four new widgets.  Note that we don't bother to keep the
+pointers to the QLabel widgets in the GameBoard class since there's
+nothing much we want to do with them.  Qt will delete them when the
+GameBoard widget is destroyed, and the layout classes will resize them
+appropriately.  <pre>
+        <a href="qhboxlayout.html">QHBoxLayout</a> *topBox = new <a href="qhboxlayout.html">QHBoxLayout</a>;
+        grid-&gt;<a href="qgridlayout.html#a409bc">addLayout</a>( topBox, 0, 1 );
+        topBox-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( shoot );
+        topBox-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( hits );
+        topBox-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( hitsL );
+        topBox-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( shotsLeft );
+        topBox-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( shotsLeftL );
+        topBox-&gt;<a href="qboxlayout.html#0226eb">addStretch</a>( 1 );
+        topBox-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( restart );
+</pre>
+<p>
+The number of widgets in the top-right cell is getting large.  Once it
+was empty, now it's full enough that we group together the layout
+setting for better overview.
+<p>
+Notice how we let all the widgets have their preferred sizes, instead
+putting the stretch just to the left of the New Game button.  <pre>
+        newGame();
+    }
+</pre>
+<p>
+We're all done constructing the GameBoard, so we start it all using
+newGame().  (newGame() is a slot, but as we said, slots can be used as
+ordinary functions too.)  <pre>
+    void GameBoard::fire()
+    {
+        if ( cannonField-&gt;gameOver() || cannonField-&gt;isShooting() )
+            return;
+        shotsLeft-&gt;display( shotsLeft-&gt;intValue() - 1 );
+        cannonField-&gt;shoot();
+    }
+</pre>
+<p>
+This function fires a shot.  If the game is over or there is a shot in the
+air, we return immediately.  We decrement number of shots left and tell
+the cannon to shoot.  <pre>
+    void GameBoard::hit()
+    {
+        hits-&gt;display( hits-&gt;intValue() + 1 );
+        if ( shotsLeft-&gt;intValue() == 0 )
+            cannonField-&gt;setGameOver();
+        else
+            cannonField-&gt;newTarget();
+    }
+</pre>
+<p>
+This slot is activated when a shot has hit the target.  We increment the
+number of hits.  If there are no shots left, the game is over.  Otherwise,
+we make the CannonField generate a new target.  <pre>
+    void GameBoard::missed()
+    {
+        if ( shotsLeft-&gt;intValue() == 0 )
+            cannonField-&gt;setGameOver();
+    }
+</pre>
+<p>
+This slot is activated when a shot has missed the target.  If there are no
+shots left, the game is over.  <pre>
+    void GameBoard::newGame()
+    {
+        shotsLeft-&gt;display( 15 );
+        hits-&gt;display( 0 );
+        cannonField-&gt;restartGame();
+        cannonField-&gt;newTarget();
+    }
+</pre>
+<p>
+This slot is activated when the user clicks the restart button.  It is
+also called from the constructor.  First, it sets the number of shots
+to 15.  Note that this is the only place in the program that we set
+the number of shots.  Change it to whatever you like to change the
+game rules.  Next, we reset the number of hits, restart the game and
+generate a new target.
+<p>
+<h3><a href="t13-main-cpp.html">main.cpp</a></h3>
+<p>
+This file has just been on a diet.  MyWidget is gone and the only
+thing left is the main() function, unchanged except for the name
+change.
+<p>
+<h2>Behavior</h2>
+<p>
+Hits and shots left are displayed and the program keeps track of them.
+The game can end and there's a button to start a new game.
+<p>
+<h2>Exercises</h2>
+<p>
+Add a random wind factor and show it to the user.
+<p>
+Make some splatter effects when the shot hits the target.
+<p>
+Implement multiple targets.
+<p>
+You may now go on to <a href="t14.html">chapter fourteen.</a>
+<p>
+[<a href="t12.html">Previous tutorial</a>]
+[<a href="t14.html">Next tutorial</a>]
+[<a href="tutorial.html">Main tutorial page</a>]
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

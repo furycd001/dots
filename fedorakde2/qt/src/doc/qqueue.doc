@@ -1,0 +1,146 @@
+/****************************************************************************
+** $Id: qt/doc/qqueue.doc   2.3.2   edited 2001-01-26 $
+**
+** QQueue class documentation
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+
+/*****************************************************************************
+  QQueue documentation
+ *****************************************************************************/
+
+/*!
+  \class QQueue qqueue.h
+  \brief The QQueue class is a template class that provides a queue.
+
+  \ingroup collection
+  \ingroup tools
+
+  QQueue is implemented as a template class. Define a template
+  instance QQueue\<X\> to create a queue that operates on pointers to
+  X, or X*.
+
+  A queue is a First In, First Out (FIFO) structure. Items are added
+  to the back of the queue with enqueue() and retrieved from the front
+  with dequeue().
+
+  \sa \link collection.html Collection Classes\endlink
+*/
+
+/*! \fn QQueue::QQueue () 
+  Creates an empty queue.
+*/
+
+/*! \fn QQueue::QQueue (const QQueue<type>& queue) 
+  Creates a queue from another.
+
+  Only the pointers are copied (shallow copy).
+*/
+
+/*! \fn QQueue::~QQueue () 
+  Destroys the list.  Items in the list are destroyed if autoDelete() is TRUE.
+*/
+
+/*! \fn QQueue<type>& QQueue::operator= (const QQueue<type>& queue) 
+  Assigns \e queue to this queue and returns a reference to this queue.
+
+  This queue is first cleared, then each item in \e queue is
+  enqueued to this queue.  Only the pointers are copied (shallow copy).
+*/
+
+/*! \fn bool QQueue::isEmpty () const 
+
+  Returns TRUE if there are no items to be \link dequeue() dequeued \endlink.
+*/
+
+/*! \fn void QQueue::enqueue (const type* d) 
+
+  Adds an item to the back of the queue.  First in, first out.
+*/
+
+/*! \fn type* QQueue::dequeue () 
+
+  Takes the front item from the queue.  First in, first out.
+*/
+
+/*! \fn bool QQueue::remove () 
+
+  Removes the front item from the queue.  First in, first out.
+  The item is deleted if autoDelete() is TRUE.
+  Returns TRUE if there was an item to remove.
+*/
+
+/*! \fn void QQueue::clear()
+  Removes all items from the queue, deleting them if
+  if autoDelete() is TRUE.
+
+  \sa remove()
+*/
+
+/*! \fn uint QQueue::count() const
+  Returns the number of items in the queue.
+
+  \sa isEmpty()
+*/
+
+/*! \fn type* QQueue::head () const 
+  Returns a reference to the front item in the queue.  The queue is
+  not changed.
+*/
+
+/*! \fn QQueue::operator type* ()const 
+
+  Returns a reference to the front item in the queue.  The queue is
+  not changed.
+*/
+
+/*! \fn type* QQueue::current () const 
+
+  Returns a reference to the front item in the queue.  The queue is
+  not changed.
+*/
+
+/*! \fn bool QQueue::autoDelete() const
+
+  The same as QCollection::autoDelete().
+
+  \sa setAutoDelete()
+*/
+
+/*! \fn void QQueue::setAutoDelete( bool enable ) 
+
+  The same as QCollection::setAutoDelete().
+ 
+  \sa autoDelete()
+*/
+
+

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Qt/Embedded Virtual Framebuffer</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Qt/Embedded Virtual Framebuffer</h1><br clear="all">
+The virtual framebuffer allows Qt/Embedded programs to be developed on your
+desktop machine, without switching between consoles and X11.
+<p>
+The virtual framebuffer is located in $QTDIR/tools/qvfb
+<p>
+<h3>Using the virtual framebuffer</h3>
+<ol> 
+<li>Make sure QT_NO_QWS_VFB in $QTDIR/src/tools/qconfig.h is not defined
+    and compile the Qt/Embedded library.
+<li>Compile qvfb as a <i>normal Qt/X11 application</i> and run it - do not
+    compile it as a Qt/Embedded application.
+<li>Start a Qt/Embedded master application (i.e. construct QApplication with
+    QApplication::GuiServer flag or use the -qws command line parameter).
+    You will need to specify to the server that you wish to use the virtual
+    framebuffer driver, e.g.:<p>
+    <tt>widgets -qws -display QVFb:0</tt>
+<li>You may prefer to set the QWS_DISPLAY environment variable to
+    be <tt>QVFb:0</tt>.
+</ol>
+<p>
+qvfb supports the following command line options:
+<p>
+<table>
+<tr><td><tt>-width width</tt></td>
+    <td>the width of the virtual framebuffer (default: 240).</td></tr>
+<tr><td><tt>-height height</tt></td>
+    <td>the height of the virtual framebuffer (default: 320).</td></tr>
+<tr><td><tt>-depth depth</tt></td>
+    <td>the depth of the virtual framebuffer (1, 4, 8 or 32, default: 8).</td></tr>
+<tr><td><tt>-nocursor</tt></td>
+    <td>do not display the X11 cursor in the framebuffer window.</td></tr>
+<tr><td><tt>-qwsdisplay :id</tt></td>
+    <td>the Qt/Embedded display id to provide (default :0).</td></tr>
+</table>
+<p>
+<h3>Virtual Framebuffer Design</h3>
+<p>
+The virtual framebuffer emulates a framebuffer using a shared memory region
+(the virtual frame buffer) and a utility to display the framebuffer in a
+window (qvfb).  The regions of the display that have changed are updated
+periodically, so you will see discrete snapshots of the framebuffer rather
+than each individual drawing operation.  For this reason drawing problems
+such as flickering may not be apparent until the program is run using a real
+framebuffer.
+<p>
+The target refresh rate can be set via the View->Refresh Rate menu item.
+This will cause qvfb to check for updated regions more quickly.  The rate
+is a target only.  If little drawing is being done, the framebuffer will
+not show any updates between drawing events.  If an application is displaying
+an animation the updates will be frequent, and the application and
+qvfb will compete for processor time.
+<p>
+Mouse and keyboard events are passed to the Qt/Embedded master process via
+named pipes.
+<p>
+The virtual framebuffer is a development tool only.  No security issues have
+been considered in the virtual framebuffer design.  It should not be used
+in a production environment and QT_NO_QWS_VFB should always be defined
+in production libraries.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

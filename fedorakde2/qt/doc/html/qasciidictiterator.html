@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QAsciiDictIterator Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QAsciiDictIterator Class Reference</h1><br clear="all">
+<p>
+The QAsciiDictIterator class provides an iterator for <a href="qasciidict.html">QAsciiDict</a> collections.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qasciidict-h.html">qasciidict.h</a>&gt;</code>
+<p>
+Inherits <a href="qgdictiterator.html">QGDictIterator</a>.
+<p><a href="qasciidictiterator-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#71a600"><b>QAsciiDictIterator</b></a> ( const QAsciiDict&lt;type&gt; &amp; dict ) </div>
+<li><div class="fn"><a href="#633d3a"><b>~QAsciiDictIterator</b></a> () </div>
+<li><div class="fn">uint <a href="#ed8bec"><b>count</b></a> () const</div>
+<li><div class="fn">bool <a href="#c5ddff"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">type* <a href="#4c6a86"><b>toFirst</b></a> () </div>
+<li><div class="fn">operator <a href=qasciidictiterator.html#d1d403><b>type*</b></a> ()const</div>
+<li><div class="fn">type* <a href="#345554"><b>current</b></a> () const</div>
+<li><div class="fn">const char* <a href="#a68a0b"><b>currentKey</b></a> () const</div>
+<li><div class="fn">type* <a href="#fac58c"><b>operator</b></a> () </div>
+<li><div class="fn">type* <a href="#4a0848"><b>operator++</b></a> () </div>
+<li><div class="fn">type* <a href="#c1b9ef"><b>operator+=</b></a> ( uint jump ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QAsciiDictIterator class provides an iterator for <a href="qasciidict.html">QAsciiDict</a> collections.
+<p>
+QAsciiDictIterator is implemented as a template class.
+Define a template instance QAsciiDictIterator&lt;X&gt; to create a
+dictionary iterator that operates on QAsciiDict&lt;X&gt; (dictionary of X*).
+<p>Example:
+<pre>    #include &lt;qasciidict.h&gt;
+    #include &lt;stdio.h&gt;
+
+    void main()
+    {
+      // Creates a dictionary that maps char* ==&gt; char* (case insensitive)
+        <a href="qasciidict.html">QAsciiDict</a>&lt;char&gt; dict( 17, FALSE );
+
+        dict.<a href="qasciidict.html#17d3d1">insert</a>( "France", "Paris" );
+        dict.<a href="qasciidict.html#17d3d1">insert</a>( "Russia", "Moscow" );
+        dict.<a href="qasciidict.html#17d3d1">insert</a>( "Norway", "Oslo" );
+
+        <a href="qasciidictiterator.html">QAsciiDictIterator</a>&lt;char&gt; it( dict ); // iterator for dict
+
+        while ( it.<a href="#345554">current</a>() ) {
+            printf( "%s -&gt; %s\n", it.<a href="#a68a0b">currentKey</a>(), it.<a href="#345554">current</a>() );
+            ++it;
+        }
+    }
+</pre>
+<p>Program output:
+<pre>        Russia -&gt; Moscow
+        Norway -&gt; Oslo
+        France -&gt; Paris
+</pre>
+<p>Note that the traversal order is arbitrary, you are not guaranteed the
+order above.
+<p>Multiple iterators may independently traverse the same dictionary.
+A QAsciiDict knows about all iterators that are operating on the dictionary.
+When an item is removed from the dictionary, QAsciiDict update all iterators
+that are referring the removed item to point to the next item in the
+traversing order.
+<p>See also  <a href="qasciidict.html">QAsciiDict</a> and <a href="collection.html">Collection Classes</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="71a600"></a>QAsciiDictIterator::QAsciiDictIterator ( const <a href="qasciidict.html">QAsciiDict</a>&lt;type&gt; &amp; dict )</h3>
+<p>Constructs an iterator for <em>dict.</em>  The current iterator item is
+set to point on the first item in the <em>dict.</em>
+<h3 class="fn"><a name="633d3a"></a>QAsciiDictIterator::~QAsciiDictIterator ()</h3>
+<p>Destroys the iterator.
+<h3 class="fn"><a name="d1d403"></a>QAsciiDictIterator::operator type * () const</h3>
+<p>Cast operator. Returns a pointer to the current iterator item.
+Same as <a href="#345554">current</a>().
+<h3 class="fn">uint <a name="ed8bec"></a>QAsciiDictIterator::count () const</h3>
+<p>Returns the number of items in the dictionary this iterator operates on.
+<p>See also  <a href="#c5ddff">isEmpty</a>().
+<h3 class="fn">type * <a name="345554"></a>QAsciiDictIterator::current () const</h3>
+<p>Returns a pointer to the current iterator item.
+<h3 class="fn">const char * <a name="a68a0b"></a>QAsciiDictIterator::currentKey () const</h3>
+<p>Returns a pointer to the key for the current iterator item.
+<h3 class="fn">bool <a name="c5ddff"></a>QAsciiDictIterator::isEmpty () const</h3>
+<p>Returns TRUE if the dictionary is empty, i.e. <a href="#ed8bec">count</a>() == 0, otherwise FALSE.
+<p>See also  <a href="#ed8bec">count</a>().
+<h3 class="fn">type * <a name="fac58c"></a>QAsciiDictIterator::operator() ()</h3>
+<p>Makes the succeeding item current and returns the original current item.
+<p>If the current iterator item was the last item in the dictionary or if it
+was null, null is returned.
+<h3 class="fn">type * <a name="4a0848"></a>QAsciiDictIterator::operator++ ()</h3>
+<p>Prefix ++ makes the succeeding item current and returns the new current
+item.
+<p>If the current iterator item was the last item in the dictionary or if it
+was null, null is returned.
+<h3 class="fn">type * <a name="c1b9ef"></a>QAsciiDictIterator::operator+= ( uint jump )</h3>
+<p>Sets the current item to the item <em>jump</em> positions after the current item,
+and returns a pointer to that item.
+<p>If that item is beyond the last item or if the dictionary is  empty,
+it sets the current item to null and  returns null.
+<h3 class="fn">type * <a name="4c6a86"></a>QAsciiDictIterator::toFirst ()</h3>
+<p>Sets the current iterator item to point to the first item in the
+dictionary and returns a pointer to the item.
+If the dictionary is  empty it sets the current item to null and 
+returns null.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

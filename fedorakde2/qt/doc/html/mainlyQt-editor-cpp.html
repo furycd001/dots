@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - mainlyQt/editor.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Editor Example</h1>
+  <p>
+  This example shows two simple text editors, with most of the
+  program written in Qt.  One editor is a Qt QMultiLineEdit, the
+  other is an Athena Widgets text widget.  They are bound together
+  in a Qt main window.
+<pre>#include "<a name="qxt.h"></a><a href="qxt-h.html">qxt.h</a>"
+#include &lt;<a name="qmainwindow.h"></a><a href="qmainwindow-h.html">qmainwindow.h</a>&gt;
+#include &lt;<a name="qmultilineedit.h"></a><a href="qmultilineedit-h.html">qmultilineedit.h</a>&gt;
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qmessagebox.h"></a><a href="qmessagebox-h.html">qmessagebox.h</a>&gt;
+#include &lt;<a name="qpopupmenu.h"></a><a href="qpopupmenu-h.html">qpopupmenu.h</a>&gt;
+#include &lt;<a name="qmenubar.h"></a><a href="qmenubar-h.html">qmenubar.h</a>&gt;
+#include &lt;<a name="qsplitter.h"></a><a href="qsplitter-h.html">qsplitter.h</a>&gt;
+#include &lt;X11/IntrinsicP.h&gt;
+#include &lt;X11/Shell.h&gt;
+#include &lt;X11/StringDefs.h&gt;
+#include &lt;X11/Xaw/AsciiText.h&gt;
+
+static const char* QTEDMSG =
+    "This is a Qt widget.\nIt is a QMultiLineEdit.";
+
+static const char* XTEDMSG =
+    "This is an Xt widget.\nIt is an asciiTextWidgetClass.";
+
+class EncapsulatedXtWidget : public QXtWidget {
+    Widget editor;
+public:
+    EncapsulatedXtWidget(<a name="QWidget"></a><a href="qwidget.html">QWidget</a>* parent) :
+        <a name="QXtWidget"></a><a href="qxtwidget.html">QXtWidget</a>( "shell", topLevelShellWidgetClass, parent )
+    {
+        Arg args[20];
+        Cardinal nargs=0;
+        XtSetArg(args[nargs], XtNeditType, XawtextEdit); nargs++;
+        XtSetArg(args[nargs], XtNstring, XTEDMSG);       nargs++;
+        editor = XtCreateWidget( "editor", asciiTextWidgetClass, xtWidget(), args, nargs);
+        XtRealizeWidget( editor );
+        XtMapWidget( editor );
+    }
+    void resizeEvent( <a name="QResizeEvent"></a><a href="qresizeevent.html">QResizeEvent</a>* e )
+    {
+        <a name="QXtWidget::resizeEvent"></a><a href="qxtwidget.html#71ff15">QXtWidget::resizeEvent</a>( e );
+        XtResizeWidget( editor, width(), height(), 2 );
+    }
+};
+
+class TwoEditors : public QMainWindow {
+    <a name="QMultiLineEdit"></a><a href="qmultilineedit.html">QMultiLineEdit</a>* qtchild;
+    EncapsulatedXtWidget* xtchild;
+
+public:
+    TwoEditors() :
+        <a name="QMainWindow"></a><a href="qmainwindow.html">QMainWindow</a>( 0, "mainWindow")
+    {
+        <a name="QPopupMenu"></a><a href="qpopupmenu.html">QPopupMenu</a>* file = new <a href="qpopupmenu.html">QPopupMenu</a>( this );
+        file-&gt;<a name="insertItem"></a><a href="qmenudata.html#0076cb">insertItem</a>("E&amp;xit", qApp, SLOT( quit() ) );
+        menuBar()-&gt;insertItem( "&amp;File", file );
+        statusBar();
+        <a name="QSplitter"></a><a href="qsplitter.html">QSplitter</a>* splitter = new <a href="qsplitter.html">QSplitter</a>( this );
+        splitter-&gt;<a name="setOpaqueResize"></a><a href="qsplitter.html#28096e">setOpaqueResize</a>( TRUE );
+        setCentralWidget( splitter );
+        xtchild = new EncapsulatedXtWidget( splitter );
+        qtchild = new <a href="qmultilineedit.html">QMultiLineEdit</a>( splitter );
+        qtchild-&gt;<a name="setText"></a><a href="qmultilineedit.html#3fd8c1">setText</a>(QTEDMSG);
+    }
+
+};
+
+main(int argc, char** argv)
+{
+    <a name="QXtApplication"></a><a href="qxtapplication.html">QXtApplication</a> app(argc, argv, "TwoEditors");
+    TwoEditors m;
+    app.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>(&amp;m);
+    m.<a name="show"></a><a href="qmainwindow.html#eb53e3">show</a>();
+    return app.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

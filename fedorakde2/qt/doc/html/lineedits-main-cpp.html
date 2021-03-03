@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - lineedits/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Line Edits</h1><br clear="all">
+
+  The Lineedits example shows how to work with single Lineedit widgets, and
+  how to use different Echo Modes and Validators.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/lineedits/lineedits.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef LINEDITS_H
+#define LINEDITS_H
+
+#include &lt;<a href="qgroupbox-h.html">qgroupbox.h</a>&gt;
+
+class QLineEdit;
+class QComboBox;
+
+class LineEdits : public QGroupBox
+{
+    Q_OBJECT
+
+public:
+    LineEdits( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0 );
+
+protected:
+    <a href="qlineedit.html">QLineEdit</a> *lined1, *lined2, *lined3, *lined4;
+    <a href="qcombobox.html">QComboBox</a> *combo1, *combo2, *combo3, *combo4;
+
+protected slots:
+    void slotEchoChanged( int );
+    void slotValidatorChanged( int );
+    void slotAlignmentChanged( int );
+    void slotReadOnlyChanged( int );
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/lineedits/lineedits.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "lineedits.h"
+
+#include &lt;<a href="qlineedit-h.html">qlineedit.h</a>&gt;
+#include &lt;<a href="qcombobox-h.html">qcombobox.h</a>&gt;
+#include &lt;<a href="qframe-h.html">qframe.h</a>&gt;
+#include &lt;<a href="qvalidator-h.html">qvalidator.h</a>&gt;
+#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a href="qlayout-h.html">qlayout.h</a>&gt;
+#include &lt;<a href="qhbox-h.html">qhbox.h</a>&gt;
+
+/*
+ * Constructor
+ *
+ * Creates child widgets of the LineEdits widget
+ */
+
+LineEdits::LineEdits( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qgroupbox.html">QGroupBox</a>( 0, Horizontal, "Line edits", parent, name )
+{
+    <a href="qframe.html#b11d00">setMargin</a>( 10 );
+
+    <a href="qvboxlayout.html">QVBoxLayout</a>* box = new <a href="qvboxlayout.html">QVBoxLayout</a>( <a href="qwidget.html#839758">layout</a>() );
+
+    <a href="qhboxlayout.html">QHBoxLayout</a> *row1 = new <a href="qhboxlayout.html">QHBoxLayout</a>( box );
+    row1-&gt;<a href="qlayout.html#cc3fec">setMargin</a>( 5 );
+
+    // Create a Label
+    <a href="qlabel.html">QLabel</a>* label = new <a href="qlabel.html">QLabel</a>( "Echo Mode: ", this);
+    row1-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( label );
+
+    // Create a Combobox with three items...
+    combo1 = new <a href="qcombobox.html">QComboBox</a>( FALSE, this );
+    row1-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( combo1 );
+    combo1-&gt;insertItem( "Normal", -1 );
+    combo1-&gt;insertItem( "Password", -1 );
+    combo1-&gt;insertItem( "No Echo", -1 );
+    // ...and connect the activated() SIGNAL with the slotEchoChanged() SLOT to be able
+    // to react when an item is selected
+    <a href="qobject.html#7f8e37">connect</a>( combo1, SIGNAL( activated( int ) ), this, SLOT( <a href=#196>slotEchoChanged</a>( int ) ) );
+
+    // insert the first LineEdit
+    lined1 = new <a href="qlineedit.html">QLineEdit</a>( this );
+    box-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( lined1 );
+
+    // another widget which is used for layouting
+    <a href="qhboxlayout.html">QHBoxLayout</a> *row2 = new <a href="qhboxlayout.html">QHBoxLayout</a>( box );
+    row2-&gt;<a href="qlayout.html#cc3fec">setMargin</a>( 5 );
+
+    // and the second label
+    label = new <a href="qlabel.html">QLabel</a>( "Validator: ", this );
+    row2-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( label );
+
+    // A second Combobox with again three items...
+    combo2 = new <a href="qcombobox.html">QComboBox</a>( FALSE, this );
+    row2-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( combo2 );
+    combo2-&gt;insertItem( "No Validator", -1 );
+    combo2-&gt;insertItem( "Integer Validator", -1 );
+    combo2-&gt;insertItem( "Double Validator", -1 );
+    // ...and again the activated() SIGNAL gets connected with a SLOT
+    <a href="qobject.html#7f8e37">connect</a>( combo2, SIGNAL( activated( int ) ), this, SLOT( <a href=#197>slotValidatorChanged</a>( int ) ) );
+
+    // and the second LineEdit
+    lined2 = new <a href="qlineedit.html">QLineEdit</a>( this );
+    box-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( lined2 );
+
+    // yet another widget which is used for layouting
+    <a href="qhboxlayout.html">QHBoxLayout</a> *row3 = new <a href="qhboxlayout.html">QHBoxLayout</a>( box );
+    row3-&gt;<a href="qlayout.html#cc3fec">setMargin</a>( 5 );
+
+    // we need a label for this too
+    label = new <a href="qlabel.html">QLabel</a>( "Alignment: ", this );
+    row3-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( label );
+
+    // A combo box for setting alignment
+    combo3 = new <a href="qcombobox.html">QComboBox</a>( FALSE, this );
+    row3-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( combo3 );
+    combo3-&gt;insertItem( "Left", -1 );
+    combo3-&gt;insertItem( "Centered", -1 );
+    combo3-&gt;insertItem( "Right", -1 );
+    // ...and again the activated() SIGNAL gets connected with a SLOT
+    <a href="qobject.html#7f8e37">connect</a>( combo3, SIGNAL( activated( int ) ), this, SLOT( <a href=#198>slotAlignmentChanged</a>( int ) ) );
+
+    // and the third lineedit
+    lined3 = new <a href="qlineedit.html">QLineEdit</a>( this );
+    box-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( lined3 );
+
+    // last widget used for layouting
+    <a href="qhbox.html">QHBox</a> *row4 = new <a href="qhbox.html">QHBox</a>( this );
+    box-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( row4 );
+    row4-&gt;<a href="qframe.html#b11d00">setMargin</a>( 5 );
+
+    // last label
+    (void)new <a href="qlabel.html">QLabel</a>( "Read-Only: ", row4 );
+
+    // A combo box for setting alignment
+    combo4 = new <a href="qcombobox.html">QComboBox</a>( FALSE, row4 );
+    combo4-&gt;insertItem( "False", -1 );
+    combo4-&gt;insertItem( "True", -1 );
+    // ...and again the activated() SIGNAL gets connected with a SLOT
+    <a href="qobject.html#7f8e37">connect</a>( combo4, SIGNAL( activated( int ) ), this, SLOT( <a href=#199>slotReadOnlyChanged</a>( int ) ) );
+
+    // and the last lineedit
+    lined4 = new <a href="qlineedit.html">QLineEdit</a>( this );
+    box-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( lined4 );
+
+    // give the first LineEdit the focus at the beginning
+    lined1-&gt;setFocus();
+}
+
+/*
+ * SLOT slotEchoChanged( int i )
+ *
+ * i contains the number of the item which the user has been chosen in the
+ * first Combobox. According to this value, we set the Echo-Mode for the
+ * first LineEdit.
+ */
+
+void <a name="196"></a>LineEdits::slotEchoChanged( int i )
+{
+    switch ( i ) {
+    case 0:
+        lined1-&gt;setEchoMode( QLineEdit::Normal );
+        break;
+    case 1:
+        lined1-&gt;setEchoMode( QLineEdit::Password );
+        break;
+    case 2:
+        lined1-&gt;setEchoMode( QLineEdit::NoEcho );
+        break;
+    }
+
+    lined1-&gt;setFocus();
+}
+
+/*
+ * SLOT slotValidatorChanged( int i )
+ *
+ * i contains the number of the item which the user has been chosen in the
+ * second Combobox. According to this value, we set a validator for the
+ * second LineEdit. A validator checks in a LineEdit each character which
+ * the user enters and accepts it if it is valid, else the character gets
+ * ignored and not inserted into the lineedit.
+ */
+
+void <a name="197"></a>LineEdits::slotValidatorChanged( int i )
+{
+    switch ( i ) {
+    case 0:
+        lined2-&gt;setValidator( 0 );
+        break;
+    case 1:
+        lined2-&gt;setValidator( new QIntValidator( lined2 ) );
+        break;
+    case 2:
+        lined2-&gt;setValidator( new QDoubleValidator( -999.0, 999.0, 2,
+                                                    lined2 ) );
+        break;
+    }
+
+    lined2-&gt;setText( "" );
+    lined2-&gt;setFocus();
+}
+
+/*
+ * SLOT slotAlignmentChanged( int i )
+ *
+ * i contains the number of the item which the user has been chosen in
+ * the third Combobox.  According to this value, we set an alignment
+ * third LineEdit.
+ */
+
+void <a name="198"></a>LineEdits::slotAlignmentChanged( int i )
+{
+    switch ( i ) {
+    case 0:
+        lined3-&gt;setAlignment( QLineEdit::AlignLeft );
+        break;
+    case 1:
+        lined3-&gt;setAlignment( QLineEdit::AlignCenter );
+        break;
+    case 2:
+        lined3-&gt;setAlignment( QLineEdit::AlignRight );
+        break;
+    }
+
+    lined3-&gt;setFocus();
+}
+
+/*
+ * SLOT slotReadOnlyChanged( int i )
+ *
+ * i contains the number of the item which the user has been chosen in
+ * the fourth Combobox.  According to this value, we toggle read-only.
+ */
+
+void <a name="199"></a>LineEdits::slotReadOnlyChanged( int i )
+{
+    switch ( i ) {
+    case 0:
+        lined4-&gt;setReadOnly( FALSE );
+        break;
+    case 1:
+        lined4-&gt;setReadOnly( TRUE );
+        break;
+    }
+
+    lined4-&gt;setFocus();
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/lineedits/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "lineedits.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    LineEdits lineedits;
+    lineedits.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Lineedits" );
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;lineedits );
+    lineedits.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

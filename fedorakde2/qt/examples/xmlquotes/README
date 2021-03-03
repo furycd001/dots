@@ -1,0 +1,28 @@
+This example shows the basic use of the class QXml. It is like the example
+"richtext" but the quotations stand in an XML file and are parsed.
+
+The intresting parts are:
+
+ o The following lines of main.cpp which parses the XML file:
+
+      QuoteHandler handler;
+      QFile file( "quotes.xml" );
+      QXmlInputSource source( file );
+      QXmlSimpleReader reader;
+      reader.setContentHandler( &handler );
+      reader.setErrorHandler( &handler );
+      bool ok = reader.parse( source );
+      file.close();
+      if ( !ok ) {
+          QMessageBox::critical( 0,
+              a.tr( "Parse Error" ),
+              a.tr( handler.errorProtocol() ) );
+          return -1;
+      }
+
+    The QuoteHandler handles the parsing events. The input is read from a
+    QFile. The QXmlSimpleReader is the parser class; you have to
+    install the handler and then parse the input source.
+
+ o The files quoteparser.h and quoteparser.cpp implement the necessary
+   functions to perform the parsing.

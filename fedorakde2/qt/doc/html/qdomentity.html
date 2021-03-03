@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QDomEntity Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QDomEntity Class Reference<br><small>[ <a href="xml.html">XML module</a> ]</small></h1><br clear="all">
+<p>
+The QDomEntity class represents an XML entity.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qdom-h.html">qdom.h</a>&gt;</code>
+<p>
+Inherits <a href="qdomnode.html">QDomNode</a>.
+<p><a href="qdomentity-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#109aa2"><b>QDomEntity</b></a> () </div>
+<li><div class="fn"><a href="#12bd17"><b>QDomEntity</b></a> ( const QDomEntity &amp; x ) </div>
+<li><div class="fn">QDomEntity&amp; <a href="#bdf161"><b>operator=</b></a> ( const QDomEntity &amp; ) </div>
+<li><div class="fn"><a href="#9feb10"><b>~QDomEntity</b></a> () </div>
+<li><div class="fn">virtual QString <a href="#457a03"><b>publicId</b></a> () const</div>
+<li><div class="fn">virtual QString <a href="#81110e"><b>systemId</b></a> () const</div>
+<li><div class="fn">virtual QString <a href="#95f6a8"><b>notationName</b></a> () const</div>
+<li><div class="fn">virtual QDomNode::NodeType <a href="#e7b74c"><b>nodeType</b></a> () const</div>
+<li><div class="fn">virtual bool <a href="#8f848b"><b>isEntity</b></a> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QDomEntity class represents an XML entity.
+<p>
+This class represents an entity in an XML document, either parsed or
+unparsed. Note that this models the entity itself not the entity declaration.
+<p>DOM does not support editing entity nodes; if a user wants to make changes to
+the contents of an entity, every related <a href="qdomentityreference.html">QDomEntityReference</a> node has to be
+replaced in the DOM tree by a clone of the entity's contents, and then
+the desired changes must be made to each of those clones instead. All the
+descendants of an entity node are readonly.
+<p>An entity node does not have any parent.
+<p>For further information about the Document Objct Model see
+<a href="http://www.w3.org/TR/REC-DOM-Level-1/">http://www.w3.org/TR/REC-DOM-Level-1/</a>.
+For a more general introduction of the DOM implementation see the
+<a href="qdomdocument.html">QDomDocument</a> documentation.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="109aa2"></a>QDomEntity::QDomEntity ()</h3>
+<p>Constructs an empty entity.
+<h3 class="fn"><a name="12bd17"></a>QDomEntity::QDomEntity ( const QDomEntity &amp; x )</h3>
+<p>Copy constructor.
+<p>The data of the copy is shared: modifying one will also change the other. If
+you want to make a real copy, use <a href="qdomnode.html#8f17f1">cloneNode</a>() instead.
+<h3 class="fn"><a name="9feb10"></a>QDomEntity::~QDomEntity ()</h3>
+<p>Destructor.
+<h3 class="fn">bool <a name="8f848b"></a>QDomEntity::isEntity () const <code>[virtual]</code></h3>
+<p>Returns TRUE.
+<p>Reimplemented from <a href="qdomnode.html#7d3017">QDomNode.</a>
+<h3 class="fn">QDomNode::NodeType <a name="e7b74c"></a>QDomEntity::nodeType() const <code>[virtual]</code></h3>
+<p>Returns <code>EntityNode.</code>
+<p>Reimplemented from <a href="qdomnode.html#46495e">QDomNode.</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="95f6a8"></a>QDomEntity::notationName () const <code>[virtual]</code></h3>
+<p>For unparsed entities this function returns the name of the notation for the
+entity. For parsed entities this function returns QString::null.
+<h3 class="fn">QDomEntity&amp; <a name="bdf161"></a>QDomEntity::operator= ( const QDomEntity &amp; x )</h3>
+<p>Assignment operator.
+<p>The data of the copy is shared: modifying one will also change the other. If
+you want to make a real copy, use <a href="qdomnode.html#8f17f1">cloneNode</a>() instead.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="457a03"></a>QDomEntity::publicId () const <code>[virtual]</code></h3>
+<p>Returns the public identifier associated with this entity.
+If the public identifier was not specified QString::null is returned.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="81110e"></a>QDomEntity::systemId () const <code>[virtual]</code></h3>
+<p>Returns the system identifier associated with this entity.
+If the system identifier was not specified QString::null is returned.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

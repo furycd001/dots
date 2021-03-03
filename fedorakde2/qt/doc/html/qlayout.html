@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QLayout Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QLayout Class Reference</h1><br clear="all">
+<p>
+The QLayout class is the base class of geometry specifiers.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qabstractlayout-h.html">qabstractlayout.h</a>&gt;</code>
+<p>
+Inherits <a href="qlayoutitem.html">QLayoutItem</a> and <a href="qobject.html">QObject</a>.
+<p>Inherited by <a href="qboxlayout.html">QBoxLayout</a> and <a href="qgridlayout.html">QGridLayout</a>.
+<p><a href="qlayout-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#35039a"><b>QLayout</b></a> ( QWidget * parent, int margin=0, int space=-1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#d36ffa"><b>QLayout</b></a> ( QLayout * parentLayout, int space=-1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#9422ca"><b>QLayout</b></a> ( int space=-1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#36971b"><b>~QLayout</b></a> () </div>
+<li><div class="fn">int <a href="#2476ec"><b>margin</b></a> () const</div>
+<li><div class="fn">int <a href="#372777"><b>spacing</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#cc3fec"><b>setMargin</b></a> ( int ) </div>
+<li><div class="fn">virtual void <a href="#a37f09"><b>setSpacing</b></a> ( int ) </div>
+<li><div class="fn">enum { unlimited = QWIDGETSIZE_MAX }</div>
+<li><div class="fn">enum <a href="#ResizeMode"><b>ResizeMode</b></a> { FreeResize, Minimum, Fixed }</div>
+<li><div class="fn">void <a href="#e750be"><b>setResizeMode</b></a> ( ResizeMode ) </div>
+<li><div class="fn">ResizeMode <a href="#1e29a1"><b>resizeMode</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#6d51f1"><b>setMenuBar</b></a> ( QMenuBar * w ) </div>
+<li><div class="fn">QMenuBar* <a href="#81e99b"><b>menuBar</b></a> () const</div>
+<li><div class="fn">QWidget* <a href="#21ac4b"><b>mainWidget</b></a> () </div>
+<li><div class="fn">bool <a href="#c29729"><b>isTopLevel</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#a83e73"><b>setAutoAdd</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#d02056"><b>autoAdd</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#9af473"><b>invalidate</b></a> () </div>
+<li><div class="fn">bool <a href="#1cb33d"><b>activate</b></a> () </div>
+<li><div class="fn">void <a href="#a9ddc3"><b>add</b></a> ( QWidget * w ) </div>
+<li><div class="fn">virtual void <a href="#db69d5"><b>addItem</b></a> ( QLayoutItem * ) </div>
+<li><div class="fn">virtual QSizePolicy::ExpandData <a href="#b4ec8c"><b>expanding</b></a> () const</div>
+<li><div class="fn">virtual QSize <a href="#8e1dc2"><b>minimumSize</b></a> () const</div>
+<li><div class="fn">virtual QSize <a href="#7a16d1"><b>maximumSize</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#f1f752"><b>setGeometry</b></a> ( const QRect &amp; ) </div>
+<li><div class="fn">virtual QLayoutIterator <a href="#3d3ab8"><b>iterator</b></a> () </div>
+<li><div class="fn">virtual bool <a href="#b61308"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">int <b>totalHeightForWidth</b> ( int w ) const (internal)</div>
+<li><div class="fn">QSize <b>totalMinimumSize</b> () const (internal)</div>
+<li><div class="fn">QSize <b>totalMaximumSize</b> () const (internal)</div>
+<li><div class="fn">QSize <b>totalSizeHint</b> () const (internal)</div>
+<li><div class="fn">bool <a href="#e669ce"><b>supportsMargin</b></a> () const</div>
+<li><div class="fn">void <a href="#2ddff1"><b>setEnabled</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#b3a2cc"><b>isEnabled</b></a> () const</div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual bool <a href="#95c40e"><b>eventFilter</b></a> ( QObject *, QEvent * ) </div>
+<li><div class="fn">void <a href="#c40cf8"><b>addChildLayout</b></a> ( QLayout * l ) </div>
+<li><div class="fn">void <a href="#3349c9"><b>deleteAllItems</b></a> () </div>
+<li><div class="fn">void <a href="#48c39d"><b>setSupportsMargin</b></a> ( bool ) </div>
+<li><div class="fn">QRect <a href="#f85a57"><b>alignmentRect</b></a> ( const QRect &amp; ) const</div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>int<td>margin<td>margin<td>setMargin<td>&nbsp;
+<tr><td>int<td>spacing<td>spacing<td>setSpacing<td>&nbsp;
+<tr><td>ResizeMode<td>resizeMode<td>resizeMode<td>setResizeMode<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QLayout class is the base class of geometry specifiers.
+<p>
+This is an abstract base class. The concrete layout managers
+<a href="qboxlayout.html">QBoxLayout</a> and <a href="qgridlayout.html">QGridLayout</a> inherit from this one.
+<p>For users of Q*Layout or <a href="qmainwindow.html">QMainWindow</a>, there is seldom need to use
+any of the basic functions provided by QLayout, such as <a href="#e750be">setResizeMode</a>()
+or <a href="#6d51f1">setMenuBar</a>(). See the <a href="layout.html">layout overview page</a>
+for more information.
+<p>To make your own layout manager, make a subclass of <a href="qglayoutiterator.html">QGLayoutIterator</a>
+and implement the functions <a href="#db69d5">addItem</a>(), <a href="qlayoutitem.html#48b5b2">sizeHint</a>(), <a href="#f1f752">setGeometry</a>() and
+<a href="#3d3ab8">iterator</a>(). You should also implement <a href="#8e1dc2">minimumSize</a>(), otherwise your
+layout will be resized to zero size if there is little space. To
+support children whose height depend on their widths, implement
+<a href="qlayoutitem.html#27843f">hasHeightForWidth</a>() and <a href="qlayoutitem.html#03af08">heightForWidth</a>().
+See the <a href="customlayout.html">custom layout page</a> for an
+in-depth description.
+<p>Geometry management stops when the layout manager is deleted.
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="ResizeMode">QLayout::ResizeMode</a></h3>
+The possible values are are:
+<ul>
+<li> <code>Fixed</code> - the main widget's size is set to <a href="qlayoutitem.html#48b5b2">sizeHint</a>(), it
+cannot be resized at all.
+<li> <code>Minimum</code> - The main widget's minimum size is set to
+<a href="#8e1dc2">minimumSize</a>(), it cannot be smaller.
+<li> <code>FreeResize</code> - the widget is not constrained.
+</ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="35039a"></a>QLayout::QLayout ( <a href="qwidget.html">QWidget</a> * parent, int border=0, int space=-1, const char * name=0 )</h3>
+<p>Constructs a new top-level QLayout with main widget <em>parent. parent</em> may not be 0.
+<p><em>border</em> is the number of pixels between the edge of the widget and
+the managed children.  <em>space</em> sets the value of <a href="#372777">spacing</a>(), which
+gives the spacing between widgets.  The default value for <em>space</em>
+is -1, which means that the value of <em>border</em> is used.
+<p><em>name</em> is the internal object name
+<p>There can only be one top-level layout for a widget. It is returned
+by <a href="qwidget.html#839758">QWidget::layout</a>().
+<h3 class="fn"><a name="d36ffa"></a>QLayout::QLayout ( QLayout * parentLayout, int space=-1, const char * name=0 )</h3>
+<p>Constructs a new child QLayout, and places it inside
+<em>parentLayout,</em> using the default placement defined by
+<a href="#db69d5">addItem</a>().
+<p>If <em>space</em> is -1, this QLayout inherits <em>parentLayout's</em>
+<a href="#372777">spacing</a>(), otherwise <em>space</em> is used.
+<h3 class="fn"><a name="9422ca"></a>QLayout::QLayout ( int space=-1, const char * name=0 )</h3>
+<p>Constructs a new child QLayout,
+If <em>space</em> is -1, this QLayout inherits its parent's
+<a href="#372777">spacing</a>(), otherwise <em>space</em> is used.
+<p>This layout has to be inserted into another layout before geometry
+management will work.
+<h3 class="fn"><a name="36971b"></a>QLayout::~QLayout ()</h3>
+<p>Destructs the layout, deleting all child layouts.
+Geometry management stops when a toplevel layout is deleted.
+<h3 class="fn">bool <a name="1cb33d"></a>QLayout::activate ()</h3>
+<p>Redoes the layout for <a href="#21ac4b">mainWidget</a>().  You should generally not
+need to call this, as it is automatically called at most appropriate
+times.
+<p>However, if you set up a QLayout for a visible widget without
+resizing that widget, you need to call this function in order to lay
+it out.
+<p>See also  <a href="qwidget.html#5f7c35">QWidget::updateGeometry</a>().
+<p>Examples:
+ <a href="layout-layout-cpp.html#activate">layout/layout.cpp</a>
+ <a href="popup-popup-cpp.html#activate">popup/popup.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#activate">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="a9ddc3"></a>QLayout::add ( <a href="qwidget.html">QWidget</a> * w )</h3>
+<p>Adds <em>w</em> to this layout in a manner specific to the layout. This
+function uses addItem.
+<p>Examples:
+ <a href="customlayout-main-cpp.html#add">customlayout/main.cpp</a>
+<h3 class="fn">void <a name="c40cf8"></a>QLayout::addChildLayout ( QLayout * l ) <code>[protected]</code></h3>
+<p>This function is called from addLayout functions in subclasses,
+to add <em>l</em> layout as a sublayout.
+<h3 class="fn">void <a name="db69d5"></a>QLayout::addItem ( <a href="qlayoutitem.html">QLayoutItem</a> * item ) <code>[virtual]</code></h3>
+<p>Implemented in subclasses to add <em>item.</em> How it is
+added is specific to each subclass.
+<p>Note that the ownership of <em>item</em> is transferred to
+the layout, and it is the layout's responsibility to
+delete it.
+<p>Reimplemented in <a href="qgridlayout.html#fe33c3">QGridLayout</a> and <a href="qboxlayout.html#fa3b1e">QBoxLayout</a>.
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="f85a57"></a>QLayout::alignmentRect ( const <a href="qrect.html">QRect</a> &amp; r ) const <code>[protected]</code></h3>
+<p>Returns the rectangle that should be covered when the geometry of
+this layout is set to <em>r,</em> if this layout supports <a href="qlayoutitem.html#06c4a7">setAlignment</a>().
+<p>The result is calculated from <a href="qlayoutitem.html#48b5b2">sizeHint</a>() and <a href="#b4ec8c">expanding</a>(). It is
+never larger than <em>r.</em>
+<h3 class="fn">bool <a name="d02056"></a>QLayout::autoAdd () const</h3>
+<p>Returns TRUE if this layout automatically grabs all new
+<a href="#21ac4b">mainWidget</a>()'s new children and adds them as defined by
+<a href="#db69d5">addItem</a>(). This only has effect for top-level layouts, ie. layouts
+that are direct children of their mainWidget().
+<p>autoAdd() is disabled by default.
+<p>See also  <a href="#a83e73">setAutoAdd</a>().
+<h3 class="fn">void <a name="3349c9"></a>QLayout::deleteAllItems () <code>[protected]</code></h3>
+<p>Removes and deletes all items in this layout.
+<h3 class="fn">bool <a name="95c40e"></a>QLayout::eventFilter ( <a href="qobject.html">QObject</a> * o, <a href="qevent.html">QEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Performs child widget layout when the parent widget is resized.
+Also handles removal of widgets and child layouts.
+<p>Reimplemented from <a href="qobject.html#bd20fe">QObject.</a>
+<h3 class="fn">QSizePolicy::ExpandData <a name="b4ec8c"></a>QLayout::expanding() const <code>[virtual]</code></h3>
+<p>Returns whether this layout can make use of more space than
+<a href="qlayoutitem.html#48b5b2">sizeHint</a>().  A value of Vertical or Horizontal means that it wants
+to grow in only one dimension, while BothDirections means that it wants to
+grow in both dimensions.
+<p>The default implementation returns BothDirections.
+<p>Reimplemented from <a href="qlayoutitem.html#132fc8">QLayoutItem.</a>
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="688c64"></a>QLayout::geometry () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qlayoutitem.html#14a669">QLayoutItem.</a>
+<h3 class="fn">void <a name="9af473"></a>QLayout::invalidate () <code>[virtual]</code></h3>
+<p>Invalidates cached information. Reimplementations must call this.
+<p>Reimplemented from <a href="qlayoutitem.html#91d950">QLayoutItem.</a>
+<h3 class="fn">bool <a name="b61308"></a>QLayout::isEmpty () const <code>[virtual]</code></h3>
+<p>Returns TRUE if this layout is empty.
+The default implementation returns FALSE.
+<p>Reimplemented from <a href="qlayoutitem.html#ca255b">QLayoutItem.</a>
+<h3 class="fn">bool <a name="b3a2cc"></a>QLayout::isEnabled () const</h3>
+<p>Returns whether or not this layout is enabled.
+<p>See also  <a href="#2ddff1">setEnabled</a>().
+<h3 class="fn">bool <a name="c29729"></a>QLayout::isTopLevel () const</h3>
+<p>Returns TRUE if this layout is a top level layout, i.e. not a child
+of another layout.
+<h3 class="fn"><a href="qlayoutiterator.html">QLayoutIterator</a> <a name="3d3ab8"></a>QLayout::iterator () <code>[virtual]</code></h3>
+<p>Returns an iterator over the children of this layout.
+<p>This function must be implemented by subclasses.
+<p>Reimplemented from <a href="qlayoutitem.html#40af74">QLayoutItem.</a>
+<h3 class="fn">QLayout * <a name="0af322"></a>QLayout::layout () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qlayoutitem.html#902494">QLayoutItem.</a>
+<h3 class="fn"><a href="qwidget.html">QWidget</a> * <a name="21ac4b"></a>QLayout::mainWidget ()</h3>
+<p>Returns the main widget (parent widget) of this layout, or 0 if this
+layout is a sub-layout which is not yet inserted.
+<h3 class="fn">int <a name="2476ec"></a>QLayout::margin () const</h3>
+<p>returns the width of the outside border of the layout.
+<p>See also  <a href="#372777">spacing</a>() and <a href="#cc3fec">setMargin</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="7a16d1"></a>QLayout::maximumSize () const <code>[virtual]</code></h3>
+<p>Returns the maximum size of this layout. This is the largest size
+that the layout can have, while still respecting the specifications.
+Does not include what's  needed by <a href="#2476ec">margin</a>() or <a href="#81e99b">menuBar</a>().
+<p>The default implementation allows unlimited resizing.
+<p>Reimplemented from <a href="qlayoutitem.html#7c9b8e">QLayoutItem.</a>
+<h3 class="fn"><a href="qmenubar.html">QMenuBar</a>* <a name="81e99b"></a>QLayout::menuBar () const</h3>
+<p>Returns the menu bar set for this layout, or a null pointer if no
+menu bar is set.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="8e1dc2"></a>QLayout::minimumSize () const <code>[virtual]</code></h3>
+<p>Returns the minimum size of this layout. This is the smallest size
+that the layout can have, while still respecting the specifications.
+Does not include what's needed by <a href="#2476ec">margin</a>() or <a href="#81e99b">menuBar</a>().
+<p>The default implementation allows unlimited resizing.
+<p>Reimplemented from <a href="qlayoutitem.html#83838c">QLayoutItem.</a>
+<h3 class="fn">QLayout::ResizeMode <a name="1e29a1"></a>QLayout::resizeMode() const</h3>
+<p>Returns the resize mode.
+<h3 class="fn">void <a name="a83e73"></a>QLayout::setAutoAdd ( bool b ) <code>[virtual]</code></h3>
+<p>Sets <a href="#d02056">autoAdd</a>() if <em>b</em> is TRUE.
+<p>See also  <a href="#d02056">autoAdd</a>().
+<p>Examples:
+ <a href="i18n-main-cpp.html#setAutoAdd">i18n/main.cpp</a>
+<h3 class="fn">void <a name="2ddff1"></a>QLayout::setEnabled ( bool enable )</h3>
+<p>Enables this layout if <em>enable</em> is TRUE, otherwise disables it.
+<p>An enabled layout adjusts dynamically to changes, a disabled layout
+acts as if it was not existing.
+<p>By default, all layouts are enabled.
+<p>See also  <a href="#b3a2cc">isEnabled</a>().
+<h3 class="fn">void <a name="f1f752"></a>QLayout::setGeometry ( const <a href="qrect.html">QRect</a> &amp; r ) <code>[virtual]</code></h3>
+<p>This function is reimplemented in subclasses to
+perform layout.
+<p>The default implementation maintains the <a href="#688c64">geometry</a>() information.
+Reimplementors must call this function.
+<p>Reimplemented from <a href="qlayoutitem.html#0c6928">QLayoutItem.</a>
+<h3 class="fn">void <a name="cc3fec"></a>QLayout::setMargin ( int border ) <code>[virtual]</code></h3>
+<p>Sets the outside border of the layout to <em>border.</em>
+<p>For some layout classes, this function only has an effect on
+top-level layouts; <a href="qboxlayout.html">QBoxLayout</a> and <a href="qgridlayout.html">QGridLayout</a> support margins for
+child layouts.
+<p>For some layout classes, this function only has an effect on
+top-level layouts; QBoxLayout and QGridLayout support margins for
+child layouts.
+<p>See also  <a href="#2476ec">margin</a>(), <a href="#a37f09">setSpacing</a>() and <a href="#e669ce">supportsMargin</a>().
+<h3 class="fn">void <a name="6d51f1"></a>QLayout::setMenuBar ( <a href="qmenubar.html">QMenuBar</a> * w ) <code>[virtual]</code></h3>
+<p>Makes the geometry manager take account of the menu bar <em>w.</em> All
+child widgets are placed below the bottom edge of the menu bar.
+<p>A menu bar does its own geometry managing, never do addWidget()
+on a <a href="qmenubar.html">QMenuBar</a>.
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#setMenuBar">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="e750be"></a>QLayout::setResizeMode ( <a href="qlayout.html#ResizeMode">ResizeMode</a> mode )</h3>
+<p>Sets the resize mode to <em>mode.</em>
+<p>The default mode is <code>Minimum</code> for top level widgets, and <code>FreeResize</code>
+for all others.
+<p>See also  <a href="#ResizeMode">QLayout::ResizeMode</a>.
+<h3 class="fn">void <a name="a37f09"></a>QLayout::setSpacing ( int space ) <code>[virtual]</code></h3>
+<p>Sets the internal spacing of the layout to <em>space.</em>
+<p>See also  <a href="#372777">spacing</a>() and <a href="#cc3fec">setMargin</a>().
+<h3 class="fn">void <a name="48c39d"></a>QLayout::setSupportsMargin ( bool b ) <code>[protected]</code></h3>
+<p>Sets the value returned by <a href="#e669ce">supportsMargin</a>(). If <em>b</em> is TRUE,
+<a href="#2476ec">margin</a>() handling is implemented by the subclass. If <em>b</em> is
+FALSE (the default) QLayout will add margin() around top-level
+layouts.
+<p>If <em>b</em> is TRUE, margin handling needs to be implemented in
+<a href="#f1f752">setGeometry</a>(), <a href="#7a16d1">maximumSize</a>(), <a href="#8e1dc2">minimumSize</a>(), <a href="qlayoutitem.html#48b5b2">sizeHint</a>() and
+<a href="qlayoutitem.html#03af08">heightForWidth</a>().
+<p>See also  <a href="#e669ce">supportsMargin</a>().
+<h3 class="fn">int <a name="372777"></a>QLayout::spacing () const</h3>
+<p>Returns the spacing between widgets inside the layout.
+<p>See also  <a href="#2476ec">margin</a>() and <a href="#a37f09">setSpacing</a>().
+<h3 class="fn">bool <a name="e669ce"></a>QLayout::supportsMargin () const</h3>
+<p>Returns TRUE if this layout supports <a href="#cc3fec">setMargin</a>() on non-toplevel
+layouts.
+<p>See also  <a href="#cc3fec">setMargin</a>().
+<h3 class="fn">int <a name="fe4c58"></a>QLayout::totalHeightForWidth ( int w ) const</h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="0f0c43"></a>QLayout::totalMaximumSize () const</h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="43afc0"></a>QLayout::totalMinimumSize () const</h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="a64261"></a>QLayout::totalSizeHint () const</h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

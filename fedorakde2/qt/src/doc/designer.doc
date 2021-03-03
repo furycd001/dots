@@ -1,0 +1,139 @@
+/****************************************************************************
+** Introduction to the Qt Designer
+**
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page designer.html
+
+\title Qt GUI Designer
+
+The Qt Designer is a visual design tool that makes designing and
+implementing user interfaces a lot easier.
+
+<center><a href="designer/book1.html"><img src="designer.png" alt="Screenshot of the Qt Designer"></a></center>
+
+Here's a brief overview of its key features. For further information,
+please browse the \link designer/book1.html online manual \endlink or
+start the designer with \c designer and select \e Manual from the \e
+Help menu.
+
+<h3>Dynamic geometry management for full i18n and cross-platform support</h3>
+
+  The designer offers all the strength of the Qt layout system with a
+  a well-designed point and click interface. Geometry management makes
+  an application adjust automatically to language changes, different
+  GUI styles on different target platforms and different desktop
+  settings like font sizes.
+
+<h3>Visual access to Qt's signal/slot mechanism</h3>
+
+ In the designer, you can connect signals to slots by dragging a line
+  with the connection tool.
+
+<h3>Internationalization (I18n)</h3>
+
+ In its output, the designer quotes user strings with a
+  tr-macro. Thus it works well together with Qt's built-in or any
+  other i18n system.
+
+<h3>Custom widgets</h3>
+
+ Qt Designer supports custom controls. You add your own widgets with
+  <em>Tools->Custom->Edit Custom Widgets</em>
+
+<h3>Nested widgets/layouts</h3>
+
+ Both widgets and layouts can be nested in a hierarchy, just like in
+  hand-crafted Qt code.
+
+<h3>Unlimited undo and redo</h3>
+
+ The unlimited undo and redo system makes it simple to try different
+  arrangements of the widgets until the result satisfies you.
+
+<h3>Convenient editing of all widget properties</h3>
+
+ Qt Designer uses a generic and very powerful property editor for
+  most widget properties. Special editors for some widgets (like
+  listboxes or comboboxes) allow you to fill these widgets with
+  content without writing extra code.
+
+<h3>Direct tabfocus editing</h3>
+
+ A graphical tab-order tool makes it possible to edit the tabfocus
+  chain intuitively with point and click.
+
+<h3>Ensures unique keyboard accellerators</h3>
+
+  Qt Designer checks that your keyboard shortcuts don't clash.
+
+<h3>XML format</h3>
+
+ The designer's native file format (*.ui files) is a well-defined true
+  XML format.
+
+<h3>Clean extensibility through subclassing</h3>
+
+ No need to modify generated code. If you need extended functionality
+  inside a generated dialog, you can easily do this by subclassing.
+
+<h3>User Interface Compiler (uic) integrates into your build system</h3>
+
+ No need to add generated code to the source repository of your
+  version control system. With Qt Designer, you only deal with ui
+  files. The uic compiler will then integrate the necessary C++ code
+  on the fly during compile time.
+
+<h3>Works together with emacs and Visual Studio (tm)</h3>
+
+ Qt Designer is a visual dialog designer, not an integrated
+  development environment. For writing code, use whatever environment
+  you prefer. If you use emacs or Visual Studio (tm), we provide
+  tighter integration with an elisp file or plugin respectively.
+
+<h3>Searchable and indexed documentation and help system, includes the
+  Qt API reference</h3>
+
+ Hit <b>F1</b> and you get a help browser with useful index and search
+  capabilities (click on the question mark). Try it yourself, it's much
+  faster than using a traditional web browser on the Qt Reference
+  documentation.
+
+If you are interested in the Qt Professional Edition or the
+Qt Enterprise Edition, please write to
+<a href="mailto:sales@trolltech.com">sales@trolltech.com</a>. In
+case you have any bug reports, suggestions or wishes, send them to <a
+href="mailto:bugs@trolltech.com">bugs@trolltech.com</a>. Other mail can
+be sent to <a href="mailto:info@trolltech.com">info@trolltech.com</a>.
+
+
+
+*/

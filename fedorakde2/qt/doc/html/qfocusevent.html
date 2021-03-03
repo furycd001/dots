@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QFocusEvent Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QFocusEvent Class Reference</h1><br clear="all">
+<p>
+The QFocusEvent class contains event parameters for widget focus events.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qevent-h.html">qevent.h</a>&gt;</code>
+<p>
+Inherits <a href="qevent.html">QEvent</a>.
+<p><a href="qfocusevent-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#12f6a9"><b>QFocusEvent</b></a> ( Type type ) </div>
+<li><div class="fn">bool <a href="#1fe883"><b>gotFocus</b></a> () const</div>
+<li><div class="fn">bool <a href="#69794f"><b>lostFocus</b></a> () const</div>
+<li><div class="fn">enum <a href="#Reason"><b>Reason</b></a> { Mouse, Tab, ActiveWindow, Popup, Shortcut, Other }</div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">Reason <a href="#3b9b7f"><b>reason</b></a> () </div>
+<li><div class="fn">void <a href="#bbe85a"><b>setReason</b></a> ( Reason reason ) </div>
+<li><div class="fn">void <a href="#022320"><b>resetReason</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QFocusEvent class contains event parameters for widget focus events.
+<p>
+Focus events are sent to widgets when the keyboard input focus
+changes.  This happens due to either a mouse action, the tab key,
+the window system, a keyboard shortcut or some other application
+specific issue. The actual reason for a specific event is obtained by
+<a href="#3b9b7f">reason</a>() in the appropriate event handler.
+<p>The event handlers <a href="qwidget.html#21a4b8">QWidget::focusInEvent</a>() and <a href="qwidget.html#de664a">QWidget::focusOutEvent</a>()
+receive focus events.
+<p>See also  <a href="qwidget.html#25775a">QWidget::setFocus</a>() and <a href="qwidget.html#f92b0f">QWidget::setFocusPolicy</a>().
+<p>Examples:
+ <a href="qmag-qmag-cpp.html#QFocusEvent">qmag/qmag.cpp</a>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="Reason">QFocusEvent::Reason</a></h3>
+<ul>
+<li> <code>Mouse</code> - the focus change happened because of a mouse action
+<li> <code>Tab</code> - the focus change happened because of a Tab press
+(possibly including shift/control)
+<li> <code>ActiveWindow</code> - the window system made this window (in)active
+<li> <code>Popup</code> - the application opened/closed a popup that grabbed/released focus
+<li> <code>Shortcut</code> - the focus change happened because of a keyboard shortcut
+<li> <code>Other</code> - any other reason, usually application-specific
+</ul>
+<p>See the <a href="focus.html">focus overview</a> for more about focus.
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="12f6a9"></a>QFocusEvent::QFocusEvent ( <a href="qevent.html#Type">Type</a> type )</h3>
+<p>Constructs a focus event object.
+<p>The <em>type</em> parameter must be either <em>QEvent::FocusIn</em> or <em>QEvent::FocusOut.</em>
+<h3 class="fn">bool <a name="1fe883"></a>QFocusEvent::gotFocus () const</h3>
+<p>Returns TRUE if the widget received the text input focus.
+<h3 class="fn">bool <a name="69794f"></a>QFocusEvent::lostFocus () const</h3>
+<p>Returns TRUE if the widget lost the text input focus.
+<h3 class="fn">QFocusEvent::Reason <a name="3b9b7f"></a>QFocusEvent::reason() <code>[static]</code></h3>
+<p>Returns the reason for this focus event.
+<p>See also  <a href="#bbe85a">setReason</a>().
+<h3 class="fn">void <a name="022320"></a>QFocusEvent::resetReason () <code>[static]</code></h3>
+<p>Resets the reason for all future focus events to the value before
+the last <a href="#bbe85a">setReason</a>() call.
+<p>See also  <a href="#3b9b7f">reason</a>() and <a href="#bbe85a">setReason</a>().
+<h3 class="fn">void <a name="bbe85a"></a>QFocusEvent::setReason ( <a href="qfocusevent.html#Reason">Reason</a> reason ) <code>[static]</code></h3>
+<p>Sets the reason for all future focus events to <em>reason.</em>
+<p>See also  <a href="#3b9b7f">reason</a>() and <a href="#022320">resetReason</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,253 @@
+'\" t
+.TH QMetaObject 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QMetaObject \- Meta information about Qt objects
+.br
+.PP
+\fC#include <qmetaobject.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQMetaObject\fR ( const char * " "class_name" ", const char * " "superclass_name" ", QMetaData * " "slot_data" ", int " "n_slots" ", QMetaData * " "signal_data" ", int n_signals ) (internal)"
+.br
+.ti -1c
+.BI "\fBQMetaObject\fR ( const char * " "class_name" ", const char * " "superclass_name" ", QMetaData * " "slot_data" ", int " "n_slots" ", QMetaData * " "signal_data" ", int " "n_signals" ", QMetaProperty * " "prop_data" ", int " "n_props" ", QMetaEnum * " "enum_data" ", int " "n_enums" ", QClassInfo * " "class_info" ", int n_info ) (internal)"
+.br
+.ti -1c
+.BI "virtual \fB~QMetaObject\fR () (internal)"
+.br
+.ti -1c
+.BI "const char* \fBclassName\fR () const"
+.br
+.ti -1c
+.BI "const char* \fBsuperClassName\fR () const"
+.br
+.ti -1c
+.BI "QMetaObject* \fBsuperClass\fR () const"
+.br
+.ti -1c
+.BI "bool \fBinherits\fR ( const char * clname ) const"
+.br
+.ti -1c
+.BI "int \fBnumSlots\fR ( bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "int \fBnumSignals\fR ( bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "QMetaData* \fBslot\fR ( int " "index" ", bool " "super" " = FALSE ) const (internal)"
+.br
+.ti -1c
+.BI "QMetaData* \fBsignal\fR ( int " "index" ", bool " "super" " = FALSE ) const (internal)"
+.br
+.ti -1c
+.BI "QMetaData* \fBslot\fR ( const char *, bool " "super" " = FALSE ) const (internal)"
+.br
+.ti -1c
+.BI "QMetaData* \fBsignal\fR ( const char *, bool " "super" " = FALSE ) const (internal)"
+.br
+.ti -1c
+.BI "QStrList \fBslotNames\fR ( bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "QStrList \fBsignalNames\fR ( bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "int \fBnumClassInfo\fR ( bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "QClassInfo* \fBclassInfo\fR ( int " "index" ", bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "const char* \fBclassInfo\fR ( const char * " "name" ", bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "const QMetaProperty* \fBproperty\fR ( const char * " "name" ", bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "QStrList \fBpropertyNames\fR ( bool " "super" " = FALSE ) const"
+.br
+.ti -1c
+.BI "void \fBresolveProperty\fR ( QMetaProperty * prop ) (internal)"
+.br
+.ti -1c
+.BI "void \fBset_slot_access\fR ( QMetaData::Access * ) (internal)"
+.br
+.ti -1c
+.BI "QMetaData::Access \fBslot_access\fR ( int " "index" ", bool " "super" " = FALSE ) (internal)"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QMetaObject* \fBnew_metaobject\fR ( const char *, const char *, QMetaData *, int, QMetaData *, int, QMetaProperty * " "prop_data" ", int " "n_props" ", QMetaEnum * " "enum_data" ", int " "n_enums" ", QClassInfo * " "class_info" ", int n_info ) (internal)"
+.br
+.ti -1c
+.BI "QMetaObject* \fBnew_metaobject\fR ( const char *, const char *, QMetaData *, int, QMetaData *, int ) (internal)"
+.br
+.ti -1c
+.BI "QMetaData* \fBnew_metadata\fR ( int ) (internal)"
+.br
+.ti -1c
+.BI "QMetaData::Access* \fBnew_metaaccess\fR ( int ) (internal)"
+.br
+.ti -1c
+.BI "QMetaEnum* \fBnew_metaenum\fR ( int ) (internal)"
+.br
+.ti -1c
+.BI "QMetaEnum::Item* \fBnew_metaenum_item\fR ( int ) (internal)"
+.br
+.ti -1c
+.BI "QMetaProperty* \fBnew_metaproperty\fR ( int ) (internal)"
+.br
+.ti -1c
+.BI "QClassInfo* \fBnew_classinfo\fR ( int ) (internal)"
+.br
+.in -1c
+.SH DESCRIPTION
+The QMetaObject class contains meta information about Qt objects.
+.PP
+The Meta Object System in Qt is responsible for the signal/slot mechanism for communication between objects, runtime type information and the property system. All meta information in Qt is kept in a single instance of QMetaObject per class.
+.PP
+In general, you will not have to use this class directly in any application program. Most of the class members and functions are internal, \fB do not use them \fR.
+.PP
+Some functions, however, are marked as public API and may make sense for certain "meta" applications such as scripting engines or GUI builders:
+.TP
+className() to get the name of a class.
+.TP
+superClassName() to get the name of the superclass.
+.TP
+inherits(), the function called by QObject::inherits().
+.TP
+superClass() to access the meta object of the superclass.
+.TP
+numSlots(), numSignals(), slotNames() and signalNames() to get information about a classes signals and slots.
+.TP
+property() and propertyNames() to receive information about a classes properties.
+.TP
+classInfo() and numClassInfo() to access additional class information.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QClassInfo* QMetaObject::classInfo ( int index, bool super = FALSE ) const"
+Returns the class information with index \fIindex\fR or 0 if no such information exists.
+.PP
+If \fIsuper\fR is TRUE, inherited class information is included.
+.SH "const char* QMetaObject::classInfo ( const char * name, bool super = FALSE ) const"
+Returns the class information with name \fIname\fR or 0 if no such information exists.
+.PP
+If \fIsuper\fR is TRUE, inherited class information is included.
+.SH "const char * QMetaObject::className () const"
+Returns the class name.
+.PP
+See also QObject::className() and superClassName().
+.SH "bool QMetaObject::inherits ( const char * clname ) const"
+Returns TRUE if this class inherits \fIclname\fR within the meta object inheritance chain.
+.PP
+(A class is considered to inherit itself.).
+.SH "int QMetaObject::numClassInfo ( bool super = FALSE ) const"
+Returns the number of class information available for this class.
+.PP
+If \fIsuper\fR is TRUE, inherited class information is included.
+.SH "int QMetaObject::numSignals ( bool super = FALSE ) const"
+Returns the number of signals for this class.
+.PP
+If \fIsuper\fR is TRUE, inherited signals are included.
+.PP
+See also signalNames().
+.SH "int QMetaObject::numSlots ( bool super = FALSE ) const"
+Returns the number of slots for this class.
+.PP
+If \fIsuper\fR is TRUE, inherited slots are included.
+.PP
+See also slotNames().
+.SH "const QMetaProperty* QMetaObject::property ( const char * name, bool super = FALSE ) const"
+Returns the property meta data for the property with name \fIname\fR or 0 if no such property exists.
+.PP
+If \fIsuper\fR is TRUE, inherited properties are included.
+.PP
+See also propertyNames().
+.SH "QStrList QMetaObject::propertyNames ( bool super = FALSE ) const"
+Returns a list with the names of all properties for this class.
+.PP
+If \fIsuper\fR is TRUE, inherited properties are included.
+.PP
+See also property().
+.SH "QStrList QMetaObject::signalNames ( bool super = FALSE ) const"
+Returns a list with the names of all signals for this class.
+.PP
+If \fIsuper\fR is TRUE, inherited signals are included.
+.PP
+See also signal().
+.SH "QStrList QMetaObject::slotNames ( bool super = FALSE ) const"
+Returns a list with the names of all slots for this class.
+.PP
+If \fIsuper\fR is TRUE, inherited slots are included.
+.PP
+See also numSlots().
+.SH "QMetaObject * QMetaObject::superClass () const"
+Returns the meta object of the super class or 0, if there is no such object.
+.SH "const char * QMetaObject::superClassName () const"
+Returns the class name of the super class, or 0 if there is no super class in the QObject hierarchy.
+.PP
+See also className().
+.SH "QMetaObject::QMetaObject ( const char * class_name, const char * superclass_name, QMetaData * slot_data, int n_slots, QMetaData * signal_data, int n_signals )"
+For internal use only.
+.SH "QMetaObject::QMetaObject ( const char * class_name, const char * superclass_name, QMetaData * slot_data, int n_slots, QMetaData * signal_data, int n_signals, QMetaProperty * prop_data, int n_props, QMetaEnum * enum_data, int n_enums, QClassInfo * class_info, int n_info )"
+For internal use only.
+.SH "QMetaObject::~QMetaObject () \fC[virtual]\fR"
+For internal use only.
+.SH "QClassInfo * QMetaObject::new_classinfo ( int numEntries ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaData::Access * QMetaObject::new_metaaccess( int numEntries ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaData * QMetaObject::new_metadata ( int numEntries ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaEnum * QMetaObject::new_metaenum ( int numEntries ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaEnum::Item * QMetaObject::new_metaenum_item( int numEntries ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaObject * QMetaObject::new_metaobject ( const char * classname, const char * superclassname, QMetaData * slot_data, int n_slots, QMetaData * signal_data,int n_signals ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaObject * QMetaObject::new_metaobject ( const char * classname, const char * superclassname, QMetaData * slot_data, int n_slots, QMetaData * signal_data,int n_signals, QMetaProperty * prop_data, int n_props, QMetaEnum * enum_data, int n_enums, QClassInfo * class_info, int n_info ) \fC[static]\fR"
+For internal use only.
+.SH "QMetaProperty * QMetaObject::new_metaproperty ( int numEntries ) \fC[static]\fR"
+For internal use only.
+.SH "void QMetaObject::resolveProperty ( QMetaProperty * prop )"
+For internal use only.
+.SH "void QMetaObject::set_slot_access ( QMetaData::Access * access )"
+For internal use only.
+.SH "QMetaData * QMetaObject::signal ( const char * n, bool super = FALSE ) const"
+For internal use only.
+.SH "QMetaData * QMetaObject::signal ( int index, bool super = FALSE ) const"
+For internal use only.
+.SH "QMetaData * QMetaObject::slot ( const char * n, bool super = FALSE ) const"
+For internal use only.
+.SH "QMetaData * QMetaObject::slot ( int index, bool super = FALSE ) const"
+For internal use only.
+.SH "QMetaData::Access QMetaObject::slot_access( int index, bool super = FALSE )"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qmetaobject.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qmetaobject.3qt) and the Qt
+version (2.3.2).

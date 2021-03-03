@@ -1,0 +1,726 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QMultiLineEdit Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QMultiLineEdit Class Reference</h1><br clear="all">
+<p>
+The QMultiLineEdit widget is a simple editor for inputting text.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qmultilineedit-h.html">qmultilineedit.h</a>&gt;</code>
+<p>
+Inherits <a href="qtableview.html">QTableView</a>.
+<p><a href="qmultilineedit-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#f1faf5"><b>QMultiLineEdit</b></a> ( QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#1f2dca"><b>~QMultiLineEdit</b></a> () </div>
+<li><div class="fn">QString <a href="#98476a"><b>textLine</b></a> ( int line ) const</div>
+<li><div class="fn">int <a href="#6b8aea"><b>numLines</b></a> () const</div>
+<li><div class="fn">virtual QSize <a href="#4be07b"><b>minimumSizeHint</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#e13115"><b>insertLine</b></a> ( const QString &amp; s, int line = -1 ) </div>
+<li><div class="fn">virtual void <a href="#56c164"><b>insertAt</b></a> ( const QString &amp; s, int line, int col, bool mark = FALSE ) </div>
+<li><div class="fn">virtual void <a href="#5fac4d"><b>removeLine</b></a> ( int line ) </div>
+<li><div class="fn">void cursorPosition ( int * line, int * col ) const <em>(obsolete)</em></div>
+<li><div class="fn">virtual void <a href="#cc2986"><b>setCursorPosition</b></a> ( int line, int col, bool mark = FALSE ) </div>
+<li><div class="fn">void <a href="#2b2d73"><b>getCursorPosition</b></a> ( int * line, int * col ) const</div>
+<li><div class="fn">bool <a href="#906644"><b>atBeginning</b></a> () const</div>
+<li><div class="fn">bool <a href="#e8fb39"><b>atEnd</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#42d327"><b>setFixedVisibleLines</b></a> ( int lines ) </div>
+<li><div class="fn">int <a href="#c85c73"><b>maxLineWidth</b></a> () const</div>
+<li><div class="fn">void <a href="#1bd825"><b>setAlignment</b></a> ( int flags ) </div>
+<li><div class="fn">int <a href="#eb9185"><b>alignment</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#331d1a"><b>setValidator</b></a> ( const QValidator * ) </div>
+<li><div class="fn">const QValidator* <a href="#5301df"><b>validator</b></a> () const</div>
+<li><div class="fn">void <a href="#21be83"><b>setEdited</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#68ae97"><b>edited</b></a> () const</div>
+<li><div class="fn">void <a href="#00dbb2"><b>cursorWordForward</b></a> ( bool mark ) </div>
+<li><div class="fn">void <a href="#889e4b"><b>cursorWordBackward</b></a> ( bool mark ) </div>
+<li><div class="fn">enum <a href="#EchoMode"><b>EchoMode</b></a> { Normal, NoEcho, Password }</div>
+<li><div class="fn">virtual void <a href="#c8d945"><b>setEchoMode</b></a> ( EchoMode ) </div>
+<li><div class="fn">EchoMode <a href="#30705b"><b>echoMode</b></a> () const</div>
+<li><div class="fn">void <a href="#24137b"><b>setMaxLength</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#be0904"><b>maxLength</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#b00e4d"><b>setMaxLineLength</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#5e8ba9"><b>maxLineLength</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#e45beb"><b>setMaxLines</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#cf06a3"><b>maxLines</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#124c46"><b>setHMargin</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#68892d"><b>hMargin</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#ae5f71"><b>setSelection</b></a> ( int row_from, int col_from, int row_to, int col_t ) </div>
+<li><div class="fn">enum <a href="#WordWrap"><b>WordWrap</b></a> { NoWrap, WidgetWidth, FixedPixelWidth, FixedColumnWidth }</div>
+<li><div class="fn">void <a href="#27235f"><b>setWordWrap</b></a> ( WordWrap mode ) </div>
+<li><div class="fn">WordWrap <a href="#a75533"><b>wordWrap</b></a> () const</div>
+<li><div class="fn">void <a href="#58a32f"><b>setWrapColumnOrWidth</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#7bed37"><b>wrapColumnOrWidth</b></a> () const</div>
+<li><div class="fn">enum <a href="#WrapPolicy"><b>WrapPolicy</b></a> { AtWhiteSpace, Anywhere }</div>
+<li><div class="fn">void <a href="#cad805"><b>setWrapPolicy</b></a> ( WrapPolicy policy ) </div>
+<li><div class="fn">WrapPolicy <a href="#0b8f27"><b>wrapPolicy</b></a> () const</div>
+<li><div class="fn">bool <a href="#d5d3b8"><b>autoUpdate</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#f6f717"><b>setAutoUpdate</b></a> ( bool ) </div>
+<li><div class="fn">void <a href="#8fe39c"><b>setUndoEnabled</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#0da4dd"><b>isUndoEnabled</b></a> () const</div>
+<li><div class="fn">void <a href="#1ac368"><b>setUndoDepth</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#44b313"><b>undoDepth</b></a> () const</div>
+<li><div class="fn">bool <a href="#f505a1"><b>isReadOnly</b></a> () const</div>
+<li><div class="fn">bool <a href="#0e5e16"><b>isOverwriteMode</b></a> () const</div>
+<li><div class="fn">QString <a href="#7e9268"><b>text</b></a> () const</div>
+<li><div class="fn">int <a href="#da78e1"><b>length</b></a> () const</div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#3fd8c1"><b>setText</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">virtual void <a href="#e96020"><b>setReadOnly</b></a> ( bool ) </div>
+<li><div class="fn">virtual void <a href="#86ad80"><b>setOverwriteMode</b></a> ( bool ) </div>
+<li><div class="fn">void <a href="#506d70"><b>clear</b></a> () </div>
+<li><div class="fn">void <a href="#314eb5"><b>append</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">void <a href="#26fec0"><b>deselect</b></a> () </div>
+<li><div class="fn">void <a href="#038d52"><b>selectAll</b></a> () </div>
+<li><div class="fn">void <a href="#9e5e77"><b>paste</b></a> () </div>
+<li><div class="fn">void <a href="#094243"><b>pasteSubType</b></a> ( const QCString &amp; subtype ) </div>
+<li><div class="fn">void copyText () const <em>(obsolete)</em></div>
+<li><div class="fn">void <a href="#f5358f"><b>copy</b></a> () const</div>
+<li><div class="fn">void <a href="#fcc961"><b>cut</b></a> () </div>
+<li><div class="fn">void <a href="#a0fd82"><b>insert</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">void <a href="#c6e8c3"><b>undo</b></a> () </div>
+<li><div class="fn">void <a href="#bed425"><b>redo</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#966965"><b>textChanged</b></a> () </div>
+<li><div class="fn">void <a href="#a5c523"><b>returnPressed</b></a> () </div>
+<li><div class="fn">void <a href="#8252cb"><b>undoAvailable</b></a> ( bool ) </div>
+<li><div class="fn">void <a href="#7dfdeb"><b>redoAvailable</b></a> ( bool ) </div>
+<li><div class="fn">void <a href="#7a7af2"><b>copyAvailable</b></a> ( bool ) </div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">void <a href="#cdf72e"><b>setDefaultTabStop</b></a> ( int ex ) </div>
+<li><div class="fn">int <a href="#d42f9a"><b>defaultTabStop</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#9220ed"><b>paintCell</b></a> ( QPainter *, int row, int col ) </div>
+<li><div class="fn">virtual void <a href="#ea13f2"><b>keyPressEvent</b></a> ( QKeyEvent * ) </div>
+<li><div class="fn">virtual void <a href="#d0afd5"><b>focusInEvent</b></a> ( QFocusEvent * ) </div>
+<li><div class="fn">bool <a href="#bb9fa9"><b>hasMarkedText</b></a> () const</div>
+<li><div class="fn">QString <a href="#bc68ee"><b>markedText</b></a> () const</div>
+<li><div class="fn">int <a href="#d17204"><b>textWidth</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#a97ed4"><b>textWidth</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">QPoint <a href="#cbda61"><b>cursorPoint</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#a651bf"><b>insert</b></a> ( const QString &amp;, bool mark ) </div>
+<li><div class="fn">virtual void <a href="#594868"><b>newLine</b></a> () </div>
+<li><div class="fn">virtual void <a href="#ca5874"><b>killLine</b></a> () </div>
+<li><div class="fn">virtual void <a href="#f73af7"><b>pageUp</b></a> ( bool mark=FALSE ) </div>
+<li><div class="fn">virtual void <a href="#0919e3"><b>pageDown</b></a> ( bool mark=FALSE ) </div>
+<li><div class="fn">virtual void <a href="#1614b9"><b>cursorLeft</b></a> ( bool mark=FALSE, bool wrap = TRUE ) </div>
+<li><div class="fn">virtual void <a href="#4a7a25"><b>cursorRight</b></a> ( bool mark=FALSE, bool wrap = TRUE ) </div>
+<li><div class="fn">virtual void <a href="#02ba92"><b>cursorUp</b></a> ( bool mark=FALSE ) </div>
+<li><div class="fn">virtual void <a href="#f7579c"><b>cursorDown</b></a> ( bool mark=FALSE ) </div>
+<li><div class="fn">virtual void <a href="#b4f58d"><b>backspace</b></a> () </div>
+<li><div class="fn">virtual void <a href="#51de5c"><b>del</b></a> () </div>
+<li><div class="fn">virtual void <a href="#7d6586"><b>home</b></a> ( bool mark=FALSE ) </div>
+<li><div class="fn">virtual void <a href="#c3f806"><b>end</b></a> ( bool mark=FALSE ) </div>
+<li><div class="fn">bool <a href="#048bee"><b>getMarkedRegion</b></a> ( int * line1, int * col1, int * line2, int * col2 ) const</div>
+<li><div class="fn">int <a href="#245fee"><b>lineLength</b></a> ( int row ) const</div>
+<li><div class="fn">QString* <a href="#064176"><b>getString</b></a> ( int row ) const</div>
+<li><div class="fn">bool <a href="#c35f12"><b>isEndOfParagraph</b></a> ( int row ) const</div>
+<li><div class="fn">QString <a href="#76a880"><b>stringShown</b></a> ( int row ) const</div>
+<li><div class="fn">void <a href="#e6a71e"><b>insertChar</b></a> ( QChar ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>int<td>numLines<td>numLines<td>&nbsp;<td>&nbsp;
+<tr><td>bool<td>atBeginning<td>atBeginning<td>&nbsp;<td>&nbsp;
+<tr><td>bool<td>atEnd<td>atEnd<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>maxLineWidth<td>maxLineWidth<td>&nbsp;<td>&nbsp;
+<tr><td>Alignment<td>alignment<td>alignment<td>setAlignment<td>&nbsp;
+<tr><td>bool<td>edited<td>edited<td>setEdited<td> DESIGNABLE false
+<tr><td>EchoMode<td>echoMode<td>echoMode<td>setEchoMode<td>&nbsp;
+<tr><td>int<td>maxLength<td>maxLength<td>setMaxLength<td>&nbsp;
+<tr><td>int<td>maxLines<td>maxLines<td>setMaxLines<td>&nbsp;
+<tr><td>int<td>hMargin<td>hMargin<td>setHMargin<td>&nbsp;
+<tr><td>WordWrap<td>wordWrap<td>wordWrap<td>setWordWrap<td>&nbsp;
+<tr><td>int<td>wrapColumnOrWidth<td>wrapColumnOrWidth<td>setWrapColumnOrWidth<td>&nbsp;
+<tr><td>WrapPolicy<td>wrapPolicy<td>wrapPolicy<td>setWrapPolicy<td>&nbsp;
+<tr><td>bool<td>autoUpdate<td>autoUpdate<td>setAutoUpdate<td> DESIGNABLE false
+<tr><td>bool<td>undoEnabled<td>isUndoEnabled<td>setUndoEnabled<td>&nbsp;
+<tr><td>int<td>undoDepth<td>undoDepth<td>setUndoDepth<td>&nbsp;
+<tr><td>bool<td>readOnly<td>isReadOnly<td>setReadOnly<td>&nbsp;
+<tr><td>bool<td>overWriteMode<td>isOverwriteMode<td>setOverwriteMode<td>&nbsp;
+<tr><td>QString<td>text<td>text<td>setText<td>&nbsp;
+<tr><td>int<td>length<td>length<td>&nbsp;<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QMultiLineEdit widget is a simple editor for inputting text.
+<p>
+The QMultiLineEdit widget provides multiple line text input and display.
+It is intended for moderate amounts of text. There are no arbitrary
+limitations, but if you try to handle megabytes of data, performance
+will suffer.
+<p>Per default, the edit widget does not perform any word
+wrapping. This can be adjusted by calling <a href="#27235f">setWordWrap</a>(). Both
+dynamic wrapping according to the visible width or a fixed number of
+character or pixels is supported.
+<p>The widget can be used to display text by calling <a href="#e96020">setReadOnly</a>(TRUE)
+<p>The default key bindings are described in <a href="#ea13f2">keyPressEvent</a>(); they cannot
+be customized except by inheriting the class.
+<p><img src=qmlined-m.png> <img src=qmlined-w.png>
+<p>Examples:
+ <a href="mainlyQt-editor-cpp.html#QMultiLineEdit">mainlyQt/editor.cpp</a>
+ <a href="layout-layout-cpp.html#QMultiLineEdit">layout/layout.cpp</a>
+ <a href="mainlyXt-editor-cpp.html#QMultiLineEdit">mainlyXt/editor.cpp</a>
+ <a href="mainlyMotif-editor-cpp.html#QMultiLineEdit">mainlyMotif/editor.cpp</a>
+ <a href="rot13-rot13-cpp.html#QMultiLineEdit">rot13/rot13.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#QMultiLineEdit">scrollview/scrollview.cpp</a>
+ <a href="customlayout-main-cpp.html#QMultiLineEdit">customlayout/main.cpp</a>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="EchoMode">QMultiLineEdit::EchoMode</a></h3>
+This enum type describes the ways in which <a href="qlineedit.html">QLineEdit</a> can display its
+contents.  The currently defined values are: <ul>
+<li> <code>Normal</code> - display characters as they are entered.  This is
+the default.
+<li> <code>NoEcho</code> - do not display anything.
+<li> <code>Password</code> - display asterisks instead of the characters
+actually entered.
+<p></ul>
+<p>See also  <a href="#c8d945">setEchoMode</a>(), <a href="#30705b">echoMode</a>() and <a href="qlineedit.html#EchoMode">QLineEdit::EchoMode</a>.
+<h3 class="fn"><a name="WordWrap">QMultiLineEdit::WordWrap</a></h3>
+This enum describes the multiline edit's word wrap mode.
+<p>The following values are valid:
+<ul>
+<li> <code>NoWrap</code> - no word wrap at all.
+<li> <code>WidgetWidth</code> - word wrap depending on the current
+width of the editor widget
+<li> <code>FixedPixelWidth</code> - wrap according to a fix amount
+of pixels ( see <a href="#7bed37">wrapColumnOrWidth</a>() )
+<li> <code>FixedColumnWidth</code> - wrap according to a fix character
+column. This is useful whenever you need formatted text that
+can also be displayed gracefully on devices with monospaced
+fonts, for example a standard VT100 terminal. In that case
+wrapColumnOrWidth() should typically be set to 80.
+</ul>
+<p>See also  <a href="#27235f">setWordWrap</a>().
+<h3 class="fn"><a name="WrapPolicy">QMultiLineEdit::WrapPolicy</a></h3>
+Defines where text can be wrapped in word wrap mode.
+<p>The following values are valid:
+<ul>
+<li> <code>AtWhiteSpace</code> - break only after whitespace
+<li> <code>Anywhere</code> - break anywhere
+</ul>
+<p>See also  <a href="#cad805">setWrapPolicy</a>().
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="f1faf5"></a>QMultiLineEdit::QMultiLineEdit ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a new, empty, QMultiLineEdit.
+<h3 class="fn"><a name="1f2dca"></a>QMultiLineEdit::~QMultiLineEdit ()</h3>
+<p>Destroys the QMultiLineEdit.
+<h3 class="fn">int <a name="eb9185"></a>QMultiLineEdit::alignment () const</h3>
+<p>Returns the alignment.
+<p>See also  <a href="#1bd825">setAlignment</a>() and <a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a>.
+<h3 class="fn">void <a name="314eb5"></a>QMultiLineEdit::append ( const <a href="qstring.html">QString</a> &amp; s ) <code>[slot]</code></h3>
+<p>Appends <em>s</em> to the text.
+<h3 class="fn">bool <a name="906644"></a>QMultiLineEdit::atBeginning () const</h3>
+<p>Returns TRUE if the cursor is placed at the beginning of the text.
+<h3 class="fn">bool <a name="e8fb39"></a>QMultiLineEdit::atEnd () const</h3>
+<p>Returns TRUE if the cursor is placed at the end of the text.
+<h3 class="fn">bool <a name="d5d3b8"></a>QMultiLineEdit::autoUpdate () const</h3>
+<p>Returns TRUE if the view updates itself automatically whenever it
+is changed in some way.
+<p>See also  <a href="#f6f717">setAutoUpdate</a>().
+<h3 class="fn">void <a name="b4f58d"></a>QMultiLineEdit::backspace () <code>[virtual protected]</code></h3>
+<p>Deletes the character on the left side of the text cursor and moves
+the cursor one position to the left. If a text has been marked by
+the user (e.g. by clicking and dragging) the cursor is put at the
+beginning of the marked text and the marked text is removed.
+<p>See also  <a href="#51de5c">del</a>().
+<h3 class="fn">void <a name="506d70"></a>QMultiLineEdit::clear () <code>[slot]</code></h3>
+<p>Removes all text.
+<h3 class="fn">void <a name="f5358f"></a>QMultiLineEdit::copy () const <code>[slot]</code></h3>
+<p>Copies the marked text to the clipboard.  Will copy only
+if <a href="#30705b">echoMode</a>() is Normal.
+<h3 class="fn">void <a name="7a7af2"></a>QMultiLineEdit::copyAvailable ( bool yes ) <code>[signal]</code></h3>
+<p>This signal is emitted when the availability of cut/copy changes.
+If <em>yes</em> is TRUE, then <a href="#fcc961">cut</a>() and <a href="#f5358f">copy</a>() will work until
+copyAvailable( FALSE ) is next emitted.
+<h3 class="fn">void <a name="33bfc8"></a>QMultiLineEdit::copyText () const <code>[slot]</code></h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Backward compatibility.
+<h3 class="fn">void <a name="f7579c"></a>QMultiLineEdit::cursorDown ( bool mark=FALSE ) <code>[virtual protected]</code></h3>
+<p>Moves the cursor one line down.  If <em>mark</em> is TRUE, the text
+is marked.
+<p>See also  <a href="#02ba92">cursorUp</a>(), <a href="#1614b9">cursorLeft</a>() and <a href="#4a7a25">cursorRight</a>().
+<h3 class="fn">void <a name="1614b9"></a>QMultiLineEdit::cursorLeft ( bool mark=FALSE, bool wrap = TRUE ) <code>[virtual protected]</code></h3>
+<p>Moves the cursor one character to the left. If <em>mark</em> is TRUE, the text
+is marked. If <em>wrap</em> is TRUE, the cursor moves to the end of the
+previous line  if it is placed at the beginning of the current line.
+<p>See also  <a href="#4a7a25">cursorRight</a>(), <a href="#02ba92">cursorUp</a>() and <a href="#f7579c">cursorDown</a>().
+<h3 class="fn"><a href="qpoint.html">QPoint</a> <a name="cbda61"></a>QMultiLineEdit::cursorPoint () const <code>[protected]</code></h3>
+<p>Returns the top center point where the cursor is drawn.
+<h3 class="fn">void <a name="10e629"></a>QMultiLineEdit::cursorPosition ( int * line, int * col ) const</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Use <a href="#2b2d73">getCursorPosition</a>() instead.
+<h3 class="fn">void <a name="4a7a25"></a>QMultiLineEdit::cursorRight ( bool mark=FALSE, bool wrap = TRUE ) <code>[virtual protected]</code></h3>
+<p>Moves the cursor one character to the right.  If <em>mark</em> is TRUE, the text
+is marked. If <em>wrap</em> is TRUE, the cursor moves to the beginning of the next
+line if it is placed at the end of the current line.
+<p>See also  <a href="#1614b9">cursorLeft</a>(), <a href="#02ba92">cursorUp</a>() and <a href="#f7579c">cursorDown</a>().
+<h3 class="fn">void <a name="02ba92"></a>QMultiLineEdit::cursorUp ( bool mark=FALSE ) <code>[virtual protected]</code></h3>
+<p>Moves the cursor up one line.  If <em>mark</em> is TRUE, the text
+is marked.
+<p>See also  <a href="#f7579c">cursorDown</a>(), <a href="#1614b9">cursorLeft</a>() and <a href="#4a7a25">cursorRight</a>().
+<h3 class="fn">void <a name="889e4b"></a>QMultiLineEdit::cursorWordBackward ( bool mark )</h3>
+<p>Moves the cursor one word to the left.  If <em>mark</em> is TRUE, the text
+is marked.
+<p>See also  <a href="#00dbb2">cursorWordForward</a>().
+<h3 class="fn">void <a name="00dbb2"></a>QMultiLineEdit::cursorWordForward ( bool mark )</h3>
+<p>Moves the cursor one word to the right.  If <em>mark</em> is TRUE, the text
+is marked.
+<p>See also  <a href="#889e4b">cursorWordBackward</a>().
+<h3 class="fn">void <a name="fcc961"></a>QMultiLineEdit::cut () <code>[slot]</code></h3>
+<p>Copies the selected text to the clipboard and deletes the selected text.
+<h3 class="fn">int <a name="d42f9a"></a>QMultiLineEdit::defaultTabStop () <code>[static]</code></h3>
+<p>Returns the distance between tab stops.
+<p>See also  <a href="#cdf72e">setDefaultTabStop</a>();.
+<h3 class="fn">void <a name="51de5c"></a>QMultiLineEdit::del () <code>[virtual protected]</code></h3>
+<p>Deletes the character on the right side of the text cursor. If a
+text has been marked by the user (e.g. by clicking and dragging) the
+cursor is put at the beginning of the marked text and the marked
+text is removed.
+<p>See also  <a href="#b4f58d">backspace</a>().
+<h3 class="fn">void <a name="26fec0"></a>QMultiLineEdit::deselect () <code>[slot]</code></h3>
+<p>Deselects all text (i.e. removes marking) and leaves the cursor at the
+current position.
+<h3 class="fn">void <a name="50a11a"></a>QMultiLineEdit::dragEnterEvent ( <a href="qdragenterevent.html">QDragEnterEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#c8639f">QWidget.</a>
+<h3 class="fn">void <a name="e04308"></a>QMultiLineEdit::dragLeaveEvent ( <a href="qdragleaveevent.html">QDragLeaveEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#fdd48c">QWidget.</a>
+<h3 class="fn">void <a name="6c9be6"></a>QMultiLineEdit::dragMoveEvent ( <a href="qdragmoveevent.html">QDragMoveEvent</a> * event ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#3b47df">QWidget.</a>
+<h3 class="fn">void <a name="1b58bf"></a>QMultiLineEdit::dropEvent ( <a href="qdropevent.html">QDropEvent</a> * event ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#e9b4c3">QWidget.</a>
+<h3 class="fn">QMultiLineEdit::EchoMode <a name="30705b"></a>QMultiLineEdit::echoMode() const</h3>
+<p>Returns the currently set echo mode.
+<p>See also  <a href="#c8d945">setEchoMode</a>().
+<h3 class="fn">bool <a name="68ae97"></a>QMultiLineEdit::edited () const</h3>
+<p>Returns the edited flag of the line edit.  If this returns FALSE,
+the contents has not been changed since the construction of the
+QMultiLineEdit (or the last call to <a href="#21be83">setEdited</a>( FALSE ), if any).  If
+it returns TRUE, the contents have been edited, or setEdited( TRUE )
+has been called.
+<p>See also  <a href="#21be83">setEdited</a>().
+<h3 class="fn">void <a name="c3f806"></a>QMultiLineEdit::end ( bool mark=FALSE ) <code>[virtual protected]</code></h3>
+<p>Moves the text cursor to the right end of the line. If mark is TRUE
+text is marked towards the last position.  If it is FALSE and the
+cursor is moved, all marked text is unmarked.
+<p>See also  <a href="#7d6586">home</a>().
+<h3 class="fn">bool <a name="eecece"></a>QMultiLineEdit::event ( <a href="qevent.html">QEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#c67adb">QObject.</a>
+<h3 class="fn">void <a name="d0afd5"></a>QMultiLineEdit::focusInEvent ( <a href="qfocusevent.html">QFocusEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Starts the cursor blinking.
+<p>Reimplemented from <a href="qwidget.html#21a4b8">QWidget.</a>
+<h3 class="fn">bool <a name="e09aac"></a>QMultiLineEdit::focusNextPrevChild ( bool ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#8d74a1">QWidget.</a>
+<h3 class="fn">void <a name="e964c8"></a>QMultiLineEdit::focusOutEvent ( <a href="qfocusevent.html">QFocusEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#de664a">QWidget.</a>
+<h3 class="fn">void <a name="2b2d73"></a>QMultiLineEdit::getCursorPosition ( int * line, int * col ) const</h3>
+<p>Returns the current line and character
+position within that line, in the variables pointed to
+by <em>line</em> and <em>col</em> respectively.
+<p>See also  <a href="#cc2986">setCursorPosition</a>().
+<h3 class="fn">bool <a name="048bee"></a>QMultiLineEdit::getMarkedRegion ( int * line1, int * col1, int * line2, int * col2 ) const <code>[protected]</code></h3>
+<p>If there is marked text, sets <em>line1, col1, line2</em> and <em>col2</em>
+to the start and end of the marked region and returns TRUE. Returns
+FALSE if there is no marked text.
+<h3 class="fn"><a href="qstring.html">QString</a> * <a name="064176"></a>QMultiLineEdit::getString ( int line ) const <code>[protected]</code></h3>
+<p>Returns a pointer to the text at line <em>line.</em>
+<h3 class="fn">int <a name="68892d"></a>QMultiLineEdit::hMargin () const</h3>
+<p>Returns the horizontal margin current set.  The default is 3.
+<p>See also  <a href="#124c46">setHMargin</a>().
+<h3 class="fn">bool <a name="bb9fa9"></a>QMultiLineEdit::hasMarkedText () const <code>[protected]</code></h3>
+<p>Returns TRUE if there is marked text.
+<h3 class="fn">void <a name="7d6586"></a>QMultiLineEdit::home ( bool mark=FALSE ) <code>[virtual protected]</code></h3>
+<p>Moves the text cursor to the left end of the line. If <em>mark</em> is
+TRUE, text is marked towards the first position. If it is FALSE and
+the cursor is moved, all marked text is unmarked.
+<p>See also  <a href="#c3f806">end</a>().
+<h3 class="fn">void <a name="a0fd82"></a>QMultiLineEdit::insert ( const <a href="qstring.html">QString</a> &amp; s ) <code>[slot]</code></h3>
+<p>Inserts <em>s</em> at the current cursor position.
+<h3 class="fn">void <a name="a651bf"></a>QMultiLineEdit::insert ( const <a href="qstring.html">QString</a> &amp; str, bool mark ) <code>[virtual protected]</code></h3>
+<p>Inserts <em>c</em> at the current cursor position.
+<h3 class="fn">void <a name="56c164"></a>QMultiLineEdit::insertAt ( const <a href="qstring.html">QString</a> &amp; s, int line, int col, bool mark = FALSE ) <code>[virtual]</code></h3>
+<p>Inserts <em>txt</em> at line number <em>line,</em> after character number <em>col</em>
+in the line.
+If <em>txt</em> contains newline characters, new lines are inserted.
+<p>The cursor position is adjusted. If the insertion position is equal to
+the cursor position, the cursor is placed after the end of the new text.
+<h3 class="fn">void <a name="e6a71e"></a>QMultiLineEdit::insertChar ( <a href="qchar.html">QChar</a> c ) <code>[protected]</code></h3>
+<p>Inserts <em>c</em> at the current cursor position.
+(this function is provided for backward compatibility -
+it simply calls <a href="#a0fd82">insert</a>()).
+<h3 class="fn">void <a name="e13115"></a>QMultiLineEdit::insertLine ( const <a href="qstring.html">QString</a> &amp; txt, int line = -1 ) <code>[virtual]</code></h3>
+<p>Inserts <em>txt</em> at line number <em>line.</em> If <em>line</em> is less than zero,
+or larger than the number of rows, the new text is put at the end.
+If <em>txt</em> contains newline characters, several lines are inserted.
+<p>The cursor position is not changed.
+<h3 class="fn">bool <a name="c35f12"></a>QMultiLineEdit::isEndOfParagraph ( int row ) const <code>[protected]</code></h3>
+<p>Returns wether <em>row</em> is the last row in a paragraph.
+<p>This function is only interesting in word wrap mode, otherwise its
+return value is always TRUE.
+<p>See also  <a href="#27235f">setWordWrap</a>().
+<h3 class="fn">bool <a name="0e5e16"></a>QMultiLineEdit::isOverwriteMode () const</h3>
+<p>Returns TRUE if this multi line edit is in overwrite mode, i.e.
+if characters typed replace characters in the editor.
+<p>See also  <a href="#86ad80">setOverwriteMode</a>().
+<h3 class="fn">bool <a name="f505a1"></a>QMultiLineEdit::isReadOnly () const</h3>
+<p>Returns FALSE if this multi line edit accepts text input.
+Scrolling and cursor movements are accepted in any case.
+<p>See also  <a href="#e96020">setReadOnly</a>() and <a href="qwidget.html#f9af61">QWidget::isEnabled</a>().
+<h3 class="fn">bool <a name="0da4dd"></a>QMultiLineEdit::isUndoEnabled () const</h3>
+<p>Returns whether the multilineedit is currently undo enabled or not.
+<p>See also  <a href="#8fe39c">setUndoEnabled</a>().
+<h3 class="fn">void <a name="ea13f2"></a>QMultiLineEdit::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>The key press event handler converts a key press to some line editor
+action.
+<p>Here are the default key bindings when <a href="#f505a1">isReadOnly</a>() is FALSE:
+<ul>
+<li><i> Left Arrow </i> Move the cursor one character leftwards
+<li><i> Right Arrow </i> Move the cursor one character rightwards
+<li><i> Up Arrow </i> Move the cursor one line upwards
+<li><i> Down Arrow </i> Move the cursor one line downwards
+<li><i> Page Up </i> Move the cursor one page upwards
+<li><i> Page Down </i> Move the cursor one page downwards
+<li><i> Backspace </i> Delete the character to the left of the cursor
+<li><i> Home </i> Move the cursor to the beginning of the line
+<li><i> End </i> Move the cursor to the end of the line
+<li><i> Delete </i> Delete the character to the right of the cursor
+<li><i> Shift - Left Arrow </i> Mark text one character leftwards
+<li><i> Shift - Right Arrow </i> Mark text one character rightwards
+<li><i> Control-A </i> Move the cursor to the beginning of the line
+<li><i> Control-B </i> Move the cursor one character leftwards
+<li><i> Control-C </i> Copy the marked text to the clipboard
+<li><i> Control-D </i> Delete the character to the right of the cursor
+<li><i> Control-E </i> Move the cursor to the end of the line
+<li><i> Control-F </i> Move the cursor one character rightwards
+<li><i> Control-H </i> Delete the character to the left of the cursor
+<li><i> Control-K </i> Delete to end of line
+<li><i> Control-N </i> Move the cursor one line downwards
+<li><i> Control-P </i> Move the cursor one line upwards
+<li><i> Control-V </i> Paste the clipboard text into line edit
+<li><i> Control-X </i> Cut the marked text, copy to clipboard
+<li><i> Control-Z </i> Undo the last operation
+<li><i> Control-Y </i> Redo the last operation
+<li><i> Control - Left Arrow </i> Move the cursor one word leftwards
+<li><i> Control - Right Arrow </i> Move the cursor one word rightwards
+<li><i> Control - Up Arrow </i> Move the cursor one word upwards
+<li><i> Control - Down Arrow </i> Move the cursor one word downwards
+<li><i> Control - Home Arrow </i> Move the cursor to the beginning of the text
+<li><i> Control - End Arrow </i> Move the cursor to the end of the text
+</ul>
+In addition, the following key bindings are used on Windows:
+<ul>
+<li><i> Shift - Delete </i> Cut the marked text, copy to clipboard
+<li><i> Shift - Insert </i> Paste the clipboard text into line edit
+<li><i> Control - Insert </i> Copy the marked text to the clipboard
+</ul>
+All other keys with valid ASCII codes insert themselves into the line.
+<p>Here are the default key bindings when isReadOnly() is TRUE:
+<ul>
+<li><i> Left Arrow </i> Scrolls the table rightwards
+<li><i> Right Arrow </i> Scrolls the table rightwards
+<li><i> Up Arrow </i> Scrolls the table one line downwards
+<li><i> Down Arrow </i> Scrolls the table one line upwards
+<li><i> Page Up </i> Scrolls the table one page downwards
+<li><i> Page Down </i> Scrolls the table one page upwards
+<li><i> Control-C </i> Copy the marked text to the clipboard
+</ul>
+<p>Reimplemented from <a href="qwidget.html#0a4482">QWidget.</a>
+<h3 class="fn">void <a name="ca5874"></a>QMultiLineEdit::killLine () <code>[virtual protected]</code></h3>
+<p>Deletes text from the current cursor position to the end of the line.
+<h3 class="fn">void <a name="0bfb04"></a>QMultiLineEdit::leaveEvent ( <a href="qevent.html">QEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7eaa8a">QWidget.</a>
+<h3 class="fn">int <a name="da78e1"></a>QMultiLineEdit::length () const</h3>
+<p>Returns the length of the current text.
+<p>See also  <a href="#24137b">setMaxLength</a>().
+<h3 class="fn">int <a name="245fee"></a>QMultiLineEdit::lineLength ( int line ) const <code>[protected]</code></h3>
+<p>Returns the number of characters at line number <em>line.</em>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="bc68ee"></a>QMultiLineEdit::markedText () const <code>[protected]</code></h3>
+<p>Returns a copy of the marked text.
+<h3 class="fn">int <a name="be0904"></a>QMultiLineEdit::maxLength () const</h3>
+<p>Returns the currently set text length limit, or -1 if there is
+no limit (this is the default).
+<p>See also  <a href="#24137b">setMaxLength</a>().
+<h3 class="fn">int <a name="5e8ba9"></a>QMultiLineEdit::maxLineLength () const</h3>
+<p>Returns the currently set line length limit, or -1 if there is
+no limit (this is the default).
+<p>See also  <a href="#b00e4d">setMaxLineLength</a>().
+<h3 class="fn">int <a name="c85c73"></a>QMultiLineEdit::maxLineWidth () const</h3>
+<p>Returns the width in pixels of the longest text line in this editor.
+<h3 class="fn">int <a name="cf06a3"></a>QMultiLineEdit::maxLines () const</h3>
+<p>Returns the currently set line limit, or -1 if there is
+no limit (the default).
+<p>See also  <a href="#e45beb">setMaxLines</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="4be07b"></a>QMultiLineEdit::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Returns a size sufficient for one character, and scroll bars.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn">void <a name="385d3d"></a>QMultiLineEdit::mouseDoubleClickEvent ( <a href="qmouseevent.html">QMouseEvent</a> * m ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#e36586">QWidget.</a>
+<h3 class="fn">void <a name="7f486b"></a>QMultiLineEdit::mouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#a51d92">QWidget.</a>
+<h3 class="fn">void <a name="142b11"></a>QMultiLineEdit::mousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#2ecc04">QWidget.</a>
+<h3 class="fn">void <a name="5868c6"></a>QMultiLineEdit::mouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#9aa77f">QWidget.</a>
+<h3 class="fn">void <a name="594868"></a>QMultiLineEdit::newLine () <code>[virtual protected]</code></h3>
+<p>Makes a line break at the current cursor position.
+<h3 class="fn">int <a name="6b8aea"></a>QMultiLineEdit::numLines () const</h3>
+<p>Returns the number of lines in the editor. The count includes any
+empty lines at top and bottom, so for an empty editor this method
+will return 1.
+<h3 class="fn">void <a name="0919e3"></a>QMultiLineEdit::pageDown ( bool mark=FALSE ) <code>[virtual protected]</code></h3>
+<p>Moves the cursor one page down.  If <em>mark</em> is TRUE, the text
+is marked.
+<h3 class="fn">void <a name="f73af7"></a>QMultiLineEdit::pageUp ( bool mark=FALSE ) <code>[virtual protected]</code></h3>
+<p>Moves the cursor one page up.  If <em>mark</em> is TRUE, the text
+is marked.
+<h3 class="fn">void <a name="9220ed"></a>QMultiLineEdit::paintCell ( <a href="qpainter.html">QPainter</a> * painter, int row, int ) <code>[virtual protected]</code></h3>
+<p>Implements the basic drawing logic.
+<p>Reimplemented from <a href="qtableview.html#9ee77d">QTableView.</a>
+<h3 class="fn">void <a name="9e5e77"></a>QMultiLineEdit::paste () <code>[slot]</code></h3>
+<p>Copies plain text from the clipboard onto the current cursor position.
+Any marked text is first deleted.
+<h3 class="fn">void <a name="094243"></a>QMultiLineEdit::pasteSubType ( const <a href="qcstring.html">QCString</a> &amp; subtype ) <code>[slot]</code></h3>
+<p>Copies text in MIME subtype <em>subtype</em> from the clipboard onto the current
+cursor position.
+Any marked text is first deleted.
+<h3 class="fn">void <a name="bed425"></a>QMultiLineEdit::redo () <code>[slot]</code></h3>
+<p>Redoes the last text operation.
+<h3 class="fn">void <a name="7dfdeb"></a>QMultiLineEdit::redoAvailable ( bool yes ) <code>[signal]</code></h3>
+<p>This signal is emitted when the availability of redo changes.
+If <em>yes</em> is TRUE, then <a href="#bed425">redo</a>() will work until
+redoAvailable( FALSE ) is next emitted.
+<h3 class="fn">void <a name="5fac4d"></a>QMultiLineEdit::removeLine ( int line ) <code>[virtual]</code></h3>
+<p>Deletes the line at line number <em>line.</em> If <em>line</em> is less than zero, or larger than the number of lines,
+no line is deleted.
+<h3 class="fn">void <a name="18e638"></a>QMultiLineEdit::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">void <a name="a5c523"></a>QMultiLineEdit::returnPressed () <code>[signal]</code></h3>
+<p>This signal is emitted when the user presses the return or enter
+key. It is not emitted if <a href="#f505a1">isReadOnly</a>() is TRUE.
+<p>See also  <a href="#966965">textChanged</a>().
+<h3 class="fn">void <a name="038d52"></a>QMultiLineEdit::selectAll () <code>[slot]</code></h3>
+<p>Selects all text without moving the cursor.
+<h3 class="fn">void <a name="1bd825"></a>QMultiLineEdit::setAlignment ( int flags )</h3>
+<p>Sets the alignment. Possible values are <code>AlignLeft, Align(H)Center</code>
+and <code>AlignRight.</code>
+<p>See also  <a href="#eb9185">alignment</a>() and <a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a>.
+<h3 class="fn">void <a name="f6f717"></a>QMultiLineEdit::setAutoUpdate ( bool enable ) <code>[virtual]</code></h3>
+<p>Sets the auto-update option of multi-line editor to <em>enable.</em>
+<p>If <em>enable</em> is TRUE (this is the default) then the editor updates
+itself automatically whenever it has changed in some way (generally,
+when text has been inserted or deleted).
+<p>If <em>enable</em> is FALSE, the view does NOT repaint itself, or update
+its internal state variables itself when it is changed.  This can be
+useful to avoid flicker during large changes, and is singularly
+useless otherwise: Disable auto-update, do the changes, re-enable
+auto-update, and call <a href="qtableview.html#49f85b">repaint</a>().<p><b>Warning:</b> Do not leave the view in this state for a long time
+(i.e. between events ). If, for example, the user interacts with the
+view when auto-update is off, strange things can happen.
+<p>Setting auto-update to TRUE does not repaint the view, you must call
+repaint() to do this (preferable repaint(FALSE) to avoid flicker).
+<p>See also  <a href="#d5d3b8">autoUpdate</a>() and <a href="qtableview.html#49f85b">repaint</a>().
+<h3 class="fn">void <a name="cc2986"></a>QMultiLineEdit::setCursorPosition ( int line, int col, bool mark = FALSE ) <code>[virtual]</code></h3>
+<p>Sets the cursor position to character number <em>col</em> in line number <em>line.</em>
+The parameters are adjusted to lie within the legal range.
+<p>If <em>mark</em> is FALSE, the selection is cleared. otherwise it is extended
+<p>See also  <a href="#10e629">cursorPosition</a>().
+<h3 class="fn">void <a name="cdf72e"></a>QMultiLineEdit::setDefaultTabStop ( int ex ) <code>[static]</code></h3>
+<p>Sets the distance between tab stops for all QMultiLineEdit instances
+to <em>ex,</em> which is measured in multiples of the width of a lower case 'x'
+in the widget's font. The initial value is 8.<p><b>Warning:</b> This function does not cause a redraw. It is best to call
+it before any QMultiLineEdit widgets are shown.
+<p>See also  <a href="#d42f9a">defaultTabStop</a>().
+<h3 class="fn">void <a name="c8d945"></a>QMultiLineEdit::setEchoMode ( <a href="qmultilineedit.html#EchoMode">EchoMode</a> em )</h3>
+<p>Sets the echo mode to <em>em.</em>  The default is <code>Normal.</code>
+<p>The display is updated according.
+<p>See also  setEchoMode().
+<h3 class="fn">void <a name="21be83"></a>QMultiLineEdit::setEdited ( bool e )</h3>
+<p>Sets the edited flag of this line edit to <em>on.</em>  The edited flag
+is never read by QMultiLineEdit, but is changed to TRUE whenever the user
+changes its contents.
+<p>This is useful e.g. for things that need to provide a default value,
+but cannot find the default at once.  Just open the widget without the
+best default and when the default is known, check the <a href="#68ae97">edited</a>() return
+value and set the line edit's contents if the user has not started
+editing the line edit.  Another example is to detect whether the
+contents need saving.
+<p>See also  <a href="#68ae97">edited</a>().
+<h3 class="fn">void <a name="42d327"></a>QMultiLineEdit::setFixedVisibleLines ( int lines ) <code>[virtual]</code></h3>
+<p>Sets the fixed height of the QMultiLineEdit so that <em>lines</em> text lines
+are visible given the current font.
+<p>See also  <a href="#e45beb">setMaxLines</a>() and <a href="qwidget.html#5e7ab2">setFixedHeight</a>().
+<h3 class="fn">void <a name="3a9aa7"></a>QMultiLineEdit::setFont ( const <a href="qfont.html">QFont</a> &amp; font ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="124c46"></a>QMultiLineEdit::setHMargin ( int m ) <code>[virtual]</code></h3>
+<p>Sets the horizontal margin.
+<p>See also  <a href="#68892d">hMargin</a>().
+<h3 class="fn">void <a name="24137b"></a>QMultiLineEdit::setMaxLength ( int m )</h3>
+<p>Sets the maximum text length  to <em>m.</em>  Use -1 for unlimited
+(the default).  Existing overlong text  will be truncated.
+<p>See also  <a href="#be0904">maxLength</a>().
+<h3 class="fn">void <a name="b00e4d"></a>QMultiLineEdit::setMaxLineLength ( int m ) <code>[virtual]</code></h3>
+<p>Sets the maximum length of lines to <em>m.</em>  Use -1 for unlimited
+(the default).  Existing long lines will be truncated.
+<p>See also  <a href="#5e8ba9">maxLineLength</a>().
+<h3 class="fn">void <a name="e45beb"></a>QMultiLineEdit::setMaxLines ( int m ) <code>[virtual]</code></h3>
+<p>Sets the maximum number of lines to <em>m.</em>  Use -1 for unlimited
+(the default).  Existing excess lines will be deleted.
+<p>Note that excess lines are deleted from the <em>bottom</em> of the
+lines. If you want teletype behaviour with lines disappearing
+from the <em>top</em> as the limit is exceed, you probably just want
+to use <a href="#5fac4d">removeLine</a>(0) prior to adding an excess line.
+<p>See also  <a href="#cf06a3">maxLines</a>() and <a href="#6b8aea">numLines</a>().
+<h3 class="fn">void <a name="86ad80"></a>QMultiLineEdit::setOverwriteMode ( bool on ) <code>[virtual slot]</code></h3>
+<p>Sets overwrite mode if <em>on</em> is TRUE. Overwrite mode means
+that characters typed replace characters in the editor.
+<p>See also  <a href="#0e5e16">isOverwriteMode</a>().
+<h3 class="fn">void <a name="e96020"></a>QMultiLineEdit::setReadOnly ( bool on ) <code>[virtual slot]</code></h3>
+<p>If <em>on</em> is FALSE, this multi line edit accepts text input.
+Scrolling and cursor movements are accepted in any case.
+<p>See also  <a href="#f505a1">isReadOnly</a>() and <a href="qwidget.html#4b103c">QWidget::setEnabled</a>().
+<h3 class="fn">void <a name="ae5f71"></a>QMultiLineEdit::setSelection ( int row_from, int col_from, int row_to, int col_to ) <code>[virtual]</code></h3>
+<p>Marks the text starting at <em>row_from, col_from</em> and ending
+at row_to, col_to.
+<h3 class="fn">void <a name="3fd8c1"></a>QMultiLineEdit::setText ( const <a href="qstring.html">QString</a> &amp; s ) <code>[virtual slot]</code></h3>
+<p>Sets the text to <em>s,</em> removing old text, if any.
+<p>Examples:
+ <a href="mainlyQt-editor-cpp.html#setText">mainlyQt/editor.cpp</a>
+ <a href="layout-layout-cpp.html#setText">layout/layout.cpp</a>
+ <a href="mainlyXt-editor-cpp.html#setText">mainlyXt/editor.cpp</a>
+ <a href="mainlyMotif-editor-cpp.html#setText">mainlyMotif/editor.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#setText">scrollview/scrollview.cpp</a>
+ <a href="customlayout-main-cpp.html#setText">customlayout/main.cpp</a>
+<h3 class="fn">void <a name="1ac368"></a>QMultiLineEdit::setUndoDepth ( int depth )</h3>
+<p>Sets the maximum number of operations that can be stored on the undo stack.
+<p>See also  <a href="#44b313">undoDepth</a>().
+<h3 class="fn">void <a name="8fe39c"></a>QMultiLineEdit::setUndoEnabled ( bool enable )</h3>
+<p>Sets undo enabled to <em>enable.</em>
+<p>See also  <a href="#0da4dd">isUndoEnabled</a>().
+<h3 class="fn">void <a name="331d1a"></a>QMultiLineEdit::setValidator ( const <a href="qvalidator.html">QValidator</a> * v ) <code>[virtual]</code></h3>
+<p>Not supported at this time.
+<h3 class="fn">void <a name="27235f"></a>QMultiLineEdit::setWordWrap ( <a href="qmultilineedit.html#WordWrap">WordWrap</a> mode )</h3>
+<p>Sets the word wrap mode.
+<p>Per default, wrapping keeps words intact. To allow breaking within
+words, set the wrap policy to <code>Anywhere</code> (see <a href="#cad805">setWrapPolicy</a>() ).
+<p>The default wrap mode is <code>NoWrap.</code>
+<p>See also  <a href="#a75533">wordWrap</a>(), <a href="#58a32f">setWrapColumnOrWidth</a>() and <a href="#cad805">setWrapPolicy</a>().
+<h3 class="fn">void <a name="58a32f"></a>QMultiLineEdit::setWrapColumnOrWidth ( int value )</h3>
+<p>Sets the wrap column or wrap width, depending on the word wrap mode.
+<p>See also  <a href="#27235f">setWordWrap</a>().
+<h3 class="fn">void <a name="cad805"></a>QMultiLineEdit::setWrapPolicy ( <a href="qmultilineedit.html#WrapPolicy">WrapPolicy</a> policy )</h3>
+<p>Defines where text can be wrapped in word wrap mode.
+<p>The default is <code>AtWhiteSpace.</code>
+<p>See also  <a href="#27235f">setWordWrap</a>() and <a href="#0b8f27">wrapPolicy</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="3f22f6"></a>QMultiLineEdit::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="88c28d"></a>QMultiLineEdit::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="76a880"></a>QMultiLineEdit::stringShown ( int row ) const <code>[protected]</code></h3>
+<p>Returns the string shown at line <em>row,</em> including
+processing of the <a href="#30705b">echoMode</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="7e9268"></a>QMultiLineEdit::text () const</h3>
+<p>Returns a copy of the whole text. If the multi line edit contains no
+text, a
+<a href="qstring.html#e21796">null string</a>
+is returned.
+<h3 class="fn">void <a name="966965"></a>QMultiLineEdit::textChanged () <code>[signal]</code></h3>
+<p>This signal is emitted when the text is changed by an event or by a
+slot. Note that the signal is not emitted when you call a non-slot
+function such as <a href="#e13115">insertLine</a>().
+<p>See also  <a href="#a5c523">returnPressed</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="98476a"></a>QMultiLineEdit::textLine ( int line ) const</h3>
+<p>Returns the text at line number <em>line</em> (possibly the empty string),
+or a <a href="qstring.html#e21796">null string</a> if <em>line</em> is invalid.
+<h3 class="fn">int <a name="a97ed4"></a>QMultiLineEdit::textWidth ( const <a href="qstring.html">QString</a> &amp; s ) <code>[protected]</code></h3>
+<p>Returns the width in pixels of the string <em>s.</em>
+NOTE: only appropriate for whole lines.
+<h3 class="fn">int <a name="d17204"></a>QMultiLineEdit::textWidth ( int line ) <code>[protected]</code></h3>
+<p>Returns the width in pixels of the text at line <em>line.</em>
+<h3 class="fn">void <a name="051750"></a>QMultiLineEdit::timerEvent ( <a href="qtimerevent.html">QTimerEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+Present for binary compatibility only!.
+<p>Reimplemented from <a href="qobject.html#7fd5bf">QObject.</a>
+<h3 class="fn">void <a name="c6e8c3"></a>QMultiLineEdit::undo () <code>[slot]</code></h3>
+<p>Undoes the last text operation.
+<h3 class="fn">void <a name="8252cb"></a>QMultiLineEdit::undoAvailable ( bool yes ) <code>[signal]</code></h3>
+<p>This signal is emitted when the availability of undo changes.
+If <em>yes</em> is TRUE, then <a href="#c6e8c3">undo</a>() will work until
+undoAvailable( FALSE ) is next emitted.
+<h3 class="fn">int <a name="44b313"></a>QMultiLineEdit::undoDepth () const</h3>
+<p>Returns the maximum number of operations that can be stored on the undo stack.
+<p>See also  <a href="#1ac368">setUndoDepth</a>().
+<h3 class="fn">const <a href="qvalidator.html">QValidator</a> * <a name="5301df"></a>QMultiLineEdit::validator () const</h3>
+<p>Not supported at this time.
+<h3 class="fn">void <a name="6f5398"></a>QMultiLineEdit::wheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+Passes wheel events to the vertical scrollbar.
+<p>Reimplemented from <a href="qwidget.html#6f6c80">QWidget.</a>
+<h3 class="fn">QMultiLineEdit::WordWrap <a name="a75533"></a>QMultiLineEdit::wordWrap() const</h3>
+<p>Returns the current word wrap mode.
+<p>See also  <a href="#27235f">setWordWrap</a>().
+<h3 class="fn">int <a name="7bed37"></a>QMultiLineEdit::wrapColumnOrWidth () const</h3>
+<p>Returns the wrap column or wrap width, depending on the word wrap
+mode.
+<p>See also  <a href="#27235f">setWordWrap</a>() and <a href="#58a32f">setWrapColumnOrWidth</a>().
+<h3 class="fn">QMultiLineEdit::WrapPolicy <a name="0b8f27"></a>QMultiLineEdit::wrapPolicy() const</h3>
+<p>Returns the current word wrap policy.
+<p>See also  <a href="#cad805">setWrapPolicy</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

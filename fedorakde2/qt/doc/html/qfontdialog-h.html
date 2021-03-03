@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qfontdialog.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qfontdialog.h</h1><br clear="all">
+This is the verbatim text of the qfontdialog.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/dialogs/qfontdialog.h   2.3.2   edited 2001-01-26 $
+**
+** Definition of QFontDialog
+**
+** Created : 970605
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the dialogs module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QFONTDIALOG_H
+#define QFONTDIALOG_H
+
+#include "qwindowdefs.h"
+
+#ifndef QT_NO_FONTDIALOG
+
+//
+//  W A R N I N G
+//  -------------
+//
+//  This class is under development and has private constructors.
+//
+//  You may use the public static getFont() functions which are guaranteed
+//  to be available in the future.
+//
+
+#ifndef QT_H
+#include "qdialog.h"
+#include "qfont.h"
+#endif // QT_H
+
+class  <a href="qlistbox.html">QListBox</a>;
+class  <a href="qcombobox.html">QComboBox</a>;
+class QFontDialogPrivate;
+
+
+class Q_EXPORT <a href="qfontdialog.html">QFontDialog</a>: public QDialog
+{
+    Q_OBJECT
+
+public:
+    static QFont getFont( bool *ok, const QFont &amp;def,
+                          QWidget *parent = 0, const char* name = 0);
+
+    static QFont getFont( bool *ok, QWidget *parent = 0, const char* name = 0);
+
+private:
+    QFontDialog( QWidget *parent=0, const char *name=0, bool modal=FALSE,
+                 WFlags f=0 );
+   ~QFontDialog();
+
+    QFont font() const;
+    void setFont( const QFont &amp;font );
+
+signals:
+    void fontSelected( const QFont &amp;font );
+    void fontHighlighted( const QFont &amp;font );
+
+protected:
+    bool eventFilter( QObject *, QEvent * );
+
+    QListBox * familyListBox() const;
+    virtual void updateFamilies();
+
+    QListBox * styleListBox() const;
+    virtual void updateStyles();
+
+    QListBox * sizeListBox() const;
+    virtual void updateSizes();
+
+    QComboBox * scriptCombo() const;
+    virtual void updateScripts();
+
+#if 0
+    QString family() const;
+    QString script() const;
+    QString style() const;
+    QString size() const;
+#endif
+
+protected slots:
+    void sizeChanged( const QString &amp;);
+
+private slots:
+    void familyHighlighted( const QString &amp;);
+    void familyHighlighted( int );
+    void scriptHighlighted( const QString &amp;);
+    void scriptHighlighted( int );
+    void styleHighlighted( const QString &amp;);
+    void sizeHighlighted( const QString &amp;);
+    void updateSample();
+    void emitSelectedFont();
+
+private:
+    static QFont getFont( bool *ok, const QFont *def,
+                          QWidget *parent = 0, const char* name = 0);
+
+    QFontDialogPrivate * d;
+    friend class QFontDialogPrivate;
+
+private:        // Disabled copy constructor and operator=
+#if defined(Q_DISABLE_COPY)
+    QFontDialog( const QFontDialog &amp; );
+    QFontDialog&amp; operator=( const QFontDialog &amp; );
+#endif
+};
+
+#endif
+
+#endif // QFONTDIALOG_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

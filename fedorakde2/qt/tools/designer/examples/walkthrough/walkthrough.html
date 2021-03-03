@@ -1,0 +1,153 @@
+<html>
+<body bgcolor="#ffffff">
+
+<h1 align=center>Walkthrough: MyDialog</h1>
+<pre>
+</pre>
+<ul>
+<li>Choose File->New and choose the template "Dialog with Buttons (Bottom)"
+<li>Choose the tabwidget tool and add one to the right
+<li>Choose the Buttongroup tool and add one to the left
+<li>Select the inserted buttongroup and change the title to "&Choose" (change the title in the property editor at the left)
+<li>Select the radiobutton tool and insert a radiobutton into the buttongroup
+<li>Repeat that three times
+<li>Change the textes of the radiobuttons either by doubleclicking on them or by selecting and changin the text property in the properyt editor
+</ul>
+<h3>Result:</h3>
+<img src="step1.png">
+<ul>
+<li>Rightclick on the tabwidget and choose "Add Page"
+<li>Repeat that once
+<li>Click on the first tab and change the title in the property editor.
+<li>Repeat that for the the second tab
+<li>Click on the first tab and insert a listview in the current tab page.
+<li>Insert Two pushbuttons at the right of it (vertically orderd)
+<li>Put a spacer below the buttons (you find the tool in the Layout
+Menu/Toolbar - to insert a vertical one just insert it by opening a
+rectange which is higher than wide)
+<li>Change the text of the buttons using the property editor or
+double-clicking on them to "Up" and "Down".
+<li>Double-Click on the listview to edit it contents. Add some columns
+and items there
+</ul>
+<h3>Result:</h3>
+<img src="step2.png">
+<ul>
+<li>Click on the second tab and insert a vertical slider at the left of the tabpage
+<li>Insert a LCD number right from it
+</ul>
+<h3>Result:</h3>
+<img src="step3.png">
+<ul>
+<li>Layout the dialog in a grid now by right-clicking on the dialog and
+choosing "Layout in Grid"
+<li>Layout the groupbox vertically by rightclicking on it and choosing
+"Layout Vertically"
+<li>Layout the first tabpage. Select the two buttons and the spacer, and
+choose from the Layout menu "Layout Vertically". Now rightclick on the
+tabpage and choose "Layout Horizontally"
+<li>Layout the second tabpage by righclicking on it and choosing "Layout Horizontally"
+</ul>
+<h3>Result:</h3>
+<img src="step4.png">
+<ul>
+<li>Now we give the widgets we need to access later in the code names
+like the radioButtons, the listview, the tow buttons, the slider and the lcdnumber.
+<li>Now we want to connect the slider and the LCD-Number on the second
+tabpage. For that activate the second page. Then choose the connection
+tool. Now press the mouse on the slider and drag it (while keeping the
+mousebutton pressed) onto the LCD-Number and release the mousebutton.
+<li>Choose in the dialog which pops up the signal "valueChanged(int) and
+the slot "display(int)" and click connect. It should look like in
+step5.png now. Press OK.
+</ul>
+<img src="step5.png">
+<ul>
+<li>In the preview (CTRL+T) you can move the slider now which will
+change the value of the LCD-Number.
+<li>Now we add a custom slot to the diaoog. Do that by choosing from the
+Edit menu "Slots". Add a slot upClicked()</ul>
+</ul>
+<img src="step6.png">
+<ul>
+<li>Now connect the clicked signal of the upBotton (of the first
+tabpage) with that slot by choosing the connection tool, pressing on
+the up button in the first tabpage and dragging the mouse until you
+reached the form (you see this be the pink highlighte rectangle and by
+the message in the statusbar). Use the connection dialog to make that
+connection now.
+<li>Now we want to set the taborder. Choose the taborder tool and click
+on the widgets in the order as you want it. See also step7.png.</ul>
+<img src="step7.png">
+<ul>
+<li>Finally you could change the caption of the dialog by clicking on
+the form and changing that property in the property editor.
+<li>After that save the dialog as mydialog.ui
+<li>Create in the same directory a file mydialog.pro with following contents
+<pre>
+TEMPLATE        = app
+CONFIG          = qt warn_on release
+HEADERS	        = mydialogimpl.h
+SOURCES	        = main.cpp mydialogimpl.cpp
+INTERFACES      = mydialog.ui
+TARGET          = mydialog
+</pre>
+<li>Create a file main.cpp with following contents in that directory
+<pre>
+#include &lt;qapplication.h&gt;
+#include "mydialogimpl.h"
+
+int main( int argc, char ** argv )
+{
+    QApplication a( argc, argv );
+    MyDialogImpl * mw = new MyDialogImpl;
+    mw->show();
+    a.connect( &a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()) );
+    return a.exec();
+}
+</pre>
+<li>Create a mydialog.h file in that directory
+<pre>
+#include "mydialogimpl.h"
+
+class MyDialogImpl : public MyDialog
+{
+public:
+    MyDialogImpl();
+
+public slots:
+    void upClicked();
+
+};
+</pre>
+<li>Create a mydialogimpl.cpp file in that directory
+<pre>
+#include "mydialogimpl.h"
+#include &lt;qmessagebox.h&gt;
+
+MyDialogImpl::MyDialogImpl()
+    : MyDialog()
+{
+}
+
+void MyDialogImpl::upClicked()
+{
+    QMessageBox::information( this, tr( "Message" ), tr( "Item-Up clicked!" ) );
+}
+
+</pre>
+<p>For faster results, you could ask <tt>uic</tt> to create a skeleton
+for your implementation subclass with:
+<pre>
+    uic -subdecl MyDialogImpl mydialog.h mydialog.ui > mydialogimpl.h
+    uic -subimpl MyDialogImpl mydialogimpl.h mydialog.ui > mydialogimpl.cpp                      
+</pre>
+<li>Run <pre>tmake -o Makefile mydialog.pro</pre>
+<li>run <pre>(n)make -f Makefile</pre>
+<li>Now you can run mydialog which opens the created dialog. When you
+click on the Up button in the first tabpage a messagebox pops up. And
+changing the slider in the second tab changes the value of the
+LCD-number.
+</ul>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Meta Object System</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Meta Object System</h1><br clear="all">
+The Meta Object System in Qt is responsible for the signal/slot
+mechanism for communication between objects, runtime type information
+and the dynamic property system.
+<p>
+It is based on three things:
+<ul>
+<li> the <a href="qobject.html">QObject</a> class,
+<li> the "Q_OBJECT" macro inside the private section of the class
+declaration and
+<li> the <a href="moc.html">Meta Object Compiler (moc)</a>. 
+ </ul>
+<p>
+The <b>moc</b> reads a C++ source file. If it finds one or more class
+declarations that contain the "Q_OBJECT" macro, it produces another
+C++ source file which contains the meta object code for this
+class. This generated source file is either #included into the class'
+source file or compiled and linked with the class implementation.
+<p>
+Apart from the possibility to use <a
+href="signalsandslots.html">signals and slots</a> for communication
+between objects - the main reason for introducing the system - the
+meta object code implements certain other features in QObject:
+<p>
+<ul>
+<li> a function <a href="qobject.html#fa7716">className()</a> that
+returns the class name as string during runtime, without requiring
+native runtime type information (RTTI) support through the C++
+compiler.
+<li> a function <a href="qobject.html#beb5d8">inherits()</a> that
+returns whether an object is instance of a class that inherits a
+specified class within the QObject inheritance tree.
+<li> a function <a href="qobject.html#2418a9">tr()</a> for scoped string
+translation as used for <a href="i18n.html"> internationalization</a>.
+<li> two functions <a href="qobject.html#72ec3f">setProperty()</a>
+and <a href="qobject.html#a110be">property()</a> to dynamically set
+and get <a href="properties.html">object properties</a> by name.
+<li> a function <a href="qobject.html#ef2243">metaObject()</a> that
+returns the associated <a href="qmetaobject.html">meta object</a> for the
+class.
+<p>
+</ul>
+<p>
+While it is possible to use QObject as a base class without Q_OBJECT
+macro and without meta object code, neither signals and slots nor the
+other features described here will be available. From the meta object
+system's point of view, a QObject subclass without meta code is
+equivalent to its closest ancestor with meta object code. That means
+for example that className() will not return the actual name of your
+class, but the class name of this ancestor. We strongly recommend to
+use the macro in <em>all</em> subclasses of QObject regardless whether they
+actually use signals, slots and properties or not.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

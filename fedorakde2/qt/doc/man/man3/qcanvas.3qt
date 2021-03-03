@@ -1,0 +1,411 @@
+'\" t
+.TH QCanvas 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvas \- 2D graphic area upon which
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+Inherits QObject.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvas\fR ( QObject * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fBQCanvas\fR ( int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "\fBQCanvas\fR ( QPixmap " "p" ", int " "h" ", int " "v" ", int " "tilewidth" ", int tileheight ) "
+.br
+.ti -1c
+.BI "virtual \fB~QCanvas\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetTiles\fR ( QPixmap " "tiles" ", int " "h" ", int " "v" ", int " "tilewidth" ", int tileheight ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetBackgroundPixmap\fR ( const QPixmap & p ) "
+.br
+.ti -1c
+.BI "QPixmap \fBbackgroundPixmap\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetBackgroundColor\fR ( const QColor & c ) "
+.br
+.ti -1c
+.BI "QColor \fBbackgroundColor\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetTile\fR ( int " "x" ", int " "y" ", int tilenum ) "
+.br
+.ti -1c
+.BI "int \fBtile\fR ( int " "x" ", int y ) const"
+.br
+.ti -1c
+.BI "int \fBtilesHorizontally\fR () const"
+.br
+.ti -1c
+.BI "int \fBtilesVertically\fR () const"
+.br
+.ti -1c
+.BI "int \fBtileWidth\fR () const"
+.br
+.ti -1c
+.BI "int \fBtileHeight\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBresize\fR ( int " "width" ", int height ) "
+.br
+.ti -1c
+.BI "int \fBwidth\fR () const"
+.br
+.ti -1c
+.BI "int \fBheight\fR () const"
+.br
+.ti -1c
+.BI "QSize \fBsize\fR () const"
+.br
+.ti -1c
+.BI "bool \fBonCanvas\fR ( int " "x" ", int y ) const"
+.br
+.ti -1c
+.BI "bool \fBonCanvas\fR ( const QPoint & p ) const"
+.br
+.ti -1c
+.BI "bool \fBvalidChunk\fR ( int " "x" ", int y ) const"
+.br
+.ti -1c
+.BI "bool \fBvalidChunk\fR ( const QPoint & p ) const"
+.br
+.ti -1c
+.BI "int \fBchunkSize\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBretune\fR ( int " "chunksize" ", int " "maxclusters" "=100 ) "
+.br
+.ti -1c
+.BI "bool \fBsameChunk\fR ( int " "x1" ", int " "y1" ", int " "x2" ", int y2 ) const (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBsetChangedChunk\fR ( int " "i" ", int j ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBsetChangedChunkContaining\fR ( int " "x" ", int y ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBsetAllChanged\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetChanged\fR ( const QRect & inarea ) "
+.br
+.ti -1c
+.BI "void \fBaddItemToChunk\fR ( QCanvasItem *, int " "i" ", int j ) (internal)"
+.br
+.ti -1c
+.BI "void \fBremoveItemFromChunk\fR ( QCanvasItem *, int " "i" ", int j ) (internal)"
+.br
+.ti -1c
+.BI "void \fBaddItemToChunkContaining\fR ( QCanvasItem *, int " "x" ", int y ) (internal)"
+.br
+.ti -1c
+.BI "void \fBremoveItemFromChunkContaining\fR ( QCanvasItem *, int " "x" ", int y ) (internal)"
+.br
+.ti -1c
+.BI "QCanvasItemList \fBallItems\fR () "
+.br
+.ti -1c
+.BI "QCanvasItemList \fBcollisions\fR ( const QPoint & ) const"
+.br
+.ti -1c
+.BI "QCanvasItemList \fBcollisions\fR ( const QRect & ) const"
+.br
+.ti -1c
+.BI "QCanvasItemList \fBcollisions\fR ( const QPointArray & " "pa" ", const QCanvasItem * " "item" ", bool exact ) const"
+.br
+.ti -1c
+.BI "virtual void \fBaddView\fR ( QCanvasView * ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBremoveView\fR ( QCanvasView * ) (internal)"
+.br
+.ti -1c
+.BI "void \fBdrawArea\fR ( const QRect &, QPainter * " "p" "=0, bool " "double_buffer" "=TRUE ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBaddItem\fR ( QCanvasItem * ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBaddAnimation\fR ( QCanvasItem * ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBremoveItem\fR ( QCanvasItem * ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBremoveAnimation\fR ( QCanvasItem * ) (internal)"
+.br
+.ti -1c
+.BI "virtual void \fBsetAdvancePeriod\fR ( int ms ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetUpdatePeriod\fR ( int ms ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetDoubleBuffering\fR ( bool y ) "
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "virtual void \fBadvance\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBupdate\fR () "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBresized\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawBackground\fR ( QPainter &, const QRect & area ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawForeground\fR ( QPainter &, const QRect & area ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QCanvas class is a 2D graphic area upon which QCanvasItem objects exist.
+.PP
+A QCanvas contains any number of QCanvasItem subclassed objects and has any number of QCanvasView widgets observing some part of the canvas.
+.PP
+A canvas containing many items is different to a widgets containing many subwidgets in the following ways:
+.TP
+Items are drawn much faster than widgets, especially when non-rectangular.
+.TP
+Items use less memory than widgets.
+.TP
+You can do efficient item-to-item hit tests ("collision detection") with items in a canvas.
+.TP
+Finding items in an area is efficient.
+.TP
+You can have multiple views of a canvas.
+.PP
+Widgets of course offer richer functionality, such as hierarchies, events, layout, etc.
+.SH "Drawing"
+A canvas has a solid background and a foreground. By default, the canvas will have a white background, which can be changed with setBackgroundColor(). If you want an image, use setBackgroundPixmap(). A third option is to use \fItiles\fR, where the canvas background is a matrix of small images all the same size, each chosen from a defined larger pixmap. See setTiles().
+.PP
+On top of the background are objects of QCanvasItems subclasses. Each item has a Z-height (see QCanvasItem::z()), with the lower-Z items on the background and higher-Z items on top of them.
+.PP
+Above everything in the canvas is the foreground, as defined by the drawForeground() function. By default this function draws nothing.
+.PP
+Changes to the items on the canvas are refreshed to the views whenever update() is called, including creation of new items, movement of item, change of shape, change of visibility, and destruction.
+.PP
+Note that like QWidgets, QCanvasItems are always hidden when they are created, so you must show() them some time after creating them if you wish them to be visible.
+.SH "Animation"
+QCanvas has some built-in animation features. If you call QCanvasItem::setVelocity() on an item, it will move forward whenever advance() is call. The advance() function also calls update(), so you only need to call one or the other. If no items have a velocity, then advance() is the same as update().
+.PP
+You can have advance() or update() called automatically with setAdvancePeriod() or setUpdatePeriod() respectively.
+.SH "Collision Detection"
+Items on the canvas can be tested for collisions with these functions, each of which returns a list of items which match the hit, sorted from top to bottom (ie. by decreasing QCanvasItem::z() value).
+.TP
+collisions(QPoint) - items which will collide with a point.
+.TP
+collisions(QRect) - items which will collide with a rectangle.
+.PP
+You can also test for item-to-item collisions with QCanvasItem::collisions().
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvas::QCanvas ( QObject * parent = 0, const char * name = 0 )"
+Create a QCanvas with no size. You will want to call resize(int,int) at some time after creation.
+.SH "QCanvas::QCanvas ( QPixmap p, int h, int v, int tilewidth, int tileheight )"
+Constructs a QCanvas which will be composed of \fIh\fR tiles horizontally and \fIv\fR tiles vertically. Each tile will be an image \fItilewidth\fR by \fItileheight\fR pixels from pixmap \fIp.\fR
+.PP
+The pixmap \fIp\fR is a list of tiles, arranged left to right, top to bottom, with tile 0 in the top-left corner, tile 1 next to the right, and so on.
+.PP
+The QCanvas is initially sized to show exactly the given number of tiles horizontally and vertically. If it is resized to be larger, the entire matrix of tiles will be repeated as much as necessary to cover the area. If it is smaller, tiles to the right and bottom will not be visible.
+.SH "QCanvas::QCanvas ( int w, int h )"
+Constructs a QCanvas with that is \fCw\fR pixels wide and \fCh\fR pixels high.
+.SH "QCanvas::~QCanvas () \fC[virtual]\fR"
+Destructs the canvas. Does also destroy all items on the canvas.
+.SH "void QCanvas::advance () \fC[virtual slot]\fR"
+Advances the animation of items on the canvas and refreshes all changes to all views of the canvas.
+.PP
+The advance is done in two phases. In phase 0, the QCanvasItem:advance() function of each animated item is called with paramater 0. Then all items are called again, with parameter 1. In phase 0, the items should not change position, merely examine other items on the canvas for which special processing is required, such as collisions between items. In phase 1, all items should change positions, ignoring any other items on the canvas. This two-phase approach allows for considerations of "fairness", though no QCanvasItem subclasses supplied with Qt do anything interesting in phase 0.
+.PP
+The canvas can be configured to call this function periodically with setAdvancePeriod().
+.PP
+See also update().
+.SH "QCanvasItemList QCanvas::allItems ()"
+Returns a list of all items in the canvas.
+.SH "QColor QCanvas::backgroundColor () const"
+Returns the color set by setBackgroundColor(). By default, this is white.
+.PP
+Note that this function is not a reimplementation of QWidget::backgroundColor() (QCanvas is not a subclass of QWidget), but all QCanvasViews that are viewing the canvas will set their backgrounds to this
+.PP
+See also setBackgroundColor() and backgroundPixmap().
+.SH "QPixmap QCanvas::backgroundPixmap () const"
+Returns the pixmap set by setBackgroundPixmap(). By default, this is a null pixmap.
+.PP
+See also setBackgroundPixmap() and backgroundColor().
+.SH "int QCanvas::chunkSize () const"
+Returns the chunk size of the canvas as set at construction.
+.PP
+See also retune().
+.SH "QCanvasItemList QCanvas::collisions ( const QPoint & p ) const"
+Returns a list of items which intersect with the point \fIp,\fR sorted from shallowest to deepest.
+.SH "QCanvasItemList QCanvas::collisions ( const QPointArray & chunklist, const QCanvasItem * item, bool exact ) const"
+Returns a list of items which intersect with the chunks listed in \fIchunklist,\fR excluding \fIitem.\fR If \fIexact\fR is TRUE, only only those which actually QCanvasItem::collidesWith() \fIitem\fR are returned, otherwise items are included just for being in the chunks.
+.PP
+This is a utility function mainly used to implement the simpler QCanvasItem::collisions() function.
+.SH "QCanvasItemList QCanvas::collisions ( const QRect & r ) const"
+Returns a list of items which intersect with the rectangle \fIr,\fR sorted from shallowest to deepest.
+.SH "void QCanvas::drawBackground ( QPainter & painter, const QRect & clip ) \fC[virtual protected]\fR"
+This virtual function is called for all updates of the QCanvas. It renders any background graphics. If the canvas has a background pixmap or a tiled background, that graphic is used, otherwise the canvas is cleared in the background color.
+.PP
+If the graphics for an area change, you must explicitly call setChanged(const QRect&) for the result to be visible when update() is next called.
+.PP
+See also setBackgroundColor(), setBackgroundPixmap() and setTiles().
+.SH "void QCanvas::drawForeground ( QPainter & painter, const QRect & clip ) \fC[virtual protected]\fR"
+This virtual function is called for all updates of the QCanvas. It renders any foreground graphics.
+.PP
+The same warnings regarding change apply to this method as for drawBackground().
+.PP
+The default is to draw nothing.
+.SH "int QCanvas::height () const"
+Returns the height of the canvas, in pixels.
+.SH "bool QCanvas::onCanvas ( const QPoint & p ) const"
+Returns whether the pixel position \fIp\fR is on the canvas.
+.SH "bool QCanvas::onCanvas ( int x, int y ) const"
+Returns whether the pixel position (\fIx, y)\fR is on the canvas.
+.SH "void QCanvas::resize ( int w, int h ) \fC[virtual]\fR"
+Changes the size of the QCanvas. This is a slow operation.
+.SH "void QCanvas::resized () \fC[signal]\fR"
+This signal is emitted whenever the canvas is resized. Each QCanvasView connects to this signal to keep the scrollview size correct.
+.SH "void QCanvas::retune ( int chunksze, int mxclusters=100 ) \fC[virtual]\fR"
+Change the efficiency tuning parameters to \fImxclusters\fR clusters, each of size \fIchunksze\fR (square). This is a slow operation if you have many objects on the canvas.
+.PP
+Internally, a canvas uses a low-resolution "chunk matrix" to keep track of all the items in the canvas. In Qt 2.2, the default for a 1024x1024 pixel canvas is to have a 64x64 chunk matrix, where each of those chunks collects items in a 16x16 pixel square.
+.PP
+This default is also affected by setTiles(). You can tune this default by using retune(), for example if you have a very large canvas and want to trade off speed for memory then you might set the chunk size to 32 or 64.
+.PP
+\fIchunksze\fR is the size of square chunk used to break up the QCanvas into area to be considered for redrawing. It should be about the average size of items in the QCanvas. Chunks too small increase the amount of calculation required when drawing. Chunks too large increase the amount of drawing that is needed.
+.PP
+\fImxclusters\fR is the number of rectangular groups of chunks that will be separately drawn. If the QCanvas has a large number of small, dispersed items, this should be about that number. The more clusters the slower the redraw, but also the bigger clusters are the slower the redraw, so a balance is needed. Testing indicates that a large number of clusters is almost always best.
+.SH "void QCanvas::setAdvancePeriod ( int ms ) \fC[virtual]\fR"
+Sets the canvas to call advance() every \fIms\fR milliseconds. Any previous setting by setAdvancePeriod() or setUpdatePeriod() is cancelled.
+.SH "void QCanvas::setAllChanged () \fC[virtual]\fR"
+Sets all views of the canvas to be entirely redrawn when update() is next called.
+.SH "void QCanvas::setBackgroundColor ( const QColor & c ) \fC[virtual]\fR"
+Sets the solid background to be the color \fIc.\fR
+.PP
+See also backgroundColor(), setBackgroundPixmap() and setTiles().
+.SH "void QCanvas::setBackgroundPixmap ( const QPixmap & p ) \fC[virtual]\fR"
+Sets the solid background to be \fIp,\fR repeated as necessary to cover the entire canvas.
+.PP
+See also backgroundPixmap(), setBackgroundColor() and setTiles().
+.SH "void QCanvas::setChanged ( const QRect & area ) \fC[virtual]\fR"
+Sets all views of \fIarea\fR to be entirely redrawn when update() is next called.
+.SH "void QCanvas::setDoubleBuffering ( bool y ) \fC[virtual]\fR"
+Turns double-buffering on if \fIy\fR is TRUE, or off if it is FALSE. The default is to use double-buffering.
+.PP
+Turning off double-buffering casuses the redrawn areas to flicker a bit. This can help understand the the optimizations made by QCanvas and also gives a (usually small) performance improvement.
+.SH "void QCanvas::setTile ( int x, int y, int tilenum ) \fC[virtual]\fR"
+Sets the tile at (\fIx, y)\fR to use tile number \fItilenum,\fR which is an index into the tile pixmaps. The canvas will update appropriately when update() is next called.
+.PP
+The images are taken from the pixmap set by setTiles() and are arranged in the pixmap left to right, top to bottom, with tile 0 in the top-left corner, tile 1 next to the right, and so on.
+.PP
+See also tile() and setTiles().
+.SH "void QCanvas::setTiles ( QPixmap p, int h, int v, int tilewidth, int tileheight ) \fC[virtual]\fR"
+Sets the QCanvas to be composed of \fIh\fR tiles horizontally and \fIv\fR tiles vertically. Each tile will be an image \fItilewidth\fR by \fItileheight\fR pixels from pixmap \fIp.\fR
+.PP
+The pixmap \fIp\fR contains the tiles arranged left to right, top to bottom, with tile 0 in the top-left corner, tile 1 to the right of tile 0, and so on.
+.PP
+If the QCanvas is larger than the matrix of tiles, the entire matrix is repeated as necessary to cover the area. If it is smaller, tiles to the right and bottom are not visible.
+.PP
+The width and height of \fIp\fR must be multiples of \fItilewidth\fR and \fItileheight.\fR If they are not, the action of this function is unspecified.
+.SH "void QCanvas::setUpdatePeriod ( int ms ) \fC[virtual]\fR"
+Sets the canvas to call update() every \fIms\fR milliseconds. Any previous setting by setAdvancePeriod() or setUpdatePeriod() is cancelled.
+.SH "QSize QCanvas::size () const"
+Returns the size of the canvas, in pixels.
+.SH "int QCanvas::tile ( int x, int y ) const"
+Returns the tile at (\fIx, y).\fR Initially, all tiles are 0.
+.PP
+\fBWarning:\fR The parameters must be within range.
+.PP
+See also setTile().
+.SH "int QCanvas::tileHeight () const"
+Returns the height of each tile.
+.SH "int QCanvas::tileWidth () const"
+Returns the width of each tile.
+.SH "int QCanvas::tilesHorizontally () const"
+Returns the number of tiles horizontally.
+.SH "int QCanvas::tilesVertically () const"
+Returns the number of tiles vertically.
+.SH "void QCanvas::update () \fC[virtual slot]\fR"
+Refreshes all changes to all views of the canvas.
+.PP
+See also advance().
+.SH "bool QCanvas::validChunk ( const QPoint & p ) const"
+Returns whether the chunk position \fIp\fR is on the canvas.
+.SH "bool QCanvas::validChunk ( int x, int y ) const"
+Returns whether the chunk position (\fIx, y)\fR is on the canvas.
+.SH "int QCanvas::width () const"
+Returns the width of the canvas, in pixels.
+.SH "void QCanvas::addAnimation ( QCanvasItem * item ) \fC[virtual]\fR"
+For internal use only.
+.SH "void QCanvas::addItem ( QCanvasItem * item ) \fC[virtual]\fR"
+For internal use only.
+.SH "void QCanvas::addItemToChunk ( QCanvasItem * g, int x, int y )"
+For internal use only.
+.SH "void QCanvas::addItemToChunkContaining ( QCanvasItem * g, int x, int y )"
+For internal use only.
+.SH "void QCanvas::addView ( QCanvasView * view ) \fC[virtual]\fR"
+For internal use only.
+.SH "void QCanvas::drawArea ( const QRect & inarea, QPainter * p=0, bool double_buffer=TRUE )"
+For internal use only.
+.SH "void QCanvas::removeAnimation ( QCanvasItem * item ) \fC[virtual]\fR"
+For internal use only.
+.SH "void QCanvas::removeItem ( QCanvasItem * item ) \fC[virtual]\fR"
+For internal use only.
+.SH "void QCanvas::removeItemFromChunk ( QCanvasItem * g, int x, int y )"
+For internal use only.
+.SH "void QCanvas::removeItemFromChunkContaining ( QCanvasItem * g, int x, int y )"
+For internal use only.
+.SH "void QCanvas::removeView ( QCanvasView * view ) \fC[virtual]\fR"
+For internal use only.
+.SH "bool QCanvas::sameChunk ( int x1, int y1, int x2, int y2 ) const"
+For internal use only.
+.SH "void QCanvas::setChangedChunk ( int x, int y ) \fC[virtual]\fR"
+For internal use only.
+.SH "void QCanvas::setChangedChunkContaining ( int x, int y ) \fC[virtual]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvas.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvas.3qt) and the Qt
+version (2.3.2).

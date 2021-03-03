@@ -1,0 +1,44 @@
+Critical
+--------
+
+
+Severe
+------
+
+static usage of QFileDialog on Borland (Win32)
+    API-call doesn't seem to work, so use Qt dialog as workaround
+
+QApplication::widgetAt (Win32)
+    This function does not work as expected (support/arc-07/14942 ff.)
+
+drawText() on a printer (Win32)
+    Text produces garbage (Win98) and is not scaled correctly (support/arc-07/15339).
+
+copy/paste is reported not to work for custom formats (Win32)
+    Posts on qt-interest suggest that drag&drop works correctly but not
+    copy/paste through the clipboard.
+
+QSpinbox
+    does only do a interpreteText() on focus out. When a dialog has a spinbox
+    and the focus is in it and the dialog is closed the text is not interpreted.
+
+Small
+-----
+
+QPopupMenu
+    Fix updateItem() (qt-bugs/arc-06/13748).
+
+Dual Monitor support (Win32)
+    TLW-Widgets with WType_Popup appear on main-screen.
+
+
+Cosmetic
+--------
+
+QProgressBar
+    Avoid flickering.
+    This means caching both the percentage value (which is already done)
+    and the pixel position (which has not been done yet).
+
+QPrintDialog
+    Try making it fit in a 640x480 display.

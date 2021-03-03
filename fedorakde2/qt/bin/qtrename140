@@ -1,0 +1,122 @@
+#!/usr/bin/perl -pi.oldnames
+#
+#  Perl script to change programs to use the longer header-file names
+#  introduced in Qt version 1.40.  Note that Qt is distributed with
+#  compatilibity headers making this program unnecessary at present,
+#  but which may be discontinued in Qt 2.0.
+#
+#  This is version 1.0 of the conversion script.
+#
+#
+#  Copyright (C) 1998 by Trolltech AS.
+#
+#  Permission to use, copy, modify, and distribute this software and its
+#  documentation for any purpose and without fee is hereby granted,
+#  provided that the above copyright notice appear in all copies, that
+#  both that copyright notice and this permission notice appear in
+#  supporting documentation, and that any modifications are clearly
+#  annotated as not originating from the copyright holder.
+#
+#  This file is provided AS IS with no warranties of any kind.  The author
+#  shall have no liability with respect to the infringement of copyrights,
+#  trade secrets or any patents by this file or any part thereof.  In no
+#  event will the author be liable for any lost revenue or profits or
+#  other special, indirect and consequential damages.
+#
+
+s/\bqapp\./qapplication./g if /#include/;
+s/\bQAPP_H\b/QAPPLICATION_H/g if /#if/;
+s/\bqbitarry\./qbitarray./g if /#include/;
+s/\bQBITARRY_H\b/QBITARRAY_H/g if /#if/;
+s/\bqbttngrp\./qbuttongroup./g if /#include/;
+s/\bQBTTNGRP_H\b/QBUTTONGROUP_H/g if /#if/;
+s/\bqchkbox\./qcheckbox./g if /#include/;
+s/\bQCHKBOX_H\b/QCHECKBOX_H/g if /#if/;
+s/\bqclipbrd\./qclipboard./g if /#include/;
+s/\bQCLIPBRD_H\b/QCLIPBOARD_H/g if /#if/;
+s/\bqcollect\./qcollection./g if /#include/;
+s/\bQCOLLECT_H\b/QCOLLECTION_H/g if /#if/;
+s/\bqcombo\./qcombobox./g if /#include/;
+s/\bQCOMBO_H\b/QCOMBOBOX_H/g if /#if/;
+s/\bqconnect\./qconnection./g if /#include/;
+s/\bQCONNECT_H\b/QCONNECTION_H/g if /#if/;
+s/\bqdatetm\./qdatetime./g if /#include/;
+s/\bQDATETM_H\b/QDATETIME_H/g if /#if/;
+s/\bqdrawutl\./qdrawutil./g if /#include/;
+s/\bQDRAWUTL_H\b/QDRAWUTIL_H/g if /#if/;
+s/\bqdstream\./qdatastream./g if /#include/;
+s/\bQDSTREAM_H\b/QDATASTREAM_H/g if /#if/;
+s/\bqfiledlg\./qfiledialog./g if /#include/;
+s/\bQFILEDLG_H\b/QFILEDIALOG_H/g if /#if/;
+s/\bqfileinf\./qfileinfo./g if /#include/;
+s/\bQFILEINF_H\b/QFILEINFO_H/g if /#if/;
+s/\bqgmanagr\./qgmanager./g if /#include/;
+s/\bQGMANAGR_H\b/QGMANAGER_H/g if /#if/;
+s/\bqgrpbox\./qgroupbox./g if /#include/;
+s/\bQGRPBOX_H\b/QGROUPBOX_H/g if /#if/;
+s/\bqiodev\./qiodevice./g if /#include/;
+s/\bQIODEV_H\b/QIODEVICE_H/g if /#if/;
+s/\bqlcdnum\./qlcdnumber./g if /#include/;
+s/\bQLCDNUM_H\b/QLCDNUMBER_H/g if /#if/;
+s/\bqlined\./qlineedit./g if /#include/;
+s/\bQLINED_H\b/QLINEEDIT_H/g if /#if/;
+s/\bqmenudta\./qmenudata./g if /#include/;
+s/\bQMENUDTA_H\b/QMENUDATA_H/g if /#if/;
+s/\bqmetaobj\./qmetaobject./g if /#include/;
+s/\bQMETAOBJ_H\b/QMETAOBJECT_H/g if /#if/;
+s/\bqmlined\./qmultilineedit./g if /#include/;
+s/\bQMLINED_H\b/QMULTILINEEDIT_H/g if /#if/;
+s/\bqmultilinedit\./qmultilineedit./g if /#include/;
+s/\bQMULTILINEDIT_H\b/QMULTILINEEDIT_H/g if /#if/;
+s/\bqmsgbox\./qmessagebox./g if /#include/;
+s/\bQMSGBOX_H\b/QMESSAGEBOX_H/g if /#if/;
+s/\bqpdevmet\./qpaintdevicemetrics./g if /#include/;
+s/\bQPDEVMET_H\b/QPAINTDEVICEMETRICS_H/g if /#if/;
+s/\bqpmcache\./qpixmapcache./g if /#include/;
+s/\bQPMCACHE_H\b/QPIXMAPCACHE_H/g if /#if/;
+s/\bqpntarry\./qpointarray./g if /#include/;
+s/\bQPNTARRY_H\b/QPOINTARRAY_H/g if /#if/;
+s/\bqpopmenu\./qpopupmenu./g if /#include/;
+s/\bQPOPMENU_H\b/QPOPUPMENU_H/g if /#if/;
+s/\bqprndlg\./qprintdialog./g if /#include/;
+s/\bQPRNDLG_H\b/QPRINTDIALOG_H/g if /#if/;
+s/\bqprogbar\./qprogressbar./g if /#include/;
+s/\bQPROGBAR_H\b/QPROGRESSBAR_H/g if /#if/;
+s/\bqprogdlg\./qprogressdialog./g if /#include/;
+s/\bQPROGDLG_H\b/QPROGRESSDIALOG_H/g if /#if/;
+s/\bqpsprn\./qpsprinter./g if /#include/;
+s/\bQPSPRN_H\b/QPSPRINTER_H/g if /#if/;
+s/\bqpushbt\./qpushbutton./g if /#include/;
+s/\bQPUSHBT_H\b/QPUSHBUTTON_H/g if /#if/;
+s/\bqradiobt\./qradiobutton./g if /#include/;
+s/\bQRADIOBT_H\b/QRADIOBUTTON_H/g if /#if/;
+s/\bqrangect\./qrangecontrol./g if /#include/;
+s/\bQRANGECT_H\b/QRANGECONTROL_H/g if /#if/;
+s/\bqscrbar\./qscrollbar./g if /#include/;
+s/\bQSCRBAR_H\b/QSCROLLBAR_H/g if /#if/;
+s/\bqsocknot\./qsocketnotifier./g if /#include/;
+s/\bQSOCKNOT_H\b/QSOCKETNOTIFIER_H/g if /#if/;
+s/\bqtabdlg\./qtabdialog./g if /#include/;
+s/\bQTABDLG_H\b/QTABDIALOG_H/g if /#if/;
+s/\bqtablevw\./qtableview./g if /#include/;
+s/\bQTABLEVW_H\b/QTABLEVIEW_H/g if /#if/;
+s/\bqtstream\./qtextstream./g if /#include/;
+s/\bQTSTREAM_H\b/QTEXTSTREAM_H/g if /#if/;
+s/\bqfiledef\./qfiledefs./g if /#include/;
+s/\bQFILEDEF_H\b/QFILEDEFS_H/g if /#if/;
+s/\bqfontdta\./qfontdata./g if /#include/;
+s/\bQFONTDTA_H\b/QFONTDATA_H/g if /#if/;
+s/\bqfontinf\./qfontinfo./g if /#include/;
+s/\bQFONTINF_H\b/QFONTINFO_H/g if /#if/;
+s/\bqfontmet\./qfontmetrics./g if /#include/;
+s/\bQFONTMET_H\b/QFONTMETRICS_H/g if /#if/;
+s/\bqintcach\./qintcache./g if /#include/;
+s/\bQINTCACH_H\b/QINTCACHE_H/g if /#if/;
+s/\bqobjdefs\./qobjectdefs./g if /#include/;
+s/\bQOBJDEFS_H\b/QOBJECTDEFS_H/g if /#if/;
+s/\bqpaintd\./qpaintdevice./g if /#include/;
+s/\bQPAINTD_H\b/QPAINTDEVICE_H/g if /#if/;
+s/\bqpaintdc\./qpaintdevicedefs./g if /#include/;
+s/\bQPAINTDC_H\b/QPAINTDEVICEDEFS_H/g if /#if/;
+s/\bqwindefs\./qwindowdefs./g if /#include/;
+s/\bQWINDEFS_H\b/QWINDOWDEFS_H/g if /#if/;

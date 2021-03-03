@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - aclock/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Analog Clock</h1><br clear="all">
+
+  This example displays an analog clock widget.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/aclock/aclock.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef ACLOCK_H
+#define ACLOCK_H
+
+#include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+#include &lt;<a href="qdatetime-h.html">qdatetime.h</a>&gt;
+
+class AnalogClock : public QWidget              // analog clock widget
+{
+    Q_OBJECT
+public:
+    AnalogClock( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+    void setAutoMask(bool b);
+
+protected:
+    void updateMask();
+    void paintEvent( <a href="qpaintevent.html">QPaintEvent</a> *);
+
+private slots:
+    void drawClock( <a href="qpainter.html">QPainter</a>* );
+    void        timeout();
+
+private:
+    <a href="qtime.html">QTime</a>       time;
+};
+
+#endif // ACLOCK_H
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/aclock/aclock.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "aclock.h"
+#include &lt;<a href="qtimer-h.html">qtimer.h</a>&gt;
+#include &lt;<a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a href="qbitmap-h.html">qbitmap.h</a>&gt;
+
+//
+// Constructs an analog clock widget that uses an internal QTimer.
+//
+
+AnalogClock::AnalogClock( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qwidget.html">QWidget</a>( parent, name )
+{
+    time = QTime::currentTime();                // get current time
+    <a href="qtimer.html">QTimer</a> *internalTimer = new <a href="qtimer.html">QTimer</a>( this ); // create internal timer
+    <a href="qobject.html#7f8e37">connect</a>( internalTimer, SIGNAL(<a href=#113>timeout</a>()), SLOT(<a href=#113>timeout</a>()) );
+    internalTimer-&gt;<a href="qtimer.html#ce33bc">start</a>( 5000 );               // emit signal every 5 seconds
+}
+
+//
+// The QTimer::timeout() signal is received by this slot.
+//
+
+void <a name="113"></a>AnalogClock::timeout()
+{
+    <a href="qtime.html">QTime</a> new_time = QTime::currentTime();      // get the current time
+    if ( new_time.<a href="qtime.html#83f0e2">minute</a>() != time.minute() ) { // minute has changed
+        if (autoMask())
+            <a href=#115>updateMask</a>();
+        else
+            <a href="qwidget.html#a66a88">update</a>();
+    }
+}
+
+void <a name="114"></a>AnalogClock::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * )
+{
+    if ( autoMask() )
+        return;
+    <a href="qpainter.html">QPainter</a> paint( this );
+    paint.<a href="qpainter.html#3e0cc8">setBrush</a>( <a href="qwidget.html#d92bf4">colorGroup</a>().foreground() );
+    <a href=#116>drawClock</a>( &amp;paint );
+}
+
+// If the clock is transparent, we use updateMask()
+// instead of paintEvent()
+
+void <a name="115"></a>AnalogClock::updateMask()  // paint clock mask
+{
+    <a href="qbitmap.html">QBitmap</a> bm( <a href="qwidget.html#50b75e">size</a>() );
+    bm.<a href="qpixmap.html#9167e5">fill</a>( color0 );                  //transparent
+
+    <a href="qpainter.html">QPainter</a> paint;
+    paint.<a href="qpainter.html#02ed5d">begin</a>( &amp;bm, this );
+    paint.<a href="qpainter.html#3e0cc8">setBrush</a>( color1 );           // use non-transparent color
+    paint.<a href="qpainter.html#0183e4">setPen</a>( color1 );
+
+    <a href=#116>drawClock</a>( &amp;paint );
+
+    paint.<a href="qpainter.html#365784">end</a>();
+    <a href="qwidget.html#3aa0a1">setMask</a>( bm );
+}
+
+//
+// The clock is painted using a 1000x1000 square coordinate system, in
+// the a centered square, as big as possible.  The painter's pen and
+// brush colors are used.
+//
+void <a name="116"></a>AnalogClock::drawClock( <a href="qpainter.html">QPainter</a> *paint )
+{
+    paint-&gt;<a href="qpainter.html#938d23">save</a>();
+
+    paint-&gt;<a href="qpainter.html#ad8b2b">setWindow</a>( -500,-500, 1000,1000 );
+
+    <a href="qrect.html">QRect</a> v = paint-&gt;<a href="qpainter.html#3ea58a">viewport</a>();
+    int d = QMIN( v.<a href="qrect.html#45fe95">width</a>(), v.<a href="qrect.html#581ab8">height</a>() );
+    paint-&gt;<a href="qpainter.html#42d67a">setViewport</a>( v.<a href="qrect.html#369cab">left</a>() + (v.<a href="qrect.html#45fe95">width</a>()-d)/2,
+                        v.<a href="qrect.html#4dd27e">top</a>() + (v.<a href="qrect.html#581ab8">height</a>()-d)/2, d, d );
+
+    time = QTime::currentTime();
+    <a href="qpointarray.html">QPointArray</a> pts;
+
+    paint-&gt;<a href="qpainter.html#938d23">save</a>();
+    paint-&gt;<a href="qpainter.html#b5205c">rotate</a>( 30*(time.hour()%12-3) + time.minute()/2 );
+    pts.<a href="qpointarray.html#76de1d">setPoints</a>( 4, -20,0,  0,-20, 300,0, 0,20 );
+    paint-&gt;<a href="qpainter.html#2efe17">drawPolygon</a>( pts );
+    paint-&gt;<a href="qpainter.html#ddb3f4">restore</a>();
+
+    paint-&gt;<a href="qpainter.html#938d23">save</a>();
+    paint-&gt;<a href="qpainter.html#b5205c">rotate</a>( (time.minute()-15)*6 );
+    pts.<a href="qpointarray.html#76de1d">setPoints</a>( 4, -10,0, 0,-10, 400,0, 0,10 );
+    paint-&gt;<a href="qpainter.html#2efe17">drawPolygon</a>( pts );
+    paint-&gt;<a href="qpainter.html#ddb3f4">restore</a>();
+
+    for ( int i=0; i&lt;12; i++ ) {
+        paint-&gt;<a href="qpainter.html#e3a489">drawLine</a>( 440,0, 460,0 );
+        paint-&gt;<a href="qpainter.html#b5205c">rotate</a>( 30 );
+    }
+
+    paint-&gt;<a href="qpainter.html#ddb3f4">restore</a>();
+}
+
+void <a name="117"></a>AnalogClock::setAutoMask(bool b)
+{
+    if (b)
+        <a href="qwidget.html#e84bbe">setBackgroundMode</a>( PaletteForeground );
+    else
+        <a href="qwidget.html#e84bbe">setBackgroundMode</a>( PaletteBackground );
+    <a href="qwidget.html#efa8f9">QWidget::setAutoMask</a>(b);
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/aclock/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "aclock.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+    AnalogClock *clock = new AnalogClock;
+    if ( argc == 2 &amp;&amp; strcmp( argv[1], "-transparent" ) == 0 )
+        clock-&gt;<a name="setAutoMask"></a><a href="qwidget.html#efa8f9">setAutoMask</a>( TRUE );
+    clock-&gt;<a name="resize"></a><a href="qwidget.html#8fcbbe">resize</a>( 100, 100 );
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( clock );
+    clock-&gt;<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Analog Clock");
+    clock-&gt;<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+    int result = a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+    delete clock;
+    return result;
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

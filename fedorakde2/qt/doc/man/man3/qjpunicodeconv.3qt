@@ -1,0 +1,227 @@
+'\" t
+.TH QJpUnicodeConv 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QJpUnicodeConv \- Implementation support for
+.br
+.PP
+\fC#include <qjpunicode.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual uint \fBAsciiToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBJisx0201ToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "virtual uint \fBJisx0201LatinToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBJisx0201KanaToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "virtual uint \fBJisx0208ToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "virtual uint \fBJisx0212ToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBAsciiToUnicode\fR ( uint ascii ) const"
+.br
+.ti -1c
+.BI "uint \fBJisx0201ToUnicode\fR ( uint jis ) const"
+.br
+.ti -1c
+.BI "uint \fBJisx0201LatinToUnicode\fR ( uint jis ) const"
+.br
+.ti -1c
+.BI "uint \fBJisx0201KanaToUnicode\fR ( uint jis ) const"
+.br
+.ti -1c
+.BI "uint \fBJisx0208ToUnicode\fR ( uint jis ) const"
+.br
+.ti -1c
+.BI "uint \fBJisx0212ToUnicode\fR ( uint jis ) const"
+.br
+.ti -1c
+.BI "virtual uint \fBUnicodeToAscii\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0201\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "virtual uint \fBUnicodeToJisx0201Latin\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0201Kana\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "virtual uint \fBUnicodeToJisx0208\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "virtual uint \fBUnicodeToJisx0212\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToAscii\fR ( uint unicode ) const"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0201\fR ( uint unicode ) const"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0201Latin\fR ( uint unicode ) const"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0201Kana\fR ( uint unicode ) const"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0208\fR ( uint unicode ) const"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToJisx0212\fR ( uint unicode ) const"
+.br
+.ti -1c
+.BI "uint \fBSjisToUnicode\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToSjis\fR ( uint " "h" ", uint l ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBSjisToUnicode\fR ( uint sjis ) const"
+.br
+.ti -1c
+.BI "uint \fBUnicodeToSjis\fR ( uint unicode ) const"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "const QJpUnicodeConv* \fBnewConverter\fR ( int rule ) (internal)"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQJpUnicodeConv\fR ( int r ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QJpUnicodeConv class provides implementation support for QJisCodec, QSjisCodec, and QEucJpCodec.
+.PP
+You should not need to use this class directly. If you do, keep in mind that the function names will change in Qt 3.0: Every function name will get a lower-case first letter: Jisx0212ToUnicode becomes jisx0212ToUnicode, and so on. We apologize for the upheaval.
+.PP
+The environment variable \fCUNICODEMAP_JP\fR can be used to fine-tune how QJpUnicodeConv, QEucJpCodec, QJisCodec and QSjisCodec do their work. The mapping names are as for the Japanese XML working group's XML Japanese Profile, as it names and explains all the widely used mappings. Here are brief descriptions, written by Serika Kurusugawa: 
+.TP
+"unicode-0.9" or "unicode-0201" for Unicode style. This assume JISX0201 for 0x00-0x7f. (0.9 is a table version of jisx02xx mapping used for Uniocde spec version 1.1)
+.TP
+"unicode-ascii" This assume US-ASCII for 0x00-0x7f, and some chars (JISX0208 0x2140 and JISX0212 0x2237) are different from Unicode 1.1 to avoid conflict.
+.TP
+"open-19970715-0201" ("open-0201" for convenience) or" jisx0221-1995" for JISX0221-JISX0201 style. JIS X 0221 is JIS version of Unicode, but a few chars (0x5c, 0x7e, 0x2140, 0x216f, 0x2131) are different from Unicode 1.1. This is used when 0x5c is treated as YEN SIGN.
+.TP
+"open-19970715-ascii" ("open-ascii" for convenience) for JISX0221-ASCII style. This is used when 0x5c is treated as REVERSE SOLIDUS.
+.TP
+"open-19970715-ms" ("open-ms" for convenience) or "cp932" for Microsoft Windows style. Windows Code Page 932. Some chars (0x2140, 0x2141, 0x2142, 0x215d, 0x2171, 0x2172) are different from Unicode 1.1.
+.TP
+"jdk1.1.7" for Sun's JDK style Same as Unicode 1.1, except that JIS 0x2140 is mapped to UFF3C. Either ASCII or JISX0201 can be used for 0x00-0x7f.
+.IP
+In addition, QJpUnicodeConv supports some extensions:" nec-vdc", "ibm-vdc" or "udc".
+.PP
+For example, if you want to use Unicode style conversion, but with NEC's extension, set \fCUNICODEMAP_JP\fR to <nobr>\fCunicode-0.9, nec-vdc\fR.</nobr> (You will probably need to quote that in the shell command.)
+.PP
+Most of the code here was originally written by Serika Kurusugawa a.k.a. Junji Takagi, and is includes in Qt with the author's permission, and the grateful thanks of the Trolltech team. Here is the copyright statement for that code:
+.PP
+Copyright (c) 1999 Serika Kurusugawa, All rights reserved.
+.PP
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+.IP 1
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+.IP 2
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+.PP
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "uint QJpUnicodeConv::AsciiToUnicode ( uint ascii ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0201KanaToUnicode ( uint jis ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0201LatinToUnicode ( uint jis ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0201ToUnicode ( uint jis ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0208ToUnicode ( uint jis ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0212ToUnicode ( uint jis ) const"
+For internal use only.
+.SH "QJpUnicodeConv::QJpUnicodeConv ( int r ) \fC[protected]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::SjisToUnicode ( uint sjis ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToAscii ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0201 ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0201Kana ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0201Latin ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0208 ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0212 ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToSjis ( uint unicode ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::AsciiToUnicode ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0201KanaToUnicode ( uint h, uint l ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0201LatinToUnicode ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0201ToUnicode ( uint h, uint l ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0208ToUnicode ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::Jisx0212ToUnicode ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::SjisToUnicode ( uint h, uint l ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToAscii ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0201 ( uint h, uint l ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0201Kana ( uint h, uint l ) const"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0201Latin ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0208 ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToJisx0212 ( uint h, uint l ) const \fC[virtual]\fR"
+For internal use only.
+.SH "uint QJpUnicodeConv::UnicodeToSjis ( uint h, uint l ) const"
+For internal use only.
+.SH "const QJpUnicodeConv * QJpUnicodeConv::newConverter ( int rule ) \fC[static]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qjpunicodeconv.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qjpunicodeconv.3qt) and the Qt
+version (2.3.2).

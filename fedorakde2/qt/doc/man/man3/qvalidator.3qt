@@ -1,0 +1,104 @@
+'\" t
+.TH QValidator 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QValidator \- Validation of input text
+.br
+.PP
+\fC#include <qvalidator.h>\fR
+.PP
+Inherits QObject.
+.PP
+Inherited by QDoubleValidator and QIntValidator.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQValidator\fR ( QWidget * " "parent" ", const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fB~QValidator\fR () "
+.br
+.ti -1c
+.BI "enum \fBState\fR { Invalid, Intermediate, Valid=Intermediate, Acceptable }"
+.br
+.ti -1c
+.BI "virtual State \fBvalidate\fR ( QString &, int & ) const"
+.br
+.ti -1c
+.BI "virtual void \fBfixup\fR ( QString & ) const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QValidator class provides validation of input text.
+.PP
+The class itself is abstract; two subclasses provide rudimentary numeric range checking.
+.PP
+The class includes two virtual functions, validate() and fixup().
+.PP
+validate() is pure virtual, so it must be implemented by every subclass. It returns \fCInvalid, Intermediate\fR or \fCAcceptable\fR depending on whether its argument is valid (for the class' definition of valid).
+.PP
+The three states require some explanation. An \fCInvalid\fR string is \fIclearly\fR invalid. \fCIntermediate\fR is less obvious - the concept of validity is slippery when the string is incomplete (still being edited). QValidator defines \fCIntermediate\fR as the property of a string that it is neither clearly invalid or acceptable as a final result. \fCAcceptable\fR means that the string is acceptable as a final result. One might say that any string that is a plausible intermediate state during entry of an \fCAcceptable\fR string is \fCIntermediate.\fR
+.PP
+Here are some examples:
+.IP 1
+For a line edit that accepts integers from 0 to 999 inclusive, 42 and 666 are \fCAcceptable,\fR the empty string and 1114 are \fCIntermediate\fR and asdf is \fCInvalid.\fR
+.IP 2
+For an editable combo box that accepts URLs, any well-formed URL is \fCAcceptable,\fR "http://www.trolltech.com/," is \fCIntermediate\fR (it can be a cut-and-paste job that accidentally took in a comma at the end), the empty string is valid (the user might select and delete all of the text in preparation to entering a new URL), and" http:///./" is \fCInvalid.\fR
+.IP 3
+For a spin box that accepts lengths, "11cm" and "1in" are \fCAcceptable,\fR "11" and the empty string are \fCIntermediate,\fR and" http://www.trolltech.com" and "hour" are \fCInvalid.\fR
+.IP
+.PP
+fixup() is provided for validators that can repair some or all user errors. The default does nothing. QLineEdit, for example, will call fixup() if the user presses Return and the content is not currently valid, in case fixup() can do magic. This allows some \fCInvalid\fR strings to be made \fCAcceptable,\fR too, spoiling the muddy definition above even more.
+.PP
+QValidator is generally used with QLineEdit, QSpinBox and QComboBox.
+.SS "Member Type Documentation"
+.SH "QValidator::State"
+This enum type defines the states in which a validated string can be. There are currently three states: 
+.TP
+\fCInvalid\fR - the string is \fIclearly\fR invalid.
+.TP
+\fCIntermediate\fR - the string is a plausible intermediate value during editing.
+.TP
+\fCAcceptable\fR - acceptable as a final result.
+.IP
+.PP
+The state \fCValid\fR has been renamed \fCIntermediate.\fR The old name confused too many people and is now obsolete.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QValidator::QValidator ( QWidget * parent, const char * name = 0 )"
+Sets up the internal data structures used by the validator. At the moment there aren't any.
+.SH "QValidator::~QValidator ()"
+Destroys the validator, freeing any storage and other resources used.
+.SH "void QValidator::fixup ( QString & input ) const \fC[virtual]\fR"
+Attempts to change \fIinput\fR to be valid according to this validator's rules. Need not result in a valid string - callers of this function must re-test afterwards. The default does nothing.
+.PP
+Reimplementations of this function can change \fIinput\fR even if they do not produce a valid string. For example an ISBN validator might want to delete every character except digits and "-", even if the result is not a valid ISBN, and a last-name validator might want to remove white space from the start and end of the string, even if the resulting string is not in the list of known last names.
+.SH "QValidator::State QValidator::validate( QString & input, int & pos ) const"
+This pure virtual function returns \fCInvalid\fR if \fIinput\fR is invalid according to this validator's rules, \fCIntermediate\fR if it is likely that a little more editing will make the input acceptable (e.g. the user types '4' into a widget which accepts 10-99) and \fCAcceptable\fR if the input is completely acceptable.
+.PP
+The function can change \fIinput\fR and \fIpos\fR (the cursor position) if
+it wants to.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qvalidator.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qvalidator.3qt) and the Qt
+version (2.3.2).

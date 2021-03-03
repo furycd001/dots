@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Qt/Embedded environment variables</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Qt/Embedded environment variables</h1><br clear="all">
+<p>
+QWS_SW_CURSOR
+If defined, always use a software mouse cursor even when using an accelerated
+driver that supports a hardware cursor
+<p>
+QWS_DISPLAY
+Defines display type and framebuffer - e.g.
+Voodoo3
+Mach64:/dev/fb1
+Defaults to unaccelerated Linux framebuffer driver on /dev/fb0.
+Valid drivers are QVfb, VGA16, LinuxFb (unaccelerated Linux framebuffer),
+Mach64 (accelerated for ATI Mach64 cards such as the Rage Pro),
+Voodoo3 (accelerated for the 3dfx Voodoo 3, should also work on Voodoo
+Banshee), Matrox (should work on all Matrox graphics cards since the
+Matrox Millennium), Transformed(for rotated displays), SVGALIB and
+VNC. Transformed displays have a special format - within the specification
+should be a multiple of 90 degrees rotation specified as Rot<x>,
+for instance Transformed:Rot90.
+<p>
+QTDIR
+If defined tells Qt/Embedded to where to find its fonts - fontdir
+should be in $QTDIR/etc/fonts/. If undefined it's assumed to be
+/usr/local/qt-embedded
+<p>
+QWS_SIZE
+If defined forces Qt/Embedded into a window of <width>x<height> size centred 
+within the screen, e.g. 320x200
+<p>
+QWS_NOMTRR
+If defined, don't use Memory Type Range Registers to define the framebuffer
+as write-combined on x86. Write-combining speeds up graphics output.
+<p>
+QWS_CARD_SLOT
+Tells the accelerated drivers which card to attempt to accelerate.
+This should be a path in /proc/bus/pci. It defaults to
+/proc/bus/pci/01/00.0 - the first device on the second PCI bus in the
+system, which is normally the AGP card.
+<p>
+QWS_USB_KEYBOARD
+If defined, instead of opening /dev/tty open the USB low-level event
+device defined in QWS_USB_KEYBOARD (e.g. /dev/input/event0) - this
+is useful if you wish to run X and Qt/Embedded side by side on
+different framebuffers.
+<p>
+QWS_MOUSE_PROTO
+Defined as <type>:<device>, e.g. Microsoft:/dev/ttyS0. If you want to
+use a USB mouse directly (separate from X) use MouseMan:/dev/input/mouse0
+or similar. Valid mouse protocls are Auto (automatically sense protocol),
+MouseMan, IntelliMouse, Microsoft, QVfbMouse (only useful with QVfb)
+and TPanel, a sample touch panel driver.
+<p>
+QWS_KEYBOARD
+Defines the keyboard type. Multiple keyboards can be handled at once,
+input will be read from all of them. Valid values:
+Buttons (an iPaq button device if QT_QWS_IPAQ is compiled, otherwise
+one for the Cassiopeia), QVfbKeyboard (only useful with QVfb),
+and TTY (either a USB keyboard or /dev/tty depending if QWS_USB_KEYBOARD
+is defined)
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

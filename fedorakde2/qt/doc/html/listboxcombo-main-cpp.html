@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - listboxcombo/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Listboxes and Comboboxes</h1><br clear="all">
+
+  This example program demonstrates how to use Listboxes (with single selection
+  and multi selection) and Comboboxes (editable and non-editable).
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/listboxcombo/listboxcombo.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef LISTBOX_COMBO_H
+#define LISTBOX_COMBO_H
+
+#include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+
+class QListBox;
+class QLabel;
+
+class ListBoxCombo : public QVBox
+{
+    Q_OBJECT
+
+public:
+    ListBoxCombo( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0 );
+
+protected:
+    <a href="qlistbox.html">QListBox</a> *lb1, *lb2;
+    <a href="qlabel.html">QLabel</a> *label1, *label2;
+
+protected slots:
+    void slotLeft2Right();
+    void slotCombo1Activated( const QString &amp;s );
+    void slotCombo2Activated( const QString &amp;s );
+
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/listboxcombo/listboxcombo.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "listboxcombo.h"
+
+#include &lt;<a href="qcombobox-h.html">qcombobox.h</a>&gt;
+#include &lt;<a href="qlistbox-h.html">qlistbox.h</a>&gt;
+#include &lt;<a href="qhbox-h.html">qhbox.h</a>&gt;
+#include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a href="qstring-h.html">qstring.h</a>&gt;
+#include &lt;<a href="qpixmap-h.html">qpixmap.h</a>&gt;
+#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a href="qimage-h.html">qimage.h</a>&gt;
+
+class MyListBoxItem : public QListBoxItem
+{
+public:
+    MyListBoxItem()
+        : <a href="qlistboxitem.html">QListBoxItem</a>()
+    {
+        setCustomHighlighting( TRUE );
+    }
+
+protected:
+    virtual void paint( <a href="qpainter.html">QPainter</a> * );
+    virtual int width( const QListBox* ) const { return 100; }
+    virtual int height( const QListBox* ) const { return 16; }
+
+};
+
+void <a name="374"></a>MyListBoxItem::paint( <a href="qpainter.html">QPainter</a> *painter )
+{
+    // evil trick: find out whether we are painted onto our listbox
+    bool in_list_box = listBox() &amp;&amp; listBox()-&gt;viewport() == painter-&gt;<a href="qpainter.html#82920f">device</a>();
+
+    <a href="qrect.html">QRect</a> r ( 0, 0, <a href="qlistboxitem.html#483a87">width</a>( listBox() ), <a href="qlistboxitem.html#45163a">height</a>( listBox() ) );
+    if ( in_list_box &amp;&amp; selected() )
+        painter-&gt;<a href="qpainter.html#bd5570">eraseRect</a>( r );
+    painter-&gt;<a href="qpainter.html#5308a7">fillRect</a>( 5, 5, <a href="qlistboxitem.html#483a87">width</a>( listBox() ) - 10, <a href="qlistboxitem.html#45163a">height</a>( listBox() ) - 10, Qt::red );
+    if ( in_list_box &amp;&amp; current() )
+        <a href="qlistboxitem.html#6986ba">listBox</a>()-&gt;style().drawFocusRect( painter, r, <a href="qlistboxitem.html#6986ba">listBox</a>()-&gt;colorGroup(), &amp;painter-&gt;<a href="qpainter.html#c2639b">backgroundColor</a>(), TRUE );
+}
+
+/*
+ * Constructor
+ *
+ * Creates child widgets of the ListBoxCombo widget
+ */
+
+ListBoxCombo::ListBoxCombo( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qvbox.html">QVBox</a>( parent, name )
+{
+    <a href="qframe.html#b11d00">setMargin</a>( 5 );
+    <a href="qhbox.html#0075a0">setSpacing</a>( 5 );
+
+    unsigned int i;
+    <a href="qstring.html">QString</a> str;
+
+    <a href="qhbox.html">QHBox</a> *row1 = new <a href="qhbox.html">QHBox</a>( this );
+    row1-&gt;<a href="qhbox.html#0075a0">setSpacing</a>( 5 );
+
+    // Create a multi-selection ListBox...
+    lb1 = new <a href="qlistbox.html">QListBox</a>( row1 );
+    lb1-&gt;setSelectionMode( QListBox::Multi );
+
+    // ...insert a pixmap item...
+    lb1-&gt;insertItem( <a href="qpixmap.html">QPixmap</a>( "qtlogo.png" ) );
+    // ...and 100 text items
+    for ( i = 0; i &lt; 100; i++ ) {
+        str = QString( "Listbox Item %1" ).arg( i );
+        if ( !( i % 4 ) )
+            lb1-&gt;insertItem( <a href="qpixmap.html">QPixmap</a>( "fileopen.xpm" ), str );
+        else
+            lb1-&gt;insertItem( str );
+    }
+
+    // Create a pushbutton...
+    <a href="qpushbutton.html">QPushButton</a> *arrow1 = new <a href="qpushbutton.html">QPushButton</a>( " -&gt; ", row1 );
+    // ...and connect the clicked SIGNAL with the SLOT slotLeft2Right
+    <a href="qobject.html#7f8e37">connect</a>( arrow1, SIGNAL( clicked() ), this, SLOT( <a href=#375>slotLeft2Right</a>() ) );
+
+    // create an empty single-selection ListBox
+    lb2 = new <a href="qlistbox.html">QListBox</a>( row1 );
+
+    <a href="qhbox.html">QHBox</a> *row2 = new <a href="qhbox.html">QHBox</a>( this );
+    row2-&gt;<a href="qhbox.html#0075a0">setSpacing</a>( 5 );
+
+    <a href="qvbox.html">QVBox</a> *box1 = new <a href="qvbox.html">QVBox</a>( row2 );
+    box1-&gt;<a href="qhbox.html#0075a0">setSpacing</a>( 5 );
+
+    // Create a non-editable Combobox and a label below...
+    <a href="qcombobox.html">QComboBox</a> *cb1 = new <a href="qcombobox.html">QComboBox</a>( FALSE, box1 );
+    label1 = new <a href="qlabel.html">QLabel</a>( "Current Item: Combobox Item 0", box1 );
+    label1-&gt;setMaximumHeight( label1-&gt;sizeHint().height() * 2 );
+    label1-&gt;setFrameStyle( QFrame::Panel | QFrame::Sunken );
+
+    //...and insert 50 items into the Combobox
+    for ( i = 0; i &lt; 50; i++ ) {
+        str = QString( "Combobox Item %1" ).arg( i );
+        if ( i % 9 )
+            cb1-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( str );
+        else
+            cb1-&gt;<a href="qcombobox.html#9f2e18">listBox</a>()-&gt;insertItem( new MyListBoxItem );
+    }
+
+    <a href="qvbox.html">QVBox</a> *box2 = new <a href="qvbox.html">QVBox</a>( row2 );
+    box2-&gt;<a href="qhbox.html#0075a0">setSpacing</a>( 5 );
+
+    // Create an editable Combobox and a label below...
+    <a href="qcombobox.html">QComboBox</a> *cb2 = new <a href="qcombobox.html">QComboBox</a>( TRUE, box2 );
+    label2 = new <a href="qlabel.html">QLabel</a>( "Current Item: Combobox Item 0", box2 );
+    label2-&gt;setMaximumHeight( label2-&gt;sizeHint().height() * 2 );
+    label2-&gt;setFrameStyle( QFrame::Panel | QFrame::Sunken );
+
+    // ... and insert 50 items into the Combobox
+    for ( i = 0; i &lt; 50; i++ ) {
+        str = QString( "Combobox Item %1" ).arg( i );
+        if ( !( i % 4 ) )
+            cb2-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( <a href="qpixmap.html">QPixmap</a>( "fileopen.xpm" ), str );
+        else
+            cb2-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( str );
+    }
+
+    // Connect the activated SIGNALs of the Comboboxes with SLOTs
+    <a href="qobject.html#7f8e37">connect</a>( cb1, SIGNAL( activated( const QString &amp; ) ), this, SLOT( <a href=#376>slotCombo1Activated</a>( const QString &amp; ) ) );
+    <a href="qobject.html#7f8e37">connect</a>( cb2, SIGNAL( activated( const QString &amp; ) ), this, SLOT( <a href=#377>slotCombo2Activated</a>( const QString &amp; ) ) );
+}
+
+/*
+ * SLOT slotLeft2Right
+ *
+ * Copies all selected items of the first ListBox into the
+ * second ListBox
+ */
+
+void <a name="375"></a>ListBoxCombo::slotLeft2Right()
+{
+    // Go through all items of the first ListBox
+    for ( unsigned int i = 0; i &lt; lb1-&gt;count(); i++ ) {
+        <a href="qlistboxitem.html">QListBoxItem</a> *item = lb1-&gt;item( i );
+        // if the item is selected...
+        if ( item-&gt;<a href="qlistboxitem.html#430dc5">selected</a>() ) {
+            // ...and it is a text item...
+            if ( item-&gt;<a href="qlistboxitem.html#bb4260">pixmap</a>() &amp;&amp; !item-&gt;<a href="qlistboxitem.html#abfb21">text</a>().isEmpty() )
+                lb2-&gt;insertItem( *item-&gt;<a href="qlistboxitem.html#bb4260">pixmap</a>(), item-&gt;<a href="qlistboxitem.html#abfb21">text</a>() );
+            else if ( !item-&gt;<a href="qlistboxitem.html#bb4260">pixmap</a>() )
+                lb2-&gt;insertItem( item-&gt;<a href="qlistboxitem.html#abfb21">text</a>() );
+            else if ( item-&gt;<a href="qlistboxitem.html#abfb21">text</a>().isEmpty() )
+                lb2-&gt;insertItem( *item-&gt;<a href="qlistboxitem.html#bb4260">pixmap</a>() );
+        }
+    }
+}
+
+/*
+ * SLOT slotCombo1Activated( const QString &amp;s )
+ *
+ * Sets the text of the item which the user just selected
+ * in the first Combobox (and is now the value of s) to
+ * the first Label.
+ */
+
+void <a name="376"></a>ListBoxCombo::slotCombo1Activated( const QString &amp;s )
+{
+    label1-&gt;setText( <a href="qstring.html">QString</a>( "Current Item: %1" ).arg( s ) );
+}
+
+/*
+ * SLOT slotCombo2Activated( const QString &amp;s )
+ *
+ * Sets the text of the item which the user just selected
+ * in the second Combobox (and is now the value of s) to
+ * the second Label.
+ */
+
+void <a name="377"></a>ListBoxCombo::slotCombo2Activated( const QString &amp;s )
+{
+    label2-&gt;setText( <a href="qstring.html">QString</a>( "Current Item: %1" ).arg( s ) );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/listboxcombo/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "listboxcombo.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    ListBoxCombo listboxcombo;
+    listboxcombo.<a name="resize"></a><a href="qwidget.html#ff9d07">resize</a>( 400, 270 );
+    listboxcombo.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Listboxes and Comboboxes" );
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;listboxcombo );
+    listboxcombo.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

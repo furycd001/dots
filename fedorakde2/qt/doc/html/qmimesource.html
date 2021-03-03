@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QMimeSource Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QMimeSource Class Reference</h1><br clear="all">
+<p>
+An abstract piece of formatted data.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qmime-h.html">qmime.h</a>&gt;</code>
+<p>Inherited by <a href="qdragobject.html">QDragObject</a> and <a href="qdropevent.html">QDropEvent</a>.
+<p><a href="qmimesource-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">virtual <a href="#40fcd8"><b>~QMimeSource</b></a> () </div>
+<li><div class="fn">virtual const char* <a href="#17ce96"><b>format</b></a> ( int n = 0 ) const</div>
+<li><div class="fn">virtual bool <a href="#bf7439"><b>provides</b></a> ( const char * ) const</div>
+<li><div class="fn">virtual QByteArray <a href="#81afea"><b>encodedData</b></a> ( const char * ) const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+An abstract piece of formatted data.
+<p>
+<a href="dnd.html">Drag-and-drop</a> and
+<a href="qclipboard.html">clipboard</a> use this abstraction.
+<p>See also  <a href="http://www.isi.edu/in-notes/iana/assignments/media-types/"> IANA list of MIME media types</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="40fcd8"></a>QMimeSource::~QMimeSource () <code>[virtual]</code></h3>
+<p>Provided to ensure subclasses destruct correctly.
+<h3 class="fn"><a href="qbytearray.html">QByteArray</a> <a name="81afea"></a>QMimeSource::encodedData ( const char * ) const <code>[virtual]</code></h3>
+<p>Returns the encoded payload of this object, in the specified
+MIME format.
+<p>Subclasses must reimplement this function.
+<p>Reimplemented in <a href="qdropevent.html#8869ad">QDropEvent</a>.
+<h3 class="fn">const char * <a name="17ce96"></a>QMimeSource::format ( int i = 0 ) const <code>[virtual]</code></h3>
+<p>Returns the <em>ith</em> format, or NULL.
+<p>Reimplemented in <a href="qtextdrag.html#0d2870">QTextDrag</a>, <a href="qstoreddrag.html#5bcf40">QStoredDrag</a>, <a href="qdropevent.html#d81a92">QDropEvent</a> and <a href="qimagedrag.html#f361f9">QImageDrag</a>.
+<h3 class="fn">bool <a name="bf7439"></a>QMimeSource::provides ( const char * mimeType ) const <code>[virtual]</code></h3>
+<p>Returns TRUE if the object can provide the data
+in format <em>mimeType.</em>  The default implementation
+iterates over <a href="#17ce96">format</a>().
+<p>Note that it is often better to use the more-abstract
+canDecode() functions such as <a href="qtextdrag.html#48ca8d">QTextDrag::canDecode</a>()
+and <a href="qimagedrag.html#c35128">QImageDrag::canDecode</a>().
+<p>Reimplemented in <a href="qdropevent.html#e9bf16">QDropEvent</a>.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

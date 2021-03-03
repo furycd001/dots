@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QColorDialog Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QColorDialog Class Reference</h1><br clear="all">
+<p>
+The QColorDialog class provides a dialog widget for specifying colors.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qcolordialog-h.html">qcolordialog.h</a>&gt;</code>
+<p>
+Inherits <a href="qdialog.html">QDialog</a>.
+<p><a href="qcolordialog-members.html">List of all member functions.</a>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">QColor <a href="#ed0ee2"><b>getColor</b></a> ( QColor, QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn">QRgb <a href="#aa9530"><b>getRgba</b></a> ( QRgb, bool * ok = 0, QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn">int <a href="#7651c4"><b>customCount</b></a> () </div>
+<li><div class="fn">QRgb <a href="#e851eb"><b>customColor</b></a> ( int ) </div>
+<li><div class="fn">void <a href="#f1bace"><b>setCustomColor</b></a> ( int, QRgb ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QColorDialog class provides a dialog widget for specifying colors.
+<p>
+The color dialog's function is to allow users to choose colors -
+for instance, you might use this in a drawing program to allow the
+user to set the brush color.
+<p>This version of Qt only provides modal color dialogs. The static
+<a href="#ed0ee2">getColor</a>() function shows the dialog and allows the user to specify a color,
+while <a href="#aa9530">getRgba</a>() does the same but allows the user to specify a color with an
+alpha channel (transparency) value.
+<p>The user can store <a href="#7651c4">customCount</a>() different custom colors. The custom
+colors are shared by all color dialogs, and remembered during the
+execution of the program. Use <a href="#f1bace">setCustomColor</a>() to set the
+custom colors, and <a href="#e851eb">customColor</a>() to get them.
+<p><img src=qcolordlg-m.png> <img src=qcolordlg-w.png>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn">QRgb <a name="e851eb"></a>QColorDialog::customColor ( int i ) <code>[static]</code></h3>
+<p>Returns custom color number <em>i</em> as a QRgb.
+<h3 class="fn">int <a name="7651c4"></a>QColorDialog::customCount () <code>[static]</code></h3>
+<p>Returns the number of custom colors supported by
+QColorDialog. All color dialogs share the same custom colors.
+<h3 class="fn"><a href="qcolor.html">QColor</a> <a name="ed0ee2"></a>QColorDialog::getColor ( <a href="qcolor.html">QColor</a> initial, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 ) <code>[static]</code></h3>
+<p>Pops up a modal color dialog letting the user choose a color and returns
+that color. The color is initially set to <em>initial.</em> Returns an  <a href="qcolor.html#5cd295">invalid</a> color if the user cancels
+the dialog. All colors allocated by the dialog will be deallocated
+before this function returns.
+<h3 class="fn">QRgb <a name="aa9530"></a>QColorDialog::getRgba ( QRgb initial, bool * ok = 0, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 ) <code>[static]</code></h3>
+<p>Pops up a modal color dialog, letting the user choose a color and an
+alpha channel value. The color+alpha is initially set to <em>initial.</em>
+<p>If <em>ok</em> is non-null, <code>*ok</code> is set to TRUE if the user clicked OK,
+and FALSE if the user clicked Cancel.
+<p>If the user clicks Cancel the <em>initial</em> value is returned.
+<h3 class="fn">void <a name="f1bace"></a>QColorDialog::setCustomColor ( int i, QRgb c ) <code>[static]</code></h3>
+<p>Sets custom color number <em>i</em> to the QRgb value <em>c.</em>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

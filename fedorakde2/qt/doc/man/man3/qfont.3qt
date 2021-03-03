@@ -1,0 +1,798 @@
+'\" t
+.TH QFont 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFont \- Font used for drawing text
+.br
+.PP
+\fC#include <qfont.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBCharSet\fR { ISO_8859_1, Latin1 = ISO_8859_1, AnyCharSet, ISO_8859_2, Latin2 = ISO_8859_2, ISO_8859_3, Latin3 = ISO_8859_3, ISO_8859_4, Latin4 = ISO_8859_4, ISO_8859_5, ISO_8859_6, ISO_8859_7, ISO_8859_8, ISO_8859_9, Latin5 = ISO_8859_9, ISO_8859_10, Latin6 = ISO_8859_10, ISO_8859_11, TIS620 = ISO_8859_11, ISO_8859_12, ISO_8859_13, Latin7 = ISO_8859_13, ISO_8859_14, Latin8 = ISO_8859_14, ISO_8859_15, Latin9 = ISO_8859_15, KOI8R, Set_Ja, Set_1 = Set_Ja, Set_Ko, Set_Th_TH, Set_Zh, Set_Zh_TW, Set_N = Set_Zh_TW, Unicode, Set_GBK, Set_Big5, TSCII, KOI8U, CP1251, PT154, JIS_X_0201 = 0xa0, JIS_X_0208 = 0xc0, Enc16 = JIS_X_0208, KSC_5601, GB_2312, Big5 }"
+.br
+.ti -1c
+.BI "enum \fBStyleHint\fR { Helvetica, Times, Courier, OldEnglish, System, AnyStyle, SansSerif = Helvetica, Serif = Times, TypeWriter = Courier, Decorative = OldEnglish}"
+.br
+.ti -1c
+.BI "enum \fBStyleStrategy\fR { PreferDefault = 0x0001, PreferBitmap = 0x0002, PreferDevice = 0x0004, PreferOutline = 0x0008, ForceOutline = 0x0010, PreferMatch = 0x0020, PreferQuality = 0x0040 }"
+.br
+.ti -1c
+.BI "enum \fBWeight\fR { Light = 25, Normal = 50, DemiBold = 63, Bold = 75, Black = 87 }"
+.br
+.ti -1c
+.BI "\fBQFont\fR () "
+.br
+.ti -1c
+.BI "\fBQFont\fR ( const QString & " "family" ", int " "pointSize" " = 12, int " "weight" " = Normal, bool " "italic" " = FALSE ) "
+.br
+.ti -1c
+.BI "\fBQFont\fR ( const QString & " "family" ", int " "pointSize" ", int " "weight" ", bool " "italic" ", CharSet charSet ) "
+.br
+.ti -1c
+.BI "\fBQFont\fR ( const QFont & ) "
+.br
+.ti -1c
+.BI "\fB~QFont\fR () "
+.br
+.ti -1c
+.BI "QFont& \fBoperator=\fR ( const QFont & ) "
+.br
+.ti -1c
+.BI "QString \fBfamily\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetFamily\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "int \fBpointSize\fR () const"
+.br
+.ti -1c
+.BI "float \fBpointSizeFloat\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPointSize\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBsetPointSizeFloat\fR ( float ) "
+.br
+.ti -1c
+.BI "int \fBpixelSize\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPixelSize\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBsetPixelSizeFloat\fR ( float ) "
+.br
+.ti -1c
+.BI "int \fBweight\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetWeight\fR ( int ) "
+.br
+.ti -1c
+.BI "bool \fBbold\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetBold\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBitalic\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetItalic\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBunderline\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetUnderline\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBstrikeOut\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetStrikeOut\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBfixedPitch\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetFixedPitch\fR ( bool ) "
+.br
+.ti -1c
+.BI "StyleHint \fBstyleHint\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetStyleHint\fR ( StyleHint ) "
+.br
+.ti -1c
+.BI "StyleStrategy \fBstyleStrategy\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetStyleHint\fR ( StyleHint, StyleStrategy ) "
+.br
+.ti -1c
+.BI "CharSet \fBcharSet\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetCharSet\fR ( CharSet ) "
+.br
+.ti -1c
+.BI "bool \fBrawMode\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetRawMode\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBexactMatch\fR () const"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QFont & ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QFont & ) const"
+.br
+.ti -1c
+.BI "bool \fBisCopyOf\fR ( const QFont & ) const"
+.br
+.ti -1c
+.BI "void \fBsetRawName\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "QString \fBrawName\fR () const"
+.br
+.ti -1c
+.BI "QString \fBkey\fR () const"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "CharSet \fBcharSetForLocale\fR () "
+.br
+.ti -1c
+.BI "QString \fBencodingName\fR ( CharSet ) "
+.br
+.ti -1c
+.BI "QFont \fBdefaultFont\fR () "
+.br
+.ti -1c
+.BI "void setDefaultFont ( const QFont & ) \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "QString \fBsubstitute\fR ( const QString & familyName ) "
+.br
+.ti -1c
+.BI "void \fBinsertSubstitution\fR ( const QString &, const QString & ) "
+.br
+.ti -1c
+.BI "void \fBremoveSubstitution\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "QStringList \fBsubstitutions\fR () "
+.br
+.ti -1c
+.BI "void \fBinitialize\fR () "
+.br
+.ti -1c
+.BI "void \fBlocale_init\fR () "
+.br
+.ti -1c
+.BI "void \fBcleanup\fR () "
+.br
+.ti -1c
+.BI "void \fBcacheStatistics\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "bool \fBdirty\fR () const"
+.br
+.ti -1c
+.BI "QString \fBdefaultFamily\fR () const"
+.br
+.ti -1c
+.BI "QString \fBlastResortFamily\fR () const"
+.br
+.ti -1c
+.BI "QString \fBlastResortFont\fR () const"
+.br
+.ti -1c
+.BI "int \fBdeciPointSize\fR () const"
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QFont & " "f" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QFont & " "f" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QFont class specifies a font used for drawing text.
+.PP
+QFont, more precisely, is a collection of attributes of a font. When Qt needs to draw text, it will look up and load the closest matching installed font and draw using that.
+.PP
+The most important attributes of a QFont are its family(), pointSize(), weight() and whether it is italic() or not. There are QFont constructors that take these attributes as arguments, as shown in this example:
+.PP
+.nf
+.br
+    void MyWidget::paintEvent( QPaintEvent * )
+.br
+    {
+.br
+        QPainter p( this );
+.br
+.br
+        // times, 12pt, normal
+.br
+        p.setFont( QFont( "times" ) );
+.br
+        p.drawText( 10, 20, "Text1" );
+.br
+.br
+        // helvetica, 18pt, normal
+.br
+        p.setFont( QFont( "helvetica", 18 ) );
+.br
+        p.drawText( 10, 120, "Text2" );
+.br
+.br
+        // courier, 24pt, bold
+.br
+        p.setFont( QFont( "courier", 24, QFont::Bold ) );
+.br
+        p.drawText( 10, 220, "Text3" );
+.br
+.br
+        // lucida, 36pt, bold, italic
+.br
+        p.setFont( QFont( "lucida", 36, QFont::Bold, TRUE ) );
+.br
+        p.drawText( 10, 320, "Text4" );
+.br
+    }
+.fi
+.PP
+The default QFont constructor makes a copy of application's default font, QApplication::font().
+.PP
+You can also change these attributes of an existing QFont object using functions such as setFamily(), setPointSize(), setWeight() and setItalic().
+.PP
+There are also some less-used attributes. setUnderline() decides whether the font is underlined or not; setStrikeOut() can be used to get overstrike (a horizontal line through the middle of the characters); setFixedPitch() determines whether Qt should give preference to fixed-pitch (also known as fixed-width) or variable-pitch fonts when it needs to choose an installed font; setStyleHint() can be used to offer more general help to the font matching algorithm, and on X11 setRawName() can be used to bypass the entire font matching and use an X11 XLFD.
+.PP
+Of course there is also a reader function for each of these set*() functions. Note that the reader functions return the values previously set, \fInot\fR the attributes of the actual window system font that will be used for drawing. You can get information about the font that will be used for drawing by using QFontInfo, but be aware that QFontInfo may be slow and that its results depend on what fonts are installed.
+.PP
+In general font handling and loading are costly operations, especially on X11. The QFont class contains extensive optimizations to make copying of QFont objects fast, and to cache the results of the slow window system functions it uses.
+.PP
+QFont also offers a few static functions, mostly to tune the font matching algorithm: You can control what happens if a font's family isn't installed using insertSubstitution() and removeSubstitution(), ask what happens for a single family using substitute() and you can get a complete list of the fallback families using substitutions().
+.PP
+cacheStatistics() offers cache effectiveness information; this is useful mostly for debugging.
+.PP
+Finally, QApplication::setFont() allows you to set the default font. The default default font is chosen at application startup from a set of common installed fonts that support the correct character set for the current locale. Of course, the initialization algorithm has a default, too: The default default default font!
+.PP
+The font matching algorithm works as follows:
+.PP
+First an available font family is found. If the requested is not available the styleHint() is used to select a replacement family. If the style hint has not been set, "helvetica" will be used.
+.PP
+If even the replacement family is not found, "helvetica" is searched for, if that too is not found Qt will search for a last resort font, i.e. a specific font to match to, ignoring the attribute settings. Qt searches through a built-in list of very common fonts. If none of these are available, Qt gives you an error message and aborts (of course this only happens if you are using fonts and Qt \fIhas\fR to load a font). We have not been able to find a case where this happens. Please report it as a bug if it does, preferably with a list of the fonts you have installed.
+.PP
+The following attributes are then matched, in order of priority: 
+.IP 1
+charSet()
+.IP 2
+fixedPitch()
+.IP 3
+pointSize() (see below)
+.IP 4
+weight()
+.IP 5
+italic()
+.PP
+If, for example, a font with the correct character set is found, but with all other attributes in the list unmatched, it will be chosen before a font with the wrong character set but with all other attributes correct.
+.PP
+The point size is defined to match if it is within 20% of the requested point size. Of course, when several fonts match and only point size differs the closest point size to the one requested will be chosen.
+.PP
+For more general information on fonts, see the comp.fonts FAQ and for more general information on encodings, see Roman Czyborra's page about that.
+.PP
+See also QFontMetrics, QFontInfo, QApplication::setFont(), QWidget::setFont(), QPainter::setFont(), QFont::StyleHint, QFont::CharSet and QFont::Weight.
+.PP
+Examples:
+.(l
+showimg/main.cpp grapher/grapher.cpp xform/xform.cpp i18n/main.cpp drawdemo/drawdemo.cpp menu/menu.cpp desktop/desktop.cpp scrollview/scrollview.cpp qfd/qfd.cpp movies/main.cpp picture/picture.cpp hello/main.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QFont::CharSet"
+The following character set encodings are available: 
+.TP
+\fCQFont::ISO_8859_1\fR - Latin1 , common in much of Europe
+.TP
+\fCQFont::ISO_8859_2\fR - Latin2, Central and Eastern European character set
+.TP
+\fCQFont::ISO_8859_3\fR - Latin3, less common European character set
+.TP
+\fCQFont::ISO_8859_4\fR - Latin4, less common European character set
+.TP
+\fCQFont::ISO_8859_5,\fR Cyrillic
+.TP
+\fCQFont::ISO_8859_6,\fR Arabic
+.TP
+\fCQFont::ISO_8859_7,\fR Greek
+.TP
+\fCQFont::ISO_8859_8,\fR Hebrew
+.TP
+\fCQFont::ISO_8859_9,\fR Turkish
+.TP
+\fCQFont::ISO_8859_10..15,\fR other ISO 8859 characters sets
+.TP
+\fCQFont::KOI8R\fR - KOI8-R, Cyrillic, defined in RFC 1489.
+.TP
+\fCQFont::KOI8U\fR - KOI8-U, Cyrillic/Ukrainian, defined in RFC 2319.
+.TP
+\fCQFont::CP1251,\fR Microsoft Cyrillic encoding
+.TP
+\fCQFont::PT154,\fR Paratype Asian Cyrillic encoding
+.TP
+\fCQFont::AnyCharSet\fR - whatever is handiest.
+.TP
+\fCQFont::Set_Ja,\fR Japanese
+.TP
+\fCQFont::Set_Ko,\fR Korean
+.TP
+\fCQFont::Set_Th_TH\fR
+.TP
+\fCQFont::Set_Zh\fR
+.TP
+\fCQFont::Set_Zh_TW\fR
+.TP
+\fCQFont::Unicode,\fR Unicode character set
+.TP
+\fCQFont::Set_GBK\fR
+.TP
+\fCQFont::Set_Big5\fR
+.SH "QFont::StyleHint"
+Style hints are used by the font matching algorithm when a selected font family cannot be found and is used to find an appropriate default family.
+.PP
+The style hint value of \fCAnyStyle\fR leaves the task of finding a good default family to the font matching algorithm.
+.PP
+The other available style hints are \fCQFont::SansSerif, QFont::TypeWriter, QFont::OldEnglish, QFont::System\fR
+.SH "QFont::StyleStrategy"
+The style strategy tells the font matching algorithm what type of fonts should be used to find an appropriate default family.
+.PP
+The algorithm won't prefer any type of font if \fCNoStratgie\fR is provided.
+.PP
+The other available strategys are \fCQFont::PreferBitmap, QFont::PreferDevice, QFont::PreferOutline, QFont::ForceOutline\fR
+.PP
+Any of these may be ORed with a indicator whether exact matching or good quality should be preferred.
+.PP
+\fCQFont::PreferMatch, QFont::PreferQuality\fR
+.SH "QFont::Weight"
+Contains the predefined font weights:
+.TP
+\fCQFont::Light\fR (25)
+.TP
+\fCQFont::Normal\fR (50)
+.TP
+\fCQFont::DemiBold\fR (63)
+.TP
+\fCQFont::Bold\fR (75)
+.TP
+\fCQFont::Black\fR (87)
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFont::QFont ()"
+Constructs a font object that refers to the default font.
+.PP
+See also QApplication::setFont() and QApplication::font().
+.SH "QFont::QFont ( const QString & family, int pointSize = 12, int weight = Normal, bool italic = FALSE )"
+Constructs a font object with the specified \fIfamily, pointSize, weight\fR and \fIitalic\fR settings. The charSet() is copied from the default font and the rest of the settings are set reasonably.
+.PP
+If \fIpointSize\fR is less than or equal to 0 it is set to 1.
+.PP
+See also setFamily(), setPointSize(), setWeight() and setItalic().
+.SH "QFont::QFont ( const QString & family, int pointSize, int weight, bool italic, CharSet charSet )"
+Constructs a font object with the specified \fIfamily, pointSize, weight, italic\fR and \fIcharSet\fR settings. If \fIpointSize\fR is less than or equal to 0 it is set to 1.
+.PP
+See also setFamily(), setPointSize(), setWeight() and setItalic().
+.SH "QFont::QFont ( const QFont & font )"
+Constructs a font that is a copy of \fIfont.\fR
+.SH "QFont::~QFont ()"
+Destructs the font object.
+.SH "bool QFont::bold () const"
+Returns TRUE if weight() is a value greater than \fCQFont::Normal,\fR otherwise FALSE.
+.PP
+See also weight(), setBold() and QFontInfo::bold().
+.SH "void QFont::cacheStatistics () \fC[static]\fR"
+Internal function that dumps font cache statistics.
+.SH "QFont::CharSet QFont::charSet() const"
+Returns the character set by setCharSet().
+.PP
+Use QFontInfo to find the CharSet of the window system font actually used.
+.PP
+See also setCharSet().
+.SH "QFont::CharSet QFont::charSetForLocale() \fC[static]\fR"
+Returns a guess at the character set most likely to be appropriate for the locale the application is running in. This is the character sets fonts will use by default.
+.SH "void QFont::cleanup () \fC[static]\fR"
+Internal function that cleans up the font system.
+.SH "int QFont::deciPointSize () const \fC[protected]\fR"
+Returns the point size in 1/10ths of a point.
+.PP
+See also pointSize().
+.SH "QString QFont::defaultFamily () const \fC[protected]\fR"
+Returns the family name that corresponds to the current style hint.
+.SH "QFont QFont::defaultFont () \fC[static]\fR"
+Returns the QApplication default font.
+.PP
+This function will be removed in a future version of Qt. Please use QApplication::font() instead.
+.SH "bool QFont::dirty () const \fC[protected]\fR"
+Returns TRUE if the font attributes have been changed and the font has to be (re)loaded, or FALSE if no changes have been made.
+.SH "QString QFont::encodingName ( CharSet cs ) \fC[static]\fR"
+Returns the encoding name of a character set, e.g. QFont::ISO_8859_1 returns "iso8859-1" and QFont::Unicode returns "iso10646".
+.SH "bool QFont::exactMatch () const"
+Returns TRUE if a window system font exactly matching the settings of this font is available.
+.PP
+See also QFontInfo.
+.SH "QString QFont::family () const"
+Returns the family name set by setFamily().
+.PP
+Use QFontInfo to find the family name of the window system font that is actually used for drawing.
+.PP
+Example:
+.PP
+.nf
+.br
+    QFont     font( "Nairobi" );
+.br
+    QFontInfo info( font );
+.br
+    qDebug( "Font family requested is    : \\"%s\\"", font.family() );
+.br
+    qDebug( "Font family actually used is: \\"%s\\"", info.family() );
+.fi
+.PP
+See also setFamily() and substitute().
+.SH "bool QFont::fixedPitch () const"
+Returns the value set by setFixedPitch().
+.PP
+Use QFontInfo to find the fixed pitch value of the window system font actually used.
+.PP
+See also setFixedPitch() and QFontInfo::fixedPitch().
+.SH "void QFont::initialize () \fC[static]\fR"
+Internal function that initializes the font system.
+.SH "void QFont::insertSubstitution ( const QString & familyName, const QString & replacementName ) \fC[static]\fR"
+Inserts a new font family name substitution in the family substitution table.
+.PP
+If \fIfamilyName\fR already exists in the substitution table, it will be replaced with this new substitution.
+.PP
+See also removeSubstitution(), substitutions() and substitute().
+.SH "bool QFont::isCopyOf ( const QFont & f ) const"
+Returns TRUE if this font and \fIf\fR are copies of each other, i.e. one of them was created as a copy of the other and neither was subsequently modified. This is much stricter than equality.
+.PP
+See also operator= and operator==.
+.SH "bool QFont::italic () const"
+Returns the value set by setItalic().
+.PP
+Use QFontInfo to find the italic value of the window system font actually used.
+.PP
+See also setItalic().
+.SH "QString QFont::key () const"
+Returns the font's key, which is a textual representation of the font settings. It is typically used to insert and find fonts in a dictionary or a cache.
+.PP
+See also QMap.
+.SH "QString QFont::lastResortFamily () const \fC[protected]\fR"
+Returns a last resort family name for the font matching algorithm.
+.PP
+See also lastResortFont().
+.SH "QString QFont::lastResortFont () const \fC[protected]\fR"
+Returns a last resort raw font name for the font matching algorithm. This is used if even the last resort family is not available. It returns \fIsomething,\fR almost no matter what.
+.PP
+The current implementation tries a wide variety of common fonts, returning the first one it finds. The implementation may change at any time.
+.PP
+See also lastResortFamily().
+.SH "void QFont::locale_init () \fC[static]\fR"
+Internal function that uses locale information to find the preferred character set of loaded fonts.
+.SH "bool QFont::operator!= ( const QFont & f ) const"
+Returns TRUE if the this font is different from \fIf,\fR or FALSE if they are equal.
+.PP
+Two QFonts are different if their font attributes are different. If rawMode() is enabled for both fonts, then only the family fields are compared.
+.PP
+See also operator==().
+.SH "QFont & QFont::operator= ( const QFont & font )"
+Assigns \fIfont\fR to this font and returns a reference to this font.
+.SH "bool QFont::operator== ( const QFont & f ) const"
+Returns TRUE if the this font is equal to \fIf,\fR or FALSE if they are different.
+.PP
+Two QFonts are equal if their font attributes are equal. If rawMode() is enabled for both fonts, then only the family fields are compared.
+.PP
+See also operator!=().
+.SH "int QFont::pixelSize () const"
+Returns the logical pixel height of characters in the font if shown on the screen.
+.SH "int QFont::pointSize () const"
+Returns the point size set by setPointSize().
+.PP
+Use QFontInfo to find the point size of the window system font actually used.
+.PP
+Example of use:
+.PP
+.nf
+.br
+    QFont     font( "helvetica" );
+.br
+    QFontInfo info( font );
+.br
+    font.setPointSize( 53 );
+.br
+    qDebug( "Font size requested is    : %d", font.pointSize() );
+.br
+    qDebug( "Font size actually used is: %d", info.pointSize() );
+.fi
+.PP
+See also setPointSize() and deciPointSize().
+.SH "float QFont::pointSizeFloat () const"
+Returns the height of characters in the font in points (1/72 inch).
+.PP
+See also pointSize().
+.SH "bool QFont::rawMode () const"
+Returns the value set by setRawMode().
+.PP
+See also setRawMode().
+.SH "QString QFont::rawName () const"
+Returns the name of the font within the underlying window system. On Windows, this is usually just the family name of a true type font. Under X, it is a rather complex XLFD (X Logical Font Description). Using the return value of this function is usually \fInot portable.\fR
+.PP
+See also setRawName().
+.SH "void QFont::removeSubstitution ( const QString & familyName ) \fC[static]\fR"
+Removes a font family name substitution from the family substitution table.
+.PP
+See also insertSubstitution(), substitutions() and substitute().
+.SH "void QFont::setBold ( bool enable )"
+Sets the weight to \fCQFont::Bold\fR if \fIenable\fR is TRUE, or to \fCQFont::Normal\fR if \fIenable\fR is FALSE.
+.PP
+Use setWeight() to set the weight to other values.
+.PP
+See also bold() and setWeight().
+.PP
+Examples:
+.(l
+menu/menu.cpp
+.)l
+.SH "void QFont::setCharSet ( CharSet charset )"
+Sets the character set encoding (e.g. \fCLatin1).\fR
+.PP
+If the character set encoding is not available another will be used for drawing. For most non-trivial applications you will probably not want this to happen since it can totally obscure the text shown to the user. This is why the font matching algorithm gives high priority to finding the correct character set.
+.PP
+You can test that the character set is correct using the QFontInfo class.
+.PP
+See also charSet() and QFontInfo.
+.SH "void QFont::setDefaultFont ( const QFont & f ) \fC[static]\fR"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Please use QApplication::setFont() instead.
+.SH "void QFont::setFamily ( const QString & family )"
+Sets the family name of the font (e.g. "Helvetica" or "times").
+.PP
+The family name is case insensitive.
+.PP
+If the family is not available a default family is used.
+.PP
+See also family(), setStyleHint() and QFontInfo.
+.SH "void QFont::setFixedPitch ( bool enable )"
+Sets fixed pitch on or off.
+.PP
+A fixed pitch font is a font where all characters have the same width.
+.PP
+See also fixedPitch() and QFontInfo.
+.SH "void QFont::setItalic ( bool enable )"
+Sets italic on or off.
+.PP
+See also italic() and QFontInfo.
+.SH "void QFont::setPixelSize ( int pixelSize )"
+Sets the logical height of characters in the font if shown on the screen.
+.SH "void QFont::setPixelSizeFloat ( float pixelSize )"
+Sets the logical pixel height of characters in the font if shown on the screen.
+.SH "void QFont::setPointSize ( int pointSize )"
+Sets the point size to \fIpointSize.\fR The point size must be greater than zero.
+.PP
+Example:
+.PP
+.nf
+.br
+    QFont font( "courier" );
+.br
+    font.setPointSize( 18 );
+.fi
+.PP
+See also pointSize() and QFontInfo.
+.SH "void QFont::setPointSizeFloat ( float pointSize )"
+Sets the point size to \fIpointSize.\fR The point size must be greater than zero. The requested precision may not be achieved on all platforms.
+.SH "void QFont::setRawMode ( bool enable )"
+Turns raw mode on if \fIenable\fR is TRUE, or turns it off if \fIenable\fR is FALSE.
+.PP
+Calling this function only has effect under X windows. If raw mode is enabled, Qt will search for an X font with a complete font name matching the family name, ignoring all other values set for the QFont. If the font name matches several fonts, Qt will use the first font returned by X. QFontInfo \fIcannot\fR be used to fetch information about a QFont using raw mode (it will return the values set in the QFont for all parameters, including the family name).
+.PP
+\fBWarning:\fR Do not use raw mode unless you really, really need it! In most (if not all) cases, setRawName() is a much better choise.
+.PP
+See also rawMode() and setRawName().
+.SH "void QFont::setRawName ( const QString & name )"
+Sets a font by its system specific name. The function is in particular useful under X, where system font settings ( for example X resources) are usually available as XLFD (X Logical Font Description) only. You can pass an XLFD as \fIname\fR to this function.
+.PP
+In Qt 2.0 and later, a font set with setRawName() is still a full-featured QFont. It can be queried (for example with italic()) or modified (for example with setItalic() ) and is therefore also suitable as a basis font for rendering rich text.
+.PP
+If Qt's internal font database cannot resolve the raw name, the font becomes a raw font with \fIname\fR as family.
+.PP
+Note that the present implementation does not handle handle wildcards in XLFDs well, and that font aliases (file \fCfonts.alias\fR in the font directory on X11) are not supported.
+.PP
+See also rawName(), setRawMode() and setFamily().
+.SH "void QFont::setStrikeOut ( bool enable )"
+Sets strike out on or off.
+.PP
+See also strikeOut() and QFontInfo.
+.SH "void QFont::setStyleHint ( StyleHint hint )"
+Sets the style hint.
+.PP
+See also setStyleHint().
+.PP
+Examples:
+.(l
+desktop/desktop.cpp
+.)l
+.SH "void QFont::setStyleHint ( StyleHint hint, StyleStrategy strategy )"
+Sets the style hint and strategy.
+.PP
+The style hint has a default value of \fCAnyStyle\fR which leaves the task of finding a good default family to the font matching algorithm.
+.PP
+The style strategy has a default value of \fCPreferDefault\fR which tells the algorithm not to prefer any type of font.
+.PP
+In the example below the push button will display its text label with the Bavaria font family if this family is available, if not it will display its text label with another serif font:
+.PP
+.nf
+.br
+    #include <qapplication.h>
+.br
+    #include <qpushbutton.h>
+.br
+    #include <qfont.h>
+.br
+.br
+    int main( int argc, char **argv )
+.br
+    {
+.br
+        QApplication app( argc, argv );
+.br
+        QPushButton  push("Push me");
+.br
+.br
+        QFont font( "Bavaria", 18 );        // preferred family is Bavaria
+.br
+        font.setStyleHint( QFont::Serif )    // can also use any serif font
+.br
+.br
+        push.setFont( font );
+.br
+        return app.exec( &push );
+.br
+    }
+.fi
+.PP
+See also QFont::StyleHint, styleHint(), QFont::StyleStrategy, styleStrategy() and QFontInfo.
+.SH "void QFont::setUnderline ( bool enable )"
+Sets underline on or off.
+.PP
+See also underline() and QFontInfo.
+.PP
+Examples:
+.(l
+menu/menu.cpp
+.)l
+.SH "void QFont::setWeight ( int weight )"
+Sets the weight (or boldness), which should be a value from the QFont::Weight enumeration.
+.PP
+Example:
+.PP
+.nf
+.br
+    QFont font( "courier" );
+.br
+    font.setWeight( QFont::Bold );
+.fi
+.PP
+Strictly speaking you can use all values in the range [0,99] (where 0 is ultralight and 99 is extremely black), but there is perhaps asking too much of the underlying window system.
+.PP
+If the specified weight is not available the closest available will be used. Use QFontInfo to check the actual weight.
+.PP
+See also weight() and QFontInfo.
+.SH "bool QFont::strikeOut () const"
+Returns the value set by setStrikeOut().
+.PP
+Use QFontInfo to find the strike out value of the window system font actually used.
+.PP
+See also setStrikeOut() and QFontInfo::strikeOut().
+.SH "QFont::StyleHint QFont::styleHint() const"
+Returns the StyleHint set by setStyleHint().
+.PP
+See also setStyleHint() and QFontInfo::styleHint().
+.SH "QFont::StyleStrategy QFont::styleStrategy() const"
+Returns the StyleStratgie set by setStyleHint()
+.PP
+See also setStyleHint().
+.SH "QString QFont::substitute ( const QString & familyName ) \fC[static]\fR"
+Returns the font family name to be used whenever \fIfamilyName\fR is specified. The lookup is case insensitive.
+.PP
+If there is no substitution for \fIfamilyName,\fR then \fIfamilyName\fR is returned.
+.PP
+Example:
+.PP
+.nf
+.br
+    QFont::insertSubstitution( "NewYork", "London" );
+.br
+    QFont::insertSubstitution( "Paris",   "Texas" );
+.br
+.br
+    QFont::substitute( "NewYork" );     // returns "London"
+.br
+    QFont::substitute( "PARIS" );       // returns "Texas"
+.br
+    QFont::substitute( "Rome" );        // returns "Rome"
+.br
+.br
+    QFont::removeSubstitution( "newyork" );
+.br
+    QFont::substitute( "NewYork" );     // returns "NewYork"
+.fi
+.PP
+See also setFamily(), insertSubstitution() and removeSubstitution().
+.SH "QStringList QFont::substitutions () \fC[static]\fR"
+Returns a sorted list of substituted family names.
+.PP
+See also insertSubstitution(), removeSubstitution() and substitute().
+.SH "bool QFont::underline () const"
+Returns the value set by setUnderline().
+.PP
+Use QFontInfo to find the underline value of the window system font actually used for drawing.
+.PP
+See also setUnderline() and QFontInfo::underline().
+.SH "int QFont::weight () const"
+Returns the weight set by setWeight().
+.PP
+Use QFontInfo to find the weight of the window system font actually used.
+.PP
+See also setWeight() and QFontInfo.
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "QDataStream & operator<< (QDataStream & s, const QFont & f)"
+Writes a font to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "QDataStream & operator>> (QDataStream & s, QFont & f)"
+Reads a font from the stream.
+.PP
+See also  Format of the QDataStream operators
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfont.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfont.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,274 @@
+'\" t
+.TH QSplitter 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QSplitter \- Implements a splitter widget
+.br
+.PP
+\fC#include <qsplitter.h>\fR
+.PP
+Inherits QFrame.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBResizeMode\fR { Stretch, KeepSize, FollowSizeHint }"
+.br
+.ti -1c
+.BI "\fBQSplitter\fR ( QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQSplitter\fR ( Orientation, QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QSplitter\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetOrientation\fR ( Orientation ) "
+.br
+.ti -1c
+.BI "Orientation \fBorientation\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetResizeMode\fR ( QWidget * " "w" ", ResizeMode ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetOpaqueResize\fR ( bool = TRUE ) "
+.br
+.ti -1c
+.BI "bool \fBopaqueResize\fR () const"
+.br
+.ti -1c
+.BI "void \fBmoveToFirst\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "void \fBmoveToLast\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "void \fBrefresh\fR () "
+.br
+.ti -1c
+.BI "QValueList<int> \fBsizes\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetSizes\fR ( QValueList<int> ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBchildEvent\fR ( QChildEvent * ) "
+.br
+.ti -1c
+.BI "int \fBidAfter\fR ( QWidget * ) const"
+.br
+.ti -1c
+.BI "void \fBmoveSplitter\fR ( QCOORD " "pos" ", int id ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawSplitter\fR ( QPainter *, QCOORD " "x" ", QCOORD " "y" ", QCOORD " "w" ", QCOORD h ) "
+.br
+.ti -1c
+.BI "int \fBadjustPos\fR ( int, int ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetRubberband\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBgetRange\fR ( int " "id" ", int *, int * ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+Orientation	orientation	orientation	setOrientation
+.TE
+.fi
+
+.SH DESCRIPTION
+The QSplitter class implements a splitter widget.
+.PP
+A splitter lets the user control the size of child widgets by dragging the boundary between the children. Any number of widgets may be controlled.
+.PP
+To show a QListBox, a QListView and a QMultiLineEdit side by side:
+.PP
+.nf
+.br
+    QSplitter *split = new QSplitter( parent );
+.br
+    QListBox *lb = new QListBox( split );
+.br
+    QListView *lv = new QListView( split );
+.br
+    QMultiLineEdit *ed = new QMultiLineEdit( split );
+.fi
+.PP
+In QSplitter the boundary can be either horizontal or vertical. The default is horizontal (the children are side by side) and you can use setOrientation( QSplitter::Vertical ) to set it to vertical.
+.PP
+By default, all widgets can be as large or as small as the user wishes, down to minimumSizeHint(). You can naturally use setMinimumSize() and/or setMaximumSize() on the children. Use setResizeMode() to specify that a widget should keep its size when the splitter is resized.
+.PP
+QSplitter normally resizes the children only at the end of a resize operation, but if you call setOpaqueResize( TRUE ), the widgets are resized as often as possible.
+.PP
+The initial distribution of size between the widgets is determined by the initial size of each widget. You can also use setSizes() to set the sizes of all the widgets. The function sizes() returns the sizes set by the user.
+.PP
+If you hide() a child, its space will be distributed among the other children. When you show() it again, it will be reinstated.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QTabBar.
+.PP
+Examples:
+.(l
+mainlyQt/editor.cpp splitter/splitter.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QSplitter::ResizeMode"
+This enum type describes how QSplitter will resize each of its child widgets. The currently defined values are: 
+.TP
+\fCStretch\fR - the widget will be resized when the splitter itself is resized.
+.TP
+\fCKeepSize\fR - QSplitter will try to keep this widget's size unchanged.
+.TP
+\fCFollowSizeHint\fR - QSplitter will resize the widget when its size hint changes.
+.IP
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QSplitter::QSplitter ( Orientation o, QWidget * parent=0, const char * name=0 )"
+Constructs splitter with orientation \fIo.\fR
+.SH "QSplitter::QSplitter ( QWidget * parent=0, const char * name=0 )"
+Constructs a horizontal splitter.
+.SH "QSplitter::~QSplitter ()"
+Destructs the splitter.
+.SH "int QSplitter::adjustPos ( int p, int id ) \fC[protected]\fR"
+Returns the legal position closest to \fIp\fR of the splitter with id \fIid.\fR
+.PP
+See also idAfter().
+.SH "void QSplitter::childEvent ( QChildEvent * c ) \fC[virtual protected]\fR"
+Tells the splitter that a child widget has been inserted/removed.
+.PP
+Reimplemented from QObject.
+.SH "void QSplitter::drawSplitter ( QPainter * p, QCOORD x, QCOORD y, QCOORD w, QCOORD h ) \fC[virtual protected]\fR"
+Draws the splitter handle in the rectangle described by \fIx, y, w, h\fR using painter \fIp.\fR
+.PP
+See also QStyle::drawSplitter.
+.SH "bool QSplitter::event ( QEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QObject.
+.SH "void QSplitter::getRange ( int id, int * min, int * max ) \fC[protected]\fR"
+Returns the valid range of the splitter with id \fIid\fR in \fImin\fR and \fImax.\fR
+.PP
+See also idAfter().
+.SH "int QSplitter::idAfter ( QWidget * w ) const \fC[protected]\fR"
+Returns the id of the splitter to the right of or below the widget \fIw,\fR or 0 if there is no such splitter. (ie. it is either not in this QSplitter, or it is at the end).
+.SH "QSize QSplitter::minimumSizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSplitter::moveSplitter ( QCOORD p, int id ) \fC[protected]\fR"
+Moves the left/top edge of the splitter handle with id \fIid\fR as close as possible to \fIp\fR which is the distance from the left (or top) edge of the widget.
+.PP
+See also idAfter().
+.SH "void QSplitter::moveToFirst ( QWidget * w )"
+Moves \fIw\fR to the leftmost/top position.
+.PP
+Examples:
+.(l
+splitter/splitter.cpp
+.)l
+.SH "void QSplitter::moveToLast ( QWidget * w )"
+Moves \fIw\fR to the rightmost/bottom position.
+.SH "bool QSplitter::opaqueResize () const"
+Returns TRUE if opaque resize is on, FALSE otherwise.
+.PP
+See also setOpaqueResize().
+.SH "Orientation QSplitter::orientation () const"
+Returns the orientation (\fCHorizontal\fR or \fCVertical)\fR of the splitter.
+.PP
+See also setOrientation().
+.SH "void QSplitter::refresh ()"
+Updates the splitter state. You should not need to call this function during normal use of the splitter.
+.SH "void QSplitter::resizeEvent ( QResizeEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSplitter::setOpaqueResize ( bool on = TRUE ) \fC[virtual]\fR"
+Sets opaque resize to \fIon.\fR Opaque resize is initially turned off.
+.PP
+See also opaqueResize().
+.PP
+Examples:
+.(l
+mainlyQt/editor.cpp splitter/splitter.cpp
+.)l
+.SH "void QSplitter::setOrientation ( Orientation o ) \fC[virtual]\fR"
+Sets the orientation to \fIo.\fR By default the orientation is horizontal (the widgets are side by side).
+.PP
+See also orientation().
+.SH "void QSplitter::setResizeMode ( QWidget * w, ResizeMode mode )"
+Sets resize mode of \fIw\fR to \fImode.\fR
+.PP
+See also ResizeMode.
+.PP
+Examples:
+.(l
+splitter/splitter.cpp
+.)l
+.SH "void QSplitter::setRubberband ( int p ) \fC[virtual protected]\fR"
+Shows a rubber band at position \fIp.\fR If \fIp\fR is negative, the rubber band is removed.
+.SH "void QSplitter::setSizes ( QValueList<int> list )"
+Sets the size parameters to the values given in \fIlist.\fR If the splitter is horizontal, the values set the sizes from left to right. If it is vertical, the sizes are applied from top to bottom. Extra values in \fIlist\fR are ignored.
+.PP
+If \fIlist\fR contains too few values, the result is undefined but the program will still be well-behaved.
+.PP
+See also sizes().
+.SH "QSize QSplitter::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSizePolicy QSplitter::sizePolicy () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QValueList<int> QSplitter::sizes () const"
+Returns a list of the size parameters of all the widgets in this splitter.
+.PP
+Giving the values to setSizes() will give a splitter with the same layout as this one.
+.PP
+See also setSizes().
+.SH "void QSplitter::styleChange ( QStyle & old ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qsplitter.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qsplitter.3qt) and the Qt
+version (2.3.2).

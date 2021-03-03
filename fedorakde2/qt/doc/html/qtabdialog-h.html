@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qtabdialog.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qtabdialog.h</h1><br clear="all">
+This is the verbatim text of the qtabdialog.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/dialogs/qtabdialog.h   2.3.2   edited 2001-01-26 $
+**
+** Definition of QTabDialog class
+**
+** Created : 960825
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the dialogs module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QTABDIALOG_H
+#define QTABDIALOG_H
+
+#ifndef QT_H
+#include "qdialog.h"
+#include "qiconset.h"
+#endif // QT_H
+
+#ifndef QT_NO_TABDIALOG
+
+class  <a href="qtabbar.html">QTabBar</a>;
+struct QTabPrivate;
+class  <a href="qtab.html">QTab</a>;
+
+
+class Q_EXPORT <a href="qtabdialog.html">QTabDialog</a> : public <a href="qdialog.html">QDialog</a>
+{
+    Q_OBJECT
+public:
+    QTabDialog( QWidget *parent=0, const char *name=0, bool modal=FALSE,
+                WFlags f=0 );
+   ~QTabDialog();
+
+    void show();
+    void setFont( const QFont &amp; font );
+
+    void addTab( QWidget *, const QString &amp;);
+    void addTab( QWidget *child, const QIconSet&amp; iconset, const QString &amp;label);
+    void addTab( QWidget *, QTab* );
+
+    void insertTab( QWidget *, const QString &amp;, int index = -1);
+    void insertTab( QWidget *child, const QIconSet&amp; iconset, const QString &amp;label, int index = -1);
+    void insertTab( QWidget *, QTab*, int index = -1 );
+
+    void changeTab( QWidget *, const QString &amp;);
+    void changeTab( QWidget *child, const QIconSet&amp; iconset, const QString &amp;label);
+
+    bool isTabEnabled(  QWidget * ) const;
+    void setTabEnabled( QWidget *, bool );
+    bool isTabEnabled( const char* ) const; // compatibility
+    void setTabEnabled( const char*, bool ); // compatibility
+
+    void showPage( QWidget * );
+    void removePage( QWidget * );
+    QString tabLabel( QWidget * );
+
+    QWidget * currentPage() const;
+
+    void setDefaultButton( const QString &amp;text );
+    void setDefaultButton();
+    bool hasDefaultButton() const;
+
+    void setHelpButton( const QString &amp;text );
+    void setHelpButton();
+    bool hasHelpButton() const;
+
+    void setCancelButton( const QString &amp;text );
+    void setCancelButton();
+    bool hasCancelButton() const;
+
+    void setApplyButton( const QString &amp;text );
+    void setApplyButton();
+    bool hasApplyButton() const;
+
+#if 1 // OBSOLETE
+    void setOKButton( const QString &amp;text = QString::null );
+#endif
+    void setOkButton( const QString &amp;text );
+    void setOkButton();
+    bool hasOkButton() const;
+
+protected:
+    void paintEvent( QPaintEvent * );
+    void resizeEvent( QResizeEvent * );
+    void styleChange( QStyle&amp; );
+    void setTabBar( QTabBar* );
+    QTabBar* tabBar() const;
+
+signals:
+    void aboutToShow();
+
+    void applyButtonPressed();
+    void cancelButtonPressed();
+    void defaultButtonPressed();
+    void helpButtonPressed();
+
+    void currentChanged( QWidget * );
+    void selected( const QString&amp; ); // obsolete
+
+private slots:
+    void showTab( int i );
+
+private:
+    void setSizes();
+    void setUpLayout();
+
+    QTabPrivate *d;
+private:        // Disabled copy constructor and operator=
+#if defined(Q_DISABLE_COPY)
+    QTabDialog( const QTabDialog &amp; );
+    QTabDialog&amp; operator=( const QTabDialog &amp; );
+#endif
+};
+
+#endif // QT_NO_TABDIALOG
+
+#endif // QTABDIALOG_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

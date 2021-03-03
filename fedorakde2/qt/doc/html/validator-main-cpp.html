@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - validator/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Validators</h1><br clear="all">
+
+  In this example you see how to write and use an own validator.
+
+  <hr>
+
+  Header file of the validator: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/validator/motor.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef MOTOR_H
+#define MOTOR_H
+
+#include &lt;<a href="qvalidator-h.html">qvalidator.h</a>&gt;
+#include &lt;<a href="qspinbox-h.html">qspinbox.h</a>&gt;
+
+class MotorValidator: public QValidator
+{
+    Q_OBJECT
+public:
+    MotorValidator( <a href="qspinbox.html">QSpinBox</a> * parent, const char * name );
+    ~MotorValidator();
+
+    void setRange( int bottom, int top, int step );
+
+    int bottom() { return b; }
+    int top() { return t; }
+    int step() { return s; }
+
+    <a href="qvalidator.html#State">QValidator::State</a> validate( <a href="qstring.html">QString</a> &amp;, int &amp; ) const;
+
+private:
+    int b, t, s;
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation of the validator: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/validator/motor.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "motor.h"
+#include "<a href="qlineedit-h.html">qlineedit.h</a>"
+#include "<a href="qpushbutton-h.html">qpushbutton.h</a>"
+
+MotorValidator::MotorValidator( <a href="qspinbox.html">QSpinBox</a> * parent, const char * name )
+    : <a href="qvalidator.html">QValidator</a>( parent, name )
+{
+    // just some random junk.
+    b = 0;
+    t = 42;
+    s = 2;
+}
+
+MotorValidator::~MotorValidator()
+{
+    // nothing.  wow. programming qt is easy.
+}
+
+void <a name="43"></a>MotorValidator::setRange( int bottom, int top, int step )
+{
+    b = bottom;
+    t = top;
+    s = step;
+}
+
+// the guts of this example: return TRUE if motorSize describes an
+// integer in the range b to t which can be described as n*s+b for
+// some integer n.
+
+<a href="qvalidator.html#State">QValidator::State</a> <a name="44"></a>MotorValidator::validate( <a href="qstring.html">QString</a> &amp; motorSize, int &amp; ) const
+{
+    bool ok;
+    long int tmp = motorSize.toLong( &amp;ok );
+    if ( !ok )
+        return QValidator::Invalid;
+    else if ( tmp &lt; b || tmp &gt; t || ((tmp-b)%s) != 0 )
+        return QValidator::Valid;
+    else
+        return QValidator::Acceptable;
+}
+</pre>
+
+
+  <hr>
+
+  Header file of the mainwidget: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/validator/vw.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef VW_H
+#define VW_H
+
+#include &lt;<a href="qvalidator-h.html">qvalidator.h</a>&gt;
+#include &lt;<a href="qstring-h.html">qstring.h</a>&gt;
+#include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+
+class VW: public QWidget {
+    Q_OBJECT
+public:
+    VW( <a href="qwidget.html">QWidget</a> * parent = 0, const char * name = 0 );
+    ~VW();
+
+private slots:
+    void modelSelected( const QString&amp; );
+    void motorSelected( int );
+    void yearSelected( int );
+
+signals:
+    void validSelectionMade( const QString&amp; );
+
+private:
+    void computeSelection();
+
+    <a href="qstring.html">QString</a> currentModel;
+    int currentMotorSize;
+    int currentYear;
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation of the mainwidget: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/validator/vw.cpp   2.3.2   edited 2001-06-13 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "vw.h"
+
+#include &lt;<a href="qlineedit-h.html">qlineedit.h</a>&gt;
+#include &lt;<a href="qcombobox-h.html">qcombobox.h</a>&gt;
+#include &lt;<a href="qspinbox-h.html">qspinbox.h</a>&gt;
+#include &lt;<a href="qlayout-h.html">qlayout.h</a>&gt;
+#include &lt;<a href="qgroupbox-h.html">qgroupbox.h</a>&gt;
+#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;
+
+#include "motor.h"
+
+VW::VW( <a href="qwidget.html">QWidget</a> * parent, const char * name )
+    : <a href="qwidget.html">QWidget</a>( parent, name )
+{
+    <a href="qhboxlayout.html">QHBoxLayout</a> * hb;
+
+    hb = new <a href="qhboxlayout.html">QHBoxLayout</a>( this, 10 );
+
+    <a href="qgroupbox.html">QGroupBox</a> * box;
+    box = new <a href="qgroupbox.html">QGroupBox</a>( this, "input box" );
+    hb-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( box, 0, AlignTop );
+
+    <a href="qvboxlayout.html">QVBoxLayout</a> * b;
+
+    // set up the input box
+    b = new <a href="qvboxlayout.html">QVBoxLayout</a>( box, 12 );
+
+    <a href="qlabel.html">QLabel</a> * l = new <a href="qlabel.html">QLabel</a>( "Enter Vehicle Details", box, "header" );
+    l-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( l-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>() );
+    b-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( l );
+    <a href="qframe.html">QFrame</a> * f = new <a href="qframe.html">QFrame</a>( box, "horizontal divider" );
+    f-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::HLine | QFrame::Sunken );
+    f-&gt;<a href="qwidget.html#e24afa">setMinimumHeight</a>( 12 );
+    b-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( f );
+
+    <a href="qgridlayout.html">QGridLayout</a> *grid = new <a href="qgridlayout.html">QGridLayout</a>( 3, 2 );
+    b-&gt;<a href="qboxlayout.html#6ff301">addLayout</a>( grid );
+
+    // here we start on the input grid, with labels and other widget
+    // neatly arranged. the variable names are reused all over the
+    // place.
+
+    <a href="qcombobox.html">QComboBox</a> * model = new <a href="qcombobox.html">QComboBox</a>( FALSE, box, "model selection" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Type 1 Beetle" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Camper" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Van" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Fastback" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Squareback" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Notchback" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "411" );
+    model-&gt;<a href="qcombobox.html#8a94f7">setCurrentItem</a>( model-&gt;<a href="qcombobox.html#a03e60">count</a>() - 1 ); // I like the 411
+    currentModel = "411";
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "412" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Karmann Ghia" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Thing" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Safari" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Kubelwagen" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Trekker" );
+    model-&gt;<a href="qcombobox.html#613b4b">insertItem</a>( "Baja" );
+    model-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( model-&gt;<a href="qcombobox.html#dd19df">sizeHint</a>() );
+    model-&gt;<a href="qwidget.html#4e5337">setMaximumHeight</a>( model-&gt;<a href="qwidget.html#b24d94">minimumSize</a>().height() );
+    grid-&gt;<a href="qgridlayout.html#dac29c">addWidget</a>( model, 0, 1 );
+
+    l = new <a href="qlabel.html">QLabel</a>( model, "Model:", box, "model label" );
+    l-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( l-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>() );
+    grid-&gt;<a href="qgridlayout.html#dac29c">addWidget</a>( l, 0, 0 );
+
+    <a href="qspinbox.html">QSpinBox</a> * motor = new <a href="qspinbox.html">QSpinBox</a>( 1000, 1600, 100,
+                                     box, "motor size selection" );
+    motor-&gt;<a href="qspinbox.html#eb409b">setValue</a>( 1000 );
+    currentMotorSize = 1000;
+    motor-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( motor-&gt;<a href="qspinbox.html#ffd3ee">sizeHint</a>() );
+    motor-&gt;<a href="qwidget.html#4e5337">setMaximumHeight</a>( motor-&gt;<a href="qwidget.html#b24d94">minimumSize</a>().height() );
+    grid-&gt;<a href="qgridlayout.html#dac29c">addWidget</a>( motor, 1, 1 );
+
+    l = new <a href="qlabel.html">QLabel</a>( motor, "Motor size (cc):", box, "motor size label" );
+    l-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( l-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>() );
+    grid-&gt;<a href="qgridlayout.html#dac29c">addWidget</a>( l, 1, 0 );
+
+    <a href="qspinbox.html">QSpinBox</a> * year = new <a href="qspinbox.html">QSpinBox</a>( box, "model year" );
+    year-&gt;<a href="qrangecontrol.html#f2409c">setRange</a>( 1949, 1981 );
+    year-&gt;<a href="qspinbox.html#eb409b">setValue</a>( 1949 );
+    currentYear = 1949;
+    year-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( year-&gt;<a href="qspinbox.html#ffd3ee">sizeHint</a>() );
+    year-&gt;<a href="qwidget.html#4e5337">setMaximumHeight</a>( year-&gt;<a href="qwidget.html#b24d94">minimumSize</a>().height() );
+    grid-&gt;<a href="qgridlayout.html#dac29c">addWidget</a>( year, 2, 1 );
+
+    l = new <a href="qlabel.html">QLabel</a>( year, "Year:", box, "model year label" );
+    l-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( l-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>() );
+    grid-&gt;<a href="qgridlayout.html#dac29c">addWidget</a>( l, 2, 0 );
+
+    b-&gt;<a href="qboxlayout.html#0226eb">addStretch</a>( 1 );
+
+    b-&gt;<a href="qlayout.html#1cb33d">activate</a>();
+
+    // output box
+
+    box = new <a href="qgroupbox.html">QGroupBox</a>( this, "output box" );
+    hb-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( box, 0 );
+
+    b = new <a href="qvboxlayout.html">QVBoxLayout</a>( box, 12 );
+
+    l = new <a href="qlabel.html">QLabel</a>( "Resulting Limousine:", box, "header" );
+    l-&gt;<a href="qwidget.html#c0b5fb">setMinimumSize</a>( l-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>() );
+    b-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( l );
+
+    f = new <a href="qframe.html">QFrame</a>( box, "horizontal divider" );
+    f-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::HLine | QFrame::Sunken );
+    f-&gt;<a href="qwidget.html#e24afa">setMinimumHeight</a>( 12 );
+    b-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( f );
+
+    l = new <a href="qlabel.html">QLabel</a>( box, "output label" );
+    l-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( AlignTop | AlignLeft | WordBreak );
+    l-&gt;<a href="qlabel.html#bc5ea6">setText</a>( "No VW selected yet." );
+    b-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( l, 1 );
+
+    b-&gt;<a href="qboxlayout.html#0226eb">addStretch</a>( 1 );
+
+    b-&gt;<a href="qlayout.html#1cb33d">activate</a>();
+    hb-&gt;<a href="qlayout.html#1cb33d">activate</a>();
+
+    // set up connections
+    <a href="qobject.html#7f8e37">connect</a>( model, SIGNAL(activated(const QString&amp;)),
+             this, SLOT(<a href=#45>modelSelected</a>(const QString&amp;)) );
+    <a href="qobject.html#7f8e37">connect</a>( motor, SIGNAL(valueChanged(int)),
+             this, SLOT(<a href=#46>motorSelected</a>(int)) );
+    <a href="qobject.html#7f8e37">connect</a>( year, SIGNAL(valueChanged(int)),
+             this, SLOT(<a href=#47>yearSelected</a>(int)) );
+
+    <a href="qobject.html#7f8e37">connect</a>( this, SIGNAL(validSelectionMade(const QString&amp;)),
+             l, SLOT(setText(const QString&amp;)) );
+}
+
+VW::~VW()
+{
+    // nothing needs to be done.
+}
+
+void <a name="45"></a>VW::modelSelected( const QString&amp; m )
+{
+    currentModel = m;
+    <a href=#48>computeSelection</a>();
+}
+
+void <a name="46"></a>VW::motorSelected( int m )
+{
+    currentMotorSize = m;
+    <a href=#48>computeSelection</a>();
+}
+
+void <a name="47"></a>VW::yearSelected( int y )
+{
+    currentYear = y;
+    <a href=#48>computeSelection</a>();
+}
+
+void <a name="48"></a>VW::computeSelection()
+{
+    if ( currentModel.isNull() )
+        return; // no model selected yet
+
+    <a href="qstring.html">QString</a> s;
+    s.<a href="qstring.html#926f67">sprintf</a>( "You have selected a Volkswagen %s model %d with a "
+               "%d cm³ motor.\n\nGood choice!",
+               (const char *)currentModel,
+               (int)currentYear, currentMotorSize );
+    emit validSelectionMade( s );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/validator/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include "vw.h"
+
+int main( int argc, char ** argv ) {
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+    VW mw;
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;mw );
+    mw.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Validators" );
+    mw.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

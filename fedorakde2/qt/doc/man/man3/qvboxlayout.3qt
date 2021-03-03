@@ -1,0 +1,81 @@
+'\" t
+.TH QVBoxLayout 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QVBoxLayout \- Lines up widgets vertically
+.br
+.PP
+\fC#include <qlayout.h>\fR
+.PP
+Inherits QBoxLayout.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQVBoxLayout\fR ( QWidget * " "parent" ", int " "border" "=0, int " "space" " = -1, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQVBoxLayout\fR ( QLayout * " "parentLayout" ", int " "space" " = -1, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQVBoxLayout\fR ( int " "space" " = -1, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QVBoxLayout\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QVBoxLayout class lines up widgets vertically.
+.PP
+This class provides an easier way to construct vertical box layout objects. See QBoxLayout for more details.
+.PP
+The simplest way to use this class is:
+.PP
+.nf
+.br
+     QBoxLayout * l = new QVBoxLayout( widget );
+.br
+     l->addWidget( aWidget );
+.br
+     l->addWidget( anotherWidget );
+.fi
+.PP
+See also QHBoxLayout, QGridLayout and Layout overview documentation
+.PP
+Examples:
+.(l
+layout/layout.cpp i18n/main.cpp scrollview/scrollview.cpp customlayout/main.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QVBoxLayout::QVBoxLayout ( QLayout * parentLayout, int space = -1, const char * name=0 )"
+Constructs a new vertical box and adds it to \fIparentLayout.\fR
+.SH "QVBoxLayout::QVBoxLayout ( QWidget * parent, int border=0, int space = -1, const char * name=0 )"
+Constructs a new top-level vertical box.
+.SH "QVBoxLayout::QVBoxLayout ( int space = -1, const char * name=0 )"
+Constructs a new vertical box. You have to add it to another layout.
+.SH "QVBoxLayout::~QVBoxLayout ()"
+Destructs this box.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qvboxlayout.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qvboxlayout.3qt) and the Qt
+version (2.3.2).

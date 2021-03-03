@@ -1,0 +1,197 @@
+'\" t
+.TH QTextBrowser 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QTextBrowser \- A rich text  browser with simple navigation
+.br
+.PP
+\fC#include <qtextbrowser.h>\fR
+.PP
+Inherits QTextView.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQTextBrowser\fR ( QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QTextBrowser\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetSource\fR ( const QString & name ) "
+.br
+.ti -1c
+.BI "QString \fBsource\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetText\fR ( const QString & " "contents" ", const QString & context=QString::null ) "
+.br
+.ti -1c
+.BI "void \fBscrollToAnchor\fR ( const QString & name ) "
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "virtual void \fBbackward\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBforward\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBhome\fR () "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBbackwardAvailable\fR ( bool ) "
+.br
+.ti -1c
+.BI "void \fBforwardAvailable\fR ( bool ) "
+.br
+.ti -1c
+.BI "void \fBhighlighted\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBtextChanged\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBviewportMousePressEvent\fR ( QMouseEvent * ) "
+.br
+.ti -1c
+.BI "virtual void \fBviewportMouseReleaseEvent\fR ( QMouseEvent * ) "
+.br
+.ti -1c
+.BI "virtual void \fBviewportMouseMoveEvent\fR ( QMouseEvent * ) "
+.br
+.ti -1c
+.BI "virtual void \fBkeyPressEvent\fR ( QKeyEvent * e ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+QString	source	source	setSource
+.TE
+.fi
+
+.SH DESCRIPTION
+A rich text browser with simple navigation.
+.PP
+This class is the same as the QTextView it inherits, with the addition that it provides basic navigation features to follow links in hypertext documents that link to other rich text documents. While QTextView only allows to set its contents with setText(), QTextBrowser has an additional function setSource(), that makes it possible to set documents by name. These names are looked up in the text view's mime source factory. If a document name ends with an anchor, for example "\fC#anchor",\fR the text browser will automatically scroll accordingly ( using scrollToAnchor() ). When the user clicks on a hyperlink, the browser will call setSource() itself, with the link's \fChref\fR value as argument.
+.PP
+QTextBrowser doesn't provide actual Back and Forward buttons, but it has backward() and forward() slots that implement the functionality. The home() slots brings it back to its very first document displayed.
+.PP
+By using QTextView::setMimeSourceFactory(), you can provide your own subclass of QMimeSourceFactory. This makes it possible to access data from anywhere you need to, may it be the network or a database. See QMimeSourceFactory::data() for details.
+.PP
+If you intend to use the mime factory to read the data directly from the file system, you may have to specify the encoding for the file extension you are using. For example
+.PP
+.nf
+.br
+  mimeSourceFactory()->setExtensionType("qml", "text/utf8");
+.fi
+.PP
+Otherwise, the factory will not be able to resolve the document names.
+.PP
+For simpler richt text use, see QLabel, QTextView or QSimpleRichText.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QTextBrowser::QTextBrowser ( QWidget * parent=0, const char * name=0 )"
+Constructs an empty QTextBrowser.
+.SH "QTextBrowser::~QTextBrowser ()"
+Destructs the browser.
+.SH "void QTextBrowser::backward () \fC[virtual slot]\fR"
+Changes the document displayed to be the previous document in the list of documents build by navigating links.
+.PP
+See also forward() and backwardAvailable().
+.SH "void QTextBrowser::backwardAvailable ( bool available ) \fC[signal]\fR"
+This signal is emitted when the availability of the backward() changes. It becomes available when the user navigates forward, and unavailable when the user is at the home().
+.SH "void QTextBrowser::forward () \fC[virtual slot]\fR"
+Changes the document displayed to be the next document in the list of documents build by navigating links.
+.PP
+See also backward() and forwardAvailable().
+.SH "void QTextBrowser::forwardAvailable ( bool available ) \fC[signal]\fR"
+This signal is emitted when the availability of the forward() changes. It becomes available after backward() is activated, and unavailable when the user navigates or goes forward() to the last navigated document.
+.SH "void QTextBrowser::highlighted ( const QString & href ) \fC[signal]\fR"
+This signal is emitted when the user has selected but not activated a link in the document. \fIhref\fR is the value of the href tag in the link.
+.SH "void QTextBrowser::home () \fC[virtual slot]\fR"
+Changes the document displayed to be the first document the browser displayed.
+.SH "void QTextBrowser::keyPressEvent ( QKeyEvent * e ) \fC[virtual protected]\fR"
+Add Backward and Forward on ALT-Left and ALT-Right respectively.
+.PP
+Reimplemented from QWidget.
+.SH "void QTextBrowser::scrollToAnchor ( const QString & name )"
+Scrolls the browser so that the part of the document named \fIname\fR is at the top of the view (or as close to the top as the size of the document allows).
+.SH "void QTextBrowser::setSource ( const QString & name ) \fC[virtual]\fR"
+Sets the text document with the given \fIname\fR to be displayed. The name is looked up in the mimeSourceFactory() of the browser.
+.PP
+In addition to the factory lookup, this functions also checks for optional anchors and scrolls the document accordingly.
+.PP
+If the first tag in the document is \fC<qt type=detail>,\fR it is displayed as a popup rather than as new document in the browser window itself. Otherwise, the document is set normally via setText(), with \fIname\fR as new context.
+.PP
+If you are using the filesystem access capabilities of the mime source factory, you have to ensure that the factory knows about the encoding of specified text files, otherwise no data will be available. The default factory handles a couple of common file extensions such as \fC*.html\fR and \fC*.txt\fR with reasonable defaults. See QMimeSourceFactory::data() for details.
+.SH "void QTextBrowser::setText ( const QString & text, const QString & context=QString::null ) \fC[virtual]\fR"
+Sets the contents of the browser to \fItext,\fR and emits the textChanged() signal.
+.PP
+Reimplemented from QTextView.
+.SH "void QTextBrowser::showEvent ( QShowEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QString QTextBrowser::source () const"
+Returns the source of the currently display document. If no document is displayed or the source is unknown, a null string is returned.
+.PP
+See also setSource().
+.SH "void QTextBrowser::textChanged () \fC[signal]\fR"
+This signal is emitted whenever the setText() changes the contents (eg. because the user clicked on a link).
+.SH "void QTextBrowser::viewportMouseMoveEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Activate to emit highlighted().
+.PP
+Reimplemented from QScrollView.
+.SH "void QTextBrowser::viewportMousePressEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+\fIoverride\fR to press anchors.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTextBrowser::viewportMouseReleaseEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+\fIoverride\fR to activate anchors.
+.PP
+Reimplemented from QScrollView.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qtextbrowser.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qtextbrowser.3qt) and the Qt
+version (2.3.2).

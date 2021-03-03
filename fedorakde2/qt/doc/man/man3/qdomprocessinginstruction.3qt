@@ -1,0 +1,104 @@
+'\" t
+.TH QDomProcessingInstruction 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDomProcessingInstruction \- Represents an XML processing instruction
+.br
+.PP
+\fC#include <qdom.h>\fR
+.PP
+Inherits QDomNode.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDomProcessingInstruction\fR () "
+.br
+.ti -1c
+.BI "\fBQDomProcessingInstruction\fR ( const QDomProcessingInstruction & x ) "
+.br
+.ti -1c
+.BI "QDomProcessingInstruction& \fBoperator=\fR ( const QDomProcessingInstruction & ) "
+.br
+.ti -1c
+.BI "\fB~QDomProcessingInstruction\fR () "
+.br
+.ti -1c
+.BI "virtual QString \fBtarget\fR () const"
+.br
+.ti -1c
+.BI "virtual QString \fBdata\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetData\fR ( const QString & d ) "
+.br
+.ti -1c
+.BI "virtual QDomNode::NodeType \fBnodeType\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisProcessingInstruction\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QDomProcessingInstruction class represents an XML processing instruction.
+.PP
+Processing instructions are used in XML as a way to keep processor-specific information in the text of the document.
+.PP
+For further information about the Document Objct Model see http://www.w3.org/TR/REC-DOM-Level-1/. For a more general introduction of the DOM implementation see the QDomDocument documentation.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDomProcessingInstruction::QDomProcessingInstruction ()"
+Constructs an empty processing instruction. Use QDomDocument::createProcessingInstruction() to create a processing instruction with content.
+.SH "QDomProcessingInstruction::QDomProcessingInstruction ( const QDomProcessingInstruction & x )"
+Copy constructor.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "QDomProcessingInstruction::~QDomProcessingInstruction ()"
+Destructor.
+.SH "QString QDomProcessingInstruction::data () const \fC[virtual]\fR"
+Returns the content of this processing instruction.
+.PP
+See also setData() and target().
+.SH "bool QDomProcessingInstruction::isProcessingInstruction () const \fC[virtual]\fR"
+Returns TRUE.
+.PP
+Reimplemented from QDomNode.
+.SH "QDomNode::NodeType QDomProcessingInstruction::nodeType() const \fC[virtual]\fR"
+Returns \fCProcessingInstructionNode.\fR
+.PP
+Reimplemented from QDomNode.
+.SH "QDomProcessingInstruction& QDomProcessingInstruction::operator= ( const QDomProcessingInstruction & x )"
+Assignment operator.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "void QDomProcessingInstruction::setData ( const QString & d ) \fC[virtual]\fR"
+Sets the data contained in the processing instruction.
+.PP
+See also data().
+.SH "QString QDomProcessingInstruction::target () const \fC[virtual]\fR"
+Returns the target of this processing instruction.
+.PP
+See also  data().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdomprocessinginstruction.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdomprocessinginstruction.3qt) and the Qt
+version (2.3.2).

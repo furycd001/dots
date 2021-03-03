@@ -1,0 +1,102 @@
+'\" t
+.TH QHBox 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QHBox \- Performs geometry management on its children
+.br
+.PP
+\fC#include <qhbox.h>\fR
+.PP
+Inherits QFrame.
+.PP
+Inherited by QVBox.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQHBox\fR ( QWidget * " "parent" "=0, const char * " "name" "=0, WFlags " "f" "=0, bool " "allowLines" "=TRUE ) "
+.br
+.ti -1c
+.BI "void \fBsetSpacing\fR ( int ) "
+.br
+.ti -1c
+.BI "bool \fBsetStretchFactor\fR ( QWidget *, int stretch ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQHBox\fR ( bool " "horizontal" ", QWidget * " "parent" "=0, const char * " "name" "=0, WFlags " "f" "=0, bool " "allowLines" "=TRUE ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QHBox widget performs geometry management on its children
+.PP
+All its children will be placed beside each other and sized according to their sizeHint()s.
+.PP
+Use setMargin() to add space around the edge, and use setSpacing() to add space between the widgets.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QVBox and QGrid.
+.PP
+Examples:
+.(l
+xform/xform.cpp i18n/main.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QHBox::QHBox ( QWidget * parent=0, const char * name=0, WFlags f=0, bool allowLines=TRUE )"
+Constructs an hbox widget with parent \fIparent\fR and name \fIname\fR
+.SH "QHBox::QHBox ( bool horizontal, QWidget * parent=0, const char * name=0, WFlags f=0, bool allowLines=TRUE ) \fC[protected]\fR"
+Constructs a horizontal hbox if \fIhorizontal\fR is TRUE, otherwise constructs a vertical hbox (also known as a vbox).
+.PP
+This constructor is provided for the QVBox class. You should never need to use it directly.
+.SH "void QHBox::frameChanged () \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QFrame.
+.SH "void QHBox::setSpacing ( int space )"
+Sets the spacing between children to \fIspace.\fR
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "bool QHBox::setStretchFactor ( QWidget * w, int stretch )"
+Sets the stretch factor of \fIw\fR to \fIstretch.\fR
+.PP
+See also QBoxLayout::setStretchFactor().
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "QSize QHBox::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qhbox.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qhbox.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Change Notes for Qt 2.1</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Change Notes for Qt 2.1</h1><br clear="all">
+<h2>New major features in existing classes</h2>
+<ul>
+<li>QApplication        - new function wakeUpGuiThread() to simplify using threads
+                  with Qt.
+<li>QArray              - added sorting and binary search.
+<li>QColor              - custom color support added.  qRgb(r,g,b) helper function
+                  now sets an opaque alpha value instead of a transparent
+                  one.
+<li>QComboBox   - support for text items with icons.
+<li>QFileDialog - many new features including fancy drag'n'drop
+                  and inplace renaming.
+                  Methods like setInfoPreviewWidget()and
+                  setContentsPreviewWidget() make it easy to customize
+                  the dialog extensively. With QUrlOperator and the
+                  QNetworkProtocol abstraction, the dialog can operate
+                  transparently by various different network protocols,
+                  such as HTTP and FTP (see the Network Extension).
+<li>QFocusEvent - carries a reason() for the event. Possible reasons are
+                  Mouse, Tab, ActiveWindow, ShortCut and other. The
+                  addition makes line edit controls behave properly.
+<li>QHeader             - added optional visual sort indicator. Revisited API that
+                  operates on sections only (solves the 'logical' vs. 'actual'
+                  index confusion). A reworked 'table' example shows how
+                  to use QHeader in combination with a scrollview to create
+                  a simple spreadsheet.
+<li>QListBox    - many signals and functions added for convenience and
+                  greater flexibility.
+<li>QListView   - various selections modes similar to QListBox, many
+                  new functions and signals added for convenience and
+                  greater flexibility.
+<li>QMainWindow - implemented draggable and hidable toolbars. A menubar
+                  can be made draggable by simply putting it in a toolbar.
+<li>QMetaObject - Parts of the API made public. The meta object allows
+                  applications to access information about an object's
+                  properties as well as its signals and slots.
+<li>QMultiLineEdit      - added different word wrap modes: WidgetWidth,
+                  FixedPixelWidth and FixedColumnWidth.
+<li>QObject             - property access functions property() and setProperty().
+<li>QPen                - added adjustable cap and join styles.
+<li>QPopupMenu  - added support for tear-off menus, custom items
+                  and widget items.
+                  A new function setItemParameter() makes it possible
+                  to distinguish between several menu items connected to
+                  one single slot.
+<li>QPrinter        - Now allows printing to the default printer without doing
+                  setup() first.
+<li>QProgressDialog     - auto-reset and auto-close modes.
+<li>QPushButton - added a menu button mode with setPopup().
+<li>QScrollView - support for auto-scrolling on drag move events (drag
+                  auto scroll mode).
+<li>QSignal             - optional additional integer parameter for the emitted
+                  signal.
+<li>QSimpleRichText - added adjustSize() function that implements a clever
+                  size hint. Vertical break support for printing. inText()
+                  hit test.
+<li>QSpinBox    - different button symbols, currently UpDownArrows and
+                  PlusMinus.
+<li>QSplitter   - supports three resize modes now, Stretch, KeepSize
+                  and FollowSizeHint.
+<li>QString             - new functions setUnicode(), setUnicodeCodes(), setLatin1(),
+                  startsWith() and endsWith()
+<li>QStringList - new functions fromStrList(), split(), join() and grep().
+<li>QStyle              - some extensions for menu button indicators, default
+                  button indicators, variable scrollbar extends and toolbar
+                  handles.
+<li>QStyleSheet - a couple of tags added to the default sheet, such as
+                  U, NOBR, HEAD, DL, DT, DD and table support (TABLE, TR,
+                  TD, TH). Many attributes added to existing tags.
+<li>QTextView   - basic table support. Contents is selectable, selections
+                  can be pasted/dragged into other widgets.
+<li>QToolBar    - stretchable depending on the orientation (setHorizontalStretchable()
+                  and setVerticalStretchable(). Added orientationChanged() signal.
+<li>QToolButton - added optional delayed menu with setPopup() and
+                  setPopupDelay(). Auto-raise behaviour adjustable.
+<li>QWidget             - new widget flag WStyle_ContextHelp that adds a
+                  context-help button to the window titlebar. The
+                  button triggers "What's This?"-help. The flag works
+                  with MS-Windows and future versions of X11 desktops
+                  such as KDE-2.0.
+                  New function showFullScreen().
+                  Enabling and disabling with setEnabled() propagates to
+                  children.
+                  Changed isVisible(). It now returns whether a widget
+                  is mapped up to the toplevel widget (the previous
+                  implementation only returned isVisibleTo(parentWidget()).
+                  New property 'backgroundOrigin' that lets a widget draw
+                  its background relatively to its parent widget's coordinate
+                  system. This makes pseudo-transparency possible, without
+                  the overhead of a real widget mask.
+</ul>
+<h2>New Classes</h2>
+<ul>
+<li>QCustomMenuItem     - an abstract base class for custom menu items in
+                  popup menus.
+<li>QFontDataBase       - provides information about the available fonts. Not really
+                  a new class (it was used internally for the QFontDialog),
+                  but for the first time public API.
+<li>QGuardedPtr - a template class that provides guarded pointers to
+                  QObjects.
+<li>QIconView   - a sophisticated new widget similar to QListView and
+                  QListBox.  An iconview contains optinally labelled pixmap
+                  items that the user can select, drag around, rename, delete
+                  and more. The widget is highly optimized for speed and
+                  large amounts of icons.
+<li>QInputDialog        - a convenience dialog to get some simple input values from
+                  the user.
+<li>QMetaProperty       - stores meta data about properties. Part of the meta
+                  object system.
+<li>QNetworkProtocol- base class for network protocols, provides
+                  a common API for network protocols.
+<li>QUrl/
+QUrlOperator    - provides an easy way to work with URLs.
+<li>QVariant    - a tagged union for the most common Qt data types.
+<li>QValueStack - a value-based stack container.
+<li>QWorkspace  - provides a workspace that can contain decorated
+                  windows as opposed to frameless child widgets.
+                  QWorkspace makes it easy to implement a multidocument
+                  interface (MDI).
+<li>QBig5Codec  - provides support for the Big5 Chinese encoding.
+</ul>
+<p>
+<h2> Changes which may affect runtime behaviour </h2>
+<p>
+<ul>
+<li>QDataStream / QPicture
+ To accomodate for improved functionality, the stream serialization format
+ of QString and QPen has changed in Qt 2.1. The format version
+ number has been increased to 3. Compatibility has been kept, so
+ applications built with this version of Qt are automatically able to read
+ QDataStream and QPicture data generated by earlier Qt 2.x versions. But if
+ your application needs to generate data that must be readable by
+ applications that are compiled with earlier versions of Qt, you must use
+ QDataStream::setVersion() (if the data contains QString or QPen objects).
+ See the documentation of this function for further discussion.
+<li>QPainter::drawPolygon()
+ An outline is no longer drawn in the brush color if NoPen is specified.
+ This matches the behaviour on Windows and ensures that the area
+ painted in this case is the same pixels defined by a QRegion made
+ from the polygon.  To get the old behaviour, you can call
+ painter.setPen(painter.brush()) prior to painting, which will also
+ work on Windows.
+<li>QPushButton::sizeHint()
+ The size hint of auto-default push buttons has been slightly
+ increased in order to reserve space for a default button indicator
+ frame. This is necessary for a proper Motif or Platinum emulation. If
+ this change destroys your geometry management, a auto-default button
+ is probably not what you wanted anyway. Simply call
+ setAutoDefault(FALSE) on these push buttons to get the old behaviour.
+<li>QWidget
+ Font and palette propagation has changed totally (from "almost
+ brain-dead" to working).  In practice, the only changes we've seen are
+ to the better.
+<li>QColor
+ qRgb(r,g,b) now sets a default opaque alpha value of 0xff instead of
+ a transparent 0x00 alpha value formerly.  Use qRgb(r,g,b,a) if you do
+ need a transparent alpha value.
+<li>QPalette
+ It turned out that the old normal/active/disabled set of color groups
+ didn't work very well, except in the simplest hello-world examples,
+ that it couldn't be fixed without nasty hacks, and that during five
+ years nobody had discovered the bugs.  So, we've dropped our broken
+ attempt at Tcl/Tk L&F compatibility, and added support for Windows
+ 2000 and Macintosh L&F compatibility instead.  The Macintosh and
+ Windows 2000 looks differentiate between the window with focus and
+ other windows.  Qt calls the color groups QPalette::active() and
+ QPalette::inactive() respectively.
+<li>QGridLayout/QBoxLayout
+ setMargin() now also works on child layouts. As a result of this
+ change, the geometry() of a layout now includes margin(). This may
+ affect programs that use QLayout::geometry().
+<li>QToolButton
+ The now adjustable auto-raise behaviour defaults to TRUE only when
+ a button is used inside a QToolBar. That's usually what you want. If not,
+ call setAutoRaise(FALSE).
+</ul>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

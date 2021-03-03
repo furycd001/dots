@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Adding an accelerated graphics driver to Qt/Embedded</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Adding an accelerated graphics driver to Qt/Embedded</h1><br clear="all">
+<p>
+Qt/Embedded has the capacity to make use of hardware accelerators.
+To do so for a PCI or AGP driver, you need to perform the following steps:
+<p>
+1) Define an accelerated descendant of QLinuxFbScreen. This
+should implement QVoodooScreen::connect to map its registers.
+Use qt_probe_bus to get a pointer to PCI config space. This is where
+you should check that you're being pointed at the right device
+(using PCI device/manufacturer ID information). Then use PCI config
+space to locate your device's accelerator registers in physical memory
+and mmap the appropriate region in from /dev/mem. There is no need to
+map the framebuffer, QLinuxFbScreen will do this for you. Return FALSE
+if a problem occurs at any point.
+  QVoodooScreen::initDevice will be called only by the QWS server and
+is guaranteed to be called before any drawing is done (and so is a good place
+to set registers to known states). connect will be called by every connecting 
+client.
+<p>
+2) Define an accelerated descendant of QGfxRaster. This is where the actual
+drawing code goes. Anything not implemented by hardware can be passed
+back to QGfxRaster to do in software. Use the optype variable to make
+sure that accelerated and unaccelerated operations are synchronised
+(if you start drawing via software into an area where the hardware accelerator
+is still drawing then your drawing operations will appear to be in the
+wrong order). optype is stored in shared memory and is set to 0 by
+unaccelerated operations; accelerated operations should set it to 1.
+When a software graphics operation is requested and optype is 1,
+QGfxRaster::sync() is called; you should provide your own implementation
+of this which waits for the graphics engine to go idle. lastop is also 
+available for optimisation and is stored in the shared space
+- this will not be set by the software-only QGfx and can be used to store
+the type of your last operation (e.g. drawing a rectangle) so that part
+of the setup for the next operation can be avoided when a lot of the same
+operations are performed in sequence.
+  All drawing operations should be protected via a QWSDisplay::grab()
+before any registers, lastop or optype are accessed, and ungrabbed() at the
+end. This prevents two applications trying to access the accelerator at once
+and possibly locking up the machine. It's possible that your source
+data is not on the graphics card so you should check in such cases and
+fall back to software if necessary. Note that QGfxRaster supports some
+features not directly supported by QPainter (for instance, alpha channels
+in 32-bit data and stretchBlt's). These features are used by Qt;
+stretchBlt speeds up QPixmap::xForm and drawPixmap into a transformed
+QPainter, alpha channel acceleration is supported for 32-bit pixmaps.
+<p>
+3) If you wish, define an accelerated descendant of QScreenCursor.
+restoreUnder,saveUnder,drawCursor and draw should be defined as
+null operations. Implement set, move, show and hide. 4k is left for your
+cursor at the end of the visible part of the framebuffer
+(i.e. at (width*height*depth)/8 )
+<p>
+4) Implement initCursor and createGfx in your QScreen descendant.
+Implement useOffscreen and return true if you can make use of offscreen
+graphics memory.
+<p>
+5) Implement a small function qt_get_screen_mychip, which simply
+returns a new QMychipScreen
+<p>
+6) Add your driver to the DriverTable table in qgfxraster_qws.cpp
+- e.g.
+<p>
+{ "MyChip", qt_get_screen_mychip,1 },
+<p>
+The first parameter is the name used with QWS_DISPLAY to request your
+accelerated driver.
+<p>
+7) To run with your new driver,
+export QWS_DISPLAY=MyChip (optionally MyChip:/dev/fb<n> to request a
+different Linux framebuffer than /dev/fb0)
+run the program
+<p>
+If your driver is not PCI or AGP you'll need to inherit QScreen instead
+of QLinuxFbScreen and implement similar functionality to QLinuxFbScreen,
+but otherwise the process should be similar. The most complete example
+driver is qgfxmach64_qws.cpp; qgfxvoodoo_qws.cpp may provide a smaller
+and more easy to understand driver.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

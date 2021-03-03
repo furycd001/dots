@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QSignalMapper Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QSignalMapper Class Reference</h1><br clear="all">
+<p>
+The QSignalMapper class bundles signals from identifiable senders.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qsignalmapper-h.html">qsignalmapper.h</a>&gt;</code>
+<p>
+Inherits <a href="qobject.html">QObject</a>.
+<p><a href="qsignalmapper-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#70e620"><b>QSignalMapper</b></a> ( QObject * parent, const char * name=0 ) </div>
+<li><div class="fn"><a href="#e95499"><b>~QSignalMapper</b></a> () </div>
+<li><div class="fn">virtual void <a href="#2531b8"><b>setMapping</b></a> ( const QObject * sender, int identifier ) </div>
+<li><div class="fn">virtual void <a href="#ebc4a1"><b>setMapping</b></a> ( const QObject * sender, const QString &amp; identifier ) </div>
+<li><div class="fn">void <a href="#c002f1"><b>removeMappings</b></a> ( const QObject * sender ) </div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">void <a href="#3c830c"><b>map</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#768e52"><b>mapped</b></a> ( int ) </div>
+<li><div class="fn">void <a href="#279490"><b>mapped</b></a> ( const QString &amp; ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QSignalMapper class bundles signals from identifiable senders.
+<p>
+Collects a set of parameterless signals, re-emitting them with an
+integer or string parameters corresponding to the object which sent the
+signal.
+<p>Examples:
+ <a href="i18n-main-cpp.html#QSignalMapper">i18n/main.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="70e620"></a>QSignalMapper::QSignalMapper ( <a href="qobject.html">QObject</a> * parent, const char * name=0 )</h3>
+<p>Constructs a QSignalMapper.  Like all QObjects, it will be deleted when the
+parent is deleted.
+<h3 class="fn"><a name="e95499"></a>QSignalMapper::~QSignalMapper ()</h3>
+<p>Destructs the QSignalMapper.
+<h3 class="fn">void <a name="3c830c"></a>QSignalMapper::map () <code>[slot]</code></h3>
+<p>This slot emits signals based on which object sends signals
+to it.
+<h3 class="fn">void <a name="279490"></a>QSignalMapper::mapped ( const <a href="qstring.html">QString</a> &amp; ) <code>[signal]</code></h3>
+<p>This signal is emitted when <a href="#3c830c">map</a>() is signalled from an object which
+has a string mapping set.
+<p>See also  <a href="#2531b8">setMapping</a>(<a href="qstring.html">QString</a>).
+<h3 class="fn">void <a name="768e52"></a>QSignalMapper::mapped ( int ) <code>[signal]</code></h3>
+<p>This signal is emitted when <a href="#3c830c">map</a>() is signalled from an object which
+has an integer mapping set.
+<p>See also  <a href="#2531b8">setMapping</a>(int).
+<h3 class="fn">void <a name="c002f1"></a>QSignalMapper::removeMappings ( const <a href="qobject.html">QObject</a> * sender )</h3>
+<p>Removes all mappings for <em>sender.</em>  This is done automatically
+when mapped objects are destroyed.
+<h3 class="fn">void <a name="ebc4a1"></a>QSignalMapper::setMapping ( const <a href="qobject.html">QObject</a> * sender, const <a href="qstring.html">QString</a> &amp; identifier ) <code>[virtual]</code></h3>
+<p>Adds a mapping such that when <a href="#3c830c">map</a>() is signalled from the given
+sender, the signal mapper(identifier) is emitted.
+<p>There may be at most one string identifier for each object, and
+it may not be null.
+<h3 class="fn">void <a name="2531b8"></a>QSignalMapper::setMapping ( const <a href="qobject.html">QObject</a> * sender, int identifier ) <code>[virtual]</code></h3>
+<p>Adds a mapping such that when <a href="#3c830c">map</a>() is signalled from the given
+sender, the signal <a href="#279490">mapped</a>(identifier) is emitted.
+<p>There may be at most one integer identifier for each object.
+<p>Examples:
+ <a href="i18n-main-cpp.html#setMapping">i18n/main.cpp</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

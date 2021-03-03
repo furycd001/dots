@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QPlatinumStyle Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QPlatinumStyle Class Reference</h1><br clear="all">
+<p>
+Platinum Look and Feel
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qplatinumstyle-h.html">qplatinumstyle.h</a>&gt;</code>
+<p>
+Inherits <a href="qwindowsstyle.html">QWindowsStyle</a>.
+<p><a href="qplatinumstyle-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#569a8c"><b>QPlatinumStyle</b></a> () </div>
+<li><div class="fn">virtual <a href="#625fa4"><b>~QPlatinumStyle</b></a> () </div>
+<li><div class="fn">virtual void <a href="#f6b1ba"><b>drawButton</b></a> ( QPainter * p, int x, int y, int w, int h, const QColorGroup &amp; g, bool sunken = FALSE, const QBrush * fill = 0 ) </div>
+<li><div class="fn">ScrollControl <b>scrollBarPointOver</b> ( const QScrollBar * sb, int sliderStart, const QPoint &amp; p ) </div>
+<li><div class="fn">virtual int <a href="#25d830"><b>maximumSliderDragDistance</b></a> () const</div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">QColor <a href="#9133be"><b>mixedColor</b></a> ( const QColor &amp;, const QColor &amp; ) </div>
+<li><div class="fn">void <a href="#48f989"><b>drawRiffles</b></a> ( QPainter * p, int x, int y, int w, int h, const QColorGroup &amp; g, bool horizontal ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Platinum Look and Feel
+<p>
+This class implements the Platinum look and feel. It's an
+experimental class that tries to resemble a Macinosh-like GUI style
+with the <a href="qstyle.html">QStyle</a> system. The emulation is, however, far from being
+perfect yet.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="569a8c"></a>QPlatinumStyle::QPlatinumStyle ()</h3>
+<p>Constructs a QPlatinumStyle.
+<h3 class="fn"><a name="625fa4"></a>QPlatinumStyle::~QPlatinumStyle () <code>[virtual]</code></h3>
+<p>Destructs the style.
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="0291a2"></a>QPlatinumStyle::buttonRect ( int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#fb7a47">QStyle.</a>
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="9b35a3"></a>QPlatinumStyle::comboButtonFocusRect ( int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#6bc9bd">QStyle.</a>
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="cd3311"></a>QPlatinumStyle::comboButtonRect ( int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#71383f">QStyle.</a>
+<h3 class="fn">void <a name="3ac512"></a>QPlatinumStyle::drawBevelButton ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool sunken = FALSE, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#77c5c0">QStyle.</a>
+<h3 class="fn">void <a name="f6b1ba"></a>QPlatinumStyle::drawButton ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool sunken = FALSE, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[virtual]</code></h3>
+<p>Draws a press-sensitive shape.
+<p>Reimplemented from <a href="qstyle.html#20fd59">QStyle.</a>
+<h3 class="fn">void <a name="8d51f1"></a>QPlatinumStyle::drawCheckMark ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool act, bool dis ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#7df57d">QStyle.</a>
+<h3 class="fn">void <a name="ce3dff"></a>QPlatinumStyle::drawComboButton ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool = FALSE, bool editable = FALSE, bool = TRUE, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#42f8ae">QStyle.</a>
+<h3 class="fn">void <a name="8b81df"></a>QPlatinumStyle::drawExclusiveIndicator ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool on, bool down = FALSE, bool = TRUE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#7efc7e">QStyle.</a>
+<h3 class="fn">void <a name="ecd304"></a>QPlatinumStyle::drawIndicator ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, int s, bool down = FALSE, bool = TRUE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#6010f7">QStyle.</a>
+<h3 class="fn">void <a name="93c9cf"></a>QPlatinumStyle::drawIndicatorMask ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, int s ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#5f3080">QStyle.</a>
+<h3 class="fn">void <a name="f7d43a"></a>QPlatinumStyle::drawPopupMenuItem ( <a href="qpainter.html">QPainter</a> * p, bool checkable, int maxpmw, int tab, QMenuItem * mi, const <a href="qpalette.html">QPalette</a> &amp; pal, bool act, bool enabled, int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#c5672c">QStyle.</a>
+<h3 class="fn">void <a name="25105f"></a>QPlatinumStyle::drawPopupPanel ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, int lineWidth = 2, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#377284">QStyle.</a>
+<h3 class="fn">void <a name="157b6b"></a>QPlatinumStyle::drawPushButton ( <a href="qpushbutton.html">QPushButton</a> * btn, <a href="qpainter.html">QPainter</a> * p ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#e6ad17">QStyle.</a>
+<h3 class="fn">void <a name="486429"></a>QPlatinumStyle::drawPushButtonLabel ( <a href="qpushbutton.html">QPushButton</a> * btn, <a href="qpainter.html">QPainter</a> * p ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#1fa16e">QStyle.</a>
+<h3 class="fn">void <a name="48f989"></a>QPlatinumStyle::drawRiffles ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool horizontal ) <code>[protected]</code></h3>
+<p>draw the nifty Macintosh decoration used on  sliders.
+<h3 class="fn">void <a name="141846"></a>QPlatinumStyle::drawScrollBarBackground ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool horizontal, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="eaa05a"></a>QPlatinumStyle::drawScrollBarControls ( <a href="qpainter.html">QPainter</a> * p, const <a href="qscrollbar.html">QScrollBar</a> * sb, int sliderStart, uint controls, uint activeControl ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#e3d23d">QStyle.</a>
+<h3 class="fn">void <a name="59e413"></a>QPlatinumStyle::drawSlider ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, <a href="qt.html#Orientation">Orientation</a> orient, bool, bool ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#11145c">QStyle.</a>
+<h3 class="fn">void <a name="da9eba"></a>QPlatinumStyle::drawSliderGroove ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, QCOORD c, <a href="qt.html#Orientation">Orientation</a> orient ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#c3fcb9">QStyle.</a>
+<h3 class="fn">void <a name="8d7531"></a>QPlatinumStyle::drawSliderMask ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, <a href="qt.html#Orientation">Orientation</a> orient, bool, bool ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#ee7ad4">QStyle.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="311a26"></a>QPlatinumStyle::exclusiveIndicatorSize () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#d71caa">QStyle.</a>
+<h3 class="fn">int <a name="a33d3d"></a>QPlatinumStyle::extraPopupMenuItemWidth ( bool checkable, int maxpmw, QMenuItem * mi, const <a href="qfontmetrics.html">QFontMetrics</a> &amp; fm ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#92de44">QStyle.</a>
+<h3 class="fn">void <a name="c6734d"></a>QPlatinumStyle::getButtonShift ( int &amp; x, int &amp; y ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#7c4603">QStyle.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="267616"></a>QPlatinumStyle::indicatorSize () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#cf9356">QStyle.</a>
+<h3 class="fn">int <a name="25d830"></a>QPlatinumStyle::maximumSliderDragDistance () const <code>[virtual]</code></h3>
+<p>Reimplementation from <a href="qwindowsstyle.html">QWindowsStyle</a> to disable the Windows typical jump
+back when dragging controls.
+<p>See also  <a href="qstyle.html">QStyle</a>.
+<p>Reimplemented from <a href="qstyle.html#15aa83">QStyle.</a>
+<h3 class="fn"><a href="qcolor.html">QColor</a> <a name="9133be"></a>QPlatinumStyle::mixedColor ( const <a href="qcolor.html">QColor</a> &amp; c1, const <a href="qcolor.html">QColor</a> &amp; c2 ) <code>[protected]</code></h3>
+<p>mixes two colors to a new colors.
+<h3 class="fn">void <a name="345d46"></a>QPlatinumStyle::polishPopupMenu ( <a href="qpopupmenu.html">QPopupMenu</a> * p ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#763b69">QStyle.</a>
+<h3 class="fn">int <a name="2193d4"></a>QPlatinumStyle::popupMenuItemHeight ( bool checkable, QMenuItem * mi, const <a href="qfontmetrics.html">QFontMetrics</a> &amp; fm ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#cf0842">QStyle.</a>
+<h3 class="fn">void <a name="0dd233"></a>QPlatinumStyle::scrollBarMetrics ( const <a href="qscrollbar.html">QScrollBar</a> * sb, int &amp; sliderMin, int &amp; sliderMax, int &amp; sliderLength, int &amp; buttonDim ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#b1809e">QStyle.</a>
+<h3 class="fn">int <a name="ee2d56"></a>QPlatinumStyle::sliderLength () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#4f5f44">QStyle.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

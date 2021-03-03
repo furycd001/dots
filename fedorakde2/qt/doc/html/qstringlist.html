@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QStringList Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QStringList Class Reference</h1><br clear="all">
+<p>
+A list of strings.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qstringlist-h.html">qstringlist.h</a>&gt;</code>
+<p>
+Inherits <a href="qvaluelist.html">QValueList</a>.
+<p><a href="qstringlist-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#24aaf6"><b>QStringList</b></a> () </div>
+<li><div class="fn"><a href="#3a8a42"><b>QStringList</b></a> ( const QStringList &amp; l ) </div>
+<li><div class="fn"><a href="#98c5cd"><b>QStringList</b></a> ( const QValueList&lt;QString&gt; &amp; l ) </div>
+<li><div class="fn"><a href="#f86483"><b>QStringList</b></a> ( const QString &amp; i ) </div>
+<li><div class="fn"><a href="#88e6ea"><b>QStringList</b></a> ( const char * i ) </div>
+<li><div class="fn">void <a href="#227eee"><b>sort</b></a> () </div>
+<li><div class="fn">QString <a href="#ea0b69"><b>join</b></a> ( const QString &amp; sep ) const</div>
+<li><div class="fn">QStringList <a href="#ce32a8"><b>grep</b></a> ( const QString &amp; str, bool cs = TRUE ) const</div>
+<li><div class="fn">QStringList <a href="#888a35"><b>grep</b></a> ( const QRegExp &amp; expr ) const</div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">QStringList <a href="#4af83d"><b>fromStrList</b></a> ( const QStrList &amp; ) </div>
+<li><div class="fn">QStringList <a href="#92c446"><b>split</b></a> ( const QString &amp; sep, const QString &amp; str, bool allowEmptyEntries = FALSE ) </div>
+<li><div class="fn">QStringList <a href="#6f861a"><b>split</b></a> ( const QChar &amp; sep, const QString &amp; str, bool allowEmptyEntries = FALSE ) </div>
+<li><div class="fn">QStringList <a href="#7008df"><b>split</b></a> ( const QRegExp &amp; sep, const QString &amp; str, bool allowEmptyEntries = FALSE ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+A list of strings.
+<p>
+QStringList is basically a <a href="qvaluelist.html">QValueList</a> of <a href="qstring.html">QString</a> objects. As opposed
+to <a href="qstrlist.html">QStrList</a>, that stores pointers to characters, QStringList deals
+with real QString objects.  It is the class of choice whenever you
+work with unicode strings.
+<p>Like QString itself, QStringList objects are implicit shared.
+Passing them around as value-parameters is both fast and safe.
+<p>Example:
+<pre>        <a href="qstringlist.html">QStringList</a> list;
+
+        // three different ways of appending values:
+        list.append( "Torben");
+        list += "Warwick";
+        list &lt;&lt; "Matthias" &lt;&lt; "Arnt" &lt;&lt; "Paul";
+
+        // sort the list, Arnt's now first
+        list.<a href="#227eee">sort</a>();
+
+        // print it out
+        for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
+            printf( "%s \n", (*it).latin1() );
+        }
+</pre>
+<p>Convenience methods such as <a href="#227eee">sort</a>(), <a href="#6f861a">split</a>(), <a href="#ea0b69">join</a>() and <a href="#888a35">grep</a>() make
+working with QStringList easy.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="24aaf6"></a>QStringList::QStringList ()</h3>
+<p>Creates an empty list.
+<h3 class="fn"><a name="f86483"></a>QStringList::QStringList ( const <a href="qstring.html">QString</a> &amp; i )</h3>
+<p>Constructs a string list consisting of the single string <em>i.</em>
+To make longer lists easily, use:
+<pre>    <a href="qstring.html">QString</a> s1,s2,s3;
+    ...
+    <a href="qstringlist.html">QStringList</a> mylist = QStringList() &lt;&lt; s1 &lt;&lt; s2 &lt;&lt; s3;
+</pre>
+<h3 class="fn"><a name="98c5cd"></a>QStringList::QStringList ( const <a href="qvaluelist.html">QValueList</a>&lt;<a href="qstring.html">QString</a>&gt; &amp; l )</h3>
+<p>Constructs a new string list that is a copy of <em>l.</em>
+<h3 class="fn"><a name="3a8a42"></a>QStringList::QStringList ( const QStringList &amp; l )</h3>
+<p>Creates a copy of the list. This function is very fast since
+QStringList is implicit shared. However, for the programmer this
+is the same as a deep copy. If this list or the original one or some
+other list referencing the same shared data is modified, then the
+modifying list makes a copy first.
+<h3 class="fn"><a name="88e6ea"></a>QStringList::QStringList ( const char * i )</h3>
+<p>Constructs a string list consisting of the single latin-1 string <em>i.</em>
+<h3 class="fn">QStringList <a name="4af83d"></a>QStringList::fromStrList ( const <a href="qstrlist.html">QStrList</a> &amp; ascii ) <code>[static]</code></h3>
+<p>Converts from a <a href="qstrlist.html">QStrList</a> (ASCII) to a QStringList (Unicode).
+<h3 class="fn">QStringList <a name="888a35"></a>QStringList::grep ( const <a href="qregexp.html">QRegExp</a> &amp; expr ) const</h3>
+<p>Returns a list of all strings containing a substring that matches
+the regular expression <em>expr.</em>
+<h3 class="fn">QStringList <a name="ce32a8"></a>QStringList::grep ( const <a href="qstring.html">QString</a> &amp; str, bool cs = TRUE ) const</h3>
+<p>Returns a list of all strings containing the substring <em>str.</em>
+<p>If <em>cs</em> is TRUE, the grep is done case sensitively, else not.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="ea0b69"></a>QStringList::join ( const <a href="qstring.html">QString</a> &amp; sep ) const</h3>
+<p>Joins the stringlist into a single string with each element
+separated by <em>sep.</em>
+<p>See also  <a href="#6f861a">split</a>().
+<h3 class="fn">void <a name="227eee"></a>QStringList::sort ()</h3>
+<p>Sorts the list of strings in ascending order.
+<p>Sorting is very fast. It uses the Qt Template Library's
+efficient HeapSort implementation that operates in O(<a href="n.html">n</a>*log n).
+<h3 class="fn">QStringList <a name="6f861a"></a>QStringList::split ( const <a href="qchar.html">QChar</a> &amp; sep, const <a href="qstring.html">QString</a> &amp; str, bool allowEmptyEntries = FALSE ) <code>[static]</code></h3>
+<p>Splits the string <em>str</em> using <em>sep</em> as separator. Returns the
+list of strings. If <em>allowEmptyEntries</em> is TRUE, also empty
+entries are inserted into the list, else not. So if you have
+a string 'abc..d.e.', a list which contains 'abc', 'd', and 'e'
+would be returned if <em>allowEmptyEntries</em> is FALSE, but
+a list containing 'abc', '', 'd', 'e' and '' would be returned if
+<em>allowEmptyEntries</em> is TRUE.
+If <em>str</em> doesn't contain <em>sep,</em> a stringlist
+with one item, which is the same as <em>str,</em> is returned.
+<p>See also  <a href="#ea0b69">join</a>().
+<h3 class="fn">QStringList <a name="7008df"></a>QStringList::split ( const <a href="qregexp.html">QRegExp</a> &amp; sep, const <a href="qstring.html">QString</a> &amp; str, bool allowEmptyEntries = FALSE ) <code>[static]</code></h3>
+<p>Splits the string <em>str</em> using the regular expression <em>sep</em> as separator. Returns the
+list of strings. If <em>allowEmptyEntries</em> is TRUE, also empty
+entries are inserted into the list, else not. So if you have
+a string 'abc..d.e.', a list which contains 'abc', 'd', and 'e'
+would be returned if <em>allowEmptyEntries</em> is FALSE, but
+a list containing 'abc', '', 'd', 'e' and '' would be returned if
+<em>allowEmptyEntries</em> is TRUE.
+If <em>str</em> doesn't contain <em>sep,</em> a stringlist
+with one item, which is the same as <em>str,</em> is returned.
+<p>See also  <a href="#ea0b69">join</a>().
+<h3 class="fn">QStringList <a name="92c446"></a>QStringList::split ( const <a href="qstring.html">QString</a> &amp; sep, const <a href="qstring.html">QString</a> &amp; str, bool allowEmptyEntries = FALSE ) <code>[static]</code></h3>
+<p>Splits the string <em>str</em> using <em>sep</em> as separator. Returns the
+list of strings. If <em>allowEmptyEntries</em> is TRUE, also empty
+entries are inserted into the list, else not. So if you have
+a string 'abc..d.e.', a list which contains 'abc', 'd', and 'e'
+would be returned if <em>allowEmptyEntries</em> is FALSE, but
+a list containing 'abc', '', 'd', 'e' and '' would be returned if
+<em>allowEmptyEntries</em> is TRUE.
+If <em>str</em> doesn't contain <em>sep,</em> a stringlist
+with one item, which is the same as <em>str,</em> is returned.
+<p>See also  <a href="#ea0b69">join</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

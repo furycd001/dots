@@ -1,0 +1,144 @@
+'\" t
+.TH QStrListIterator 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QStrListIterator \- Iterator for the
+.br
+.PP
+\fC#include <qstrlist.h>\fR
+.PP
+Inherits QListIterator.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQStrListIterator\fR ( const QList<type> & l ) "
+.br
+.ti -1c
+.BI "\fB~QStrListIterator\fR () "
+.br
+.ti -1c
+.BI "uint \fBcount\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "bool \fBatFirst\fR () const"
+.br
+.ti -1c
+.BI "bool \fBatLast\fR () const"
+.br
+.ti -1c
+.BI "type* \fBtoFirst\fR () "
+.br
+.ti -1c
+.BI "type* \fBtoLast\fR () "
+.br
+.ti -1c
+.BI "operator \fBtype*\fR ()const"
+.br
+.ti -1c
+.BI "type* \fBoperator*\fR () "
+.br
+.ti -1c
+.BI "type* \fBcurrent\fR () const"
+.br
+.ti -1c
+.BI "type* \fBoperator\fR ()() "
+.br
+.ti -1c
+.BI "type* \fBoperator++\fR () "
+.br
+.ti -1c
+.BI "type* \fBoperator+=\fR ( uint j ) "
+.br
+.ti -1c
+.BI "type* \fBoperator--\fR () "
+.br
+.ti -1c
+.BI "type* \fBoperator-=\fR ( uint j ) "
+.br
+.ti -1c
+.BI "QListIterator<type>& \fBoperator=\fR ( const QListIterator<type> & it ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QStrListIterator class is an iterator for the QStrList and QStrIList classes.
+.PP
+This class is a QListIterator<char> instance. It can traverse the strings in the QStrList and QStrIList classes.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QStrListIterator::QStrListIterator ( const QList<type> & list )"
+Constructs an iterator for \fIlist.\fR The current iterator item is set to point on the first item in the \fIlist.\fR
+.SH "QStrListIterator::~QStrListIterator ()"
+Destroys the iterator.
+.SH "QStrListIterator::operator type * () const"
+Cast operator. Returns a pointer to the current iterator item. Same as current().
+.SH "bool QStrListIterator::atFirst () const"
+Returns TRUE if the current iterator item is the first list item, otherwise FALSE.
+.PP
+See also toFirst() and atLast().
+.SH "bool QStrListIterator::atLast () const"
+Returns TRUE if the current iterator item is the last list item, otherwise FALSE.
+.PP
+See also toLast() and atFirst().
+.SH "uint QStrListIterator::count () const"
+Returns the number of items in the list this iterator operates on.
+.PP
+See also isEmpty().
+.SH "type * QStrListIterator::current () const"
+Returns a pointer to the current iterator item.
+.SH "bool QStrListIterator::isEmpty () const"
+Returns TRUE if the list is empty, i.e. count() == 0, otherwise FALSE.
+.PP
+See also count().
+.SH "type * QStrListIterator::operator* ()"
+Asterix operator. Returns a pointer to the current iterator item. Same as current().
+.SH "type * QStrListIterator::operator++ ()"
+Prefix ++ makes the succeeding item current and returns the new current item.
+.PP
+If the current iterator item was the last item in the list or if it was null, null is returned.
+.SH "type * QStrListIterator::operator+= ( uint jump )"
+Sets the current item to the item \fIjump\fR positions after the current item, and returns a pointer to that item.
+.PP
+If that item is beyond the last item or if the dictionary is empty, it sets the current item to null and returns null.
+.SH "type * QStrListIterator::operator-- ()"
+Prefix -- makes the preceding item current and returns the new current item.
+.PP
+If the current iterator item was the first item in the list or if it was null, null is returned.
+.SH "type * QStrListIterator::operator-= ( uint jump )"
+Returns the item \fIjump\fR positions before the current item, or null if it is beyond the first item. Makes this the current item.
+.SH "QStrListIterator<type>& QStrListIterator::operator= ( const QStrListIterator<type> & it )"
+Assignment. Makes a copy of the iterator \fIit\fR and returns a reference to this iterator.
+.SH "type * QStrListIterator::toFirst ()"
+Sets the current iterator item to point to the first list item and returns a pointer to the item. Sets the current item to null and returns null if the list is empty.
+.PP
+See also toLast() and atFirst().
+.SH "type * QStrListIterator::toLast ()"
+Sets the current iterator item to point to the last list item and returns a pointer to the item. Sets the current item to null and returns null if the list is empty.
+.PP
+See also  toFirst() and atLast().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qstrlistiterator.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qstrlistiterator.3qt) and the Qt
+version (2.3.2).

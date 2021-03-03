@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QEvent Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QEvent Class Reference</h1><br clear="all">
+<p>
+The QEvent class is base class of all event classes. Event objects contain event parameters.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qevent-h.html">qevent.h</a>&gt;</code>
+<p>
+Inherits <a href="qt.html">Qt</a>.
+<p>Inherited by <a href="qchildevent.html">QChildEvent</a>, <a href="qcloseevent.html">QCloseEvent</a>, <a href="qcustomevent.html">QCustomEvent</a>, <a href="qdragleaveevent.html">QDragLeaveEvent</a>, QDragResponseEvent, <a href="qdropevent.html">QDropEvent</a>, <a href="qfocusevent.html">QFocusEvent</a>, <a href="qhideevent.html">QHideEvent</a>, <a href="qkeyevent.html">QKeyEvent</a>, <a href="qmouseevent.html">QMouseEvent</a>, <a href="qmoveevent.html">QMoveEvent</a>, <a href="qpaintevent.html">QPaintEvent</a>, <a href="qresizeevent.html">QResizeEvent</a>, <a href="qshowevent.html">QShowEvent</a>, <a href="qtimerevent.html">QTimerEvent</a> and <a href="qwheelevent.html">QWheelEvent</a>.
+<p><a href="qevent-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">enum <a href="#Type"><b>Type</b></a> { None = 0, Timer = 1, MouseButtonPress = 2, MouseButtonRelease = 3, MouseButtonDblClick= 4, MouseMove = 5, KeyPress = 6, KeyRelease = 7, FocusIn = 8, FocusOut = 9, Enter = 10, Leave = 11, Paint = 12, Move = 13, Resize = 14, Create = 15, Destroy = 16, Show = 17, Hide = 18, Close = 19, Quit = 20, Reparent = 21, ShowMinimized = 22, ShowNormal = 23, WindowActivate = 24, WindowDeactivate = 25, ShowToParent = 26, HideToParent = 27, ShowMaximized = 28, Accel = 30, Wheel = 31, AccelAvailable = 32, CaptionChange = 33, IconChange = 34, ParentFontChange = 35, ApplicationFontChange = 36, ParentPaletteChange = 37, ApplicationPaletteChange = 38, Clipboard = 40, Speech = 42, SockAct = 50, AccelOverride = 51, DragEnter = 60, DragMove = 61, DragLeave = 62, Drop = 63, DragResponse = 64, ChildInserted = 70, ChildRemoved = 71, LayoutHint = 72, ShowWindowRequest = 73, ActivateControl = 80, DeactivateControl = 81, User = 1000 }</div>
+<li><div class="fn"><a href="#ca89e5"><b>QEvent</b></a> ( Type type ) </div>
+<li><div class="fn">virtual <a href="#343abf"><b>~QEvent</b></a> () </div>
+<li><div class="fn">Type <a href="#4d3e5b"><b>type</b></a> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QEvent class is base class of all event classes. Event objects contain event parameters.
+<p>
+The   main event loop of Qt (<a href="qapplication.html#84c7bf">QApplication::exec</a>()) fetches
+native window system events from the event queue, translates them
+into QEvent and sends the translated events to QObjects.
+<p>Generally, events come from the underlying window system, but it is
+also possible to manually send events through the <a href="qapplication.html">QApplication</a> class
+using <a href="qapplication.html#333290">QApplication::sendEvent</a>() and <a href="qapplication.html#96d77e">QApplication::postEvent</a>().
+<p><a href="qobject.html">QObject</a> received events by having its <a href="qobject.html#c67adb">QObject::event</a>() function
+called. The function can be reimplemented in subclasses to customize
+event handling and add additional event types. <a href="qwidget.html#6ff658">QWidget::event</a>() is
+a notable example. By default, events are dispatched to event handlers
+like <a href="qobject.html#7fd5bf">QObject::timerEvent</a>() and <a href="qwidget.html#a51d92">QWidget::mouseMoveEvent</a>().
+<a href="qobject.html#185219">QObject::installEventFilter</a>() allows an object to intercept events
+to another object.
+<p>The basic QEvent only contains an event type parameter.  Subclasses
+of QEvent contain additional parameters that describe the particular
+event.
+<p>See also  <a href="qobject.html#c67adb">QObject::event</a>(), <a href="qobject.html#185219">QObject::installEventFilter</a>(), <a href="qwidget.html#6ff658">QWidget::event</a>(), <a href="qapplication.html#333290">QApplication::sendEvent</a>(), QAppilcation::postEvent() and <a href="qapplication.html#003456">QApplication::processEvents</a>().
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="Type">QEvent::Type</a></h3>
+This enum type defines the valid event types in Qt.  The currently
+defined event types, and the specialized classes for each type, are: <ul>
+<li> <code>None</code> - not an event
+<li> <code>Timer</code> - regular timer events, <a href="qtimerevent.html">QTimerEvent</a>
+<li> <code>MouseButtonPress</code> - mouse press, <a href="qmouseevent.html">QMouseEvent</a>
+<li> <code>MouseButtonRelease</code> - mouse release, QMouseEvent
+<li> <code>MouseButtonDblClick</code> - mouse press again, QMouseEvent
+<li> <code>MouseMove</code> - mouse move, QMouseEvent
+<li> <code>KeyPress</code> - key press (including e.g. shift), <a href="qkeyevent.html">QKeyEvent</a>
+<li> <code>KeyRelease</code> - key release, QKeyEvent
+<li> <code>FocusIn</code> - widget gains keyboard focus, <a href="qfocusevent.html">QFocusEvent</a>
+<li> <code>FocusOut</code> - widget loses keyboard focus, QFocusEvent
+<li> <code>Enter</code> - mouse enters widget's space
+<li> <code>Leave</code> - mouse leaves widget's soace
+<li> <code>Paint</code> - screen update necessary, <a href="qpaintevent.html">QPaintEvent</a>
+<li> <code>Move</code> - widget's position changed, <a href="qmoveevent.html">QMoveEvent</a>
+<li> <code>Resize</code> - widget's size changed, <a href="qresizeevent.html">QResizeEvent</a>
+<li> <code>Show</code> - widget was shown on screen, <a href="qshowevent.html">QShowEvent</a>
+<li> <code>Hide</code> - widget was removed from screen, <a href="qhideevent.html">QHideEvent</a>
+<li> <code>Close</code> - widget was closed (permanently), <a href="qcloseevent.html">QCloseEvent</a>
+<li> <code>Accel</code> - key press in child, for shortcut key handling, QKeyEvent
+<li> <code>Wheel</code> - mouse wheel rolled, <a href="qwheelevent.html">QWheelEvent</a>
+<li> <code>AccelAvailable</code> - an internal event used by Qt on some platforms.
+<li> <code>AccelOverride</code> - key press in child, for overriding shortcut key handling, QKeyEvent
+<li> <code>WindowActivate</code> - the window was activated
+<li> <code>WindowDeactivate</code> - the window was deactivated
+<li> <code>CaptionChange</code> - widget's caption changed
+<li> <code>IconChange</code> - widget's icon changed
+<li> <code>ParentFontChange</code> - the font of the parent widget changed.
+<li> <code>ApplicationFontChange</code> - the default application font changed.
+<li> <code>ParentPaletteChange</code> - the palette of the parent widget changed.
+<li> <code>ApplicationPaletteChange</code> - the default application palette changed.
+<li> <code>Clipboard</code> - system clipboard contents have changed
+<li> <code>SockAct</code> - socket activated, used to implement <a href="qsocketnotifier.html">QSocketNotifier</a>
+<li> <code>DragEnter</code> - drag-and-drop enters widget, <a href="qdragenterevent.html">QDragEnterEvent</a>
+<li> <code>DragMove</code> - drag-and-drop in progress, <a href="qdragmoveevent.html">QDragMoveEvent</a>
+<li> <code>DragLeave</code> - drag-and-drop leaves widget, <a href="qdragleaveevent.html">QDragLeaveEvent</a>
+<li> <code>Drop</code> - drag-and-drop is completed, <a href="qdropevent.html">QDropEvent</a>
+<li> <code>DragResponse</code> - an internal event used by Qt on some platforms.
+<li> <code>ChildInserted</code> - object gets a child, <a href="qchildevent.html">QChildEvent</a>
+<li> <code>ChildRemoved</code> - object loses a child, QChildEvent
+<li> <code>LayoutHint</code> - a widget child has changed layout properties
+<li> <code>ActivateControl</code> - an internal event used by Qt on some platforms.
+<li> <code>DeactivateControl</code> - an internal event used by Qt on some platforms.
+<li> <code>Quit</code> - reserved
+<li> <code>Create</code> - reserved
+<li> <code>Destroy</code> - reserved
+<li> <code>Reparent</code> - reserved
+<li> <code>Configure</code> - reserved
+<li> <code>ConfigureLayout</code> - reserved
+<li> <code>User</code> - user defined event
+</ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="ca89e5"></a>QEvent::QEvent ( <a href="qevent.html#Type">Type</a> type )</h3>
+<p>Contructs an event object with a <em>type.</em>
+<h3 class="fn"><a name="343abf"></a>QEvent::~QEvent () <code>[virtual]</code></h3>
+<p>Destructs the event.  If it was <a href="qapplication.html#96d77e">posted</a>,
+it will be removed from the list of events to be posted.
+<h3 class="fn">QEvent::Type <a name="4d3e5b"></a>QEvent::type() const</h3>
+<p>Returns the event type.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,158 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Integrating Qt Designer Files Into Your Project</title>
+		<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.49">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="Useful Techniques" href="chap5_1.html">
+		<link rel="PREVIOUS" title="All About Layout Management" href="chap5_3.html">
+		<link rel="NEXT" title="Accessing The Help System" href="chap5_5.html">
+		
+	</head>
+
+	<body class="SECT1" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top"><a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a></td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom"><a href="chap5_3.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="80%" align="center" valign="bottom"><font color="white"><b>Chapter 5. Useful Techniques</b></font></td>
+					<td width="10%" align="right" valign="bottom"><a href="chap5_5.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="SECT1">
+			<h1 class="SECT1"><a name="PROJECTINTEGRATION"></a>Integrating Qt Designer Files Into Your Project</h1>
+			<p>Creating forms with Qt Designer gets you only halfway to completing your application. Somehow you have to integrate the created forms into your application; and not only into your application but also into your automatic build process.</p>
+			<p>To start discussing how you can achieve this, let's review the steps needed to create a form with Qt Designer:</p>
+			<ul>
+				<li>
+				<p>Design the form interactively in Qt Designer.</p>
+				<li>
+				<p>Save the form as an XML <tt class="FILENAME">.ui</tt> file.</p>
+				<li>
+				<p>Run <b class="COMMAND">uic</b> twice from the command line on the <tt class="FILENAME">.ui</tt> file to generate the header and implementation files.</p>
+				<li>
+				<p>If necessary (which is usually the case), create a subclass of the generated class and implement the dialog functionality there. You can use <b class="COMMAND">uic</b> to create a skeleton for this class.</p>
+				<li>
+				<p>Compile the generated source file as well as the implementation file of the subclass and all other files belonging to the application.</p>
+				<li>
+				<p>Run <b class="COMMAND">moc</b> on the generated header file and the subclass header file.</p>
+				<li>
+				<p>Compile the <b class="COMMAND">moc</b>-generated files.</p>
+				<li>
+				<p>Link all object files together.</p>
+			</ul>
+			<p>As you can see, there are quite a number of steps involved. From the command line, the following could be the steps needed once you have saved the <tt class="FILENAME">.ui</tt> file (let's call it <tt class="FILENAME">myform.ui</tt>) in Qt Designer:</p>
+			<pre class="SCREEN">uic -o myform.h myform.ui # generate header file
+uic -o myform.cpp -impl myform.h myform.ui # generate implementation file
+uic -o myformimpl.h -subdecl MyFormImpl myform.h myform.ui # generate subclass header file
+uic -o myformimpl.cpp -subimpl MyFormImpl myformimpl.h myform.ui # generate subclass implementation file
+edit myformimpl.h # edit subclass header file
+edit myformimpl.cpp # edit subclass implementation file
+moc -o moc_myform.cpp myform.h # generate moc code for base class
+moc -o moc_myformimpl.cpp myformimpl.h # generate moc code for subclass
+c++ -c myform.cpp -I$(QTDIR)/include # compile base class, use similar command on Windows
+c++ -c moc_myform.cpp -I$(QTDIR)/include # compile base class moc code, use similar command on Windows
+c++ -c myformimpl.cpp -I$(QTDIR)/include # compile subclass, use similar command on Windows
+c++ -c moc_myformimpl.cpp -I$(QTDIR)/include # compile subclass moc code, use similar command on Windows
+c++ -o myform myform.o moc_myform.o myformimpl.o moc_myformimpl.o -L$(QTDIR)/lib -lqt # link everything together, use similar command on Windows</pre>
+			<p>But this is not enough. If you need to change anything in your dialog design, you go back to Qt Designer, make your changes interactively, save the <tt class="FILENAME">ui</tt> file again, and go through most of the previous steps again. All this cries for automation, but before you learn how to automate these steps, we need to talk a bit about the generation of subclass files.</p>
+			<p>For two reasons, the generation of subclass files falls a bit out of the ordinary build process: First, you are required to edit the generated files, as hinted at earlier; if you do not change these files and do not add your own implementation of certain methods, there is no point in having a subclass at all.</p>
+			<p>Second, and this is a consequence of the first point, you do not regenerate the files over and over again after changes as you do with the other files. This is because you add changes to these files by hand, and if you overwrote the files, your changes would be lost.</p>
+			<p>As a result, you usually use <b class="COMMAND">uic</b> only once per form with the options <tt class="LITERAL">-subdecl</tt> and <tt class="LITERAL">-subimpl</tt>.</p>
+			<p>If you later add a new slot with Qt Designer, you cannot easily use <b class="COMMAND">uic</b> to add this slot to the subclass, because your changes would be overwritten. Of course, you can always copy your changed versions of the files to files with different names, let <b class="COMMAND">uic</b> generate the new skeletons, and manually copy your changes back (e.g., in an editor), but this is usually more work and trouble than just adding the individual slots by hand.</p>
+			<p>But even after ruling out these steps from the ordinary build process, there are an awful lot of steps left. How you integrate these into your build process largely depends on how your build process is organized, which tools you use, etc. If you use handwritten makefiles (a solution we do not recommend) and your project is very small, you could just add the build steps by hand. For the aforementioned project, this could look like the following in Unix make syntax (Windows make syntax will differ slightly but not much):</p>
+			<pre class="SCREEN">all:
+    myform
+
+myform: myform.o moc_myform.o myformimpl.o moc_myformimpl.o
+    c++ -o $@ $+ -L$(QTDIR)/lib -lqt
+
+myform.o:	myform.cpp myform.h
+    c++ -c $$&lt; -I$(QTDIR)/include
+
+myformimpl.o: myformimpl.cpp myformimpl.h myform.h
+    c++ -c $$&lt; -I$(QTDIR)/include
+
+moc_myform.o: moc_myform.cpp myform.h
+    c++ -c $$&lt; -I$(QTDIR)/include
+
+moc_myformimpl.o: moc_myformimpl.cpp myformimpl.h myform.h
+    c++ -c $$&lt; -I$(QTDIR)/include
+
+moc_myform.cpp: myform.h
+    moc -o $@ $&lt;
+
+moc_myformimpl.cpp: myformimpl.h
+    moc -o $@ $&lt;
+
+myform.h: myform.ui
+    uic -o $@ $&lt;
+
+myform.cpp: myform.ui myform.h
+    uic -o $@ -impl myform.h $&lt;</pre>
+			<p>Note that there is no rule here for generating <tt class="FILENAME">myformimpl.cpp</tt> and <tt class="FILENAME">myformimpl.h</tt>. As mentioned earlier, you generate them once by hand from the command line and then edit them with your text editor without regenerating them.</p>
+			<p>Of course, the previous makefile with every relation explicitly spelled out does not hold for anything but the smallest project. You can achieve a little bit more generality by using suffix rules as follows:</p>
+			<pre class="SCREEN"># clear SUFFIXES list
+.SUFFIXES:
+
+# define SUFFIXES
+.SUFFIXES: .h .cpp .ui
+
+# create a .h file from a .ui file
+.h.ui:; uic -o $@ $&lt;
+
+# create a .cpp file from a .ui file
+.cpp.ui:; uic -o $@ -impl $*.h $&lt;</pre>
+			<p>But depending on your project, this might not be enough sophistication.</p>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="USINGTMAKE"></a>Using tmake For Generating And Building Qt Designer Files</h2>
+				<p>We heartily recommend that you use a good system for automatically generating makefiles from a project description. There are several such systems available for both Unix and Windows, but for projects involving Qt and the Qt Designer, we suggest you give <i class="FIRSTTERM">tmake</i> a try.</p>
+				<p><b class="COMMAND">tmake</b> is free software that can be downloaded free of charge from <tt class="FILENAME">ftp://ftp.trolltech.com/pub/freebies/tmake/</tt>. Just make sure that you get Version 1.5 or higher. On Unix systems, <b class="COMMAND">tmake</b> requires Perl to be installed, which is usually the case these days.</p>
+				<p>If you do not know <b class="COMMAND">tmake</b> yet, we suggest that you start reading the included documentation; <b class="COMMAND">tmake</b> is really easy to use. We will only cover <b class="COMMAND">tmake</b>'s special features for use with Qt Designer here.</p>
+				<p>Actually, once you know how to use <b class="COMMAND">tmake</b> for ordinary Qt projects, using it for projects that involve Qt Designer files is surprisingly easy. All you need to do is list your <tt class="FILENAME">.ui</tt> files in the new <tt class="LITERAL">INTERFACES</tt> tag in your <b class="COMMAND">tmake</b> project file. For the aforementioned project, the following could be enough:</p>
+				<pre class="SCREEN">INTERFACES = myform.ui</pre>
+				<p>When you then generate the makefile from the <b class="COMMAND">tmake</b> project file, it will contain all the clauses mentioned earlier. The only thing you need to be sure of is that <b class="COMMAND">uic</b> is in your path, just as <b class="COMMAND">moc</b> and your C++ compiler are.</p>
+				<p>Again, this method does not do anything with generated and edited subclass files; as earlier, you just generate them by hand and then edit them as if they were ordinary source or header files (which in fact they are).</p>
+			</div>
+		</div>
+		<div class="NAVFOOTER">
+			<br>
+			<br>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top"><a href="chap5_3.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="34%" align="center" valign="top"><a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><a href="chap5_5.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font  color="white">All About Layout Management</font></td>
+					<td width="34%" align="center" valign="top"><a href="chap5_1.html"><img height="20" width="20" src="arrows/up.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><font  color="white">Accessing The Help System</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

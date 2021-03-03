@@ -1,0 +1,585 @@
+'\" t
+.TH QStyle 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QStyle \- Encapsulates common Look and Feel of a GUI
+.br
+.PP
+\fC#include <qstyle.h>\fR
+.PP
+Inherits QObject.
+.PP
+Inherited by QCommonStyle.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual \fB~QStyle\fR () "
+.br
+.ti -1c
+.BI "GUIStyle \fBguiStyle\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBpolish\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "virtual void \fBunPolish\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "virtual void \fBpolish\fR ( QApplication * ) "
+.br
+.ti -1c
+.BI "virtual void \fBunPolish\fR ( QApplication * ) "
+.br
+.ti -1c
+.BI "virtual void \fBpolish\fR ( QPalette & ) "
+.br
+.ti -1c
+.BI "virtual QRect \fBitemRect\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", int " "flags" ", bool " "enabled" ", const QPixmap * " "pixmap" ", const QString & " "text" ", int " "len" "=-1 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawItem\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", int " "flags" ", const QColorGroup & " "g" ", bool " "enabled" ", const QPixmap * " "pixmap" ", const QString & " "text" ", int " "len" "=-1, const QColor * " "penColor" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawSeparator\fR ( QPainter * " "p" ", int " "x1" ", int " "y1" ", int " "x2" ", int " "y2" ", const QColorGroup & " "g" ", bool " "sunken" " = TRUE, int " "lineWidth" " = 1, int " "midLineWidth" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawRect\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColor &, int " "lineWidth" " = 1, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawRectStrong\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup &, bool " "sunken" "=FALSE, int " "lineWidth" " = 1, int " "midLineWidth" " = 0, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawButton\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "sunken" " = FALSE, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual QRect \fBbuttonRect\fR ( int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawButtonMask\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawBevelButton\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "sunken" " = FALSE, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "QRect \fBbevelButtonRect\fR ( int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawToolButton\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "sunken" " = FALSE, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "void \fBdrawToolButton\fR ( QToolButton * " "btn" ", QPainter * p ) "
+.br
+.ti -1c
+.BI "QRect \fBtoolButtonRect\fR ( int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawPanel\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup &, bool " "sunken" "=FALSE, int " "lineWidth" " = 1, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawPopupPanel\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup &, int " "lineWidth" " = 2, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawArrow\fR ( QPainter * " "p" ", Qt::ArrowType " "type" ", bool " "down" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "enabled" ", const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual QSize \fBexclusiveIndicatorSize\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBdrawExclusiveIndicator\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "on" ", bool " "down" " = FALSE, bool " "enabled" " = TRUE ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawExclusiveIndicatorMask\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", bool on ) "
+.br
+.ti -1c
+.BI "virtual QSize \fBindicatorSize\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBdrawIndicator\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", int " "state" ", bool " "down" " = FALSE, bool " "enabled" " = TRUE ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawIndicatorMask\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", int state ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawFocusRect\fR ( QPainter *, const QRect &, const QColorGroup &, const QColor * " "bg" " = 0, bool = FALSE ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawComboButton\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "sunken" " = FALSE, bool " "editable" " = FALSE, bool " "enabled" " = TRUE, const QBrush * " "fill" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual QRect \fBcomboButtonRect\fR ( int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual QRect \fBcomboButtonFocusRect\fR ( int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawComboButtonMask\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawPushButton\fR ( QPushButton * " "btn" ", QPainter * p ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawPushButtonLabel\fR ( QPushButton * " "btn" ", QPainter * p ) "
+.br
+.ti -1c
+.BI "QRect \fBpushButtonContentsRect\fR ( QPushButton * btn ) "
+.br
+.ti -1c
+.BI "int \fBmenuButtonIndicatorWidth\fR ( int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBgetButtonShift\fR ( int & " "x" ", int & y ) "
+.br
+.ti -1c
+.BI "virtual int \fBdefaultFrameWidth\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBtabbarMetrics\fR ( const QTabBar *, int &, int &, int & ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawTab\fR ( QPainter *, const QTabBar *, QTab *, bool selected ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawTabMask\fR ( QPainter *, const QTabBar *, QTab *, bool selected ) "
+.br
+.ti -1c
+.BI "enum \fBScrollControl\fR { AddLine = 0x1, SubLine = 0x2, AddPage = 0x4, SubPage = 0x8, First = 0x10, Last = 0x20, Slider = 0x40, NoScroll = 0x80 }"
+.br
+.ti -1c
+.BI "virtual void \fBscrollBarMetrics\fR ( const QScrollBar *, int &, int &, int &, int & ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawScrollBarControls\fR ( QPainter *, const QScrollBar *, int " "sliderStart" ", uint " "controls" ", uint activeControl ) "
+.br
+.ti -1c
+.BI "virtual ScrollControl \fBscrollBarPointOver\fR ( const QScrollBar *, int " "sliderStart" ", const QPoint & ) "
+.br
+.ti -1c
+.BI "virtual int \fBsliderLength\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBdrawSlider\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", Orientation, bool " "tickAbove" ", bool tickBelow ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawSliderMask\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", Orientation, bool " "tickAbove" ", bool tickBelow ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawSliderGroove\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", QCOORD " "c" ", Orientation ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawSliderGrooveMask\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", QCOORD " "c" ", Orientation ) "
+.br
+.ti -1c
+.BI "virtual int \fBmaximumSliderDragDistance\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBsplitterWidth\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBdrawSplitter\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", Orientation ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawCheckMark\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", const QColorGroup & " "g" ", bool " "act" ", bool dis ) "
+.br
+.ti -1c
+.BI "virtual void \fBpolishPopupMenu\fR ( QPopupMenu * ) "
+.br
+.ti -1c
+.BI "virtual int \fBextraPopupMenuItemWidth\fR ( bool " "checkable" ", int " "maxpmw" ", QMenuItem * " "mi" ", const QFontMetrics & fm ) "
+.br
+.ti -1c
+.BI "virtual int \fBpopupSubmenuIndicatorWidth\fR ( const QFontMetrics & fm ) "
+.br
+.ti -1c
+.BI "virtual int \fBpopupMenuItemHeight\fR ( bool " "checkable" ", QMenuItem * " "mi" ", const QFontMetrics & fm ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawPopupMenuItem\fR ( QPainter * " "p" ", bool " "checkable" ", int " "maxpmw" ", int " "tab" ", QMenuItem * " "mi" ", const QPalette & " "pal" ", bool " "act" ", bool " "enabled" ", int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "void \fBdrawMenuBarItem\fR ( QPainter * " "p" ", int " "x" ", int " "y" ", int " "w" ", int " "h" ", QMenuItem * " "mi" ", QColorGroup & " "g" ", bool " "enabled" ", bool active ) "
+.br
+.ti -1c
+.BI "QSize \fBscrollBarExtent\fR () "
+.br
+.ti -1c
+.BI "int \fBbuttonDefaultIndicatorWidth\fR () const"
+.br
+.ti -1c
+.BI "int \fBbuttonMargin\fR () const"
+.br
+.ti -1c
+.BI "int \fBtoolBarHandleExtent\fR () const"
+.br
+.ti -1c
+.BI "int toolBarHandleExtend () const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "int \fBsliderThickness\fR () const"
+.br
+.ti -1c
+.BI "void \fBdrawToolBarHandle\fR ( QPainter * " "p" ", const QRect & " "r" ", Qt::Orientation " "orientation" ", bool " "highlight" ", const QColorGroup & " "cg" ", bool " "drawBorder" " = FALSE ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "void \fBsetScrollBarExtent\fR ( int " "w" ", int " "h" "=-1 ) "
+.br
+.ti -1c
+.BI "void \fBsetButtonDefaultIndicatorWidth\fR ( int w ) "
+.br
+.ti -1c
+.BI "void \fBsetButtonMargin\fR ( int w ) "
+.br
+.ti -1c
+.BI "void \fBsetSliderThickness\fR ( int t ) "
+.br
+.in -1c
+.SH DESCRIPTION
+Encapsulates common Look and Feel of a GUI.
+.PP
+While it is not possible to fully enumerate the look of graphic elements and the feel of widgets in a GUI, a large number of elements are common to many widgets. The QStyle class allows the look of these elements to be modified across all widgets that use the QStyle methods. It also provides two feel options - Motif and Windows.
+.PP
+In previous versions of Qt, the look and feel option for widgets was specified by a single value - the GUIStyle. Starting with Qt 2.0, this notion has been expanded to allow the look to be specified by virtual drawing functions.
+.PP
+Derived classes may reimplement some or all of the drawing functions to modify the look of all widgets which utilize those functions.
+.PP
+Examples:
+.(l
+themes/main.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QStyle::ScrollControl"
+This enum type defines :
+.TP
+\fCAddLine\fR - control to scroll one line down, usually an arrow button
+.TP
+\fCSubLine\fR - control to scroll one line up, usually an arrow button
+.TP
+\fCAddPage\fR - control to scroll one page down
+.TP
+\fCSubPage\fR - control to scroll one page up
+.TP
+\fCFirst\fR - control to scroll to top of the range
+.TP
+\fCLast\fR - control to scroll to bottom of the range
+.TP
+\fCSlider\fR - the slider control
+.TP
+\fCNoScroll\fR - null value, indicates none of the visible controls
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QStyle::~QStyle () \fC[virtual]\fR"
+Destructs the style.
+.SH "QRect QStyle::bevelButtonRect ( int x, int y, int w, int h )"
+Returns the rectangle available for contents in a bevel button. Usually this is the entire rectangle minus the border, but it may also be smaller when you think about rounded buttons.
+.PP
+See also drawBevelButton().
+.SH "int QStyle::buttonDefaultIndicatorWidth () const"
+Returns the width of the default-button indicator frame.
+.PP
+In this version of the Qt library, subclasses must call setButtonDefaultIndicatorWidth() to change the frame width. In a future version of Qt, this function will become virtual.
+.SH "int QStyle::buttonMargin () const"
+Returns the amount of whitespace between pushbutton labels and the frame in this style.
+.SH "QRect QStyle::buttonRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Returns the rectangle available for contents in a push button. Usually this is the entire rectangle minus the border, but it may also be smaller when you think about rounded buttons.
+.PP
+See also drawButton().
+.PP
+Reimplemented in QPlatinumStyle.
+.SH "QRect QStyle::comboButtonFocusRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Returns the rectangle used to draw the the focus rectangle in a combo box.
+.PP
+Reimplemented in QWindowsStyle, QSGIStyle, QMotifPlusStyle, QMotifStyle, QPlatinumStyle and QCommonStyle.
+.SH "QRect QStyle::comboButtonRect ( int x, int y, int w, int h ) \fC[virtual]\fR"
+Returns the rectangle available for contents in a combo box button. Usually this is the entire rectangle without the nifty menu indicator, but it may also be smaller when you think about rounded buttons.
+.PP
+Reimplemented in QMotifPlusStyle, QWindowsStyle, QMotifStyle, QSGIStyle, QPlatinumStyle, QInterlaceStyle and QCommonStyle.
+.SH "int QStyle::defaultFrameWidth () const \fC[virtual]\fR"
+The default frame width, usually 2.
+.PP
+Reimplemented in QMotifPlusStyle, QSGIStyle, QCDEStyle and QCommonStyle.
+.SH "void QStyle::drawArrow ( QPainter * p, Qt::ArrowType type, bool down, int x, int y, int w, int h, const QColorGroup & g, bool enabled, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws an arrow to indicate direction. Used for example in scrollbars and spin-boxes.
+.SH "void QStyle::drawBevelButton ( QPainter *, int, int, int, int, const QColorGroup &, bool = FALSE, const QBrush * = 0 ) \fC[virtual]\fR"
+Draws a press-sensitive shape in the style of a bevel button.
+.PP
+See also bevelButtonRect().
+.PP
+Reimplemented in QInterlaceStyle, QMotifStyle, QWindowsStyle, QPlatinumStyle, QSGIStyle and QMotifPlusStyle.
+.SH "void QStyle::drawButton ( QPainter *, int, int, int, int, const QColorGroup &, bool = FALSE, const QBrush * = 0 ) \fC[virtual]\fR"
+Draws a press-sensitive shape in the style of a full featured push button
+.PP
+See also buttonRect().
+.PP
+Reimplemented in QMotifStyle, QWindowsStyle, QInterlaceStyle, QSGIStyle, QMotifPlusStyle and QPlatinumStyle.
+.SH "void QStyle::drawButtonMask ( QPainter * p, int x, int y, int w, int h ) \fC[virtual]\fR"
+Draw the mask of a pushbutton. Useful if a rounded pushbuttons needs to be transparent because the style uses a fancy background pixmap.
+.PP
+See also drawButtonMask().
+.SH "void QStyle::drawCheckMark ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool act, bool dis ) \fC[virtual]\fR"
+Draws a checkmark suitable for checkboxes and checkable menu items.
+.PP
+Reimplemented in QWindowsStyle, QMotifStyle, QPlatinumStyle and QSGIStyle.
+.SH "void QStyle::drawComboButton ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken = FALSE, bool editable = FALSE, bool enabled = TRUE, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws a press-sensitive shape in the style of a combo box or menu button.
+.PP
+Reimplemented in QCommonStyle, QSGIStyle, QMotifStyle, QPlatinumStyle, QMotifPlusStyle, QInterlaceStyle and QWindowsStyle.
+.SH "void QStyle::drawComboButtonMask ( QPainter * p, int x, int y, int w, int h ) \fC[virtual]\fR"
+Draw the mask of a combo box button. Useful if a rounded buttons needs to be transparent because the style uses a fancy background pixmap.
+.PP
+Reimplemented in QCommonStyle.
+.SH "void QStyle::drawExclusiveIndicator ( QPainter *, int x, int y, int w, int h, const QColorGroup &, bool on, bool down = FALSE, bool enabled = TRUE ) \fC[virtual]\fR"
+Draws a mark indicating the state of an exclusive choice.
+.PP
+Reimplemented in QPlatinumStyle, QMotifStyle, QInterlaceStyle, QMotifPlusStyle, QSGIStyle, QCDEStyle and QWindowsStyle.
+.SH "void QStyle::drawExclusiveIndicatorMask ( QPainter * p, int x, int y, int w, int h, bool ) \fC[virtual]\fR"
+Draws the mask of a mark indicating the state of an exclusive choice.
+.PP
+Reimplemented in QSGIStyle, QWindowsStyle, QInterlaceStyle and QMotifStyle.
+.SH "void QStyle::drawFocusRect ( QPainter * p, const QRect & r, const QColorGroup & g, const QColor * = 0, bool atBorder = FALSE ) \fC[virtual]\fR"
+Draws a mark indicating keyboard focus is on \fIr. atBorder\fR indicates whether the focus rectangle is at the border of an item (for example an item in a listbox). Certain styles (Motif style as the most prominent example) might have to shrink the rectangle a bit in that case to ensure that the focus rectangle is visible at all.
+.PP
+Reimplemented in QWindowsStyle, QInterlaceStyle and QMotifStyle.
+.SH "void QStyle::drawIndicator ( QPainter *, int, int, int, int, const QColorGroup &, int state, bool = FALSE, bool = TRUE ) \fC[virtual]\fR"
+Draws a mark indicating the state of a choice.
+.PP
+Reimplemented in QSGIStyle, QInterlaceStyle, QMotifPlusStyle, QWindowsStyle, QCDEStyle, QMotifStyle and QPlatinumStyle.
+.SH "void QStyle::drawIndicatorMask ( QPainter * p, int x, int y, int w, int h, int ) \fC[virtual]\fR"
+Draws the mask of a mark indicating the state of a choice.
+.PP
+Reimplemented in QPlatinumStyle, QSGIStyle and QInterlaceStyle.
+.SH "void QStyle::drawItem ( QPainter * p, int x, int y, int w, int h, int flags, const QColorGroup & g, bool enabled, const QPixmap * pixmap, const QString & text, int len=-1, const QColor * penColor = 0 ) \fC[virtual]\fR"
+Draw text or a pixmap in an area.
+.SH "void QStyle::drawPanel ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken=FALSE, int lineWidth = 1, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws a panel to separate parts of the visual interface.
+.PP
+Reimplemented in QMotifPlusStyle, QSGIStyle, QInterlaceStyle and QWindowsStyle.
+.SH "void QStyle::drawPopupMenuItem ( QPainter * p, bool checkable, int maxpmw, int tab, QMenuItem * mi, const QPalette & pal, bool act, bool enabled, int x, int y, int w, int h ) \fC[virtual]\fR"
+Draws the menu item \fImi\fR using the painter \fIp.\fR The painter is preset to the right font. \fImaxpmw\fR is the maximum width of all iconsets within a check column. \fItab\fR specifies the minimum number of pixels necessary to draw all labels of the menu without their accelerators (which are separated by a tab character in the label text). \fIpal\fR is the palette, \fIact\fR and \fIenabled\fR define whether the item is active (i.e. highlighted) or enabled, respectively. Finally, \fIx, y, w\fR and \fIh\fR determine the geometry of the entire item.
+.PP
+Note that \fImi\fR can be 0 in the case of multicolumn popup menus. In that case, drawPopupMenuItem() simply draws the appropriate item background.
+.PP
+Reimplemented in QSGIStyle, QWindowsStyle, QPlatinumStyle, QMotifStyle and QMotifPlusStyle.
+.SH "void QStyle::drawPopupPanel ( QPainter * p, int x, int y, int w, int h, const QColorGroup & cg, int lineWidth = 2, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws a panel suitable as frame for popup windows.
+.PP
+Reimplemented in QWindowsStyle, QSGIStyle and QPlatinumStyle.
+.SH "void QStyle::drawPushButton ( QPushButton *, QPainter * ) \fC[virtual]\fR"
+Draws a pushbutton. This function will normally call drawButton() with arguments according to the current state of the pushbutton.
+.PP
+See also drawPushButtonLabel() and QPushButton::drawButton().
+.PP
+Reimplemented in QWindowsStyle, QPlatinumStyle, QMotifPlusStyle, QSGIStyle, QInterlaceStyle and QMotifStyle.
+.SH "void QStyle::drawPushButtonLabel ( QPushButton *, QPainter * ) \fC[virtual]\fR"
+Draws the label of a pushbutton. This function will normally call drawItem() with arguments according to the current state of the pushbutton.
+.PP
+In reimplementations of this function, you will find pushButtonContentsRect() useful.
+.PP
+See also drawPushButton() and QPushButton::drawButtonLabel().
+.PP
+Reimplemented in QPlatinumStyle, QInterlaceStyle and QCommonStyle.
+.SH "void QStyle::drawRect ( QPainter * p, int x, int y, int w, int h, const QColor & c, int lineWidth = 1, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws a simple rectangle to separate parts of the visual interface.
+.SH "void QStyle::drawRectStrong ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken=FALSE, int lineWidth = 1, int midLineWidth = 0, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws an emphasized rectangle to strongly separate parts of the visual interface.
+.SH "void QStyle::drawScrollBarControls ( QPainter *, const QScrollBar *, int sliderStart, uint controls, uint activeControl ) \fC[virtual]\fR"
+Draws the given scrollbar. Used internally by QScrollbar.
+.PP
+The controls are either ADD_LINE, SUB_LINE, ADD_PAGE, SUB_PAGE, FIRST, LAST, SLIDER or NONE
+.PP
+Controls is a combination of these, activeControl is the control currently pressed down.
+.PP
+Reimplemented in QInterlaceStyle, QMotifPlusStyle, QMotifStyle, QSGIStyle, QPlatinumStyle and QWindowsStyle.
+.SH "void QStyle::drawSeparator ( QPainter * p, int x1, int y1, int x2, int y2, const QColorGroup & g, bool sunken = TRUE, int lineWidth = 1, int midLineWidth = 0 ) \fC[virtual]\fR"
+Draws a line to separate parts of the visual interface.
+.PP
+Reimplemented in QSGIStyle.
+.SH "void QStyle::drawSlider ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, Orientation, bool tickAbove, bool tickBelow ) \fC[virtual]\fR"
+Draws a slider.
+.PP
+Reimplemented in QWindowsStyle, QSGIStyle, QMotifPlusStyle, QMotifStyle, QInterlaceStyle and QPlatinumStyle.
+.SH "void QStyle::drawSliderGroove ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, QCOORD c, Orientation ) \fC[virtual]\fR"
+Draws a slider groove.
+.PP
+Reimplemented in QSGIStyle, QMotifStyle, QWindowsStyle, QMotifPlusStyle, QInterlaceStyle and QPlatinumStyle.
+.SH "void QStyle::drawSliderGrooveMask ( QPainter * p, int x, int y, int w, int h, QCOORD c, Orientation ) \fC[virtual]\fR"
+Draws the mask of a slider groove.
+.PP
+Reimplemented in QCommonStyle, QSGIStyle and QInterlaceStyle.
+.SH "void QStyle::drawSliderMask ( QPainter * p, int x, int y, int w, int h, Orientation, bool, bool ) \fC[virtual]\fR"
+Draws the mask of a slider.
+.PP
+Reimplemented in QCommonStyle, QInterlaceStyle, QSGIStyle, QWindowsStyle and QPlatinumStyle.
+.SH "void QStyle::drawSplitter ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, Orientation orient ) \fC[virtual]\fR"
+Draws a splitter handle in the rectangle described by \fIx, y, w, h\fR using painter \fIp\fR and color group \fIg.\fR The orientation is \fIorient.\fR
+.PP
+See also splitterWidth().
+.PP
+Reimplemented in QInterlaceStyle, QWindowsStyle, QSGIStyle and QMotifStyle.
+.SH "void QStyle::drawToolBarHandle ( QPainter * p, const QRect & r, Qt::Orientation orientation, bool highlight, const QColorGroup & cg, bool drawBorder = FALSE )"
+Draws the handle for the toolbar using the painter \fIp\fR with the toolbar coordinates \fIr. orientation\fR gives the orientation of the toolbar, and the handle is drawn \fIhighlighted\fR if \fIhighlight\fR is TRUE, else not. \fIcg\fR is the QColorGroup of the toolbar and if \fIdrawBorder\fR is TRUE a border around the handle may be drawn.
+.PP
+WARNING: Because of binary compatibility this method is NOT virtual, so reimplementing it in Qt 2.x doesn't make sense. In the next major release this method will become virtual!.
+.SH "void QStyle::drawToolButton ( QPainter * p, int x, int y, int w, int h, const QColorGroup & g, bool sunken = FALSE, const QBrush * fill = 0 ) \fC[virtual]\fR"
+Draws a press-sensitive shape in the style of a toolbar button
+.PP
+The default implementation calls drawBevelButton()
+.PP
+See also drawBevelButton().
+.SH "void QStyle::drawToolButton ( QToolButton *, QPainter * )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+Draws a toolbutton. This function will normally call drawToolButton() with arguments according to the current state of the toolbutton.
+.PP
+See also QToolButton::drawButton().
+.SH "QSize QStyle::exclusiveIndicatorSize () const \fC[virtual]\fR"
+Returns the size of the mark used to indicate exclusive choice.
+.PP
+Reimplemented in QInterlaceStyle, QPlatinumStyle, QMotifStyle, QSGIStyle, QMotifPlusStyle and QWindowsStyle.
+.SH "int QStyle::extraPopupMenuItemWidth ( bool checkable, int maxpmw, QMenuItem * mi, const QFontMetrics & fm ) \fC[virtual]\fR"
+Returns the extra width of a menu item \fImi,\fR that means all extra pixels besides the space the menu item text requires. \fIcheckable\fR defines, whether the menu has a check column. \fImaxpmw\fR is the maximum width of all iconsets within a check column and \fIfm\fR defines the font metrics used to draw the label. This is particularly useful to calculate a suitable size for a submenu indicator or the column separation, including the tab column used to indicate item accelerators.
+.PP
+Reimplemented in QPlatinumStyle, QMotifStyle and QWindowsStyle.
+.SH "void QStyle::getButtonShift ( int & x, int & y ) \fC[virtual]\fR"
+Some GUI styles shift the contents of a button when the button is down. The default implementation returns 0 for both x and y.
+.PP
+Reimplemented in QWindowsStyle, QPlatinumStyle, QCommonStyle and QMotifPlusStyle.
+.SH "GUIStyle QStyle::guiStyle () const"
+Returns an indicator to the additional "feel" component of a style. Current supported values are Qt::WindowsStyle and Qt::MotifStyle.
+.SH "QSize QStyle::indicatorSize () const \fC[virtual]\fR"
+Returns the size of the mark used to indicate choice.
+.PP
+Reimplemented in QWindowsStyle, QMotifStyle, QInterlaceStyle, QPlatinumStyle, QMotifPlusStyle and QSGIStyle.
+.SH "QRect QStyle::itemRect ( QPainter * p, int x, int y, int w, int h, int flags, bool enabled, const QPixmap * pixmap, const QString & text, int len=-1 ) \fC[virtual]\fR"
+Returns the appropriate area within a rectangle in which to draw text or a pixmap.
+.SH "int QStyle::maximumSliderDragDistance () const \fC[virtual]\fR"
+Some feels require the scrollbar or other sliders to jump back to the original position when the mouse pointer is too far away while dragging.
+.PP
+This behavior can be customized with this function. The default is -1 (no jump back) while Windows requires 20 (weird jump back).
+.PP
+Reimplemented in QWindowsStyle, QPlatinumStyle and QCommonStyle.
+.SH "int QStyle::menuButtonIndicatorWidth ( int h )"
+Returns the width of the menu button indicator for a given button height \fIh.\fR
+.SH "void QStyle::polish ( QApplication * ) \fC[virtual]\fR"
+Late initialization of the QApplication object.
+.PP
+See also unPolish(QApplication*).
+.SH "void QStyle::polish ( QPalette & ) \fC[virtual]\fR"
+The style may have certain requirements for color palettes. In this function it has the chance to change the palette according to these requirements.
+.PP
+See also QPalette and QApplication::setPalette().
+.SH "void QStyle::polish ( QWidget * ) \fC[virtual]\fR"
+Initializes the appearance of a widget.
+.PP
+This function is called for every widget, after it has been fully created just \fIbefore\fR it is shown the very first time.
+.PP
+Reasonable actions in this function might be to set the of the widget and the background pixmap, for example. Unreasonable use would be setting the geometry!
+.PP
+The QWidget::inherits() function may provide enough information to allow class-specific customizations. But be careful not to hard-code things too much, as new QStyle sub-classes will be expected to work reasonably with all current \fIand future\fR widgets.
+.PP
+See also unPolish(QWidget*).
+.PP
+Reimplemented in QMotifPlusStyle, QSGIStyle, QInterlaceStyle and QMotifStyle.
+.SH "void QStyle::polishPopupMenu ( QPopupMenu * p ) \fC[virtual]\fR"
+Polishes the popup menu \fIp\fR according to the GUI style. This is usually means setting the mouse tracking ( QPopupMenu::setMouseTracking() ) and whether the menu is checkable by default ( QPopupMenu::setCheckable() ).
+.PP
+Reimplemented in QMotifPlusStyle, QMotifStyle, QPlatinumStyle and QWindowsStyle.
+.SH "int QStyle::popupMenuItemHeight ( bool checkable, QMenuItem * mi, const QFontMetrics & fm ) \fC[virtual]\fR"
+Returns the height of the menu item \fImi. checkable\fR defines, whether the menu has a check column, \fIfm\fR defines the font metrics used to draw the label.
+.PP
+Reimplemented in QPlatinumStyle, QMotifStyle, QWindowsStyle and QSGIStyle.
+.SH "int QStyle::popupSubmenuIndicatorWidth ( const QFontMetrics & fm ) \fC[virtual]\fR"
+Returns the width of the arrow indicating popup submenus. \fIfm\fR defines the font metrics used to draw the popup menu.
+.PP
+Reimplemented in QCommonStyle.
+.SH "QRect QStyle::pushButtonContentsRect ( QPushButton * btn )"
+Auxiliary function to return the contents rectangle of a push button \fIbtn.\fR The contents rectangle is the space available for the button label.
+.PP
+The result depends on the look (buttonRect() ), whether the button needs space for a default indicator (buttonDefaultIndicatorWidth()) and whether it is pushed down and needs to be shifted (getButtonShift()).
+.SH "QSize QStyle::scrollBarExtent ()"
+Returns a QSize containing the width of a vertical scrollbar and the height of a horizontal scrollbar in this style.
+.PP
+In this version of the Qt library, subclasses must call setScrollBarExtent() to change the extent of scrollbars. In a future version of Qt, this function will become virtual.
+.SH "void QStyle::scrollBarMetrics ( const QScrollBar *, int &, int &, int &, int & ) \fC[virtual]\fR"
+Returns the metrics of the passed scrollbar: sliderMin, sliderMax, sliderLength and buttonDim.
+.PP
+Reimplemented in QMotifPlusStyle, QSGIStyle, QPlatinumStyle, QWindowsStyle, QInterlaceStyle and QMotifStyle.
+.SH "QStyle::ScrollControl QStyle::scrollBarPointOver( const QScrollBar * sb, int sliderStart, const QPoint & p )"
+Returns the scrollbar control under the passed point.
+.SH "void QStyle::setButtonDefaultIndicatorWidth ( int w ) \fC[protected]\fR"
+Sets the width of the default-button indicator frame.
+.PP
+In a future version of the Qt library, this function will be removed and subclasses will be able to reimplement buttonDefaultIndicatorWidth().
+.SH "void QStyle::setButtonMargin ( int m ) \fC[protected]\fR"
+Sets the button margin.
+.PP
+In a future version of the Qt library, this function may be removed and subclasses will be able to reimplement buttonMargin().
+.SH "void QStyle::setScrollBarExtent ( int width, int height=-1 ) \fC[protected]\fR"
+Sets the width of a vertical scrollbar in this style to \fIwidth\fR and the height of a horizontal scrollbar to \fIheight.\fR If \fIheight\fR is negative, \fIwidth\fR will be used for both extents. By default both extents are 16 pixels.
+.PP
+In a future version of the Qt library, this function will be removed and subclasses will be able to reimplement scrollBarExtent().
+.SH "void QStyle::setSliderThickness ( int t ) \fC[protected]\fR"
+Sets the slider thickness.
+.PP
+In a future version of the Qt library, this function may be removed and subclasses will be able to reimplement sliderThickness().
+.SH "int QStyle::sliderLength () const \fC[virtual]\fR"
+The length of a slider.
+.PP
+Reimplemented in QWindowsStyle, QPlatinumStyle and QMotifStyle.
+.SH "int QStyle::sliderThickness () const"
+Returns the thickness of a slider in this style. The thickness is dimension perpendicular to the slider motion (e.g. the height for a horizontal slider).
+.SH "int QStyle::splitterWidth () const \fC[virtual]\fR"
+Returns the width of a splitter handle.
+.PP
+See also drawSplitter().
+.PP
+Reimplemented in QMotifStyle, QInterlaceStyle, QWindowsStyle and QSGIStyle.
+.SH "int QStyle::toolBarHandleExtend () const"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.SH "int QStyle::toolBarHandleExtent () const"
+Returns the extent (height or width depending on the orientation) which a toolbar handle has.
+.PP
+WARNING: Because of binary compatibility this method is NOT virtual, so reimplementing it in Qt 2.x doesn't make sense. In the next major release this method will become virtual!.
+.SH "QRect QStyle::toolButtonRect ( int x, int y, int w, int h )"
+Returns the rectangle available for contents in a tool button. Usually this is the entire rectangle minus the border, but it may also be smaller when you think about rounded buttons.
+.PP
+The default implementation returns bevelButtonRect()
+.PP
+See also drawToolButton().
+.SH "void QStyle::unPolish ( QApplication * ) \fC[virtual]\fR"
+Redo the application polish
+.PP
+See also polish(QApplication*).
+.SH "void QStyle::unPolish ( QWidget * ) \fC[virtual]\fR"
+Undoes the initialization of a widget's appearance.
+.PP
+This function is the counterpart to polish. Is is called for every polished widget when the style is dynamically changed. The former style has to un-polish its settings before the new style can polish them again.
+.PP
+See also polish(QWidget*).
+.PP
+Reimplemented in QMotifPlusStyle, QInterlaceStyle and QSGIStyle.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qstyle.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qstyle.3qt) and the Qt
+version (2.3.2).

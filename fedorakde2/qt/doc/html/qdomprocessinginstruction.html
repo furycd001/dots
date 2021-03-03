@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QDomProcessingInstruction Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QDomProcessingInstruction Class Reference<br><small>[ <a href="xml.html">XML module</a> ]</small></h1><br clear="all">
+<p>
+The QDomProcessingInstruction class represents an XML processing instruction.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qdom-h.html">qdom.h</a>&gt;</code>
+<p>
+Inherits <a href="qdomnode.html">QDomNode</a>.
+<p><a href="qdomprocessinginstruction-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#a0aeca"><b>QDomProcessingInstruction</b></a> () </div>
+<li><div class="fn"><a href="#5cd55a"><b>QDomProcessingInstruction</b></a> ( const QDomProcessingInstruction &amp; x ) </div>
+<li><div class="fn">QDomProcessingInstruction&amp; <a href="#f6f7dd"><b>operator=</b></a> ( const QDomProcessingInstruction &amp; ) </div>
+<li><div class="fn"><a href="#52f2e0"><b>~QDomProcessingInstruction</b></a> () </div>
+<li><div class="fn">virtual QString <a href="#2051d0"><b>target</b></a> () const</div>
+<li><div class="fn">virtual QString <a href="#c118bf"><b>data</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#32b7cb"><b>setData</b></a> ( const QString &amp; d ) </div>
+<li><div class="fn">virtual QDomNode::NodeType <a href="#52cfab"><b>nodeType</b></a> () const</div>
+<li><div class="fn">virtual bool <a href="#fc1c67"><b>isProcessingInstruction</b></a> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QDomProcessingInstruction class represents an XML processing instruction.
+<p>
+Processing instructions are used in XML as a way to keep processor-specific
+information in the text of the document.
+<p>For further information about the Document Objct Model see
+<a href="http://www.w3.org/TR/REC-DOM-Level-1/">http://www.w3.org/TR/REC-DOM-Level-1/</a>.
+For a more general introduction of the DOM implementation see the
+<a href="qdomdocument.html">QDomDocument</a> documentation.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a0aeca"></a>QDomProcessingInstruction::QDomProcessingInstruction ()</h3>
+<p>Constructs an empty processing instruction. Use
+<a href="qdomdocument.html#d4a4b6">QDomDocument::createProcessingInstruction</a>() to create a processing
+instruction with content.
+<h3 class="fn"><a name="5cd55a"></a>QDomProcessingInstruction::QDomProcessingInstruction ( const QDomProcessingInstruction &amp; x )</h3>
+<p>Copy constructor.
+<p>The data of the copy is shared: modifying one will also change the other. If
+you want to make a real copy, use <a href="qdomnode.html#8f17f1">cloneNode</a>() instead.
+<h3 class="fn"><a name="52f2e0"></a>QDomProcessingInstruction::~QDomProcessingInstruction ()</h3>
+<p>Destructor.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="c118bf"></a>QDomProcessingInstruction::data () const <code>[virtual]</code></h3>
+<p>Returns the content of this processing instruction.
+<p>See also  <a href="#32b7cb">setData</a>() and <a href="#2051d0">target</a>().
+<h3 class="fn">bool <a name="fc1c67"></a>QDomProcessingInstruction::isProcessingInstruction () const <code>[virtual]</code></h3>
+<p>Returns TRUE.
+<p>Reimplemented from <a href="qdomnode.html#91a7ba">QDomNode.</a>
+<h3 class="fn">QDomNode::NodeType <a name="52cfab"></a>QDomProcessingInstruction::nodeType() const <code>[virtual]</code></h3>
+<p>Returns <code>ProcessingInstructionNode.</code>
+<p>Reimplemented from <a href="qdomnode.html#46495e">QDomNode.</a>
+<h3 class="fn">QDomProcessingInstruction&amp; <a name="f6f7dd"></a>QDomProcessingInstruction::operator= ( const QDomProcessingInstruction &amp; x )</h3>
+<p>Assignment operator.
+<p>The data of the copy is shared: modifying one will also change the other. If
+you want to make a real copy, use <a href="qdomnode.html#8f17f1">cloneNode</a>() instead.
+<h3 class="fn">void <a name="32b7cb"></a>QDomProcessingInstruction::setData ( const <a href="qstring.html">QString</a> &amp; d ) <code>[virtual]</code></h3>
+<p>Sets the data contained in the processing instruction.
+<p>See also  <a href="#c118bf">data</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="2051d0"></a>QDomProcessingInstruction::target () const <code>[virtual]</code></h3>
+<p>Returns the target of this processing instruction.
+<p>See also  <a href="#c118bf">data</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

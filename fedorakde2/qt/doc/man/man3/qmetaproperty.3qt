@@ -1,0 +1,171 @@
+'\" t
+.TH QMetaProperty 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QMetaProperty \- Stores meta data about a property
+.br
+.PP
+\fC#include <qmetaobject.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQMetaProperty\fR () (internal)"
+.br
+.ti -1c
+.BI "\fB~QMetaProperty\fR () (internal)"
+.br
+.ti -1c
+.BI "const char* \fBtype\fR () const"
+.br
+.ti -1c
+.BI "const char* \fBname\fR () const"
+.br
+.ti -1c
+.BI "bool \fBwritable\fR () const"
+.br
+.ti -1c
+.BI "bool \fBwriteable\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisValid\fR () const (internal)"
+.br
+.ti -1c
+.BI "bool \fBisSetType\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEnumType\fR () const"
+.br
+.ti -1c
+.BI "QStrList \fBenumKeys\fR () const"
+.br
+.ti -1c
+.BI "int \fBkeyToValue\fR ( const char * key ) const"
+.br
+.ti -1c
+.BI "const char* \fBvalueToKey\fR ( int value ) const"
+.br
+.ti -1c
+.BI "int \fBkeysToValue\fR ( const QStrList & keys ) const"
+.br
+.ti -1c
+.BI "QStrList \fBvalueToKeys\fR ( int value ) const"
+.br
+.ti -1c
+.BI "bool \fBstored\fR ( QObject * ) const"
+.br
+.ti -1c
+.BI "bool \fBdesignable\fR () const"
+.br
+.ti -1c
+.BI "enum \fBSpecification\fR { Unspecified, Class, Reference, Pointer, ConstCharStar }"
+.br
+.ti -1c
+.BI "enum \fBFlags\fR { UnresolvedEnum = 0x00000001, UnresolvedSet = 0x00000002, UnresolvedEnumOrSet = 0x00000004, UnresolvedStored = 0x00000008, UnresolvedDesignable = 0x00000010, NotDesignable = 0x00000020, NotStored = 0x00000040, StdSet = 0x00000080 }"
+.br
+.ti -1c
+.BI "bool \fBtestFlags\fR ( uint f ) const"
+.br
+.ti -1c
+.BI "void \fBsetFlags\fR ( uint f ) "
+.br
+.ti -1c
+.BI "void \fBclearFlags\fR ( uint f ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QMetaProperty class stores meta data about a property.
+.PP
+Property meta data mainly consists of a type(), a name() and the fact, whether a property is writable(), designable() or stored().
+.PP
+The functions isSetType(), isEnumType() and enumKeys() provide further information about a property's type. The conversion functions keyToValue(), valueToKey(), keysToValue() and valueToKeys() allow to convert between the integer representation of an enumeration or set value and its literal representation.
+.PP
+Actual property values are set and received through QObject's set and get functions. See QObject::setProperty() and QObject::property() for details.
+.PP
+You receive meta property data through an object's meta object. See QMetaObject::property() and QMetaObject::propertyNames() for details.
+.SS "Member Type Documentation"
+.SH "QMetaProperty::Flags"
+For internal use only.
+.SH "QMetaProperty::Specification"
+For internal use only.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "void QMetaProperty::clearFlags ( uint f )"
+For internal use only.
+.SH "bool QMetaProperty::designable () const"
+Returns whether the property is considered to be designable or not.
+.SH "QStrList QMetaProperty::enumKeys () const"
+Returns the possible enumeration keys if this property is an enumeration type (or a set type).
+.PP
+See also isEnumType().
+.SH "bool QMetaProperty::isEnumType () const"
+Returns whether the property's type is an enumeration value.
+.PP
+See also isSetType() and enumKeys().
+.SH "bool QMetaProperty::isSetType () const"
+Returns whether the property's type is an enumeration value that is used as set, i.e. the enumeration values can be or'ed together. A set type is implicitely also an enum type.
+.PP
+See also isEnumType() and enumKeys().
+.SH "int QMetaProperty::keyToValue ( const char * key ) const"
+Converts the enumeration key \fIkey\fR to its integer value.
+.PP
+For set types, use keysToValue().
+.PP
+See also valueToKey(), isSetType() and keysToValue().
+.SH "int QMetaProperty::keysToValue ( const QStrList & keys ) const"
+Converts the list of keys \fIkeys\fR to their combined integer value.
+.PP
+See also isSetType(), valueToKey() and keysToValue().
+.SH "const char* QMetaProperty::name () const"
+Returns the name of the property.
+.SH "void QMetaProperty::setFlags ( uint f )"
+For internal use only.
+.SH "bool QMetaProperty::stored ( QObject * o ) const"
+Returns whether the property shall be stored for object \fIo\fR or not.
+.SH "bool QMetaProperty::testFlags ( uint f ) const"
+For internal use only.
+.SH "const char* QMetaProperty::type () const"
+Returns the type of the property.
+.SH "const char* QMetaProperty::valueToKey ( int value ) const"
+Converts the enumeration value \fIvalue\fR to its literal key.
+.PP
+For set types, use valueToKeys().
+.PP
+See also valueToKey(), isSetType() and valueToKeys().
+.SH "QStrList QMetaProperty::valueToKeys ( int value ) const"
+Converts the set value \fIvalue\fR to a list of keys.
+.PP
+See also isSetType(), valueToKey() and valueToKeys().
+.SH "bool QMetaProperty::writable () const"
+Returns whether the property is writable or not.
+.PP
+See also isValid().
+.SH "QMetaProperty::QMetaProperty ()"
+For internal use only.
+.SH "QMetaProperty::~QMetaProperty ()"
+For internal use only.
+.SH "bool QMetaProperty::isValid () const"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qmetaproperty.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qmetaproperty.3qt) and the Qt
+version (2.3.2).

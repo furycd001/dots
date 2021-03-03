@@ -1,0 +1,309 @@
+'\" t
+.TH QGList 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QGList \- Internal class for implementing Qt collection classes
+.br
+.PP
+\fC#include <qglist.h>\fR
+.PP
+Inherits QCollection.
+.PP
+Inherited by QList, QQueue and QStack.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual uint \fBcount\fR () const (internal)"
+.br
+.ti -1c
+.BI "QDataStream& \fBread\fR ( QDataStream & ) (internal)"
+.br
+.ti -1c
+.BI "QDataStream& \fBwrite\fR ( QDataStream & ) const (internal)"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQGList\fR () (internal)"
+.br
+.ti -1c
+.BI "\fBQGList\fR ( const QGList & ) (internal)"
+.br
+.ti -1c
+.BI "virtual \fB~QGList\fR () (internal)"
+.br
+.ti -1c
+.BI "QGList& \fBoperator=\fR ( const QGList & ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QGList & ) const"
+.br
+.ti -1c
+.BI "void \fBinSort\fR ( QCollection::Item ) (internal)"
+.br
+.ti -1c
+.BI "void \fBappend\fR ( QCollection::Item ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBinsertAt\fR ( uint " "index" ", QCollection::Item ) (internal)"
+.br
+.ti -1c
+.BI "void \fBrelinkNode\fR ( QLNode * ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBremoveNode\fR ( QLNode * ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBremove\fR ( QCollection::Item = 0 ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBremoveRef\fR ( QCollection::Item = 0 ) (internal)"
+.br
+.ti -1c
+.BI "bool \fBremoveFirst\fR () (internal)"
+.br
+.ti -1c
+.BI "bool \fBremoveLast\fR () (internal)"
+.br
+.ti -1c
+.BI "bool \fBremoveAt\fR ( uint index ) (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBtakeNode\fR ( QLNode * ) (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBtake\fR () (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBtakeAt\fR ( uint index ) (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBtakeFirst\fR () (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBtakeLast\fR () (internal)"
+.br
+.ti -1c
+.BI "void \fBsort\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBclear\fR () (internal)"
+.br
+.ti -1c
+.BI "int \fBfindRef\fR ( QCollection::Item, bool = TRUE ) (internal)"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( QCollection::Item, bool = TRUE ) (internal)"
+.br
+.ti -1c
+.BI "uint \fBcontainsRef\fR ( QCollection::Item ) const (internal)"
+.br
+.ti -1c
+.BI "uint \fBcontains\fR ( QCollection::Item ) const (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBat\fR ( uint index ) (internal)"
+.br
+.ti -1c
+.BI "int \fBat\fR () const (internal)"
+.br
+.ti -1c
+.BI "QLNode* \fBcurrentNode\fR () const (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBget\fR () const (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBcfirst\fR () const (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBclast\fR () const (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBfirst\fR () (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBlast\fR () (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBnext\fR () (internal)"
+.br
+.ti -1c
+.BI "QCollection::Item \fBprev\fR () (internal)"
+.br
+.ti -1c
+.BI "void \fBtoVector\fR ( QGVector * ) const (internal)"
+.br
+.ti -1c
+.BI "virtual int \fBcompareItems\fR ( QCollection::Item, QCollection::Item ) "
+.br
+.ti -1c
+.BI "virtual QDataStream& \fBread\fR ( QDataStream &, QCollection::Item & ) "
+.br
+.ti -1c
+.BI "virtual QDataStream& \fBwrite\fR ( QDataStream &, QCollection::Item ) const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QGList class is an internal class for implementing Qt collection classes.
+.PP
+QGList is a strictly internal class that acts as a base class for several collection classes; QList, QQueue and QStack.
+.PP
+QGList has some virtual functions that can be reimplemented to customize the subclasses.
+.TP
+compareItems() compares two collection/list items.
+.TP
+read() reads a collection/list item from a QDataStream.
+.TP
+write() writes a collection/list item to a QDataStream. Normally, you do not have to reimplement any of these functions. If you still want to reimplement them, see the QStrList class (qstrlist.h), which is a good example.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "int QGList::compareItems ( QCollection::Item item1, QCollection::Item item2 ) \fC[virtual protected]\fR"
+This virtual function compares two list items.
+.PP
+Returns:
+.TP
+0 if \fIitem1\fR == \fIitem2\fR
+.TP
+non-zero if \fIitem1\fR != \fIitem2\fR
+.PP
+This function returns \fIint\fR rather than \fIbool\fR so that reimplementations can return three values and use it to sort by:
+.TP
+0 if \fIitem1\fR == \fIitem2\fR
+.TP
+> 0 (positive integer) if \fIitem1\fR > \fIitem2\fR
+.TP
+< 0 (negative integer) if \fIitem1\fR < \fIitem2\fR
+.PP
+The QList::inSort() function requires that compareItems() is implemented as described here.
+.PP
+This function should not modify the list because some const functions call compareItems().
+.PP
+The default implementation compares the pointers:
+.PP
+.nf
+.br
+.fi
+.SH "bool QGList::operator== ( const QGList & list ) const \fC[protected]\fR"
+Compares this list with \fIlist.\fR Retruns TRUE if the lists contain the same data, else FALSE.
+.SH "QDataStream & QGList::read ( QDataStream & s, QCollection::Item & item ) \fC[virtual protected]\fR"
+Reads a collection/list item from the stream \fIs\fR and returns a reference to the stream.
+.PP
+The default implementation sets \fIitem\fR to 0.
+.PP
+See also write().
+.SH "void QGList::sort () \fC[protected]\fR"
+Sorts the list by the result of the virtual compareItems() function.
+.PP
+The Heap-Sort algorithm is used for sorting. It sorts n items with O(n*log n) compares. This is the asymptotic optimal solution of the sorting problem.
+.SH "QDataStream & QGList::write ( QDataStream & s, QCollection::Item ) const \fC[virtual protected]\fR"
+Writes a collection/list item to the stream \fIs\fR and returns a reference to the stream.
+.PP
+The default implementation does nothing.
+.PP
+See also read().
+.SH "QGList::QGList () \fC[protected]\fR"
+For internal use only.
+.SH "QGList::QGList ( const QGList & list ) \fC[protected]\fR"
+For internal use only.
+.SH "QGList::~QGList () \fC[virtual protected]\fR"
+For internal use only.
+.SH "void QGList::append ( QCollection::Item d ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::at( uint index ) \fC[protected]\fR"
+For internal use only.
+.SH "int QGList::at () const \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::cfirst() const \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::clast() const \fC[protected]\fR"
+For internal use only.
+.SH "void QGList::clear () \fC[virtual protected]\fR"
+For internal use only.
+.PP
+Reimplemented from QCollection.
+.SH "uint QGList::contains ( QCollection::Item d ) const \fC[protected]\fR"
+For internal use only.
+.SH "uint QGList::containsRef ( QCollection::Item d ) const \fC[protected]\fR"
+For internal use only.
+.SH "uint QGList::count () const \fC[virtual]\fR"
+For internal use only.
+.PP
+Reimplemented from QCollection.
+.SH "QLNode * QGList::currentNode () const \fC[protected]\fR"
+For internal use only.
+.SH "int QGList::find ( QCollection::Item d, bool fromStart = TRUE ) \fC[protected]\fR"
+For internal use only.
+.SH "int QGList::findRef ( QCollection::Item d, bool fromStart = TRUE ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::first() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::get() const \fC[protected]\fR"
+For internal use only.
+.SH "void QGList::inSort ( QCollection::Item d ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::insertAt ( uint index, QCollection::Item d ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::last() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::next() \fC[protected]\fR"
+For internal use only.
+.SH "QGList& QGList::operator= ( const QGList & list ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::prev() \fC[protected]\fR"
+For internal use only.
+.SH "QDataStream & QGList::read ( QDataStream & s )"
+For internal use only.
+.SH "void QGList::relinkNode ( QLNode * n ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::remove ( QCollection::Item d = 0 ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::removeAt ( uint index ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::removeFirst () \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::removeLast () \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::removeNode ( QLNode * n ) \fC[protected]\fR"
+For internal use only.
+.SH "bool QGList::removeRef ( QCollection::Item d = 0 ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::take() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::takeAt( uint index ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::takeFirst() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::takeLast() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGList::takeNode( QLNode * n ) \fC[protected]\fR"
+For internal use only.
+.SH "void QGList::toVector ( QGVector * vector ) const \fC[protected]\fR"
+For internal use only.
+.SH "QDataStream & QGList::write ( QDataStream & s ) const"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qglist.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qglist.3qt) and the Qt
+version (2.3.2).

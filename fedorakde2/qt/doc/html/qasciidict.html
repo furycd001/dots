@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QAsciiDict Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QAsciiDict Class Reference</h1><br clear="all">
+<p>
+The QAsciiDict class is a template class that provides a dictionary based on <code>char*</code> keys.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qasciidict-h.html">qasciidict.h</a>&gt;</code>
+<p>
+Inherits <a href="qgdict.html">QGDict</a>.
+<p><a href="qasciidict-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#6b999e"><b>QAsciiDict</b></a> ( int size=17, bool caseSensitive=TRUE, bool copyKeys=TRUE ) </div>
+<li><div class="fn"><a href="#faf55c"><b>QAsciiDict</b></a> ( const QAsciiDict&lt;type&gt; &amp; dict ) </div>
+<li><div class="fn"><a href="#6ebe5e"><b>~QAsciiDict</b></a> () </div>
+<li><div class="fn">QAsciiDict&lt;type&gt;&amp; <a href="#6bd8b7"><b>operator=</b></a> ( const QAsciiDict&lt;type&gt; &amp; dict ) </div>
+<li><div class="fn">virtual uint <a href="#a07864"><b>count</b></a> () const</div>
+<li><div class="fn">uint <a href="#d8f201"><b>size</b></a> () const</div>
+<li><div class="fn">bool <a href="#e21158"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">void <a href="#17d3d1"><b>insert</b></a> ( const char * key, const type * item ) </div>
+<li><div class="fn">void <a href="#721824"><b>replace</b></a> ( const char * key, const type * item ) </div>
+<li><div class="fn">bool <a href="#d9c543"><b>remove</b></a> ( const char * key ) </div>
+<li><div class="fn">type* <a href="#93b4ad"><b>take</b></a> ( const char * key ) </div>
+<li><div class="fn">type* <a href="#2d0b74"><b>find</b></a> ( const char * key ) const</div>
+<li><div class="fn">type* <a href="#34c031"><b>operator[]</b></a> ( const char * key ) const</div>
+<li><div class="fn">virtual void <a href="#242c57"><b>clear</b></a> () </div>
+<li><div class="fn">void <a href="#c6ee68"><b>resize</b></a> ( uint newsize ) </div>
+<li><div class="fn">void <a href="#1c6f1b"><b>statistics</b></a> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QAsciiDict class is a template class that provides a dictionary based on <code>char*</code> keys.
+<p>
+QAsciiDict is implemented as a template class. Define a template instance
+QAsciiDict&lt;X&gt; to create a dictionary that operates on pointers to X, or X*.
+<p>A dictionary is a collection that associates an item with a key.
+The key is used for inserting and looking up an item.  QAsciiDict has
+<code>char*</code> keys.  QAsciiDict cannot handle Unicode keys, instead use the
+<a href="qdict.html">QDict</a> template which uses <a href="qstring.html">QString</a> keys.  A QDict has the same performace
+as a QAsciiDict.
+<p>The dictionary has very fast insertion and lookup.
+<p>Example:
+<pre>    #include &lt;qdict.h&gt;
+    #include &lt;stdio.h&gt;
+
+    void main()
+    {
+      // Creates a dictionary that maps char* ==&gt; char* (case insensitive)
+        <a href="qasciidict.html">QAsciiDict</a>&lt;char&gt; dict( 17, FALSE );
+
+        dict.<a href="#17d3d1">insert</a>( "France", "Paris" );
+        dict.<a href="#17d3d1">insert</a>( "Russia", "Moscow" );
+        dict.<a href="#17d3d1">insert</a>( "Norway", "Oslo" );
+
+        printf( "%s\n", dict["Norway"] );
+        printf( "%s\n", dict["FRANCE"] );
+        printf( "%s\n", dict["russia"] );
+
+        if ( !dict["Italy"] )
+            printf( "Italy not defined\n" );
+    }
+</pre>
+<p>Program output:
+<pre>        Oslo
+        Paris
+        Moscow
+        Italy not defined
+</pre>
+<p>The dictionary in our example maps <code>char*</code> keys to <code>char*</code> items.
+Note that the mapping is case insensitive (specified in the
+<a href="#6b999e">constructor</a>).
+QAsciiDict implements the <a href="#34c031">[] operator</a> to lookup an item.
+<p>QAsciiDict is implemented by <a href="qgdict.html">QGDict</a> as a hash array with a fixed number of
+entries. Each array entry points to a singly linked list of buckets, in
+which the dictionary items are stored.
+<p>When an item is inserted with a key, the key is converted (hashed) to
+an integer index into the hash array. The item is inserted before the
+first bucket in the list of buckets.
+<p>Looking up an item is normally very fast. The key is again hashed to an
+array index. Then QAsciiDict scans the list of buckets and returns the item
+found or null if the item was not found.  You cannot insert null pointers
+into a dictionary.
+<p>The size of the hash array is very important. In order to get good
+performance, you should use a suitably large <a href="primes.html">prime
+number</a>.  Suitable means equal to or larger than the maximum
+expected number of dictionary items.
+<p>Items with equal keys are allowed.  When inserting two items with the
+same key, only the last inserted item will be visible (last in, first out)
+until it is removed.
+<p>Example:
+<pre>    #include &lt;qdict.h&gt;
+    #include &lt;stdio.h&gt;
+
+    void main()
+    {
+      // Creates a dictionary that maps char* ==&gt; char* (case sensitive)
+        <a href="qasciidict.html">QAsciiDict</a>&lt;char&gt; dict;
+
+        dict.<a href="#17d3d1">insert</a>( "Germany", "Berlin" );
+        dict.<a href="#17d3d1">insert</a>( "Germany", "Bonn" );
+
+        printf( "%s\n", dict["Germany"] );
+        dict.<a href="#d9c543">remove</a>( "Germany" );       // Oct 3rd 1990
+        printf( "%s\n", dict["Germany"] );
+    }
+</pre>
+<p>Program output:
+<pre>        Bonn
+        Berlin
+</pre>
+<p>The <a href="qasciidictiterator.html">QAsciiDictIterator</a> class can traverse the dictionary contents, but only
+in an arbitrary order.  Multiple iterators may independently traverse the
+same dictionary.
+<p>Calling <a href="qcollection.html#a8ef9f">setAutoDelete</a>(TRUE) for a dictionary tells it to delete items
+that are removed .  The default is to not delete items when they are
+removed.
+<p>When inserting an item into a dictionary, only the pointer is copied, not
+the item itself. This is called a shallow copy. It is possible to make the
+dictionary copy all of the item's data (known as a deep copy) when an
+item is inserted.  <a href="#17d3d1">insert</a>() calls the virtual function
+<a href="qcollection.html#55065e">QCollection::newItem</a>() for the item to be inserted.
+Inherit a dictionary and reimplement it if you want deep copies.
+<p>When removing a dictionary item, the virtual function
+<a href="qcollection.html#8d78e7">QCollection::deleteItem</a>() is called.  QAsciiDict's default implementation
+is to delete the item if auto-deletion is enabled.
+<p>See also  <a href="qasciidictiterator.html">QAsciiDictIterator</a>, <a href="qdict.html">QDict</a>, <a href="qintdict.html">QIntDict</a>, <a href="qptrdict.html">QPtrDict</a> and <a href="collection.html">Collection Classes</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="faf55c"></a>QAsciiDict::QAsciiDict ( const QAsciiDict&lt;type&gt; &amp; dict )</h3>
+<p>Constructs a copy of <em>dict.</em>
+<p>Each item in <em>dict</em> are inserted into this dictionary.
+Only the pointers are copied (shallow copy).
+<h3 class="fn"><a name="6b999e"></a>QAsciiDict::QAsciiDict ( int size=17, bool caseSensitive=TRUE, bool copyKeys=TRUE )</h3>
+<p>Constructs a dictionary with the following properties:
+<p>Arguments:
+<ul>
+<li><em>size</em> is the size of the internal hash array.
+<li><em>caseSensitive</em> specifies whether to use case sensitive lookup or not.
+<li><em>copyKeys</em> specifies whether to copy the key strings.
+</ul>
+Setting <em>size</em> to a suitably large <a href="primes.html">prime
+number</a> (equal to or greater than the expected number of entries)
+makes the hash distribution better and hence the loopup faster.
+<p>Setting <em>caseSensitive</em> to TRUE will treat "abc" and "Abc" as different
+keys.  Setting it to FALSE will make the dictionary ignore case.
+Case insensitive comparison includes only the 26 standard letters A..Z,
+not French or German accents or Scandinavian letters.
+<p>Setting <em>copyKeys</em> to TRUE will make the dictionary copy the key
+when an item is inserted.  Setting it to FALSE will make the dictionary
+only use the pointer to the key.
+<h3 class="fn"><a name="6ebe5e"></a>QAsciiDict::~QAsciiDict ()</h3>
+<p>Removes all items from the dictionary and destroys it.
+<p>All iterators that access this dictionary will be reset.
+<p>See also  <a href="qcollection.html#a8ef9f">setAutoDelete</a>().
+<h3 class="fn">void <a name="242c57"></a>QAsciiDict::clear () <code>[virtual]</code></h3>
+<p>Removes all items from the dictionary.
+<p>The removed items are deleted if <a href="qcollection.html#a8ef9f">auto-deletion</a> is enabled.
+<p>All dictionary iterators that operate on dictionary are reset.
+<p>See also  <a href="#d9c543">remove</a>(), <a href="#93b4ad">take</a>() and <a href="qcollection.html#a8ef9f">setAutoDelete</a>().
+<p>Reimplemented from <a href="qcollection.html#e9c603">QCollection.</a>
+<h3 class="fn">uint <a name="a07864"></a>QAsciiDict::count () const <code>[virtual]</code></h3>
+<p>Returns the number of items in the dictionary.
+<p>See also  <a href="#e21158">isEmpty</a>().
+<p>Reimplemented from <a href="qcollection.html#2213fa">QCollection.</a>
+<h3 class="fn">type * <a name="2d0b74"></a>QAsciiDict::find ( const char * key ) const</h3>
+<p>Returns the item associated with <em>key,</em> or null if the key does not
+exist in the dictionary.
+<p>This function uses an internal hashing algorithm to optimize lookup.
+<p>If there are two or more items with equal keys, then the last inserted
+of these will be found.
+<p>Equivalent to the [] operator.
+<p>See also  <a href="#34c031">operator[]</a>().
+<h3 class="fn">void <a name="17d3d1"></a>QAsciiDict::insert ( const char * key, const type * item )</h3>
+<p>Inserts the <em>key</em> with the <em>item</em> into the dictionary.
+<p>The key does not have to be a unique dictionary key.  If multiple items
+are inserted with the same key, only the last item will be visible.
+<p>Null items are not allowed.
+<p>See also  <a href="#721824">replace</a>().
+<h3 class="fn">bool <a name="e21158"></a>QAsciiDict::isEmpty () const</h3>
+<p>Returns TRUE if the dictionary is empty, i.e. <a href="#a07864">count</a>() == 0. Returns FALSE
+otherwise.
+<p>See also  <a href="#a07864">count</a>().
+<h3 class="fn">QAsciiDict&lt;type&gt; &amp; <a name="6bd8b7"></a>QAsciiDict::operator= ( const QAsciiDict&lt;type&gt; &amp; dict )</h3>
+<p>Assigns <em>dict</em> to this dictionary and returns a reference to this
+dictionary.
+<p>This dictionary is first cleared, then each item in <em>dict</em> is inserted
+into this dictionary.
+Only the pointers are copied (shallow copy), unless <a href="qcollection.html#55065e">newItem</a>() has been
+reimplemented().
+<h3 class="fn">type * <a name="34c031"></a>QAsciiDict::operator[] ( const char * key ) const</h3>
+<p>Returns the item associated with <em>key,</em> or null if the key does not
+exist in the dictionary.
+<p>This function uses an internal hashing algorithm to optimize lookup.
+<p>If there are two or more items with equal keys, then the last inserted
+of these will be found.
+<p>Equivalent to the <a href="#2d0b74">find</a>() function.
+<p>See also  <a href="#2d0b74">find</a>().
+<h3 class="fn">bool <a name="d9c543"></a>QAsciiDict::remove ( const char * key )</h3>
+<p>Removes the item associated with <em>key</em> from the dictionary.
+Returns TRUE if successful, or FALSE if the key does not exist in the
+dictionary.
+<p>If there are two or more items with equal keys, then the last inserted
+of these will be removed.
+<p>The removed item is deleted if <a href="qcollection.html#a8ef9f">auto-deletion</a> is enabled.
+<p>All dictionary iterators that refer to the removed item will be set to
+point to the next item in the dictionary traversing order.
+<p>See also  <a href="#93b4ad">take</a>(), <a href="#242c57">clear</a>() and <a href="qcollection.html#a8ef9f">setAutoDelete</a>().
+<h3 class="fn">void <a name="721824"></a>QAsciiDict::replace ( const char * key, const type * item )</h3>
+<p>Replaces an item which has a key equal to <em>key</em> with <em>item.</em>
+<p>If the item does not already exist, it will be inserted.
+<p>Null items are not allowed.
+<p>Equivalent to:
+<pre>    <a href="qasciidict.html">QAsciiDict</a>&lt;char&gt; dict;
+        ...
+    if ( dict.<a href="#2d0b74">find</a>(key) )
+        dict.<a href="#d9c543">remove</a>( key );
+    dict.<a href="#17d3d1">insert</a>( key, item );
+</pre>
+<p>If there are two or more items with equal keys, then the last inserted
+of these will be replaced.
+<p>See also  <a href="#17d3d1">insert</a>().
+<h3 class="fn">void <a name="c6ee68"></a>QAsciiDict::resize ( uint newsize )</h3>
+<p>Changes the size of the hashtable the <em>newsize.</em>
+The contents of the dictionary are preserved,
+but all iterators on the dictionary become invalid.
+<h3 class="fn">uint <a name="d8f201"></a>QAsciiDict::size () const</h3>
+<p>Returns the size of the internal hash array (as specified in the
+constructor).
+<p>See also  <a href="#a07864">count</a>().
+<h3 class="fn">void <a name="1c6f1b"></a>QAsciiDict::statistics () const</h3>
+<p>Debugging-only function that prints out the dictionary distribution
+using <a href="qapplication.html#72e78c">qDebug</a>().
+<h3 class="fn">type * <a name="93b4ad"></a>QAsciiDict::take ( const char * key )</h3>
+<p>Takes the item associated with <em>key</em> out of the dictionary without
+deleting it (even if <a href="qcollection.html#a8ef9f">auto-deletion</a> is enabled).
+<p>If there are two or more items with equal keys, then the last inserted
+of these will be taken.
+<p>Returns a pointer to the item taken out, or null if the key does not
+exist in the dictionary.
+<p>All dictionary iterators that refer to the taken item will be set to
+point to the next item in the dictionary traversal order.
+<p>See also  <a href="#d9c543">remove</a>(), <a href="#242c57">clear</a>() and <a href="qcollection.html#a8ef9f">setAutoDelete</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

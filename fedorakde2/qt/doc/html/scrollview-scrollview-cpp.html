@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - scrollview/scrollview.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Scrollview</h1><br clear="all">
+
+  This example shows how to use Qt's Scrollview. This is a widget
+  which can contain a very large contents and is very optimized for
+  that. Also child widgets can be inserted.
+
+  <hr>
+
+  Implementation:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/scrollview/scrollview.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qscrollview.h"></a><a href="qscrollview-h.html">qscrollview.h</a>&gt;
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a name="qmenubar.h"></a><a href="qmenubar-h.html">qmenubar.h</a>&gt;
+#include &lt;<a name="qpopupmenu.h"></a><a href="qpopupmenu-h.html">qpopupmenu.h</a>&gt;
+#include &lt;<a name="qpushbutton.h"></a><a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qpixmap.h"></a><a href="qpixmap-h.html">qpixmap.h</a>&gt;
+#include &lt;<a name="qmessagebox.h"></a><a href="qmessagebox-h.html">qmessagebox.h</a>&gt;
+#include &lt;<a name="qlayout.h"></a><a href="qlayout-h.html">qlayout.h</a>&gt;
+#include &lt;<a name="qlabel.h"></a><a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a name="qmultilineedit.h"></a><a href="qmultilineedit-h.html">qmultilineedit.h</a>&gt;
+#include &lt;<a name="qsizegrip.h"></a><a href="qsizegrip-h.html">qsizegrip.h</a>&gt;
+#include &lt;stdlib.h&gt;
+
+static const int style_id       = 0x1000;
+static const int lw_id          = 0x2000;
+static const int mlw_id         = 0x4000;
+static const int mw_id          = 0x8000;
+static const int max_lw         = 16;
+static const int max_mlw        = 5;
+static const int max_mw         = 10;
+
+class BigShrinker : public QFrame {
+    Q_OBJECT
+public:
+    BigShrinker(<a name="QWidget"></a><a href="qwidget.html">QWidget</a>* parent) :
+        <a name="QFrame"></a><a href="qframe.html">QFrame</a>(parent)
+    {
+        setFrameStyle(QFrame::Box|QFrame::Sunken);
+        int h=35;
+        int b=0;
+        for (int y=0; y&lt;2000-h; y+=h+10) {
+            if (y == 0) {
+                <a name="QButton"></a><a href="qbutton.html">QButton</a>* q=new <a name="QPushButton"></a><a href="qpushbutton.html">QPushButton</a>("Quit", this);
+                connect(q, SIGNAL(clicked()), qApp, SLOT(quit()));
+            } else {
+                <a name="QString"></a><a href="qstring.html">QString</a> str;
+                if ( b &gt; 0 ) {
+                    str.<a name="sprintf"></a><a href="qstring.html#926f67">sprintf</a>("Button %d", b++);
+                } else {
+                    str = "I'm shrinking!";
+                    ++b;
+                }
+                (new QPushButton(str, this))-&gt;move(y/2,y);
+            }
+        }
+        resize(1000,2000);
+
+        startTimer(250);
+    }
+
+    void timerEvent(<a name="QTimerEvent"></a><a href="qtimerevent.html">QTimerEvent</a>*)
+    {
+        int w=width();
+        int h=height();
+        if ( w &gt; 50 ) w -= 1;
+        if ( h &gt; 50 ) h -= 2;
+        resize(w,h);
+    }
+
+    void mouseReleaseEvent(<a name="QMouseEvent"></a><a href="qmouseevent.html">QMouseEvent</a>* e)
+    {
+        emit clicked(e-&gt;<a name="x"></a><a href="qmouseevent.html#07ad9e">x</a>(), e-&gt;<a name="y"></a><a href="qmouseevent.html#b63f4c">y</a>());
+    }
+
+signals:
+    void clicked(int,int);
+};
+
+class BigMatrix : public QScrollView {
+    <a name="QMultiLineEdit"></a><a href="qmultilineedit.html">QMultiLineEdit</a> *dragging;
+public:
+    BigMatrix(<a href="qwidget.html">QWidget</a>* parent) :
+        <a name="QScrollView"></a><a href="qscrollview.html">QScrollView</a>(parent,"matrix", WNorthWestGravity),
+        bg("bg.ppm")
+    {
+        bg.<a name="load"></a><a href="qpixmap.html#a728cf">load</a>("bg.ppm");
+        resizeContents(400000,300000);
+
+        dragging = 0;
+    }
+
+    void viewportMousePressEvent(<a href="qmouseevent.html">QMouseEvent</a>* e)
+    {
+        int x, y;
+        viewportToContents( e-&gt;<a href="qmouseevent.html#07ad9e">x</a>(),  e-&gt;<a href="qmouseevent.html#b63f4c">y</a>(), x, y );
+        dragging = new <a href="qmultilineedit.html">QMultiLineEdit</a>(viewport(),"Another");
+        dragging-&gt;<a name="setText"></a><a href="qmultilineedit.html#3fd8c1">setText</a>("Thanks!");
+        dragging-&gt;<a name="resize"></a><a href="qwidget.html#ff9d07">resize</a>(100,100);
+        addChild(dragging, x, y);
+        showChild(dragging);
+    }
+
+    void viewportMouseReleaseEvent(<a href="qmouseevent.html">QMouseEvent</a>*)
+    {
+        dragging = 0;
+    }
+
+    void viewportMouseMoveEvent(<a href="qmouseevent.html">QMouseEvent</a>* e)
+    {
+        if ( dragging ) {
+            int mx, my;
+            viewportToContents( e-&gt;<a href="qmouseevent.html#07ad9e">x</a>(),  e-&gt;<a href="qmouseevent.html#b63f4c">y</a>(), mx, my );
+            int cx = childX(dragging);
+            int cy = childY(dragging);
+            int w = mx - cx + 1;
+            int h = my - cy + 1;
+            <a href="qstring.html">QString</a> msg;
+            msg.<a href="qstring.html#926f67">sprintf</a>("at (%d,%d) %d by %d",cx,cy,w,h);
+            dragging-&gt;<a href="qmultilineedit.html#3fd8c1">setText</a>(msg);
+            dragging-&gt;<a href="qwidget.html#ff9d07">resize</a>(w,h);
+        }
+    }
+
+protected:
+    void drawContents(<a name="QPainter"></a><a href="qpainter.html">QPainter</a>* p, int cx, int cy, int cw, int ch)
+    {
+        // The Background
+        if ( !bg.<a name="isNull"></a><a href="qpixmap.html#7803c4">isNull</a>() ) {
+            int rowheight=bg.<a name="height"></a><a href="qpixmap.html#d5bb33">height</a>();
+            int toprow=cy/rowheight;
+            int bottomrow=(cy+ch+rowheight-1)/rowheight;
+            int colwidth=bg.<a name="width"></a><a href="qpixmap.html#86dbc5">width</a>();
+            int leftcol=cx/colwidth;
+            int rightcol=(cx+cw+colwidth-1)/colwidth;
+            for (int r=toprow; r&lt;=bottomrow; r++) {
+                int py=r*rowheight;
+                for (int c=leftcol; c&lt;=rightcol; c++) {
+                    int px=c*colwidth;
+                    p-&gt;<a name="drawPixmap"></a><a href="qpainter.html#c64b89">drawPixmap</a>(px, py, bg);
+                }
+            }
+        } else {
+            p-&gt;<a name="fillRect"></a><a href="qpainter.html#5308a7">fillRect</a>(cx, cy, cw, ch, QColor(240,222,208));
+        }
+
+        // The Numbers
+        {
+            <a name="QFontMetrics"></a><a href="qfontmetrics.html">QFontMetrics</a> fm=p-&gt;<a name="fontMetrics"></a><a href="qpainter.html#73b2e5">fontMetrics</a>();
+            int rowheight=fm.<a name="lineSpacing"></a><a href="qfontmetrics.html#e6e380">lineSpacing</a>();
+            int toprow=cy/rowheight;
+            int bottomrow=(cy+ch+rowheight-1)/rowheight;
+            int colwidth=fm.<a name="width"></a><a href="qfontmetrics.html#3b6f39">width</a>("00000,000000 ")+3;
+            int leftcol=cx/colwidth;
+            int rightcol=(cx+cw+colwidth-1)/colwidth;
+            <a href="qstring.html">QString</a> str;
+            for (int r=toprow; r&lt;=bottomrow; r++) {
+                int py=r*rowheight;
+                for (int c=leftcol; c&lt;=rightcol; c++) {
+                    int px=c*colwidth;
+                    str.<a href="qstring.html#926f67">sprintf</a>("%d,%d",c,r);
+                    p-&gt;<a name="drawText"></a><a href="qpainter.html#0f088f">drawText</a>(px+3, py+fm.<a name="ascent"></a><a href="qfontmetrics.html#72c9fb">ascent</a>(), str);
+                }
+            }
+
+            // The Big Hint
+            if (leftcol&lt;10 &amp;&amp; toprow&lt;5) {
+                p-&gt;<a name="setFont"></a><a href="qpainter.html#998df2">setFont</a>(<a name="QFont"></a><a href="qfont.html">QFont</a>("Charter",30));
+                p-&gt;<a name="setPen"></a><a href="qpainter.html#0183e4">setPen</a>(red);
+                <a href="qstring.html">QString</a> text;
+                text.<a href="qstring.html#926f67">sprintf</a>("HINT:  Look at %d,%d",215000/colwidth,115000/rowheight);
+                p-&gt;<a href="qpainter.html#0f088f">drawText</a>(100,50,text);
+            }
+        }
+
+        // The Big X
+        {
+            if (cx+cw&gt;200000 &amp;&amp; cy+ch&gt;100000 &amp;&amp; cx&lt;230000 &amp;&amp; cy&lt;130000) {
+                // Note that some X server cannot even handle co-ordinates
+                // beyond about 4000, so you might not see this.
+                p-&gt;drawLine(200000,100000,229999,129999);
+                p-&gt;<a name="drawLine"></a><a href="qpainter.html#e3a489">drawLine</a>(229999,100000,200000,129999);
+
+                // X marks the spot!
+                p-&gt;<a href="qpainter.html#998df2">setFont</a>(<a href="qfont.html">QFont</a>("Charter",100));
+                p-&gt;<a href="qpainter.html#0183e4">setPen</a>(blue);
+                p-&gt;<a href="qpainter.html#0f088f">drawText</a>(215000-500,115000-100,1000,200,AlignCenter,"YOU WIN!!!!!");
+            }
+        }
+    }
+
+private:
+    <a name="QPixmap"></a><a href="qpixmap.html">QPixmap</a> bg;
+};
+
+class ScrollViewExample : public QWidget {
+    Q_OBJECT
+
+public:
+    ScrollViewExample(int technique, QWidget* parent=0, const char* name=0) :
+        <a href="qwidget.html">QWidget</a>(parent,name)
+    {
+        <a name="QMenuBar"></a><a href="qmenubar.html">QMenuBar</a>* menubar = new <a href="qmenubar.html">QMenuBar</a>(this);
+        CHECK_PTR( menubar );
+
+        <a name="QPopupMenu"></a><a href="qpopupmenu.html">QPopupMenu</a>* file = new <a href="qpopupmenu.html">QPopupMenu</a>();
+        CHECK_PTR( file );
+        menubar-&gt;<a name="insertItem"></a><a href="qmenudata.html#0076cb">insertItem</a>( "&amp;File", file );
+        file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Quit", qApp,  SLOT(quit()) );
+
+        vp_options = new <a href="qpopupmenu.html">QPopupMenu</a>();
+        CHECK_PTR( vp_options );
+        vp_options-&gt;<a name="setCheckable"></a><a href="qpopupmenu.html#672d77">setCheckable</a>( TRUE );
+        menubar-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;ScrollView", vp_options );
+        connect( vp_options, SIGNAL(activated(int)),
+            this, SLOT(doVPMenuItem(int)) );
+
+        vauto_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Vertical Auto" );
+        vaoff_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Vertical AlwaysOff" );
+        vaon_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Vertical AlwaysOn" );
+        vp_options-&gt;<a name="insertSeparator"></a><a href="qmenudata.html#e34b79">insertSeparator</a>();
+        hauto_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Horizontal Auto" );
+        haoff_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Horizontal AlwaysOff" );
+        haon_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Horizontal AlwaysOn" );
+        vp_options-&gt;<a href="qmenudata.html#e34b79">insertSeparator</a>();
+        corn_id = vp_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "cornerWidget" );
+
+        if (technique == 1) {
+            vp = new <a href="qscrollview.html">QScrollView</a>(this);
+            BigShrinker *bs = new BigShrinker(0);//(vp-&gt;<a name="viewport"></a><a href="qscrollview.html#26f2bf">viewport</a>());
+            vp-&gt;<a name="addChild"></a><a href="qscrollview.html#476636">addChild</a>(bs);
+            bs-&gt;<a name="setAcceptDrops"></a><a href="qwidget.html#8169cb">setAcceptDrops</a>(TRUE);
+            <a name="QObject::connect"></a><a href="qobject.html#7f8e37">QObject::connect</a>(bs, SIGNAL(clicked(int,int)),
+                            vp, SLOT(center(int,int)));
+        } else {
+            vp = new BigMatrix(this);
+            if ( technique == 3 )
+                vp-&gt;<a name="enableClipper"></a><a href="qscrollview.html#1ed884">enableClipper</a>(TRUE);
+            srand(1);
+            for (int i=0; i&lt;30; i++) {
+                <a href="qmultilineedit.html">QMultiLineEdit</a> *l = new <a href="qmultilineedit.html">QMultiLineEdit</a>(vp-&gt;<a href="qscrollview.html#26f2bf">viewport</a>(),"First");
+                l-&gt;<a href="qmultilineedit.html#3fd8c1">setText</a>("Drag out more of these.");
+                l-&gt;<a href="qwidget.html#ff9d07">resize</a>(100,100);
+                vp-&gt;<a href="qscrollview.html#476636">addChild</a>(l, rand()%800, rand()%10000);
+            }
+            vp-&gt;<a href="qscrollview.html#26f2bf">viewport</a>()-&gt;setBackgroundMode(NoBackground);
+        }
+
+        f_options = new <a href="qpopupmenu.html">QPopupMenu</a>();
+        CHECK_PTR( f_options );
+        f_options-&gt;<a href="qpopupmenu.html#672d77">setCheckable</a>( TRUE );
+        menubar-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;Frame", f_options );
+        connect( f_options, SIGNAL(activated(int)),
+            this, SLOT(doFMenuItem(int)) );
+
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "No frame", style_id );
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Box", style_id|QFrame::Box );
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Panel", style_id|QFrame::Panel );
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "WinPanel", style_id|QFrame::WinPanel );
+        f_options-&gt;<a href="qmenudata.html#e34b79">insertSeparator</a>();
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Plain", style_id|QFrame::Plain );
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Raised", style_id|QFrame::Raised );
+        f_laststyle = f_options-&gt;<a name="indexOf"></a><a href="qmenudata.html#49862d">indexOf</a>(
+            f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Sunken", style_id|QFrame::Sunken ));
+        f_options-&gt;<a href="qmenudata.html#e34b79">insertSeparator</a>();
+        lw_options = new <a href="qpopupmenu.html">QPopupMenu</a>;
+        CHECK_PTR( lw_options );
+        lw_options-&gt;<a href="qpopupmenu.html#672d77">setCheckable</a>( TRUE );
+        for (int lw = 1; lw &lt;= max_lw; lw++) {
+            <a href="qstring.html">QString</a> str;
+            str.<a href="qstring.html#926f67">sprintf</a>("%d pixels", lw);
+            lw_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( str, lw_id | lw );
+        }
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Line width", lw_options );
+        connect( lw_options, SIGNAL(activated(int)),
+            this, SLOT(doFMenuItem(int)) );
+        mlw_options = new <a href="qpopupmenu.html">QPopupMenu</a>;
+        CHECK_PTR( mlw_options );
+        mlw_options-&gt;<a href="qpopupmenu.html#672d77">setCheckable</a>( TRUE );
+        for (int mlw = 0; mlw &lt;= max_mlw; mlw++) {
+            <a href="qstring.html">QString</a> str;
+            str.<a href="qstring.html#926f67">sprintf</a>("%d pixels", mlw);
+            mlw_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( str, mlw_id | mlw );
+        }
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Midline width", mlw_options );
+        connect( mlw_options, SIGNAL(activated(int)),
+            this, SLOT(doFMenuItem(int)) );
+        mw_options = new <a href="qpopupmenu.html">QPopupMenu</a>;
+        CHECK_PTR( mw_options );
+        mw_options-&gt;<a href="qpopupmenu.html#672d77">setCheckable</a>( TRUE );
+        for (int mw = 0; mw &lt;= max_mw; mw++) {
+            <a href="qstring.html">QString</a> str;
+            str.<a href="qstring.html#926f67">sprintf</a>("%d pixels", mw);
+            mw_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( str, mw_id | mw );
+        }
+        f_options-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Margin width", mw_options );
+        connect( mw_options, SIGNAL(activated(int)),
+            this, SLOT(doFMenuItem(int)) );
+
+        setVPMenuItems();
+        setFMenuItems();
+
+        <a name="QVBoxLayout"></a><a href="qvboxlayout.html">QVBoxLayout</a>* vbox = new <a href="qvboxlayout.html">QVBoxLayout</a>(this);
+        vbox-&gt;<a name="setMenuBar"></a><a href="qlayout.html#6d51f1">setMenuBar</a>(menubar);
+        menubar-&gt;<a name="setSeparator"></a><a href="qmenubar.html#815978">setSeparator</a>(QMenuBar::InWindowsStyle);
+        vbox-&gt;<a name="addWidget"></a><a href="qboxlayout.html#ebba99">addWidget</a>(vp);
+        vbox-&gt;<a name="activate"></a><a href="qlayout.html#1cb33d">activate</a>();
+
+        corner = new <a name="QSizeGrip"></a><a href="qsizegrip.html">QSizeGrip</a>(this);
+        corner-&gt;<a name="hide"></a><a href="qwidget.html#410481">hide</a>();
+    }
+
+private slots:
+    void doVPMenuItem(int id)
+    {
+        if (id == vauto_id ) {
+            vp-&gt;<a name="setVScrollBarMode"></a><a href="qscrollview.html#817b47">setVScrollBarMode</a>(QScrollView::Auto);
+        } else if (id == vaoff_id) {
+            vp-&gt;<a href="qscrollview.html#817b47">setVScrollBarMode</a>(QScrollView::AlwaysOff);
+        } else if (id == vaon_id) {
+            vp-&gt;<a href="qscrollview.html#817b47">setVScrollBarMode</a>(QScrollView::AlwaysOn);
+        } else if (id == hauto_id) {
+            vp-&gt;<a name="setHScrollBarMode"></a><a href="qscrollview.html#aaf795">setHScrollBarMode</a>(QScrollView::Auto);
+        } else if (id == haoff_id) {
+            vp-&gt;<a href="qscrollview.html#aaf795">setHScrollBarMode</a>(QScrollView::AlwaysOff);
+        } else if (id == haon_id) {
+            vp-&gt;<a href="qscrollview.html#aaf795">setHScrollBarMode</a>(QScrollView::AlwaysOn);
+        } else if (id == corn_id) {
+            bool corn = !vp-&gt;<a name="cornerWidget"></a><a href="qscrollview.html#37c56f">cornerWidget</a>();
+            vp-&gt;<a name="setCornerWidget"></a><a href="qscrollview.html#d72a9f">setCornerWidget</a>(corn ? corner : 0);
+        } else {
+            return; // Not for us to process.
+        }
+        setVPMenuItems();
+    }
+
+    void setVPMenuItems()
+    {
+        <a name="QScrollView::ScrollBarMode"></a><a href="qscrollview.html#ScrollBarMode">QScrollView::ScrollBarMode</a> vm = vp-&gt;<a name="vScrollBarMode"></a><a href="qscrollview.html#8298bf">vScrollBarMode</a>();
+        vp_options-&gt;<a name="setItemChecked"></a><a href="qmenudata.html#319c05">setItemChecked</a>( vauto_id, vm == QScrollView::Auto );
+        vp_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( vaoff_id, vm == QScrollView::AlwaysOff );
+        vp_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( vaon_id, vm == QScrollView::AlwaysOn );
+
+        <a href="qscrollview.html#ScrollBarMode">QScrollView::ScrollBarMode</a> hm = vp-&gt;<a name="hScrollBarMode"></a><a href="qscrollview.html#e383fb">hScrollBarMode</a>();
+        vp_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( hauto_id, hm == QScrollView::Auto );
+        vp_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( haoff_id, hm == QScrollView::AlwaysOff );
+        vp_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( haon_id, hm == QScrollView::AlwaysOn );
+
+        vp_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( corn_id, !!vp-&gt;<a href="qscrollview.html#37c56f">cornerWidget</a>() );
+    }
+
+    void doFMenuItem(int id)
+    {
+        if (id &amp; style_id) {
+            int sty;
+
+            if (id == style_id) {
+                sty = 0;
+            } else if (id &amp; QFrame::MShape) {
+                sty = vp-&gt;<a name="frameStyle"></a><a href="qframe.html#1dc726">frameStyle</a>()&amp;QFrame::MShadow;
+                sty = (sty ? sty : QFrame::Plain) | (id&amp;QFrame::MShape);
+            } else {
+                sty = vp-&gt;<a href="qframe.html#1dc726">frameStyle</a>()&amp;QFrame::MShape;
+                sty = (sty ? sty : QFrame::Box) | (id&amp;QFrame::MShadow);
+            }
+            vp-&gt;<a name="setFrameStyle"></a><a href="qframe.html#558f79">setFrameStyle</a>(sty);
+        } else if (id &amp; lw_id) {
+            vp-&gt;<a name="setLineWidth"></a><a href="qframe.html#b76184">setLineWidth</a>(id&amp;~lw_id);
+        } else if (id &amp; mlw_id) {
+            vp-&gt;<a name="setMidLineWidth"></a><a href="qframe.html#1e32b9">setMidLineWidth</a>(id&amp;~mlw_id);
+        } else {
+            vp-&gt;<a name="setMargin"></a><a href="qframe.html#b11d00">setMargin</a>(id&amp;~mw_id);
+        }
+
+        vp-&gt;<a name="update"></a><a href="qwidget.html#f3f721">update</a>();
+        setFMenuItems();
+    }
+
+    void setFMenuItems()
+    {
+        int sty = vp-&gt;<a href="qframe.html#1dc726">frameStyle</a>();
+
+        f_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( style_id, !sty );
+
+        for (int i=1; i &lt;= f_laststyle; i++) {
+            int id = f_options-&gt;<a name="idAt"></a><a href="qpopupmenu.html#6776f6">idAt</a>(i);
+            if (id &amp; QFrame::MShape)
+                f_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( id,
+                    ((id&amp;QFrame::MShape) == (sty&amp;QFrame::MShape)) );
+            else
+                f_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( id,
+                    ((id&amp;QFrame::MShadow) == (sty&amp;QFrame::MShadow)) );
+        }
+
+        for (int lw=1; lw&lt;=max_lw; lw++)
+            lw_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( lw_id|lw, vp-&gt;<a name="lineWidth"></a><a href="qframe.html#63cf95">lineWidth</a>() == lw );
+
+        for (int mlw=0; mlw&lt;=max_mlw; mlw++)
+            mlw_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( mlw_id|mlw, vp-&gt;<a name="midLineWidth"></a><a href="qframe.html#010489">midLineWidth</a>() == mlw );
+
+        for (int mw=0; mw&lt;=max_mw; mw++)
+            mw_options-&gt;<a href="qmenudata.html#319c05">setItemChecked</a>( mw_id|mw, vp-&gt;<a name="margin"></a><a href="qframe.html#cb5472">margin</a>() == mw );
+    }
+
+private:
+    <a href="qscrollview.html">QScrollView</a>* vp;
+    <a href="qpopupmenu.html">QPopupMenu</a>* vp_options;
+    <a href="qpopupmenu.html">QPopupMenu</a>* f_options;
+    <a href="qpopupmenu.html">QPopupMenu</a>* lw_options;
+    <a href="qpopupmenu.html">QPopupMenu</a>* mlw_options;
+    <a href="qpopupmenu.html">QPopupMenu</a>* mw_options;
+    <a href="qsizegrip.html">QSizeGrip</a>* corner;
+
+    int vauto_id, vaoff_id, vaon_id,
+        hauto_id, haoff_id, haon_id,
+        corn_id;
+
+    int f_laststyle;
+};
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    ScrollViewExample ve1(1,0,"ve1");
+    ScrollViewExample ve2(2,0,"ve2");
+    ScrollViewExample ve3(3,0,"ve3");
+    ve1.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Scrollviews");
+    ve1.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+    ve2.<a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Scrollviews");
+    ve2.<a href="qwidget.html#200ee5">show</a>();
+    ve3.<a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Scrollviews");
+    ve3.<a href="qwidget.html#200ee5">show</a>();
+
+    <a href="qobject.html#7f8e37">QObject::connect</a>(qApp, SIGNAL(lastWindowClosed()), qApp, SLOT(quit()));
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+
+#include "scrollview.moc"
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

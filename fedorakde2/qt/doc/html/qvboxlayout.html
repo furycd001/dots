@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QVBoxLayout Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QVBoxLayout Class Reference</h1><br clear="all">
+<p>
+The QVBoxLayout class lines up widgets vertically.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qlayout-h.html">qlayout.h</a>&gt;</code>
+<p>
+Inherits <a href="qboxlayout.html">QBoxLayout</a>.
+<p><a href="qvboxlayout-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#add5b2"><b>QVBoxLayout</b></a> ( QWidget * parent, int border=0, int space = -1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#727c01"><b>QVBoxLayout</b></a> ( QLayout * parentLayout, int space = -1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#6c8d5e"><b>QVBoxLayout</b></a> ( int space = -1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#910bf3"><b>~QVBoxLayout</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QVBoxLayout class lines up widgets vertically.
+<p>
+This class provides an easier way to construct vertical box layout
+objects.  See <a href="qboxlayout.html">QBoxLayout</a> for more details.
+<p>The simplest way to use this class is:
+<p><pre>     <a href="qboxlayout.html">QBoxLayout</a> * l = new <a href="qvboxlayout.html">QVBoxLayout</a>( widget );
+     l-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( aWidget );
+     l-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( anotherWidget );
+</pre>
+<p>See also  <a href="qhboxlayout.html">QHBoxLayout</a>, <a href="qgridlayout.html">QGridLayout</a> and <a href="layout.html">Layout overview documentation</a>
+<p>Examples:
+ <a href="layout-layout-cpp.html#QVBoxLayout">layout/layout.cpp</a>
+ <a href="i18n-main-cpp.html#QVBoxLayout">i18n/main.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#QVBoxLayout">scrollview/scrollview.cpp</a>
+ <a href="customlayout-main-cpp.html#QVBoxLayout">customlayout/main.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="727c01"></a>QVBoxLayout::QVBoxLayout ( <a href="qlayout.html">QLayout</a> * parentLayout, int space = -1, const char * name=0 )</h3>
+<p>Constructs a new vertical box and adds it to <em>parentLayout.</em>
+<h3 class="fn"><a name="add5b2"></a>QVBoxLayout::QVBoxLayout ( <a href="qwidget.html">QWidget</a> * parent, int border=0, int space = -1, const char * name=0 )</h3>
+<p>Constructs a new top-level vertical box.
+<h3 class="fn"><a name="6c8d5e"></a>QVBoxLayout::QVBoxLayout ( int space = -1, const char * name=0 )</h3>
+<p>Constructs a new vertical box. You have to add it to another
+layout.
+<h3 class="fn"><a name="910bf3"></a>QVBoxLayout::~QVBoxLayout ()</h3>
+<p>Destructs this box.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

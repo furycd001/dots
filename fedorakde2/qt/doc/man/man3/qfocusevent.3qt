@@ -1,0 +1,112 @@
+'\" t
+.TH QFocusEvent 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFocusEvent \- Event parameters for widget focus events
+.br
+.PP
+\fC#include <qevent.h>\fR
+.PP
+Inherits QEvent.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQFocusEvent\fR ( Type type ) "
+.br
+.ti -1c
+.BI "bool \fBgotFocus\fR () const"
+.br
+.ti -1c
+.BI "bool \fBlostFocus\fR () const"
+.br
+.ti -1c
+.BI "enum \fBReason\fR { Mouse, Tab, ActiveWindow, Popup, Shortcut, Other }"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "Reason \fBreason\fR () "
+.br
+.ti -1c
+.BI "void \fBsetReason\fR ( Reason reason ) "
+.br
+.ti -1c
+.BI "void \fBresetReason\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QFocusEvent class contains event parameters for widget focus events.
+.PP
+Focus events are sent to widgets when the keyboard input focus changes. This happens due to either a mouse action, the tab key, the window system, a keyboard shortcut or some other application specific issue. The actual reason for a specific event is obtained by reason() in the appropriate event handler.
+.PP
+The event handlers QWidget::focusInEvent() and QWidget::focusOutEvent() receive focus events.
+.PP
+See also QWidget::setFocus() and QWidget::setFocusPolicy().
+.PP
+Examples:
+.(l
+qmag/qmag.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QFocusEvent::Reason"
+.TP
+\fCMouse\fR - the focus change happened because of a mouse action
+.TP
+\fCTab\fR - the focus change happened because of a Tab press (possibly including shift/control)
+.TP
+\fCActiveWindow\fR - the window system made this window (in)active
+.TP
+\fCPopup\fR - the application opened/closed a popup that grabbed/released focus
+.TP
+\fCShortcut\fR - the focus change happened because of a keyboard shortcut
+.TP
+\fCOther\fR - any other reason, usually application-specific
+.PP
+See the focus overview for more about focus.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFocusEvent::QFocusEvent ( Type type )"
+Constructs a focus event object.
+.PP
+The \fItype\fR parameter must be either \fIQEvent::FocusIn\fR or \fIQEvent::FocusOut.\fR
+.SH "bool QFocusEvent::gotFocus () const"
+Returns TRUE if the widget received the text input focus.
+.SH "bool QFocusEvent::lostFocus () const"
+Returns TRUE if the widget lost the text input focus.
+.SH "QFocusEvent::Reason QFocusEvent::reason() \fC[static]\fR"
+Returns the reason for this focus event.
+.PP
+See also setReason().
+.SH "void QFocusEvent::resetReason () \fC[static]\fR"
+Resets the reason for all future focus events to the value before the last setReason() call.
+.PP
+See also reason() and setReason().
+.SH "void QFocusEvent::setReason ( Reason reason ) \fC[static]\fR"
+Sets the reason for all future focus events to \fIreason.\fR
+.PP
+See also  reason() and resetReason().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfocusevent.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfocusevent.3qt) and the Qt
+version (2.3.2).

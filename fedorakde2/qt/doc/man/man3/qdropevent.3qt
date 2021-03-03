@@ -1,0 +1,182 @@
+'\" t
+.TH QDropEvent 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDropEvent \- Event sent when a drag-and-drop is completed
+.br
+.PP
+\fC#include <qevent.h>\fR
+.PP
+Inherits QEvent and QMimeSource.
+.PP
+Inherited by QDragMoveEvent.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDropEvent\fR ( const QPoint & " "pos" ", Type " "typ" "=Drop ) "
+.br
+.ti -1c
+.BI "const QPoint& \fBpos\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisAccepted\fR () const"
+.br
+.ti -1c
+.BI "void \fBignore\fR () "
+.br
+.ti -1c
+.BI "bool \fBisActionAccepted\fR () const"
+.br
+.ti -1c
+.BI "void \fBacceptAction\fR ( bool " "y" "=TRUE ) "
+.br
+.ti -1c
+.BI "enum \fBAction\fR { Copy, Link, Move, Private, UserAction=100 }"
+.br
+.ti -1c
+.BI "void \fBsetAction\fR ( Action a ) "
+.br
+.ti -1c
+.BI "Action \fBaction\fR () const"
+.br
+.ti -1c
+.BI "QWidget* \fBsource\fR () const"
+.br
+.ti -1c
+.BI "virtual const char* \fBformat\fR ( int " "n" " = 0 ) const"
+.br
+.ti -1c
+.BI "virtual QByteArray \fBencodedData\fR ( const char * ) const"
+.br
+.ti -1c
+.BI "virtual bool \fBprovides\fR ( const char * ) const"
+.br
+.ti -1c
+.BI "QByteArray data ( const char * f ) const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "void \fBsetPoint\fR ( const QPoint & np ) "
+.br
+.in -1c
+.SH DESCRIPTION
+Event sent when a drag-and-drop is completed.
+.PP
+When a widget accepts drop events, it will receive this event if it has accepted the most recent QDragEnterEvent or QDragMoveEvent sent to it.
+.PP
+The widget should use data() to extract data in an appropriate format.
+.PP
+Examples:
+.(l
+iconview/main.cpp desktop/desktop.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QDropEvent::Action"
+This type describes the action which a source requests that a target perform with dropped data. The values are:
+.TP
+\fCCopy\fR - the default action. The source simply users the data provided in the operation.
+.TP
+\fCLink.\fR The source should somehow create a link to the location specified by the data.
+.TP
+\fCMove.\fR The source should somehow move the object from the location specified by the data to a new location.
+.TP
+\fCPrivate.\fR The target has special knowledge of the MIME type, which the source should respond to similar to a Copy.
+.TP
+\fCUserAction.\fR The source and target can co-operate using special actions. This feature is not supported in Qt at this time.
+.PP
+The Link and Move actions only makes sense if the data is a reference, such as text/uri-list file lists (see QUriDrag).
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDropEvent::QDropEvent ( const QPoint & pos, Type typ=Drop )"
+Constructs a drop event that drops a drop of type \fItyp\fR on point \fIpos.\fR
+.SH "void QDropEvent::accept ( bool y=TRUE=TRUE )"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Call this to indicate whether the event provided data which your widget processed. To get the data, use encodedData(), or preferably, the decode() methods of existing QDragObject subclasses, such as QTextDrag::decode(), or your own subclasses.
+.PP
+\fBWarning:\fR To accept or reject the drop, call acceptAction(), not this function. This function indicates whether you processed the event at all.
+.PP
+See also acceptAction().
+.PP
+Examples:
+.(l
+desktop/desktop.cpp
+.)l
+.SH "void QDropEvent::acceptAction ( bool y=TRUE=TRUE )"
+Call this to indicate that the action described by action() is accepted, not merely the default copy action. If you call acceptAction(TRUE), there is no need to also call accept(TRUE).
+.SH "Action QDropEvent::action () const"
+Returns the Action which the target is requesting be performed with the data. If your application understands the action and can process the supplied data, call acceptAction(); if your application can process the supplied data but can only perform the Copy action, call accept().
+.SH "QByteArray QDropEvent::data ( const char * f ) const"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Use QDropEvent::encodedData().
+.SH "QByteArray QDropEvent::encodedData ( const char * format ) const \fC[virtual]\fR"
+Returns a byte array containing the payload data of this drag, in \fIformat.\fR
+.PP
+data() normally needs to get the data from the drag source, which is potentially very slow, so it's advisable to call this function only if you're sure that you will need the data in \fIformat.\fR
+.PP
+The resulting data will have a size of 0 if the format was not available.
+.PP
+See also format() and QByteArray::size().
+.PP
+Reimplemented from QMimeSource.
+.SH "const char* QDropEvent::format ( int n = 0 ) const \fC[virtual]\fR"
+Returns a string describing one of the available data types for this drag. Common examples are "text/plain" and "image/gif". If \fIn\fR is less than zero or greater than the number of available data types, format() returns 0.
+.PP
+This function is provided mainly for debugging. Most drop targets will use provides().
+.PP
+See also data() and provides().
+.PP
+Examples:
+.(l
+iconview/main.cpp
+.)l
+.PP
+Reimplemented from QMimeSource.
+.SH "void QDropEvent::ignore ()"
+The opposite of accept().
+.SH "bool QDropEvent::isAccepted () const"
+Returns TRUE if the drop target accepts the event.
+.SH "bool QDropEvent::isActionAccepted () const"
+Returns TRUE if the drop action was accepted by the drop site, and FALSE if not.
+.SH "const QPoint& QDropEvent::pos () const"
+Returns the position where the drop was made.
+.SH "bool QDropEvent::provides ( const char * mimeType ) const \fC[virtual]\fR"
+Returns TRUE if this event provides format \fImimeType\fR or FALSE if it does not.
+.PP
+See also data().
+.PP
+Reimplemented from QMimeSource.
+.SH "void QDropEvent::setAction ( Action a )"
+Sets the action. This is used internally, you should not need to call this in your code - the \fIsource\fR decides the action, not the target.
+.SH "void QDropEvent::setPoint ( const QPoint & np )"
+Sets the drop to happen at \fInp.\fR You do normally not need to use this as it will be set internally before your widget receives the drop event.
+.SH "QWidget* QDropEvent::source () const"
+If the source of the drag operation is a widget in this application, this function returns that source, otherwise 0. The source of the operation is the first parameter to to drag object subclass.
+.PP
+This is useful if your widget needs special behavior when dragging to itself, etc.
+.PP
+See QDragObject::QDragObject() and subclasses.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdropevent.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdropevent.3qt) and the Qt
+version (2.3.2).

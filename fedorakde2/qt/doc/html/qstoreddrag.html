@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QStoredDrag Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QStoredDrag Class Reference</h1><br clear="all">
+<p>
+Simple stored-value drag object for arbitrary MIME data.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qdragobject-h.html">qdragobject.h</a>&gt;</code>
+<p>
+Inherits <a href="qdragobject.html">QDragObject</a>.
+<p>Inherited by <a href="qcolordrag.html">QColorDrag</a> and <a href="quridrag.html">QUriDrag</a>.
+<p><a href="qstoreddrag-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#a2e891"><b>QStoredDrag</b></a> ( const char * mimeType, QWidget * dragSource = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#f014a8"><b>~QStoredDrag</b></a> () </div>
+<li><div class="fn">virtual void <a href="#a2472a"><b>setEncodedData</b></a> ( const QByteArray &amp; ) </div>
+<li><div class="fn">virtual QByteArray <a href="#c60694"><b>encodedData</b></a> ( const char * ) const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Simple stored-value drag object for arbitrary MIME data.
+<p>
+When a block of data only has one representation, you can use
+a QStoredDrag to hold it.
+<p>For detailed information about drag-and-drop, see the <a href="qdragobject.html">QDragObject</a> class.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a2e891"></a>QStoredDrag::QStoredDrag ( const char * mimeType, <a href="qwidget.html">QWidget</a> * dragSource = 0, const char * name = 0 )</h3>
+<p>Constructs a QStoredDrag.  The parameters are passed
+to the <a href="qdragobject.html">QDragObject</a> constructor, and the format is set to <em>mimeType.</em>
+<p>The data will be unset.  Use <a href="#a2472a">setEncodedData</a>() to set it.
+<h3 class="fn"><a name="f014a8"></a>QStoredDrag::~QStoredDrag ()</h3>
+<p>Destructs the drag object and frees up all allocated resources.
+<h3 class="fn"><a href="qbytearray.html">QByteArray</a> <a name="c60694"></a>QStoredDrag::encodedData ( const char * m ) const <code>[virtual]</code></h3>
+<p>Returns the stored data.
+<p>See also  <a href="#a2472a">setEncodedData</a>().
+<h3 class="fn">const char * <a name="5bcf40"></a>QStoredDrag::format ( int i ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qmimesource.html#17ce96">QMimeSource.</a>
+<h3 class="fn">void <a name="a2472a"></a>QStoredDrag::setEncodedData ( const <a href="qbytearray.html">QByteArray</a> &amp; encodedData ) <code>[virtual]</code></h3>
+<p>Sets the encoded data of this drag object to <em>encodedData.</em>  The
+encoded data is what's delivered to the drop sites, and must be in a
+strictly defined and portable format.
+<p>The drag object can't be dropped (by the user) until this function
+has been called.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

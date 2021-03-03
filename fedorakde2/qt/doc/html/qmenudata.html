@@ -1,0 +1,505 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QMenuData Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QMenuData Class Reference</h1><br clear="all">
+<p>
+The QMenuData class is a base class for <a href="qmenubar.html">QMenuBar</a> and <a href="qpopupmenu.html">QPopupMenu</a>.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qmenudata-h.html">qmenudata.h</a>&gt;</code>
+<p>Inherited by <a href="qmenubar.html">QMenuBar</a> and <a href="qpopupmenu.html">QPopupMenu</a>.
+<p><a href="qmenudata-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#33c0d1"><b>QMenuData</b></a> () </div>
+<li><div class="fn">virtual <a href="#ef0b06"><b>~QMenuData</b></a> () </div>
+<li><div class="fn">uint <a href="#e3e249"><b>count</b></a> () const</div>
+<li><div class="fn">int <a href="#a0155e"><b>insertItem</b></a> ( const QString &amp; text, const QObject * receiver, const char * member, int accel = 0, int id = -1, int index = -1 ) </div>
+<li><div class="fn">int <a href="#033c64"><b>insertItem</b></a> ( const QIconSet &amp; icon, const QString &amp; text, const QObject * receiver, const char * member, int accel = 0, int id = -1, int index = -1 ) </div>
+<li><div class="fn">int <a href="#c087c8"><b>insertItem</b></a> ( const QPixmap &amp; pixmap, const QObject * receiver, const char * member, int accel = 0, int id = -1, int index = -1 ) </div>
+<li><div class="fn">int <a href="#e33289"><b>insertItem</b></a> ( const QIconSet &amp; icon, const QPixmap &amp; pixmap, const QObject * receiver, const char * member, int accel = 0, int id = -1, int index = -1 ) </div>
+<li><div class="fn">int <a href="#2b0523"><b>insertItem</b></a> ( const QString &amp; text, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#1fb84f"><b>insertItem</b></a> ( const QIconSet &amp; icon, const QString &amp; text, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#0076cb"><b>insertItem</b></a> ( const QString &amp; text, QPopupMenu * popup, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#549faf"><b>insertItem</b></a> ( const QIconSet &amp; icon, const QString &amp; text, QPopupMenu * popup, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#865195"><b>insertItem</b></a> ( const QPixmap &amp; pixmap, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#deddb9"><b>insertItem</b></a> ( const QIconSet &amp; icon, const QPixmap &amp; pixmap, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#c8759a"><b>insertItem</b></a> ( const QPixmap &amp; pixmap, QPopupMenu * popup, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#eab16a"><b>insertItem</b></a> ( const QIconSet &amp; icon, const QPixmap &amp; pixmap, QPopupMenu * popup, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#e53049"><b>insertItem</b></a> ( QWidget * widget, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#d242f5"><b>insertItem</b></a> ( const QIconSet &amp; icon, QCustomMenuItem * custom, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#230967"><b>insertItem</b></a> ( QCustomMenuItem * custom, int id=-1, int index=-1 ) </div>
+<li><div class="fn">int <a href="#e34b79"><b>insertSeparator</b></a> ( int index=-1 ) </div>
+<li><div class="fn">void <a href="#001b53"><b>removeItem</b></a> ( int id ) </div>
+<li><div class="fn">void <a href="#c4b64b"><b>removeItemAt</b></a> ( int index ) </div>
+<li><div class="fn">void <a href="#4bd5e3"><b>clear</b></a> () </div>
+<li><div class="fn">int <a href="#b9922c"><b>accel</b></a> ( int id ) const</div>
+<li><div class="fn">void <a href="#58b23b"><b>setAccel</b></a> ( int key, int id ) </div>
+<li><div class="fn">QIconSet* <a href="#a4f737"><b>iconSet</b></a> ( int id ) const</div>
+<li><div class="fn">QString <a href="#3222d1"><b>text</b></a> ( int id ) const</div>
+<li><div class="fn">QPixmap* <a href="#996263"><b>pixmap</b></a> ( int id ) const</div>
+<li><div class="fn">void <a href="#88eb55"><b>setWhatsThis</b></a> ( int id, const QString &amp; ) </div>
+<li><div class="fn">QString <a href="#a27087"><b>whatsThis</b></a> ( int id ) const</div>
+<li><div class="fn">void <a href="#b8c2e0"><b>changeItem</b></a> ( int id, const QString &amp; text ) </div>
+<li><div class="fn">void <a href="#b3774c"><b>changeItem</b></a> ( int id, const QPixmap &amp; pixmap ) </div>
+<li><div class="fn">void <a href="#10aed4"><b>changeItem</b></a> ( int id, const QIconSet &amp; icon, const QString &amp; text ) </div>
+<li><div class="fn">void <a href="#ba9daa"><b>changeItem</b></a> ( int id, const QIconSet &amp; icon, const QPixmap &amp; pixmap ) </div>
+<li><div class="fn">void changeItem ( const QString &amp; text, int id ) <em>(obsolete)</em></div>
+<li><div class="fn">void changeItem ( const QPixmap &amp; pixmap, int id ) <em>(obsolete)</em></div>
+<li><div class="fn">void changeItem ( const QIconSet &amp; icon, const QString &amp; text, int id ) <em>(obsolete)</em></div>
+<li><div class="fn">bool <a href="#f5c40c"><b>isItemEnabled</b></a> ( int id ) const</div>
+<li><div class="fn">void <a href="#c9a23c"><b>setItemEnabled</b></a> ( int id, bool enable ) </div>
+<li><div class="fn">bool <a href="#def7a0"><b>isItemChecked</b></a> ( int id ) const</div>
+<li><div class="fn">void <a href="#319c05"><b>setItemChecked</b></a> ( int id, bool check ) </div>
+<li><div class="fn">virtual void <a href="#f532d3"><b>updateItem</b></a> ( int id ) </div>
+<li><div class="fn">int <a href="#49862d"><b>indexOf</b></a> ( int id ) const</div>
+<li><div class="fn">int <a href="#75b348"><b>idAt</b></a> ( int index ) const</div>
+<li><div class="fn">virtual void <a href="#505058"><b>setId</b></a> ( int index, int id ) </div>
+<li><div class="fn">bool <a href="#d7f757"><b>connectItem</b></a> ( int id, const QObject * receiver, const char * member ) </div>
+<li><div class="fn">bool <a href="#bc8ae2"><b>disconnectItem</b></a> ( int id, const QObject * receiver, const char * member ) </div>
+<li><div class="fn">bool <a href="#89eb5b"><b>setItemParameter</b></a> ( int id, int param ) </div>
+<li><div class="fn">int <a href="#8f3064"><b>itemParameter</b></a> ( int id ) const</div>
+<li><div class="fn">QMenuItem* <a href="#cdee00"><b>findItem</b></a> ( int id ) const</div>
+<li><div class="fn">QMenuItem* <a href="#dbd987"><b>findItem</b></a> ( int id, QMenuData ** parent ) const</div>
+<li><div class="fn">void <a href="#13fd78"><b>activateItemAt</b></a> ( int index ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#f9bfef"><b>menuContentsChanged</b></a> () </div>
+<li><div class="fn">virtual void <a href="#402fb8"><b>menuStateChanged</b></a> () </div>
+<li><div class="fn">virtual void <a href="#0db632"><b>menuInsPopup</b></a> ( QPopupMenu * ) </div>
+<li><div class="fn">virtual void <a href="#05055e"><b>menuDelPopup</b></a> ( QPopupMenu * ) </div>
+<li><div class="fn">QMenuItem* <a href="#372d81"><b>findPopup</b></a> ( QPopupMenu *, int * index = 0 ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QMenuData class is a base class for <a href="qmenubar.html">QMenuBar</a> and <a href="qpopupmenu.html">QPopupMenu</a>.
+<p>
+QMenuData has an internal list of menu items.  A menu item is a text,
+pixmap or a separator, and may also have a popup menu (separators
+have no popup menus).
+<p>The menu item sends out an activated() signal when it is selected, and
+a highlighted() signal when it receives the user input focus.
+<p>Menu items can be accessed through identifiers.
+<p>See also  <a href="qaccel.html">QAccel</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="33c0d1"></a>QMenuData::QMenuData ()</h3>
+<p>Constructs an empty list.
+<h3 class="fn"><a name="ef0b06"></a>QMenuData::~QMenuData () <code>[virtual]</code></h3>
+<p>Removes all menu items and disconnects any signals that have been connected.
+<h3 class="fn">int <a name="b9922c"></a>QMenuData::accel ( int id ) const</h3>
+<p>Returns the accelerator key that has been defined for the menu item <em>id,</em>
+or 0 if it has no accelerator key.
+<p>See also  <a href="#58b23b">setAccel</a>(), <a href="qaccel.html">QAccel</a> and <a href="qnamespace-h.html">qnamespace.h</a>.
+<h3 class="fn">void <a name="13fd78"></a>QMenuData::activateItemAt ( int index )</h3>
+<p>Activates the menu item at index <em>index.</em>
+<p>If the index is invalid (for example -1), the object itself is
+deactivated.
+<h3 class="fn">void <a name="4b09e1"></a>QMenuData::changeItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qstring.html">QString</a> &amp; text, int id )</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Changes the icon and text of the menu item <em>id.</em>
+<p>See also  <a href="#996263">pixmap</a>().
+<h3 class="fn">void <a name="3e3b4a"></a>QMenuData::changeItem ( const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, int id )</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Changes the pixmap of the menu item <em>id.</em> If the item has an icon,
+the icon remains unchanged.
+<p>See also  <a href="#996263">pixmap</a>().
+<h3 class="fn">void <a name="f98f1b"></a>QMenuData::changeItem ( const <a href="qstring.html">QString</a> &amp; text, int id )</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Changes the text of the menu item <em>id.</em> If the item has an icon,
+the icon remains unchanged.
+<p>See also  <a href="#3222d1">text</a>().
+<h3 class="fn">void <a name="ba9daa"></a>QMenuData::changeItem ( int id, const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qpixmap.html">QPixmap</a> &amp; pixmap )</h3>
+<p>Changes the icon and pixmap of the menu item <em>id.</em>
+<p>See also  <a href="#996263">pixmap</a>().
+<h3 class="fn">void <a name="10aed4"></a>QMenuData::changeItem ( int id, const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qstring.html">QString</a> &amp; text )</h3>
+<p>Changes the icon and text of the menu item <em>id.</em>
+<p>See also  <a href="#996263">pixmap</a>().
+<h3 class="fn">void <a name="b3774c"></a>QMenuData::changeItem ( int id, const <a href="qpixmap.html">QPixmap</a> &amp; pixmap )</h3>
+<p>Changes the pixmap of the menu item <em>id.</em> If the item has an icon,
+the icon remains unchanged.
+<p>See also  <a href="#996263">pixmap</a>().
+<h3 class="fn">void <a name="b8c2e0"></a>QMenuData::changeItem ( int id, const <a href="qstring.html">QString</a> &amp; text )</h3>
+<p>Changes the text of the menu item <em>id.</em> If the item has an icon,
+the icon remains unchanged.
+<p>See also  <a href="#3222d1">text</a>().
+<h3 class="fn">void <a name="4bd5e3"></a>QMenuData::clear ()</h3>
+<p>Removes all menu items.
+<p>See also  <a href="#001b53">removeItem</a>() and <a href="#c4b64b">removeItemAt</a>().
+<h3 class="fn">bool <a name="d7f757"></a>QMenuData::connectItem ( int id, const <a href="qobject.html">QObject</a> * receiver, const char * member )</h3>
+<p>Connects a menu item to a receiver and a slot or signal.
+<p>The receiver's slot/signal is activated when the menu item is activated.
+<p>See also  <a href="#bc8ae2">disconnectItem</a>() and <a href="#89eb5b">setItemParameter</a>().
+<p>Examples:
+ <a href="menu-menu-cpp.html#connectItem">menu/menu.cpp</a>
+<h3 class="fn">uint <a name="e3e249"></a>QMenuData::count () const</h3>
+<p>Returns the number of items in the menu.
+<h3 class="fn">bool <a name="bc8ae2"></a>QMenuData::disconnectItem ( int id, const <a href="qobject.html">QObject</a> * receiver, const char * member )</h3>
+<p>Disconnects a receiver/member from a menu item.
+<p>All connections are removed when the menu data object is destroyed.
+<p>See also  <a href="#d7f757">connectItem</a>() and <a href="#89eb5b">setItemParameter</a>().
+<h3 class="fn">QMenuItem * <a name="cdee00"></a>QMenuData::findItem ( int id ) const</h3>
+<p>Returns a pointer to the menu item with identifier <em>id,</em> or 0 if
+there is no item with such an identifier.
+<p>See also  <a href="#49862d">indexOf</a>().
+<h3 class="fn">QMenuItem * <a name="dbd987"></a>QMenuData::findItem ( int id, QMenuData ** parent ) const</h3>
+<p>Returns a pointer to the menu item with identifier <em>id,</em> or 0 if
+there is no item with such an identifier, and changes <em>parent</em> to
+point to the parent of the return value.
+<p>See also  <a href="#49862d">indexOf</a>().
+<h3 class="fn">QMenuItem * <a name="372d81"></a>QMenuData::findPopup ( <a href="qpopupmenu.html">QPopupMenu</a> * popup, int * index = 0 ) <code>[protected]</code></h3>
+<p>Internal function that finds the menu item where <em>popup</em> is located,
+storing its index at <em>index</em> if <em>index</em> is not NULL.
+<h3 class="fn"><a href="qiconset.html">QIconSet</a>* <a name="a4f737"></a>QMenuData::iconSet ( int id ) const</h3>
+<p>Returns the icon set that has been set for menu item <em>id,</em> or 0 if no icon
+set has been set.
+<p>See also  <a href="#10aed4">changeItem</a>(), <a href="#3222d1">text</a>() and <a href="#996263">pixmap</a>().
+<h3 class="fn">int <a name="75b348"></a>QMenuData::idAt ( int index ) const</h3>
+<p>Returns the identifier of the menu item at position <em>index</em> in the internal
+list, or -1 if <em>index</em> is out of range.
+<p>See also  <a href="#505058">setId</a>() and <a href="#49862d">indexOf</a>().
+<h3 class="fn">int <a name="49862d"></a>QMenuData::indexOf ( int id ) const</h3>
+<p>Returns the index of the menu item with identifier <em>id,</em> or -1 if
+there is no item with such an identifier.
+<p>See also  <a href="#75b348">idAt</a>() and <a href="#cdee00">findItem</a>().
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#indexOf">scrollview/scrollview.cpp</a>
+<h3 class="fn">int <a name="a0155e"></a>QMenuData::insertItem ( const <a href="qstring.html">QString</a> &amp; text, const <a href="qobject.html">QObject</a> * receiver, const char * member, int accel = 0, int id = -1, int index = -1 )</h3>
+<p>The family of insertItem() functions inserts menu items into a
+popup menu or a menu bar.
+<p>A menu item is usually either a text string or a a pixmap, both with
+an optional icon or keyboard accelerator. As special cases it is
+also possible to insert custom items (see <a href="qcustommenuitem.html">QCustomMenuItem</a>) or even
+widgets into popup menus.
+<p>Some insertItem() members take a popup menu as additional
+argument. Use these to insert submenus to existing menus or pulldown
+menus to a menu bar.
+<p>The amount of insert functions may look confusing, but is actually
+quite handy to use.
+<p>This default version inserts a menu item with a text, an accelerator
+key, an id and an optional index and connects it to an object/slot.
+<p>Example:
+<pre>    <a href="qmenubar.html">QMenuBar</a>   *mainMenu = new <a href="qmenubar.html">QMenuBar</a>;
+    <a href="qpopupmenu.html">QPopupMenu</a> *fileMenu = new <a href="qpopupmenu.html">QPopupMenu</a>;
+    fileMenu-&gt;<a href="#0076cb">insertItem</a>( "New",  myView, SLOT(newFile()), CTRL+Key_N );
+    fileMenu-&gt;<a href="#0076cb">insertItem</a>( "Open", myView, SLOT(open()),    CTRL+Key_O );
+    mainMenu-&gt;<a href="#0076cb">insertItem</a>( "File", fileMenu );
+</pre>
+<p>Not all insert functions take an object/slot parameter or an
+accelerator key. Use <a href="#d7f757">connectItem</a>() and <a href="#58b23b">setAccel</a>() on these items.
+<p>If you will need to translate accelerators, use <a href="qaccel.html#3ff091">QAccel::stringToKey</a>()
+to calculate the accelerator key:
+<pre>    fileMenu-&gt;insertItem( tr("Open"), myView, SLOT(open()),
+                          <a href="qaccel.html#3ff091">QAccel::stringToKey</a>( tr("Ctrl+O") ) );
+</pre>
+<p>In the example above, pressing CTRL+N or selecting "open" from the
+menu activates the myView->open() function.
+<p>Some insert functions take a <a href="qiconset.html">QIconSet</a> parameter to specify the
+little menu item icon. Note that you can always pass a <a href="qpixmap.html">QPixmap</a>
+object instead.
+<p>The menu item is assigned the identifier <em>id</em> or an automatically
+generated identifier if <em>id</em> is < 0. The generated identifiers
+(negative integers) are guaranteed to be unique within the entire
+application.
+<p>The <em>index</em> specifies the position in the menu.  The menu item is
+appended at the end of the list if <em>index</em> is negative.
+<p>Note that keyboard accelerators in Qt are not application global, but
+bound to a certain toplevel window. Accelerators in <a href="qpopupmenu.html">QPopupMenu</a> items
+therefore only work for menus that are associated with a certain
+window. This is true for popup menus that live in a menu bar, for
+instance. In that case, the accelerator will be installed on the
+menu bar itself. It also works for stand-alone popup menus that have
+a toplevel widget in their parentWidget()- chain. The menu will then
+install its accelerator object on that toplevel widget. For all
+other cases, use an independent <a href="qaccel.html">QAccel</a> object.<p><b>Warning:</b> Be careful when passing a literal 0 to insertItem(), as
+some C++ compilers choose the wrong overloaded function.
+Cast the 0 to what you mean, eg. <tt>(<a href="qobject.html">QObject</a>*)0</tt>.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>(), <a href="#d7f757">connectItem</a>(), <a href="qaccel.html">QAccel</a> and <a href="qnamespace-h.html">qnamespace.h</a>.
+<h3 class="fn">int <a name="230967"></a>QMenuData::insertItem ( <a href="qcustommenuitem.html">QCustomMenuItem</a> * custom, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a custom menu item <em>custom.</em>
+<p>This only works with popup menus. It is not supported for menu bars.
+Ownership of <em>custom</em> is transferred to the popup menu.
+<p>If you want to connect a custom item to a certain slot, use <a href="#d7f757">connectItem</a>().
+<p>See also  <a href="#d7f757">connectItem</a>(), <a href="#001b53">removeItem</a>() and <a href="qcustommenuitem.html">QCustomMenuItem</a>.
+<h3 class="fn">int <a name="e53049"></a>QMenuData::insertItem ( <a href="qwidget.html">QWidget</a> * widget, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item that consists of the widget <em>widget.</em>
+<p>Ownership of <em>widget</em> is transferred to the popup menu or the
+menubar.
+<p>Theoretically, any widget can be inserted into a popup menu. In
+practice, this only makes sense with certain widgets.
+<p>If a widget is not focus enabled ( see <a href="qwidget.html#2f25f0">QWidget::isFocusEnabled</a>() ),
+the menu treats it as a separator. This means, the item is not
+selectable and will never get focus. This way you can for example
+simply insert a <a href="qlabel.html">QLabel</a> if you need a popup menu with a title.
+<p>If the widget is focus enabled, it will get focus when the user
+traverses the popup menu with the arrow keys. If the widget does not
+accept ArrowUp and ArrowDown in its key event handler, the focus
+will move back to the menu when the the respective arrow key is hit
+one more time. This works for example with a <a href="qlineedit.html">QLineEdit</a>.  If the
+widget accepts the arrow keys itself, it must also provide the
+possibility to put the focus back on the menu again by calling
+<a href="qwidget.html#8d74a1">QWidget::focusNextPrevChild</a>() respectively. Futhermore should the
+embedded widget close the menu when the user made a selection.  This
+can be done safely by calling <pre> if ( isVisible() &amp;&amp;
+  parentWidget() &amp;&amp;
+  parentWidget()-&gt;inherits("QPopupMenu") )
+        parentWidget()-&gt;close();
+</pre>
+<p>See also  <a href="#001b53">removeItem</a>().
+<h3 class="fn">int <a name="d242f5"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, <a href="qcustommenuitem.html">QCustomMenuItem</a> * custom, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a custom menu item <em>custom</em> with an <em>icon.</em>
+<p>This only works with popup menus. It is not supported for menu bars.
+Ownership of <em>custom</em> is transferred to the popup menu.
+<p>If you want to connect a custom item to a certain slot, use <a href="#d7f757">connectItem</a>().
+<p>See also  <a href="#d7f757">connectItem</a>(), <a href="#001b53">removeItem</a>() and <a href="qcustommenuitem.html">QCustomMenuItem</a>.
+<h3 class="fn">int <a name="eab16a"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, <a href="qpopupmenu.html">QPopupMenu</a> * popup, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with an icon, a pixmap and a sub menu. The icon
+will be displayed to the left of the pixmap in the item.
+<p>The <em>popup</em> must be deleted by the programmer or by its parent
+widget.  It is not deleted when this menu item is removed or when
+the menu is deleted.
+<p>Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="e33289"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, const <a href="qobject.html">QObject</a> * receiver, const char * member, int accel = 0, int id = -1, int index = -1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with an icon, a pixmap, an accelerator key, an id
+and an optional index and connects it to an object/slot. The icon
+will be displayed to the left of the pixmap in the item.
+<p>To look best when being highlighted as menu item, the pixmap should
+provide a mask, see <a href="qpixmap.html#99119c">QPixmap::mask</a>().
+<p>Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>(), <a href="#d7f757">connectItem</a>(), <a href="qaccel.html">QAccel</a> and <a href="qnamespace-h.html">qnamespace.h</a>.
+<h3 class="fn">int <a name="deddb9"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with an icon and a pixmap.  The icon will be
+displayed to the left of the pixmap in the item. Returns the menu
+item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="549faf"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qstring.html">QString</a> &amp; text, <a href="qpopupmenu.html">QPopupMenu</a> * popup, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with an icon, a text and a sub menu. The icon
+will be displayed to the left of the text in the item.
+<p>The <em>popup</em> must be deleted by the programmer or by its parent
+widget.  It is not deleted when this menu item is removed or when
+the menu is deleted.
+<p>Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="033c64"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qstring.html">QString</a> &amp; text, const <a href="qobject.html">QObject</a> * receiver, const char * member, int accel = 0, int id = -1, int index = -1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with an icon, a text, an accelerator key, an id
+and an optional index and connects it to an object/slot. The icon
+will be displayed to the left of the text in the item.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>(), <a href="#d7f757">connectItem</a>(), <a href="qaccel.html">QAccel</a> and <a href="qnamespace-h.html">qnamespace.h</a>.
+<h3 class="fn">int <a name="1fb84f"></a>QMenuData::insertItem ( const <a href="qiconset.html">QIconSet</a> &amp; icon, const <a href="qstring.html">QString</a> &amp; text, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with an icon and a text.  The icon will be
+displayed to the left of the text in the item. Returns the menu
+item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="c8759a"></a>QMenuData::insertItem ( const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, <a href="qpopupmenu.html">QPopupMenu</a> * popup, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with a pixmap and a sub menu. The icon
+will be displayed to the left of the pixmap in the item.
+<p>The <em>popup</em> must be deleted by the programmer or by its parent
+widget.  It is not deleted when this menu item is removed or when
+the menu is deleted.
+<p>Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="c087c8"></a>QMenuData::insertItem ( const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, const <a href="qobject.html">QObject</a> * receiver, const char * member, int accel = 0, int id = -1, int index = -1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with a pixmap, an accelerator key, an id and an
+optional index and connects it to an object/slot.
+<p>To look best when being highlighted as menu item, the pixmap should
+provide a mask, see <a href="qpixmap.html#99119c">QPixmap::mask</a>().
+<p>Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="865195"></a>QMenuData::insertItem ( const <a href="qpixmap.html">QPixmap</a> &amp; pixmap, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with a pixmap.  Returns the menu item identifier.
+<p>To look best when being highlighted as menu item, the pixmap should
+provide a mask, see <a href="qpixmap.html#99119c">QPixmap::mask</a>().
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="0076cb"></a>QMenuData::insertItem ( const <a href="qstring.html">QString</a> &amp; text, <a href="qpopupmenu.html">QPopupMenu</a> * popup, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with a text and a sub menu.
+<p>The <em>popup</em> must be deleted by the programmer or by its parent
+widget.  It is not deleted when this menu item is removed or when
+the menu is deleted.
+<p>Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<p>Examples:
+ <a href="qtimage-qtimage-cpp.html#insertItem">qtimage/qtimage.cpp</a>
+ <a href="grapher-grapher-cpp.html#insertItem">grapher/grapher.cpp</a>
+ <a href="mainlyQt-editor-cpp.html#insertItem">mainlyQt/editor.cpp</a>
+ <a href="layout-layout-cpp.html#insertItem">layout/layout.cpp</a>
+ <a href="menu-menu-cpp.html#insertItem">menu/menu.cpp</a>
+ <a href="progress-progress-cpp.html#insertItem">progress/progress.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#insertItem">scrollview/scrollview.cpp</a>
+<h3 class="fn">int <a name="2b0523"></a>QMenuData::insertItem ( const <a href="qstring.html">QString</a> &amp; text, int id=-1, int index=-1 )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<p>Inserts a menu item with a text.  Returns the menu item identifier.
+<p>See also  <a href="#001b53">removeItem</a>(), <a href="#10aed4">changeItem</a>(), <a href="#58b23b">setAccel</a>() and <a href="#d7f757">connectItem</a>().
+<h3 class="fn">int <a name="e34b79"></a>QMenuData::insertSeparator ( int index=-1 )</h3>
+<p>Inserts a separator at position <em>index.</em>
+The separator becomes the last menu item if <em>index</em> is negative.
+<p>In a popup menu, a separator is rendered as a horizontal line.  In a
+Motif menubar, a separator is spacing, so the rest of the items
+(just "Help", normally) are drawn right-justified.  In a Windows
+menubar, separators are ignored (to comply with the Windows style
+guide).
+<p>Examples:
+ <a href="menu-menu-cpp.html#insertSeparator">menu/menu.cpp</a>
+ <a href="progress-progress-cpp.html#insertSeparator">progress/progress.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#insertSeparator">scrollview/scrollview.cpp</a>
+<h3 class="fn">bool <a name="def7a0"></a>QMenuData::isItemChecked ( int id ) const</h3>
+<p>Returns TRUE if the menu item has been checked, otherwise FALSE.
+<p>See also  <a href="#319c05">setItemChecked</a>().
+<p>Examples:
+ <a href="progress-progress-cpp.html#isItemChecked">progress/progress.cpp</a>
+<h3 class="fn">bool <a name="f5c40c"></a>QMenuData::isItemEnabled ( int id ) const</h3>
+<p>Returns TRUE if the item with identifier <em>id</em> is enabled or FALSE if
+it is disabled.
+<p>See also  <a href="#c9a23c">setItemEnabled</a>().
+<h3 class="fn">int <a name="8f3064"></a>QMenuData::itemParameter ( int id ) const</h3>
+<p>Returns the parameter of the activation signal of item <em>id.</em>
+<p>If no parameter has been specified for this item with
+<a href="#89eb5b">setItemParameter</a>(), the value defaults to <em>id.</em>
+<p>See also  <a href="#d7f757">connectItem</a>(), <a href="#bc8ae2">disconnectItem</a>() and <a href="#89eb5b">setItemParameter</a>().
+<h3 class="fn">void <a name="f9bfef"></a>QMenuData::menuContentsChanged () <code>[virtual protected]</code></h3>
+<p>Virtual function; notifies subclasses that one or more items have been
+inserted or removed.
+<p>Reimplemented in <a href="qmenubar.html#e308fe">QMenuBar</a>.
+<h3 class="fn">void <a name="05055e"></a>QMenuData::menuDelPopup ( <a href="qpopupmenu.html">QPopupMenu</a> * ) <code>[virtual protected]</code></h3>
+<p>Virtual function; notifies subclasses that a popup menu item has been
+removed.
+<h3 class="fn">void <a name="0db632"></a>QMenuData::menuInsPopup ( <a href="qpopupmenu.html">QPopupMenu</a> * ) <code>[virtual protected]</code></h3>
+<p>Virtual function; notifies subclasses that a popup menu item has been
+inserted.
+<h3 class="fn">void <a name="402fb8"></a>QMenuData::menuStateChanged () <code>[virtual protected]</code></h3>
+<p>Virtual function; notifies subclasses that one or more items have changed
+state (enabled/disabled or checked/unchecked).
+<p>Reimplemented in <a href="qmenubar.html#74727d">QMenuBar</a>.
+<h3 class="fn"><a href="qpixmap.html">QPixmap</a> * <a name="996263"></a>QMenuData::pixmap ( int id ) const</h3>
+<p>Returns the pixmap that has been set for menu item <em>id,</em> or 0 if no pixmap
+has been set.
+<p>See also  <a href="#10aed4">changeItem</a>(), <a href="#3222d1">text</a>() and <a href="#a4f737">iconSet</a>().
+<h3 class="fn">void <a name="001b53"></a>QMenuData::removeItem ( int id )</h3>
+<p>Removes the menu item which has the identifier <em>id.</em>
+<p>See also  <a href="#c4b64b">removeItemAt</a>() and <a href="#4bd5e3">clear</a>().
+<h3 class="fn">void <a name="c4b64b"></a>QMenuData::removeItemAt ( int index )</h3>
+<p>Removes the menu item at position <em>index.</em>
+<p>See also  <a href="#001b53">removeItem</a>() and <a href="#4bd5e3">clear</a>().
+<h3 class="fn">void <a name="58b23b"></a>QMenuData::setAccel ( int key, int id )</h3>
+<p>Defines an accelerator key for the menu item <em>id.</em>
+<p>An accelerator key consists of a key code and a combination of the modifiers
+<code>SHIFT, CTRL, ALT,</code> or <code>UNICODE_ACCEL</code> (OR'ed or added).
+The header file <a href="qnamespace-h.html">qnamespace.h</a> contains a list of key codes.
+<p>Defining an accelerator key generates a text which is added to the
+menu item, for instance, <code>CTRL</code> + <code>Key_O</code> generates "Ctrl+O".  The
+text is formatted differently for different platforms.
+<p>Note that keyboard accelerators in Qt are not application global, but
+bound to a certain toplevel window. Accelerators in <a href="qpopupmenu.html">QPopupMenu</a> items
+therefore only work for menus that are associated with a certain
+window. This is true for popup menus that live in a menu bar, for
+instance. In that case, the accelerator will be installed on the
+menu bar itself. It also works for stand-alone popup menus that have
+a toplevel widget in their parentWidget()- chain. The menu will then
+install its accelerator object on that toplevel widget. For all
+other cases, use an independent <a href="qaccel.html">QAccel</a> object.
+<p>Example:
+<pre>    <a href="qmenubar.html">QMenuBar</a>   *mainMenu = new <a href="qmenubar.html">QMenuBar</a>;
+    <a href="qpopupmenu.html">QPopupMenu</a> *fileMenu = new <a href="qpopupmenu.html">QPopupMenu</a>;      // file sub menu
+    fileMenu-&gt;<a href="#0076cb">insertItem</a>( "Open Document", 67 );// add "Open" item
+    fileMenu-&gt;<a href="#58b23b">setAccel</a>( CTRL + Key_O, 67 );     // Control and O to open
+    fileMenu-&gt;<a href="#0076cb">insertItem</a>( "Quit", 69 );         // add "Quit" item
+    fileMenu-&gt;<a href="#58b23b">setAccel</a>( CTRL + ALT + Key_Delete, 69 );
+    mainMenu-&gt;<a href="#0076cb">insertItem</a>( "File", fileMenu );   // add the file menu
+</pre>
+<p>If you will need to translate accelerators, use <a href="qaccel.html#3ff091">QAccel::stringToKey</a>():
+<p><pre>    fileMenu-&gt;setAccel( <a href="qaccel.html#3ff091">QAccel::stringToKey</a>(tr("Ctrl+O")), 67 );
+</pre>
+<p>You can also specify the accelerator in the <a href="#a0155e">insertItem</a>() function.
+<p>See also  <a href="#b9922c">accel</a>(), <a href="#a0155e">insertItem</a>(), <a href="qaccel.html">QAccel</a> and <a href="qnamespace-h.html">qnamespace.h</a>.
+<p>Examples:
+ <a href="menu-menu-cpp.html#setAccel">menu/menu.cpp</a>
+<h3 class="fn">void <a name="505058"></a>QMenuData::setId ( int index, int id ) <code>[virtual]</code></h3>
+<p>Sets the menu identifier of the item at <em>index</em> to <em>id.</em>
+<p>If index is out of range the operation is ignored.
+<p>See also  <a href="#75b348">idAt</a>().
+<h3 class="fn">void <a name="319c05"></a>QMenuData::setItemChecked ( int id, bool check )</h3>
+<p>Checks the menu item with id <em>id</em> if <em>check</em> is TRUE, or unchecks
+it if <em>check</em> is FALSE, and calls <a href="qpopupmenu.html#672d77">QPopupMenu::setCheckable</a>( TRUE ) if
+necessary.
+<p>See also  <a href="#def7a0">isItemChecked</a>().
+<p>Examples:
+ <a href="progress-progress-cpp.html#setItemChecked">progress/progress.cpp</a>
+ <a href="scrollview-scrollview-cpp.html#setItemChecked">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="c9a23c"></a>QMenuData::setItemEnabled ( int id, bool enable )</h3>
+<p>Enables the menu item with identifier <em>id</em> if <em>enable</em> is TRUE, or
+disables the item if <em>enable</em> is FALSE.
+<p>See also  <a href="#f5c40c">isItemEnabled</a>().
+<p>Examples:
+ <a href="menu-menu-cpp.html#setItemEnabled">menu/menu.cpp</a>
+ <a href="progress-progress-cpp.html#setItemEnabled">progress/progress.cpp</a>
+<h3 class="fn">bool <a name="89eb5b"></a>QMenuData::setItemParameter ( int id, int param )</h3>
+<p>Sets the parameter of the activation signal of item <em>id</em> to <em>param.</em>
+<p>If any receiver takes an integer parameter, this value is passed.
+<p>See also  <a href="#d7f757">connectItem</a>(), <a href="#bc8ae2">disconnectItem</a>() and <a href="#8f3064">itemParameter</a>().
+<h3 class="fn">void <a name="88eb55"></a>QMenuData::setWhatsThis ( int id, const <a href="qstring.html">QString</a> &amp; text )</h3>
+<p>Sets a Whats This help for a certain menu item.
+<p>Arguments:
+<ul>
+<li><em>id</em> is the menu item id.
+<li><em>text</em> is the Whats This help text in rich text format ( see <a href="qstylesheet.html">QStyleSheet</a>)
+</ul>
+<p>See also  <a href="#a27087">whatsThis</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="3222d1"></a>QMenuData::text ( int id ) const</h3>
+<p>Returns the text that has been set for menu item <em>id,</em> or a
+<a href="qstring.html#e21796">null string</a>
+if no text has been set.
+<p>See also  <a href="#10aed4">changeItem</a>(), <a href="#996263">pixmap</a>() and <a href="#a4f737">iconSet</a>().
+<h3 class="fn">void <a name="f532d3"></a>QMenuData::updateItem ( int ) <code>[virtual]</code></h3>
+<p>Virtual function; notifies subclasses about an item that has been changed.
+<p>Reimplemented in <a href="qmenubar.html#736fda">QMenuBar</a> and <a href="qpopupmenu.html#8732b1">QPopupMenu</a>.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="a27087"></a>QMenuData::whatsThis ( int id ) const</h3>
+<p>Returns the Whats This help text for the specified item <em>id</em> or
+QString::null if no text has been defined yet.
+<p>See also  <a href="#88eb55">setWhatsThis</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

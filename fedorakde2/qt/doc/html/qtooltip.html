@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QToolTip Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QToolTip Class Reference</h1><br clear="all">
+<p>
+The QToolTip class provides tool tips (sometimes called balloon help) for any widget or rectangular part of a widget.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qtooltip-h.html">qtooltip.h</a>&gt;</code>
+<p>
+Inherits <a href="qt.html">Qt</a>.
+<p><a href="qtooltip-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#e4227f"><b>QToolTip</b></a> ( QWidget *, QToolTipGroup * = 0 ) </div>
+<li><div class="fn">QWidget* <a href="#6dd8d6"><b>parentWidget</b></a> () const</div>
+<li><div class="fn">QToolTipGroup* <a href="#c92504"><b>group</b></a> () const</div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">void <a href="#e6994d"><b>add</b></a> ( QWidget *, const QString &amp; ) </div>
+<li><div class="fn">void <a href="#d79080"><b>add</b></a> ( QWidget *, const QString &amp;, QToolTipGroup *, const QString &amp; ) </div>
+<li><div class="fn">void <a href="#2248e6"><b>remove</b></a> ( QWidget * ) </div>
+<li><div class="fn">void <a href="#184bfe"><b>add</b></a> ( QWidget *, const QRect &amp;, const QString &amp; ) </div>
+<li><div class="fn">void <a href="#2f57da"><b>add</b></a> ( QWidget *, const QRect &amp;, const QString &amp;, QToolTipGroup *, const QString &amp; ) </div>
+<li><div class="fn">void <a href="#b38a74"><b>remove</b></a> ( QWidget *, const QRect &amp; ) </div>
+<li><div class="fn">void <a href="#20312c"><b>hide</b></a> () </div>
+<li><div class="fn">QFont <a href="#780aee"><b>font</b></a> () </div>
+<li><div class="fn">void <a href="#91c11a"><b>setFont</b></a> ( const QFont &amp; ) </div>
+<li><div class="fn">QPalette <a href="#a87e3f"><b>palette</b></a> () </div>
+<li><div class="fn">void <a href="#465f5f"><b>setPalette</b></a> ( const QPalette &amp; ) </div>
+<li><div class="fn">void <a href="#fc86cc"><b>setEnabled</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#01c28d"><b>enabled</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#439d68"><b>maybeTip</b></a> ( const QPoint &amp; ) </div>
+<li><div class="fn">void <a href="#585b31"><b>tip</b></a> ( const QRect &amp;, const QString &amp; ) </div>
+<li><div class="fn">void <a href="#b97366"><b>tip</b></a> ( const QRect &amp;, const QString &amp;, const QString &amp; ) </div>
+<li><div class="fn">void <a href="#0be3fc"><b>clear</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QToolTip class provides tool tips (sometimes called balloon help) for any widget or rectangular part of a widget.
+<p>
+The tip is a short, one-line text reminding the user of the widget's
+or rectangle's function.  It is drawn immediately below the region,
+in a distinctive black on yellow combination.  In Motif style, Qt's
+tool tips look much like Motif's but feel more like Windows 95 tool
+tips.
+<p><a href="qtooltipgroup.html">QToolTipGroup</a> provides a way for tool tips to display another text
+elsewhere (most often in a status bar).
+<p>At any point in time, QToolTip is either dormant or active.  In
+dormant mode the tips are not shown, and in active mode they are.
+The mode is global, not particular to any one widget.
+<p>QToolTip switches from dormant to active mode when the user lets the
+mouse rest on a tip-equipped region for a second or so, and remains
+in active mode until the user either clicks a mouse button, presses
+a key, lets the mouse rest for five seconds, or moves the mouse
+outside <em>all</em> tip-equpped regions for at least a second.
+<p>The QToolTip class can be used in three different ways: <ol> <li>
+Adding a tip to an entire widget. <li> Adding a tip to a fixed
+rectangle within a widget. <li> Adding a tip to a dynamic rectangle
+within a widget. </ol>
+<p>To add a tip to a widget, call the <em>static</em> function <a href="#184bfe">QToolTip::add</a>()
+with the widget and tip as arguments:
+<p><pre>    <a href="#184bfe">QToolTip::add</a>( quitButton, "Leave the application" );
+</pre>
+<p>This is the simplest and most common use of QToolTip.  The tip will
+be deleted automatically when <em>quitButton</em> is deleted, but you can
+remove it yourself, too:
+<p><pre>    <a href="#2248e6">QToolTip::remove</a>( quitButton );
+</pre>
+<p>You can also display another text (typically in a <a href="qstatusbar.html">status bar),</a> courtesy of QToolTipGroup.  This example
+assumes that <em>g</em> is a <code>QToolTipGroup *</code> and already
+connected to the appropriate status bar:
+<p><pre>    <a href="#184bfe">QToolTip::add</a>( quitButton, "Leave the application", g,
+                   "Leave the application, without asking for confirmation" );
+    <a href="#184bfe">QToolTip::add</a>( closeButton, "Close this window", g,
+                   "Close this window, without asking for confirmation" );
+</pre>
+<p>To add a tip to a fixed rectangle within a widget, call the static
+function QToolTip::add() with the widget, rectangle and tip as
+arguments.  (See the tooltip/tooltip.cpp example.)  Again, you can supply a
+QToolTipGroup * and another text if you want.
+<p>Both of the above are one-liners and cover the vast majority of
+cases.  The third and most general way to use QToolTip uses a pure
+virtual function to decide whether to pop up a tool tip.  The
+tooltip/tooltip.cpp example demonstrates this too.  This mode can be
+used to implement e.g. tips for text that can move as the user
+scrolls.
+<p>To use QToolTip like this, you need to subclass QToolTip and
+reimplement <a href="#439d68">maybeTip</a>().  maybeTip() will be called when there's a
+chance that a tip should pop up.  It must decide whether to show a
+tip, and possibly call <a href="#184bfe">add</a>() with the rectangle the tip applies to,
+the tip's text and optionally the QToolTipGroup details.  The tip
+will disappear once the mouse moves outside the rectangle you
+supply, and <em>not reappear</em> - maybeTip() will be called again if
+the user lets the mouse rest within the same rectangle again.  You
+can forcibly remove the tip by calling <a href="#2248e6">remove</a>() with no arguments.
+This is handy if the widget scrolls.
+<p>Tooltips can be globally disabled using <a href="#fc86cc">QToolTip::setEnabled</a>(), or
+disabled in groups with <a href="qtooltipgroup.html#5039fc">QToolTipGroup::setEnabled</a>().
+<p>See also  <a href="qstatusbar.html">QStatusBar</a>, <a href="qwhatsthis.html">QWhatsThis</a>, <a href="qtooltipgroup.html">QToolTipGroup</a> and <a href="guibooks.html#fowler">GUI Design Handbook: Tool Tip</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="e4227f"></a>QToolTip::QToolTip ( <a href="qwidget.html">QWidget</a> * parent, <a href="qtooltipgroup.html">QToolTipGroup</a> * group = 0 )</h3>
+<p>Constructs a tool tip object.  This is necessary only if you need tool
+tips on regions that can move within the widget (most often because
+the widget's contents can scroll).
+<p><em>parent</em> is the widget you want to add dynamic tool tips to and <em>group</em> (optional) is the tool tip group they should belong to.
+<p>See also  <a href="#439d68">maybeTip</a>().
+<h3 class="fn">void <a name="184bfe"></a>QToolTip::add ( <a href="qwidget.html">QWidget</a> * widget, const <a href="qrect.html">QRect</a> &amp; rect, const <a href="qstring.html">QString</a> &amp; text ) <code>[static]</code></h3>
+<p>Adds a tool tip to a fixed rectangle within <em>widget. text</em> is
+the text shown in the tool tip.  QToolTip makes a deep copy of this
+string.
+<h3 class="fn">void <a name="2f57da"></a>QToolTip::add ( <a href="qwidget.html">QWidget</a> * widget, const <a href="qrect.html">QRect</a> &amp; rect, const <a href="qstring.html">QString</a> &amp; text, <a href="qtooltipgroup.html">QToolTipGroup</a> * group, const <a href="qstring.html">QString</a> &amp; groupText ) <code>[static]</code></h3>
+<p>Adds a tool tip to an entire <em>widget,</em> and to tool tip group <em>group.</em>
+<p><em>text</em> is the text shown in the tool tip and <em>longText</em> is the
+text emitted from <em>group.</em>  QToolTip makes deep copies of both
+strings.
+<p>Normally, <em>longText</em> is shown in a status bar or similar.
+<h3 class="fn">void <a name="e6994d"></a>QToolTip::add ( <a href="qwidget.html">QWidget</a> * widget, const <a href="qstring.html">QString</a> &amp; text ) <code>[static]</code></h3>
+<p>Adds a tool tip to <em>widget. text</em> is the text to be shown in
+the tool tip.  QToolTip makes a deep copy of this string.
+<p>This is the most common entry point to the QToolTip class; it is
+suitable for adding tool tips to buttons, check boxes, combo boxes
+and so on.
+<h3 class="fn">void <a name="d79080"></a>QToolTip::add ( <a href="qwidget.html">QWidget</a> * widget, const <a href="qstring.html">QString</a> &amp; text, <a href="qtooltipgroup.html">QToolTipGroup</a> * group, const <a href="qstring.html">QString</a> &amp; longText ) <code>[static]</code></h3>
+<p>Adds a tool tip to <em>widget,</em> and to tool tip group <em>group.</em>
+<p><em>text</em> is the text shown in the tool tip and <em>longText</em> is the
+text emitted from <em>group.</em>  QToolTip makes deep copies of both
+strings.
+<p>Normally, <em>longText</em> is shown in a status bar or similar.
+<h3 class="fn">void <a name="0be3fc"></a>QToolTip::clear () <code>[protected]</code></h3>
+<p>Removes all tool tips for this tooltip's parent widget immediately.
+<h3 class="fn">bool <a name="01c28d"></a>QToolTip::enabled () <code>[static]</code></h3>
+<p>Returns whether tooltips are enabled globally.
+<p>See also  <a href="#fc86cc">setEnabled</a>().
+<h3 class="fn"><a href="qfont.html">QFont</a> <a name="780aee"></a>QToolTip::font () <code>[static]</code></h3>
+<p>Returns the font common to all tool tips.
+<p>See also  <a href="#91c11a">setFont</a>().
+<h3 class="fn"><a href="qtooltipgroup.html">QToolTipGroup</a> * <a name="c92504"></a>QToolTip::group () const</h3>
+<p>Returns the tool tip group this QToolTip is a member of, of 0 if it
+isn't a member of any group.
+<p>The tool tip group is the object responsible for relaying contact
+between tool tips and a status bar or something else which can show
+a longer help text.
+<p>See also  <a href="#6dd8d6">parentWidget</a>() and <a href="qtooltipgroup.html">QToolTipGroup</a>.
+<h3 class="fn">void <a name="20312c"></a>QToolTip::hide () <code>[static]</code></h3>
+<p>Hides any tip that is currently being shown.
+<p>Normally, there is no need to call this function; QToolTip takes
+care of showing and hiding the tips as the user moves the mouse.
+<h3 class="fn">virtual void <a name="439d68"></a>QToolTip::maybeTip ( const <a href="qpoint.html">QPoint</a> &amp; p ) <code>[virtual protected]</code></h3>
+<p>This pure virtual function is half of the most versatile interface
+QToolTip offers.
+<p>It is called when there is a chance that a tool tip should be shown,
+and must decide whether there is a tool tip for the point <em>p</em> in
+the widget this QToolTip object relates to.
+<p><em>p</em> is given in that widget's local coordinates.  Most maybeTip()
+implementation will be of the form:
+<p><pre>    if ( &lt;something&gt; ) {
+        tip( &lt;something&gt;, &lt;something&gt; );
+    }
+</pre>
+<p>The first argument to <a href="#585b31">tip</a>() (a rectangle) should include the <em>p,</em>
+or QToolTip, the user or both can be confused.
+<p>See also  <a href="#585b31">tip</a>().
+<h3 class="fn"><a href="qpalette.html">QPalette</a> <a name="a87e3f"></a>QToolTip::palette () <code>[static]</code></h3>
+<p>Returns the palette common to all tool tips.
+<p>See also  <a href="#465f5f">setPalette</a>().
+<h3 class="fn"><a href="qwidget.html">QWidget</a> * <a name="6dd8d6"></a>QToolTip::parentWidget () const</h3>
+<p>Returns the widget this QToolTip applies to.
+<p>The tool tip is destroyed automatically when the parent widget is
+destroyed.
+<p>See also  <a href="#c92504">group</a>().
+<h3 class="fn">void <a name="2248e6"></a>QToolTip::remove ( <a href="qwidget.html">QWidget</a> * widget ) <code>[static]</code></h3>
+<p>Remove the tool tip from <em>widget.</em>
+<p>If there are more than one tool tip on <em>widget,</em> only the one
+covering the entire widget is removed.
+<h3 class="fn">void <a name="b38a74"></a>QToolTip::remove ( <a href="qwidget.html">QWidget</a> * widget, const <a href="qrect.html">QRect</a> &amp; rect ) <code>[static]</code></h3>
+<p>Remove the tool tip for <em>rect</em> from <em>widget.</em>
+<p>If there are more than one tool tip on <em>widget,</em> only the one
+covering rectangle <em>rect</em> is removed.
+<h3 class="fn">void <a name="fc86cc"></a>QToolTip::setEnabled ( bool enable ) <code>[static]</code></h3>
+<p>Sets the all tool tips to be enabled (shown when needed)
+or disabled (never shown).
+<p>By default, tool tips are enabled. Note that this function
+effects all tooltips in the entire application.
+<p>See also  <a href="qtooltipgroup.html#5039fc">QToolTipGroup::setEnabled</a>().
+<h3 class="fn">void <a name="91c11a"></a>QToolTip::setFont ( const <a href="qfont.html">QFont</a> &amp; font ) <code>[static]</code></h3>
+<p>Sets the font for all tool tips to <em>font.</em>
+<p>See also  <a href="#780aee">font</a>().
+<h3 class="fn">void <a name="465f5f"></a>QToolTip::setPalette ( const <a href="qpalette.html">QPalette</a> &amp; palette ) <code>[static]</code></h3>
+<p>Sets the palette for all tool tips to <em>palette.</em>
+<p>See also  <a href="#a87e3f">palette</a>().
+<h3 class="fn">void <a name="585b31"></a>QToolTip::tip ( const <a href="qrect.html">QRect</a> &amp; rect, const <a href="qstring.html">QString</a> &amp; text ) <code>[protected]</code></h3>
+<p>Pops up a tip saying <em>text</em> right now, and removes that tip once
+the cursor moves out of rectangle <em>rect</em> (which is given in the
+coordinate system of the widget this QToolTip relates to).
+<p>The tip will not come back if the cursor moves back; your <a href="#439d68">maybeTip</a>()
+has to reinstate it each time.
+<h3 class="fn">void <a name="b97366"></a>QToolTip::tip ( const <a href="qrect.html">QRect</a> &amp; rect, const <a href="qstring.html">QString</a> &amp; text, const <a href="qstring.html">QString</a> &amp; groupText ) <code>[protected]</code></h3>
+<p>Pops up a tip saying <em>text</em> right now, and removes that tip once
+the cursor moves out of rectangle <em>rect.</em>
+<p>The tip will not come back if the cursor moves back; your <a href="#439d68">maybeTip</a>()
+has to reinstate it each time.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,172 @@
+'\" t
+.TH QEvent 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QEvent \- Base class of all event classes. Event objects contain event parameters
+.br
+.PP
+\fC#include <qevent.h>\fR
+.PP
+Inherits Qt.
+.PP
+Inherited by QChildEvent, QCloseEvent, QCustomEvent, QDragLeaveEvent, QDragResponseEvent, QDropEvent, QFocusEvent, QHideEvent, QKeyEvent, QMouseEvent, QMoveEvent, QPaintEvent, QResizeEvent, QShowEvent, QTimerEvent and QWheelEvent.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBType\fR { None = 0, Timer = 1, MouseButtonPress = 2, MouseButtonRelease = 3, MouseButtonDblClick= 4, MouseMove = 5, KeyPress = 6, KeyRelease = 7, FocusIn = 8, FocusOut = 9, Enter = 10, Leave = 11, Paint = 12, Move = 13, Resize = 14, Create = 15, Destroy = 16, Show = 17, Hide = 18, Close = 19, Quit = 20, Reparent = 21, ShowMinimized = 22, ShowNormal = 23, WindowActivate = 24, WindowDeactivate = 25, ShowToParent = 26, HideToParent = 27, ShowMaximized = 28, Accel = 30, Wheel = 31, AccelAvailable = 32, CaptionChange = 33, IconChange = 34, ParentFontChange = 35, ApplicationFontChange = 36, ParentPaletteChange = 37, ApplicationPaletteChange = 38, Clipboard = 40, Speech = 42, SockAct = 50, AccelOverride = 51, DragEnter = 60, DragMove = 61, DragLeave = 62, Drop = 63, DragResponse = 64, ChildInserted = 70, ChildRemoved = 71, LayoutHint = 72, ShowWindowRequest = 73, ActivateControl = 80, DeactivateControl = 81, User = 1000 }"
+.br
+.ti -1c
+.BI "\fBQEvent\fR ( Type type ) "
+.br
+.ti -1c
+.BI "virtual \fB~QEvent\fR () "
+.br
+.ti -1c
+.BI "Type \fBtype\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QEvent class is base class of all event classes. Event objects contain event parameters.
+.PP
+The main event loop of Qt (QApplication::exec()) fetches native window system events from the event queue, translates them into QEvent and sends the translated events to QObjects.
+.PP
+Generally, events come from the underlying window system, but it is also possible to manually send events through the QApplication class using QApplication::sendEvent() and QApplication::postEvent().
+.PP
+QObject received events by having its QObject::event() function called. The function can be reimplemented in subclasses to customize event handling and add additional event types. QWidget::event() is a notable example. By default, events are dispatched to event handlers like QObject::timerEvent() and QWidget::mouseMoveEvent(). QObject::installEventFilter() allows an object to intercept events to another object.
+.PP
+The basic QEvent only contains an event type parameter. Subclasses of QEvent contain additional parameters that describe the particular event.
+.PP
+See also QObject::event(), QObject::installEventFilter(), QWidget::event(), QApplication::sendEvent(), QAppilcation::postEvent() and QApplication::processEvents().
+.SS "Member Type Documentation"
+.SH "QEvent::Type"
+This enum type defines the valid event types in Qt. The currently defined event types, and the specialized classes for each type, are: 
+.TP
+\fCNone\fR - not an event
+.TP
+\fCTimer\fR - regular timer events, QTimerEvent
+.TP
+\fCMouseButtonPress\fR - mouse press, QMouseEvent
+.TP
+\fCMouseButtonRelease\fR - mouse release, QMouseEvent
+.TP
+\fCMouseButtonDblClick\fR - mouse press again, QMouseEvent
+.TP
+\fCMouseMove\fR - mouse move, QMouseEvent
+.TP
+\fCKeyPress\fR - key press (including e.g. shift), QKeyEvent
+.TP
+\fCKeyRelease\fR - key release, QKeyEvent
+.TP
+\fCFocusIn\fR - widget gains keyboard focus, QFocusEvent
+.TP
+\fCFocusOut\fR - widget loses keyboard focus, QFocusEvent
+.TP
+\fCEnter\fR - mouse enters widget's space
+.TP
+\fCLeave\fR - mouse leaves widget's soace
+.TP
+\fCPaint\fR - screen update necessary, QPaintEvent
+.TP
+\fCMove\fR - widget's position changed, QMoveEvent
+.TP
+\fCResize\fR - widget's size changed, QResizeEvent
+.TP
+\fCShow\fR - widget was shown on screen, QShowEvent
+.TP
+\fCHide\fR - widget was removed from screen, QHideEvent
+.TP
+\fCClose\fR - widget was closed (permanently), QCloseEvent
+.TP
+\fCAccel\fR - key press in child, for shortcut key handling, QKeyEvent
+.TP
+\fCWheel\fR - mouse wheel rolled, QWheelEvent
+.TP
+\fCAccelAvailable\fR - an internal event used by Qt on some platforms.
+.TP
+\fCAccelOverride\fR - key press in child, for overriding shortcut key handling, QKeyEvent
+.TP
+\fCWindowActivate\fR - the window was activated
+.TP
+\fCWindowDeactivate\fR - the window was deactivated
+.TP
+\fCCaptionChange\fR - widget's caption changed
+.TP
+\fCIconChange\fR - widget's icon changed
+.TP
+\fCParentFontChange\fR - the font of the parent widget changed.
+.TP
+\fCApplicationFontChange\fR - the default application font changed.
+.TP
+\fCParentPaletteChange\fR - the palette of the parent widget changed.
+.TP
+\fCApplicationPaletteChange\fR - the default application palette changed.
+.TP
+\fCClipboard\fR - system clipboard contents have changed
+.TP
+\fCSockAct\fR - socket activated, used to implement QSocketNotifier
+.TP
+\fCDragEnter\fR - drag-and-drop enters widget, QDragEnterEvent
+.TP
+\fCDragMove\fR - drag-and-drop in progress, QDragMoveEvent
+.TP
+\fCDragLeave\fR - drag-and-drop leaves widget, QDragLeaveEvent
+.TP
+\fCDrop\fR - drag-and-drop is completed, QDropEvent
+.TP
+\fCDragResponse\fR - an internal event used by Qt on some platforms.
+.TP
+\fCChildInserted\fR - object gets a child, QChildEvent
+.TP
+\fCChildRemoved\fR - object loses a child, QChildEvent
+.TP
+\fCLayoutHint\fR - a widget child has changed layout properties
+.TP
+\fCActivateControl\fR - an internal event used by Qt on some platforms.
+.TP
+\fCDeactivateControl\fR - an internal event used by Qt on some platforms.
+.TP
+\fCQuit\fR - reserved
+.TP
+\fCCreate\fR - reserved
+.TP
+\fCDestroy\fR - reserved
+.TP
+\fCReparent\fR - reserved
+.TP
+\fCConfigure\fR - reserved
+.TP
+\fCConfigureLayout\fR - reserved
+.TP
+\fCUser\fR - user defined event
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QEvent::QEvent ( Type type )"
+Contructs an event object with a \fItype.\fR
+.SH "QEvent::~QEvent () \fC[virtual]\fR"
+Destructs the event. If it was posted, it will be removed from the list of events to be posted.
+.SH "QEvent::Type QEvent::type() const"
+Returns the event type.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qevent.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qevent.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,543 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - xform/xform.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Transformed Graphics Demo</h1><br clear="all">
+
+  This example lets the user rotate, shear and scale text and graphics
+  arbitrarily.
+
+  <hr>
+
+  Implementation:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/xform/xform.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+#include &lt;<a name="qdialog.h"></a><a href="qdialog-h.html">qdialog.h</a>&gt;
+#include &lt;<a name="qlabel.h"></a><a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a name="qlineedit.h"></a><a href="qlineedit-h.html">qlineedit.h</a>&gt;
+#include &lt;<a name="qpushbutton.h"></a><a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a name="qcheckbox.h"></a><a href="qcheckbox-h.html">qcheckbox.h</a>&gt;
+#include &lt;<a name="qradiobutton.h"></a><a href="qradiobutton-h.html">qradiobutton.h</a>&gt;
+#include &lt;<a name="qbuttongroup.h"></a><a href="qbuttongroup-h.html">qbuttongroup.h</a>&gt;
+#include &lt;<a name="qlcdnumber.h"></a><a href="qlcdnumber-h.html">qlcdnumber.h</a>&gt;
+#include &lt;<a name="qslider.h"></a><a href="qslider-h.html">qslider.h</a>&gt;
+#include &lt;<a name="qmenubar.h"></a><a href="qmenubar-h.html">qmenubar.h</a>&gt;
+#include &lt;<a name="qfontdialog.h"></a><a href="qfontdialog-h.html">qfontdialog.h</a>&gt;
+#include &lt;<a name="qlayout.h"></a><a href="qlayout-h.html">qlayout.h</a>&gt;
+#include &lt;<a name="qvbox.h"></a><a href="qvbox-h.html">qvbox.h</a>&gt;
+#include &lt;<a name="qwidgetstack.h"></a><a href="qwidgetstack-h.html">qwidgetstack.h</a>&gt;
+
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qpixmap.h"></a><a href="qpixmap-h.html">qpixmap.h</a>&gt;
+#include &lt;<a name="qpicture.h"></a><a href="qpicture-h.html">qpicture.h</a>&gt;
+
+#include &lt;stdlib.h&gt;
+
+class ModeNames {
+public:
+    enum Mode { Text, Image, Picture };
+};
+
+class XFormControl : public QVBox, public ModeNames
+{
+    Q_OBJECT
+public:
+    XFormControl( const QFont &amp;initialFont, QWidget *parent=0, const char *name=0 );
+   ~XFormControl() {}
+
+    <a name="QWMatrix"></a><a href="qwmatrix.html">QWMatrix</a> matrix();
+
+signals:
+    void newMatrix( <a href="qwmatrix.html">QWMatrix</a> );
+    void newText( const QString&amp; );
+    void newFont( const QFont &amp; );
+    void newMode( int );
+private slots:
+    void newMtx();
+    void newTxt(const QString&amp;);
+    void selectFont();
+    void fontSelected( const QFont &amp; );
+    void changeMode(int);
+    void timerEvent(<a name="QTimerEvent"></a><a href="qtimerevent.html">QTimerEvent</a>*);
+private:
+    Mode mode;
+    <a name="QSlider"></a><a href="qslider.html">QSlider</a>      *rotS;                // Rotation angle scroll bar
+    <a href="qslider.html">QSlider</a>      *shearS;              // Shear value scroll bar
+    <a href="qslider.html">QSlider</a>      *magS;                // Magnification value scroll bar
+    <a name="QLCDNumber"></a><a href="qlcdnumber.html">QLCDNumber</a>   *rotLCD;              // Rotation angle LCD display
+    <a href="qlcdnumber.html">QLCDNumber</a>   *shearLCD;            // Shear value LCD display
+    <a href="qlcdnumber.html">QLCDNumber</a>   *magLCD;              // Magnification value LCD display
+    <a name="QCheckBox"></a><a href="qcheckbox.html">QCheckBox</a>    *mirror;              // Checkbox for mirror image on/of
+    <a name="QWidgetStack"></a><a href="qwidgetstack.html">QWidgetStack</a>* optionals;
+    <a name="QLineEdit"></a><a href="qlineedit.html">QLineEdit</a>    *textEd;              // Inp[ut field for xForm text
+    <a name="QPushButton"></a><a href="qpushbutton.html">QPushButton</a>  *fpb;                 // Select font push button
+    <a name="QRadioButton"></a><a href="qradiobutton.html">QRadioButton</a> *rb_txt;              // Radio button for text
+    <a href="qradiobutton.html">QRadioButton</a> *rb_img;              // Radio button for image
+    <a href="qradiobutton.html">QRadioButton</a> *rb_pic;              // Radio button for picture
+    <a name="QFont"></a><a href="qfont.html">QFont</a> currentFont;
+};
+
+/*
+  ShowXForm displays a text or a pixmap (<a name="QPixmap"></a><a href="qpixmap.html">QPixmap</a>) using a coordinate
+  transformation matrix (<a href="qwmatrix.html">QWMatrix</a>)
+*/
+
+class ShowXForm : public QWidget, public ModeNames
+{
+    Q_OBJECT
+public:
+    ShowXForm( const QFont &amp;f, QWidget *parent=0, const char *name=0 );
+   ~ShowXForm() {}
+    void showIt();                      // (Re)displays text or pixmap
+
+    Mode mode() const { return m; }
+public slots:
+    void setText( const QString&amp; );
+    void setMatrix( <a href="qwmatrix.html">QWMatrix</a> );
+    void setFont( const QFont &amp;f );
+    void setPixmap( <a href="qpixmap.html">QPixmap</a> );
+    void setPicture( const QPicture&amp; );
+    void setMode( int );
+private:
+    <a name="QSizePolicy"></a><a href="qsizepolicy.html">QSizePolicy</a> sizePolicy() const;
+    <a name="QSize"></a><a href="qsize.html">QSize</a> sizeHint() const;
+    void paintEvent( <a name="QPaintEvent"></a><a href="qpaintevent.html">QPaintEvent</a> * );
+    void resizeEvent( <a name="QResizeEvent"></a><a href="qresizeevent.html">QResizeEvent</a> * );
+    <a href="qwmatrix.html">QWMatrix</a>  mtx;                      // coordinate transform matrix
+    <a name="QString"></a><a href="qstring.html">QString</a>   text;                     // text to be displayed
+    <a href="qpixmap.html">QPixmap</a>   pix;                      // pixmap to be displayed
+    <a name="QPicture"></a><a href="qpicture.html">QPicture</a>  picture;                  // text to be displayed
+    <a name="QRect"></a><a href="qrect.html">QRect</a>     eraseRect;                // covers last displayed text/pixmap
+    Mode      m;
+};
+
+XFormControl::XFormControl( const QFont &amp;initialFont,
+                            <a name="QWidget"></a><a href="qwidget.html">QWidget</a> *parent, const char *name )
+        : <a name="QVBox"></a><a href="qvbox.html">QVBox</a>( parent, name )
+{
+    setSpacing(6);
+    setMargin(6);
+    currentFont = initialFont;
+    mode = Image;
+
+    rotLCD      = new <a href="qlcdnumber.html">QLCDNumber</a>( 4, this, "rotateLCD" );
+    rotS        = new <a href="qslider.html">QSlider</a>( QSlider::Horizontal, this,
+                                  "rotateSlider" );
+    shearLCD    = new <a href="qlcdnumber.html">QLCDNumber</a>( 5,this, "shearLCD" );
+    shearS      = new <a href="qslider.html">QSlider</a>( QSlider::Horizontal, this,
+                                  "shearSlider" );
+    mirror      = new <a href="qcheckbox.html">QCheckBox</a>( this, "mirrorCheckBox" );
+    rb_txt = new <a href="qradiobutton.html">QRadioButton</a>( this, "text" );
+    rb_img = new <a href="qradiobutton.html">QRadioButton</a>( this, "image" );
+    rb_pic = new <a href="qradiobutton.html">QRadioButton</a>( this, "picture" );
+    optionals = new <a href="qwidgetstack.html">QWidgetStack</a>(this);
+    <a href="qvbox.html">QVBox</a>* optionals_text = new <a href="qvbox.html">QVBox</a>(optionals);
+    optionals_text-&gt;<a name="setSpacing"></a><a href="qhbox.html#0075a0">setSpacing</a>(6);
+    <a href="qvbox.html">QVBox</a>* optionals_other = new <a href="qvbox.html">QVBox</a>(optionals);
+    optionals_other-&gt;<a href="qhbox.html#0075a0">setSpacing</a>(6);
+    optionals-&gt;<a name="addWidget"></a><a href="qwidgetstack.html#562b2f">addWidget</a>(optionals_text,0);
+    optionals-&gt;<a href="qwidgetstack.html#562b2f">addWidget</a>(optionals_other,1);
+    fpb         = new <a href="qpushbutton.html">QPushButton</a>( optionals_text, "text" );
+    textEd      = new <a href="qlineedit.html">QLineEdit</a>( optionals_text, "text" );
+    textEd-&gt;<a name="setFocus"></a><a href="qwidget.html#25775a">setFocus</a>();
+
+    rotLCD-&gt;<a name="display"></a><a href="qlcdnumber.html#ecdf88">display</a>( "  0'" );
+
+    rotS-&gt;<a name="setRange"></a><a href="qrangecontrol.html#f2409c">setRange</a>( -180, 180 );
+    rotS-&gt;<a name="setValue"></a><a href="qslider.html#a03234">setValue</a>( 0 );
+    connect( rotS, SIGNAL(valueChanged(int)), SLOT(newMtx()) );
+
+    shearLCD-&gt;<a href="qlcdnumber.html#ecdf88">display</a>( "0.00" );
+
+    shearS-&gt;<a href="qrangecontrol.html#f2409c">setRange</a>( -25, 25 );
+    shearS-&gt;<a href="qslider.html#a03234">setValue</a>( 0 );
+    connect( shearS, SIGNAL(valueChanged(int)), SLOT(newMtx()) );
+
+    mirror-&gt;<a name="setText"></a><a href="qbutton.html#989f4f">setText</a>( tr("Mirror") );
+    connect( mirror, SIGNAL(clicked()), SLOT(newMtx()) );
+
+    <a name="QButtonGroup"></a><a href="qbuttongroup.html">QButtonGroup</a> *bg = new <a href="qbuttongroup.html">QButtonGroup</a>(this);
+    bg-&gt;<a name="hide"></a><a href="qwidget.html#410481">hide</a>();
+    bg-&gt;<a name="insert"></a><a href="qbuttongroup.html#10bf2d">insert</a>(rb_txt,0);
+    bg-&gt;<a href="qbuttongroup.html#10bf2d">insert</a>(rb_img,1);
+    bg-&gt;<a href="qbuttongroup.html#10bf2d">insert</a>(rb_pic,2);
+    rb_txt-&gt;<a href="qbutton.html#989f4f">setText</a>( tr("Text") );
+    rb_img-&gt;<a href="qbutton.html#989f4f">setText</a>( tr("Image") );
+    rb_img-&gt;<a name="setChecked"></a><a href="qradiobutton.html#0e50fc">setChecked</a>(TRUE);
+    rb_pic-&gt;<a href="qbutton.html#989f4f">setText</a>( tr("Picture") );
+    connect( bg, SIGNAL(clicked(int)), SLOT(changeMode(int)) );
+
+    fpb-&gt;<a href="qbutton.html#989f4f">setText</a>( tr("Select font...") );
+    connect( fpb, SIGNAL(clicked()), SLOT(selectFont()) );
+
+    textEd-&gt;<a name="setText"></a><a href="qlineedit.html#1ff546">setText</a>( "Troll" );
+    connect( textEd, SIGNAL(textChanged(const QString&amp;)),
+                     SLOT(newTxt(const QString&amp;)) );
+
+    magLCD = new <a href="qlcdnumber.html">QLCDNumber</a>( 4,optionals_other, "magLCD" );
+    magLCD-&gt;<a href="qlcdnumber.html#ecdf88">display</a>( "100" );
+    magS = new <a href="qslider.html">QSlider</a>( QSlider::Horizontal, optionals_other,
+                           "magnifySlider" );
+    magS-&gt;<a href="qrangecontrol.html#f2409c">setRange</a>( 0, 800 );
+    connect( magS, SIGNAL(valueChanged(int)), SLOT(newMtx()) );
+    magS-&gt;<a href="qslider.html#a03234">setValue</a>( 0 );
+    connect( magS, SIGNAL(valueChanged(int)), magLCD, SLOT(display(int)));
+
+    optionals_text-&gt;<a name="adjustSize"></a><a href="qwidget.html#2ec710">adjustSize</a>();
+    optionals_other-&gt;<a href="qwidget.html#2ec710">adjustSize</a>();
+    changeMode(Image);
+
+    startTimer(20); // start an initial animation
+}
+
+void <a name="147"></a>XFormControl::timerEvent(<a href="qtimerevent.html">QTimerEvent</a>*)
+{
+    int v = magS-&gt;<a name="value"></a><a href="qslider.html#7b285c">value</a>();
+    v = (v+2)+v/10;
+    if ( v &gt;= 200 ) {
+        v = 200;
+        <a name="killTimers"></a><a href="qobject.html#0ef111">killTimers</a>();
+    }
+    magS-&gt;<a href="qslider.html#a03234">setValue</a>(v);
+}
+
+/*
+    Called whenever the user has changed one of the matrix parameters
+    (i.e. rotate, shear or magnification)
+*/
+void <a name="148"></a>XFormControl::newMtx()
+{
+    emit newMatrix( <a name="matrix"></a><a href="#150">matrix</a>() );
+}
+
+void <a name="149"></a>XFormControl::newTxt(const QString&amp; s)
+{
+    emit newText(s);
+    <a name="changeMode"></a><a href="#153">changeMode</a>(Text);
+}
+
+/*
+    Calculates the matrix appropriate for the current controls,
+    and updates the displays.
+*/
+<a href="qwmatrix.html">QWMatrix</a> <a name="150"></a>XFormControl::matrix()
+{
+    <a href="qwmatrix.html">QWMatrix</a> m;
+    if (mode != Text) {
+        double magVal = 1.0*magS-&gt;<a href="qslider.html#7b285c">value</a>()/100;
+        m.<a name="scale"></a><a href="qwmatrix.html#41a356">scale</a>( magVal, magVal );
+    }
+    double shearVal = 1.0*shearS-&gt;<a href="qslider.html#7b285c">value</a>()/25;
+    m.<a name="shear"></a><a href="qwmatrix.html#b99fbb">shear</a>( shearVal, shearVal );
+    m.<a name="rotate"></a><a href="qwmatrix.html#71020d">rotate</a>( rotS-&gt;<a href="qslider.html#7b285c">value</a>() );
+    if ( mirror-&gt;<a name="isChecked"></a><a href="qcheckbox.html#17b182">isChecked</a>() ) {
+        m.<a href="qwmatrix.html#41a356">scale</a>( 1, -1 );
+        m.<a href="qwmatrix.html#71020d">rotate</a>( 180 );
+    }
+
+    <a href="qstring.html">QString</a> tmp;
+    tmp.<a name="sprintf"></a><a href="qstring.html#926f67">sprintf</a>( "%1.2f", shearVal  );
+    if ( shearVal &gt;= 0 )
+        tmp.<a name="insert"></a><a href="qstring.html#3ca271">insert</a>( 0, " " );
+    shearLCD-&gt;<a href="qlcdnumber.html#ecdf88">display</a>( tmp );
+
+    int rot = rotS-&gt;<a href="qslider.html#7b285c">value</a>();
+    if ( rot &lt; 0 )
+        rot = rot + 360;
+    tmp.<a href="qstring.html#926f67">sprintf</a>( "%3i'", rot );
+    rotLCD-&gt;<a href="qlcdnumber.html#ecdf88">display</a>( tmp );
+    return m;
+}
+
+void <a name="151"></a>XFormControl::selectFont()
+{
+    bool ok;
+    <a href="qfont.html">QFont</a> f = QFontDialog::getFont( &amp;ok, currentFont );
+    if ( ok ) {
+        currentFont = f;
+        <a name="fontSelected"></a><a href="#152">fontSelected</a>( f );
+    }
+}
+
+void <a name="152"></a>XFormControl::fontSelected( const QFont &amp;font )
+{
+    emit newFont( font );
+    <a href=#153>changeMode</a>(Text);
+}
+
+/*
+    Sets the mode - Text, Image, or Picture.
+*/
+
+void <a name="153"></a>XFormControl::changeMode(int m)
+{
+    mode = (Mode)m;
+
+    emit newMode( m );
+    <a name="newMtx"></a><a href="#148">newMtx</a>();
+    if ( mode == Text ) {
+        optionals-&gt;<a name="raiseWidget"></a><a href="qwidgetstack.html#08475e">raiseWidget</a>(0);
+        rb_txt-&gt;<a href="qradiobutton.html#0e50fc">setChecked</a>(TRUE);
+    } else {
+        optionals-&gt;<a href="qwidgetstack.html#08475e">raiseWidget</a>(1);
+        if ( mode == Image )
+            rb_img-&gt;<a href="qradiobutton.html#0e50fc">setChecked</a>(TRUE);
+        else
+            rb_pic-&gt;<a href="qradiobutton.html#0e50fc">setChecked</a>(TRUE);
+    }
+    qApp-&gt;flushX();
+}
+
+ShowXForm::ShowXForm( const QFont &amp;initialFont,
+                      <a href="qwidget.html">QWidget</a> *parent, const char *name )
+        : <a href="qwidget.html">QWidget</a>( parent, name, WResizeNoErase )
+{
+    <a name="setFont"></a><a href="qwidget.html#c52788">setFont</a>( initialFont );
+    <a name="setBackgroundColor"></a><a href="qwidget.html#c09181">setBackgroundColor</a>( white );
+    m = Text;
+    eraseRect = QRect( 0, 0, 0, 0 );
+}
+
+<a href="qsizepolicy.html">QSizePolicy</a> <a name="136"></a>ShowXForm::sizePolicy() const
+{
+    return QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+}
+
+<a href="qsize.html">QSize</a> <a name="137"></a>ShowXForm::sizeHint() const
+{
+    return QSize(400,400);
+}
+
+void <a name="138"></a>ShowXForm::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * )
+{
+    <a name="showIt"></a><a href="#146">showIt</a>();
+}
+
+void <a name="139"></a>ShowXForm::resizeEvent( <a href="qresizeevent.html">QResizeEvent</a> * )
+{
+    eraseRect = QRect( <a name="width"></a><a href="qwidget.html#2edab1">width</a>()/2, <a name="height"></a><a href="qwidget.html#e3c588">height</a>()/2, 0, 0 );
+    <a name="repaint"></a><a href="qwidget.html#7569b1">repaint</a>(rect());
+}
+
+void <a name="140"></a>ShowXForm::setText( const QString&amp; s )
+{
+    text = s;
+    <a href=#146>showIt</a>();
+}
+
+void <a name="141"></a>ShowXForm::setMatrix( <a href="qwmatrix.html">QWMatrix</a> w )
+{
+    mtx = w;
+    <a href=#146>showIt</a>();
+}
+
+void <a name="142"></a>ShowXForm::setFont( const QFont &amp;f )
+{
+    m = Text;
+    <a name="setFont"></a><a href="qwidget.html#090d60">QWidget::setFont</a>( f );
+}
+
+void <a name="143"></a>ShowXForm::setPixmap( <a href="qpixmap.html">QPixmap</a> pm )
+{
+    pix  = pm;
+    m    = Image;
+    <a href=#146>showIt</a>();
+}
+
+void <a name="144"></a>ShowXForm::setPicture( const QPicture&amp; p )
+{
+    picture = p;
+    m = Picture;
+    <a href=#146>showIt</a>();
+}
+
+void <a name="145"></a>ShowXForm::setMode( int mode )
+{
+    m = (Mode)mode;
+}
+
+void <a name="146"></a>ShowXForm::showIt()
+{
+    <a name="QPainter"></a><a href="qpainter.html">QPainter</a> p;
+    <a href="qrect.html">QRect</a> r;      // rectangle covering new text/pixmap in virtual coordinates
+    <a href="qwmatrix.html">QWMatrix</a> um;  // copy user specified transform
+    int textYPos = 0; // distance from boundingRect y pos to baseline
+    int textXPos = 0; // distance from boundingRect x pos to text start
+    <a href="qrect.html">QRect</a> br;
+    <a name="QFontMetrics"></a><a href="qfontmetrics.html">QFontMetrics</a> fm( <a name="fontMetrics"></a><a href="qwidget.html#386569">fontMetrics</a>() );   // get widget font metrics
+    switch ( mode() ) {
+      case Text:
+        br = fm.<a name="boundingRect"></a><a href="qfontmetrics.html#b1cd55">boundingRect</a>( text );   // rectangle covering text
+        r  = br;
+        textYPos = -r.<a name="y"></a><a href="qrect.html#f448f7">y</a>();
+        textXPos = -r.<a name="x"></a><a href="qrect.html#fccae7">x</a>();
+        br.<a name="moveTopLeft"></a><a href="qrect.html#3b6044">moveTopLeft</a>( <a name="QPoint"></a><a href="qpoint.html">QPoint</a>( -br.<a name="width"></a><a href="qrect.html#45fe95">width</a>()/2, -br.<a name="height"></a><a href="qrect.html#581ab8">height</a>()/2 ) );
+        break;
+      case Image:
+        r = pix.<a name="rect"></a><a href="qpixmap.html#fbdfe3">rect</a>();
+        break;
+      case Picture:
+        // ### need QPicture::boundingRect()
+        r = QRect(0,0,1000,1000);
+        break;
+    }
+    r.<a href="qrect.html#3b6044">moveTopLeft</a>( <a href="qpoint.html">QPoint</a>(-r.<a href="qrect.html#45fe95">width</a>()/2, -r.<a href="qrect.html#581ab8">height</a>()/2) );
+          // compute union of new and old rect
+          // the resulting rectangle will cover what is already displayed
+          // and have room for the new text/pixmap
+    eraseRect = eraseRect.<a name="unite"></a><a href="qrect.html#81e8a3">unite</a>( mtx.<a name="map"></a><a href="qwmatrix.html#83c725">map</a>(r) );
+    eraseRect.<a name="moveBy"></a><a href="qrect.html#3de222">moveBy</a>( -1, -1 ); // add border for matrix round off
+    eraseRect.<a name="setSize"></a><a href="qrect.html#94caa4">setSize</a>( <a href="qsize.html">QSize</a>( eraseRect.<a href="qrect.html#45fe95">width</a>() + 2,eraseRect.<a href="qrect.html#581ab8">height</a>() + 2 ) );
+    int pw = QMIN(eraseRect.<a href="qrect.html#45fe95">width</a>(),<a href="qwidget.html#2edab1">width</a>());
+    int ph = QMIN(eraseRect.<a href="qrect.html#581ab8">height</a>(),<a href="qwidget.html#e3c588">height</a>());
+    <a href="qpixmap.html">QPixmap</a> pm( pw, ph );               // off-screen drawing pixmap
+    pm.<a name="fill"></a><a href="qpixmap.html#6910a0">fill</a>( <a name="backgroundColor"></a><a href="qwidget.html#d5be64">backgroundColor</a>() );
+
+    p.begin( &amp;pm );
+    um.<a name="translate"></a><a href="qwmatrix.html#e4b716">translate</a>( pw/2, ph/2 ); // 0,0 is center
+    um = mtx * um;
+    p.setWorldMatrix( um );
+    switch ( mode() ) {
+      case Text:
+        p.setFont( <a name="font"></a><a href="qwidget.html#167922">font</a>() );            // use widget font
+        p.drawText( r.<a name="left"></a><a href="qrect.html#369cab">left</a>() + textXPos, r.<a name="top"></a><a href="qrect.html#4dd27e">top</a>() + textYPos, text );
+#if 0
+        p.setPen( red );
+        p.drawRect( br );
+#endif
+        break;
+      case Image:
+        p.drawPixmap( -pix.<a name="width"></a><a href="qpixmap.html#86dbc5">width</a>()/2, -pix.<a name="height"></a><a href="qpixmap.html#d5bb33">height</a>()/2, pix );
+        //QPixmap rotated = pix.<a name="xForm"></a><a href="qpixmap.html#ff5fcf">xForm</a>(mtx);
+        //bitBlt( &amp;pm, pm.<a href="qpixmap.html#86dbc5">width</a>()/2 - rotated.width()/2,
+                //pm.<a href="qpixmap.html#d5bb33">height</a>()/2 - rotated.height()/2, &amp;rotated );
+        break;
+      case Picture:
+        // ### need QPicture::boundingRect()
+        p.scale(0.25,0.25);
+        p.translate(-230,-180);
+        p.drawPicture( picture );
+    }
+    p.end();
+
+    int xpos = width()/2  - pw/2;
+    int ypos = height()/2 - ph/2;
+    <a name="bitBlt"></a><a href="qpaintdevice.html#35ae2e">bitBlt</a>( this, xpos, ypos,                   // copy pixmap to widget
+            &amp;pm, 0, 0, -1, -1 );
+    eraseRect =  mtx.<a href="qwmatrix.html#83c725">map</a>( r );
+}
+
+/*
+    Grand unifying widget, putting ShowXForm and XFormControl
+    together.
+*/
+
+class XFormCenter : public QHBox, public ModeNames
+{
+    Q_OBJECT
+public:
+    XFormCenter( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+public slots:
+    void setFont( const QFont &amp;f ) { sx-&gt;<a href="qwidget.html#090d60">setFont</a>( f ); }
+    void newMode( int );
+private:
+    ShowXForm   *sx;
+    XFormControl *xc;
+};
+
+void <a name="135"></a>XFormCenter::newMode( int m )
+{
+    static bool first_i = TRUE;
+    static bool first_p = TRUE;
+
+    if ( sx-&gt;mode() == m )
+        return;
+    if ( m == Image &amp;&amp; first_i ) {
+        first_i = FALSE;
+        <a href="qpixmap.html">QPixmap</a> pm;
+        if ( pm.<a name="load"></a><a href="qpixmap.html#a728cf">load</a>( "image.any" ) )
+            sx-&gt;setPixmap( pm );
+        return;
+    }
+    if ( m == Picture &amp;&amp; first_p ) {
+        first_p = FALSE;
+        <a href="qpicture.html">QPicture</a> p;
+        if (p.<a name="load"></a><a href="qpicture.html#f0cc08">load</a>( "picture.any" ))
+            sx-&gt;setPicture( p );
+        return;
+    }
+    sx-&gt;setMode(m);
+}
+
+XFormCenter::XFormCenter( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a name="QHBox"></a><a href="qhbox.html">QHBox</a>( parent, name )
+{
+    <a href="qfont.html">QFont</a> f( "Charter", 36, QFont::Bold );
+
+    xc = new XFormControl( f, this );
+    sx = new ShowXForm( f, this );
+    <a name="setStretchFactor"></a><a href="qhbox.html#8601c4">setStretchFactor</a>(sx,1);
+    xc-&gt;<a name="setFrameStyle"></a><a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Raised );
+    xc-&gt;<a name="setLineWidth"></a><a href="qframe.html#b76184">setLineWidth</a>( 2 );
+    <a name="connect"></a><a href="qobject.html#7f8e37">connect</a>( xc, SIGNAL(newText(const QString&amp;)), sx,
+                 SLOT(setText(const QString&amp;)) );
+    <a href="qobject.html#7f8e37">connect</a>( xc, SIGNAL(newMatrix(<a href="qwmatrix.html">QWMatrix</a>)),
+             sx, SLOT(setMatrix(<a href="qwmatrix.html">QWMatrix</a>)) );
+    <a href="qobject.html#7f8e37">connect</a>( xc, SIGNAL(newFont(const QFont&amp;)), sx,
+                 SLOT(<a href="qwidget.html#c52788">setFont</a>(const QFont&amp;)) );
+    <a href="qobject.html#7f8e37">connect</a>( xc, SIGNAL(<a name="newMode"></a><a href="#135">newMode</a>(int)), SLOT(<a href=#135>newMode</a>(int)) );
+    sx-&gt;setText( "Troll" );
+    <a href=#135>newMode</a>( Image );
+    sx-&gt;setMatrix(xc-&gt;matrix());
+}
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    XFormCenter *xfc = new XFormCenter;
+
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( xfc );
+    xfc-&gt;<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - XForm");
+    xfc-&gt;<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+
+#include "xform.moc"                  // include metadata generated by the moc
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

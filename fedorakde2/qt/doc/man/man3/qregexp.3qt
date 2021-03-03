@@ -1,0 +1,269 @@
+'\" t
+.TH QRegExp 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QRegExp \- Pattern matching using regular expressions or wildcards
+.br
+.PP
+\fC#include <qregexp.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQRegExp\fR () "
+.br
+.ti -1c
+.BI "\fBQRegExp\fR ( const QString &, bool " "caseSensitive" "=TRUE, bool " "wildcard" "=FALSE ) "
+.br
+.ti -1c
+.BI "\fBQRegExp\fR ( const QRegExp & ) "
+.br
+.ti -1c
+.BI "\fB~QRegExp\fR () "
+.br
+.ti -1c
+.BI "QRegExp& \fBoperator=\fR ( const QRegExp & ) "
+.br
+.ti -1c
+.BI "QRegExp& operator= ( const QString & pattern ) \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QRegExp & ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QRegExp & r ) const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisValid\fR () const"
+.br
+.ti -1c
+.BI "bool \fBcaseSensitive\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetCaseSensitive\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBwildcard\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetWildcard\fR ( bool ) "
+.br
+.ti -1c
+.BI "QString \fBpattern\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPattern\fR ( const QString & pattern ) "
+.br
+.ti -1c
+.BI "int \fBmatch\fR ( const QString & " "str" ", int " "index" "=0, int * " "len" "=0, bool " "indexIsStart" " = TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const QString & " "str" ", int index ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "void \fBcompile\fR () (internal)"
+.br
+.ti -1c
+.BI "const QChar* \fBmatchstr\fR ( uint *, const QChar *, uint, const QChar * ) const (internal)"
+.br
+.in -1c
+.SH DESCRIPTION
+The QRegExp class provides pattern matching using regular expressions or wildcards.
+.PP
+QRegExp knows these regexp primitives:
+.TP
+\fIc\fR matches the character 'c'
+.TP
+\fI.\fR matches any character
+.TP
+\fI^\fR matches start of input
+.TP
+\fI$\fR matches end of input
+.TP
+\fI[]\fR matches a defined set of characters - see below.
+.TP
+\fIa*\fR matches a sequence of zero or more a's
+.TP
+\fIa+\fR matches a sequence of one or more a's
+.TP
+\fIa?\fR matches an optional a
+.TP
+\fI\\c\fR escape code for matching special characters such as \\, [, *, +, . etc.
+.TP
+\fI\\t\fR matches the TAB character (9)
+.TP
+\fI\\n\fR matches newline (10)
+.TP
+\fI\\r\fR matches return (13)
+.TP
+\fI\\s\fR matches a white space (defined as any character for which QChar::isSpace() returns TRUE. This includes at least ASCII characters 9 (TAB), 10 (LF), 11 (VT), 12(FF), 13 (CR) and 32 (Space)).
+.TP
+\fI\\d\fR matches a digit (defined as any character for which QChar::isDigit() returns TRUE. This includes at least ASCII characters '0'-'9').
+.TP
+\fI\\x1f6b\fR matches the character with unicode point U1f6b (hexadecimal 1f6b). \\x0012 will match the ASCII/Latin1 character 0x12 (18 decimal, 12 hexadecimal).
+.TP
+\fI\\022\fR matches the ASCII/Latin1 character 022 (18 decimal, 22 octal).
+.PP
+In wildcard mode, it only knows four primitives:
+.TP
+\fIc\fR matches the character 'c'
+.TP
+\fI?\fR matches any character
+.TP
+\fI*\fR matches any sequence of characters
+.TP
+\fI[]\fR matches a defined set of characters - see below.
+.PP
+QRegExp supports Unicode both in the pattern strings and in the strings to be matched.
+.PP
+When writing regular expressions in C++ code, remember that C++ processes \\ characters. So in order to match e.g. a "." character, you must write "\\\\." in C++ source, not "\\.".
+.PP
+A character set matches a defined set of characters. For example, [BSD] matches any of 'B', 'D' and 'S'. Within a character set, the special characters '.', '*', '?', '^', '$', '+' and '[' lose their special meanings. The following special characters apply:
+.TP
+\fI^\fR When placed first in the list, changes the character set to match any character \fInot\fR in the list. To include the character '^' itself in the set, escape it or place it anywhere but first.
+.TP
+\fI-\fR Defines a range of characters. To include the character '-' itself in the set, escape it or place it last.
+.TP
+\fI]\fR Ends the character set definition. To include the character ']' itself in the set, escape it or place it first (but after the negation operator '^', if present) Thus, [a-zA-Z0-9.] matches upper and lower case ASCII letters, digits and dot; and [^\\s] matches everything except white space.
+.PP
+\\note In Qt 3.0, the language of regular expressions will contain five more special characters, namely '(', ')', '{', '|' and '}'. To ease porting, it's a good idea to escape these characters with a backslash in all the regular expressions you'll write from now on.
+.PP
+Bugs and limitations:
+.TP
+Case insensitive matching is not supported for non-ASCII/Latin1 (non-8bit) characters. Any character with a non-zero QChar.row() is matched case sensitively even if the QRegExp is in case insensitive mode.
+.PP
+Examples:
+.(l
+qmag/qmag.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QRegExp::QRegExp ()"
+Constructs an empty regular expression.
+.SH "QRegExp::QRegExp ( const QString & pattern, bool caseSensitive=TRUE, bool wildcard=FALSE )"
+Constructs a regular expression.
+.PP
+Arguments:
+.TP
+\fIpattern\fR is the regular expression pattern string.
+.TP
+\fIcaseSensitive\fR specifies whether or not to use case sensitive matching.
+.TP
+\fIwildcard\fR specifies whether the pattern string should be used for wildcard matching (also called globbing expression), normally used for matching file names.
+.PP
+See also setWildcard().
+.SH "QRegExp::QRegExp ( const QRegExp & r )"
+Constructs a regular expression which is a copy of \fIr.\fR
+.PP
+See also operator=(const and QRegExp&).
+.SH "QRegExp::~QRegExp ()"
+Destructs the regular expression and cleans up its internal data.
+.SH "bool QRegExp::caseSensitive () const"
+Returns TRUE if case sensitivity is enabled, otherwise FALSE. The default is TRUE.
+.PP
+See also setCaseSensitive().
+.SH "int QRegExp::find ( const QString & str, int index )"
+Attempts to match in \fIstr,\fR starting from position \fIindex.\fR Returns the position of the match, or -1 if there was no match.
+.PP
+See also match().
+.SH "bool QRegExp::isEmpty () const"
+Returns TRUE if the regexp is empty.
+.SH "bool QRegExp::isValid () const"
+Returns TRUE if the regexp is valid, or FALSE if it is invalid.
+.PP
+The pattern "[a-z" is an example of an invalid pattern, since it lacks a closing bracket.
+.SH "int QRegExp::match ( const QString & str, int index=0, int * len=0, bool indexIsStart = TRUE ) const"
+Attempts to match in \fIstr,\fR starting from position \fIindex.\fR Returns the position of the match, or -1 if there was no match.
+.PP
+If \fIlen\fR is not a null pointer, the length of the match is stored in \fI*len.\fR
+.PP
+If \fIindexIsStart\fR is TRUE (the default), the position \fIindex\fR in the string will match the start-of-input primitive (^) in the regexp, if present. Otherwise, position 0 in \fIstr\fR will match.
+.PP
+Example:
+.PP
+.nf
+.br
+    QRegExp r("[0-9]*\\\\.[0-9]+");               // matches floating point
+.br
+    int len;
+.br
+    r.match("pi = 3.1416", 0, &len);            // returns 5, len == 6
+.fi
+.PP
+\\note In Qt 3.0, this function will be replaced by find().
+.PP
+Examples:
+.(l
+qmag/qmag.cpp
+.)l
+.SH "bool QRegExp::operator!= ( const QRegExp & r ) const"
+Returns TRUE if this regexp is \fInot\fR equal to \fIr.\fR
+.PP
+See also operator==().
+.SH "QRegExp & QRegExp::operator= ( const QString & pattern )"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Consider using setPattern() instead of this method.
+.PP
+Sets the pattern string to \fIpattern\fR and returns a reference to this regexp. The case sensitivity or wildcard options do not change.
+.SH "QRegExp & QRegExp::operator= ( const QRegExp & r )"
+Copies the regexp \fIr\fR and returns a reference to this regexp. The case sensitivity and wildcard options are copied, as well.
+.SH "bool QRegExp::operator== ( const QRegExp & r ) const"
+Returns TRUE if this regexp is equal to \fIr.\fR
+.PP
+Two regexp objects are equal if they have equal pattern strings, case sensitivity options and wildcard options.
+.SH "QString QRegExp::pattern () const"
+Returns the pattern string of the regexp.
+.SH "void QRegExp::setCaseSensitive ( bool enable )"
+Enables or disables case sensitive matching.
+.PP
+In case sensitive mode, "a.e" matches "axe" but not "Axe".
+.PP
+See also: caseSensitive().
+.SH "void QRegExp::setPattern ( const QString & pattern )"
+Sets the pattern string to \fIpattern\fR and returns a reference to this regexp. The case sensitivity or wildcard options do not change.
+.SH "void QRegExp::setWildcard ( bool wildcard )"
+Sets the wildcard option for the regular expression. The default is FALSE.
+.PP
+Setting \fIwildcard\fR to TRUE makes it convenient to match filenames instead of plain text.
+.PP
+For example, "qr*.cpp" matches the string "qregexp.cpp" in wildcard mode, but not "qicpp" (which would be matched in normal mode).
+.PP
+See also wildcard().
+.SH "bool QRegExp::wildcard () const"
+Returns TRUE if wildcard mode is on, otherwise FALSE.
+.PP
+See also setWildcard().
+.SH "void QRegExp::compile () \fC[protected]\fR"
+For internal use only.
+.SH "const QChar * QRegExp::matchstr ( uint * rxd, const QChar * str, uint strlength, const QChar * bol ) const \fC[protected]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qregexp.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qregexp.3qt) and the Qt
+version (2.3.2).

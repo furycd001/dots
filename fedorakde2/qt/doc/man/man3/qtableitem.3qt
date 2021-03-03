@@ -1,0 +1,225 @@
+'\" t
+.TH QTableItem 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QTableItem \- Content for one cell in a
+.br
+.PP
+\fC#include <qtable.h>\fR
+.PP
+Inherits Qt.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBEditType\fR { Never, OnTyping, WhenCurrent, Always }"
+.br
+.ti -1c
+.BI "\fBQTableItem\fR ( QTable * " "table" ", EditType " "et" ", const QString & text ) "
+.br
+.ti -1c
+.BI "\fBQTableItem\fR ( QTable * " "table" ", EditType " "et" ", const QString & " "text" ", const QPixmap & p ) "
+.br
+.ti -1c
+.BI "virtual \fB~QTableItem\fR () "
+.br
+.ti -1c
+.BI "virtual QPixmap \fBpixmap\fR () const"
+.br
+.ti -1c
+.BI "virtual QString \fBtext\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetPixmap\fR ( const QPixmap & p ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetText\fR ( const QString & t ) "
+.br
+.ti -1c
+.BI "QTable* \fBtable\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBalignment\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetWordWrap\fR ( bool b ) "
+.br
+.ti -1c
+.BI "bool \fBwordWrap\fR () const"
+.br
+.ti -1c
+.BI "EditType \fBeditType\fR () const"
+.br
+.ti -1c
+.BI "virtual QWidget* \fBcreateEditor\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetContentFromEditor\fR ( QWidget * w ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetReplaceable\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBisReplaceable\fR () const"
+.br
+.ti -1c
+.BI "virtual QString \fBkey\fR () const"
+.br
+.ti -1c
+.BI "virtual QSize \fBsizeHint\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSpan\fR ( int " "rs" ", int cs ) "
+.br
+.ti -1c
+.BI "int \fBrowSpan\fR () const"
+.br
+.ti -1c
+.BI "int \fBcolSpan\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetRow\fR ( int r ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetCol\fR ( int c ) "
+.br
+.ti -1c
+.BI "int \fBrow\fR () const"
+.br
+.ti -1c
+.BI "int \fBcol\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBpaint\fR ( QPainter * " "p" ", const QColorGroup & " "cg" ", const QRect & " "cr" ", bool selected ) "
+.br
+.ti -1c
+.BI "void \fBupdateEditor\fR ( int " "oldRow" ", int oldCol ) (internal)"
+.br
+.in -1c
+.SH DESCRIPTION
+The QTableItem class provides content for one cell in a QTable.
+.PP
+A QTableItem contains the data of a table cell, specifies its edit type and the editor used to change its content. Furthermore, it defines its size, the alignment of the data to display, whether the data can be replaced, and provides the API needed for sorting table items.
+.PP
+Items may contain text and pixmaps and offer a QLineEdit for editing. By reimplementing paint(), key(), createEditor() and setContentFromEditor() you can change these default settings.
+.PP
+To get rid of an item, simply delete it. By doing so, all required actions for removing it from the table will be taken.
+.SS "Member Type Documentation"
+.SH "QTableItem::EditType"
+This enum type defines whether and when the user may edit a table cell. The currently defined states are:
+.TP
+\fCAlways\fR - the cell always is and always looks editable.
+.TP
+\fCWhenCurrent\fR - the cell is editable, and looks editable whenever it has keyboard focus (see QTable::setCurrentCell()).
+.TP
+\fCOnTyping\fR - the cell is editable, but looks editable only when the user types in it or double-clicks in it. (This is like \fCWhenCurrent\fR in function but can look a bit cleaner.)
+.TP
+\fCNever\fR - the cell isn't editable.
+.IP
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QTableItem::QTableItem ( QTable * table, EditType et, const QString & text )"
+Creates a table item for the table \fItable\fR that contains the text \fItext.\fR
+.SH "QTableItem::QTableItem ( QTable * table, EditType et, const QString & text, const QPixmap & p )"
+Creates an item for the table \fItable\fR with the text \fItext\fR and the pixmap \fIp.\fR
+.SH "QTableItem::~QTableItem () \fC[virtual]\fR"
+Destructor.
+.SH "int QTableItem::alignment () const \fC[virtual]\fR"
+The alignment function returns how the contents of the cell are drawn. The default implementation aligns numbers to the right and other text to the left.
+.SH "int QTableItem::col () const"
+Returns the column where the item is located. If the cell spans multiple columns, this function returns the leftmost column.
+.SH "int QTableItem::colSpan () const"
+Returns teh column span of the item, normally 1.
+.PP
+See also setSpan().
+.SH "QWidget * QTableItem::createEditor () const \fC[virtual]\fR"
+This virtual function creates the editor with which the user can edit the cell. The default implementation creates a QLineEdit.
+.PP
+If the function returns 0, that the cell can not be edited.
+.PP
+The returned widget should preferably not be visible, and it should preferably have QTable::viewport() as parent.
+.PP
+If you reimplement this function, you probably also need to reimplement setContentFromEditor().
+.PP
+See also QTable::createEditor(), setContentFromEditor() and QTable::viewport().
+.SH "QTableItem::EditType QTableItem::editType() const"
+Returns the edit type of an item.
+.PP
+See also EditType.
+.SH "bool QTableItem::isReplaceable () const"
+This function returns whether the relevant QTableItem can be replaced or not. Only items that cover no more than one cell might be replaced.
+.PP
+See also setReplaceable().
+.SH "QString QTableItem::key () const \fC[virtual]\fR"
+This virtual function returns the key that should be used for sorting. The default implementation returns the text() of the relevant item.
+.SH "void QTableItem::paint ( QPainter * p, const QColorGroup & cg, const QRect & cr, bool selected ) \fC[virtual]\fR"
+In order to paint the contents of an item call \fIQTableItem::paint().\fR
+.SH "QPixmap QTableItem::pixmap () const \fC[virtual]\fR"
+Returns the item's pixmap.
+.SH "int QTableItem::row () const"
+Returns the row where the item is located. If the cell spans multiple rows, this function returns the top row.
+.SH "int QTableItem::rowSpan () const"
+Returns the row span of an item, normally 1.
+.PP
+See also setSpan().
+.SH "void QTableItem::setCol ( int c ) \fC[virtual]\fR"
+Sets the item's column to be \fIc.\fR Normally you will not need to call this function.
+.PP
+If the cell spans multiple columns, this function sets the leftmost column and retains the width.
+.SH "void QTableItem::setContentFromEditor ( QWidget * w ) \fC[virtual]\fR"
+Whenever the content of a cell has been edited by the editor \fIw,\fR QTable calls this virtual function to copy the new values into the QTableItem.
+.PP
+You probably \fImust\fR reimplement this function if you reimplement createEditor() and return something that is not a QLineEdit.
+.PP
+See also QTable::setContentFromEditor().
+.SH "void QTableItem::setPixmap ( const QPixmap & p ) \fC[virtual]\fR"
+Sets the item pixmap to \fIpix.\fR QTableItem::setPixmap(), however, does not repaint the cell.
+.SH "void QTableItem::setReplaceable ( bool b ) \fC[virtual]\fR"
+If it shouldn't be possible to replace the contents of the relevant cell with those of another QTableItem, set \fIb\fR to FALSE.
+.SH "void QTableItem::setRow ( int r ) \fC[virtual]\fR"
+Sets the item's row to be \fIrow.\fR Normally you will not need to call this function.
+.PP
+If the cell spans multiple rows, this function sets the top row and retains the height.
+.SH "void QTableItem::setSpan ( int rs, int cs ) \fC[virtual]\fR"
+Creates a multi-cell QTableItem covering \fIrs\fR rows and \fIcs\fR columns. The top left corner of the item is at the item's former position.
+.PP
+\fBWarning:\fR This function only works, if the item has already been inserted into the table using e.g. QTable::setItem().
+.SH "void QTableItem::setText ( const QString & str ) \fC[virtual]\fR"
+Changes the text of the item to \fIstr.\fR Note that the cell is not repainted.
+.SH "void QTableItem::setWordWrap ( bool b ) \fC[virtual]\fR"
+If \fIb\fR is TRUE, the cell's text is wrapped into multiple lines, otherwise it will be written on one line.
+.SH "QSize QTableItem::sizeHint () const \fC[virtual]\fR"
+This virtual function returns the size a cell needs to show its entire content.
+.PP
+Many custom table items will need to reimplement this function.
+.SH "QTable * QTableItem::table () const"
+Returns the QTable the item belongs to.
+.SH "QString QTableItem::text () const \fC[virtual]\fR"
+Provides the text of the item.
+.SH "bool QTableItem::wordWrap () const"
+If word wrap has been turned on for the cell in question, wordWrap() is TRUE, otherwise it returns FALSE.
+.SH "void QTableItem::updateEditor ( int oldRow, int oldCol )"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qtableitem.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qtableitem.3qt) and the Qt
+version (2.3.2).

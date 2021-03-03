@@ -1,0 +1,1355 @@
+/****************************************************************************
+** $Id: qt/doc/examples.doc   2.3.2   edited 2001-01-26 $
+**
+** Documentation for the examples
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#if defined(DEBUG)
+static char ident[] = "$Id: qt/doc/examples.doc   2.3.2   edited 2001-01-26 $";
+#endif
+
+
+/*! \example application/main.cpp
+
+  <h1 align=center>A Complete Application Window</h1><br clear="all">
+
+  This example program looks like a complete modern application.  It
+  has a menu bar, it has a tool bar, it has a status bar and works
+  like a simple text editor.
+
+  There is a <a href="simple-application.html">walkthrough</a> of
+  this example.
+
+  <hr>
+
+  Header file:
+
+  \include application/application.h
+
+  <hr>
+
+  Implementation:
+
+  \include application/application.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example action/main.cpp
+
+  <h1 align=center>A Complete Application Window with Actions</h1><br clear="all">
+
+  This example program is just like the application example, 
+  QAction to build the menu and the toolbar.
+
+  <hr>
+
+  Header file:
+
+  \include application/application.h
+
+  <hr>
+
+  Implementation:
+
+  \include application/application.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example mdi/main.cpp
+
+  <h1 align=center>A MDI Application</h1><br clear="all">
+
+  This example program is just like the application example, but designed as
+  Multiple Document Interface (MDI).
+
+  <hr>
+
+  Header file:
+
+  \include mdi/application.h
+
+  <hr>
+
+  Implementation:
+
+  \include mdi/application.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example buttongroups/main.cpp
+
+  <h1 align=center>Buttons and Groupboxes</h1><br clear="all">
+
+  This examples shows different types of Groupboxes (Buttongroups, etc.) and lots
+  of different kinds of Buttons (Checkboxes, Radiobuttons, Pushbuttons, etc.)
+
+  <hr>
+
+  Header file:
+
+  \include buttongroups/buttongroups.h
+
+  <hr>
+
+  Implementation:
+
+  \include buttongroups/buttongroups.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example checklists/main.cpp
+
+  <h1 align=center>Listviews with Checkable Items</h1><br clear="all">
+
+  This example program shows how to use Listviews with different types of
+  checkable Items.
+
+  <hr>
+
+  Header file:
+
+  \include checklists/checklists.h
+
+  <hr>
+
+  Implementation:
+
+  \include checklists/checklists.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example cursor/cursor.cpp
+
+  <h1 align=center>Cursors</h1><br clear="all">
+
+  This example shows how to set a mouse cursor for a widget.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example customlayout/main.cpp
+
+  <h1 align=center>Customized Layoutmanager</h1><br clear="all">
+
+  This examples demonstrates how to write a customized layout (geometry) manager,
+  like a Card-Layout, Border-Layout and Flow-Layout.
+
+  See also: <a href="layout.html">Documentation of Geometry Management</a>.
+
+  <hr>
+
+  Header file of the Flow-Layout:
+
+  \include customlayout/flow.h
+
+  <hr>
+
+  Implementation of the Flow-Layout:
+
+  \include customlayout/flow.cpp
+
+  <hr>
+
+  Header file of the Border-Layout:
+
+  \include customlayout/border.h
+
+  <hr>
+
+  Implementation of the Border-Layout:
+
+  \include customlayout/border.cpp
+
+  <hr>
+
+  Header file of the Card-Layout:
+
+  \include customlayout/card.h
+
+  <hr>
+
+  Implementation of the Card-Layout:
+
+  \include customlayout/card.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example desktop/desktop.cpp
+
+  <h1 align=center>Painting on the Desktop</h1><br clear="all">
+
+  The desktop demo contains three routines, each of which draws
+  something on the desktop.  It does some nice stuff with QPainter,
+  and also demonstrates how one can treat the desktop as a widget like
+  any other.
+
+  <hr>
+
+  Implementation:
+
+*/	
+
+/*! \example dirview/main.cpp
+
+  <h1 align=center>A Directory Browser</h1><br clear="all">
+
+  This example program demonstrates how to use a ListView and
+  ListView Items to build a multi-column hierarchical, memory- and
+  CPU-efficient directory browser. It also demonstrates how to use
+  Drag'n'Drop in a Listview.
+
+  <hr>
+
+  Header file:
+
+  \include dirview/dirview.h
+
+  <hr>
+
+  And here is the main implementation file.  Note the way the program
+  scans subdirectories only when it has to.  This allows the program
+  to handle very large file systems efficiently.  The same technique
+  can be used in any other trees.
+
+  \include dirview/dirview.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example drawdemo/drawdemo.cpp
+
+  <h1 align=center>Draw Demo</h1><br clear="all">
+
+  This example demonstrates several drawing functions and printer output.
+  You can easily add you own drawing functions.  See "ourDrawFunctions".
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example drawlines/connect.cpp
+
+  <h1 align=center>Connect the Points</h1><br clear="all">
+
+  This example shows very simple mouse-based user interaction and
+  painting without any world transform matrix or other advanced
+  features.  Run the program, click the button, move the mouse,
+  release the button, and watch the lines get drawn.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example forever/forever.cpp
+
+  <h1 align=center>A Rectangle Draw "Benchmark"</h1><br clear="all">
+
+  This example continuously draws rectangles in a window and
+  has another widget that counts the number of rectangles that
+  are drawn per second.
+
+  <hr>
+
+  Header file:
+
+  \include forever/forever.h
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example hello/main.cpp
+
+  <h1 align=center>Hello, World</h1><br clear="all">
+
+  This example brings up the words "Hello, World" moving up and down,
+  and in different colors.
+
+  <hr>
+
+  Header file:
+
+  \include hello/hello.h
+
+  <hr>
+
+  Implementation:
+
+  \include hello/hello.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example i18n/main.cpp
+  <h1 align=center>Internationalization</h1><br clear="all">
+
+  This example shows how to internationalize applications. Start it with
+  <pre># i18n de</pre>
+  to get a german version and with
+  <pre># i18n en</pre>
+  to get the english version.
+
+  Also see <a href="i18n.html">the internationalization documentation</a>.
+
+  <hr>
+
+  Header file:
+
+  \include i18n/mywidget.h
+
+  <hr>
+
+  Implementation:
+
+  \include i18n/mywidget.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example layout/layout.cpp
+
+  <h1 align=center>Layout Managers</h1><br clear="all">
+
+  This example shows simple and intermediate use of Qt's layout
+  classes, QGridLayout, QBoxLayout etc.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example lineedits/main.cpp
+
+  <h1 align=center>Line Edits</h1><br clear="all">
+
+  The Lineedits example shows how to work with single Lineedit widgets, and
+  how to use different Echo Modes and Validators.
+
+  <hr>
+
+  Header file:
+
+  \include lineedits/lineedits.h
+
+  <hr>
+
+  Implementation:
+
+  \include lineedits/lineedits.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example listboxcombo/main.cpp
+
+  <h1 align=center>Listboxes and Comboboxes</h1><br clear="all">
+
+  This example program demonstrates how to use Listboxes (with single selection
+  and multi selection) and Comboboxes (editable and non-editable).
+
+  <hr>
+
+  Header file:
+
+  \include listboxcombo/listboxcombo.h
+
+  <hr>
+
+  Implementation:
+
+  \include listboxcombo/listboxcombo.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example listbox/main.cpp
+
+  <h1 align=center>Listboxe Example</h1><br clear="all">
+
+  This example shows how to use the different modes (single columns, multipe columns,
+  fixed number of rows, etc.) of QListBox.
+
+  <hr>
+
+  Header file:
+
+  \include listbox/listbox.h
+
+  <hr>
+
+  Implementation:
+
+  \include listbox/listbox.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example listviews/main.cpp
+
+  <h1 align=center>Listviews</h1><br clear="all">
+
+  This examples shows how to work with Listviews (hierarchical and multi-column).
+  It also shows how to subclass Listview Items for special reasons. It looks
+  and works like the mainwindow of a mail client.
+
+  <hr>
+
+  Header file:
+
+  \include listviews/listviews.h
+
+  <hr>
+
+  Implementation:
+
+  \include listviews/listviews.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example menu/menu.cpp
+
+  <h1 align=center>Using menus</h1><br clear="all">
+
+  This example demonstrates simple use of menus (a menu bar and
+  pull-down menus).  Qt also supports popup menus, but this example
+  doesn't contain any.
+
+  <blockquote>
+  Customer: "My computer crashed!"<br>
+  Tech Support: "It crashed?"<br>
+  Customer: "Yeah, it won't let me play my game."<br>
+  Tech Support: "All right, hit Control-Alt-Delete to reboot."<br>
+  Customer: "No, it didn't crash -- it crashed."<br>
+  Tech Support: "Huh?"<br>
+  Customer: "I crashed my game. That's what I said before. I crashed my spaceship and now it doesn't work."<br>
+  Tech Support: "Click on 'File,' then 'New Game.'"<br>
+  Customer: [pause] "Wow! How'd you learn how to do that?"<br>
+  </blockquote>
+
+  Now you too can write menu trees tech support will know how to use!
+
+  <hr>
+
+  Header file:
+
+  \include menu/menu.h
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example picture/picture.cpp
+  <h1 align=center>Picture</h1><br clear="all">
+
+  This example shows how to make, store to file, and read a picture as
+  a set of drawing commands.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example popup/popup.cpp
+
+  <h1 align=center>Popup Widgets</h1><br clear="all">
+
+  This examples shows how to implement widgets which should
+  popup.
+
+  <hr>
+
+  Header file:
+
+  \include popup/popup.h
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example progress/progress.cpp
+
+  <h1 align=center>Progress Bar and Dialog Example</h1><br clear="all">
+
+  This example displays either a simple (text-only) or a
+  custom-labelled (user-supplied widget) progress dialog.  It also
+  demonstrates simple use of menus.
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example progressbar/main.cpp
+
+  <h1 align=center>Progress Bar</h1><br clear="all">
+
+  This example shows how to use a progressbar.
+
+  <hr>
+
+  Header file:
+
+  \include progressbar/progressbar.h
+
+  <hr>
+
+  Implementation:
+
+  \include progressbar/progressbar.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example iconview/main.cpp
+
+  <h1 align=center>Iconview</h1><br clear="all">
+
+  This example implements a flexible icon view which can store
+  lots of icon items. It supports Drag'n'Drop, different selection modes,
+  view modes, rubberband selection, etc.
+
+  Main:
+
+*/
+
+/*! \example rangecontrols/main.cpp
+
+  <h1 align=center>Rangecontrols</h1><br clear="all">
+
+  This examples shows the different types of Rangecontrols which
+  are supported by Qt. These are Dials, Spinboxes and Sliders.
+
+  <hr>
+
+  Header file:
+
+  \include rangecontrols/rangecontrols.h
+
+  <hr>
+
+  Implementation:
+
+  \include rangecontrols/rangecontrols.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example richtext/main.cpp
+
+  <h1 align=center>Richtext</h1><br clear="all">
+
+  In this examples it's demonstrated how to display rich text, using
+  Qt, in a widget. In this example some sayings taken from the famous
+  Unix "Fortune" are displayed nicely formatted.
+
+  <hr>
+
+  Header file:
+
+  \include richtext/richtext.h
+
+  <hr>
+
+  Implementation:
+
+  \include richtext/richtext.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example rot13/rot13.cpp
+
+  <h1 align=center>Rot13</h1><br clear="all">
+
+  In this example you can enter a text in one Mulitilineedit widget
+  and it is displayed in the edit widget at the right transformed using
+  the rot13 algorithm.
+
+  <hr>
+
+  Header file:
+
+  \include rot13/rot13.h
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example scrollview/scrollview.cpp
+
+  <h1 align=center>Scrollview</h1><br clear="all">
+
+  This example shows how to use Qt's Scrollview. This is a widget
+  which can contain a very large contents and is very optimized for
+  that. Also child widgets can be inserted.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example splitter/splitter.cpp
+
+  <h1 align=center>Splitter</h1><br clear="all">
+
+  This example shows how to use Splitters. Splitters can contain
+  multiple child items and using the Splitter the user can
+  decide herself/himself, how much space each child should get.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example tabdialog/main.cpp
+
+  <h1 align=center>Tabdialog</h1><br clear="all">
+
+  This example shows how to use a dialog with multiple tabs
+  (pages). When starting it you have to specify a filename
+  as first argument. The dialog shows then infos about that
+  file seperated into some tabs.
+
+  <hr>
+
+  Header file:
+
+  \include tabdialog/tabdialog.h
+
+  <hr>
+
+  Implementation:
+
+  \include tabdialog/tabdialog.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example themes/main.cpp
+
+  <h1 align=center>Themes (Styles)</h1><br clear="all">
+
+  This examples demonstrates how to let widgets draw in different
+  styles (themes). As example, themes looking like wood and metal
+  are implemented. You can switch between the different styles
+  during runtime using the pulldown menu.
+
+  <hr>
+
+  Header file of the Wood-Theme:
+
+  \include themes/wood.h
+
+  <hr>
+
+  Implementation of the Wood-Theme:
+
+  \include themes/wood.cpp
+
+  <hr>
+
+  Header file of the Metal-Theme:
+
+  \include themes/metal.h
+
+  <hr>
+
+  Implementation of the Metal-Theme:
+
+  \include themes/metal.cpp
+
+  <hr>
+
+  Header file of the example:
+
+  \include themes/themes.h
+
+  <hr>
+
+  Implementation of the example:
+
+  \include themes/themes.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example tooltip/main.cpp
+
+  <h1 align=center>Advanced use of tool tips</h1><br clear="all">
+
+  This example widget demonstrates how to use tool tips for static and
+  dynamic regions within a widget.
+
+  It displays two blue and one red rectangle.  The blue ones move every
+  time you click on them, the red one is static.  There are dynamic
+  tool tips on the blue rectangles and a static tool tip on the red one.
+
+  <hr>
+
+  Header file:
+
+  \include tooltip/tooltip.h
+
+  <hr>
+
+  Implementation:
+
+  \include tooltip/tooltip.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example validator/main.cpp
+
+  <h1 align=center>Validators</h1><br clear="all">
+
+  In this example you see how to write and use an own validator.
+
+  <hr>
+
+  Header file of the validator:
+
+  \include validator/motor.h
+
+  <hr>
+
+  Implementation of the validator:
+
+  \include validator/motor.cpp
+
+  <hr>
+
+  Header file of the mainwidget:
+
+  \include validator/vw.h
+
+  <hr>
+
+  Implementation of the mainwidget:
+
+  \include validator/vw.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example wizard/main.cpp
+
+  <h1 align=center>Wizard</h1><br clear="all">
+
+  This example shows the usage of Qt's wizard class. A wizard
+  should be used to help a user with complicated actions.
+
+  <hr>
+
+  Header file:
+
+  \include wizard/wizard.h
+
+  <hr>
+
+  Implementation:
+
+  \include wizard/wizard.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example xform/xform.cpp
+
+  <h1 align=center>Transformed Graphics Demo</h1><br clear="all">
+
+  This example lets the user rotate, shear and scale text and graphics
+  arbitrarily.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example aclock/main.cpp
+
+  <h1 align=center>Analog Clock</h1><br clear="all">
+
+  This example displays an analog clock widget.
+
+  <hr>
+
+  Header file:
+
+  \include aclock/aclock.h
+
+  <hr>
+
+  Implementation:
+
+  \include aclock/aclock.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example addressbook/main.cpp
+
+  <h1 align=center>Simple Addressbook</h1><br clear="all">
+
+  This examples shows how to write a very simple, but complete application
+  using a very simple addressbook as example.
+
+  <hr>
+
+  Header file of the mainwindow:
+
+  \include addressbook/mainwindow.h
+
+  <hr>
+
+  Implementation of the mainwindow:
+
+  \include addressbook/mainwindow.cpp
+
+  <hr>
+
+  Header file of the centralwidget:
+
+  \include addressbook/centralwidget.h
+
+  <hr>
+
+  Implementation of the centralwidget:
+
+  \include addressbook/centralwidget.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example biff/main.cpp
+
+  <h1 align=center>Biff (UNIX only)</h1><br clear="all">
+
+  Biff is a simple graphical program to indicate whether there is new
+  mail; it looks exactly like xbiff but is much shorter.
+
+  <hr>
+
+  Header file:
+
+  \include biff/biff.h
+
+  <hr>
+
+  biff.cpp implements this custom widget.  Note in particular
+  how two images (hasmail_bmp_data and nomail_bmp_data, both from
+  bmp.cpp) are included into the executable.
+
+  \include biff/biff.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example dclock/main.cpp
+
+  <h1 align=center>Digital Clock</h1><br clear="all">
+
+  This example displays a digital LCD clock and can switch between time
+  and date.
+
+  <hr>
+
+  Header file:
+
+  \include dclock/dclock.h
+
+  <hr>
+
+  Implementation:
+
+  \include dclock/dclock.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example life/main.cpp
+
+  <h1 align=center>Conway's Game of Life</h1><br clear="all">
+
+  ???
+
+  <hr>
+
+  Header file:
+
+  \include life/life.h
+
+  <hr>
+
+  Implementation:
+
+  \include life/life.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example movies/main.cpp
+
+  <h1 align=center>Movies<br>Or the Story of the Animated GIF file</h1><br clear="all">
+
+  The Movies example displays animated GIF files using the QMovie and
+  QLabel classes.
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example helpviewer/main.cpp
+
+  <h1 align=center>Simple HTML Help Browser</h1><br clear="all">
+
+  The HelpViewer example implements a simple HTML help browser using
+  Qt's richtext capabilities.
+
+  <hr>
+
+  Header file:
+
+  \include helpviewer/helpwindow.h
+
+  <hr>
+
+  Implementation:
+
+  \include helpviewer/helpwindow.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example helpviewer/main.cpp
+
+  <h1 align=center>Simple HTML Browser</h1><br clear="all">
+
+  The QBrowser example implements a simple HTML browser using Qt's Richtext widget.
+
+  <hr>
+
+  Header file:
+
+  \include helpviewer/helpwindow.h
+
+  <hr>
+
+  Implementation:
+
+  \include helpviewer/helpwindow.cpp
+
+  <hr>
+
+/*! \example qdir/qdir.cpp
+
+  <h1 align=center>QDir</h1><br clear="all">
+
+  ???
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example qfd/qfd.cpp
+
+  <h1 align=center>Font Displayer</h1><br clear="all">
+
+  This example program displays all characters of a font.
+
+  <hr>
+
+  Header file:
+
+  \include qfd/fontdisplayer.h
+
+  <hr>
+
+  Implementation:
+
+  \include qfd/fontdisplayer.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example fileiconview/main.cpp
+
+  <h1 align=center>Simple Filemanager</h1><br clear="all">
+
+  This example implements a simple and not full functional file manager using
+  a widget derived from QIconView to display the current directory and the
+  widget of the DirectoryView example to display the directory tree.
+
+  <hr>
+
+  Header file of the fileiconview:
+
+  \include fileiconview/qfileiconview.h
+
+  <hr>
+
+  Implementation of the fileiconview:
+
+  \include fileiconview/qfileiconview.cpp
+
+  <hr>
+
+  Header file of the mainwindow:
+
+  \include fileiconview/mainwindow.h
+
+  <hr>
+
+  Implementation of the mainwindow:
+
+  \include fileiconview/mainwindow.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example qmag/qmag.cpp
+
+<h1 align=center>QMag</h1><br clear="all">
+
+  This is a simple magnifier-type program.  It shows how one can do
+  some quite low-level operations portably using Qt.
+
+  Run it, click in the magnifier window, then click where you want to
+  magnify or drag out a rectangle.  Two combo boxes let you select
+  amplification and refresh frequency, a text label tells you the color
+  of the pixel the cursor is on, and a button lets you save the
+  magnified area as a .bmp file.
+
+  <hr>
+
+  Implementation:
+
+*/
+
+/*! \example qwerty/main.cpp
+
+  <h1 align=center>Simple HTML Browser</h1><br clear="all">
+
+  ???
+
+  <hr>
+
+  Header file:
+
+  \include qwerty/qwerty.h
+
+  <hr>
+
+  Implementation:
+
+  \include qwerty/qwerty.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example scribble/main.cpp
+
+  <h1 align=center>Simple Painting Application</h1><br clear="all">
+
+  This example implements the famous scribble example. You can draw around
+  in the canvas with different pens and save the result as picture.
+
+  <hr>
+
+  Header file:
+
+  \include scribble/scribble.h
+
+  <hr>
+
+  Implementation:
+
+  \include scribble/scribble.cpp
+
+  <hr>
+
+  Main:
+
+*/	
+
+/*! \example showimg/main.cpp
+
+  <h1 align=center>Show Image</h1><br clear="all">
+
+  This example reads and displays an image in any supported image
+  format (GIF, BMP, PPM, XMP etc.)
+
+  <hr>
+
+  Header file:
+
+  \include showimg/showimg.h
+
+  <hr>
+
+  Implementation:
+
+  \include showimg/showimg.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example tictac/main.cpp
+
+  <h1 align=center>Tic Tac Toe</h1><br clear="all">
+
+  This is an implementation of the Tic-tac-toe game.
+
+  We didn't put much effort in making a clever algorithm so it's not a
+  challenge to play against the computer. Instead, study the source code
+  to see how you can make reusable components such as the TicTacGameBoard
+  widget.
+
+  <hr>
+
+  Header file:
+
+  \include tictac/tictac.h
+
+  <hr>
+
+  Implementation:
+
+  \include tictac/tictac.cpp
+
+  <hr>
+
+  Main:
+
+*/
+
+/*! \example tetrix/tetrix.cpp
+
+  <h1 align=center>Tetrix</h1><br clear="all">
+
+  This is the Qt implementation of the well known game Tetris.
+
+  <hr>
+
+  Main:
+
+*/
+
+
+/*! \example xml/tagreader/tagreader.cpp
+
+  <h1 align=center>A tiny SAX2 parser</h1><br clear="all">    
+ 
+  This example presents a small <a href="xml-sax.html">SAX2</a> 
+  reader that outputs the names of all elements in an
+  XML document on the command line. The element names are 
+  indented corresponding to their nesting
+ 
+  This example is thoroughly explained in a 
+  <a href="xml-sax-walkthrough.html">walkthrough</a>.
+ 
+  <hr>
+ 
+  Header file:
+ 
+  \include xml/tagreader/structureparser.h
+ 
+  <hr>
+ 
+  Implementation:
+ 
+  \include xml/tagreader/structureparser.cpp
+ 
+  <hr>
+ 
+  Main:
+ 
+*/
+
+
+     
+/*! \example xml/tagreader-with-features/tagreader.cpp
+
+
+  <h1 align=center>Demonstration of SAX2 features</h1><br clear="all"> 
+ 
+  This example presents a small <a href="xml-sax.html">SAX2</a>
+  reader that outputs the qualified names and the
+  respective namespace URIs of all elements and attributes in an
+  XML file. Additionally the tree structure of the document is displayed.
+
+  In three listviews the program shows the different output of the reader
+  depending on how the SAX2 <a href="xml-sax.html#namespaces">features</a>
+  http://xml.org/sax/features/namespaces and
+  http://xml.org/sax/features/namespace-prefixes are set.
+
+  <hr>
+ 
+  Header file:
+ 
+  \include xml/tagreader-with-features/structureparser.h
+ 
+  <hr>
+ 
+  Implementation:
+ 
+  \include xml/tagreader-with-features/structureparser.cpp
+ 
+  <hr>
+ 
+  Main:
+ 
+*/

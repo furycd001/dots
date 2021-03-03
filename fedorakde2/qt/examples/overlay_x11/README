@@ -1,0 +1,74 @@
+
+-----------------------------------------------------------------------
+UPDATE: From version 5.0 onwards, the Qt OpenGL Extension includes
+direct support for use of OpenGL overlays. For many uses of overlays,
+this makes the technique described below redundant. See the 'overlay'
+example program. The following is a discussion on how to use non-QGL
+widgets in overlay planes.
+-----------------------------------------------------------------------
+
+Overlayrubber: An example program showing how to use Qt and Qt OpenGL
+Extension with X11 overlay visuals.
+
+(Background information for this example can be found in the file
+ README.X11-OVERLAYS)
+
+The example program has three main parts:
+
+GearWidget - a normal, simple QGLWidget; renders the usual
+gears. Modified so that it will print a debug message everytime it
+redraws (renders) itself. Thus, you can eaily confirm that drawing in
+the overlay plane does not cause redrawings in the main plane where
+the QGLWidget resides.
+
+RubberbandWidget: Very simple standard (non-GL) Qt widget that
+implements rubberband drawing. Designed for use in an overlay
+plane. It takes the planes' transparent color as a constructor
+argument and uses that for its background color. Thus, the widget
+itself will be invisible, only the rubberbands it draws will be
+visible.
+
+main.cpp: Creates a GearWidget and a Rubberbandwidget and puts the
+latter on top of the former. Contains a routine that checks that the
+default visual is in an overlay plane, and returns the transparent
+color of that plane.
+
+
+Running it:
+-----------
+
+Start the overlayrubber executable. Click and drag with the left mouse
+button to see rubberband drawing. Observere that the QGLWidget does
+not redraw itself (no redraw debug messages are output), still the
+image is not destroyed. Marvel at the coolness of X11 overlays!
+
+
+Using this technique in a real application
+------------------------------------------
+
+For clarity, this example program has been kept very simple. Here are
+some hints for real application usage:
+
+All normal widgets is in the overlay plane: This means that you can
+put all kinds of Qt widgets (your own or provided with Qt) on top of
+the OpenGL image (widget), e.g. pushbuttons etc., and they can be
+moved, resized, or removed without destroying the OpenGL image.
+
+Using together with geometry management: The QLayout classes will not
+allow you to put one widget (the overlay) on top of another (the
+OpenGL widget); that would defy the whole purpose of the automatic
+layout. The solution is to add just one of them to the QLayout object.
+Have it keep a pointer to the other (i.e. the QGLWidget knows about
+its overlay widget or vice versa). Implement the resizeEvent() method
+of the widget you put in the layout, and make it call setGeometry() on
+the other widget with its own geometry as parameters, thus keeping the
+two widgets' geometries synchronized.
+
+Using together with QPalette and QColorGroup: In stead of the somewhat
+simplistic setBackgroundColor( transparentColor ), you can use Qt's
+QPalette system for having your overlay widgets use transparent color
+for what you want. This way, the normal Qt widgets can be used as
+overlays for fancy effects, just create a palette for them with the
+transparent color for the wanted color roles, e.g. Background and
+Base, in the Normal and/or Active modes. This way, you can create
+see-through QPushButtons etc.

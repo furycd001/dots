@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qcache.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qcache.h</h1><br clear="all">
+This is the verbatim text of the qcache.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/tools/qcache.h   2.3.2   edited 2001-07-29 $
+**
+** Definition of QCache template class
+**
+** Created : 950209
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the tools module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QCACHE_H
+#define QCACHE_H
+
+#ifndef QT_H
+#include "qgcache.h"
+#endif // QT_H
+
+
+template&lt;class type&gt; class Q_EXPORT QCache : public QGCache
+{
+public:
+    QCache( const QCache&lt;type&gt; &amp;c ) : QGCache(c) {}
+    QCache( int maxCost=100, int size=17, bool caseSensitive=TRUE )
+        : QGCache( maxCost, size, StringKey, caseSensitive, FALSE ) {}
+   ~QCache()                            { clear(); }
+    QCache&lt;type&gt; &amp;operator=( const QCache&lt;type&gt; &amp;c )
+                        { return (QCache&lt;type&gt;&amp;)QGCache::operator=(c); }
+    int   maxCost()   const             { return QGCache::maxCost(); }
+    int   totalCost() const             { return QGCache::totalCost(); }
+    void  setMaxCost( int m )           { QGCache::setMaxCost(m); }
+    uint  count()     const             { return QGCache::count(); }
+    uint  size()      const             { return QGCache::size(); }
+    bool  isEmpty()   const             { return QGCache::count() == 0; }
+    void  clear()                       { QGCache::clear(); }
+    bool  insert( const QString &amp;k, const type *d, int c=1, int p=0 )
+                        { return QGCache::insert_string(k,(Item)d,c,p);}
+    bool  remove( const QString &amp;k )
+                        { return QGCache::remove_string(k); }
+    type *take( const QString &amp;k )
+                        { return (type *)QGCache::take_string(k); }
+    type *find( const QString &amp;k, bool ref=TRUE ) const
+                        { return (type *)QGCache::find_string(k,ref);}
+    type *operator[]( const QString &amp;k ) const
+                        { return (type *)QGCache::find_string(k);}
+    void  statistics() const          { QGCache::statistics(); }
+private:
+    void  deleteItem( Item d );
+};
+
+#if defined(Q_DELETING_VOID_UNDEFINED)
+template&lt;&gt; inline void QCache&lt;void&gt;::deleteItem( Item )
+{
+}
+#endif
+
+template&lt;class type&gt; inline void QCache&lt;type&gt;::deleteItem( QCollection::Item d )
+{
+    if ( del_item ) delete (type *)d;
+}
+
+
+
+template&lt;class type&gt; class Q_EXPORT QCacheIterator : public QGCacheIterator
+{
+public:
+    QCacheIterator( const QCache&lt;type&gt; &amp;c ):QGCacheIterator((QGCache &amp;)c) {}
+    QCacheIterator( const QCacheIterator&lt;type&gt; &amp;ci)
+                                : QGCacheIterator( (QGCacheIterator &amp;)ci ) {}
+    QCacheIterator&lt;type&gt; &amp;operator=(const QCacheIterator&lt;type&gt;&amp;ci)
+        { return ( QCacheIterator&lt;type&gt;&amp;)QGCacheIterator::operator=( ci ); }
+    uint  count()   const     { return QGCacheIterator::count(); }
+    bool  isEmpty() const     { return QGCacheIterator::count() == 0; }
+    bool  atFirst() const     { return QGCacheIterator::atFirst(); }
+    bool  atLast()  const     { return QGCacheIterator::atLast(); }
+    type *toFirst()           { return (type *)QGCacheIterator::toFirst(); }
+    type *toLast()            { return (type *)QGCacheIterator::toLast(); }
+    operator type *() const   { return (type *)QGCacheIterator::get(); }
+    type *current()   const   { return (type *)QGCacheIterator::get(); }
+    QString currentKey() const{ return QGCacheIterator::getKeyString(); }
+    type *operator()()        { return (type *)QGCacheIterator::operator()();}
+    type *operator++()        { return (type *)QGCacheIterator::operator++(); }
+    type *operator+=(uint j)  { return (type *)QGCacheIterator::operator+=(j);}
+    type *operator--()        { return (type *)QGCacheIterator::operator--(); }
+    type *operator-=(uint j)  { return (type *)QGCacheIterator::operator-=(j);}
+};
+
+
+#endif // QCACHE_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

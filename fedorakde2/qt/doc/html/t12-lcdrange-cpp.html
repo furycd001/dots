@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Tutorial - t12/lcdrange.cpp</title>
+</head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>Source code for <a href="t12.html">tutorial 12</a>: lcdrange.cpp</h1><br clear="all">
+<hr> <pre>/****************************************************************
+**
+** Implementation of LCDRange class, Qt tutorial 12
+**
+****************************************************************/
+
+#include "lcdrange.h"
+
+#include &lt;<a href="qslider-h.html">qslider.h</a>&gt;
+#include &lt;<a href="qlcdnumber-h.html">qlcdnumber.h</a>&gt;
+#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;
+
+LCDRange::LCDRange( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+        : <a href="qvbox.html">QVBox</a>( parent, name )
+{
+    <a href=#532>init</a>();
+}
+
+LCDRange::LCDRange( const char *s, QWidget *parent,
+                    const char *name )
+        : <a href="qvbox.html">QVBox</a>( parent, name )
+{
+    <a href=#532>init</a>();
+    <a href=#537>setText</a>( s );
+}
+
+void <a name="532"></a>LCDRange::init()
+{
+    <a href="qlcdnumber.html">QLCDNumber</a> *lcd  = new <a href="qlcdnumber.html">QLCDNumber</a>( 2, this, "lcd"  );
+    slider = new <a href="qslider.html">QSlider</a>( Horizontal, this, "slider" );
+    slider-&gt;setRange( 0, 99 );
+    slider-&gt;setValue( 0 );
+
+    label = new <a href="qlabel.html">QLabel</a>( " ", this, "label"  );
+    label-&gt;setAlignment( AlignCenter );
+
+    <a href="qobject.html#7f8e37">connect</a>( slider, SIGNAL(valueChanged(int)),
+             lcd, SLOT(display(int)) );
+    <a href="qobject.html#7f8e37">connect</a>( slider, SIGNAL(valueChanged(int)),
+             SIGNAL(valueChanged(int)) );
+
+    <a href="qwidget.html#cddadb">setFocusProxy</a>( slider );
+}
+
+int <a name="533"></a>LCDRange::value() const
+{
+    return slider-&gt;value();
+}
+
+const char *<a name="534"></a>LCDRange::text() const
+{
+    return label-&gt;text();
+}
+
+void <a name="535"></a>LCDRange::setValue( int value )
+{
+    slider-&gt;setValue( value );
+}
+
+void <a name="536"></a>LCDRange::setRange( int minVal, int maxVal )
+{
+    if ( minVal &lt; 0 || maxVal &gt; 99 || minVal &gt; maxVal ) {
+        <a href="qapplication.html#290ef4">qWarning</a>( "<a name="536"></a>LCDRange::setRange(%d,%d)\n"
+                  "\tRange must be 0..99\n"
+                  "\tand minVal must not be greater than maxVal",
+                  minVal, maxVal );
+        return;
+    }
+    slider-&gt;setRange( minVal, maxVal );
+}
+
+void <a name="537"></a>LCDRange::setText( const char *s )
+{
+    label-&gt;setText( s );
+}
+</pre>
+<p>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

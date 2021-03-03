@@ -1,0 +1,154 @@
+'\" t
+.TH QCanvasPolygonalItem 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvasPolygonalItem \- A
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+Inherits QCanvasItem.
+.PP
+Inherited by QCanvasEllipse, QCanvasLine, QCanvasPolygon and QCanvasRectangle.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvasPolygonalItem\fR ( QCanvas * canvas ) "
+.br
+.ti -1c
+.BI "virtual \fB~QCanvasPolygonalItem\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetPen\fR ( QPen p ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetBrush\fR ( QBrush b ) "
+.br
+.ti -1c
+.BI "QPen \fBpen\fR () const"
+.br
+.ti -1c
+.BI "QBrush \fBbrush\fR () const"
+.br
+.ti -1c
+.BI "virtual QPointArray \fBareaPoints\fR () const"
+.br
+.ti -1c
+.BI "virtual QPointArray \fBareaPointsAdvanced\fR () const"
+.br
+.ti -1c
+.BI "virtual QRect \fBboundingRect\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBrtti\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdraw\fR ( QPainter & ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawShape\fR ( QPainter & ) "
+.br
+.ti -1c
+.BI "bool \fBwinding\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetWinding\fR ( bool ) "
+.br
+.in -1c
+.SH DESCRIPTION
+A QCanvasItem which renders itself in a polygonal area.
+.PP
+QCanvasPolygonalItem is an abstract class that is useful for all items which cover a polygonal area of the canvas. QCanvasSprite and QCanvasText, the other branches of QCanvasItem derivatives usually cover a simple rectangular area and are dealt with specially, but typical geometric shapes such as lines and circles would be too inefficiently bounded by rectangular areas - a diagonal line from one corner of the canvas area to the other would be bounded by a rectangle covering the entire area! QCanvasPolygonalItem objects allow the area to be defined by a polygon - a sequence of points bounding the area covered by the item.
+.PP
+Derived classes should try to define as small as possible an area to maximize efficiency, but must \fIdefinately\fR be contained completely within the polygonal area. Calculating the exact requirements may be difficult, but a small amount of over-estimation is better than any under-estimation, which will give drawing errors.
+.PP
+All subclasses must call hide() in their destructor while the functions numAreaPoints() and getAreaPoints() are valid.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvasPolygonalItem::QCanvasPolygonalItem ( QCanvas * canvas )"
+Constructs a QCanvasPolygonalItem on \fIcanvas.\fR
+.SH "QCanvasPolygonalItem::~QCanvasPolygonalItem () \fC[virtual]\fR"
+Destruct the QCanvasPolygonalItem. Derived classes \fImust\fR call hide() in their destructor, as this destructor cannot call the virtual methods.
+.SH "QPointArray QCanvasPolygonalItem::areaPoints () const \fC[virtual]\fR"
+Must return the points bounding the shape. Note that the returned points are \fIoutside\fR the object, not touching it.
+.PP
+Reimplemented in QCanvasPolygon, QCanvasLine, QCanvasRectangle and QCanvasEllipse.
+.SH "QPointArray QCanvasPolygonalItem::areaPointsAdvanced () const \fC[virtual]\fR"
+Returns the points advanced by the current xVelocity() and yVelocity().
+.SH "QRect QCanvasPolygonalItem::boundingRect () const \fC[virtual]\fR"
+Returns the bounding rectangle of the polygonal item, based on areaPoints().
+.PP
+Reimplemented from QCanvasItem.
+.SH "QBrush QCanvasPolygonalItem::brush () const"
+Returns the QBrush used to fill the item, if filled.
+.PP
+See also setBrush().
+.SH "bool QCanvasPolygonalItem::collidesWith ( const QCanvasItem * i ) const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QCanvasItem.
+.SH "void QCanvasPolygonalItem::draw ( QPainter & p ) \fC[virtual protected]\fR"
+Reimplemented from QCanvasItem, this draws the item by setting the pen and brush on \fIp\fR and calling drawShape().
+.PP
+Reimplemented from QCanvasItem.
+.SH "void QCanvasPolygonalItem::drawShape ( QPainter & p ) \fC[virtual protected]\fR"
+Subclasses must reimplement this function to draw their shape. The pen and brush of \fIp\fR are already set to pen() and brush() prior to calling this function.
+.PP
+See also draw().
+.PP
+Reimplemented in QCanvasPolygon, QCanvasEllipse, QCanvasLine and QCanvasRectangle.
+.SH "QPen QCanvasPolygonalItem::pen () const"
+Returns the QPen used to draw the outline of the item, if any.
+.PP
+See also setPen().
+.SH "int QCanvasPolygonalItem::rtti () const \fC[virtual]\fR"
+Returns 2.
+.PP
+See also QCanvasItem::rtti().
+.PP
+Reimplemented from QCanvasItem.
+.SH "void QCanvasPolygonalItem::setBrush ( QBrush b ) \fC[virtual]\fR"
+Sets the QBrush used when drawing item.
+.PP
+See also setPen(), brush() and drawShape().
+.SH "void QCanvasPolygonalItem::setPen ( QPen p ) \fC[virtual]\fR"
+Sets the QPen used when drawing the item. Note that many QCanvasPolygonalItem do not use the pen value.
+.PP
+See also setBrush(), pen() and drawShape().
+.PP
+Reimplemented in QCanvasLine.
+.SH "void QCanvasPolygonalItem::setWinding ( bool enable ) \fC[protected]\fR"
+Sets whether the polygonal item to use \fIwinding\fR algorithm for determine the "inside" of the polygon, rather than the odd-even algorithm.
+.PP
+See also winding().
+.SH "bool QCanvasPolygonalItem::winding () const \fC[protected]\fR"
+Returns TRUE if the polygonal item uses the \fIwinding\fR algorithm for determine the "inside" of the polygon, of FALSE if it uses the odd-even algorithm.
+.PP
+See also  setWinding().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvaspolygonalitem.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvaspolygonalitem.3qt) and the Qt
+version (2.3.2).

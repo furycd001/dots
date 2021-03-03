@@ -1,0 +1,456 @@
+'\" t
+.TH QFrame 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFrame \- The base class of widgets that can have a frame
+.br
+.PP
+\fC#include <qframe.h>\fR
+.PP
+Inherits QWidget.
+.PP
+Inherited by QGrid, QGroupBox, QHBox, QLCDNumber, QLabel, QMenuBar, QPopupMenu, QProgressBar, QScrollView, QSpinBox, QSplitter, QTableView and QWidgetStack.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQFrame\fR ( QWidget * " "parent" "=0, const char * " "name" "=0, WFlags " "f" "=0, bool = TRUE ) "
+.br
+.ti -1c
+.BI "int \fBframeStyle\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetFrameStyle\fR ( int ) "
+.br
+.ti -1c
+.BI "int \fBframeWidth\fR () const"
+.br
+.ti -1c
+.BI "QRect \fBcontentsRect\fR () const"
+.br
+.ti -1c
+.BI "enum \fBShape\fR { NoFrame = 0, Box = 0x0001, Panel = 0x0002, WinPanel = 0x0003, HLine = 0x0004, VLine = 0x0005, StyledPanel = 0x0006, PopupPanel = 0x0007, MShape = 0x000f }"
+.br
+.ti -1c
+.BI "enum \fBShadow\fR { Plain = 0x0010, Raised = 0x0020, Sunken = 0x0030, MShadow = 0x00f0 }"
+.br
+.ti -1c
+.BI "Shape \fBframeShape\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetFrameShape\fR ( Shape ) "
+.br
+.ti -1c
+.BI "Shadow \fBframeShadow\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetFrameShadow\fR ( Shadow ) "
+.br
+.ti -1c
+.BI "int \fBlineWidth\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetLineWidth\fR ( int ) "
+.br
+.ti -1c
+.BI "int \fBmargin\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetMargin\fR ( int ) "
+.br
+.ti -1c
+.BI "int \fBmidLineWidth\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetMidLineWidth\fR ( int ) "
+.br
+.ti -1c
+.BI "QRect \fBframeRect\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetFrameRect\fR ( const QRect & ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBpaintEvent\fR ( QPaintEvent * ) "
+.br
+.ti -1c
+.BI "virtual void \fBresizeEvent\fR ( QResizeEvent * ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawFrame\fR ( QPainter * ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawContents\fR ( QPainter * ) "
+.br
+.ti -1c
+.BI "virtual void \fBframeChanged\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBupdateMask\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBdrawFrameMask\fR ( QPainter * ) "
+.br
+.ti -1c
+.BI "virtual void \fBdrawContentsMask\fR ( QPainter * ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+int	frameWidth	frameWidth
+QRect	contentsRect	contentsRect
+Shape	frameShape	frameShape	setFrameShape
+Shadow	frameShadow	frameShadow	setFrameShadow
+int	lineWidth	lineWidth	setLineWidth
+int	margin	margin	setMargin
+int	midLineWidth	midLineWidth	setMidLineWidth
+QRect	frameRect	frameRect	setFrameRect
+.TE
+.fi
+
+.SH DESCRIPTION
+The QFrame class is the base class of widgets that can have a frame.
+.PP
+It draws a frame and calls a virtual function, drawContents(), to fill in the frame. This function is reimplemented by subclasses. There are also two other less useful functions, drawFrame() and frameChanged().
+.PP
+QPopupMenu uses this to "raise" the menu above the surrounding screen. QProgressBar has a "sunken" look. QLabel has a flat look. The frames of widgets such as these can be changed.
+.PP
+.nf
+.br
+    QLabel label(...);
+.br
+    label.setFrameStyle( QFrame::Panel | QFrame::Raised );
+.br
+    label.setLineWidth( 2 );
+.br
+.br
+    QProgressBar pbar(...);
+.br
+    label.setFrameStyle( QFrame::NoFrame );
+.fi
+.PP
+The QFrame class can also be used directly for creating simple frames without any contents, although usually you would use a QHBox or QVBox as these layout the widgets you put inside the frame.
+.PP
+A frame widget has four attributes: frameStyle(), lineWidth(), midLineWidth(), and margin().
+.PP
+The frame style is specified by a frame shape and a shadow style. The frame shapes are \fCNoFrame, Box, Panel, StyledPanel, PopupPanel, WinPanel, HLine\fR and \fCVLine,\fR and the shadow styles are \fCPlain, Raised\fR and \fCSunken.\fR
+.PP
+The line width is the width of the frame border.
+.PP
+The mid-line width specifies the width of an extra line in the middle of the frame, that uses a third color to obtain a special 3D effect. Notice that a mid-line is only drawn for \fCBox, HLine\fR and \fCVLine\fR frames that are raised or sunken.
+.PP
+The margin is the gap between the frame and the contents of the frame.
+.PP
+This table shows the most useful combinations of styles and widths (and some rather useless ones):
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+Examples:
+.(l
+popup/popup.cpp scrollview/scrollview.cpp movies/main.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QFrame::Shadow"
+This enum type defines the 3D effect used for QFrame's frame. The currently defined effects are: 
+.TP
+\fCPlain\fR - the frame and contents appear level with the surroundings
+.TP
+\fCRaised\fR - the frame and contents appear raised
+.TP
+\fCSunken\fR - the frame and contents appear sunken
+.IP
+.PP
+Shadow interacts with QFrame::Shape, the lineWidth() and the midLineWidth(). The picture of the frames in the class documentation may illustrate this better than words.
+.PP
+See also QFrame::Shape, lineWidth() and midLineWidth().
+.SH "QFrame::Shape"
+This enum type defines the shapes of a QFrame's frame. The currently defined shapes are: 
+.TP
+\fCNoFrame\fR - QFrame draws nothing
+.TP
+\fCBox\fR - QFrame draws a box around its contents
+.TP
+\fCPanel\fR - QFrame draws a panel such that the contents appear raised or sunken
+.TP
+\fCWinPanel\fR - like \fCPanel,\fR but QFrame draws the 3D effects the way Microsoft Windows 95 (etc) does
+.TP
+\fCHLine\fR - QFrame draws a horizontal line that frames nothing (useful as separator)
+.TP
+\fCVLine\fR - QFrame draws a vertical line that frames nothing (useful as separator)
+.TP
+\fCStyledPanel\fR - QFrame calls QStyle::drawPanel()
+.TP
+\fCPopupPanel\fR - QFrame calls QStyle::drawPopupPanel()
+.IP
+.PP
+When it does not call QStyle, Shape interacts with QFrame::Shadow, the lineWidth() and the midLineWidth() to create the total result. The picture of the frames in the class documentation may illustrate this better than words.
+.PP
+See also QFrame::Shadow, QFrame::style(), QStyle::drawPanel() and QStyle::drawPopupPanel().
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFrame::QFrame ( QWidget * parent=0, const char * name=0, WFlags f=0, bool = TRUE )"
+Constructs a frame widget with frame style \fCNoFrame\fR and a 1 pixel frame width.
+.PP
+The last argument exists for compatibility with Qt 1.x; it no longer has any meaning.
+.PP
+The \fIparent, name\fR and \fIf\fR arguments are passed to the QWidget constructor.
+.SH "QRect QFrame::contentsRect () const"
+Returns the rectangle inside the frame.
+.PP
+See also frameRect() and drawContents().
+.SH "void QFrame::drawContents ( QPainter * ) \fC[virtual protected]\fR"
+Virtual function that draws the contents of the frame.
+.PP
+The QPainter is already open when you get it, and you must leave it open. Painter transformations are switched off on entry. If you transform the painter, remember to take the frame into account and reset transformation before returning.
+.PP
+This function is reimplemented by subclasses that draw something inside the frame. It should draw only inside contentsRect(). The default function does nothing.
+.PP
+See also contentsRect(), QPainter::setClipRect() and drawContentsMask().
+.PP
+Reimplemented in QLCDNumber, QMenuBar, QLabel, QProgressBar and QPopupMenu.
+.SH "void QFrame::drawContentsMask ( QPainter * p ) \fC[virtual protected]\fR"
+Virtual function that draws the mask of the frame's contents.
+.PP
+If you reimplemented drawContents(QPainter*) and your widget should support transparency you probably have to re-implement this function as well.
+.PP
+The default implementation masks the contents-rect.
+.PP
+See also drawContents(), updateMask(), QWidget::setAutoMask(), contentsRect() and QPainter::setClipRect().
+.PP
+Reimplemented in QProgressBar and QLabel.
+.SH "void QFrame::drawFrame ( QPainter * p ) \fC[virtual protected]\fR"
+Draws the frame using the current frame attributes and color group. The rectangle inside the frame is not affected.
+.PP
+This function is virtual, but in general you do not need to reimplement it. If you do, note that the QPainter is already open and must remain open.
+.PP
+See also frameRect(), contentsRect(), drawContents(), frameStyle(), setPalette() and drawFrameMask().
+.SH "void QFrame::drawFrameMask ( QPainter * p ) \fC[virtual protected]\fR"
+Virtual function that draws the mask of the frame's frame.
+.PP
+If you reimplemented drawFrame(QPainter*) and your widget should support transparency you probably have to re-implement this function as well.
+.PP
+See also drawFrame(), updateMask(), QWidget::setAutoMask() and QPainter::setClipRect().
+.SH "void QFrame::frameChanged () \fC[virtual protected]\fR"
+Virtual function that is called when the frame style, line width or mid-line width changes.
+.PP
+This function can be reimplemented by subclasses that need to know when the frame attributes change.
+.PP
+The default implementation calls update().
+.PP
+Reimplemented in QHBox, QScrollView, QGrid and QWidgetStack.
+.SH "QRect QFrame::frameRect () const"
+Returns the frame rectangle.
+.PP
+The default frame rectangle is equivalent to the widget rectangle.
+.PP
+See also setFrameRect().
+.SH "Shadow QFrame::frameShadow () const"
+Returns the frame shadow value from the frame style.
+.PP
+See also setFrameShadow(), frameStyle() and frameShape().
+.SH "Shape QFrame::frameShape () const"
+Returns the frame shape value from the frame style.
+.PP
+See also setFrameShape(), frameStyle() and frameShadow().
+.SH "int QFrame::frameStyle () const"
+Returns the frame style.
+.PP
+The default value is QFrame::NoFrame.
+.PP
+See also setFrameStyle(), frameShape() and frameShadow().
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "int QFrame::frameWidth () const"
+Returns the width of the frame that is drawn.
+.PP
+Note that the frame width depends on the frame style, not only the line width and the mid line width. For example, the style \fCNoFrame\fR always has a frame width 0, while the style \fCPanel\fR has a frame width equivalent to the line width. The frame width also includes the margin.
+.PP
+See also lineWidth(), midLineWidth(), frameStyle() and margin().
+.SH "int QFrame::lineWidth () const"
+Returns the line width. (Note that the \fItotal\fR line width for \fCHLine\fR and \fCVLine\fR is given by frameWidth(), not lineWidth().)
+.PP
+The default value is 1.
+.PP
+See also setLineWidth(), midLineWidth() and frameWidth().
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "int QFrame::margin () const"
+Returns the width of the margin. The margin is the distance between the innermost pixel of the frame and the outermost pixel of contentsRect(). It is included in frameWidth().
+.PP
+The margin is filled according to backgroundMode().
+.PP
+The default value is 0.
+.PP
+See also setMargin(), lineWidth() and frameWidth().
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "int QFrame::midLineWidth () const"
+Returns the width of the mid-line.
+.PP
+The default value is 0.
+.PP
+See also setMidLineWidth(), lineWidth() and frameWidth().
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "void QFrame::paintEvent ( QPaintEvent * event ) \fC[virtual protected]\fR"
+Handles paint events for the frame.
+.PP
+Paints the frame and the contents.
+.PP
+Opens the painter on the frame and calls first drawFrame(), then drawContents().
+.PP
+Reimplemented from QWidget.
+.SH "void QFrame::resizeEvent ( QResizeEvent * e ) \fC[virtual protected]\fR"
+Handles resize events for the frame.
+.PP
+Adjusts the frame rectangle for the resized widget. The frame rectangle is elastic, the surrounding area is static.
+.PP
+The resulting frame rectangle may be null or invalid. You can use setMinimumSize() to avoid that possibility.
+.PP
+Nothing is done if the frame rectangle is a null rectangle already.
+.PP
+Reimplemented from QWidget.
+.SH "void QFrame::setFrameRect ( const QRect & r ) \fC[virtual]\fR"
+Sets the frame rectangle to \fIr.\fR
+.PP
+The frame rectangle is the rectangle the frame is drawn in. By default, this is the entire widget. Calling setFrameRect() does \fInot\fR cause a widget update.
+.PP
+If \fIr\fR is a null rectangle (for example \fCQRect(0,0,0,0)\fR), then the frame rectangle is equivalent to the widget rectangle.
+.PP
+See also frameRect() and contentsRect().
+.PP
+Reimplemented in QWidgetStack.
+.SH "void QFrame::setFrameShadow ( Shadow )"
+Sets the frame shadow value of the frame style.
+.PP
+See also frameShadow(), frameStyle() and setFrameShape().
+.SH "void QFrame::setFrameShape ( Shape )"
+Sets the frame shape value of the frame style.
+.PP
+See also frameShape(), frameStyle() and setFrameShadow().
+.SH "void QFrame::setFrameStyle ( int style ) \fC[virtual]\fR"
+Sets the frame style to \fIstyle.\fR
+.PP
+The \fIstyle\fR is the bitwise OR between a frame shape and a frame shadow style. See the illustration in the class documentation.
+.PP
+The frame shapes are:
+.TP
+\fCNoFrame\fR draws nothing. Naturally, you should not specify a shadow style if you use this.
+.TP
+\fCBox\fR draws a rectangular box. The contents appear to be level with the surrounding screen, but the border itself may be raised or sunken.
+.TP
+\fCPanel\fR draws a rectangular panel that can be raised or sunken.
+.TP
+\fCStyledPanel\fR draws a rectangular panel with a look depending on the current GUI style. It can be raised or sunken.
+.TP
+\fCPopupPanel\fR is used to draw a frame suitable for popup windows. Its look also depends on the current GUI style, usually the same as \fCStyledPanel.\fR
+.TP
+\fCWinPanel\fR draws a rectangular panel that can be raised or sunken, very like those in Windows 95. Specifying this shape sets the line width to 2 pixels. WinPanel is provided for compatibility. For GUI style independence we recommend using StyledPanel instead.
+.TP
+\fCHLine\fR draws a horizontal line (vertically centered).
+.TP
+\fCVLine\fR draws a vertical line (horizontally centered).
+.PP
+The shadow styles are:
+.TP
+\fCPlain\fR draws using the palette foreground color (without any 3D effect).
+.TP
+\fCRaised\fR draws a 3D raised line using the light and dark colors of the current color group.
+.TP
+\fCSunken\fR draws a 3D sunken line using the light and dark colors of the current color group.
+.PP
+If a mid-line width greater than 0 is specified, an additional line is drawn for \fCRaised\fR or \fCSunken Box, HLine\fR and \fCVLine\fR frames. The mid color of the current color group is used for drawing middle lines.
+.PP
+See also Illustration, frameStyle(), colorGroup() and QColorGroup.
+.PP
+Examples:
+.(l
+xform/xform.cpp cursor/cursor.cpp layout/layout.cpp popup/popup.cpp scrollview/scrollview.cpp customlayout/main.cpp
+.)l
+.SH "void QFrame::setLineWidth ( int w ) \fC[virtual]\fR"
+Sets the line width to \fIw.\fR
+.PP
+See also frameWidth(), lineWidth() and setMidLineWidth().
+.PP
+Examples:
+.(l
+xform/xform.cpp scrollview/scrollview.cpp
+.)l
+.SH "void QFrame::setMargin ( int w ) \fC[virtual]\fR"
+Sets the width of the margin to \fIw.\fR
+.PP
+See also margin() and setLineWidth().
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "void QFrame::setMidLineWidth ( int w ) \fC[virtual]\fR"
+Sets the width of the mid-line to \fIw.\fR
+.PP
+See also midLineWidth() and setLineWidth().
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "QSize QFrame::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSizePolicy QFrame::sizePolicy () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QFrame::updateMask () \fC[virtual protected]\fR"
+Reimplementation of QWidget::updateMask(). Draws the mask of the frame when transparency is required.
+.PP
+This function calls the virtual functions drawFrameMask() and drawContentsMask(). These are the ones you may want to reimplement in subclasses.
+.PP
+See also QWidget::setAutoMask(), drawFrameMask() and drawContentsMask().
+.PP
+Reimplemented from QWidget.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qframe.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qframe.3qt) and the Qt
+version (2.3.2).

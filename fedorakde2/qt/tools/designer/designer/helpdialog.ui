@@ -1,0 +1,536 @@
+<!DOCTYPE UI><UI>
+<class>HelpDialogBase</class><comment>*********************************************************************
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of Qt Designer.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+*********************************************************************</comment>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>HelpDialogBase</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>504</width>
+            <height>415</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Help</string>
+    </property>
+    <property stdset="1">
+        <name>sizeGripEnabled</name>
+        <bool>true</bool>
+    </property>
+    <property>
+        <name>whatsThis</name>
+        <string>&lt;b&gt;Help&lt;/b&gt;&lt;p&gt;Choose the topic you need help for from the contents list, or search the index for keywords.&lt;/p&gt;</string>
+    </property>
+    <vbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget>
+            <class>QTabWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>tabWidget</cstring>
+            </property>
+            <property>
+                <name>whatsThis</name>
+                <string>Displays help topics organized by category, index or bookmarks</string>
+            </property>
+            <widget>
+                <class>QWidget</class>
+                <attribute>
+                    <name>title</name>
+                    <string>Con&amp;tents</string>
+                </attribute>
+                <vbox>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget>
+                        <class>QListView</class>
+                        <column>
+                            <property>
+                                <name>text</name>
+                                <string>Column 1</string>
+                            </property>
+                            <property>
+                                <name>clickable</name>
+                                <bool>true</bool>
+                            </property>
+                            <property>
+                                <name>resizeable</name>
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>listContents</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>rootIsDecorated</name>
+                            <bool>true</bool>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>&lt;b&gt;Help topics organized by category.&lt;/b&gt;&lt;p&gt;Double-click an item to see which topics are in that category. To view a topic, select it, and then click &lt;b&gt;Display&lt;/b&gt;.&lt;/p&gt;</string>
+                        </property>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget>
+                <class>QWidget</class>
+                <attribute>
+                    <name>title</name>
+                    <string>&amp;Index</string>
+                </attribute>
+                <grid>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget row="0"  column="1" >
+                        <class>QLineEdit</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>editIndex</cstring>
+                        </property>
+                        <property>
+                            <name>toolTip</name>
+                            <string>Enter keyword</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>&lt;b&gt;Enter a keyword.&lt;/b&gt;&lt;p&gt;The list will select an item that matches the entered string best.&lt;/p&gt;</string>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="0" >
+                        <class>QLabel</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>TextLabel1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Look For:</string>
+                        </property>
+                        <property>
+                            <name>buddy</name>
+                            <cstring>editIndex</cstring>
+                        </property>
+                    </widget>
+                    <widget row="1"  column="0"  rowspan="1"  colspan="2" >
+                        <class>QListBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>listIndex</cstring>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>&lt;b&gt;List of available help topics.&lt;/b&gt;&lt;p&gt;Double-click on an item to open up the help page for this topic. You will have to choose the right page if more than one are found.&lt;/p&gt;</string>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget>
+                <class>QWidget</class>
+                <attribute>
+                    <name>title</name>
+                    <string>&amp;Bookmarks</string>
+                </attribute>
+                <grid>
+                    <property stdset="1">
+                        <name>margin</name>
+                        <number>11</number>
+                    </property>
+                    <property stdset="1">
+                        <name>spacing</name>
+                        <number>6</number>
+                    </property>
+                    <widget row="1"  column="1" >
+                        <class>QPushButton</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>buttonRemove</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>D&amp;elete Bookmark</string>
+                        </property>
+                        <property>
+                            <name>toolTip</name>
+                            <string>Delete bookmark</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>Delete the selected bookmark from the list.</string>
+                        </property>
+                    </widget>
+                    <spacer row="2"  column="1" >
+                        <property>
+                            <name>name</name>
+                            <cstring>Spacer1</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>geometry</name>
+                            <rect>
+                                <x>175</x>
+                                <y>79</y>
+                                <width>20</width>
+                                <height>36</height>
+                            </rect>
+                        </property>
+                        <property stdset="1">
+                            <name>orientation</name>
+                            <enum>Vertical</enum>
+                        </property>
+                        <property stdset="1">
+                            <name>sizeType</name>
+                            <enum>Expanding</enum>
+                        </property>
+                    </spacer>
+                    <widget row="0"  column="1" >
+                        <class>QPushButton</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>buttonAdd</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;New Bookmark</string>
+                        </property>
+                        <property>
+                            <name>toolTip</name>
+                            <string>Add new bookmark</string>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>Add the current displayed page as new bookmark to the list.</string>
+                        </property>
+                    </widget>
+                    <widget row="0"  column="0"  rowspan="3"  colspan="1" >
+                        <class>QListView</class>
+                        <column>
+                            <property>
+                                <name>text</name>
+                                <string>Column 1</string>
+                            </property>
+                            <property>
+                                <name>clickable</name>
+                                <bool>true</bool>
+                            </property>
+                            <property>
+                                <name>resizeable</name>
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>listBookmarks</cstring>
+                        </property>
+                        <property>
+                            <name>whatsThis</name>
+                            <string>Displays the list of bookmarks.</string>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+        <widget>
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout18</cstring>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonHelp</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Help</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>87</x>
+                            <y>5</y>
+                            <width>222</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                </spacer>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonDisplay</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Display</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property stdset="1">
+                        <name>default</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>&lt;b&gt;Display the selected topic.&lt;/b&gt;&lt;p&gt;You will have to choose the right location if more the topic is found on more than one page.&lt;/p&gt;</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>buttonCancel</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Close</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>true</bool>
+                    </property>
+                    <property>
+                        <name>whatsThis</name>
+                        <string>Close the Dialog.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget>
+            <class>QFrame</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>framePrepare</cstring>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Raised</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>StyledPanel</enum>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>3</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>labelPrepare</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Preparing...</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QProgressBar</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>progressPrepare</cstring>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>buttonCancel</sender>
+        <signal>clicked()</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>tabWidget</sender>
+        <signal>selected(const QString&amp;)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentTabChanged( const QString &amp; )</slot>
+    </connection>
+    <connection>
+        <sender>listIndex</sender>
+        <signal>doubleClicked(QListBoxItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <connection>
+        <sender>listIndex</sender>
+        <signal>selectionChanged(QListBoxItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentIndexChanged( QListBoxItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listIndex</sender>
+        <signal>returnPressed(QListBoxItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <connection>
+        <sender>listIndex</sender>
+        <signal>currentChanged(QListBoxItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentIndexChanged( QListBoxItem * )</slot>
+    </connection>
+    <connection>
+        <sender>buttonDisplay</sender>
+        <signal>clicked()</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <connection>
+        <sender>editIndex</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>searchInIndex( const QString &amp; )</slot>
+    </connection>
+    <connection>
+        <sender>buttonAdd</sender>
+        <signal>clicked()</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>addBookmark()</slot>
+    </connection>
+    <connection>
+        <sender>buttonRemove</sender>
+        <signal>clicked()</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>removeBookmark()</slot>
+    </connection>
+    <connection>
+        <sender>listBookmarks</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <connection>
+        <sender>listBookmarks</sender>
+        <signal>returnPressed(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <connection>
+        <sender>listBookmarks</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentBookmarkChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listBookmarks</sender>
+        <signal>currentChanged(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentBookmarkChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listContents</sender>
+        <signal>currentChanged(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentContentsChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listContents</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>currentContentsChanged( QListViewItem * )</slot>
+    </connection>
+    <connection>
+        <sender>listContents</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <connection>
+        <sender>listContents</sender>
+        <signal>returnPressed(QListViewItem*)</signal>
+        <receiver>HelpDialogBase</receiver>
+        <slot>showTopic()</slot>
+    </connection>
+    <slot access="protected">addBookmark()</slot>
+    <slot access="protected">currentBookmarkChanged( QListViewItem * )</slot>
+    <slot access="protected">currentIndexChanged( QListBoxItem * )</slot>
+    <slot access="protected">currentTabChanged( const QString &amp; )</slot>
+    <slot access="protected">loadIndexFile()</slot>
+    <slot access="protected">currentContentsChanged( QListViewItem * )</slot>
+    <slot access="protected">removeBookmark()</slot>
+    <slot access="protected">searchInIndex( const QString &amp; )</slot>
+    <slot access="protected">showTopic()</slot>
+</connections>
+</UI>

@@ -1,0 +1,59 @@
+'\" t
+.TH QFilePreview 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFilePreview \- Abstract preview widget for the
+.br
+.PP
+\fC#include <qfiledialog.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQFilePreview\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBpreviewUrl\fR ( const QUrl & url ) "
+.br
+.in -1c
+.SH DESCRIPTION
+Abstract preview widget for the QFileDialog
+.PP
+This class is an abstract base class which is used for implementing widgets which can display a preview of a file in the QFileDialog.
+.PP
+If you want to do that you have to derive your preview widget from any QWidget and from this class. Then you have to reimplement the previewUrl() method of this class which is called by the filedialog if the preview of an URL should be shown.
+.PP
+See also QFileDialog::setPreviewMode(), QFileDialog::setContentsPreview(), QFileDialog::setInfoPreview(), QFileDialog::setInfoPreviewEnabled(), QFileDialog::setContentsPreviewEnabled().
+.PP
+For an example documentation of a preview widget look at the example qt/examples/qdir/qdir.cpp.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFilePreview::QFilePreview ()"
+Constructor. Does nothing.
+.SH "void QFilePreview::previewUrl ( const QUrl & url ) \fC[virtual]\fR"
+This method is called by QFileDialog if a preview
+for the \fIurl\fR should be shown. Reimplement this
+method to do file/URL previews.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfilepreview.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfilepreview.3qt) and the Qt
+version (2.3.2).

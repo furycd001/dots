@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QTextDrag Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QTextDrag Class Reference</h1><br clear="all">
+<p>
+The QTextDrag class is a drag-and-drop object for transferring plain and Unicode text.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qdragobject-h.html">qdragobject.h</a>&gt;</code>
+<p>
+Inherits <a href="qdragobject.html">QDragObject</a>.
+<p><a href="qtextdrag-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#1c9264"><b>QTextDrag</b></a> ( const QString &amp;, QWidget * dragSource = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#3e8074"><b>QTextDrag</b></a> ( QWidget * dragSource = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#408ebe"><b>~QTextDrag</b></a> () </div>
+<li><div class="fn">virtual void <a href="#051ca8"><b>setText</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">virtual void <a href="#e82b1a"><b>setSubtype</b></a> ( const QCString &amp; ) </div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">bool <a href="#48ca8d"><b>canDecode</b></a> ( const QMimeSource * e ) </div>
+<li><div class="fn">bool <a href="#d995bf"><b>decode</b></a> ( const QMimeSource * e, QString &amp; s ) </div>
+<li><div class="fn">bool <a href="#b02128"><b>decode</b></a> ( const QMimeSource * e, QString &amp; s, QCString &amp; subtype ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QTextDrag class is a drag-and-drop object for transferring plain and Unicode text.
+<p>
+Plain text is single- or multi-line 8-bit text in the local encoding.
+<p>Qt provides no built-in mechanism for delivering only single-line.
+<p>Drag&Drop text does <em>not</em> have a NUL terminator when it
+is dropped onto the target.
+<p>For detailed information about drag-and-drop, see the <a href="qdragobject.html">QDragObject</a> class.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="3e8074"></a>QTextDrag::QTextDrag ( <a href="qwidget.html">QWidget</a> * dragSource = 0, const char * name = 0 )</h3>
+<p>Constructs a default text drag object.  <em>dragSource</em> must be the drag
+source, <em>name</em> is the object name.
+<h3 class="fn"><a name="1c9264"></a>QTextDrag::QTextDrag ( const <a href="qstring.html">QString</a> &amp; text, <a href="qwidget.html">QWidget</a> * dragSource = 0, const char * name = 0 )</h3>
+<p>Constructs a text drag object and sets it to <em>text. dragSource</em>
+must be the drag source, <em>name</em> is the object name.
+<h3 class="fn"><a name="408ebe"></a>QTextDrag::~QTextDrag ()</h3>
+<p>Destructs the text drag object and frees up all allocated resources.
+<h3 class="fn">bool <a name="48ca8d"></a>QTextDrag::canDecode ( const <a href="qmimesource.html">QMimeSource</a> * e ) <code>[static]</code></h3>
+<p>Returns TRUE if the information in <em>e</em> can be decoded into a <a href="qstring.html">QString</a>.
+<p>See also  <a href="#b02128">decode</a>().
+<h3 class="fn">bool <a name="d995bf"></a>QTextDrag::decode ( const <a href="qmimesource.html">QMimeSource</a> * e, <a href="qstring.html">QString</a> &amp; str ) <code>[static]</code></h3>
+<p>Attempts to decode the dropped information in <em>e</em>
+into <em>str,</em> returning TRUE if successful.
+<p>See also  <a href="#48ca8d">canDecode</a>().
+<h3 class="fn">bool <a name="b02128"></a>QTextDrag::decode ( const <a href="qmimesource.html">QMimeSource</a> * e, <a href="qstring.html">QString</a> &amp; str, <a href="qcstring.html">QCString</a> &amp; subtype ) <code>[static]</code></h3>
+<p>Attempts to decode the dropped information in <em>e</em>
+into <em>str,</em> returning TRUE if successful.  If <em>subtype</em> is null,
+any text subtype is accepted, otherwise only that specified is
+accepted.  <em>subtype</em> is set to the accepted subtype.
+<p>See also  <a href="#48ca8d">canDecode</a>().
+<h3 class="fn"><a href="qbytearray.html">QByteArray</a> <a name="2baa23"></a>QTextDrag::encodedData ( const char * mime ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">const char * <a name="0d2870"></a>QTextDrag::format ( int i ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qmimesource.html#17ce96">QMimeSource.</a>
+<h3 class="fn">void <a name="e82b1a"></a>QTextDrag::setSubtype ( const <a href="qcstring.html">QCString</a> &amp; st ) <code>[virtual]</code></h3>
+<p>Sets the MIME subtype of the text begin dragged. The default subtype
+is "plain", this the default MIME type of the text is "text/plain".
+You might use this to declare that the text is "text/html" by
+calling setSubtype("html").
+<h3 class="fn">void <a name="051ca8"></a>QTextDrag::setText ( const <a href="qstring.html">QString</a> &amp; text ) <code>[virtual]</code></h3>
+<p>Sets the text to be dragged.  You will need to call this if you did
+not pass the text during construction.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

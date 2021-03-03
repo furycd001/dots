@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QMap Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QMap Class Reference</h1><br clear="all">
+<p>
+The QMap class is a value based template class that provides a dictionary
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qmap-h.html">qmap.h</a>&gt;</code>
+<p><a href="qmap-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#3cfcf4"><b>QMap</b></a> () </div>
+<li><div class="fn"><a href="#b893ab"><b>QMap</b></a> ( const QMap&lt;Key,T&gt; &amp; m ) </div>
+<li><div class="fn"><a href="#6c41e3"><b>~QMap</b></a> () </div>
+<li><div class="fn">QMap&lt;Key, T&gt;&amp; <a href="#e2c5fc"><b>operator=</b></a> ( const QMap&lt;Key, T&gt; &amp; m ) </div>
+<li><div class="fn">Iterator <a href="#4aaaf0"><b>begin</b></a> () </div>
+<li><div class="fn">Iterator <a href="#ecaed1"><b>end</b></a> () </div>
+<li><div class="fn">ConstIterator <a href="#9bed46"><b>begin</b></a> () const</div>
+<li><div class="fn">ConstIterator <a href="#534f76"><b>end</b></a> () const</div>
+<li><div class="fn">Iterator <a href="#fa2738"><b>find</b></a> ( const Key &amp; k ) </div>
+<li><div class="fn">ConstIterator <a href="#12d6cb"><b>find</b></a> ( const Key &amp; k ) const</div>
+<li><div class="fn">T&amp; <a href="#df2d45"><b>operator[]</b></a> ( const Key &amp; k ) </div>
+<li><div class="fn">const T&amp; <a href="#961225"><b>operator[]</b></a> ( const Key &amp; k ) const</div>
+<li><div class="fn">bool <a href="#32b0f6"><b>contains</b></a> ( const Key &amp; k ) const</div>
+<li><div class="fn">uint <a href="#31e76e"><b>count</b></a> () const</div>
+<li><div class="fn">bool <a href="#e636aa"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">Iterator <a href="#3a71b8"><b>insert</b></a> ( const Key &amp; key, const T &amp; value ) </div>
+<li><div class="fn">void <a href="#b9697e"><b>remove</b></a> ( Iterator it ) </div>
+<li><div class="fn">void <a href="#5f0d58"><b>remove</b></a> ( const Key &amp; k ) </div>
+<li><div class="fn">Iterator <a href="#073009"><b>replace</b></a> ( const Key &amp; k, const T &amp; v ) </div>
+<li><div class="fn">void <a href="#ad52f8"><b>clear</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">void <a href="#fafe7a"><b>detach</b></a> () </div>
+</ul>
+<h2>Related Functions</h2>
+(Note that these are not member functions.)
+<ul>
+<li>QDataStream&amp; <a href="qmap.html#4c3cf5"><b>operator&gt;&gt;</b></a> (QDataStream &amp; s, QMap&lt;Key,T&gt; &amp; m)
+<li>QDataStream&amp; <a href="qmap.html#852287"><b>operator&lt;&lt;</b></a> (QDataStream &amp; s, const QMap&lt;Key,T&gt; &amp; m)
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QMap class is a value based template class that provides a dictionary
+<p>
+Define a template instance QMap&lt;Key,Data&gt; to create a dictionary
+with keys of type Key and values of type Data. QMap does not store
+pointers to the members of the map. Instead, it holds a copy of
+every member. For that reason this kind of classes is called "value
+based" while <a href="qlist.html">QList</a> and <a href="qdict.html">QDict</a> are "reference based".
+<p>Some classes can not be used within a QMap, for example everything
+derived from <a href="qobject.html">QObject</a> and thus all classes that implement widgets.
+Only values can be used in a QMap. To qualify as a value, the class
+must provide
+<ul>
+<li>a copy constructor,
+<li>an assignment operator and
+<li> a default constructor, i.e. a constructor that does not take any arguments.
+</ul>
+<p>Note that C++ defaults to field-by-field assignment operators and
+copy constructors if no explicit version is supplied. In many cases,
+this is sufficient.
+<p>The class used for the key requires that the <code>operator<</code> is implemented
+and defines a total order on the keys.
+<p>Example:
+<pre>    #include &lt;qmap.h&gt;
+    #include &lt;qstring.h&gt;
+    #include &lt;stdio.h&gt;
+
+    class Employee
+    {
+    public:
+        Employee(): s(0) {}
+        Employee( const QString&amp; name, int salary )
+            : n(name), s(salary)
+        {}
+
+        <a href="qstring.html">QString</a>     name()   const              { return n; }
+        int         salary() const              { return s; }
+        void        setSalary( int salary )     { s = salary; }
+    private:
+        <a href="qstring.html">QString</a>     n;
+        int         s;
+    };
+
+    void main()
+    {
+        typedef QMap&lt;<a href="qstring.html">QString</a>,Employee&gt; EmployeeMap;
+        EmployeeMap map;                // map of Employee
+
+        map.insert( "Gates", Employee("Bill", 50000) );
+        map.insert( "Ballmer", Employee("Steve",80000) );
+        map.insert( "Sommer,", Employee("Ron",  60000) );
+
+        Employee joe( "Joe", 50000 );
+        map.insert( "Doe", joe );
+        joe.setSalary( 4000 );
+
+        EmployeeMap::Iterator it;
+        for( it = map.begin(); it != map.end(); ++it )
+            printf( "%s, %s earns %d\n", it.key().latin1(), it.data().name().latin1(), it.data().salary() );
+    }
+</pre>
+<p>Program output:
+<pre>        Ballmer, Steve earns 80000
+        Doe, Joe earns 50000
+        Gates, Bill earns 50000
+        Sommer, Ron earns 60000
+</pre>
+<p>As you can see, the latest changes to Joe's salary did not affect the value
+in the list because the map created a copy of Joe's entry. In addition you
+should notice that the items are alphabetically sorted when iterating
+over the map.
+<p>There are two ways to find values in the list. The first one is to use
+the <a href="#12d6cb">find</a>() function. It returns an iterator pointing to the desired
+item or the <a href="#534f76">end</a>() iterator it no such element exists.
+<p>The second approach uses the operator[]. But be warned: If you don't know
+that the element you are searching for is really in the list, then you
+should not use operator[]. The following example illustrates that.
+<p><pre>        <a href="qmap.html">QMap</a>&lt;<a href="qstring.html">QString</a>,QString&gt; map;
+        map.<a href="#3a71b8">insert</a>( "Weis", "Torben" );
+        str &lt;&lt; map["Weis"] &lt;&lt; map["Ettrich"] &lt;&lt; endl;
+
+        const QMap&lt;<a href="qstring.html">QString</a>,QString&gt;&amp; map2 = map;
+        str &lt;&lt; map2["Weis"] &lt;&lt; map2["Reggie"] &lt;&lt; endl;
+</pre>
+<p>The code fragment will print out "Torben", "" and the second part will
+print "Torben", "". In addition the first fragment inserted an empty entry
+with key "Ettrich". The second one did not insert an empty entry with
+key "Reggie" because the const operator[] was used which can not do insertion.
+So if you are not sure whether a certain element is in the map you should
+use find() and iterators.
+<p>If you just want to know whether a certain key is contained in the map,
+the the <a href="#32b0f6">contains</a>() function is what you are looking for. In addition <a href="#31e76e">count</a>()
+tells you how many keys there are currently in the map.
+<p>Another method for traversing a map is to use the functions <a href="#4aaaf0">begin</a>()
+and end().  With a simple for loop as shown in the example you can
+iterate over the complete map.  It is safe to have multiple
+iterators at the same time. If some member of the map is removed
+then only iterators pointing to the removed member become
+invalid. Inserting in the map does not invalidate any iterator.
+<p>Since QMap is value based there is no need to care about deleting
+elements in the list. The list holds its own copies and will free
+them if the corresponding member or the list itself is deleted. You
+can force the list to free all of its item with <a href="#ad52f8">clear</a>().
+<p>QMap is implicitly shared. This means you can just make copies of
+the map in time O(1). If multiple QMap instances share the same data
+and one is modifying the map's data then this modifying instance
+makes a copy and modifies its private copy - thus it does not affect
+other instances.  From a developer's point of view you can think
+that a QMap and a copy of this map have nothing to do with each
+other.
+<p>There are two ways of inserting new elements in a list. One uses the
+<a href="#3a71b8">insert</a>() method while the other one uses operator[] like this:
+<p><pre>        <a href="qmap.html">QMap</a>&lt;<a href="qstring.html">QString</a>,QString&gt; map;
+        map["Weis"] = "Torben";
+</pre>
+;
+<p>Items can be removed from the map in two ways. The first is to pass
+an iterator to the <a href="#5f0d58">remove</a>(). The other possibility is to pass a key
+value to remove() which will delete the entry with the requested
+key. In addition you can clear the entire map using the clear()
+method.
+<p>See also  <a href="qmapiterator.html">QMapIterator</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="3cfcf4"></a>QMap::QMap ()</h3>
+<p>Constructs an empty map.
+<h3 class="fn"><a name="b893ab"></a>QMap::QMap ( const QMap&lt;Key,T&gt; &amp; m )</h3>
+<p>Constructs a copy of <em>m.</em>
+<p>This operation costs O(1) time since QMap is implicit shared.  The
+first instance applying modifications to a shared list will create a
+copy which takes in turn O(<a href="n.html">n</a>) time. However returning a QMap from a
+function is very fast.
+<h3 class="fn"><a name="6c41e3"></a>QMap::~QMap ()</h3>
+<p>Destroys the map. References to the values in the map and all
+iterators of this map become invalidated. Since QMap is highly tuned
+for performance you won't see warnings if you use invalid iterators,
+because it is impossible for an iterator to check whether it is
+valid or not.
+<h3 class="fn">ConstIterator <a name="9bed46"></a>QMap::begin () const</h3>
+<p>Returns an iterator pointing to the first element in the map. This
+iterator equals <a href="#534f76">end</a>() if the map is empty;
+<p>See also  <a href="#534f76">end</a>() and <a href="qmapconstiterator.html">QMapConstIterator</a>.
+<h3 class="fn">Iterator <a name="4aaaf0"></a>QMap::begin ()</h3>
+<p>Returns an iterator pointing to the first element in the map. This
+iterator equals <a href="#534f76">end</a>() if the map is empty;
+<p>See also  <a href="#534f76">end</a>() and <a href="qmapiterator.html">QMapIterator</a>.
+<h3 class="fn">void <a name="ad52f8"></a>QMap::clear ()</h3>
+<p>Removes all items from the map.
+<p>See also  <a href="#5f0d58">remove</a>().
+<h3 class="fn">bool <a name="32b0f6"></a>QMap::contains ( const Key &amp; k ) const</h3>
+<p>Returns TRUE if the key <em>k</em> is contained in the map.
+<h3 class="fn">uint <a name="31e76e"></a>QMap::count () const</h3>
+<p>Returns the number of items in the ap.
+<p>See also  <a href="#e636aa">isEmpty</a>().
+<h3 class="fn">void <a name="fafe7a"></a>QMap::detach () <code>[protected]</code></h3>
+<p>If the map does not share its data with another QMap instance, then
+nothing happens, otherwise the function creates a new copy of this
+data and detaches from the shared one. This function is called
+whenever the map is modified.  The implicit sharing mechanism is
+implemented this way.
+<h3 class="fn">ConstIterator <a name="534f76"></a>QMap::end () const</h3>
+<p>Returns an iterator pointing behind the last element in the map. This
+iterator equals <a href="#4aaaf0">begin</a>() if the map is empty.
+<p>See also  <a href="#4aaaf0">begin</a>() and <a href="qmapconstiterator.html">QMapConstIterator</a>.
+<h3 class="fn">Iterator <a name="ecaed1"></a>QMap::end ()</h3>
+<p>Returns an iterator pointing behind the last element in the map. This
+iterator equals <a href="#4aaaf0">begin</a>() if the map is empty.
+<p>See also  <a href="#4aaaf0">begin</a>() and <a href="qmapiterator.html">QMapIterator</a>.
+<h3 class="fn">ConstIterator <a name="12d6cb"></a>QMap::find ( const Key &amp; k ) const</h3>
+<p>Finds the key <em>k</em> in the map.
+<p>Returns <a href="#534f76">end</a>() if no key did match.
+<p>See also  <a href="qmapconstiterator.html">QMapConstIterator</a>.
+<h3 class="fn">Iterator <a name="fa2738"></a>QMap::find ( const Key &amp; k )</h3>
+<p>Finds the key <em>k</em> in the map.
+<p>Returns <a href="#534f76">end</a>() if no key did match.
+<p>See also  <a href="qmapiterator.html">QMapIterator</a>.
+<h3 class="fn">Iterator <a name="3a71b8"></a>QMap::insert ( const Key &amp; key, const T &amp; value )</h3>
+<p>Inserts the <em>value</em> with key <em>k.</em>
+<p>Returns an iterator pointing at the inserted value.
+<p>See also  <a href="qmapiterator.html">QMapIterator</a>.
+<h3 class="fn">bool <a name="e636aa"></a>QMap::isEmpty () const</h3>
+<p>Returns TRUE if the list is empty, i.e. <a href="#31e76e">count</a>() == 0. Returns FALSE
+otherwise.
+<p>See also  <a href="#31e76e">count</a>().
+<h3 class="fn">QMap&lt;Key, T&gt;&amp; <a name="e2c5fc"></a>QMap::operator= ( const QMap&lt;Key, T&gt; &amp; m )</h3>
+<p>Assigns <em>m</em> to this map and returns a reference to this map.
+<p>All iterators of the current map become invalidated by this
+operation.  The cost of such an assignment is O(1) since QMap is
+implicitly shared.
+<h3 class="fn">T&amp; <a name="df2d45"></a>QMap::operator[] ( const Key &amp; k )</h3>
+<p>Returns the value associated with the key <em>k.</em> If no such
+key is present then an empty item is inserted with this key
+and a reference to the item is returned.
+<p>You can use this operator in two directions: For reading and for
+writing:
+<p><pre>        <a href="qmap.html">QMap</a>&lt;<a href="qstring.html">QString</a>,QString&gt; map;
+        map[ "Weis" ] = "Torben";
+        stream &lt;&lt; map[ "Weis" ];
+</pre>
+<h3 class="fn">const T&amp; <a name="961225"></a>QMap::operator[] ( const Key &amp; k ) const</h3>
+<p>Returns the value associated with the key <em>k.</em> If no such
+key is present then a reference to an empty item is returned.
+<h3 class="fn">void <a name="b9697e"></a>QMap::remove ( Iterator it )</h3>
+<p>Removes the item at position <em>it</em> in the map.
+<p>See also  <a href="#ad52f8">clear</a>() and <a href="qmapiterator.html">QMapIterator</a>.
+<h3 class="fn">void <a name="5f0d58"></a>QMap::remove ( const Key &amp; k )</h3>
+<p>Removes the item with the key <em>k.</em>
+<p>See also  <a href="#ad52f8">clear</a>().
+<h3 class="fn">Iterator <a name="073009"></a>QMap::replace ( const Key &amp; k, const T &amp; v )</h3>
+<p>Replaces the value with key <em>k</em> from the map if possible and
+inserts the new value <em>v</em> with key <em>k</em> in the map.
+<p>See also  <a href="#3a71b8">insert</a>(), <a href="#5f0d58">remove</a>() and <a href="qmapiterator.html">QMapIterator</a>.
+<hr><h2>Related Functions</h2>
+<h3><a href="qdatastream.html">QDataStream</a>&amp; <a name="4c3cf5"></a>operator&gt;&gt; (<a href="qdatastream.html">QDataStream</a> &amp; s, QMap&lt;Key,T&gt; &amp; m)</h3>
+<p>Reads a map from the stream. The types <em>Key</em> and <em>T</em> must implement
+the streaming operator, too.
+
+<h3><a href="qdatastream.html">QDataStream</a>&amp; <a name="852287"></a>operator&lt;&lt; (<a href="qdatastream.html">QDataStream</a> &amp; s, const QMap&lt;Key,T&gt; &amp; m)</h3>
+<p>Writes a map to the stream. The types <em>Key</em> and <em>T</em> must implement
+the streaming operator, too.
+
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

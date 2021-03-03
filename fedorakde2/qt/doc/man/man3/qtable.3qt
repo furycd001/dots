@@ -1,0 +1,723 @@
+'\" t
+.TH QTable 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QTable \- A flexible and editable table widget
+.br
+.PP
+\fC#include <qtable.h>\fR
+.PP
+Inherits QScrollView.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQTable\fR ( QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fBQTable\fR ( int " "numRows" ", int " "numCols" ", QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fB~QTable\fR () "
+.br
+.ti -1c
+.BI "QHeader* \fBhorizontalHeader\fR () const"
+.br
+.ti -1c
+.BI "QHeader* \fBverticalHeader\fR () const"
+.br
+.ti -1c
+.BI "enum \fBSelectionMode\fR { Single, Multi, NoSelection }"
+.br
+.ti -1c
+.BI "virtual void \fBsetSelectionMode\fR ( SelectionMode mode ) "
+.br
+.ti -1c
+.BI "SelectionMode \fBselectionMode\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetItem\fR ( int " "row" ", int " "col" ", QTableItem * item ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetText\fR ( int " "row" ", int " "col" ", const QString & text ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetPixmap\fR ( int " "row" ", int " "col" ", const QPixmap & pix ) "
+.br
+.ti -1c
+.BI "virtual QTableItem* \fBitem\fR ( int " "row" ", int col ) const"
+.br
+.ti -1c
+.BI "virtual QString \fBtext\fR ( int " "row" ", int col ) const"
+.br
+.ti -1c
+.BI "virtual QPixmap \fBpixmap\fR ( int " "row" ", int col ) const"
+.br
+.ti -1c
+.BI "virtual void \fBclearCell\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "virtual QRect \fBcellGeometry\fR ( int " "row" ", int col ) const"
+.br
+.ti -1c
+.BI "virtual int \fBcolumnWidth\fR ( int col ) const"
+.br
+.ti -1c
+.BI "virtual int \fBrowHeight\fR ( int row ) const"
+.br
+.ti -1c
+.BI "virtual int \fBcolumnPos\fR ( int col ) const"
+.br
+.ti -1c
+.BI "virtual int \fBrowPos\fR ( int row ) const"
+.br
+.ti -1c
+.BI "virtual int \fBcolumnAt\fR ( int pos ) const"
+.br
+.ti -1c
+.BI "virtual int \fBrowAt\fR ( int pos ) const"
+.br
+.ti -1c
+.BI "int \fBnumRows\fR () const"
+.br
+.ti -1c
+.BI "int \fBnumCols\fR () const"
+.br
+.ti -1c
+.BI "void \fBupdateCell\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "int \fBcurrentRow\fR () const"
+.br
+.ti -1c
+.BI "int \fBcurrentColumn\fR () const"
+.br
+.ti -1c
+.BI "void \fBensureCellVisible\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "bool \fBisSelected\fR ( int " "row" ", int col ) const"
+.br
+.ti -1c
+.BI "bool \fBisRowSelected\fR ( int " "row" ", bool " "full" " = FALSE ) const"
+.br
+.ti -1c
+.BI "bool \fBisColumnSelected\fR ( int " "col" ", bool " "full" " = FALSE ) const"
+.br
+.ti -1c
+.BI "int \fBnumSelections\fR () const"
+.br
+.ti -1c
+.BI "QTableSelection \fBselection\fR ( int num ) const"
+.br
+.ti -1c
+.BI "virtual int \fBaddSelection\fR ( const QTableSelection & s ) "
+.br
+.ti -1c
+.BI "virtual void \fBremoveSelection\fR ( const QTableSelection & s ) "
+.br
+.ti -1c
+.BI "virtual void \fBremoveSelection\fR ( int num ) "
+.br
+.ti -1c
+.BI "virtual int \fBcurrentSelection\fR () const"
+.br
+.ti -1c
+.BI "bool \fBshowGrid\fR () const"
+.br
+.ti -1c
+.BI "bool \fBcolumnMovingEnabled\fR () const"
+.br
+.ti -1c
+.BI "bool \fBrowMovingEnabled\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsortColumn\fR ( int " "col" ", bool " "ascending" " = TRUE, bool " "wholeRows" " = FALSE ) "
+.br
+.ti -1c
+.BI "bool \fBsorting\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBtakeItem\fR ( QTableItem * i ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetCellWidget\fR ( int " "row" ", int " "col" ", QWidget * e ) "
+.br
+.ti -1c
+.BI "virtual QWidget* \fBcellWidget\fR ( int " "row" ", int col ) const"
+.br
+.ti -1c
+.BI "virtual void \fBclearCellWidget\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "virtual void \fBpaintCell\fR ( QPainter * " "p" ", int " "row" ", int " "col" ", const QRect & " "cr" ", bool selected ) "
+.br
+.ti -1c
+.BI "virtual void \fBpaintFocus\fR ( QPainter * " "p" ", const QRect & r ) "
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "virtual void \fBsetNumRows\fR ( int r ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetNumCols\fR ( int r ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetShowGrid\fR ( bool b ) "
+.br
+.ti -1c
+.BI "virtual void \fBhideRow\fR ( int row ) "
+.br
+.ti -1c
+.BI "virtual void \fBhideColumn\fR ( int col ) "
+.br
+.ti -1c
+.BI "virtual void \fBshowRow\fR ( int row ) "
+.br
+.ti -1c
+.BI "virtual void \fBshowColumn\fR ( int col ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetColumnWidth\fR ( int " "col" ", int w ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetRowHeight\fR ( int " "row" ", int h ) "
+.br
+.ti -1c
+.BI "virtual void \fBadjustColumn\fR ( int col ) "
+.br
+.ti -1c
+.BI "virtual void \fBadjustRow\fR ( int row ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetColumnStretchable\fR ( int " "col" ", bool stretch ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetRowStretchable\fR ( int " "row" ", bool stretch ) "
+.br
+.ti -1c
+.BI "bool \fBisColumnStretchable\fR ( int col ) const"
+.br
+.ti -1c
+.BI "bool \fBisRowStretchable\fR ( int row ) const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSorting\fR ( bool b ) "
+.br
+.ti -1c
+.BI "virtual void \fBswapRows\fR ( int " "row1" ", int row2 ) "
+.br
+.ti -1c
+.BI "virtual void \fBswapColumns\fR ( int " "col1" ", int col2 ) "
+.br
+.ti -1c
+.BI "virtual void \fBswapCells\fR ( int " "row1" ", int " "col1" ", int " "row2" ", int col2 ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetLeftMargin\fR ( int m ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetTopMargin\fR ( int m ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetCurrentCell\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "void \fBclearSelection\fR ( bool " "repaint" " = TRUE ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetColumnMovingEnabled\fR ( bool b ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetRowMovingEnabled\fR ( bool b ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBcurrentChanged\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "void \fBclicked\fR ( int " "row" ", int " "col" ", int " "button" ", const QPoint & mousePos ) "
+.br
+.ti -1c
+.BI "void \fBdoubleClicked\fR ( int " "row" ", int " "col" ", int " "button" ", const QPoint & mousePos ) "
+.br
+.ti -1c
+.BI "void \fBpressed\fR ( int " "row" ", int " "col" ", int " "button" ", const QPoint & mousePos ) "
+.br
+.ti -1c
+.BI "void \fBselectionChanged\fR () "
+.br
+.ti -1c
+.BI "void \fBvalueChanged\fR ( int " "row" ", int col ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawContents\fR ( QPainter * " "p" ", int " "cx" ", int " "cy" ", int " "cw" ", int ch ) "
+.br
+.ti -1c
+.BI "virtual void \fBpaintEmptyArea\fR ( QPainter * " "p" ", int " "cx" ", int " "cy" ", int " "cw" ", int ch ) "
+.br
+.ti -1c
+.BI "virtual void \fBactivateNextCell\fR () "
+.br
+.ti -1c
+.BI "virtual QWidget* \fBcreateEditor\fR ( int " "row" ", int " "col" ", bool initFromCell ) const"
+.br
+.ti -1c
+.BI "virtual void \fBsetCellContentFromEditor\fR ( int " "row" ", int col ) "
+.br
+.ti -1c
+.BI "virtual QWidget* \fBbeginEdit\fR ( int " "row" ", int " "col" ", bool replace ) "
+.br
+.ti -1c
+.BI "virtual void \fBendEdit\fR ( int " "row" ", int " "col" ", bool " "accept" ", bool replace ) "
+.br
+.ti -1c
+.BI "virtual void \fBresizeData\fR ( int len ) "
+.br
+.ti -1c
+.BI "virtual void \fBinsertWidget\fR ( int " "row" ", int " "col" ", QWidget * w ) "
+.br
+.ti -1c
+.BI "int \fBindexOf\fR ( int " "row" ", int col ) const"
+.br
+.in -1c
+.SS "Protected Slots"
+.in +1c
+.ti -1c
+.BI "virtual void \fBcolumnWidthChanged\fR ( int col ) "
+.br
+.ti -1c
+.BI "virtual void \fBrowHeightChanged\fR ( int row ) "
+.br
+.ti -1c
+.BI "virtual void \fBcolumnIndexChanged\fR ( int " "s" ", int " "oi" ", int ni ) "
+.br
+.ti -1c
+.BI "virtual void \fBrowIndexChanged\fR ( int " "s" ", int " "oi" ", int ni ) "
+.br
+.ti -1c
+.BI "virtual void \fBcolumnClicked\fR ( int col ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+int	numRows	numRows	setNumRows
+int	numCols	numCols	setNumCols
+bool	showGrid	showGrid	setShowGrid
+bool	rowMovingEnabled	rowMovingEnabled	setRowMovingEnabled
+bool	columnMovingEnabled	columnMovingEnabled	setColumnMovingEnabled
+.TE
+.fi
+
+.SH DESCRIPTION
+A flexible and editable table widget.
+.PP
+QTable has been designed to use no more memory than strictly needed. Thus, for an empty cell, no memory at all is allocated. In order to add data, create a QTableItem and fill it using setItem(). With QTableItem::setText() and QTableItem::setPixmap(), convenient functions for setting table text and pixmaps are provided. To clear a cell use clearCell().
+.PP
+QTable supports various methods for selecting cells, both with keyboard and mouse, thus for example range selection or column and row selection via appropriate header cells. You can add and remove selections using addSelection() and removeSelection(), resp., and gather information about current selections by means of numSelections(), selection(), and currentChanged().
+.PP
+QTable also offers an API for sorting columns. See setSorting(), sortColumn() and QTableItem::key() for details.
+.PP
+Cell editing can be done in two different ways: Either you offer an edit widget the user can use to enter data that should replace the current content, or you provide him or her with an editor to change the data stored in the cell. If you won't allow the content of a cell to be replaced, however make it possible to edit the current data, simply set QTableItem::isReplaceable() to FALSE.
+.PP
+When a user starts typing text in-place editing (replacing) for the current cell is invoked. Additionally, in-place editing (editing) starts as soon as he or she double-clicks a cell. Sometimes, however, it is required that a cell always shows an editor, that the editor shows off as soon as the relevant cell receives the focus, or that the item shouldn't be edited at all. This edit type has to be specified in the constructor of a QTableItem.
+.PP
+In-place editing is invoked by beginEdit(). This function creates the editor widget for the required cell (see createEditor() for detailed information) and shows it at the appropriate location.
+.PP
+As soon as the user finishes editing endEdit() is called. Have a look at the endEdit() documentation for further information e.g. on how content is transferred from the editor to the item or how the editor is destroyed.
+.PP
+In-place editing is implemented in an abstract way to make sure custom edit widgets for certain cells or cell types can be written easily. To obtain this it is possible to place widgets in cells. See setCellWidget(), clearCellWidget() and cellWidget() for further details.
+.PP
+In order to prevent a cell not containing a QTableItem from being edited, you have to reimplement createEditor(). This function should return 0 for cells that must be not edited at all.
+.PP
+It is possible to use QTable without QTableItems. However, as the default implementation of QTable's in-place editing uses QTableItems, you will have to reimplement createEditor() and setCellContentFromEditor() to get in-place editing without QTableItems. The documentation of these two functions explains the details you need to know for that matter.
+.PP
+In order to draw custom content in a cell you have to implement your own subclass of QTableItem and reimplement the QTableItem::paint() method.
+.PP
+If your application stores its data already in a way that allocating a QTableItem for each data containing cell seems inappropriate, you can reimplement QTable::paintCell() and draw the contents directly. You should also reimplement QTable::paintCell() if you wish to change the alignment of your items in the QTable.
+.PP
+Unless you reimplement them this approach will however prevent you from using functions like setText() etc. Remember that in this case, repainting the cells using updateCell() after each change made is necessary. To make sure you don't waste memory, read the documentation of resizeData().
+.SS "Member Type Documentation"
+.SH "QTable::SelectionMode"
+.TP
+\fCNoSelection\fR - No cell can be selected by the user.
+.TP
+\fCSingle\fR - The user may select one range of cells only.
+.TP
+\fCMulti\fR - Multi-range selections are possible.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QTable::QTable ( QWidget * parent = 0, const char * name = 0 )"
+Constructs a table of 10 * 10 cells.
+.PP
+Performance is boosted by modifying the widget flags so that only part of the QTableItem children is redrawn. This may be unsuitable for custom QTableItem classes, in which case \fCWNorthWestGravity\fR and \fCWRepaintNoErase\fR should be cleared.
+.PP
+See also QWidget::clearWFlags() and Qt::WidgetFlags.
+.SH "QTable::QTable ( int numRows, int numCols, QWidget * parent = 0, const char * name = 0 )"
+Constructs a table with a range of \fInumRows\fR * \fInumCols\fR cells.
+.PP
+Performance is boosted by modifying the widget flags so that only part of the QTableItem children is redrawn. This may be unsuitable for custom QTableItem classes, in which case the widget flags should be reset using QWidget::setWFlags().
+.SH "QTable::~QTable ()"
+Destructor.
+.SH "void QTable::activateNextCell () \fC[virtual protected]\fR"
+This is called to activate the next cell if in-place editing was finished by pressing the Return key.
+.PP
+If you want a different behaviour then going from top to bottom, reimplement this function.
+.SH "int QTable::addSelection ( const QTableSelection & s ) \fC[virtual]\fR"
+Adds a selection described by \fIs\fR to the table and returns its number or -1 if the selection is invalid. Don't forget to call QTableSelection::init() and QTableSelection::expandTo() to make it valid (see also QTableSelection::isActive()).
+.SH "void QTable::adjustColumn ( int col ) \fC[virtual slot]\fR"
+Resizes the column \fIcol\fR to be exactly wide enough so that the whole contents is visible.
+.SH "void QTable::adjustRow ( int row ) \fC[virtual slot]\fR"
+Resizes the row \fIrow\fR to be exactly high enough so that the whole contents is visible.
+.SH "QWidget * QTable::beginEdit ( int row, int col, bool replace ) \fC[virtual protected]\fR"
+This function is called to start in-place editing of the cell \fIrow, col.\fR If \fIreplace\fR is TRUE the content of this cell will be replaced by the content of the editor later, else the current content of that cell (if existing) will be edited by the editor.
+.PP
+This function calls createEditor() to get the editor which should be used for editing the cell and after that setCellWidget() to set this editor as the widget of that cell.
+.PP
+See also createEditor(), setCellWidget() and endEdit().
+.SH "QRect QTable::cellGeometry ( int row, int col ) const \fC[virtual]\fR"
+Returns the bounding rect of the cell \fIrow, col\fR in contents coordinates.
+.SH "QWidget * QTable::cellWidget ( int row, int col ) const \fC[virtual]\fR"
+Returns the widget which has been set to the cell \fIrow, col\fR of 0 if there is no widget.
+.SH "void QTable::clearCell ( int row, int col ) \fC[virtual]\fR"
+Removes the QTableItem in position \fIrow, col.\fR
+.SH "void QTable::clearCellWidget ( int row, int col ) \fC[virtual]\fR"
+Removes the widget (if there is any) which is set for the cell \fIrow, col.\fR
+.SH "void QTable::clearSelection ( bool repaint = TRUE ) \fC[slot]\fR"
+Clears all selections.
+.SH "void QTable::clicked ( int row, int col, int button, const QPoint & mousePos ) \fC[signal]\fR"
+This signal is emitted as soon as a user clicks on \fIrow\fR and \fIcol\fR using mousebutton \fIbutton.\fR The actual mouse position is passed as \fImousePos.\fR
+.SH "int QTable::columnAt ( int pos ) const \fC[virtual]\fR"
+Returns the column which is at \fIpos. pos\fR has to be given in contents coordinates.
+.SH "void QTable::columnClicked ( int col ) \fC[virtual protected slot]\fR"
+This function is called when the column \fCcol\fR has been clicked. The default implementation sorts this column if sorting() is TRUE.
+.SH "void QTable::columnIndexChanged ( int, int, int ) \fC[virtual protected slot]\fR"
+This function is called if the order of the columns has been changed. If you want to change the order programmatically, call swapRows() or swapColumns().
+.SH "bool QTable::columnMovingEnabled () const"
+Returns whether columns can be moved by the user.
+.SH "int QTable::columnPos ( int col ) const \fC[virtual]\fR"
+Returns the x-position of the column \fIcol\fR in contents coordinates.
+.SH "int QTable::columnWidth ( int col ) const \fC[virtual]\fR"
+Returns the width of the column \fIcol.\fR
+.SH "void QTable::columnWidthChanged ( int col ) \fC[virtual protected slot]\fR"
+This function should be called whenever the column width of \fIcol\fR has been changed. It will then rearrange the content appropriately.
+.SH "void QTable::contentsMouseDoubleClickEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTable::contentsMouseMoveEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTable::contentsMousePressEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTable::contentsMouseReleaseEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "QWidget * QTable::createEditor ( int row, int col, bool initFromCell ) const \fC[virtual protected]\fR"
+This function returns a widget which should be used as editor for the cell \fIrow, col.\fR If \fIinitFromCell\fR is TRUE, the editor is used to edit the current content of the cell (so the editor widget should be initialized with that content). Otherwise the content of this cell will be replaced by a new content which the user will enter into the widget which this function should create.
+.PP
+The default implementation looks if there exists a QTableItem for the cell. If this is the case and \fIinitFromCell\fR is TRUE or QTableItem::isReplaceable() of the item is FALSE, the item of that cell is asked to create the editor (using QTableItem::createEditor)).
+.PP
+If this is not the case, a QLineEdit is created as editor.
+.PP
+So if you want to create your own editor for certain cells, implement your own QTableItem and reimplement QTableItem::createEditor(). If you want to use a different editor than a QLineEdit as default editor, reimplement this function and use a code like
+.PP
+.nf
+.br
+    QTableItem *i = item( row, col );
+.br
+    if ( initFromCell || i && !i->isReplaceable() )
+.br
+        return QTable::createEditor( row, col, initFromCell );
+.br
+    else
+.br
+        return ...(create your editor)
+.fi
+.PP
+So normally you do not need to reimplement this function. But if you want e.g. work without QTableItems, you will reimplement this function to create the correct editor for the cells.
+.PP
+The ownership of the editor widget is transferred to the caller.
+.PP
+Returning 0 here means that the cell is not editable.
+.PP
+See also QTableItem::createEditor().
+.SH "void QTable::currentChanged ( int row, int col ) \fC[signal]\fR"
+This signal is emitted if the current cell has been changed to \fIrow, col.\fR
+.SH "int QTable::currentColumn () const"
+Returns the current column.
+.SH "int QTable::currentRow () const"
+Returns the current row.
+.SH "int QTable::currentSelection () const \fC[virtual]\fR"
+Returns the number of the current selection or -1 if there is none.
+.SH "void QTable::doubleClicked ( int row, int col, int button, const QPoint & mousePos ) \fC[signal]\fR"
+A double-click with \fIbutton\fR emits this signal, where \fIrow\fR and \fIcol\fR denote the position of the cell. The actual mouse position is passed as \fImousePos.\fR
+.SH "void QTable::drawContents ( QPainter * p, int cx, int cy, int cw, int ch ) \fC[virtual protected]\fR"
+Draws the table contents on the painter \fIp.\fR The function is optimized to exclusively draw the cells inside the relevant clipping rectangle \fIcx, cy, cw, ch.\fR
+.PP
+Additionally, drawContents() highlights the current cell.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTable::endEdit ( int row, int col, bool accept, bool replace ) \fC[virtual protected]\fR"
+This function is called if in-place editing of the cell \fIrow, col\fR has to be ended. If \fIaccept\fR is TRUE the content of the editor of this cell has to be transferred to the cell. If \fIreplace\fR is TRUE the current content of that cell should be replaced by the content of the editor (this means removing the current QTableItem of the cell and creating a new one for the cell), else (if possible) the content of the editor should just be set to the existing QTableItem of this cell.
+.PP
+So, if the cell contents should be replaced or if no QTableItem exists for the cell yet, setCellContentFromEditor() is called, else QTableItem::setContentFromEditor() is called on the QTableItem of the cell.
+.PP
+After that clearCellWidget() is called to get rid of the editor widget.
+.PP
+See also setCellContentFromEditor() and beginEdit().
+.SH "void QTable::ensureCellVisible ( int row, int col )"
+Scrolls the table until the cell \fIrow, col\fR becomes visible.
+.SH "bool QTable::eventFilter ( QObject * o, QEvent * e ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QObject.
+.SH "void QTable::focusInEvent ( QFocusEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QTable::focusOutEvent ( QFocusEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QTable::hideColumn ( int col ) \fC[virtual slot]\fR"
+Hides the column \fIcol.\fR
+.PP
+See also showCol().
+.SH "void QTable::hideRow ( int row ) \fC[virtual slot]\fR"
+Hides the row \fIrow.\fR
+.PP
+See also showRow().
+.SH "QHeader * QTable::horizontalHeader () const"
+Returns the top QHeader of the table.
+.SH "int QTable::indexOf ( int row, int col ) const \fC[protected]\fR"
+Maps 2D table to 1D array index.
+.SH "void QTable::insertWidget ( int row, int col, QWidget * w ) \fC[virtual protected]\fR"
+Inserts the widget \fIw\fR into the internal datastructure. See the documentation of setCellWidget() for further details.
+.SH "bool QTable::isColumnSelected ( int col, bool full = FALSE ) const"
+Returns TRUE if column \fIcol\fR is selected, and FALSE otherwise.
+.PP
+If \fIfull\fR is TRUE, the entire column must be selected for this function to return TRUE. If \fIfull\fR is FALSE, at least one cell in \fIcol\fR must be selected.
+.SH "bool QTable::isColumnStretchable ( int col ) const \fC[slot]\fR"
+Returns wheather the column \fIcol\fR is stretchable or not.
+.PP
+See also setColumnStretchable().
+.SH "bool QTable::isRowSelected ( int row, bool full = FALSE ) const"
+Returns TRUE if \fIrow\fR is selected, and FALSE otherwise.
+.PP
+If \fIfull\fR is TRUE, the entire row must be selected for this function to return TRUE. If \fIfull\fR is FALSE, at least one cell in \fIrow\fR must be selected.
+.SH "bool QTable::isRowStretchable ( int row ) const \fC[slot]\fR"
+Returns wheather the row \fIrow\fR is stretchable or not.
+.PP
+See also setRowStretchable().
+.SH "bool QTable::isSelected ( int row, int col ) const"
+Checks whether the cell at position \fIrow, col\fR is selected.
+.SH "QTableItem * QTable::item ( int row, int col ) const \fC[virtual]\fR"
+Returns the QTableItem representing the contents of the cell \fIrow, col.\fR If \fIrow\fR or \fIcol\fR are out of range or no content has been set for this cell so far, item() returns 0.
+.SH "void QTable::keyPressEvent ( QKeyEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "int QTable::numCols () const"
+Returns the number of columns of the table.
+.SH "int QTable::numRows () const"
+Returns the number of rows of the table.
+.SH "int QTable::numSelections () const"
+Returns the number of selections.
+.SH "void QTable::paintCell ( QPainter * p, int row, int col, const QRect & cr, bool selected ) \fC[virtual]\fR"
+Paints the cell at the position \fIrow, col\fR on the painter \fIp.\fR The painter has already been translated to the cell's origin. \fIcr\fR describes the cell coordinates in the content coordinate system..
+.PP
+If you want to draw custom cell content you have to reimplement paintCell() to do the custom drawing, or else subclass QTableItem and reimplement QTableItem::paint().
+.PP
+If you want to change the alignment of your items then you will need to reimplement paintCell().
+.PP
+Reimplementing this function is probably better e.g. for data you retrieve from a database and draw at once, while using QTableItem::paint() is probably better e.g. if you wish these data to be stored in a data structure in the table.
+.SH "void QTable::paintEmptyArea ( QPainter * p, int cx, int cy, int cw, int ch ) \fC[virtual protected]\fR"
+This function fills the rectangular \fIcx, cy, cw, ch\fR with the background color. paintEmptyArea() is invoked by drawContents() to erase or fill unused areas.
+.SH "void QTable::paintFocus ( QPainter * p, const QRect & cr ) \fC[virtual]\fR"
+Draws the focus rectangle of the current cell (see currentRow(), currentColumn()). The painter \fIp\fR is already translated to the cell's origin, while \fIcr\fR specifies the cell's geometry in contents coordinates.
+.SH "QPixmap QTable::pixmap ( int row, int col ) const \fC[virtual]\fR"
+Returns the pixmap set for the cell \fIrow, col,\fR or a null-pixmap if the cell contains no pixmap.
+.SH "void QTable::pressed ( int row, int col, int button, const QPoint & mousePos ) \fC[signal]\fR"
+This signal is emitted whenever the mousebutton \fIbutton\fR is pressed above the cell located in \fIrow\fR and \fIcol.\fR The actual mouse position is passed as \fImousePos.\fR
+.SH "void QTable::removeSelection ( const QTableSelection & s ) \fC[virtual]\fR"
+Removes the selection matching the values of \fIs\fR from the table.
+.SH "void QTable::removeSelection ( int num ) \fC[virtual]\fR"
+Removes selection number \fInum.\fR
+.SH "void QTable::resizeData ( int len ) \fC[virtual protected]\fR"
+This is called when QTable's internal array needs to be resized.
+.PP
+If you don't use QTableItems you should reimplement this as an empty method, thus no memory is wasted. In addition, you will have to reimplement item(), setItem(), and clearCell() as empty functions in a different way.
+.PP
+As soon as you enable sorting or allow the user to change rows or columns (see setRowMovingEnabled(), setColumnMovingEnabled()), you are strongly advised to reimplement swapColumns(), swapRows(), and swapCells() to work with your data.
+.SH "void QTable::resizeEvent ( QResizeEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "int QTable::rowAt ( int pos ) const \fC[virtual]\fR"
+Returns the row which is at \fIpos. pos\fR has to be given in contents coordinates.
+.SH "int QTable::rowHeight ( int row ) const \fC[virtual]\fR"
+Returns the height of the row \fIrow.\fR
+.SH "void QTable::rowHeightChanged ( int row ) \fC[virtual protected slot]\fR"
+Call this function whenever the height of row \fIrow\fR has changed in order to rearrange its contents.
+.SH "void QTable::rowIndexChanged ( int, int, int ) \fC[virtual protected slot]\fR"
+This function is called if the order of the rows has been changed. If you want to change the order programmatically, call swapRows() or swapColumns().
+.SH "bool QTable::rowMovingEnabled () const"
+Returns whether rows can be moved by the user.
+.SH "int QTable::rowPos ( int row ) const \fC[virtual]\fR"
+Returns the y-position of the row \fIrow\fR in contents coordinates.
+.SH "QTableSelection QTable::selection ( int num ) const"
+Returns selection number \fInum,\fR or an empty QTableSelection if \fInum\fR is out of range (see QTableSelection::isNull()).
+.SH "void QTable::selectionChanged () \fC[signal]\fR"
+Whenever a selection changes, this signal is emitted.
+.SH "QTable::SelectionMode QTable::selectionMode() const"
+Reveals the current selection mode.
+.SH "void QTable::setCellContentFromEditor ( int row, int col ) \fC[virtual protected]\fR"
+This function is called to set the contents of the cell \fIrow, col\fR from the editor of this cell to this cell. If there existed already a QTableItem for this cell, this is removed first (see clearCell()).
+.PP
+If you want to create e.g different QTableItems depending on the contents of the editor, you might reimplement this function. Also if you want to work without QTableItems, you will reimplement this function to set the data which the user entered to your datastructure.
+.PP
+See also QTableItem::setContentFromEditor().
+.SH "void QTable::setCellWidget ( int row, int col, QWidget * e ) \fC[virtual]\fR"
+Sets the widget \fIe\fR to the cell \fIrow, col\fR and does all the placement and further stuff and takes care about correctly placing are resizing it when the cell geometry changes.
+.PP
+By default widgets are inserted into a vector with numRows() * numCols() elements. In very big tables you probably want to store the widgets in a datastructure which needs less memory (like a hash-table). To make this possible this functions calls insertWidget() to add the widget to the internal datastructure. So if you want to use your own datastructure, reimplement insertWidget(), cellWidget() and clearCellWidget().
+.SH "void QTable::setColumnMovingEnabled ( bool b ) \fC[virtual slot]\fR"
+If \fIb\fR is set to TRUE, columns can be moved by the user.
+.SH "void QTable::setColumnStretchable ( int col, bool stretch ) \fC[virtual slot]\fR"
+Sets the column \fIcol\fR to stretchable if \fIstretch\fR is TRUE, else to non-stretchable. So, if the table widgets gets wider than its contents, stretchable columns are stretched so that the contents fits exactly into to widget.
+.SH "void QTable::setColumnWidth ( int col, int w ) \fC[virtual slot]\fR"
+Resizes the column to \fIw\fR pixel wide.
+.SH "void QTable::setCurrentCell ( int row, int col ) \fC[virtual slot]\fR"
+Moves the focus to the cell at position \fIrow, col.\fR
+.PP
+See also currentRow() and currentColumn().
+.SH "void QTable::setItem ( int row, int col, QTableItem * item ) \fC[virtual]\fR"
+Sets the content for the cell \fIrow, col.\fR If cell item already exists in that position, the old one is deleted.
+.PP
+setItem() also repaints the cell.
+.SH "void QTable::setLeftMargin ( int m ) \fC[virtual slot]\fR"
+Sets the left margin to \fIm\fR pixels.
+.PP
+To get rid of the left header entirely, use the following code:
+.PP
+.nf
+.br
+  setLeftMargin( 0 );
+.br
+  verticalHeader()->hide();
+.fi
+.SH "void QTable::setNumCols ( int c ) \fC[virtual slot]\fR"
+Sets the number of columns to \fIc.\fR
+.SH "void QTable::setNumRows ( int r ) \fC[virtual slot]\fR"
+Sets the number of rows to \fIr.\fR
+.SH "void QTable::setPixmap ( int row, int col, const QPixmap & pix ) \fC[virtual]\fR"
+Sets the pixmap in cell \fIrow, col\fR to \fIpix.\fR If no QTableItem belongs to the cell yet, an item is created.
+.SH "void QTable::setRowHeight ( int row, int h ) \fC[virtual slot]\fR"
+Resizes the row to be \fIh\fR pixel height.
+.SH "void QTable::setRowMovingEnabled ( bool b ) \fC[virtual slot]\fR"
+If \fIb\fR is set to TRUE, rows can be moved by the user.
+.SH "void QTable::setRowStretchable ( int row, bool stretch ) \fC[virtual slot]\fR"
+Sets the row \fIrow\fR to stretchable if \fIstretch\fR is TRUE, else to non-stretchable. So, if the table widgets gets higher than its contents, stretchable rows are stretched so that the contents fits exactly into to widget.
+.SH "void QTable::setSelectionMode ( SelectionMode mode )"
+Sets the table's selection mode to \fImode.\fR By default multi-range selections (\fCMulti)\fR are allowed.
+.SH "void QTable::setShowGrid ( bool b ) \fC[virtual slot]\fR"
+If \fIb\fR is TRUE, the table grid is shown, otherwise not. The default is TRUE.
+.SH "void QTable::setSorting ( bool b ) \fC[virtual slot]\fR"
+If \fIb\fR is set to TRUE, clicking on the header of a column sorts this column.
+.PP
+See also sortColumn().
+.SH "void QTable::setText ( int row, int col, const QString & text ) \fC[virtual]\fR"
+Sets the text in cell \fIrow, col\fR to \fItext.\fR If no QTableItem belongs to the cell yet, an item is created.
+.SH "void QTable::setTopMargin ( int m ) \fC[virtual slot]\fR"
+Sets the top margin to \fIm\fR pixels.
+.PP
+To get rid of the top header entirely, use the following code:
+.PP
+.nf
+.br
+  setTopMargin( 0 );
+.br
+  topHeader()->hide();
+.fi
+.SH "void QTable::showColumn ( int col ) \fC[virtual slot]\fR"
+Shows the column \fIcol.\fR
+.PP
+See also hideColumn().
+.SH "void QTable::showEvent ( QShowEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "bool QTable::showGrid () const"
+Returns whether the table grid shows up or not.
+.SH "void QTable::showRow ( int row ) \fC[virtual slot]\fR"
+Shows the row \fIrow.\fR
+.PP
+See also hideRow().
+.SH "QSize QTable::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QTable::sortColumn ( int col, bool ascending = TRUE, bool wholeRows = FALSE ) \fC[virtual]\fR"
+Sorts the column \fIcol\fR in ascending order if \fIascending\fR is TRUE, else in descending order. If \fIwholeRows\fR is TRUE, for changing data of the cells swapRows() is called, else swapCells() is called.
+.PP
+See also swapRows().
+.SH "bool QTable::sorting () const"
+Returns wheather clicking on a column header sorts the column.
+.PP
+See also setSorting().
+.SH "void QTable::swapCells ( int row1, int col1, int row2, int col2 ) \fC[virtual slot]\fR"
+Swaps the content of the cells \fIrow1, col1\fR and \fIrow2, col2.\fR This function is used for sorting cells.
+.SH "void QTable::swapColumns ( int col1, int col2 ) \fC[virtual slot]\fR"
+Exchanges \fIcol1\fR with \fIcol2\fR and vice versa. This is useful for sorting, and it allows the user to rearrange the columns in a different order. If you don't use QTableItems you will probably reimplement this function.
+.SH "void QTable::swapRows ( int row1, int row2 ) \fC[virtual slot]\fR"
+Swaps data of \fIrow1\fR and \fIrow2.\fR This is used by sorting mechanisms or when the user changes the order of the rows. If you don't use QTableItems you might wish to reimplement this function.
+.SH "void QTable::takeItem ( QTableItem * i ) \fC[virtual]\fR"
+Takes the item \fIi\fR out of the table. This functions doesn't delete it.
+.SH "QString QTable::text ( int row, int col ) const \fC[virtual]\fR"
+Returns the text in cell \fIrow, col,\fR or an empty string if the relevant item does not exist or includes no text.
+.SH "void QTable::updateCell ( int row, int col )"
+Repaints the cell at position \fIrow, col.\fR
+.SH "void QTable::valueChanged ( int row, int col ) \fC[signal]\fR"
+This signal is emitted if the user edited the cell row, \fIcol.\fR
+.SH "QHeader * QTable::verticalHeader () const"
+Returns the outer left QHeader.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qtable.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qtable.3qt) and the Qt
+version (2.3.2).

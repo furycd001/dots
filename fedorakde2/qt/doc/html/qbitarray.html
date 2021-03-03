@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QBitArray Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QBitArray Class Reference</h1><br clear="all">
+<p>
+The QBitArray class provides an array of bits.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qbitarray-h.html">qbitarray.h</a>&gt;</code>
+<p>
+Inherits <a href="qbytearray.html">QByteArray</a>.
+<p><a href="qbitarray-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#5d1b85"><b>QBitArray</b></a> () </div>
+<li><div class="fn"><a href="#6535f5"><b>QBitArray</b></a> ( uint size ) </div>
+<li><div class="fn"><a href="#6693d0"><b>QBitArray</b></a> ( const QBitArray &amp; a ) </div>
+<li><div class="fn">QBitArray&amp; <a href="#0fd72f"><b>operator=</b></a> ( const QBitArray &amp; ) </div>
+<li><div class="fn">uint <a href="#65f362"><b>size</b></a> () const</div>
+<li><div class="fn">bool <a href="#1044fc"><b>resize</b></a> ( uint size ) </div>
+<li><div class="fn">bool <a href="#73d729"><b>fill</b></a> ( bool v, int size = -1 ) </div>
+<li><div class="fn">virtual void <a href="#58cbdd"><b>detach</b></a> () </div>
+<li><div class="fn">QBitArray <a href="#f49d61"><b>copy</b></a> () const</div>
+<li><div class="fn">bool <a href="#3ba0b0"><b>testBit</b></a> ( uint index ) const</div>
+<li><div class="fn">void <a href="#38e112"><b>setBit</b></a> ( uint index ) </div>
+<li><div class="fn">void <a href="#7cf940"><b>setBit</b></a> ( uint index, bool value ) </div>
+<li><div class="fn">void <a href="#6d74d2"><b>clearBit</b></a> ( uint index ) </div>
+<li><div class="fn">bool <a href="#69d85f"><b>toggleBit</b></a> ( uint index ) </div>
+<li><div class="fn">bool <a href="#ba1d99"><b>at</b></a> ( uint index ) const</div>
+<li><div class="fn">QBitVal <a href="#331da2"><b>operator[]</b></a> ( int index ) </div>
+<li><div class="fn">bool <a href="#f076af"><b>operator[]</b></a> ( int index ) const</div>
+<li><div class="fn">QBitArray&amp; <a href="#53c4c6"><b>operator&amp;=</b></a> ( const QBitArray &amp; ) </div>
+<li><div class="fn">QBitArray&amp; <a href="#19c0c7"><b>operator|=</b></a> ( const QBitArray &amp; ) </div>
+<li><div class="fn">QBitArray&amp; <a href="#c140da"><b>operator^=</b></a> ( const QBitArray &amp; ) </div>
+<li><div class="fn">QBitArray <a href="#bee3ba"><b>operator~</b></a> () const</div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">array_data* <b>newData</b> () </div>
+<li><div class="fn">virtual void <a href="#f9e863"><b>deleteData</b></a> ( array_data * d ) </div>
+</ul>
+<h2>Related Functions</h2>
+(Note that these are not member functions.)
+<ul>
+<li>QDataStream &amp; <a href="qbitarray.html#20c008"><b>operator&gt;&gt;</b></a> (QDataStream &amp; s, QBitArray &amp; a)
+<li>QBitArray <a href="qbitarray.html#748980"><b>operator|</b></a> (const QBitArray &amp; a1, const QBitArray &amp; a2)
+<li>QBitArray <a href="qbitarray.html#bd433e"><b>operator^</b></a> (const QBitArray &amp; a1, const QBitArray &amp; a2)
+<li>QDataStream &amp; <a href="qbitarray.html#be076c"><b>operator&lt;&lt;</b></a> (QDataStream &amp; s, const QBitArray &amp; a)
+<li>QBitArray <a href="qbitarray.html#d8e8c6"><b>operator&amp;</b></a> (const QBitArray &amp; a1, const QBitArray &amp; a2)
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QBitArray class provides an array of bits.
+<p>
+<a href="qstring.html">QString</a> inherits <a href="qbytearray.html">QByteArray</a>, which is defined as <a href="qarray.html">QArray</a>&lt;char&gt;.
+<p>Since QBitArray is a QArray, it uses explicit
+<a href="shclass.html">sharing</a> with a reference count.
+<p>A QBitArray is a special byte array that can access individual bits and
+perform bit-operations (AND, OR, XOR and NOT) on entire arrays or bits.
+<p>Bits can be manipulated by the <a href="#38e112">setBit</a>() and <a href="#6d74d2">clearBit</a>() functions, but it
+is also possible to use the indexing [] operator to test and set
+individual bits. The [] operator is a little slower than the others,
+because some tricks are required to implement single-bit assignments.
+<p>Example:
+<pre>    <a href="qbitarray.html">QBitArray</a> a(3);
+    a.<a href="#38e112">setBit</a>( 0 );
+    a.<a href="#6d74d2">clearBit</a>( 1 );
+    a.<a href="#38e112">setBit</a>( 2 );                      // a = [1 0 1]
+
+    <a href="qbitarray.html">QBitArray</a> b(3);
+    b[0] = 1;
+    b[1] = 1;
+    b[2] = 0;                           // b = [1 1 0]
+
+    <a href="qbitarray.html">QBitArray</a> c;
+    c = ~a &amp; b;                         // c = [0 1 0]
+</pre>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="5d1b85"></a>QBitArray::QBitArray ()</h3>
+<p>Constructs an empty bit array.
+<h3 class="fn"><a name="6693d0"></a>QBitArray::QBitArray ( const QBitArray &amp; a )</h3>
+<p>Constructs a shallow copy of <em>a.</em>
+<h3 class="fn"><a name="6535f5"></a>QBitArray::QBitArray ( uint size )</h3>
+<p>Constructs a bit array of <em>size</em> bits. The bits are uninitialized.
+<h3 class="fn">bool <a name="ba1d99"></a>QBitArray::at ( uint index ) const</h3>
+<p>Returns the value (0 or 1) of the bit at position <em>index.</em>
+<p>See also  <a href="#331da2">operator[]</a>().
+<h3 class="fn">void <a name="6d74d2"></a>QBitArray::clearBit ( uint index )</h3>
+<p>Clears the bit at position <em>index</em> (sets it to 0).
+<p>See also  <a href="#38e112">setBit</a>() and <a href="#69d85f">toggleBit</a>().
+<h3 class="fn">QBitArray <a name="f49d61"></a>QBitArray::copy () const</h3>
+<p>Returns a deep copy of the bit array.
+<p>See also  <a href="#58cbdd">detach</a>().
+<h3 class="fn">void <a name="f9e863"></a>QBitArray::deleteData ( <a href="qbitarray.html#array_data">array_data</a> * d ) <code>[virtual protected]</code></h3>
+<p>Deletes data specific to QBitArray that extended what <a href="qgarray.html">QGArray</a> provided.
+<p>Reimplemented from <a href="qgarray.html#c70620">QGArray.</a>
+<h3 class="fn">void <a name="58cbdd"></a>QBitArray::detach () <code>[virtual]</code></h3>
+<p>Detaches from shared bit array data and makes sure that this bit array
+is the only one referring the data.
+<p>If multiple bit arrays share common data, this bit array dereferences the
+data and gets a copy of the data. Nothing will be done if there is just
+a single reference.
+<p>See also  <a href="#f49d61">copy</a>().
+<p>Reimplemented from <a href="qgarray.html#66cfb1">QGArray.</a>
+<h3 class="fn">bool <a name="73d729"></a>QBitArray::fill ( bool v, int size = -1 )</h3>
+<p>Fills the bit array with <em>v</em> (1's if <em>v</em> is TRUE, or 0's if <em>v</em> is FALSE).
+<p>Will resize the bit array to <em>size</em> bits if <em>size</em> is nonnegative.
+<p>Returns FALSE if a nonnegative <em>size</em> was specified and if the bit array
+could not be resized, otherwise returns TRUE.
+<p>See also  <a href="#1044fc">resize</a>().
+<h3 class="fn">QBitArray &amp; <a name="53c4c6"></a>QBitArray::operator&amp;= ( const QBitArray &amp; a )</h3>
+<p>Performs the AND operation between all bits in this bit array and <em>a.</em>
+Returns a reference to this bit array.
+<p>The result has the length of the longest bit array of the two, with the bits
+missing from the shortest array taken as 0.
+<p>Example:
+<pre>    <a href="qbitarray.html">QBitArray</a> a( 3 ), b( 2 );
+    a[0] = 1;  a[1] = 0;  a[2] = 1;     // a = [1 0 1]
+    b[0] = 1;  b[1] = 0;                // b = [1 0]
+    a &amp;= b;                             // a = [1 0 0]
+</pre>
+<p>See also  <a href="#19c0c7">operator|=</a>(), <a href="#c140da">operator^=</a>() and <a href="#bee3ba">operator~</a>().
+<h3 class="fn">QBitArray &amp; <a name="0fd72f"></a>QBitArray::operator= ( const QBitArray &amp; a )</h3>
+<p>Assigns a shallow copy of <em>a</em> to this bit array and returns a reference
+to this array.
+<h3 class="fn"><a href="qbitval.html">QBitVal</a> <a name="331da2"></a>QBitArray::operator[] ( int index )</h3>
+<p>Implements the [] operator for bit arrays.
+<p>The returned <a href="qbitval.html">QBitVal</a> is a context object. It makes it possible to get
+and set a single bit value.
+<p>Example:
+<pre>    <a href="qbitarray.html">QBitArray</a> a( 3 );
+    a[0] = 0;
+    a[1] = 1;
+    a[2] = a[0] ^ a[1];
+</pre>
+<p>The functions <a href="#3ba0b0">testBit</a>(), <a href="#38e112">setBit</a>() and <a href="#6d74d2">clearBit</a>() are faster.
+<p>See also  <a href="#ba1d99">at</a>().
+<h3 class="fn">bool <a name="f076af"></a>QBitArray::operator[] ( int index ) const</h3>
+<p>Implements the [] operator for constant bit arrays.
+<h3 class="fn">QBitArray &amp; <a name="c140da"></a>QBitArray::operator^= ( const QBitArray &amp; a )</h3>
+<p>Performs the XOR operation between all bits in this bit array and <em>a.</em>
+Returns a reference to this bit array.
+<p>The result has the length of the longest bit array of the two, with the bits
+missing from the shortest array taken as 0.
+<p>Example:
+<pre>    <a href="qbitarray.html">QBitArray</a> a( 3 ), b( 2 );
+    a[0] = 1;  a[1] = 0;  a[2] = 1;     // a = [1 0 1]
+    b[0] = 1;  b[1] = 0;                // b = [1 0]
+    a ^= b;                             // a = [0 0 1]
+</pre>
+<p>See also  <a href="#53c4c6">operator&amp;=</a>(), <a href="#19c0c7">operator|=</a>() and <a href="#bee3ba">operator~</a>().
+<h3 class="fn">QBitArray &amp; <a name="19c0c7"></a>QBitArray::operator|= ( const QBitArray &amp; a )</h3>
+<p>Performs the OR operation between all bits in this bit array and <em>a.</em>
+Returns a reference to this bit array.
+<p>The result has the length of the longest bit array of the two, with the bits
+missing from the shortest array taken as 0.
+<p>Example:
+<pre>    <a href="qbitarray.html">QBitArray</a> a( 3 ), b( 2 );
+    a[0] = 1;  a[1] = 0;  a[2] = 1;     // a = [1 0 1]
+    b[0] = 1;  b[1] = 0;                // b = [1 0]
+    a |= b;                             // a = [1 0 1]
+</pre>
+<p>See also  <a href="#53c4c6">operator&amp;=</a>(), <a href="#c140da">operator^=</a>() and <a href="#bee3ba">operator~</a>().
+<h3 class="fn">QBitArray <a name="bee3ba"></a>QBitArray::operator~ () const</h3>
+<p>Returns a bit array which contains the inverted bits of this bit array.
+<p>Example:
+<pre>    <a href="qbitarray.html">QBitArray</a> a( 3 ), b;
+    a[0] = 1;  a[1] = 0; a[2] = 1;      // a = [1 0 1]
+    b = ~a;                             // b = [0 1 0]
+</pre>
+<h3 class="fn">bool <a name="1044fc"></a>QBitArray::resize ( uint size )</h3>
+<p>Resizes the bit array to <em>size</em> bits.
+Returns TRUE if the bit array could be resized.
+<p>When expanding the bit array, the new bits will be uninitialized.
+<p>See also  <a href="#65f362">size</a>().
+<h3 class="fn">void <a name="38e112"></a>QBitArray::setBit ( uint index )</h3>
+<p>Sets the bit at position <em>index</em> (sets it to 1).
+<p>See also  <a href="#6d74d2">clearBit</a>() and <a href="#69d85f">toggleBit</a>().
+<h3 class="fn">void <a name="7cf940"></a>QBitArray::setBit ( uint index, bool value )</h3>
+<p>Sets the bit at position <em>index</em> to <em>value.</em>
+<p>Equivalent to:
+<pre>    if ( value )
+        setBit( index );
+    else
+        clearBit( index );
+</pre>
+<p>See also  <a href="#6d74d2">clearBit</a>() and <a href="#69d85f">toggleBit</a>().
+<h3 class="fn">uint <a name="65f362"></a>QBitArray::size () const</h3>
+<p>Returns the size (number of bits) of the bit array.
+<p>See also  <a href="#1044fc">resize</a>().
+<h3 class="fn">bool <a name="3ba0b0"></a>QBitArray::testBit ( uint index ) const</h3>
+<p>Returns TRUE if the bit at position <em>index</em> is set.
+<p>See also  <a href="#38e112">setBit</a>() and <a href="#6d74d2">clearBit</a>().
+<h3 class="fn">bool <a name="69d85f"></a>QBitArray::toggleBit ( uint index )</h3>
+<p>Toggles the bit at position <em>index.</em>
+<p>If the previous value was 0, the new value will be 1.  If the previous
+value was 1, the new value will be 0.
+<p>See also  <a href="#38e112">setBit</a>() and <a href="#6d74d2">clearBit</a>().
+<hr><h2>Related Functions</h2>
+<h3><a href="qdatastream.html">QDataStream</a> &amp; <a name="20c008"></a>operator&gt;&gt; (<a href="qdatastream.html">QDataStream</a> &amp; s, QBitArray &amp; a)</h3>
+<p>Reads a bit array from a stream.
+<p>See also  <a href="datastreamformat.html">Format of the QDataStream operators</a>
+
+<h3>QBitArray <a name="748980"></a>operator| (const QBitArray &amp; a1, const QBitArray &amp; a2)</h3>
+<p>Returns the OR result between the bit arrays <em>a1</em> and <em>a2.</em>
+<p>See also  QBitArray::operator|=().
+
+<h3>QBitArray <a name="bd433e"></a>operator^ (const QBitArray &amp; a1, const QBitArray &amp; a2)</h3>
+<p>Returns the XOR result between the bit arrays <em>a1</em> and <em>a2.</em>
+<p>See also  QBitArray::operator^().
+
+<h3><a href="qdatastream.html">QDataStream</a> &amp; <a name="be076c"></a>operator&lt;&lt; (<a href="qdatastream.html">QDataStream</a> &amp; s, const QBitArray &amp; a)</h3>
+<p>Writes a bit array to a stream.
+<p>See also  <a href="datastreamformat.html">Format of the QDataStream operators</a>
+
+<h3>QBitArray <a name="d8e8c6"></a>operator&amp; (const QBitArray &amp; a1, const QBitArray &amp; a2)</h3>
+<p>Returns the AND result between the bit arrays <em>a1</em> and <em>a2.</em>
+<p>See also  QBitArray::operator&=().
+
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

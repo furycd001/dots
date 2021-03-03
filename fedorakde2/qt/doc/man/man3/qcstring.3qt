@@ -1,0 +1,948 @@
+'\" t
+.TH QCString 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCString \- Abstraction of the classic C zero-terminated char array (
+.br
+.PP
+\fC#include <qcstring.h>\fR
+.PP
+Inherits QByteArray.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCString\fR () "
+.br
+.ti -1c
+.BI "\fBQCString\fR ( int size ) "
+.br
+.ti -1c
+.BI "\fBQCString\fR ( const QCString & s ) "
+.br
+.ti -1c
+.BI "\fBQCString\fR ( const char * str ) "
+.br
+.ti -1c
+.BI "\fBQCString\fR ( const char * " "str" ", uint maxlen ) "
+.br
+.ti -1c
+.BI "QCString& \fBoperator=\fR ( const QCString & s ) "
+.br
+.ti -1c
+.BI "QCString& \fBoperator=\fR ( const char * str ) "
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "uint \fBlength\fR () const"
+.br
+.ti -1c
+.BI "bool \fBresize\fR ( uint newlen ) "
+.br
+.ti -1c
+.BI "bool \fBtruncate\fR ( uint pos ) "
+.br
+.ti -1c
+.BI "bool \fBfill\fR ( char " "c" ", int " "len" " = -1 ) "
+.br
+.ti -1c
+.BI "QCString \fBcopy\fR () const"
+.br
+.ti -1c
+.BI "QCString& \fBsprintf\fR ( const char * " "format" ", ... ) "
+.br
+.ti -1c
+.BI "int \fBfind\fR ( char " "c" ", int " "index" "=0, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const char * " "str" ", int " "index" "=0, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const QRegExp &, int " "index" "=0 ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( char " "c" ", int " "index" "=-1, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( const char * " "str" ", int " "index" "=-1, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( const QRegExp &, int " "index" "=-1 ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( char " "c" ", bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( const char * " "str" ", bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( const QRegExp & ) const"
+.br
+.ti -1c
+.BI "QCString \fBleft\fR ( uint len ) const"
+.br
+.ti -1c
+.BI "QCString \fBright\fR ( uint len ) const"
+.br
+.ti -1c
+.BI "QCString \fBmid\fR ( uint " "index" ", uint " "len" "=0xffffffff ) const"
+.br
+.ti -1c
+.BI "QCString \fBleftJustify\fR ( uint " "width" ", char " "fill" "=' ', bool " "trunc" "=FALSE ) const"
+.br
+.ti -1c
+.BI "QCString \fBrightJustify\fR ( uint " "width" ", char " "fill" "=' ', bool " "trunc" "=FALSE ) const"
+.br
+.ti -1c
+.BI "QCString \fBlower\fR () const"
+.br
+.ti -1c
+.BI "QCString \fBupper\fR () const"
+.br
+.ti -1c
+.BI "QCString \fBstripWhiteSpace\fR () const"
+.br
+.ti -1c
+.BI "QCString \fBsimplifyWhiteSpace\fR () const"
+.br
+.ti -1c
+.BI "QCString& \fBinsert\fR ( uint " "index" ", const char * ) "
+.br
+.ti -1c
+.BI "QCString& \fBinsert\fR ( uint " "index" ", char ) "
+.br
+.ti -1c
+.BI "QCString& \fBappend\fR ( const char * ) "
+.br
+.ti -1c
+.BI "QCString& \fBprepend\fR ( const char * ) "
+.br
+.ti -1c
+.BI "QCString& \fBremove\fR ( uint " "index" ", uint len ) "
+.br
+.ti -1c
+.BI "QCString& \fBreplace\fR ( uint " "index" ", uint " "len" ", const char * ) "
+.br
+.ti -1c
+.BI "QCString& \fBreplace\fR ( const QRegExp &, const char * ) "
+.br
+.ti -1c
+.BI "short \fBtoShort\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "ushort \fBtoUShort\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "int \fBtoInt\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "uint \fBtoUInt\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "long \fBtoLong\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "ulong \fBtoULong\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "float \fBtoFloat\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "double \fBtoDouble\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "QCString& \fBsetStr\fR ( const char * s ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( short ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( ushort ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( int ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( uint ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( long ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( ulong ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( float, char " "f" "='g', int " "prec" "=6 ) "
+.br
+.ti -1c
+.BI "QCString& \fBsetNum\fR ( double, char " "f" "='g', int " "prec" "=6 ) "
+.br
+.ti -1c
+.BI "bool \fBsetExpand\fR ( uint " "index" ", char c ) "
+.br
+.ti -1c
+.BI "operator \fBconst char*\fR ()const"
+.br
+.ti -1c
+.BI "QCString& \fBoperator+=\fR ( const char * str ) "
+.br
+.ti -1c
+.BI "QCString& \fBoperator+=\fR ( char c ) "
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "bool \fBoperator!=\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "int \fBqstricmp\fR (const char * " "str1" ", const char * " "str2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "int \fBqstrncmp\fR (const char * " "str1" ", const char * " "str2" ", uint " "len" ")"
+.br
+.ti -1c
+.BI "QCString \fBoperator+\fR (const QCString & " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>=\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "QCString \fBoperator+\fR (const QCString & " "s" ", char " "c" ")"
+.br
+.ti -1c
+.BI "int \fBstrnicmp\fR (const char * " "str1" ", const char * " "str2" ", uint " "len" ")"
+.br
+.ti -1c
+.BI "char * \fBqstrncpy\fR (char * " "dst" ", const char * " "src" ", uint " "len" ")"
+.br
+.ti -1c
+.BI "void * \fBmemmove\fR (void * " "dst" ", const void * " "src" ", uint " "len" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QCString & " "str" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<=\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "QCString \fBoperator+\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<=\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QCString & " "str" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>=\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "QCString \fBoperator+\fR (char " "c" ", const QCString & " "s" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "int \fBqstrcmp\fR (const char * " "str1" ", const char * " "str2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR (const QCString & " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "QCString \fBoperator+\fR (const QCString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "char * \fBqstrdup\fR (const char * " "str" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR (const QCString & " "s1" ", const QCString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR (const char * " "s1" ", const QCString & " "s2" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QCString class provides an abstraction of the classic C zero-terminated char array (\fIchar*\fR).
+.PP
+QCString inherits QByteArray, which is defined as QArray<char>.
+.PP
+Since QCString is a QArray, it uses \fIexplicit\fR sharing with a reference count.
+.PP
+You might use QCString for text that is never exposed to the user, but for text the user sees, you should use QString (which provides implicit sharing, Unicode and other internationalization support).
+.PP
+Note that QCString is one of the weaker classes in Qt; its design is flawed (it tries to behave like a more convenient const char *) and as a result, algorithms that use QCString heavily all too often perform badly. For example, append() is O(length()) since it scans for a null terminator, which makes many algorithms that use QCString scale even worse.
+.PP
+Note that for the QCString methods that take a \fIconst char *\fR parameter the results are undefined if the QCString is not zero-terminated. It is legal for the \fIconst char *\fR parameter to be 0.
+.PP
+A QCString that has not been assigned to anything is \fInull,\fR i.e. both the length and data pointer is 0. A QCString that references the empty string ("", a single '\\0' char) is \fIempty.\fR Both null and empty QCStrings are legal parameters to the methods. Assigning \fIconst char * 0\fR to QCString gives a null QCString.
+.PP
+See also Shared classes
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCString::QCString ()"
+Constructs a null string.
+.PP
+See also isNull().
+.SH "QCString::QCString ( const QCString & s )"
+Constructs a shallow copy \fIs.\fR
+.PP
+See also assign().
+.SH "QCString::QCString ( const char * str )"
+Constructs a string that is a deep copy of \fIstr.\fR
+.PP
+If \fIstr\fR is 0 a null string is created.
+.PP
+See also isNull().
+.SH "QCString::QCString ( const char * str, uint maxsize )"
+Constructs a string that is a deep copy of \fIstr,\fR that is no more than \fImaxsize\fR bytes long including the '\\0'-terminator.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString str( "helloworld", 6 ); // Assigns "hello" to str.
+.fi
+.PP
+If \fIstr\fR contains a 0 byte within the first \fImaxsize\fR bytes, the resulting QCString will be terminated by the 0. If \fIstr\fR is 0 a null string is created.
+.PP
+See also isNull().
+.SH "QCString::QCString ( int size )"
+Constructs a string with room for \fIsize\fR characters, including the '\\0'-terminator. Makes a null string if \fIsize\fR == 0.
+.PP
+If \fIsize\fR > 0, then the first and last characters in the string are initialized to '\\0'. All other characters are uninitialized.
+.PP
+See also resize() and isNull().
+.SH "QCString::operator const char * () const"
+Returns the string data.
+.SH "QCString& QCString::append ( const char * str )"
+Appends \fIstr\fR to the string and returns a reference to the string. Equivalent to operator+=().
+.SH "int QCString::contains ( char c, bool cs=TRUE ) const"
+Returns the number of times the character \fIc\fR occurs in the string.
+.PP
+The match is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR if FALSE.
+.SH "int QCString::contains ( const QRegExp & rx ) const"
+Counts the number of overlapping occurrences of \fIrx\fR in the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "banana and panama";
+.br
+    QRegExp r = QRegExp("a[nm]a", TRUE, FALSE);
+.br
+    s.contains( r );                            // 4 matches
+.fi
+.PP
+See also find() and findRev().
+.SH "int QCString::contains ( const char * str, bool cs=TRUE ) const"
+Returns the number of times \fIstr\fR occurs in the string.
+.PP
+The match is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR if FALSE.
+.PP
+This function counts overlapping substrings, for example, "banana" contains two occurrences of "ana".
+.PP
+See also findRev().
+.SH "QCString QCString::copy () const"
+Returns a deep copy of this string.
+.PP
+See also detach().
+.SH "bool QCString::fill ( char c, int len = -1 )"
+Fills the string with \fIlen\fR bytes of value \fIc,\fR followed by a '\\0'-terminator.
+.PP
+If \fIlen\fR is negative, then the current string length is used.
+.PP
+Returns FALSE is \fIlen\fR is nonnegative and there is no memory to resize the string, otherwise TRUE is returned.
+.SH "int QCString::find ( char c, int index=0, bool cs=TRUE ) const"
+Finds the first occurrence of the character \fIc,\fR starting at position \fIindex.\fR
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIc,\fR or -1 if \fIc\fR could not be found.
+.SH "int QCString::find ( const QRegExp & rx, int index=0 ) const"
+Finds the first occurrence of the regular expression \fIrx,\fR starting at position \fIindex.\fR
+.PP
+Returns the position of the next match, or -1 if \fIrx\fR was not found.
+.SH "int QCString::find ( const char * str, int index=0, bool cs=TRUE ) const"
+Finds the first occurrence of the string \fIstr,\fR starting at position \fIindex.\fR
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIstr,\fR or -1 if \fIstr\fR could not be found.
+.SH "int QCString::findRev ( char c, int index=-1, bool cs=TRUE ) const"
+Finds the first occurrence of the character \fIc,\fR starting at position \fIindex\fR and searching backwards.
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIc,\fR or -1 if \fIc\fR could not be found.
+.SH "int QCString::findRev ( const QRegExp & rx, int index=-1 ) const"
+Finds the first occurrence of the regular expression \fIrx,\fR starting at position \fIindex\fR and searching backwards.
+.PP
+The search will start from the end of the string if \fIindex\fR is negative.
+.PP
+Returns the position of the next match (backwards), or -1 if \fIrx\fR was not found.
+.SH "int QCString::findRev ( const char * str, int index=-1, bool cs=TRUE ) const"
+Finds the first occurrence of the string \fIstr,\fR starting at position \fIindex\fR and searching backwards.
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIstr,\fR or -1 if \fIstr\fR could not be found.
+.SH "QCString & QCString::insert ( uint index, char c )"
+Insert \fIc\fR into the string at (before) position \fIindex\fR and returns a reference to the string.
+.PP
+If \fIindex\fR is beyond the end of the string, the string is extended with spaces (ASCII 32) to length \fIindex\fR and \fIc\fR is then appended.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = "Yes";
+.br
+    s.insert( 3, '!');                          // s == "Yes!"
+.fi
+.PP
+See also remove() and replace().
+.SH "QCString & QCString::insert ( uint index, const char * s )"
+Insert \fIs\fR into the string before position \fIindex.\fR
+.PP
+If \fIindex\fR is beyond the end of the string, the string is extended with spaces (ASCII 32) to length \fIindex\fR and \fIs\fR is then appended.
+.PP
+.nf
+.br
+    QCString s = "I like fish";
+.br
+    s.insert( 2, "don't ");                     // s == "I don't like fish"
+.br
+    s = "x";
+.br
+    s.insert( 3, "yz" );                        // s == "x  yz"
+.fi
+.SH "bool QCString::isEmpty () const"
+Returns TRUE if the string is empty, i.e. if length() == 0. An empty string is not always a null string.
+.PP
+See example in isNull().
+.PP
+See also isNull(), length() and size().
+.SH "bool QCString::isNull () const"
+Returns TRUE if the string is null, i.e. if data() == 0. A null string is also an empty string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString a;         // a.data() == 0,  a.size() == 0, a.length() == 0
+.br
+    QCString b == "";   // b.data() == "", b.size() == 1, b.length() == 0
+.br
+    a.isNull();         // TRUE, because a.data() == 0
+.br
+    a.isEmpty();        // TRUE, because a.length() == 0
+.br
+    b.isNull();         // FALSE, because b.data() == ""
+.br
+    b.isEmpty();        // TRUE, because b.length() == 0
+.fi
+.PP
+See also isEmpty(), length() and size().
+.SH "QCString QCString::left ( uint len ) const"
+Returns a substring that contains the \fIlen\fR leftmost characters of the string.
+.PP
+The whole string is returned if \fIlen\fR exceeds the length of the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = "Pineapple";
+.br
+    QCString t = s.left( 4 );                   // t == "Pine"
+.fi
+.PP
+See also right() and mid().
+.SH "QCString QCString::leftJustify ( uint width, char fill=' ', bool truncate=FALSE ) const"
+Returns a string of length \fIwidth\fR (plus '\\0') that contains this string and padded by the \fIfill\fR character.
+.PP
+If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is FALSE, then the returned string is a copy of the string. If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is TRUE, then the returned string is a left(\fIwidth).\fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s("apple");
+.br
+    QCString t = s.leftJustify(8, '.');         // t == "apple..."
+.fi
+.PP
+See also rightJustify().
+.SH "uint QCString::length () const"
+Returns the length of the string, excluding the '\\0'-terminator. Equivalent to calling \fCstrlen(data()).\fR
+.PP
+Null strings and empty strings have zero length.
+.PP
+See also size(), isNull() and isEmpty().
+.SH "QCString QCString::lower () const"
+Returns a new string that is the string converted to lower case.
+.PP
+Presently it only handles 7-bit ASCII, or whatever tolower() handles (if $LC_CTYPE is set, most UNIX systems do the Right Thing).
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s("TeX");
+.br
+    QCString t = s.lower();                     // t == "tex"
+.fi
+.PP
+See also upper().
+.SH "QCString QCString::mid ( uint index, uint len=0xffffffff ) const"
+Returns a substring that contains the \fIlen\fR characters of this string, starting at position \fIindex.\fR
+.PP
+Returns a null string if the string is empty or \fIindex\fR is out of range. Returns the whole string from \fIindex\fR if \fIindex+len\fR exceeds the length of the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = "Two pineapples";
+.br
+    QCString t = s.mid( 4, 4 );                 // t == "pine"
+.fi
+.PP
+See also left() and right().
+.SH "QCString & QCString::operator+= ( char c )"
+Appends \fIc\fR to the string and returns a reference to the string.
+.SH "QCString& QCString::operator+= ( const char * str )"
+Appends \fIstr\fR to the string and returns a reference to the string.
+.SH "QCString & QCString::operator= ( const QCString & s )"
+Assigns a shallow copy of \fIs\fR to this string and returns a reference to this string.
+.SH "QCString & QCString::operator= ( const char * str )"
+Assigns a deep copy of \fIstr\fR to this string and returns a reference to this string.
+.PP
+If \fIstr\fR is 0 a null string is created.
+.PP
+See also isNull().
+.SH "QCString & QCString::prepend ( const char * s )"
+Prepend \fIs\fR to the string. Equivalent to insert(0,s).
+.PP
+See also insert().
+.SH "QCString & QCString::remove ( uint index, uint len )"
+Removes \fIlen\fR characters starting at position \fIindex\fR from the string and returns a reference to the string.
+.PP
+If \fIindex\fR is too big, nothing happens. If \fIindex\fR is valid, but \fIlen\fR is too large, the rest of the string is removed.
+.PP
+.nf
+.br
+    QCString s = "Montreal";
+.br
+    s.remove( 1, 4 );
+.br
+    // s == "Meal"
+.fi
+.PP
+See also insert() and replace().
+.SH "QCString & QCString::replace ( const QRegExp & rx, const char * str )"
+Replaces every occurrence of \fIrx\fR in the string with \fIstr.\fR Returns a reference to the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "banana";
+.br
+    s.replace( QRegExp("a.*a"), "" );           // becomes "b"
+.br
+.br
+    QString s = "banana";
+.br
+    s.replace( QRegExp("^[bn]a"), " " );        // becomes " nana"
+.br
+.br
+    QString s = "banana";
+.br
+    s.replace( QRegExp("^[bn]a"), "" );         // NOTE! becomes ""
+.fi
+.SH "QCString & QCString::replace ( uint index, uint len, const char * s )"
+Replaces \fIlen\fR characters starting at position \fIindex\fR from the string with \fIs,\fR and returns a reference to the string.
+.PP
+If \fIindex\fR is too big, nothing is deleted and \fIs\fR is inserted at the end of the string. If \fIindex\fR is valid, but \fIlen\fR is too large, \fIstr\fR replaces the rest of the string.
+.PP
+.nf
+.br
+    QCString s = "Say yes!";
+.br
+    s.replace( 4, 3, "NO" );                    // s == "Say NO!"
+.fi
+.PP
+See also insert() and remove().
+.SH "bool QCString::resize ( uint len )"
+Extends or shrinks the string to \fIlen\fR bytes, including the '\\0'-terminator.
+.PP
+A \\0-terminator is set at position \fClen - 1\fR unless \fClen == 0\fR.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = "resize this string";
+.br
+    s.resize( 7 );                              // s == "resize"
+.fi
+.PP
+See also truncate().
+.SH "QCString QCString::right ( uint len ) const"
+Returns a substring that contains the \fIlen\fR rightmost characters of the string.
+.PP
+The whole string is returned if \fIlen\fR exceeds the length of the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = "Pineapple";
+.br
+    QCString t = s.right( 5 );                  // t == "apple"
+.fi
+.PP
+See also left() and mid().
+.SH "QCString QCString::rightJustify ( uint width, char fill=' ', bool truncate=FALSE ) const"
+Returns a string of length \fIwidth\fR (plus '\\0') that contains pad characters followed by the string.
+.PP
+If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is FALSE, then the returned string is a copy of the string. If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is TRUE, then the returned string is a left(\fIwidth).\fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s("pie");
+.br
+    QCString t = s.rightJustify(8, '.');                // t == ".....pie"
+.fi
+.PP
+See also leftJustify().
+.SH "bool QCString::setExpand ( uint index, char c )"
+Sets the character at position \fIindex\fR to \fIc\fR and expands the string if necessary, filling with spaces.
+.PP
+Returns FALSE if this \fIindex\fR was out of range and the string could not be expanded, otherwise TRUE.
+.SH "QCString & QCString::setNum ( double n, char f='g', int prec=6 )"
+Sets the string to the printed value of \fIn.\fR
+.PP
+Arguments:
+.TP
+\fIf\fR is the format specifier: 'f', 'F', 'e', 'E', 'g', 'G' (same as sprintf()).
+.TP
+\fIprec\fR is the precision. Returns a reference to the string.
+.SH "QCString & QCString::setNum ( float n, char f='g', int prec=6 )"
+Sets the string to the printed value of \fIn.\fR
+.PP
+Arguments:
+.TP
+\fIf\fR is the format specifier: 'f', 'F', 'e', 'E', 'g', 'G' (same as sprintf()).
+.TP
+\fIprec\fR is the precision. Returns a reference to the string.
+.SH "QCString & QCString::setNum ( int n )"
+Sets the string to the printed value of \fIn\fR and returns a reference to the string.
+.SH "QCString & QCString::setNum ( long n )"
+Sets the string to the printed value of \fIn\fR and returns a reference to the string.
+.SH "QCString & QCString::setNum ( short n )"
+Sets the string to the printed value of \fIn\fR and returns a reference to the string.
+.SH "QCString & QCString::setNum ( uint n )"
+Sets the string to the printed unsigned value of \fIn\fR and returns a reference to the string.
+.SH "QCString & QCString::setNum ( ulong n )"
+Sets the string to the printed unsigned value of \fIn\fR and returns a reference to the string.
+.SH "QCString & QCString::setNum ( ushort n )"
+Sets the string to the printed unsigned value of \fIn\fR and returns a reference to the string.
+.SH "QCString & QCString::setStr ( const char * str )"
+Makes a deep copy of \fIstr.\fR Returns a reference to the string.
+.SH "QCString QCString::simplifyWhiteSpace () const"
+Returns a new string that has white space removed from the start and the end, plus any sequence of internal white space replaced with a single space (ASCII 32).
+.PP
+White space means any ASCII code 9, 10, 11, 12, 13 or 32.
+.PP
+.nf
+.br
+    QCString s = "  lots\\t of\\nwhite    space ";
+.br
+    QCString t = s.simplifyWhiteSpace();                // t == "lots of white space"
+.fi
+.PP
+See also stripWhiteSpace().
+.SH "QCString & QCString::sprintf ( const char * format, ... )"
+Implemented as a call to the native vsprintf() (see your C-library manual).
+.PP
+If your string is shorter than 256 characters, this sprintf() calls resize(256) to decrease the chance of memory corruption. The string is resized back to its natural length before sprintf() returns.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s;
+.br
+    s.sprintf( "%d - %s", 1, "first" );         // result < 256 chars
+.br
+.br
+    QCString big( 25000 );                      // very long string
+.br
+    big.sprintf( "%d - %s", 2, longString );    // result < 25000 chars
+.fi
+.PP
+\fBWarning:\fR All vsprintf() implementations will write past the end of the target string (*this) if the format specification and arguments happen to be longer than the target string, and some will also fail if the target string is longer than some arbitrary implementation limit.
+.PP
+Giving user-supplied arguments to sprintf() is begging for trouble. Sooner or later someone \fIwill\fR paste a 3000-character line into your application.
+.SH "QCString QCString::stripWhiteSpace () const"
+Returns a new string that has white space removed from the start and the end.
+.PP
+White space means any ASCII code 9, 10, 11, 12, 13 or 32.
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = " space ";
+.br
+    QCString t = s.stripWhiteSpace();           // t == "space"
+.fi
+.PP
+See also simplifyWhiteSpace().
+.SH "double QCString::toDouble ( bool * ok=0 ) const"
+Returns the string converted to a \fCdouble\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "float QCString::toFloat ( bool * ok=0 ) const"
+Returns the string converted to a \fCfloat\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "int QCString::toInt ( bool * ok=0 ) const"
+Returns the string converted to a \fCint\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "long QCString::toLong ( bool * ok=0 ) const"
+Returns the string converted to a \fClong\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "short QCString::toShort ( bool * ok=0 ) const"
+Returns the string converted to a \fCshort\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "uint QCString::toUInt ( bool * ok=0 ) const"
+Returns the string converted to an \fCunsigned int\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "ulong QCString::toULong ( bool * ok=0 ) const"
+Returns the string converted to an \fCunsigned long\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "ushort QCString::toUShort ( bool * ok=0 ) const"
+Returns the string converted to an \fCunsigned short\fR value.
+.PP
+If \fIok\fR is nonnull, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "bool QCString::truncate ( uint pos )"
+Truncates the string at position \fIpos.\fR
+.PP
+Equivalent to calling \fCresize(pos+1).\fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s = "truncate this string";
+.br
+    s.truncate( 5 );                            // s == "trunc"
+.fi
+.PP
+See also resize().
+.SH "QCString QCString::upper () const"
+Returns a new string that is the string converted to upper case.
+.PP
+Presently it only handles 7-bit ASCII, or whatever toupper() handles (if $LC_CTYPE is set, most UNIX systems do the Right Thing).
+.PP
+Example:
+.PP
+.nf
+.br
+    QCString s("TeX");
+.br
+    QCString t = s.upper();                     // t == "TEX"
+.fi
+.PP
+See also lower().
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "bool operator!= (const QCString & s1, const char * s2)"
+Returns TRUE if the two strings are different, or FALSE if they are equal.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) != 0\fR
+.SH "int qstricmp (const char * str1, const char * str2)"
+A safe stricmp() function.
+.PP
+Compares \fIstr1\fR and \fIstr2\fR ignoring the case.
+.PP
+Returns a negative value if \fIstr1\fR is less than \fIstr2,\fR 0 if \fIstr1\fR is equal to \fIstr2\fR or a positive value if \fIstr1\fR is greater than \fIstr2.\fR
+.PP
+Special case I: Returns 0 if \fIstr1\fR and \fIstr2\fR are both null.
+.PP
+Special case II: Returns a random nonzero value if \fIstr1\fR is null or \fIstr2\fR is null (but not both).
+.PP
+See also qstrcmp(), qstrncmp() and qstrnicmp().
+.SH "bool operator< (const QCString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) < 0\fR
+.SH "bool operator== (const QCString & s1, const char * s2)"
+Returns TRUE if the two strings are equal, or FALSE if they are different.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) == 0\fR
+.SH "int qstrncmp (const char * str1, const char * str2, uint len)"
+A safe strncmp() function.
+.PP
+Compares \fIstr1\fR and \fIstr2\fR up to \fIlen\fR bytes.
+.PP
+Returns a negative value if \fIstr1\fR is less than \fIstr2,\fR 0 if \fIstr1\fR is equal to \fIstr2\fR or a positive value if \fIstr1\fR is greater than \fIstr2.\fR
+.PP
+Special case I: Returns 0 if \fIstr1\fR and \fIstr2\fR are both null.
+.PP
+Special case II: Returns a random nonzero value if \fIstr1\fR is null or \fIstr2\fR is null (but not both).
+.PP
+See also qstrcmp(), qstricmp() and qstrnicmp().
+.SH "QCString operator+ (const QCString & s1, const QCString & s2)"
+Returns the concatenated string of s1 and s2.
+.SH "bool operator>= (const char * s1, const QCString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) >= 0\fR
+.SH "QCString operator+ (const QCString & s, char c)"
+Returns the concatenated string of s and c.
+.SH "int strnicmp (const char * str1, const char * str2, uint len)"
+A safe strnicmp() function.
+.PP
+Compares \fIstr1\fR and \fIstr2\fR up to \fIlen\fR bytes ignoring the case.
+.PP
+Returns a negative value if \fIstr1\fR is less than \fIstr2,\fR 0 if \fIstr1\fR is equal to \fIstr2\fR or a positive value if \fIstr1\fR is greater than \fIstr2.\fR
+.PP
+Special case I: Returns 0 if \fIstr1\fR and \fIstr2\fR are both null.
+.PP
+Special case II: Returns a random nonzero value if \fIstr1\fR is null or \fIstr2\fR is null (but not both).
+.PP
+See also qstrcmp(), qstrncmp() and qstricmp().
+.SH "char * qstrncpy (char * dst, const char * src, uint len)"
+A safe strncpy() function.
+.PP
+Copies all characters up to \fIlen\fR bytes from \fIstr\fR into \fIdst\fR and returns a pointer to \fIdst.\fR Guarantees that \fIdst\fR is \\0-terminated. If \fIsrc\fR is null, it immediately returns 0.
+.PP
+See also qstrcpy().
+.SH "void * memmove (void * dst, const void * src, uint len)"
+This function is normally part of the C library. Qt implements memmove() for platforms that do not have it.
+.PP
+memmove() copies \fIlen\fR bytes from \fIsrc\fR into \fIdst.\fR The data is copied correctly even if \fIsrc\fR and \fIdst\fR overlap.
+.SH "bool operator> (const QCString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) > 0\fR
+.SH "QDataStream & operator<< (QDataStream & s, const QCString & str)"
+Writes a string to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "bool operator<= (const char * s1, const QCString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) <= 0\fR
+.SH "QCString operator+ (const char * s1, const QCString & s2)"
+Returns the concatenated string of s1 and s2.
+.SH "bool operator> (const char * s1, const QCString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) > 0\fR
+.SH "bool operator<= (const QCString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) <= 0\fR
+.SH "QDataStream & operator>> (QDataStream & s, QCString & str)"
+Reads a string from the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "bool operator== (const char * s1, const QCString & s2)"
+Returns TRUE if the two strings are equal, or FALSE if they are different.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) == 0\fR
+.SH "bool operator>= (const QCString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) >= 0\fR
+.SH "QCString operator+ (char c, const QCString & s)"
+Returns the concatenated string of c and s.
+.SH "bool operator< (const char * s1, const QCString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) < 0\fR
+.SH "int qstrcmp (const char * str1, const char * str2)"
+A safe strcmp() function.
+.PP
+Compares \fIstr1\fR and \fIstr2.\fR Returns a negative value if \fIstr1\fR is less than \fIstr2,\fR 0 if \fIstr1\fR is equal to \fIstr2\fR or a positive value if \fIstr1\fR is greater than \fIstr2.\fR
+.PP
+Special case I: Returns 0 if \fIstr1\fR and \fIstr2\fR are both null.
+.PP
+Special case II: Returns a random nonzero value if \fIstr1\fR is null or \fIstr2\fR is null (but not both).
+.PP
+See also qstrncmp(), qstricmp() and qstrnicmp().
+.SH "bool operator!= (const QCString & s1, const QCString & s2)"
+Returns TRUE if the two strings are different, or FALSE if they are equal.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) != 0\fR
+.SH "QCString operator+ (const QCString & s1, const char * s2)"
+Returns the concatenated string of s1 and s2.
+.SH "char * qstrdup (const char * str)"
+Returns a duplicate string.
+.PP
+Allocates space for a copy of \fIstr\fR (using \fCnew),\fR copies it, and returns a pointer to the copy. If \fIsrc\fR is null, it immediately returns 0.
+.SH "bool operator== (const QCString & s1, const QCString & s2)"
+Returns TRUE if the two strings are equal, or FALSE if they are different.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) == 0\fR
+.SH "bool operator!= (const char * s1, const QCString & s2)"
+Returns TRUE if the two strings are different, or FALSE if they are equal.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) != 0\fR
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcstring.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcstring.3qt) and the Qt
+version (2.3.2).

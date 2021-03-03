@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QIntCache Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QIntCache Class Reference</h1><br clear="all">
+<p>
+The QIntCache class is a template class that provides a cache based on <code>long</code> keys.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qintcache-h.html">qintcache.h</a>&gt;</code>
+<p>
+Inherits <a href="qgcache.html">QGCache</a>.
+<p><a href="qintcache-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><b>QIntCache</b> ( const QIntCache&lt;type&gt; &amp; c ) (internal)</div>
+<li><div class="fn"><a href="#18d9f4"><b>QIntCache</b></a> ( int maxCost=100, int size=17 ) </div>
+<li><div class="fn"><a href="#989af8"><b>~QIntCache</b></a> () </div>
+<li><div class="fn">QIntCache&lt;type&gt;&amp; <b>operator=</b> ( const QIntCache&lt;type&gt; &amp; c ) (internal)</div>
+<li><div class="fn">int <a href="#1a7c72"><b>maxCost</b></a> () const</div>
+<li><div class="fn">int <a href="#dc16a5"><b>totalCost</b></a> () const</div>
+<li><div class="fn">void <a href="#532e54"><b>setMaxCost</b></a> ( int m ) </div>
+<li><div class="fn">virtual uint <a href="#a6d6c8"><b>count</b></a> () const</div>
+<li><div class="fn">uint <a href="#132ca2"><b>size</b></a> () const</div>
+<li><div class="fn">bool <a href="#15404b"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">bool <a href="#bd5364"><b>insert</b></a> ( long k, const type * d, int c=1, int p=0 ) </div>
+<li><div class="fn">bool <a href="#8a8580"><b>remove</b></a> ( long k ) </div>
+<li><div class="fn">type* <a href="#6fbb1e"><b>take</b></a> ( long k ) </div>
+<li><div class="fn">virtual void <a href="#fa29c3"><b>clear</b></a> () </div>
+<li><div class="fn">type* <a href="#abf937"><b>find</b></a> ( long k, bool ref=TRUE ) const</div>
+<li><div class="fn">type* <a href="#e5e5c6"><b>operator[]</b></a> ( long k ) const</div>
+<li><div class="fn">void <a href="#b36d86"><b>statistics</b></a> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QIntCache class is a template class that provides a cache based on <code>long</code> keys.
+<p>
+QIntCache is implemented as a template class. Define a
+template instance QIntCache&lt;X&gt; to create a cache that operates on
+pointers to X, or X*.
+<p>A cache is a least recently used (LRU) list of cache items, accessed
+via <code>long</code> keys.  Each cache item has a cost.  The sum of item costs,
+<a href="#dc16a5">totalCost</a>(), will not exceed the maximum cache cost, <a href="#1a7c72">maxCost</a>().
+If inserting a new item would cause the total cost to exceed the
+maximum cost, the least recently used items in the cache are removed.
+<p>Apart from <a href="#bd5364">insert</a>(), by far the most important function is <a href="#abf937">find</a>()
+(which also exists as operator[]).  This function looks up an item,
+returns it, and by default marks it as being the most recently used
+item.
+<p>There are also methods to <a href="#8a8580">remove</a>() or <a href="#6fbb1e">take</a>() an object from the
+cache.  Calling <a href="qcollection.html#a8ef9f">setAutoDelete</a>(TRUE) for a cache tells it to delete
+items that are removed.  The default is to not delete items when
+then are removed (i.e. remove() and take() are equivalent).
+<p>When inserting an item into the cache, only the pointer is copied, not
+the item itself. This is called a shallow copy. It is possible to make the
+dictionary copy all of the item's data (known as a deep copy) when an
+item is inserted.  insert() calls the virtual function
+<a href="qcollection.html#55065e">QCollection::newItem</a>() for the item to be inserted.
+Inherit a dictionary and reimplement it if you want deep copies.
+<p>When removing a cache item, the virtual function
+<a href="qcollection.html#8d78e7">QCollection::deleteItem</a>() is called.  It's default implementation
+in QIntCache is to delete the item if auto-deletion is enabled.
+<p>There is a <a href="qintcacheiterator.html">QIntCacheIterator</a> which may be used to traverse the
+items in the cache in arbitrary order.
+<p>See also  <a href="qintcacheiterator.html">QIntCacheIterator</a>, <a href="qcache.html">QCache</a>, <a href="qasciicache.html">QAsciiCache</a> and <a href="collection.html">Collection Classes</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="18d9f4"></a>QIntCache::QIntCache ( int maxCost=100, int size=17 )</h3>
+<p>Constructs a cache with the following properties:
+<p>Arguments:
+<ul>
+<li><em>maxCost</em> is the maximum allowed total cost.
+<li><em>size</em> is the size of the internal hash array.
+</ul>
+Each inserted item is associated with a cost.  When inserting a new
+item, if the total cost of all items in the cache will exceeds
+<em>maxCost,</em> the cache will start throwing out the older (recently least
+used)  items until there is room enough for the new item to be inserted.
+<p>Setting <em>size</em> to a suitably large <a href="primes.html">prime
+number</a> (equal to or greater than the expected number of entries)
+makes the hash distribution better and hence the loopup faster.
+<h3 class="fn"><a name="989af8"></a>QIntCache::~QIntCache ()</h3>
+<p>Removes all items from the cache and destroys it.
+All iterators that access this cache will be reset.
+<h3 class="fn">void <a name="fa29c3"></a>QIntCache::clear () <code>[virtual]</code></h3>
+<p>Removes all items from the cache, and deletes them if auto-deletion
+has been enabled.
+<p>All cache iterators that operate this on cache are reset.
+<p>See also  <a href="#8a8580">remove</a>() and <a href="#6fbb1e">take</a>().
+<p>Reimplemented from <a href="qcollection.html#e9c603">QCollection.</a>
+<h3 class="fn">uint <a name="a6d6c8"></a>QIntCache::count () const <code>[virtual]</code></h3>
+<p>Returns the number of items in the cache.
+<p>See also  <a href="#dc16a5">totalCost</a>().
+<p>Reimplemented from <a href="qcollection.html#2213fa">QCollection.</a>
+<h3 class="fn">type * <a name="abf937"></a>QIntCache::find ( long k, bool ref=TRUE ) const</h3>
+<p>Returns the item associated with <em>k,</em> or null if the key does not
+exist in the cache.  If <em>ref</em> is TRUE (the default), the item is
+moved to the front of the LRU list.
+<p>If there are two or more items with equal keys, then the one that
+was inserted last is returned.
+<h3 class="fn">bool <a name="bd5364"></a>QIntCache::insert ( long k, const type * d, int c=1, int p=0 )</h3>
+<p>Inserts the item <em>d</em> into the cache with key <em>k</em> and cost <em>c</em>
+(default 1).  Returns TRUE if it succeeds and FALSE if it fails.
+<p>The cache's size is limited, and if the total cost is too high,
+QIntCache will remove old, least-used items until there is room for
+this new item.
+<p>The parameter <em>p</em> is internal and should be left at the default
+value (0).<p><b>Warning:</b> If this function returns FALSE, you must delete <em>d</em>
+yourself.  Additionally, be very careful about using <em>d</em> after
+calling this function, as any other insertions into the cache, from
+anywhere in the application, or within Qt itself, could cause the
+object to be discarded from the cache, and the pointer to become
+invalid.
+<h3 class="fn">bool <a name="15404b"></a>QIntCache::isEmpty () const</h3>
+<p>Returns TRUE if the cache is empty, or TRUE if there is at least one
+object in it.
+<h3 class="fn">int <a name="1a7c72"></a>QIntCache::maxCost () const</h3>
+<p>Returns the maximum allowed total cost of the cache.
+<p>See also  <a href="#532e54">setMaxCost</a>() and <a href="#dc16a5">totalCost</a>().
+<h3 class="fn">type * <a name="e5e5c6"></a>QIntCache::operator[] ( long k ) const</h3>
+<p>Returns the item associated with <em>k,</em> or null if <em>k</em> does not
+exist in the cache, and moves the item to the front of the LRU list.
+<p>If there are two or more items with equal keys, then the one that
+was inserted last is returned.
+<p>This is the same as <a href="#abf937">find</a>( k, TRUE ).
+<p>See also  <a href="#abf937">find</a>().
+<h3 class="fn">bool <a name="8a8580"></a>QIntCache::remove ( long k )</h3>
+<p>Removes the item associated with <em>k,</em> and returns TRUE if the item
+was present in the cache or FALSE if it was not.
+<p>The item is deleted if auto-deletion has been enabled, i.e. you have
+called <a href="qcollection.html#a8ef9f">setAutoDelete</a>(TRUE).
+<p>If there are two or more items with equal keys, then the one that
+was inserted last is is removed.
+<p>All iterators that refer to the removed item are set to point to the
+next item in the cache's traversal order.
+<p>See also  <a href="#6fbb1e">take</a>() and <a href="#fa29c3">clear</a>().
+<h3 class="fn">void <a name="532e54"></a>QIntCache::setMaxCost ( int m )</h3>
+<p>Sets the maximum allowed total cost of the cache to <em>m.</em>  If the
+current total cost is above <em>m,</em> some items are removed
+immediately.
+<p>See also  <a href="#1a7c72">maxCost</a>() and <a href="#dc16a5">totalCost</a>().
+<h3 class="fn">uint <a name="132ca2"></a>QIntCache::size () const</h3>
+<p>Returns the size of the hash array used to implement the cache.
+This should be a bit bigger than <a href="#a6d6c8">count</a>() is likely to be.
+<h3 class="fn">void <a name="b36d86"></a>QIntCache::statistics () const</h3>
+<p>A debug-only utility function. Prints out cache usage, hit/miss, and
+distribution information using <a href="qapplication.html#72e78c">qDebug</a>(). This function does nothing
+in the release library.
+<h3 class="fn">type * <a name="6fbb1e"></a>QIntCache::take ( long k )</h3>
+<p>Takes the item associated with <em>k</em> out of the cache without
+deleting it, and returns a pointer to the item taken out, or null if
+the key does not exist in the cache.
+<p>If there are two or more items with equal keys, then the one that
+was inserted last is taken.
+<p>All iterators that refer to the taken item are set to point to the
+next item in the cache's traversal order.
+<p>See also  <a href="#8a8580">remove</a>() and <a href="#fa29c3">clear</a>().
+<h3 class="fn">int <a name="dc16a5"></a>QIntCache::totalCost () const</h3>
+<p>Returns the total cost of the items in the cache.  This is an
+integer in the range 0 to <a href="#1a7c72">maxCost</a>().
+<p>See also  <a href="#532e54">setMaxCost</a>().
+<h3 class="fn"><a name="6346f2"></a>QIntCache::QIntCache ( const QIntCache&lt;type&gt; &amp; c )</h3>
+<p>For internal use only.
+<h3 class="fn">QIntCache&lt;type&gt;&amp; <a name="df0c49"></a>QIntCache::operator= ( const QIntCache&lt;type&gt; &amp; c )</h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

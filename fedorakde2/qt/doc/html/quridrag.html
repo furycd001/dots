@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QUriDrag Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QUriDrag Class Reference</h1><br clear="all">
+<p>
+Provides for drag-and-drop of a list of URI references.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qdragobject-h.html">qdragobject.h</a>&gt;</code>
+<p>
+Inherits <a href="qstoreddrag.html">QStoredDrag</a>.
+<p><a href="quridrag-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#842949"><b>QUriDrag</b></a> ( QStrList uris, QWidget * dragSource = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#7ed4cd"><b>QUriDrag</b></a> ( QWidget * dragSource = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#a08fb2"><b>~QUriDrag</b></a> () </div>
+<li><div class="fn">void <a href="#831231"><b>setFilenames</b></a> ( QStringList fnames ) </div>
+<li><div class="fn">void <a href="#4cdc54"><b>setUnicodeUris</b></a> ( QStringList uuris ) </div>
+<li><div class="fn">virtual void <a href="#02e033"><b>setUris</b></a> ( QStrList uris ) </div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">QString <a href="#b73b07"><b>uriToLocalFile</b></a> ( const char * ) </div>
+<li><div class="fn">QCString <a href="#eff80e"><b>localFileToUri</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">QString <a href="#250434"><b>uriToUnicodeUri</b></a> ( const char * ) </div>
+<li><div class="fn">QCString <a href="#264426"><b>unicodeUriToUri</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">bool <a href="#4b42b7"><b>canDecode</b></a> ( const QMimeSource * e ) </div>
+<li><div class="fn">bool <a href="#e14cb1"><b>decode</b></a> ( const QMimeSource * e, QStrList &amp; i ) </div>
+<li><div class="fn">bool <a href="#a8a530"><b>decodeToUnicodeUris</b></a> ( const QMimeSource * e, QStringList &amp; i ) </div>
+<li><div class="fn">bool <a href="#f14685"><b>decodeLocalFiles</b></a> ( const QMimeSource * e, QStringList &amp; i ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Provides for drag-and-drop of a list of URI references.
+<p>
+URIs are a useful way to refer to files that may be distributed
+across multiple machines.  Much of the time a URI will refer to
+a file on a machine local to both the drag source and the
+drop target, and so the URI will be equivalent to passing a
+filename, but more extensible.
+<p>While presenting URIs to the user, use them in Unicode form so
+that the user can comfortably edit and view them.
+For use in HTTP or other protocols, use the correctly escaped
+ASCII form (see.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="842949"></a>QUriDrag::QUriDrag ( <a href="qstrlist.html">QStrList</a> uris, <a href="qwidget.html">QWidget</a> * dragSource = 0, const char * name = 0 )</h3>
+<p>Constructs an object to drag the list of URIs in <em>uris.</em>
+The <em>dragSource</em> and <em>name</em> arguments are passed on to
+<a href="qstoreddrag.html">QStoredDrag</a>.  Note that URIs are always in escaped UTF8
+encoding, as defined by the W3C.
+<h3 class="fn"><a name="7ed4cd"></a>QUriDrag::QUriDrag ( <a href="qwidget.html">QWidget</a> * dragSource = 0, const char * name = 0 )</h3>
+<p>Constructs a object to drag.  You will need to call
+<a href="#02e033">setUris</a>() before you start the <a href="qdragobject.html#61c2fe">drag</a>().
+<h3 class="fn"><a name="a08fb2"></a>QUriDrag::~QUriDrag ()</h3>
+<p>Destructs the object.
+<h3 class="fn">bool <a name="4b42b7"></a>QUriDrag::canDecode ( const <a href="qmimesource.html">QMimeSource</a> * e ) <code>[static]</code></h3>
+<p>Returns TRUE if <a href="#e14cb1">decode</a>() would be able to decode <em>e.</em>
+<h3 class="fn">bool <a name="e14cb1"></a>QUriDrag::decode ( const <a href="qmimesource.html">QMimeSource</a> * e, <a href="qstrlist.html">QStrList</a> &amp; l ) <code>[static]</code></h3>
+<p>Decodes URIs from <em>e,</em> placing the result in <em>l</em> (which is first cleared).
+<p>Returns TRUE if the event contained a valid list of URIs.
+<h3 class="fn">bool <a name="f14685"></a>QUriDrag::decodeLocalFiles ( const <a href="qmimesource.html">QMimeSource</a> * e, <a href="qstringlist.html">QStringList</a> &amp; l ) <code>[static]</code></h3>
+<p>Decodes URIs from <em>e,</em> converts them to local files if they refer to
+local files, and places them in <em>l</em> (which is first cleared).
+<p>Returns TRUE if the event contained a valid list of URIs.
+The list will be empty if no URIs were local files.
+<h3 class="fn">bool <a name="a8a530"></a>QUriDrag::decodeToUnicodeUris ( const <a href="qmimesource.html">QMimeSource</a> * e, <a href="qstringlist.html">QStringList</a> &amp; l ) <code>[static]</code></h3>
+<p>Decodes URIs from <em>e,</em> converts them to Unicode URIs (only useful for
+displaying to humans),
+placing them in <em>l</em> (which is first cleared).
+<p>Returns TRUE if the event contained a valid list of URIs.
+<h3 class="fn"><a href="qcstring.html">QCString</a> <a name="eff80e"></a>QUriDrag::localFileToUri ( const <a href="qstring.html">QString</a> &amp; filename ) <code>[static]</code></h3>
+<p>Returns the URI equivalent to the absolute
+local file <em>filename.</em>
+<p>See also  <a href="#b73b07">uriToLocalFile</a>().
+<h3 class="fn">void <a name="831231"></a>QUriDrag::setFilenames ( <a href="qstringlist.html">QStringList</a> fnames )</h3>
+<p>Sets the URIs to be the local-file URIs equivalent to <em>fnames.</em>
+<p>See also  <a href="#eff80e">localFileToUri</a>() and <a href="#02e033">setUris</a>().
+<h3 class="fn">void <a name="4cdc54"></a>QUriDrag::setUnicodeUris ( <a href="qstringlist.html">QStringList</a> uuris )</h3>
+<p>Sets the URIs to be the
+Unicode URIs (only useful for
+displaying to humans) <em>uuris.</em>
+<p>See also  <a href="#eff80e">localFileToUri</a>() and <a href="#02e033">setUris</a>().
+<h3 class="fn">void <a name="02e033"></a>QUriDrag::setUris ( <a href="qstrlist.html">QStrList</a> uris ) <code>[virtual]</code></h3>
+<p>Changes the list of <em>uris</em> to be dragged.
+<h3 class="fn"><a href="qcstring.html">QCString</a> <a name="264426"></a>QUriDrag::unicodeUriToUri ( const <a href="qstring.html">QString</a> &amp; uuri ) <code>[static]</code></h3>
+<p>Returns the URI equivalent to the Unicode URI (only useful for
+displaying to humans).
+<em>uuri.</em>
+<p>See also  <a href="#b73b07">uriToLocalFile</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="b73b07"></a>QUriDrag::uriToLocalFile ( const char * uri ) <code>[static]</code></h3>
+<p>Returns the name of a local file equivalent to <em>uri,</em>
+or a null string if <em>uri</em> is not a local file.
+<p>See also  <a href="#eff80e">localFileToUri</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="250434"></a>QUriDrag::uriToUnicodeUri ( const char * uri ) <code>[static]</code></h3>
+<p>Returns the Unicode URI (only useful for
+displaying to humans) equivalent to <em>uri.</em>
+<p>See also  <a href="#eff80e">localFileToUri</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

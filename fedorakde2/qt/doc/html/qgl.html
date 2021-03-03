@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QGL Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QGL Class Reference<br><small>[ <a href="opengl.html">OpenGL module</a> ]</small></h1><br clear="all">
+<p>
+The QGL class is a namespace for miscellaneous identifiers in the Qt OpenGL module.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qgl-h.html">qgl.h</a>&gt;</code>
+<p>Inherited by <a href="qglcontext.html">QGLContext</a>, <a href="qglformat.html">QGLFormat</a> and <a href="qglwidget.html">QGLWidget</a>.
+<p><a href="qgl-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">enum <b>FormatOption</b> { DoubleBuffer = 0x0001, DepthBuffer = 0x0002, Rgba = 0x0004, AlphaChannel = 0x0008, AccumBuffer = 0x0010, StencilBuffer = 0x0020, StereoBuffers = 0x0040, DirectRendering = 0x0080, HasOverlay = 0x0100, SingleBuffer = DoubleBuffer &lt;&lt; 16, NoDepthBuffer = DepthBuffer &lt;&lt; 16, ColorIndex = Rgba &lt;&lt; 16, NoAlphaChannel = AlphaChannel &lt;&lt; 16, NoAccumBuffer = AccumBuffer &lt;&lt; 16, NoStencilBuffer = StencilBuffer &lt;&lt; 16, NoStereoBuffers = StereoBuffers &lt;&lt; 16, IndirectRendering = DirectRendering &lt;&lt; 16, NoOverlay = HasOverlay &lt;&lt; 16 }</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QGL class is a namespace for miscellaneous identifiers in the Qt OpenGL module.
+<p>
+Normally, you can ignore this class. <a href="qglwidget.html">QGLWidget</a> and the other OpenGL
+module classes inherit it, so when you make your own QGLWidget
+subclass, you can use the identifiers in the QGL namespace without
+qualification.
+<p>However, occasionally you may find yourself in situations where you
+need ot refer to these identifiers from outside the QGL namespace
+scope, e.g. in static utility functions. In such cases, simply write
+e.g. <code>QGL::DoubleBuffer</code> instead just <code>DoubleBuffer.</code>
+
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,191 @@
+'\" t
+.TH QXmlContentHandler 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QXmlContentHandler \- Interface to report logical content of XML data
+.br
+.PP
+\fC#include <qxml.h>\fR
+.PP
+Inherited by QXmlDefaultHandler.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBsetDocumentLocator\fR ( QXmlLocator * locator ) "
+.br
+.ti -1c
+.BI "virtual bool \fBstartDocument\fR () "
+.br
+.ti -1c
+.BI "virtual bool \fBendDocument\fR () "
+.br
+.ti -1c
+.BI "virtual bool \fBstartPrefixMapping\fR ( const QString & " "prefix" ", const QString & uri ) "
+.br
+.ti -1c
+.BI "virtual bool \fBendPrefixMapping\fR ( const QString & prefix ) "
+.br
+.ti -1c
+.BI "virtual bool \fBstartElement\fR ( const QString & " "namespaceURI" ", const QString & " "localName" ", const QString & " "qName" ", const QXmlAttributes & atts ) "
+.br
+.ti -1c
+.BI "virtual bool \fBendElement\fR ( const QString & " "namespaceURI" ", const QString & " "localName" ", const QString & qName ) "
+.br
+.ti -1c
+.BI "virtual bool \fBcharacters\fR ( const QString & ch ) "
+.br
+.ti -1c
+.BI "virtual bool \fBignorableWhitespace\fR ( const QString & ch ) "
+.br
+.ti -1c
+.BI "virtual bool \fBprocessingInstruction\fR ( const QString & " "target" ", const QString & data ) "
+.br
+.ti -1c
+.BI "virtual bool \fBskippedEntity\fR ( const QString & name ) "
+.br
+.ti -1c
+.BI "virtual QString \fBerrorString\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QXmlContentHandler class provides an interface to report logical content of XML data.
+.PP
+If the application needs to be informed of basic parsing events, it implements this interface and sets it with QXmlReader::setContentHandler(). The reader reports basic document-related events like the start and end of elements and character data through this interface.
+.PP
+The order of events in this interface is very important, and mirrors the order of information in the document itself. For example, all of an element's content (character data, processing instructions, and/or subelements) will appear, in order, between the startElement() event and the corresponding endElement() event.
+.PP
+The class QXmlDefaultHandler gives a default implementation for this interface; subclassing from this class is very convenient if you want only be informed of some parsing events.
+.PP
+See also the Introduction to SAX2.
+.PP
+See also QXmlDTDHandler, QXmlDeclHandler, QXmlEntityResolver, QXmlErrorHandler and QXmlLexicalHandler.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "bool QXmlContentHandler::characters ( const QString & ch ) \fC[virtual]\fR"
+The reader calls this function when he has parsed a chunk of character data (either normal character data or character data inside a CDATA section; if you have to distinguish between those two types you have to use QXmlLexicalHandler::startCDATA() and QXmlLexicalHandler::endCDATA() in addition).
+.PP
+Some readers will report whitespace in element content using the ignorableWhitespace() function rather than this one (QXmlSimpleReader will do it not though).
+.PP
+A reader is allowed to report the character data of an element in more than one chunk; e.g. a reader might want to report "a &lt; b" in three characters() events ("a ", "<" and " b").
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::endDocument () \fC[virtual]\fR"
+The reader calls this function after he has finished the parsing. It is only called once. It is the last function of all handler functions that is called. It is called after the reader has read all input or has abandoned parsing because of a fatal error.
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+See also startDocument().
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::endElement ( const QString & namespaceURI, const QString & localName, const QString & qName ) \fC[virtual]\fR"
+The reader calls this function when he has parsed an end element tag.
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+See also the namespace description.
+.PP
+See also startElement().
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::endPrefixMapping ( const QString & prefix ) \fC[virtual]\fR"
+The reader calls this function to signal the end of a prefix mapping.
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+See also the namespace description.
+.PP
+See also startPrefixMapping().
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "QString QXmlContentHandler::errorString () \fC[virtual]\fR"
+The reader calls this function to get an error string if any of the handler functions returns FALSE to him.
+.SH "bool QXmlContentHandler::ignorableWhitespace ( const QString & ch ) \fC[virtual]\fR"
+Some readers may use this function to report each chunk of whitespace in element content (QXmlSimpleReader does not though).
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::processingInstruction ( const QString & target, const QString & data ) \fC[virtual]\fR"
+The reader calls this function when he has parsed a processing instruction.
+.PP
+\fItarget\fR is the target name of the processing instruction and \fIdata\fR is the data of the processing instruction.
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "void QXmlContentHandler::setDocumentLocator ( QXmlLocator * locator ) \fC[virtual]\fR"
+The reader calls this function before he starts parsing the document. The argument \fIlocator\fR is a pointer to a QXmlLocator which allows the application to get the actual position of the parsing in the document.
+.PP
+Do not destroy the \fIlocator;\fR it is destroyed when the reader is destroyed (do not use the \fIlocator\fR after the reader got destroyed).
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::skippedEntity ( const QString & name ) \fC[virtual]\fR"
+Some readers may skip entities if they have not seen the declarations (e.g. because they are in an external DTD). If they do so they will report it by calling this function.
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::startDocument () \fC[virtual]\fR"
+The reader calls this function when he starts parsing the document. The reader will call this function only once before any other functions in this class or in the QXmlDTDHandler class are called (except QXmlContentHandler::setDocumentLocator()).
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+See also endDocument().
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::startElement ( const QString & namespaceURI, const QString & localName, const QString & qName, const QXmlAttributes & atts ) \fC[virtual]\fR"
+The reader calls this function when he has parsed a start element tag.
+.PP
+There will be a corresponding endElement() call when the corresponding end element tag was read. The startElement() and endElement() calls are always nested correctly. Empty element tags (e.g. <a/>) are reported by startElement() directly followed by a call to endElement().
+.PP
+The attribute list provided will contain only attributes with explicit values. The attribute list will contain attributes used for namespace declaration (i.e. attributes starting with xmlns) only if the namespace-prefix property of the reader is TRUE.
+.PP
+The argument \fIuri\fR is the namespace URI, or the empty string if the element has no namespace URI or if namespace processing is not being performed, \fIlocalName\fR is the local name (without prefix), or the empty string if namespace processing is not being performed, \fIqName\fR is the qualified name (with prefix), or the empty string if qualified names are not available and \fIatts\fR are the attributes attached to the element. If there are no attributes, \fIatts\fR is an empty attributes object
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+See also the namespace description.
+.PP
+See also endElement().
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "bool QXmlContentHandler::startPrefixMapping ( const QString & prefix, const QString & uri ) \fC[virtual]\fR"
+The reader calls this function to signal the begin of a prefix-URI namespace mapping scope. This information is not necessary for normal namespace processing since the reader automatically replaces prefixes for element and attribute names.
+.PP
+Note that startPrefixMapping and endPrefixMapping calls are not guaranteed to be properly nested relative to each-other: all startPrefixMapping events will occur before the corresponding startElement event, and all endPrefixMapping events will occur after the corresponding endElement event, but their order is not otherwise guaranteed.
+.PP
+The argument \fIprefix\fR is the namespace prefix being declared and the argument \fIuri\fR is the namespace URI the prefix is mapped to.
+.PP
+If this function returns FALSE the reader will stop parsing and will report an error. The reader will use the function errorString() to get the error message that will be used for reporting the error.
+.PP
+See also the namespace description.
+.PP
+See also endPrefixMapping().
+.PP
+Reimplemented in QXmlDefaultHandler.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qxmlcontenthandler.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qxmlcontenthandler.3qt) and the Qt
+version (2.3.2).

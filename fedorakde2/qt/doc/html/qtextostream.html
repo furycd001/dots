@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QTextOStream Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QTextOStream Class Reference</h1><br clear="all">
+<p>
+A convenience class for output streams.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qtextstream-h.html">qtextstream.h</a>&gt;</code>
+<p>
+Inherits <a href="qtextstream.html">QTextStream</a>.
+<p><a href="qtextostream-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#3bd64e"><b>QTextOStream</b></a> ( QString * s ) </div>
+<li><div class="fn"><a href="#85099c"><b>QTextOStream</b></a> ( QByteArray ba ) </div>
+<li><div class="fn"><a href="#c0d6b5"><b>QTextOStream</b></a> ( FILE * f ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+A convenience class for output streams.
+<p>
+For simple tasks, code should be simple.  Hence this
+class is a shorthand to avoid passing the <em>mode</em> argument
+to the normal <a href="qtextstream.html">QTextStream</a> constructors.
+<p>This makes it easy for example, to write things like this:
+<pre>    <a href="qstring.html">QString</a> result;
+    <a href="qtextostream.html">QTextOStream</a>(&amp;result) &lt;&lt; "pi = " &lt;&lt; 3.14;
+</pre>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="85099c"></a>QTextOStream::QTextOStream ( <a href="qbytearray.html">QByteArray</a> ba )</h3>
+<p>Constructs a stream to write to the array <em>ba.</em>
+<h3 class="fn"><a name="3bd64e"></a>QTextOStream::QTextOStream ( <a href="qstring.html">QString</a> * s )</h3>
+<p>Constructs a stream to write to string <em>s.</em>
+<h3 class="fn"><a name="c0d6b5"></a>QTextOStream::QTextOStream ( FILE * f )</h3>
+<p>Constructs a stream to write to the file <em>f.</em>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,128 @@
+'\" t
+.TH QNetworkOperation 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QNetworkOperation \- This class is used to define operations for network protocols and return the state, arguments, etc
+.br
+.PP
+\fC#include <qnetworkprotocol.h>\fR
+.PP
+Inherits QObject.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQNetworkOperation\fR ( QNetworkProtocol::Operation " "operation" ", const QString & " "arg0" ", const QString & " "arg1" ", const QString & arg2 ) "
+.br
+.ti -1c
+.BI "\fBQNetworkOperation\fR ( QNetworkProtocol::Operation " "operation" ", const QByteArray & " "arg0" ", const QByteArray & " "arg1" ", const QByteArray & arg2 ) "
+.br
+.ti -1c
+.BI "\fB~QNetworkOperation\fR () "
+.br
+.ti -1c
+.BI "void \fBsetState\fR ( QNetworkProtocol::State state ) "
+.br
+.ti -1c
+.BI "void \fBsetProtocolDetail\fR ( const QString & detail ) "
+.br
+.ti -1c
+.BI "void \fBsetErrorCode\fR ( int ec ) "
+.br
+.ti -1c
+.BI "void \fBsetArg\fR ( int " "num" ", const QString & arg ) "
+.br
+.ti -1c
+.BI "void \fBsetRawArg\fR ( int " "num" ", const QByteArray & arg ) "
+.br
+.ti -1c
+.BI "QNetworkProtocol::Operation \fBoperation\fR () const"
+.br
+.ti -1c
+.BI "QNetworkProtocol::State \fBstate\fR () const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( int num ) const"
+.br
+.ti -1c
+.BI "QByteArray \fBrawArg\fR ( int num ) const"
+.br
+.ti -1c
+.BI "QString \fBprotocolDetail\fR () const"
+.br
+.ti -1c
+.BI "int \fBerrorCode\fR () const"
+.br
+.ti -1c
+.BI "void \fBfree\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+This class is used to define operations for network protocols and return the state, arguments, etc.
+.PP
+For each operation, which a network protocol should process such an object is created to describe the operation and the current state.
+.PP
+For a detailed description about the Qt Network Architecture, and also how to implement and use network protocols in Qt, look at the Qt Network Documentation.
+.PP
+See also QNetworkProtocol.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QNetworkOperation::QNetworkOperation ( QNetworkProtocol::Operation operation, const QByteArray & arg0, const QByteArray & arg1, const QByteArray & arg2 )"
+Constructs a network operation object. \fIoperation\fR is the type of the operation, \fIarg0, arg1\fR and \fIarg2\fR are the first three raw data arguments of the operation. The state is initialized to QNetworkProtocol::StWaiting.
+.SH "QNetworkOperation::QNetworkOperation ( QNetworkProtocol::Operation operation, const QString & arg0, const QString & arg1, const QString & arg2 )"
+Constructs a network operation object. \fIoperation\fR is the type of the operation, \fIarg0, arg1\fR and \fIarg2\fR are the first three arguments of the operation. The state is initialized to QNetworkProtocol::StWaiting.
+.SH "QNetworkOperation::~QNetworkOperation ()"
+Destructor.
+.SH "QString QNetworkOperation::arg ( int num ) const"
+Returns the argument \fInum\fR of the operation. If this argument was not set already, an empty string is returned.
+.SH "int QNetworkOperation::errorCode () const"
+If an operation failed, you get the error code using this methode.
+.SH "void QNetworkOperation::free ()"
+If this method is called the QNetworkOperation deletes itself after it has been 1 second unused, which means for 1 second no method of the QNetworkOperation has been accessed.
+.PP
+Because QNetworkOperation pointers are passed around a lot the QNetworkProtocol can't delete these at the correct time. So, if a QNetworkProtocol doesn't need an operation anymore and calls this method, so that it gets deleted correctly.
+.PP
+You should never need to call the method yourself!.
+.SH "QNetworkProtocol::Operation QNetworkOperation::operation() const"
+Returns the type of the operation.
+.SH "QString QNetworkOperation::protocolDetail () const"
+If the operation failed, using this method you may get a more detailed error message.
+.SH "QByteArray QNetworkOperation::rawArg ( int num ) const"
+Returns the raw data argument \fInum\fR of the operation. If this argument was not set already, an empty bytearray is returned.
+.SH "void QNetworkOperation::setArg ( int num, const QString & arg )"
+Sets the argument \fInum\fR of the network operation to \fIarg.\fR
+.SH "void QNetworkOperation::setErrorCode ( int ec )"
+If the operation failed, the protocol should set an error code to describe the error more detailed. Preferable one of the error codes defined in QNetworkProtocol should be used.
+.SH "void QNetworkOperation::setProtocolDetail ( const QString & detail )"
+If the operation failed a \fIdetailed\fR error message can be set.
+.SH "void QNetworkOperation::setRawArg ( int num, const QByteArray & arg )"
+Sets the raw data argument \fInum\fR of the network operation to \fIarg.\fR
+.SH "void QNetworkOperation::setState ( QNetworkProtocol::State state )"
+Sets the \fIstate\fR of the operation object. This should be done by the network protocol during processing it, and at the end it should be set to QNetworkProtocol::StDone or QNetworkProtocol::StFailed depending on success or failure.
+.SH "QNetworkProtocol::State QNetworkOperation::state() const"
+Returns the state of the operation. Using that you
+can find out if an operation is still waiting to get processed,
+if it is in process or if has been done successfully or if it failed.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qnetworkoperation.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qnetworkoperation.3qt) and the Qt
+version (2.3.2).

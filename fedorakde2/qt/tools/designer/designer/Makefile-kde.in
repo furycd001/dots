@@ -1,0 +1,1459 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS) -DDESIGNER -DHAVE_KDE
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS) -DDESIGNER -DHAVE_KDE
+INCPATH =	-I../shared -I../util -I../../../src/3rdparty/zlib -I$(KDEDIR)/include
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -L$(QTDIR)/lib -lqutil -L$(KDEDIR)/lib -lkdecore -lkdeui -lDCOP $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = $(QTDIR)/bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= designer
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	command.h \
+		defs.h \
+		formwindow.h \
+		layout.h \
+		mainwindow.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		propertyeditor.h \
+		resource.h \
+		sizehandle.h \
+		orderindicator.h \
+		widgetfactory.h \
+		config.h \
+		hierarchyview.h \
+		listboxeditorimpl.h \
+		connectioneditorimpl.h \
+		newformimpl.h \
+		formlist.h \
+		help.h \
+		editslotsimpl.h \
+		listvieweditorimpl.h \
+		connectionviewerimpl.h \
+		customwidgeteditorimpl.h \
+		paletteeditorimpl.h \
+		styledbutton.h \
+		previewstack.h \
+		iconvieweditorimpl.h \
+		helpdialogimpl.h \
+		topicchooserimpl.h \
+		multilineeditorimpl.h \
+		formsettingsimpl.h \
+		asciivalidator.h \
+		import.h \
+		../shared/widgetdatabase.h \
+		../shared/domtool.h \
+		../integration/kdevelop/kdewidgets.h \
+		qmodules.h \
+		splashloader.h
+SOURCES =	command.cpp \
+		formwindow.cpp \
+		defs.cpp \
+		layout.cpp \
+		main.cpp \
+		mainwindow.cpp \
+		metadatabase.cpp \
+		pixmapchooser.cpp \
+		propertyeditor.cpp \
+		resource.cpp \
+		sizehandle.cpp \
+		orderindicator.cpp \
+		widgetfactory.cpp \
+		config.cpp \
+		hierarchyview.cpp \
+		listboxeditorimpl.cpp \
+		connectioneditorimpl.cpp \
+		newformimpl.cpp \
+		formlist.cpp \
+		help.cpp \
+		editslotsimpl.cpp \
+		listvieweditorimpl.cpp \
+		connectionviewerimpl.cpp \
+		customwidgeteditorimpl.cpp \
+		paletteeditorimpl.cpp \
+		styledbutton.cpp \
+		previewstack.cpp \
+		iconvieweditorimpl.cpp \
+		helpdialogimpl.cpp \
+		topicchooserimpl.cpp \
+		multilineeditorimpl.cpp \
+		formsettingsimpl.cpp \
+		asciivalidator.cpp \
+		import.cpp \
+		../shared/widgetdatabase.cpp \
+		../integration/kdevelop/kdewidgets.cpp \
+		../shared/domtool.cpp \
+		splashloader.cpp
+OBJECTS =	command.o \
+		formwindow.o \
+		defs.o \
+		layout.o \
+		main.o \
+		mainwindow.o \
+		metadatabase.o \
+		pixmapchooser.o \
+		propertyeditor.o \
+		resource.o \
+		sizehandle.o \
+		orderindicator.o \
+		widgetfactory.o \
+		config.o \
+		hierarchyview.o \
+		listboxeditorimpl.o \
+		connectioneditorimpl.o \
+		newformimpl.o \
+		formlist.o \
+		help.o \
+		editslotsimpl.o \
+		listvieweditorimpl.o \
+		connectionviewerimpl.o \
+		customwidgeteditorimpl.o \
+		paletteeditorimpl.o \
+		styledbutton.o \
+		previewstack.o \
+		iconvieweditorimpl.o \
+		helpdialogimpl.o \
+		topicchooserimpl.o \
+		multilineeditorimpl.o \
+		formsettingsimpl.o \
+		asciivalidator.o \
+		import.o \
+		widgetdatabase.o \
+		kdewidgets.o \
+		domtool.o \
+		splashloader.o \
+		listboxeditor.o \
+		connectioneditor.o \
+		editslots.o \
+		newform.o \
+		listvieweditor.o \
+		connectionviewer.o \
+		customwidgeteditor.o \
+		texteditpreview.o \
+		listviewpreview.o \
+		paletteeditor.o \
+		radiopreview.o \
+		checkboxpreview.o \
+		widgetpreview.o \
+		iconvieweditor.o \
+		preferences.o \
+		helpdialog.o \
+		topicchooser.o \
+		multilineeditor.o \
+		formsettings.o \
+		about.o \
+		pixmapfunction.o \
+		createtemplate.o
+INTERFACES =    listboxeditor.ui \
+		connectioneditor.ui \
+		editslots.ui \
+		newform.ui \
+		listvieweditor.ui \
+		connectionviewer.ui \
+		customwidgeteditor.ui \
+		texteditpreview.ui \
+		listviewpreview.ui \
+		paletteeditor.ui \
+		radiopreview.ui \
+		checkboxpreview.ui \
+		widgetpreview.ui \
+		iconvieweditor.ui \
+		preferences.ui \
+		helpdialog.ui \
+		topicchooser.ui \
+		multilineeditor.ui \
+		formsettings.ui \
+		about.ui \
+		pixmapfunction.ui \
+		createtemplate.ui
+UICDECLS =      listboxeditor.h \
+		connectioneditor.h \
+		editslots.h \
+		newform.h \
+		listvieweditor.h \
+		connectionviewer.h \
+		customwidgeteditor.h \
+		texteditpreview.h \
+		listviewpreview.h \
+		paletteeditor.h \
+		radiopreview.h \
+		checkboxpreview.h \
+		widgetpreview.h \
+		iconvieweditor.h \
+		preferences.h \
+		helpdialog.h \
+		topicchooser.h \
+		multilineeditor.h \
+		formsettings.h \
+		about.h \
+		pixmapfunction.h \
+		createtemplate.h
+UICIMPLS =      listboxeditor.cpp \
+		connectioneditor.cpp \
+		editslots.cpp \
+		newform.cpp \
+		listvieweditor.cpp \
+		connectionviewer.cpp \
+		customwidgeteditor.cpp \
+		texteditpreview.cpp \
+		listviewpreview.cpp \
+		paletteeditor.cpp \
+		radiopreview.cpp \
+		checkboxpreview.cpp \
+		widgetpreview.cpp \
+		iconvieweditor.cpp \
+		preferences.cpp \
+		helpdialog.cpp \
+		topicchooser.cpp \
+		multilineeditor.cpp \
+		formsettings.cpp \
+		about.cpp \
+		pixmapfunction.cpp \
+		createtemplate.cpp
+SRCMOC	=	moc_command.cpp \
+		moc_formwindow.cpp \
+		moc_layout.cpp \
+		moc_mainwindow.cpp \
+		moc_pixmapchooser.cpp \
+		moc_propertyeditor.cpp \
+		moc_sizehandle.cpp \
+		moc_orderindicator.cpp \
+		moc_widgetfactory.cpp \
+		moc_hierarchyview.cpp \
+		moc_listboxeditorimpl.cpp \
+		moc_connectioneditorimpl.cpp \
+		moc_newformimpl.cpp \
+		moc_formlist.cpp \
+		moc_help.cpp \
+		moc_editslotsimpl.cpp \
+		moc_listvieweditorimpl.cpp \
+		moc_connectionviewerimpl.cpp \
+		moc_customwidgeteditorimpl.cpp \
+		moc_paletteeditorimpl.cpp \
+		moc_styledbutton.cpp \
+		moc_previewstack.cpp \
+		moc_iconvieweditorimpl.cpp \
+		moc_helpdialogimpl.cpp \
+		moc_topicchooserimpl.cpp \
+		moc_multilineeditorimpl.cpp \
+		moc_formsettingsimpl.cpp \
+		moc_asciivalidator.cpp \
+		moc_import.cpp \
+		moc_listboxeditor.cpp \
+		moc_connectioneditor.cpp \
+		moc_editslots.cpp \
+		moc_newform.cpp \
+		moc_listvieweditor.cpp \
+		moc_connectionviewer.cpp \
+		moc_customwidgeteditor.cpp \
+		moc_texteditpreview.cpp \
+		moc_listviewpreview.cpp \
+		moc_paletteeditor.cpp \
+		moc_radiopreview.cpp \
+		moc_checkboxpreview.cpp \
+		moc_widgetpreview.cpp \
+		moc_iconvieweditor.cpp \
+		moc_preferences.cpp \
+		moc_helpdialog.cpp \
+		moc_topicchooser.cpp \
+		moc_multilineeditor.cpp \
+		moc_formsettings.cpp \
+		moc_about.cpp \
+		moc_pixmapfunction.cpp \
+		moc_createtemplate.cpp
+OBJMOC	=	moc_command.o \
+		moc_formwindow.o \
+		moc_layout.o \
+		moc_mainwindow.o \
+		moc_pixmapchooser.o \
+		moc_propertyeditor.o \
+		moc_sizehandle.o \
+		moc_orderindicator.o \
+		moc_widgetfactory.o \
+		moc_hierarchyview.o \
+		moc_listboxeditorimpl.o \
+		moc_connectioneditorimpl.o \
+		moc_newformimpl.o \
+		moc_formlist.o \
+		moc_help.o \
+		moc_editslotsimpl.o \
+		moc_listvieweditorimpl.o \
+		moc_connectionviewerimpl.o \
+		moc_customwidgeteditorimpl.o \
+		moc_paletteeditorimpl.o \
+		moc_styledbutton.o \
+		moc_previewstack.o \
+		moc_iconvieweditorimpl.o \
+		moc_helpdialogimpl.o \
+		moc_topicchooserimpl.o \
+		moc_multilineeditorimpl.o \
+		moc_formsettingsimpl.o \
+		moc_asciivalidator.o \
+		moc_import.o \
+		moc_listboxeditor.o \
+		moc_connectioneditor.o \
+		moc_editslots.o \
+		moc_newform.o \
+		moc_listvieweditor.o \
+		moc_connectionviewer.o \
+		moc_customwidgeteditor.o \
+		moc_texteditpreview.o \
+		moc_listviewpreview.o \
+		moc_paletteeditor.o \
+		moc_radiopreview.o \
+		moc_checkboxpreview.o \
+		moc_widgetpreview.o \
+		moc_iconvieweditor.o \
+		moc_preferences.o \
+		moc_helpdialog.o \
+		moc_topicchooser.o \
+		moc_multilineeditor.o \
+		moc_formsettings.o \
+		moc_about.o \
+		moc_pixmapfunction.o \
+		moc_createtemplate.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake:
+	tmake designer-kde.pro
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+command.o: command.cpp \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		formwindow.h \
+		sizehandle.h \
+		orderindicator.h \
+		widgetfactory.h \
+		propertyeditor.h \
+		mainwindow.h \
+		hierarchyview.h \
+		formlist.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o command.o command.cpp
+
+formwindow.o: formwindow.cpp \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		defs.h \
+		mainwindow.h \
+		widgetfactory.h \
+		resource.h \
+		connectioneditorimpl.h \
+		connectioneditor.h \
+		hierarchyview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formwindow.o formwindow.cpp
+
+defs.o: defs.cpp \
+		defs.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o defs.o defs.cpp
+
+layout.o: layout.cpp \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		widgetfactory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o layout.o layout.cpp
+
+main.o: main.cpp \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h \
+		config.h \
+		splashloader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+
+mainwindow.o: mainwindow.cpp \
+		mainwindow.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		defs.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		widgetfactory.h \
+		propertyeditor.h \
+		resource.h \
+		config.h \
+		hierarchyview.h \
+		editslotsimpl.h \
+		editslots.h \
+		newformimpl.h \
+		newform.h \
+		formlist.h \
+		help.h \
+		connectionviewerimpl.h \
+		connectionviewer.h \
+		customwidgeteditorimpl.h \
+		customwidgeteditor.h \
+		preferences.h \
+		styledbutton.h \
+		formsettingsimpl.h \
+		formsettings.h \
+		about.h \
+		import.h \
+		multilineeditorimpl.h \
+		multilineeditor.h \
+		createtemplate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+metadatabase.o: metadatabase.cpp \
+		metadatabase.h \
+		pixmapchooser.h \
+		widgetfactory.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o metadatabase.o metadatabase.cpp
+
+pixmapchooser.o: pixmapchooser.cpp \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		pixmapfunction.h \
+		mainwindow.h \
+		../pics/images.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pixmapchooser.o pixmapchooser.cpp
+
+propertyeditor.o: propertyeditor.cpp \
+		propertyeditor.h \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		widgetfactory.h \
+		defs.h \
+		asciivalidator.h \
+		paletteeditorimpl.h \
+		paletteeditor.h \
+		multilineeditorimpl.h \
+		multilineeditor.h \
+		../pics/arrow.xbm \
+		../pics/uparrow.xbm \
+		../pics/cross.xbm \
+		../pics/wait.xbm \
+		../pics/ibeam.xbm \
+		../pics/sizeh.xbm \
+		../pics/sizev.xbm \
+		../pics/sizeb.xbm \
+		../pics/sizef.xbm \
+		../pics/sizeall.xbm \
+		../pics/vsplit.xbm \
+		../pics/hsplit.xbm \
+		../pics/hand.xbm \
+		../pics/no.xbm
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o propertyeditor.o propertyeditor.cpp
+
+resource.o: resource.cpp \
+		resource.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		defs.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h \
+		widgetfactory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o resource.o resource.cpp
+
+sizehandle.o: sizehandle.cpp \
+		sizehandle.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		orderindicator.h \
+		widgetfactory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sizehandle.o sizehandle.cpp
+
+orderindicator.o: orderindicator.cpp \
+		orderindicator.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o orderindicator.o orderindicator.cpp
+
+widgetfactory.o: widgetfactory.cpp \
+		widgetfactory.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		mainwindow.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		listboxeditorimpl.h \
+		listboxeditor.h \
+		listvieweditorimpl.h \
+		listvieweditor.h \
+		iconvieweditorimpl.h \
+		iconvieweditor.h \
+		multilineeditorimpl.h \
+		multilineeditor.h \
+		../integration/kdevelop/kdewidgets.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widgetfactory.o widgetfactory.cpp
+
+config.o: config.cpp \
+		config.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o config.o config.cpp
+
+hierarchyview.o: hierarchyview.cpp \
+		hierarchyview.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h \
+		widgetfactory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hierarchyview.o hierarchyview.cpp
+
+listboxeditorimpl.o: listboxeditorimpl.cpp \
+		listboxeditorimpl.h \
+		listboxeditor.h \
+		pixmapchooser.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		formwindow.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listboxeditorimpl.o listboxeditorimpl.cpp
+
+connectioneditorimpl.o: connectioneditorimpl.cpp \
+		connectioneditorimpl.h \
+		connectioneditor.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		widgetfactory.h \
+		editslotsimpl.h \
+		editslots.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o connectioneditorimpl.o connectioneditorimpl.cpp
+
+newformimpl.o: newformimpl.cpp \
+		newformimpl.h \
+		newform.h \
+		pixmapchooser.h \
+		mainwindow.h \
+		metadatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o newformimpl.o newformimpl.cpp
+
+formlist.o: formlist.cpp \
+		formlist.h \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formlist.o formlist.cpp
+
+help.o: help.cpp \
+		help.h \
+		helpdialogimpl.h \
+		helpdialog.h \
+		pixmapchooser.h \
+		mainwindow.h \
+		metadatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o help.o help.cpp
+
+editslotsimpl.o: editslotsimpl.cpp \
+		editslotsimpl.h \
+		editslots.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		asciivalidator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editslotsimpl.o editslotsimpl.cpp
+
+listvieweditorimpl.o: listvieweditorimpl.cpp \
+		listvieweditorimpl.h \
+		listvieweditor.h \
+		pixmapchooser.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		formwindow.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listvieweditorimpl.o listvieweditorimpl.cpp
+
+connectionviewerimpl.o: connectionviewerimpl.cpp \
+		connectionviewerimpl.h \
+		connectionviewer.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		connectioneditorimpl.h \
+		connectioneditor.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o connectionviewerimpl.o connectionviewerimpl.cpp
+
+customwidgeteditorimpl.o: customwidgeteditorimpl.cpp \
+		customwidgeteditorimpl.h \
+		customwidgeteditor.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		defs.h \
+		mainwindow.h \
+		asciivalidator.h \
+		resource.h \
+		widgetfactory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o customwidgeteditorimpl.o customwidgeteditorimpl.cpp
+
+paletteeditorimpl.o: paletteeditorimpl.cpp \
+		paletteeditorimpl.h \
+		paletteeditor.h \
+		previewstack.h \
+		styledbutton.h \
+		pixmapchooser.h \
+		mainwindow.h \
+		metadatabase.h \
+		formwindow.h \
+		command.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paletteeditorimpl.o paletteeditorimpl.cpp
+
+styledbutton.o: styledbutton.cpp \
+		styledbutton.h \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o styledbutton.o styledbutton.cpp
+
+previewstack.o: previewstack.cpp \
+		previewstack.h \
+		widgetpreview.h \
+		checkboxpreview.h \
+		radiopreview.h \
+		texteditpreview.h \
+		listviewpreview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o previewstack.o previewstack.cpp
+
+iconvieweditorimpl.o: iconvieweditorimpl.cpp \
+		iconvieweditorimpl.h \
+		iconvieweditor.h \
+		pixmapchooser.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iconvieweditorimpl.o iconvieweditorimpl.cpp
+
+helpdialogimpl.o: helpdialogimpl.cpp \
+		helpdialogimpl.h \
+		helpdialog.h \
+		mainwindow.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		topicchooserimpl.h \
+		topicchooser.h \
+		help.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o helpdialogimpl.o helpdialogimpl.cpp
+
+topicchooserimpl.o: topicchooserimpl.cpp \
+		topicchooserimpl.h \
+		topicchooser.h \
+		mainwindow.h \
+		metadatabase.h \
+		pixmapchooser.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o topicchooserimpl.o topicchooserimpl.cpp
+
+multilineeditorimpl.o: multilineeditorimpl.cpp \
+		multilineeditorimpl.h \
+		multilineeditor.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o multilineeditorimpl.o multilineeditorimpl.cpp
+
+formsettingsimpl.o: formsettingsimpl.cpp \
+		formsettingsimpl.h \
+		formsettings.h \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		asciivalidator.h \
+		mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formsettingsimpl.o formsettingsimpl.cpp
+
+asciivalidator.o: asciivalidator.cpp \
+		asciivalidator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o asciivalidator.o asciivalidator.cpp
+
+import.o: import.cpp \
+		import.h \
+		mainwindow.h \
+		metadatabase.h \
+		pixmapchooser.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o import.o import.cpp
+
+widgetdatabase.o: ../shared/widgetdatabase.cpp \
+		../shared/widgetdatabase.h \
+		../designer/formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h \
+		../designer/pixmapchooser.h \
+		../integration/kdevelop/kdewidgets.h \
+		../shared/globaldefs.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widgetdatabase.o ../shared/widgetdatabase.cpp
+
+kdewidgets.o: ../integration/kdevelop/kdewidgets.cpp \
+		../integration/kdevelop/kdewidgets.h \
+		../shared/widgetdatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o kdewidgets.o ../integration/kdevelop/kdewidgets.cpp
+
+domtool.o: ../shared/domtool.cpp \
+		../shared/domtool.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o domtool.o ../shared/domtool.cpp
+
+splashloader.o: splashloader.cpp \
+		splashloader.h \
+		../pics/splash.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o splashloader.o splashloader.cpp
+
+listboxeditor.h: listboxeditor.ui
+	$(UIC) listboxeditor.ui -o $(INTERFACE_DECL_PATH)/listboxeditor.h
+
+listboxeditor.cpp: listboxeditor.ui
+	$(UIC) listboxeditor.ui -i listboxeditor.h -o listboxeditor.cpp
+
+connectioneditor.h: connectioneditor.ui
+	$(UIC) connectioneditor.ui -o $(INTERFACE_DECL_PATH)/connectioneditor.h
+
+connectioneditor.cpp: connectioneditor.ui
+	$(UIC) connectioneditor.ui -i connectioneditor.h -o connectioneditor.cpp
+
+editslots.h: editslots.ui
+	$(UIC) editslots.ui -o $(INTERFACE_DECL_PATH)/editslots.h
+
+editslots.cpp: editslots.ui
+	$(UIC) editslots.ui -i editslots.h -o editslots.cpp
+
+newform.h: newform.ui
+	$(UIC) newform.ui -o $(INTERFACE_DECL_PATH)/newform.h
+
+newform.cpp: newform.ui
+	$(UIC) newform.ui -i newform.h -o newform.cpp
+
+listvieweditor.h: listvieweditor.ui
+	$(UIC) listvieweditor.ui -o $(INTERFACE_DECL_PATH)/listvieweditor.h
+
+listvieweditor.cpp: listvieweditor.ui
+	$(UIC) listvieweditor.ui -i listvieweditor.h -o listvieweditor.cpp
+
+connectionviewer.h: connectionviewer.ui
+	$(UIC) connectionviewer.ui -o $(INTERFACE_DECL_PATH)/connectionviewer.h
+
+connectionviewer.cpp: connectionviewer.ui
+	$(UIC) connectionviewer.ui -i connectionviewer.h -o connectionviewer.cpp
+
+customwidgeteditor.h: customwidgeteditor.ui
+	$(UIC) customwidgeteditor.ui -o $(INTERFACE_DECL_PATH)/customwidgeteditor.h
+
+customwidgeteditor.cpp: customwidgeteditor.ui
+	$(UIC) customwidgeteditor.ui -i customwidgeteditor.h -o customwidgeteditor.cpp
+
+texteditpreview.h: texteditpreview.ui
+	$(UIC) texteditpreview.ui -o $(INTERFACE_DECL_PATH)/texteditpreview.h
+
+texteditpreview.cpp: texteditpreview.ui
+	$(UIC) texteditpreview.ui -i texteditpreview.h -o texteditpreview.cpp
+
+listviewpreview.h: listviewpreview.ui
+	$(UIC) listviewpreview.ui -o $(INTERFACE_DECL_PATH)/listviewpreview.h
+
+listviewpreview.cpp: listviewpreview.ui
+	$(UIC) listviewpreview.ui -i listviewpreview.h -o listviewpreview.cpp
+
+paletteeditor.h: paletteeditor.ui
+	$(UIC) paletteeditor.ui -o $(INTERFACE_DECL_PATH)/paletteeditor.h
+
+paletteeditor.cpp: paletteeditor.ui
+	$(UIC) paletteeditor.ui -i paletteeditor.h -o paletteeditor.cpp
+
+radiopreview.h: radiopreview.ui
+	$(UIC) radiopreview.ui -o $(INTERFACE_DECL_PATH)/radiopreview.h
+
+radiopreview.cpp: radiopreview.ui
+	$(UIC) radiopreview.ui -i radiopreview.h -o radiopreview.cpp
+
+checkboxpreview.h: checkboxpreview.ui
+	$(UIC) checkboxpreview.ui -o $(INTERFACE_DECL_PATH)/checkboxpreview.h
+
+checkboxpreview.cpp: checkboxpreview.ui
+	$(UIC) checkboxpreview.ui -i checkboxpreview.h -o checkboxpreview.cpp
+
+widgetpreview.h: widgetpreview.ui
+	$(UIC) widgetpreview.ui -o $(INTERFACE_DECL_PATH)/widgetpreview.h
+
+widgetpreview.cpp: widgetpreview.ui
+	$(UIC) widgetpreview.ui -i widgetpreview.h -o widgetpreview.cpp
+
+iconvieweditor.h: iconvieweditor.ui
+	$(UIC) iconvieweditor.ui -o $(INTERFACE_DECL_PATH)/iconvieweditor.h
+
+iconvieweditor.cpp: iconvieweditor.ui
+	$(UIC) iconvieweditor.ui -i iconvieweditor.h -o iconvieweditor.cpp
+
+preferences.h: preferences.ui
+	$(UIC) preferences.ui -o $(INTERFACE_DECL_PATH)/preferences.h
+
+preferences.cpp: preferences.ui
+	$(UIC) preferences.ui -i preferences.h -o preferences.cpp
+
+helpdialog.h: helpdialog.ui
+	$(UIC) helpdialog.ui -o $(INTERFACE_DECL_PATH)/helpdialog.h
+
+helpdialog.cpp: helpdialog.ui
+	$(UIC) helpdialog.ui -i helpdialog.h -o helpdialog.cpp
+
+topicchooser.h: topicchooser.ui
+	$(UIC) topicchooser.ui -o $(INTERFACE_DECL_PATH)/topicchooser.h
+
+topicchooser.cpp: topicchooser.ui
+	$(UIC) topicchooser.ui -i topicchooser.h -o topicchooser.cpp
+
+multilineeditor.h: multilineeditor.ui
+	$(UIC) multilineeditor.ui -o $(INTERFACE_DECL_PATH)/multilineeditor.h
+
+multilineeditor.cpp: multilineeditor.ui
+	$(UIC) multilineeditor.ui -i multilineeditor.h -o multilineeditor.cpp
+
+formsettings.h: formsettings.ui
+	$(UIC) formsettings.ui -o $(INTERFACE_DECL_PATH)/formsettings.h
+
+formsettings.cpp: formsettings.ui
+	$(UIC) formsettings.ui -i formsettings.h -o formsettings.cpp
+
+about.h: about.ui
+	$(UIC) about.ui -o $(INTERFACE_DECL_PATH)/about.h
+
+about.cpp: about.ui
+	$(UIC) about.ui -i about.h -o about.cpp
+
+pixmapfunction.h: pixmapfunction.ui
+	$(UIC) pixmapfunction.ui -o $(INTERFACE_DECL_PATH)/pixmapfunction.h
+
+pixmapfunction.cpp: pixmapfunction.ui
+	$(UIC) pixmapfunction.ui -i pixmapfunction.h -o pixmapfunction.cpp
+
+createtemplate.h: createtemplate.ui
+	$(UIC) createtemplate.ui -o $(INTERFACE_DECL_PATH)/createtemplate.h
+
+createtemplate.cpp: createtemplate.ui
+	$(UIC) createtemplate.ui -i createtemplate.h -o createtemplate.cpp
+
+listboxeditor.o: listboxeditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listboxeditor.o listboxeditor.cpp
+
+connectioneditor.o: connectioneditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o connectioneditor.o connectioneditor.cpp
+
+editslots.o: editslots.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editslots.o editslots.cpp
+
+newform.o: newform.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o newform.o newform.cpp
+
+listvieweditor.o: listvieweditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listvieweditor.o listvieweditor.cpp
+
+connectionviewer.o: connectionviewer.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o connectionviewer.o connectionviewer.cpp
+
+customwidgeteditor.o: customwidgeteditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o customwidgeteditor.o customwidgeteditor.cpp
+
+texteditpreview.o: texteditpreview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o texteditpreview.o texteditpreview.cpp
+
+listviewpreview.o: listviewpreview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listviewpreview.o listviewpreview.cpp
+
+paletteeditor.o: paletteeditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paletteeditor.o paletteeditor.cpp
+
+radiopreview.o: radiopreview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o radiopreview.o radiopreview.cpp
+
+checkboxpreview.o: checkboxpreview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o checkboxpreview.o checkboxpreview.cpp
+
+widgetpreview.o: widgetpreview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widgetpreview.o widgetpreview.cpp
+
+iconvieweditor.o: iconvieweditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iconvieweditor.o iconvieweditor.cpp
+
+preferences.o: preferences.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o preferences.o preferences.cpp
+
+helpdialog.o: helpdialog.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o helpdialog.o helpdialog.cpp
+
+topicchooser.o: topicchooser.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o topicchooser.o topicchooser.cpp
+
+multilineeditor.o: multilineeditor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o multilineeditor.o multilineeditor.cpp
+
+formsettings.o: formsettings.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formsettings.o formsettings.cpp
+
+about.o: about.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o about.o about.cpp
+
+pixmapfunction.o: pixmapfunction.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pixmapfunction.o pixmapfunction.cpp
+
+createtemplate.o: createtemplate.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o createtemplate.o createtemplate.cpp
+
+moc_command.o: moc_command.cpp \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h \
+		layout.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_command.o moc_command.cpp
+
+moc_formwindow.o: moc_formwindow.cpp \
+		formwindow.h \
+		command.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h \
+		layout.h \
+		sizehandle.h \
+		orderindicator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formwindow.o moc_formwindow.cpp
+
+moc_layout.o: moc_layout.cpp \
+		layout.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_layout.o moc_layout.cpp
+
+moc_mainwindow.o: moc_mainwindow.cpp \
+		mainwindow.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_pixmapchooser.o: moc_pixmapchooser.cpp \
+		pixmapchooser.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_pixmapchooser.o moc_pixmapchooser.cpp
+
+moc_propertyeditor.o: moc_propertyeditor.cpp \
+		propertyeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_propertyeditor.o moc_propertyeditor.cpp
+
+moc_sizehandle.o: moc_sizehandle.cpp \
+		sizehandle.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_sizehandle.o moc_sizehandle.cpp
+
+moc_orderindicator.o: moc_orderindicator.cpp \
+		orderindicator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_orderindicator.o moc_orderindicator.cpp
+
+moc_widgetfactory.o: moc_widgetfactory.cpp \
+		widgetfactory.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widgetfactory.o moc_widgetfactory.cpp
+
+moc_hierarchyview.o: moc_hierarchyview.cpp \
+		hierarchyview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_hierarchyview.o moc_hierarchyview.cpp
+
+moc_listboxeditorimpl.o: moc_listboxeditorimpl.cpp \
+		listboxeditorimpl.h \
+		listboxeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listboxeditorimpl.o moc_listboxeditorimpl.cpp
+
+moc_connectioneditorimpl.o: moc_connectioneditorimpl.cpp \
+		connectioneditorimpl.h \
+		connectioneditor.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_connectioneditorimpl.o moc_connectioneditorimpl.cpp
+
+moc_newformimpl.o: moc_newformimpl.cpp \
+		newformimpl.h \
+		newform.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_newformimpl.o moc_newformimpl.cpp
+
+moc_formlist.o: moc_formlist.cpp \
+		formlist.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formlist.o moc_formlist.cpp
+
+moc_help.o: moc_help.cpp \
+		help.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_help.o moc_help.cpp
+
+moc_editslotsimpl.o: moc_editslotsimpl.cpp \
+		editslotsimpl.h \
+		editslots.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_editslotsimpl.o moc_editslotsimpl.cpp
+
+moc_listvieweditorimpl.o: moc_listvieweditorimpl.cpp \
+		listvieweditorimpl.h \
+		listvieweditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listvieweditorimpl.o moc_listvieweditorimpl.cpp
+
+moc_connectionviewerimpl.o: moc_connectionviewerimpl.cpp \
+		connectionviewerimpl.h \
+		connectionviewer.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_connectionviewerimpl.o moc_connectionviewerimpl.cpp
+
+moc_customwidgeteditorimpl.o: moc_customwidgeteditorimpl.cpp \
+		customwidgeteditorimpl.h \
+		customwidgeteditor.h \
+		metadatabase.h \
+		pixmapchooser.h \
+		../shared/widgetdatabase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_customwidgeteditorimpl.o moc_customwidgeteditorimpl.cpp
+
+moc_paletteeditorimpl.o: moc_paletteeditorimpl.cpp \
+		paletteeditorimpl.h \
+		paletteeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_paletteeditorimpl.o moc_paletteeditorimpl.cpp
+
+moc_styledbutton.o: moc_styledbutton.cpp \
+		styledbutton.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_styledbutton.o moc_styledbutton.cpp
+
+moc_previewstack.o: moc_previewstack.cpp \
+		previewstack.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_previewstack.o moc_previewstack.cpp
+
+moc_iconvieweditorimpl.o: moc_iconvieweditorimpl.cpp \
+		iconvieweditorimpl.h \
+		iconvieweditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_iconvieweditorimpl.o moc_iconvieweditorimpl.cpp
+
+moc_helpdialogimpl.o: moc_helpdialogimpl.cpp \
+		helpdialogimpl.h \
+		helpdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_helpdialogimpl.o moc_helpdialogimpl.cpp
+
+moc_topicchooserimpl.o: moc_topicchooserimpl.cpp \
+		topicchooserimpl.h \
+		topicchooser.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_topicchooserimpl.o moc_topicchooserimpl.cpp
+
+moc_multilineeditorimpl.o: moc_multilineeditorimpl.cpp \
+		multilineeditorimpl.h \
+		multilineeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_multilineeditorimpl.o moc_multilineeditorimpl.cpp
+
+moc_formsettingsimpl.o: moc_formsettingsimpl.cpp \
+		formsettingsimpl.h \
+		formsettings.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formsettingsimpl.o moc_formsettingsimpl.cpp
+
+moc_asciivalidator.o: moc_asciivalidator.cpp \
+		asciivalidator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_asciivalidator.o moc_asciivalidator.cpp
+
+moc_import.o: moc_import.cpp \
+		import.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_import.o moc_import.cpp
+
+moc_listboxeditor.o: moc_listboxeditor.cpp \
+		listboxeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listboxeditor.o moc_listboxeditor.cpp
+
+moc_connectioneditor.o: moc_connectioneditor.cpp \
+		connectioneditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_connectioneditor.o moc_connectioneditor.cpp
+
+moc_editslots.o: moc_editslots.cpp \
+		editslots.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_editslots.o moc_editslots.cpp
+
+moc_newform.o: moc_newform.cpp \
+		newform.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_newform.o moc_newform.cpp
+
+moc_listvieweditor.o: moc_listvieweditor.cpp \
+		listvieweditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listvieweditor.o moc_listvieweditor.cpp
+
+moc_connectionviewer.o: moc_connectionviewer.cpp \
+		connectionviewer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_connectionviewer.o moc_connectionviewer.cpp
+
+moc_customwidgeteditor.o: moc_customwidgeteditor.cpp \
+		customwidgeteditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_customwidgeteditor.o moc_customwidgeteditor.cpp
+
+moc_texteditpreview.o: moc_texteditpreview.cpp \
+		texteditpreview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_texteditpreview.o moc_texteditpreview.cpp
+
+moc_listviewpreview.o: moc_listviewpreview.cpp \
+		listviewpreview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listviewpreview.o moc_listviewpreview.cpp
+
+moc_paletteeditor.o: moc_paletteeditor.cpp \
+		paletteeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_paletteeditor.o moc_paletteeditor.cpp
+
+moc_radiopreview.o: moc_radiopreview.cpp \
+		radiopreview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_radiopreview.o moc_radiopreview.cpp
+
+moc_checkboxpreview.o: moc_checkboxpreview.cpp \
+		checkboxpreview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_checkboxpreview.o moc_checkboxpreview.cpp
+
+moc_widgetpreview.o: moc_widgetpreview.cpp \
+		widgetpreview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widgetpreview.o moc_widgetpreview.cpp
+
+moc_iconvieweditor.o: moc_iconvieweditor.cpp \
+		iconvieweditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_iconvieweditor.o moc_iconvieweditor.cpp
+
+moc_preferences.o: moc_preferences.cpp \
+		preferences.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_preferences.o moc_preferences.cpp
+
+moc_helpdialog.o: moc_helpdialog.cpp \
+		helpdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_helpdialog.o moc_helpdialog.cpp
+
+moc_topicchooser.o: moc_topicchooser.cpp \
+		topicchooser.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_topicchooser.o moc_topicchooser.cpp
+
+moc_multilineeditor.o: moc_multilineeditor.cpp \
+		multilineeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_multilineeditor.o moc_multilineeditor.cpp
+
+moc_formsettings.o: moc_formsettings.cpp \
+		formsettings.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formsettings.o moc_formsettings.cpp
+
+moc_about.o: moc_about.cpp \
+		about.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_about.o moc_about.cpp
+
+moc_pixmapfunction.o: moc_pixmapfunction.cpp \
+		pixmapfunction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_pixmapfunction.o moc_pixmapfunction.cpp
+
+moc_createtemplate.o: moc_createtemplate.cpp \
+		createtemplate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_createtemplate.o moc_createtemplate.cpp
+
+moc_command.cpp: command.h
+	$(MOC) command.h -o moc_command.cpp
+
+moc_formwindow.cpp: formwindow.h
+	$(MOC) formwindow.h -o moc_formwindow.cpp
+
+moc_layout.cpp: layout.h
+	$(MOC) layout.h -o moc_layout.cpp
+
+moc_mainwindow.cpp: mainwindow.h
+	$(MOC) mainwindow.h -o moc_mainwindow.cpp
+
+moc_pixmapchooser.cpp: pixmapchooser.h
+	$(MOC) pixmapchooser.h -o moc_pixmapchooser.cpp
+
+moc_propertyeditor.cpp: propertyeditor.h
+	$(MOC) propertyeditor.h -o moc_propertyeditor.cpp
+
+moc_sizehandle.cpp: sizehandle.h
+	$(MOC) sizehandle.h -o moc_sizehandle.cpp
+
+moc_orderindicator.cpp: orderindicator.h
+	$(MOC) orderindicator.h -o moc_orderindicator.cpp
+
+moc_widgetfactory.cpp: widgetfactory.h
+	$(MOC) widgetfactory.h -o moc_widgetfactory.cpp
+
+moc_hierarchyview.cpp: hierarchyview.h
+	$(MOC) hierarchyview.h -o moc_hierarchyview.cpp
+
+moc_listboxeditorimpl.cpp: listboxeditorimpl.h
+	$(MOC) listboxeditorimpl.h -o moc_listboxeditorimpl.cpp
+
+moc_connectioneditorimpl.cpp: connectioneditorimpl.h
+	$(MOC) connectioneditorimpl.h -o moc_connectioneditorimpl.cpp
+
+moc_newformimpl.cpp: newformimpl.h
+	$(MOC) newformimpl.h -o moc_newformimpl.cpp
+
+moc_formlist.cpp: formlist.h
+	$(MOC) formlist.h -o moc_formlist.cpp
+
+moc_help.cpp: help.h
+	$(MOC) help.h -o moc_help.cpp
+
+moc_editslotsimpl.cpp: editslotsimpl.h
+	$(MOC) editslotsimpl.h -o moc_editslotsimpl.cpp
+
+moc_listvieweditorimpl.cpp: listvieweditorimpl.h
+	$(MOC) listvieweditorimpl.h -o moc_listvieweditorimpl.cpp
+
+moc_connectionviewerimpl.cpp: connectionviewerimpl.h
+	$(MOC) connectionviewerimpl.h -o moc_connectionviewerimpl.cpp
+
+moc_customwidgeteditorimpl.cpp: customwidgeteditorimpl.h
+	$(MOC) customwidgeteditorimpl.h -o moc_customwidgeteditorimpl.cpp
+
+moc_paletteeditorimpl.cpp: paletteeditorimpl.h
+	$(MOC) paletteeditorimpl.h -o moc_paletteeditorimpl.cpp
+
+moc_styledbutton.cpp: styledbutton.h
+	$(MOC) styledbutton.h -o moc_styledbutton.cpp
+
+moc_previewstack.cpp: previewstack.h
+	$(MOC) previewstack.h -o moc_previewstack.cpp
+
+moc_iconvieweditorimpl.cpp: iconvieweditorimpl.h
+	$(MOC) iconvieweditorimpl.h -o moc_iconvieweditorimpl.cpp
+
+moc_helpdialogimpl.cpp: helpdialogimpl.h
+	$(MOC) helpdialogimpl.h -o moc_helpdialogimpl.cpp
+
+moc_topicchooserimpl.cpp: topicchooserimpl.h
+	$(MOC) topicchooserimpl.h -o moc_topicchooserimpl.cpp
+
+moc_multilineeditorimpl.cpp: multilineeditorimpl.h
+	$(MOC) multilineeditorimpl.h -o moc_multilineeditorimpl.cpp
+
+moc_formsettingsimpl.cpp: formsettingsimpl.h
+	$(MOC) formsettingsimpl.h -o moc_formsettingsimpl.cpp
+
+moc_asciivalidator.cpp: asciivalidator.h
+	$(MOC) asciivalidator.h -o moc_asciivalidator.cpp
+
+moc_import.cpp: import.h
+	$(MOC) import.h -o moc_import.cpp
+
+moc_listboxeditor.cpp: listboxeditor.h
+	$(MOC) listboxeditor.h -o moc_listboxeditor.cpp
+
+moc_connectioneditor.cpp: connectioneditor.h
+	$(MOC) connectioneditor.h -o moc_connectioneditor.cpp
+
+moc_editslots.cpp: editslots.h
+	$(MOC) editslots.h -o moc_editslots.cpp
+
+moc_newform.cpp: newform.h
+	$(MOC) newform.h -o moc_newform.cpp
+
+moc_listvieweditor.cpp: listvieweditor.h
+	$(MOC) listvieweditor.h -o moc_listvieweditor.cpp
+
+moc_connectionviewer.cpp: connectionviewer.h
+	$(MOC) connectionviewer.h -o moc_connectionviewer.cpp
+
+moc_customwidgeteditor.cpp: customwidgeteditor.h
+	$(MOC) customwidgeteditor.h -o moc_customwidgeteditor.cpp
+
+moc_texteditpreview.cpp: texteditpreview.h
+	$(MOC) texteditpreview.h -o moc_texteditpreview.cpp
+
+moc_listviewpreview.cpp: listviewpreview.h
+	$(MOC) listviewpreview.h -o moc_listviewpreview.cpp
+
+moc_paletteeditor.cpp: paletteeditor.h
+	$(MOC) paletteeditor.h -o moc_paletteeditor.cpp
+
+moc_radiopreview.cpp: radiopreview.h
+	$(MOC) radiopreview.h -o moc_radiopreview.cpp
+
+moc_checkboxpreview.cpp: checkboxpreview.h
+	$(MOC) checkboxpreview.h -o moc_checkboxpreview.cpp
+
+moc_widgetpreview.cpp: widgetpreview.h
+	$(MOC) widgetpreview.h -o moc_widgetpreview.cpp
+
+moc_iconvieweditor.cpp: iconvieweditor.h
+	$(MOC) iconvieweditor.h -o moc_iconvieweditor.cpp
+
+moc_preferences.cpp: preferences.h
+	$(MOC) preferences.h -o moc_preferences.cpp
+
+moc_helpdialog.cpp: helpdialog.h
+	$(MOC) helpdialog.h -o moc_helpdialog.cpp
+
+moc_topicchooser.cpp: topicchooser.h
+	$(MOC) topicchooser.h -o moc_topicchooser.cpp
+
+moc_multilineeditor.cpp: multilineeditor.h
+	$(MOC) multilineeditor.h -o moc_multilineeditor.cpp
+
+moc_formsettings.cpp: formsettings.h
+	$(MOC) formsettings.h -o moc_formsettings.cpp
+
+moc_about.cpp: about.h
+	$(MOC) about.h -o moc_about.cpp
+
+moc_pixmapfunction.cpp: pixmapfunction.h
+	$(MOC) pixmapfunction.h -o moc_pixmapfunction.cpp
+
+moc_createtemplate.cpp: createtemplate.h
+	$(MOC) createtemplate.h -o moc_createtemplate.cpp
+
+

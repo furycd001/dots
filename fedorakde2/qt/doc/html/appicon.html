@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Setting the Application Icon</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Setting the Application Icon</h1><br clear="all">
+The application icon, typically displayed in the upper left corner of the
+application top-level windows, can in Qt be set by using the
+QWidget::setIcon() method on the top-level widgets.
+<p>
+However, in order to change the icon of the executable application file
+itself, as it is presented on the desktop (i.e. prior to application
+execution), it is necessary to employ another, platform-dependent
+technique.
+<p>
+<h2>Setting the Application Icon on Windows</h2>
+<p>
+First, create an ICO format bitmap file that contains the icon image. This
+can be done with e.g. Microsoft Visual C++: Select "File->New...", then
+select the "File" tab in the dialog that appears, and choose "Icon". (Note
+that you do not need to load your application into Visual C++; here we are
+only using its icon editor).
+<p>
+Store the ICO file in the source code directory of your application, say
+with the name "myappico.ico". Then, create a text file called
+e.g. "myapp.rc", and let it contain this single line of text:
+<p>
+<pre>IDI_ICON1               ICON    DISCARDABLE     "myappico.ico"
+</pre>
+<p>
+Lastly, assuming you are using tmake to generate your makefiles, add this
+line to your "myapp.pro" file:
+<p>
+<pre>RC_FILE = myapp.rc
+</pre>
+<p>
+Regenerate your makefile and your application. The .exe file will now be
+represented with your icon in e.g. Explorer.
+<p>
+If you do not use tmake, the necessary steps are: First, run the "rc"
+program on the .rc file, then link your application with the resulting
+.res file.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

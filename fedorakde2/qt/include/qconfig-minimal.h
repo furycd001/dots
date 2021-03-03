@@ -1,0 +1,1 @@
+../src/tools/qconfig-minimal.h

@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - wizard/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Wizard</h1><br clear="all">
+
+  This example shows the usage of Qt's wizard class. A wizard
+  should be used to help a user with complicated actions.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/wizard/wizard.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef WIZARD_H
+#define WIZARD_H
+
+#include &lt;<a href="qwizard-h.html">qwizard.h</a>&gt;
+
+class QWidget;
+class QHBox;
+class QLineEdit;
+class QLabel;
+
+class Wizard : public QWizard
+{
+    Q_OBJECT
+
+public:
+    Wizard( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0 );
+
+    void showPage(<a href="qwidget.html">QWidget</a>* page);
+
+protected:
+    void setupPage1();
+    void setupPage2();
+    void setupPage3();
+
+    <a href="qhbox.html">QHBox</a> *page1, *page2, *page3;
+    <a href="qlineedit.html">QLineEdit</a> *key, *firstName, *lastName, *address, *phone, *email;
+    <a href="qlabel.html">QLabel</a> *lKey, *lFirstName, *lLastName, *lAddress, *lPhone, *lEmail;
+
+protected slots:
+    void keyChanged( const QString &amp; );
+    void dataChanged( const QString &amp; );
+
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/wizard/wizard.cpp   2.3.2   edited 2001-08-18 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "wizard.h"
+
+#include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+#include &lt;<a href="qhbox-h.html">qhbox.h</a>&gt;
+#include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a href="qlineedit-h.html">qlineedit.h</a>&gt;
+#include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a href="qvalidator-h.html">qvalidator.h</a>&gt;
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+
+Wizard::Wizard( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qwizard.html">QWizard</a>( parent, name, TRUE )
+{
+    <a href=#129>setupPage1</a>();
+    <a href=#130>setupPage2</a>();
+    <a href=#131>setupPage3</a>();
+
+    key-&gt;setFocus();
+}
+
+void <a name="129"></a>Wizard::setupPage1()
+{
+    page1 = new <a href="qhbox.html">QHBox</a>( this );
+    page1-&gt;setSpacing(8);
+
+    <a href="qlabel.html">QLabel</a> *info = new <a href="qlabel.html">QLabel</a>( page1 );
+    info-&gt;<a href="qwidget.html#d7e4b9">setPalette</a>( yellow );
+    info-&gt;<a href="qlabel.html#bc5ea6">setText</a>( "Enter your personal\n"
+                   "key here.\n\n"
+                   "Your personal key\n"
+                   "consists of 4 digits" );
+    info-&gt;<a href="qlabel.html#9077ed">setIndent</a>( 8 );
+    info-&gt;<a href="qwidget.html#99d237">setMaximumWidth</a>( info-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+
+    <a href="qvbox.html">QVBox</a> *page = new <a href="qvbox.html">QVBox</a>( page1 );
+
+    <a href="qhbox.html">QHBox</a> *row1 = new <a href="qhbox.html">QHBox</a>( page );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Key:", row1 );
+
+    key = new <a href="qlineedit.html">QLineEdit</a>( row1 );
+    key-&gt;setMaxLength( 4 );
+    key-&gt;setValidator( new QIntValidator( 9999, 0, key ) );
+
+    <a href="qobject.html#7f8e37">connect</a>( key, SIGNAL( textChanged( const QString &amp; ) ), this, SLOT( <a href=#133>keyChanged</a>( const QString &amp; ) ) );
+
+    <a href="qwizard.html#f29492">addPage</a>( page1, "Personal Key" );
+
+    <a href="qwizard.html#03bd73">setNextEnabled</a>( page1, FALSE );
+    <a href="qwizard.html#058879">setHelpEnabled</a>( page1, FALSE );
+}
+
+void <a name="130"></a>Wizard::setupPage2()
+{
+    page2 = new <a href="qhbox.html">QHBox</a>( this );
+    page2-&gt;setSpacing(8);
+
+    <a href="qlabel.html">QLabel</a> *info = new <a href="qlabel.html">QLabel</a>( page2 );
+    info-&gt;<a href="qwidget.html#d7e4b9">setPalette</a>( yellow );
+    info-&gt;<a href="qlabel.html#bc5ea6">setText</a>( "\n"
+                   "  Enter your personal  \n"
+                   "  data here.  \n\n"
+                   "  The required fields are  \n"
+                   "  First Name, Last Name \n"
+                   "  and E-Mail.  \n" );
+    info-&gt;<a href="qlabel.html#9077ed">setIndent</a>(8);
+    info-&gt;<a href="qwidget.html#99d237">setMaximumWidth</a>( info-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+
+    <a href="qvbox.html">QVBox</a> *page = new <a href="qvbox.html">QVBox</a>( page2 );
+
+    <a href="qhbox.html">QHBox</a> *row1 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row2 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row3 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row4 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row5 = new <a href="qhbox.html">QHBox</a>( page );
+
+    <a href="qlabel.html">QLabel</a> *label1 = new <a href="qlabel.html">QLabel</a>( " First Name: ", row1 );
+    label1-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label2 = new <a href="qlabel.html">QLabel</a>( " Last Name: ", row2 );
+    label2-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label3 = new <a href="qlabel.html">QLabel</a>( " Address: ", row3 );
+    label3-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label4 = new <a href="qlabel.html">QLabel</a>( " Phone Number: ", row4 );
+    label4-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label5 = new <a href="qlabel.html">QLabel</a>( " E-Mail: ", row5 );
+    label5-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+
+    label1-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label4-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label2-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label4-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label3-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label4-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label4-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label4-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label5-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label4-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+
+    firstName = new <a href="qlineedit.html">QLineEdit</a>( row1 );
+    lastName = new <a href="qlineedit.html">QLineEdit</a>( row2 );
+    address = new <a href="qlineedit.html">QLineEdit</a>( row3 );
+    phone = new <a href="qlineedit.html">QLineEdit</a>( row4 );
+    email = new <a href="qlineedit.html">QLineEdit</a>( row5 );
+
+    <a href="qobject.html#7f8e37">connect</a>( firstName, SIGNAL( textChanged( const QString &amp; ) ), this, SLOT( <a href=#134>dataChanged</a>( const QString &amp; ) ) );
+    <a href="qobject.html#7f8e37">connect</a>( lastName, SIGNAL( textChanged( const QString &amp; ) ), this, SLOT( <a href=#134>dataChanged</a>( const QString &amp; ) ) );
+    <a href="qobject.html#7f8e37">connect</a>( email, SIGNAL( textChanged( const QString &amp; ) ), this, SLOT( <a href=#134>dataChanged</a>( const QString &amp; ) ) );
+
+    <a href="qwizard.html#f29492">addPage</a>( page2, "Personal Data" );
+
+    <a href="qwizard.html#058879">setHelpEnabled</a>( page2, FALSE );
+}
+
+void <a name="131"></a>Wizard::setupPage3()
+{
+    page3 = new <a href="qhbox.html">QHBox</a>( this );
+    page3-&gt;setSpacing(8);
+
+    <a href="qlabel.html">QLabel</a> *info = new <a href="qlabel.html">QLabel</a>( page3 );
+    info-&gt;<a href="qwidget.html#d7e4b9">setPalette</a>( yellow );
+    info-&gt;<a href="qlabel.html#bc5ea6">setText</a>( "\n"
+                   "  Look here to see of  \n"
+                   "  the data you entered  \n"
+                   "  is correct. To confirm,  \n"
+                   "  press the [Finish] button  \n"
+                   "  else go back to correct  \n"
+                   "  mistakes." );
+    info-&gt;<a href="qlabel.html#9077ed">setIndent</a>(8);
+    info-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( AlignTop|AlignLeft );
+    info-&gt;<a href="qwidget.html#99d237">setMaximumWidth</a>( info-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+
+    <a href="qvbox.html">QVBox</a> *page = new <a href="qvbox.html">QVBox</a>( page3 );
+
+    <a href="qhbox.html">QHBox</a> *row1 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row2 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row3 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row4 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row5 = new <a href="qhbox.html">QHBox</a>( page );
+    <a href="qhbox.html">QHBox</a> *row6 = new <a href="qhbox.html">QHBox</a>( page );
+
+    <a href="qlabel.html">QLabel</a> *label1 = new <a href="qlabel.html">QLabel</a>( " Personal Key: ", row1 );
+    label1-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label2 = new <a href="qlabel.html">QLabel</a>( " First Name: ", row2 );
+    label2-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label3 = new <a href="qlabel.html">QLabel</a>( " Last Name: ", row3 );
+    label3-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label4 = new <a href="qlabel.html">QLabel</a>( " Address: ", row4 );
+    label4-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label5 = new <a href="qlabel.html">QLabel</a>( " Phone Number: ", row5 );
+    label5-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+    <a href="qlabel.html">QLabel</a> *label6 = new <a href="qlabel.html">QLabel</a>( " E-Mail: ", row6 );
+    label6-&gt;<a href="qlabel.html#4743c8">setAlignment</a>( Qt::AlignVCenter );
+
+    label1-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label1-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label2-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label1-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label3-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label1-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label4-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label1-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label5-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label1-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+    label6-&gt;<a href="qwidget.html#893704">setMinimumWidth</a>( label1-&gt;<a href="qlabel.html#f40fcc">sizeHint</a>().width() );
+
+    lKey = new <a href="qlabel.html">QLabel</a>( row1 );
+    lFirstName = new <a href="qlabel.html">QLabel</a>( row2 );
+    lLastName = new <a href="qlabel.html">QLabel</a>( row3 );
+    lAddress = new <a href="qlabel.html">QLabel</a>( row4 );
+    lPhone = new <a href="qlabel.html">QLabel</a>( row5 );
+    lEmail = new <a href="qlabel.html">QLabel</a>( row6 );
+
+    <a href="qwizard.html#f29492">addPage</a>( page3, "Finish" );
+
+    <a href="qwizard.html#ea4d4e">setFinish</a>( page3, TRUE );
+    <a href="qwizard.html#058879">setHelpEnabled</a>( page3, FALSE );
+}
+
+void <a name="132"></a>Wizard::showPage( <a href="qwidget.html">QWidget</a>* page )
+{
+    if ( page == page1 ) {
+    } else if ( page == page2 ) {
+    } else if ( page == page3 ) {
+        lKey-&gt;setText( key-&gt;text() );
+        lFirstName-&gt;setText( firstName-&gt;text() );
+        lLastName-&gt;setText( lastName-&gt;text() );
+        lAddress-&gt;setText( address-&gt;text() );
+        lPhone-&gt;setText( phone-&gt;text() );
+        lEmail-&gt;setText( email-&gt;text() );
+    }
+
+    <a href="qwizard.html#9f7d8a">QWizard::showPage</a>(page);
+
+    if ( page == page1 ) {
+        <a href=#133>keyChanged</a>( key-&gt;text() );
+        key-&gt;setFocus();
+    } else if ( page == page2 ) {
+        <a href=#134>dataChanged</a>( firstName-&gt;text() );
+        firstName-&gt;setFocus();
+    } else if ( page == page3 ) {
+        <a href="qwizard.html#605909">finishButton</a>()-&gt;setEnabled( TRUE );
+        <a href="qwizard.html#605909">finishButton</a>()-&gt;setFocus();
+    }
+}
+
+void <a name="133"></a>Wizard::keyChanged( const QString &amp;text )
+{
+    if ( text.length() == 4 )
+        <a href="qwizard.html#1e5507">nextButton</a>()-&gt;setEnabled( TRUE );
+    else
+        <a href="qwizard.html#1e5507">nextButton</a>()-&gt;setEnabled( FALSE );
+}
+
+void <a name="134"></a>Wizard::dataChanged( const QString &amp; )
+{
+    if ( !firstName-&gt;text().isEmpty() &amp;&amp;
+         !lastName-&gt;text().isEmpty() &amp;&amp;
+         !email-&gt;text().isEmpty() )
+        <a href="qwizard.html#1e5507">nextButton</a>()-&gt;setEnabled( TRUE );
+    else
+        <a href="qwizard.html#1e5507">nextButton</a>()-&gt;setEnabled( FALSE );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/wizard/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "wizard.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+
+int main(int argc,char **argv)
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a(argc,argv);
+
+    Wizard wizard;
+    wizard.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Wizard");
+    return wizard.<a name="exec"></a><a href="qdialog.html#0beb1a">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

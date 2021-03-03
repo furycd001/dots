@@ -1,0 +1,59 @@
+'\" t
+.TH QHideEvent 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QHideEvent \- The event sent after a widget is hidden
+.br
+.PP
+\fC#include <qevent.h>\fR
+.PP
+Inherits QEvent.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQHideEvent\fR ( bool spontaneous ) "
+.br
+.ti -1c
+.BI "bool \fBspontaneous\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The event sent after a widget is hidden.
+.PP
+This event is sent just before QWidget::hide() returns, and also when a top-level window has been hidden (iconified) by the user.
+.PP
+See also QShowEvent.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QHideEvent::QHideEvent ( bool spontaneous )"
+Constructs a QHideEvent. \fIspontaneous\fR is TRUE if the event originated outside the application - ie. the user hid the window via the window manager controls.
+.SH "bool QHideEvent::spontaneous () const"
+Returns TRUE if the event originated outside the application -
+ie. the user hid the window via the window manager controls, either
+by iconifying the window or by switching to another virtual desktop where
+the window isn't visible. The window will become hidden, but not withdrawn.
+If the window was iconified, QWidget::isMinimized() is TRUE.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qhideevent.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qhideevent.3qt) and the Qt
+version (2.3.2).

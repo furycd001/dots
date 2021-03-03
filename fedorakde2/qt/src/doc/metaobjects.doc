@@ -1,0 +1,97 @@
+/****************************************************************************
+** $Id: qt/doc/metaobjects.doc   2.3.2   edited 2001-01-26 $
+**
+** Explanation of moc and the meta object system
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page metaobjects.html
+
+\title Meta Object System
+
+The Meta Object System in Qt is responsible for the signal/slot
+mechanism for communication between objects, runtime type information
+and the dynamic property system.
+
+It is based on three things:
+<ul>
+<li> the \l QObject class,
+<li> the "Q_OBJECT" macro inside the private section of the class
+declaration and
+<li> the <a href="moc.html">Meta Object Compiler (moc)</a>. 
+ </ul>
+
+The <b>moc</b> reads a C++ source file. If it finds one or more class
+declarations that contain the "Q_OBJECT" macro, it produces another
+C++ source file which contains the meta object code for this
+class. This generated source file is either #included into the class'
+source file or compiled and linked with the class implementation.
+
+Apart from the possibility to use <a
+href="signalsandslots.html">signals and slots</a> for communication
+between objects - the main reason for introducing the system - the
+meta object code implements certain other features in QObject:
+
+<ul>
+
+<li> a function \link QObject::className() className() \endlink that
+returns the class name as string during runtime, without requiring
+native runtime type information (RTTI) support through the C++
+compiler.
+
+<li> a function \link QObject::inherits() inherits() \endlink that
+returns whether an object is instance of a class that inherits a
+specified class within the QObject inheritance tree.
+
+<li> a function \link QObject::tr() tr() \endlink for scoped string
+translation as used for <a href="i18n.html"> internationalization</a>.
+
+<li> two functions \link QObject::setProperty() setProperty() \endlink
+and \link QObject::property() property() \endlink to dynamically set
+and get <a href="properties.html">object properties</a> by name.
+
+<li> a function \link QObject::metaObject() metaObject() \endlink that
+returns the associated \link QMetaObject meta object \endlink for the
+class.
+
+</ul>
+
+While it is possible to use QObject as a base class without Q_OBJECT
+macro and without meta object code, neither signals and slots nor the
+other features described here will be available. From the meta object
+system's point of view, a QObject subclass without meta code is
+equivalent to its closest ancestor with meta object code. That means
+for example that className() will not return the actual name of your
+class, but the class name of this ancestor. We strongly recommend to
+use the macro in \e all subclasses of QObject regardless whether they
+actually use signals, slots and properties or not.
+
+*/

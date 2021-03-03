@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QWorkspace Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QWorkspace Class Reference<br><small>[ <a href="workspace.html">workspace module</a> ]</small></h1><br clear="all">
+<p>
+The QWorkspace widget provides a workspace window that can contain decorated windows, e.g. for MDI.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qworkspace-h.html">qworkspace.h</a>&gt;</code>
+<p>
+Inherits <a href="qwidget.html">QWidget</a>.
+<p><a href="qworkspace-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#3151de"><b>QWorkspace</b></a> ( QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#381a9f"><b>~QWorkspace</b></a> () </div>
+<li><div class="fn">QWidget* <a href="#a98309"><b>activeWindow</b></a> () const</div>
+<li><div class="fn">QWidgetList <a href="#c0afa0"><b>windowList</b></a> () const</div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">void <a href="#f3d565"><b>cascade</b></a> () </div>
+<li><div class="fn">void <a href="#4e2d23"><b>tile</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#1ff6ed"><b>windowActivated</b></a> ( QWidget * w ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QWorkspace widget provides a workspace window that can contain decorated windows, e.g. for MDI.
+<p>
+An MDI application has one main window with a menu bar.  The central
+widget of this window is a workspace.  The workspace itself contains
+zero, one or more document windows, each of which displays a
+document.
+<p>The workspace itself is an ordinary Qt widget.  It has a standard
+constructor that takes a parent widget and an object name.  The
+parent window is usually a <a href="qmainwindow.html">QMainWindow</a>, but it need not be.
+<p>Document windows (alias MDI windows) are also ordinary Qt widgets,
+that have the workspace as parent widget.  When you call <a href="qwidget.html#200ee5">show</a>(),
+<a href="qwidget.html#410481">hide</a>(), <a href="qwidget.html#b6e000">showMaximized</a>(), <a href="qwidget.html#d6a291">setCaption</a>(), etc on a document window, it
+is shown, hidden etc. with a frame, caption, icon and icon text,
+just as you'd expect. You can provide widget flags which will be
+used for the layout of the decoration or the behaviour of the widget
+itself.
+To change the geometry of the MDI windows it is necessary to make
+the necessary function calls to the <a href="qwidget.html#ba8a09">parentWidget</a>() of the widget, as
+this will move or resize the decorated window.
+<p>A document window becomes active when it gets the keyboard focus.
+You can activate it using <a href="qwidget.html#25775a">setFocus</a>(), and the user can activate it
+by moving focus in the normal ways.  The workspace emits a signal
+<a href="#1ff6ed">windowActivated</a>() when it detects the activation change, and the
+function <a href="#a98309">activeWindow</a>() always returns a pointer to the active
+document window.
+<p>The convenience function <a href="#c0afa0">windowList</a>() returns a list of all document
+windows.  This is useful to create a popup menu "&Windows" on the
+fly, for example.
+<p>QWorkspace provides two built-in layout strategies for child
+windows, <a href="#f3d565">cascade</a>() and <a href="#4e2d23">tile</a>().  Both are slots, so you can easily
+connect menu entries to them.
+<p>In case the toplevel window contains a menu bar and a document
+window is maximized, QWorkspace moves the document window's
+minimize, restore and close buttons from the document window's frame
+to the workspace window's menu bar, and inserts a window operations
+menu on the extreme left of the menu bar.<p><b>Warning:</b> User interface research indicates that most users have
+problems with MDI applications.  Use this class cautiously.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="3151de"></a>QWorkspace::QWorkspace ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a workspace with a <em>parent</em> and a <em>name</em>
+<h3 class="fn"><a name="381a9f"></a>QWorkspace::~QWorkspace ()</h3>
+<p>Destroys the object and frees any allocated resources.
+<h3 class="fn"><a href="qwidget.html">QWidget</a>* <a name="a98309"></a>QWorkspace::activeWindow () const</h3>
+<p>Returns the active window, or 0 if no window is active.
+<h3 class="fn">void <a name="f3d565"></a>QWorkspace::cascade () <code>[slot]</code></h3>
+<p>Arranges all child windows in a cascade pattern
+<p>See also  <a href="#4e2d23">tile</a>().
+<h3 class="fn">void <a name="985be5"></a>QWorkspace::childEvent ( <a href="qchildevent.html">QChildEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#27f3ff">QObject.</a>
+<h3 class="fn">bool <a name="5aa15a"></a>QWorkspace::eventFilter ( <a href="qobject.html">QObject</a> * o, <a href="qevent.html">QEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#bd20fe">QObject.</a>
+<h3 class="fn">void <a name="9b6347"></a>QWorkspace::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">void <a name="296c1a"></a>QWorkspace::showEvent ( <a href="qshowevent.html">QShowEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#542dc0">QWidget.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="c81fde"></a>QWorkspace::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="4f113d"></a>QWorkspace::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn">void <a name="4e2d23"></a>QWorkspace::tile () <code>[slot]</code></h3>
+<p>Arranges all child windows in a tile pattern
+<p>See also  <a href="#f3d565">cascade</a>().
+<h3 class="fn">void <a name="1ff6ed"></a>QWorkspace::windowActivated ( <a href="qwidget.html">QWidget</a> * w ) <code>[signal]</code></h3>
+<p>This signal is emitted when the window widget <em>w</em> becomes active. Note that
+<em>w</em> can be null, and that more than one signal may be fired for one activation
+event.
+<p>See also  <a href="#a98309">activeWindow</a>() and <a href="#c0afa0">windowList</a>().
+<h3 class="fn">QWidgetList <a name="c0afa0"></a>QWorkspace::windowList () const</h3>
+<p>Returns a list of all windows.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,181 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Adding Functionality To The Push Buttons</title>
+		<meta name="generator" content="Adobe GoLive 4">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="Tutorial: Adding Functionality To A Dialog By
+	  Subclassing" href="chap3_1.html">
+		<link rel="PREVIOUS" title="Tutorial: Adding Functionality To A Dialog By
+	  Subclassing" href="chap3_1.html">
+		<link rel="NEXT" title="Initializing The State Of Widgets In The Form" href="chap3_3.html">
+		
+	</head>
+
+	<body class="SECT1" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top">  <a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a></td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom">  <a href="chap3_1.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="80%" align="center" valign="bottom"><font color="white"><b>Chapter 3. Tutorial: Adding Functionality To A Dialog By Subclassing</b></font></td>
+					<td width="10%" align="right" valign="bottom">  <a href="chap3_3.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="SECT1">
+			<h1 class="SECT1"><a name="QT-DESIGNER-USE-EDITCONNECTIONS"></a>Adding Functionality To The Push Buttons</h1>
+			<p>Responding to user interaction with Qt widgets is mostly done by connecting <i class="EMPHASIS">signals</i> that these widgets <i class="EMPHASIS">emit</i> to <i class="EMPHASIS">slots</i>. If you have never heard about signals and slots before, please at least check the sidebar or, even better, read the Qt Tutorial or <i class="EMPHASIS">Programming with Qt</i>.</p>
+			<div class="NOTE">
+				<blockquote class="NOTE">
+					<p><b>Signals And Slots: </b>The connection between user interaction and program functionality in Qt is done via so-called signals and slots. A widget emits a signal when something interesting happens. What this means depends on the widget; for a push button, one of the signals is the <tt class="LITERAL">clicked()</tt> signal, which is emitted when the user clicks the push button. Other widgets have other signals.</p>
+					<p>Slots are just ordinary C++ methods that are marked as slots in the class declaration. Any C++ method can be a slot. Methods that are declared as slots can still be called the ordinary way.</p>
+					<p>The method <tt class="LITERAL">QObject::connect()</tt> ties signals and slots together. When a widget emits a signal, the Qt runtime system checks whether any slots are connected to this signal and calls these slots.</p>
+					<p>Not all the signals need to be connected to a slot; in fact, in most applications, very few signals are. Likewise, there does not have to be a signal connected to each slot; the slot can still be called the ordinary way.</p>
+					<p>A part of the class declaration of any class indicates which signals and slots it emits. For the Qt classes, this is thoroughly documented in the reference documentation; for third-party classes, please see the respective manufacturer's documentation.</p>
+				</blockquote>
+			</div>
+			<p>The first thing we will do now is connect the <span class="GUILABEL">Cancel</span> button's <tt class="LITERAL">clicked()</tt> signal, which is emitted when this button is clicked, to the dialog's <tt class="LITERAL">reject()</tt> method, which closes the dialog and sets a negative return code. To do this, start the <i class="FIRSTTERM">connection tool</i> by hitting <b class="KEYCAP">F3</b>, choosing <span class="GUIMENU">Edit/Connections</span> from the menu, or clicking on the connections icon on the toolbar (see  <a href="#QT-DESIGNER-ICON-CONNECTIONS">Figure 3-2</a>). As soon as you have done this, click on the <span class="GUILABEL">Cancel</span> button on your form, hold down the mouse button, and move the mouse cursor to somewhere on the background of the form. Release it there. With this gesture, you indicate that you want to create a connection from the <span class="GUILABEL">Cancel</span> button to the form as a whole. Pink frames show which widgets you have currently selected while you move the mouse.</p>
+			<div class="FIGURE">
+				<a name="QT-DESIGNER-ICON-CONNECTIONS"></a>
+				<p><b>Figure 3-2. The connections icon</b></p>
+				<p><img src="figures/connecttool.png"></p>
+			</div>
+			<p>Once you have released the mouse button, the <span class="GUILABEL">Connections</span> dialog opens (see  <a href="#QT-DESIGNER-FIG-CONNECTIONS">Figure 3-3</a>). In this dialog, select <tt class="LITERAL">clicked()</tt> in the <span class="GUILABEL">Cancel</span> button's signals list to the left and <tt class="LITERAL">reject()</tt> in the dialog's slot list to the right. The connection will appear in the list in the lower half of the dialog.</p>
+			<div class="FIGURE">
+				<a name="QT-DESIGNER-FIG-CONNECTIONS"></a>
+				<p><b>Figure 3-3. The Connections dialog</b></p>
+				<p><img src="figures/connections.png"></p>
+			</div>
+			<p>Close the dialog. Your first signal-slot connection is in place, and you did not even have to write a single line of code yet.</p>
+			<p>Now for the <span class="GUILABEL">OK</span> button. We want this button to close the dialog with a positive return code&#151;i.e., call the dialog's <tt class="LITERAL">accept()</tt> slot&#151;but we also want to show the aforementioned message box. In order to do the latter, we need to create our own slot.</p>
+			<p>To do this, select <span class="GUIMENU">Edit/Slots...</span> from the menu. This shows the <span class="GUILABEL">Slots</span> dialog (see  <a href="#QT-DESIGNER-FIG-SLOTS">Figure 3-4</a>). Click on the <span class="GUILABEL">Add</span> button to add a slot. A slot is added with the default name <tt class="LITERAL">new_slot()</tt>. Go to the edit field labeled <span class="GUILABEL">Slot:</span> in the <span class="GUILABEL">Slot properties</span> box and change the name to <tt class="LITERAL">sendOrder()</tt>. Leave everything else as it is and click <span class="GUILABEL">OK</span>.</p>
+			<div class="FIGURE">
+				<a name="QT-DESIGNER-FIG-SLOTS"></a>
+				<p><b>Figure 3-4. The Slots dialog</b></p>
+				<p><img src="figures/slots.png"></p>
+			</div>
+			<p>Now start the connection tool again, but this time connect the <span class="GUILABEL">OK</span> button to the dialog. When the <span class="GUILABEL">Connections</span> dialog opens again, you can see not only the predefined slots, but also your newly created slot <tt class="LITERAL">sendOrder()</tt>. Click on the <tt class="LITERAL">clicked()</tt> signal first and then on the <tt class="LITERAL">sendOrder()</tt> slot so that the connection appears in the lower half. Close the <span class="GUILABEL">Connections</span> dialog.</p>
+			<p>When the user now clicks the <span class="GUILABEL">OK</span> button, both the <tt class="LITERAL">accept()</tt> slot, to close the dialog, and the <tt class="LITERAL">sendOrder()</tt> slot are invoked. But this time we do not get away as easily as with the <span class="GUILABEL">Cancel</span> button: We still have to implement the <tt class="LITERAL">sendOrder()</tt> slot.</p>
+			<p>But wait a minute&#151;it looks as if we have run into a problem: In order to implement a slot, we need to change the source code, but you just learned at the beginning of this tutorial that you should not edit the source code generated by <b class="COMMAND">uic</b>.</p>
+			<p>That's true, and to solve this problem, we need to inherit a new class from our <tt class="LITERAL">PizzaEntry</tt> class where we can implement the new slot. This sounds like somewhat of a bother now, but you will get used to it. The whole thing works because Qt Designer declares all user-defined slots as virtual and provides an empty implementation for them. At runtime, then, you do not create an instance of the <b class="COMMAND">uic</b>-generated class but an instance of your own implementation class instead. When the <span class="GUILABEL">OK</span> button is clicked, your own virtual method will be called instead of the generated empty one. If this sounds like black magic to you, you can either simply believe that this works or (recommended) read in any good C++ book about virtual methods and polymorphism.</p>
+			<p>Let's call our inherited class <tt class="LITERAL">PizzaEntryImpl</tt>, because we will put some implementation in there. For other naming suggestions, please see the sidebar &ldquo;The Name Of The Game.&rdquo;</p>
+			<div class="NOTE">
+				<blockquote class="NOTE">
+					<p><b>The Name Of The Game: </b>In a larger project, you may have a large number of dialog (or other) classes generated by Qt Designer and <b class="COMMAND">uic</b> as well as implementation classes for many (if not all) of these dialogs. In such a situation, it is best to think of a smart naming scheme right away in order to avoid confusion later.</p>
+					<p>There are two demands on such a naming scheme: It should be easy, obvious, and unique to get from the generated class name to the implementation class name or the other way around, and the class names should not be too cumbersome to type. One naming scheme that fulfills these conditions is the one used in this tutorial: The generated dialog class gets the name that seems &ldquo;natural&rdquo; (like <tt class="LITERAL">PizzaEntry</tt> in this case); the implementation class, the same name with <tt class="LITERAL">Impl</tt> attached.</p>
+					<p>This scheme and many others are equally good. The important thing is that you pick one consistent scheme and stick to it throughout your project.</p>
+				</blockquote>
+			</div>
+			<p>All we need in this implementation class is an empty constructor, so that we can pass the usual parameters, and the slot we want to implement. Here's what the header file <tt class="FILENAME">PizzaEntryImpl.h</tt> for our implementation class <tt class="LITERAL">PizzaEntryImpl</tt> looks like:</p>
+			<pre class="SCREEN">#ifndef PIZZAENTRYIMPL_H
+#define PIZZAENTRYIMPL_H
+
+#include &quot;PizzaEntry.h&quot;
+
+class PizzaEntryImpl : public PizzaEntry
+{
+  Q_OBJECT
+
+public:
+    PizzaEntryImpl( QWidget* parent = 0, const char* name = 0,
+                    bool modal = FALSE, WFlags f = 0 ) :
+    PizzaEntry( parent, name, modal, f ) {}
+
+public slots:
+    virtual void sendOrder();
+
+};
+
+#endif</pre>
+			<p>The implementation file is even simpler, since all we want to do for now is show a message box that tells the user that the order has been sent. In a real pizza order application, you would package the data somehow and send it over the network. Here is <tt class="FILENAME">PizzaEntryImpl.cpp</tt>:</p>
+			<pre class="SCREEN">#include &quot;PizzaEntryImpl.h&quot;
+#include &lt;qmessagebox.h&gt;
+
+void PizzaEntryImpl::sendOrder()
+{
+  QMessageBox::information( this, &quot;Pizza Entry Information&quot;,
+                            &quot;Your order has been sent. Your pizza will arrive in 30-45 minutes&quot;, QMessageBox::Ok );
+}</pre>
+			<p>Finally, since by using the slots <tt class="LITERAL">accept()</tt> and <tt class="LITERAL">reject()</tt> we have committed to using the dialog as a modal dialog (instead of as a modeless dialog, as in the previous tutorial), we need to stretch the notion of &ldquo;clean Qt programming&rdquo; a bit in order to keep our test bed simple. Usually, you start the event processing by calling <tt class="LITERAL">QApplication::exec()</tt>, but since modal dialogs have an event loop of their own, we can get away with just calling <tt class="LITERAL">exec()</tt> on our dialog class. Here is the new file <tt class="FILENAME">PizzaEntryTest.cpp</tt>:</p>
+			<pre class="SCREEN">#include &lt;qapplication.h&gt;
+#include &quot;PizzaEntryImpl.h&quot;
+
+int main( int argc, char* argv[] )
+{
+  QApplication app( argc, argv );
+
+  PizzaEntryImpl pizzaEntry( 0, &quot;pizza entry&quot;, true);
+  app.setMainWidget( &amp;pizzaEntry );
+
+  int ret = pizzaEntry.exec();
+  return ret;
+}</pre>
+			<p>We should add that the <b class="COMMAND">uic</b> command has a special mode for generating empty skeletons for classes inheriting from the Qt Designer&#150;generated classes. You will learn in  <a href="chap5_4.html">the section called <i>Integrating Qt Designer Files Into Your Project</i> in Chapter 5</a> how to use this feature, but for now our application is still small enough that we can easily write everything by hand.</p>
+			<p>That's all for now. You can now save your dialog in Qt Designer and compile and run it. Here are the command lines you need. For Unix with the g++ compiler:</p>
+			<pre class="SCREEN">uic -o PizzaEntry.h pizza.ui
+uic -i PizzaEntry.h -o PizzaEntry.cpp pizza.ui
+moc -o moc_PizzaEntry.cpp PizzaEntry.h
+moc -o moc_PizzaEntryImpl.cpp PizzaEntryImpl.h
+moc -o moc_PizzaEntryTest.cpp PizzaEntryTest.cpp
+g++ -I$QTDIR/include PizzaEntry.cpp PizzaEntryTest.cpp &bsol;
+    PizzaEntryImpl.cpp moc_PizzaEntry.cpp moc_PizzaEntryImpl.cpp &bsol;
+    -L$QTDIR/lib -lqt</pre>
+			<p>and for Windows with Visual C++:</p>
+			<pre class="SCREEN">uic -o PizzaEntry.h pizza.ui
+uic -i PizzaEntry.h -o PizzaEntry.cpp pizza.ui
+moc -o moc_PizzaEntry.cpp PizzaEntry.h
+moc -o moc_PizzaEntryImpl.cpp PizzaEntryImpl.h
+moc -o moc_PizzaEntryTest.cpp PizzaEntry.cpp
+cl -c -nologo -I%QTDIR%/include -FoPizzaEntry.obj PizzaEntry.cpp
+cl -c -nologo -I%QTDIR%/include -FoPizzaEntryImpl.obj PizzaEntryImpl.cpp
+cl -c -nologo -I%QTDIR%/include -FoPizzaEntryTest.obj PizzaEntryTest.cpp
+cl -c -nologo -I%QTDIR%/include -Fomoc_PizzaEntry.obj moc_PizzaEntry.cpp
+cl -c -nologo -I%QTDIR%/include -Fomoc_PizzaEntryImpl.obj moc_PizzaEntryImpl.cpp
+link /NOLOGO /SUBSYSTEM:windows /OUT:PizzaEntry PizzaEntry.obj PizzaEntryTest.obj &bsol;
+    PizzaEntryImpl.obj moc_PizzaEntry.obj moc_PizzaEntryImpl.obj &bsol;
+    %QTDIR%/lib/qt.lib kernel32.lib user32.lib gdi32.lib &bsol;
+    comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib &bsol;
+    imm32.lib winmm.lib wsock32.lib</pre>
+			<p>Now run the program and see what happens when you click either <span class="GUILABEL">Cancel</span> or <span class="GUILABEL">OK</span>.<br>
+			<br>
+			<br>
+			</p>
+		</div>
+		<div class="NAVFOOTER">
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top">  <a href="chap3_1.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="34%" align="center" valign="top">  <a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top">  <a href="chap3_3.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font  color="white">Tutorial: Adding Functionality To A Dialog By Subclassing</font></td>
+					<td width="34%" align="center" valign="top">  <a href="chap3_1.html"><img height="20" width="20" src="arrows/up.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><font  color="white">Initializing The State Of Widgets In The Form</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

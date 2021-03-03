@@ -1,0 +1,179 @@
+'\" t
+.TH QWidgetStack 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QWidgetStack \- Stack of widgets, where the user can see only the top widget
+.br
+.PP
+\fC#include <qwidgetstack.h>\fR
+.PP
+Inherits QFrame.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQWidgetStack\fR ( QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fB~QWidgetStack\fR () "
+.br
+.ti -1c
+.BI "void \fBaddWidget\fR ( QWidget *, int ) "
+.br
+.ti -1c
+.BI "void \fBremoveWidget\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "QWidget* \fBwidget\fR ( int ) const"
+.br
+.ti -1c
+.BI "int \fBid\fR ( QWidget * ) const"
+.br
+.ti -1c
+.BI "QWidget* \fBvisibleWidget\fR () const"
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "void \fBraiseWidget\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBraiseWidget\fR ( QWidget * ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBaboutToShow\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBaboutToShow\fR ( QWidget * ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBsetChildGeometries\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QWidgetStack class provides a stack of widgets, where the user can see only the top widget.
+.PP
+The application programmer can move any widget to the top of the stack at any time using the slot raiseWidget(), and add or remove widgets using addWidget() and removeWidget().
+.PP
+visibleWidget() is the \fIget\fR equivalent of raiseWidget(); it returns a pointer to the widget that is currently on the top of the stack.
+.PP
+QWidgetStack also provides the ability to manipulate widgets through application-specfied integer IDs, and to translate from widget pointers to IDs using id() and from IDs to widget pointers using widget(). These numeric IDs have and unique (per QWidgetStack, not globally) and cannot be -1, but apart from that QWidgetStack does not attach any meaning to them.
+.PP
+The default widget stack is frame-less and propagates its font and palette to all its children, but you can use the usual QFrame functions (like setFrameStyle()) to add a frame, and use setFontPropagation() and setPalettePropagation() to change the propagation style.
+.PP
+Finally, QWidgetStack provides a signal, aboutToShow(), which is emitted just before a managed widget is shown.
+.PP
+See also QTabDialog, QTabBar and QFrame.
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QWidgetStack::QWidgetStack ( QWidget * parent = 0, const char * name = 0 )"
+Constructs an empty widget stack.
+.SH "QWidgetStack::~QWidgetStack ()"
+Destructs the object and frees any allocated resources.
+.SH "void QWidgetStack::aboutToShow ( QWidget * ) \fC[signal]\fR"
+This signal is emitted just before a managed widget is shown. The argument is a pointer to the widget.
+.SH "void QWidgetStack::aboutToShow ( int ) \fC[signal]\fR"
+This signal is emitted just before a managed widget is shown, if that managed widget has a non-zero ID. The argument is the numeric ID of the widget.
+.SH "void QWidgetStack::addWidget ( QWidget * w, int id )"
+Adds \fIw\fR to this stack of widgets, with id \fIid.\fR
+.PP
+If \fIw\fR is not a child of \fCthis,\fR QWidgetStack moves it using reparent().
+.PP
+Note that the added children are initially hidden. After you have added the widgets you want to the stack, you may want to call raiseWidget() on one of them.
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "void QWidgetStack::childEvent ( QChildEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QObject.
+.SH "void QWidgetStack::frameChanged () \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QFrame.
+.SH "int QWidgetStack::id ( QWidget * widget ) const"
+Returns the ID of the \fIwidget.\fR If \fIwidget\fR is 0 or is not being managed by this widget stack, this function returns -1.
+.PP
+See also widget() and addWidget().
+.SH "QSize QWidgetStack::minimumSizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QWidgetStack::raiseWidget ( QWidget * w ) \fC[slot]\fR"
+Raises \fIw\fR to the top of the widget stack.
+.SH "void QWidgetStack::raiseWidget ( int id ) \fC[slot]\fR"
+Raises \fIid\fR to the top of the widget stack.
+.PP
+See also visibleWidget().
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "void QWidgetStack::removeWidget ( QWidget * w )"
+Removes \fIw\fR from this stack of widgets. Does not delete \fIw.\fR If \fIw\fR is the currently visible widget, no other widget is substituted.
+.PP
+See also visibleWidget() and raiseWidget().
+.SH "void QWidgetStack::resizeEvent ( QResizeEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QWidgetStack::setChildGeometries () \fC[virtual protected]\fR"
+Fix up the children's geometries.
+.SH "void QWidgetStack::setFrameRect ( const QRect & r ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QFrame.
+.SH "void QWidgetStack::show () \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSize QWidgetStack::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QWidget * QWidgetStack::visibleWidget () const"
+Returns a pointer to the currently visible widget (the one on the top of the stack), or 0 if nothing is currently being shown.
+.PP
+See also aboutToShow(), id() and raiseWidget().
+.SH "QWidget * QWidgetStack::widget ( int id ) const"
+Returns a pointer to the widget with ID \fIid.\fR If this widget stack does not manage a widget with ID \fIid,\fR this function returns 0.
+.PP
+See also  id() and addWidget().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qwidgetstack.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qwidgetstack.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,463 @@
+'\" t
+.TH QDataStream 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDataStream \- Serialization of binary data to a
+.br
+.PP
+\fC#include <qdatastream.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDataStream\fR () "
+.br
+.ti -1c
+.BI "\fBQDataStream\fR ( QIODevice * ) "
+.br
+.ti -1c
+.BI "\fBQDataStream\fR ( QByteArray, int mode ) "
+.br
+.ti -1c
+.BI "virtual \fB~QDataStream\fR () "
+.br
+.ti -1c
+.BI "QIODevice* \fBdevice\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetDevice\fR ( QIODevice * ) "
+.br
+.ti -1c
+.BI "void \fBunsetDevice\fR () "
+.br
+.ti -1c
+.BI "bool \fBatEnd\fR () const"
+.br
+.ti -1c
+.BI "bool eof () const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "enum \fBByteOrder\fR { BigEndian, LittleEndian }"
+.br
+.ti -1c
+.BI "int \fBbyteOrder\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetByteOrder\fR ( int ) "
+.br
+.ti -1c
+.BI "bool \fBisPrintableData\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPrintableData\fR ( bool ) "
+.br
+.ti -1c
+.BI "int \fBversion\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetVersion\fR ( int ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_INT8 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_UINT8 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_INT16 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_UINT16 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_INT32 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_UINT32 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_INT64 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( Q_UINT64 & i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( float & f ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( double & f ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator>>\fR ( char *& str ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_INT8 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_UINT8 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_INT16 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_UINT16 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_INT32 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_UINT32 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_INT64 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( Q_UINT64 i ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( float f ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( double f ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBoperator<<\fR ( const char * str ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBreadBytes\fR ( char *&, uint & len ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBreadRawBytes\fR ( char *, uint len ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBwriteBytes\fR ( const char *, uint len ) "
+.br
+.ti -1c
+.BI "QDataStream& \fBwriteRawBytes\fR ( const char *, uint len ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QDataStream class provides serialization of binary data to a QIODevice.
+.PP
+A data stream is a binary stream of encoded information which is 100% independent of the host computer operation system, CPU or byte order. A stream that is written by a PC under DOS/Windows can be read by a Sun SPARC running Solaris.
+.PP
+The QDataStream class implements serialization of primitive types, like \fCchar, short, int, char*\fR etc. Serialization of more complex data is accomplished by breaking up the data into primitive units.
+.PP
+The programmer can select which byte order to use when serializing data. The default setting is big endian (MSB first). Changing it to little endian breaks the portability (unless the reader also changes to little endian). We recommend keeping this setting unless you have special requirements.
+.PP
+A data stream cooperates closely with a QIODevice. A QIODevice represents an input/output medium one can read data from and write data to. The QFile class is an example of an IO device.
+.PP
+Example (write data to a stream):
+.PP
+.nf
+.br
+    QFile f( "file.dta" );
+.br
+    f.open( IO_WriteOnly );                     // open file for writing
+.br
+    QDataStream s( &f );                        // serialize using f
+.br
+    s << "the answer is";                       // serialize string
+.br
+    s << (Q_INT32)42;                           // serialize integer
+.fi
+.PP
+Example (read data from a stream):
+.PP
+.nf
+.br
+    QFile f( "file.dta" );
+.br
+    f.open( IO_ReadOnly );                      // open file for reading
+.br
+    QDataStream s( &f );                        // serialize using f
+.br
+    char   *str;
+.br
+    Q_INT32 a;
+.br
+    s >> str >> a;                              // "the answer is" and 42
+.br
+    delete str;                                 // delete string
+.fi
+.PP
+In the last example, if you read into a QString instead of a \fCchar*\fR you do not have to delete it.
+.PP
+Normally, each item written to the stream is written in a fixed binary format. For example, a \fCchar*\fR is written as a 32-bit integer equal to the length of the string including the NUL byte, followed by all the characters of the string including the NUL byte. Similarly when reading a string, 4 bytes are read to create the 32-bit length value, then that many characters for the string including the NUL. For a complete description of all Qt types supporting data streaming see Format of the QDataStream operators .
+.PP
+If you want a "parsing" input stream, see QTextStream. If you just want the data to be human-readable to aid in debugging, you can set the data stream into printable data mode with setPrintableData(). The data is then written slower, in a human readable bloated form that is sufficient for debugging.
+.PP
+If you are producing a new binary data format, such as a file format for documents created by your application, you could use a QDataStream to write the data in a portable format. Typically, you would write a brief header containing a magic string and a version number to give yourself room for future expansion. For example:
+.PP
+.nf
+.br
+    // Open the file.
+.br
+    QFile f( "file.xxx" );
+.br
+    f.open( IO_WriteOnly );
+.br
+    QDataStream s( &f );
+.br
+.br
+    // Write a header with a "magic number" and a version
+.br
+    s << 0xa0b0c0d0;
+.br
+    s << 123;
+.br
+.br
+    // Write the data
+.br
+    s << [lots of interesting data]
+.fi
+.PP
+Then read it in with:
+.PP
+.nf
+.br
+    // Open the file.
+.br
+    QFile f( "file.xxx" );
+.br
+    f.open( IO_ReadOnly );
+.br
+    QDataStream s( &f );
+.br
+.br
+    // Read and check the header
+.br
+    Q_UINT32 magic;
+.br
+    s >> magic;
+.br
+    if ( magic != 0xa0b0c0d0 )
+.br
+        return XXX_BAD_FILE_FORMAT;
+.br
+.br
+    // Read the version
+.br
+    Q_INT32 version;
+.br
+    s >> version;
+.br
+    if ( version < 100 )
+.br
+        return XXX_BAD_FILE_TOO_OLD;
+.br
+    if ( version > 123 )
+.br
+        return XXX_BAD_FILE_TOO_NEW;
+.br
+    if ( version <= 110 )
+.br
+        s.setVersion(1);
+.br
+.br
+    // Read the data
+.br
+    s >> [lots of interesting data];
+.br
+    if ( version > 120 )
+.br
+        s >> [data new in XXX version 1.2];
+.br
+    s >> [other interesting data];
+.fi
+.PP
+See also QTextStream and QVariant.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDataStream::QDataStream ()"
+Constructs a data stream that has no IO device.
+.PP
+See also setDevice().
+.SH "QDataStream::QDataStream ( QByteArray a, int mode )"
+Constructs a data stream that operates on a byte array through an internal QBuffer device.
+.PP
+Example:
+.PP
+.nf
+.br
+    static char bindata[] = { 231, 1, 44, ... };
+.br
+    QByteArray  a;
+.br
+    a.setRawData( bindata, sizeof(bindata) );   // a points to bindata
+.br
+    QDataStream s( a, IO_ReadOnly );            // open on a's data
+.br
+    s >> [something];                           // read raw bindata
+.br
+    a.resetRawData( bindata, sizeof(bindata) ); // finished
+.fi
+.PP
+The QArray::setRawData() function is not for the inexperienced.
+.SH "QDataStream::QDataStream ( QIODevice * d )"
+Constructs a data stream that uses the IO device \fId.\fR
+.PP
+See also setDevice() and device().
+.SH "QDataStream::~QDataStream () \fC[virtual]\fR"
+Destructs the data stream.
+.PP
+The destructor will not affect the current IO device, unless it is an internal IO device processing a QByteArray passed in the constructor.
+.SH "bool QDataStream::atEnd () const"
+Returns TRUE if the IO device has reached the end position (end of stream or file) or if there is no IO device set.
+.PP
+Returns FALSE if the current position of the read/write head of the IO device is somewhere before the end position.
+.PP
+See also QIODevice::atEnd().
+.SH "int QDataStream::byteOrder () const"
+Returns the current byte order setting - either \fCBigEndian\fR or \fCLittleEndian.\fR
+.PP
+See also setByteOrder().
+.SH "QIODevice * QDataStream::device () const"
+Returns the IO device currently set.
+.PP
+See also setDevice() and unsetDevice().
+.SH "bool QDataStream::eof () const"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Returns TRUE if the IO device has reached the end position (end of stream or file) or if there is no IO device set.
+.PP
+Returns FALSE if the current position of the read/write head of the IO device is somewhere before the end position.
+.PP
+See also QIODevice::atEnd().
+.SH "bool QDataStream::isPrintableData () const"
+Returns TRUE if the printable data flag has been set.
+.PP
+See also setPrintableData().
+.SH "QDataStream & QDataStream::operator<< ( Q_INT16 i )"
+Writes a signed 16-bit integer to the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator<< ( Q_INT32 i )"
+Writes a signed 32-bit integer to the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator<< ( Q_INT64 i )"
+Writes a signed 64-bit integer to the stream and returns a reference to the stream, or calls the Q_INT32-operator if 64 bit is not available.
+.SH "QDataStream & QDataStream::operator<< ( Q_INT8 i )"
+Writes a signed byte to the stream.
+.SH "QDataStream & QDataStream::operator<< ( Q_UINT16 i )"
+Writes an unsigned 16-bit integer to the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator<< ( Q_UINT32 i )"
+Writes an unsigned 32-bit integer to the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator<< ( Q_UINT64 i )"
+Writes an unsigned 64-bit integer to the stream and returns a reference to the stream, or uses the Q_UINT32-operator if 64 bit is not available.
+.SH "QDataStream & QDataStream::operator<< ( Q_UINT8 i )"
+Writes an unsigned byte to the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator<< ( const char * s )"
+Writes the '\\0'-terminated string \fIs\fR to the stream and returns a reference to the stream.
+.PP
+The string is serialized using writeBytes().
+.SH "QDataStream & QDataStream::operator<< ( double f )"
+Writes a 64-bit floating point number to the stream using the standard IEEE754 format. Returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator<< ( float f )"
+Writes a 32-bit floating point number to the stream using the standard IEEE754 format. Returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( Q_INT16 & i )"
+Reads a signed 16-bit integer from the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( Q_INT32 & i )"
+Reads a signed 32-bit integer from the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( Q_INT64 & i )"
+Reads a signed 64-bit integer from the stream and returns a reference to the stream, or uses the Q_UINT32 operator if 64 bit is not available.
+.SH "QDataStream & QDataStream::operator>> ( Q_INT8 & i )"
+Reads a signed byte from the stream.
+.SH "QDataStream & QDataStream::operator>> ( Q_UINT16 & i )"
+Reads an unsigned 16-bit integer from the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( Q_UINT32 & i )"
+Reads an unsigned 32-bit integer from the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( Q_UINT64 & i )"
+Reads an unsigned 64-bit integer from the stream and returns a reference to the stream, or uses the Q_UINT32 operator if 64 bit is not available.
+.SH "QDataStream & QDataStream::operator>> ( Q_UINT8 & i )"
+Reads an unsigned byte from the stream and returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( char *& s )"
+Reads the '\\0'-terminated string \fIs\fR from the stream and returns a reference to the stream.
+.PP
+Space for the string is allocated using \fCnew\fR - the caller must eventually call delete[] on the value.
+.SH "QDataStream & QDataStream::operator>> ( double & f )"
+Reads a 64-bit floating point number from the stream using the standard IEEE754 format. Returns a reference to the stream.
+.SH "QDataStream & QDataStream::operator>> ( float & f )"
+Reads a 32-bit floating point number from the stream using the standard IEEE754 format. Returns a reference to the stream.
+.SH "QDataStream & QDataStream::readBytes ( char *& s, uint & l )"
+Reads the buffer \fIs\fR from the stream and returns a reference to the stream.
+.PP
+The buffer \fIs\fR is allocated using \fCnew.\fR Destroy it with the \fCdelete[]\fR operator. If the length is zero or \fIs\fR cannot be allocated, \fIs\fR is set to 0.
+.PP
+The \fIl\fR parameter will be set to the length of the buffer.
+.PP
+The serialization format is an Q_UINT32 length specifier first, then the data (\fIl\fR bytes).
+.PP
+See also readRawBytes() and writeBytes().
+.SH "QDataStream & QDataStream::readRawBytes ( char * s, uint len )"
+Reads \fIlen\fR bytes from the stream into \fIs\fR and returns a reference to the stream.
+.PP
+The buffer \fIs\fR must be preallocated.
+.PP
+See also readBytes(), QIODevice::readBlock() and writeRawBytes().
+.SH "void QDataStream::setByteOrder ( int bo )"
+Sets the serialization byte order to \fIbo.\fR
+.PP
+The \fIbo\fR parameter can be \fCQDataStream::BigEndian\fR or \fCQDataStream::LittleEndian.\fR
+.PP
+The default setting is big endian. We recommend leaving this setting unless you have special requirements.
+.PP
+See also byteOrder().
+.SH "void QDataStream::setDevice ( QIODevice * d )"
+void QDataStream::setDevice(QIODevice *d ) Sets the IO device to \fId.\fR
+.PP
+See also device() and unsetDevice().
+.SH "void QDataStream::setPrintableData ( bool enable )"
+Sets or clears the printable data flag.
+.PP
+If this flag is set, the write functions will generate output that consists of printable characters (7 bit ASCII).
+.PP
+We recommend enabling printable data only for debugging purposes (it is slower and creates larger output).
+.SH "void QDataStream::setVersion ( int v )"
+Sets the version number of the data serialization format.
+.PP
+In order to accomodate for new functionality, the datastream serialization format of some Qt classes has changed in some versions of Qt. If you want to read data that was created by an earlier version of Qt, or write data that can be read by a program that was compiled with an earlier version of Qt, use this function to modify the serialization format of QDataStream.
+.PP
+For Qt 1.x compatibility, use \fIv\fR == 1.
+.PP
+For Qt 2.0.x compatibility, use \fIv\fR == 2 (Not required for reading in Qt 2.1).
+.PP
+See also version().
+.SH "void QDataStream::unsetDevice ()"
+Unsets the IO device. This is the same as calling setDevice( 0 ).
+.PP
+See also device() and setDevice().
+.SH "int QDataStream::version () const"
+Returns the version number of the data serialization format. In Qt 2.1, this number is by default 3.
+.PP
+See also setVersion().
+.SH "QDataStream & QDataStream::writeBytes ( const char * s, uint len )"
+Writes the length specifier \fIlen\fR and the buffer \fIs\fR to the stream and returns a reference to the stream.
+.PP
+The \fIlen\fR is serialized as an Q_UINT32, followed by \fIlen\fR bytes from \fIs.\fR
+.PP
+See also writeRawBytes() and readBytes().
+.SH "QDataStream & QDataStream::writeRawBytes ( const char * s, uint len )"
+Writes \fIlen\fR bytes from \fIs\fR to the stream and returns a reference to the stream.
+.PP
+See also  writeBytes(), QIODevice::writeBlock() and readRawBytes().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdatastream.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdatastream.3qt) and the Qt
+version (2.3.2).

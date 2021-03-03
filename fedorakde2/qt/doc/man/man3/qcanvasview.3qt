@@ -1,0 +1,106 @@
+'\" t
+.TH QCanvasView 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvasView \- A
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+Inherits QScrollView.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvasView\fR ( QCanvas * " "viewing" "=0, QWidget * " "parent" "=0, const char * " "name" "=0, WFlags " "f" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QCanvasView\fR () "
+.br
+.ti -1c
+.BI "QCanvas* \fBcanvas\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetCanvas\fR ( QCanvas * v ) "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawContents\fR ( QPainter *, int " "cx" ", int " "cy" ", int " "cw" ", int ch ) "
+.br
+.ti -1c
+.BI "virtual QSize \fBsizeHint\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+A QWidget which views a QCanvas.
+.PP
+Displays a view of a QCanvas, with scrollbars available if desired. There can be more than one view of a canvas.
+.PP
+The view of a canvas is the object which the user can see and interact with, hence any interactivity will be based on events from a view. For example, by subclassing QCanvasView and overriding QScrollView::contentsMousePressEvent(), an application can provide a canvas where the user can interact with items on the canvas.
+.PP
+.nf
+.br
+  void MyCanvasView::contentsMousePressEvent(QMouseEvent* e)
+.br
+  {
+.br
+      QCanvasItemList list = canvas()->collisions(e->pos());
+.br
+      if ( !list.isEmpty() ) {
+.br
+          QCanvasItem* item = list.first();
+.br
+.br
+          // Process the top item
+.br
+          ...
+.br
+      }
+.br
+  }
+.fi
+.PP
+Most of the functionality of QCanvasView is the functionality available for all QScrollView subclasses.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvasView::QCanvasView ( QCanvas * canvas=0, QWidget * parent=0, const char * name=0, WFlags f=0 )"
+Constructs a QCanvasView which views \fIcanvas.\fR The usual QWidget parameters may also be supplied.
+.SH "QCanvasView::~QCanvasView ()"
+Destructs the view. The associated canvas is \fInot\fR deleted.
+.SH "QCanvas* QCanvasView::canvas () const"
+Returns the canvas which the view is currently viewing.
+.SH "void QCanvasView::drawContents ( QPainter * p, int cx, int cy, int cw, int ch ) \fC[virtual protected]\fR"
+Repaints the appropriate area of the QCanvas which this QCanvasView is viewing.
+.PP
+Reimplemented from QScrollView.
+.SH "void QCanvasView::setCanvas ( QCanvas * canvas )"
+Changes the QCanvas which the QCanvasView is viewing to \fIcanvas.\fR
+.SH "QSize QCanvasView::sizeHint () const \fC[virtual protected]\fR"
+Suggests a size sufficient to view the entire canvas.
+.PP
+Reimplemented from QWidget.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvasview.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvasview.3qt) and the Qt
+version (2.3.2).

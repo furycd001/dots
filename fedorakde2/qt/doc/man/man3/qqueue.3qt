@@ -1,0 +1,136 @@
+'\" t
+.TH QQueue 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QQueue \- Template class that provides a queue
+.br
+.PP
+\fC#include <qqueue.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQQueue\fR () "
+.br
+.ti -1c
+.BI "\fBQQueue\fR ( const QQueue<type> & queue ) "
+.br
+.ti -1c
+.BI "\fB~QQueue\fR () "
+.br
+.ti -1c
+.BI "QQueue<type>& \fBoperator=\fR ( const QQueue<type> & queue ) "
+.br
+.ti -1c
+.BI "bool \fBautoDelete\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetAutoDelete\fR ( bool enable ) "
+.br
+.ti -1c
+.BI "virtual uint \fBcount\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "void \fBenqueue\fR ( const type * d ) "
+.br
+.ti -1c
+.BI "type* \fBdequeue\fR () "
+.br
+.ti -1c
+.BI "bool \fBremove\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBclear\fR () "
+.br
+.ti -1c
+.BI "type* \fBhead\fR () const"
+.br
+.ti -1c
+.BI "operator \fBtype*\fR ()const"
+.br
+.ti -1c
+.BI "type* \fBcurrent\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QQueue class is a template class that provides a queue.
+.PP
+QQueue is implemented as a template class. Define a template instance QQueue<X> to create a queue that operates on pointers to X, or X*.
+.PP
+A queue is a First In, First Out (FIFO) structure. Items are added to the back of the queue with enqueue() and retrieved from the front with dequeue().
+.PP
+See also Collection Classes
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QQueue::QQueue ()"
+Creates an empty queue.
+.SH "QQueue::QQueue ( const QQueue<type> & queue )"
+Creates a queue from another.
+.PP
+Only the pointers are copied (shallow copy).
+.SH "QQueue::~QQueue ()"
+Destroys the list. Items in the list are destroyed if autoDelete() is TRUE.
+.SH "QQueue::operator type* () const"
+Returns a reference to the front item in the queue. The queue is not changed.
+.SH "bool QQueue::autoDelete () const"
+The same as QCollection::autoDelete().
+.PP
+See also setAutoDelete().
+.SH "void QQueue::clear () \fC[virtual]\fR"
+Removes all items from the queue, deleting them if if autoDelete() is TRUE.
+.PP
+See also remove().
+.PP
+Reimplemented from QCollection.
+.SH "uint QQueue::count () const \fC[virtual]\fR"
+Returns the number of items in the queue.
+.PP
+See also isEmpty().
+.PP
+Reimplemented from QCollection.
+.SH "type* QQueue::current () const"
+Returns a reference to the front item in the queue. The queue is not changed.
+.SH "type* QQueue::dequeue ()"
+Takes the front item from the queue. First in, first out.
+.SH "void QQueue::enqueue ( const type * d )"
+Adds an item to the back of the queue. First in, first out.
+.SH "type* QQueue::head () const"
+Returns a reference to the front item in the queue. The queue is not changed.
+.SH "bool QQueue::isEmpty () const"
+Returns TRUE if there are no items to be dequeued
+.SH "QQueue<type>& QQueue::operator= ( const QQueue<type> & queue )"
+Assigns \fIqueue\fR to this queue and returns a reference to this queue.
+.PP
+This queue is first cleared, then each item in \fIqueue\fR is enqueued to this queue. Only the pointers are copied (shallow copy).
+.SH "bool QQueue::remove ()"
+Removes the front item from the queue. First in, first out. The item is deleted if autoDelete() is TRUE. Returns TRUE if there was an item to remove.
+.SH "void QQueue::setAutoDelete ( bool enable )"
+The same as QCollection::setAutoDelete().
+.PP
+See also  autoDelete().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qqueue.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qqueue.3qt) and the Qt
+version (2.3.2).

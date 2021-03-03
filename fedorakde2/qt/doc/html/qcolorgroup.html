@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QColorGroup Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QColorGroup Class Reference</h1><br clear="all">
+<p>
+The QColorGroup class contains a group of widget colors.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qpalette-h.html">qpalette.h</a>&gt;</code>
+<p><a href="qcolorgroup-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#15a8f3"><b>QColorGroup</b></a> () </div>
+<li><div class="fn">QColorGroup ( const QColor &amp; foreground, const QColor &amp; button, const QColor &amp; light, const QColor &amp; dark, const QColor &amp; mid, const QColor &amp; text, const QColor &amp; base ) <em>(obsolete)</em></div>
+<li><div class="fn"><a href="#1ce0ee"><b>QColorGroup</b></a> ( const QBrush &amp; foreground, const QBrush &amp; button, const QBrush &amp; light, const QBrush &amp; dark, const QBrush &amp; mid, const QBrush &amp; text, const QBrush &amp; bright_text, const QBrush &amp; base, const QBrush &amp; background ) </div>
+<li><div class="fn"><a href="#eca83c"><b>QColorGroup</b></a> ( const QColorGroup &amp; ) </div>
+<li><div class="fn"><a href="#c43438"><b>~QColorGroup</b></a> () </div>
+<li><div class="fn">enum <a href="#ColorRole"><b>ColorRole</b></a> { Foreground, Button, Light, Midlight, Dark, Mid, Text, BrightText, ButtonText, Base, Background, Shadow, Highlight, HighlightedText, NColorRoles }</div>
+<li><div class="fn">const QColor&amp; <a href="#5eb2be"><b>color</b></a> ( ColorRole ) const</div>
+<li><div class="fn">const QBrush&amp; <a href="#dc90ba"><b>brush</b></a> ( ColorRole ) const</div>
+<li><div class="fn">void <a href="#73080d"><b>setColor</b></a> ( ColorRole, const QColor &amp; ) </div>
+<li><div class="fn">void <a href="#8e06b7"><b>setBrush</b></a> ( ColorRole, const QBrush &amp; ) </div>
+<li><div class="fn">const QColor&amp; <a href="#1f2932"><b>foreground</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#713ed1"><b>button</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#5ff1d5"><b>light</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#9f3d58"><b>dark</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#d96e71"><b>mid</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#ddea87"><b>text</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#9c6f51"><b>base</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#a65915"><b>background</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#2675e5"><b>midlight</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#02b5ac"><b>brightText</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#8fe262"><b>buttonText</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#d33b10"><b>shadow</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#4bb0b9"><b>highlight</b></a> () const</div>
+<li><div class="fn">const QColor&amp; <a href="#66b128"><b>highlightedText</b></a> () const</div>
+<li><div class="fn">bool <a href="#6378d1"><b>operator==</b></a> ( const QColorGroup &amp; g ) const</div>
+<li><div class="fn">bool <a href="#5a9757"><b>operator!=</b></a> ( const QColorGroup &amp; g ) const</div>
+</ul>
+<h2>Related Functions</h2>
+(Note that these are not member functions.)
+<ul>
+<li>QDataStream &amp; <a href="qcolorgroup.html#5cace6"><b>operator&lt;&lt;</b></a> (QDataStream &amp; s, const QColorGroup &amp; g)
+<li>QDataStream &amp; <a href="qcolorgroup.html#fc4619"><b>operator&gt;&gt;</b></a> (QDataStream &amp; s, QColorGroup &amp; g)
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QColorGroup class contains a group of widget colors.
+<p>
+A color group contains a group of colors used by widgets for drawing
+themselves.  Widgets should not use colors like "red" and "turqoise"
+but rather "foreground" and "base", where possible.  The color roles
+are enumerated and defined in the <a href="#ColorRole">ColorRole</a> documentation.
+<p>The most common usage of QColorGroup is like this:
+<p><pre>    <a href="qpainter.html">QPainter</a> p;
+    ...
+    p.<a href="qpainter.html#0183e4">setPen</a>( colorGroup().foreground() );
+    p.<a href="qpainter.html#e3a489">drawLine</a>( ... )
+</pre>
+<p>See the <a href="#ColorRole">ColorRole</a> documentation below for more details on roles.
+<p>It's also possible to modify color groups or create them from scratch.
+<p>The color group class can be created using three different
+constructors, or by modifying one supplied by the system.  The
+default constructor creates an all-black color group, which can then
+be modified using set functions.  There are two functions that take
+long lists of arguments (slightly different lists - beware!).  And
+there is the copy constructor.
+<p>We strongly recommend using a system-supplied color group, and
+modifying that as necessary.
+<p>You modify a color group by calling the access functions <a href="#73080d">setColor</a>()
+and <a href="#8e06b7">setBrush</a>(), depending on whether you want a pure color or e.g. a
+pixmap pattern.
+<p>There are also corresponding <a href="#5eb2be">color</a>() and <a href="#dc90ba">brush</a>() getters, and a
+commonly used convenience function to get each ColorRole:
+<a href="#a65915">background</a>(), <a href="#1f2932">foreground</a>(), <a href="#9c6f51">base</a>() and so on.
+<p>See also  <a href="qcolor.html">QColor</a>, <a href="qpalette.html">QPalette</a> and <a href="qwidget.html#d92bf4">QWidget::colorGroup</a>().
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="ColorRole">QColorGroup::ColorRole</a></h3>
+The ColorRole enum defines the different symbolic color roles used
+in current GUIs.  The central roles are:
+<p><ul>
+<li> <code>Background</code> - general background color.
+<li> <code>Foreground</code> - general foreground color.
+<li> <code>Base</code> - used as background color for e.g. text entry widgets,
+usually white or another light color.
+<li> <code>Text</code> - the foreground color used with <code>Base.</code> Usually this
+is the same as the <code>Foreground,</code> in what case it must provide good
+contrast both with <code>Background</code> and <code>Base.</code>
+<li> <code>Button</code> - general button background color, where buttons need a
+background different from <code>Background,</code> as in the Macintosh style.
+<li> <code>ButtonText</code> - a foreground color used with the <code>Button</code> color.
+<p></ul> There are some color roles used mostly for 3D bevel and shadow
+effects: <ul>
+<li> <code>Light</code> - lighter than <code>Button</code> color.
+<li> <code>Midlight</code> - between <code>Button</code> and <code>Light.</code>
+<li> <code>Dark</code> - darker than <code>Button.</code>
+<li> <code>Mid</code> - between <code>Button</code> and <code>Dark.</code>
+<li> <code>Shadow</code> - a very dark color.
+<p></ul> All of these are normally derived from <code>Background,</code> and used
+in ways that depend on that relationship.  For example, buttons
+depend on it to make the bevels look good, and Motif scroll bars
+depend on <code>Mid</code> to be slightly different from <code>Background.</code>
+<p>Selected (marked) items have two roles: <ul>
+<li> <code>Highlight</code>  - a color to indicate a selected or highlighted item.
+<li> <code>HighlightedText</code> - a text color that contrasts to <code>Highlight.</code>
+<p></ul> Finally, there is a special role for text that needs to be
+drawn where <code>Text</code> or <code>Foreground</code> would provide bad contrast,
+such as on pressed push buttons: <ul>
+<li> <code>BrightText</code> - a text color that is very different from <code>Foreground</code> and contrasts well with e.g. <code>Dark.</code>
+<p></ul>
+<p>Note that text colors can be used for other things than just words:
+text colors are <em>usually</em> used for text, but it's quite common to
+have lines, icons and so on that belong with a text color logically.
+<p>This image shows most of the color roles in use:
+<img src="palette.png" width="603" height="166" alt="">
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="15a8f3"></a>QColorGroup::QColorGroup ()</h3>
+<p>Constructs a color group with all colors set to black.
+<h3 class="fn"><a name="1ce0ee"></a>QColorGroup::QColorGroup ( const <a href="qbrush.html">QBrush</a> &amp; foreground, const <a href="qbrush.html">QBrush</a> &amp; button, const <a href="qbrush.html">QBrush</a> &amp; light, const <a href="qbrush.html">QBrush</a> &amp; dark, const <a href="qbrush.html">QBrush</a> &amp; mid, const <a href="qbrush.html">QBrush</a> &amp; text, const <a href="qbrush.html">QBrush</a> &amp; bright_text, const <a href="qbrush.html">QBrush</a> &amp; base, const <a href="qbrush.html">QBrush</a> &amp; background )</h3>
+<p>Constructs a color group. You can pass either brushes, pixmaps or
+plain colors for each parameter.
+<p>This constructor can be very handy sometimes, but don't overuse it:
+Such long lists of arguments are rather error-prone.
+<p>See also  <a href="qbrush.html">QBrush</a>.
+<h3 class="fn"><a name="859c8c"></a>QColorGroup::QColorGroup ( const <a href="qcolor.html">QColor</a> &amp; foreground, const <a href="qcolor.html">QColor</a> &amp; background, const <a href="qcolor.html">QColor</a> &amp; light, const <a href="qcolor.html">QColor</a> &amp; dark, const <a href="qcolor.html">QColor</a> &amp; mid, const <a href="qcolor.html">QColor</a> &amp; text, const <a href="qcolor.html">QColor</a> &amp; base )</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Constructs a color group with the specified colors. The button
+color will be set to the background color.
+<h3 class="fn"><a name="eca83c"></a>QColorGroup::QColorGroup ( const QColorGroup &amp; other )</h3>
+<p>Constructs a color group that is an independent copy of <em>other.</em>
+<h3 class="fn"><a name="c43438"></a>QColorGroup::~QColorGroup ()</h3>
+<p>Destructs the color group.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="a65915"></a>QColorGroup::background () const</h3>
+<p>Returns the background color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="9c6f51"></a>QColorGroup::base () const</h3>
+<p>Returns the base color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="02b5ac"></a>QColorGroup::brightText () const</h3>
+<p>Returns the bright text foreground color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qbrush.html">QBrush</a> &amp; <a name="dc90ba"></a>QColorGroup::brush ( <a href="qcolorgroup.html#ColorRole">ColorRole</a> r ) const</h3>
+<p>Returns the brush that has been set for color role <em>r.</em>
+<p>See also  <a href="#5eb2be">color</a>(), <a href="#8e06b7">setBrush</a>() and <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="713ed1"></a>QColorGroup::button () const</h3>
+<p>Returns the button color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="8fe262"></a>QColorGroup::buttonText () const</h3>
+<p>Returns the button text foreground color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="5eb2be"></a>QColorGroup::color ( <a href="qcolorgroup.html#ColorRole">ColorRole</a> r ) const</h3>
+<p>Returns the color that has been set for color role <em>r.</em>
+<p>See also  <a href="#dc90ba">brush</a>() and <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="9f3d58"></a>QColorGroup::dark () const</h3>
+<p>Returns the dark color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="1f2932"></a>QColorGroup::foreground () const</h3>
+<p>Returns the foreground color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="4bb0b9"></a>QColorGroup::highlight () const</h3>
+<p>Returns the highlight color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="66b128"></a>QColorGroup::highlightedText () const</h3>
+<p>Returns the highlighted text color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="5ff1d5"></a>QColorGroup::light () const</h3>
+<p>Returns the light color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="d96e71"></a>QColorGroup::mid () const</h3>
+<p>Returns the medium color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a>&amp; <a name="2675e5"></a>QColorGroup::midlight () const</h3>
+<p>Returns the midlight color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">bool <a name="5a9757"></a>QColorGroup::operator!= ( const QColorGroup &amp; g ) const</h3>
+<p>Returns TRUE if this color group is different from <em>g,</em> or FALSE if
+it is equal to <em>g.</em>
+<p>See also  <a href="qchar.html#7b12b1">operator!=</a>().
+<h3 class="fn">bool <a name="6378d1"></a>QColorGroup::operator== ( const QColorGroup &amp; g ) const</h3>
+<p>Returns TRUE if this color group is equal to <em>g,</em> or FALSE if
+it is different from <em>g.</em>
+<p>See also  <a href="qchar.html#332778">operator==</a>().
+<h3 class="fn">void <a name="8e06b7"></a>QColorGroup::setBrush ( <a href="qcolorgroup.html#ColorRole">ColorRole</a> r, const <a href="qbrush.html">QBrush</a> &amp; b )</h3>
+<p>Sets the brush used for color role <em>r</em> to <em>b.</em>
+<p>See also  <a href="#dc90ba">brush</a>(), <a href="#73080d">setColor</a>() and <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">void <a name="73080d"></a>QColorGroup::setColor ( <a href="qcolorgroup.html#ColorRole">ColorRole</a> r, const <a href="qcolor.html">QColor</a> &amp; c )</h3>
+<p>Sets the brush used for color role <em>r</em> to a solid color <em>c.</em>
+<p>See also  <a href="#dc90ba">brush</a>(), setColor() and <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="d33b10"></a>QColorGroup::shadow () const</h3>
+<p>Returns the shadow color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<h3 class="fn">const <a href="qcolor.html">QColor</a> &amp; <a name="ddea87"></a>QColorGroup::text () const</h3>
+<p>Returns the text foreground color of the color group.
+<p>See also  <a href="#ColorRole">ColorRole</a>.
+<hr><h2>Related Functions</h2>
+<h3><a href="qdatastream.html">QDataStream</a> &amp; <a name="5cace6"></a>operator&lt;&lt; (<a href="qdatastream.html">QDataStream</a> &amp; s, const QColorGroup &amp; g)</h3>
+<p>Writes a color group to the stream.
+<p>See also  <a href="datastreamformat.html">Format of the QDataStream operators</a>
+
+<h3><a href="qdatastream.html">QDataStream</a> &amp; <a name="fc4619"></a>operator&gt;&gt; (<a href="qdatastream.html">QDataStream</a> &amp; s, QColorGroup &amp; g)</h3>
+<p>Reads a color group from the stream.
+<p>See also  <a href="datastreamformat.html">Format of the QDataStream operators</a>
+
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

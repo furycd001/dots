@@ -1,0 +1,115 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Useful Techniques</title>
+		<meta name="generator" content="Adobe GoLive 4">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="Qt Designer Tutorial and User's Manual" href="part1index.html">
+		<link rel="PREVIOUS" title="Popular Mechanics: Working With Spacers" href="chap4_2.html">
+		<link rel="NEXT" title="Changing The Tab Order" href="chap5_2.html">
+		
+	</head>
+
+	<body class="CHAPTER" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top"> <a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a></td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom"> <a href="chap4_2.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="80%" align="center" valign="bottom"><br>
+					</td>
+					<td width="10%" align="right" valign="bottom"> <a href="chap5_2.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="CHAPTER">
+			<h1><a name="AEN876"></a>Chapter 5. Useful Techniques</h1>
+			<div class="TOC">
+				<dl>
+					<dt><b>Table of Contents</b>
+					<dt> <a href="#AEN879">Working With Signals And Slots</a>
+					<dt> <a href="chap5_2.html">Changing The Tab Order</a>
+					<dt> <a href="chap5_3.html">All About Layout Management</a>
+					<dt> <a href="chap5_4.html">Integrating Qt Designer Files Into Your Project</a>
+					<dt> <a href="chap5_5.html">Accessing The Help System</a>
+					<dt> <a href="chap5_6.html">Custom Widgets</a>
+				</dl>
+			</div>
+			<p>Having showcased Qt Designer in the previous tutorial-style chapters, we will go a bit deeper in the following sections and explain a number of useful techniques in depth. Things that were left out of the tutorial for pedagogical reasons will be covered here, as well as some interesting topics we haven't touched upon yet.</p>
+			<div class="SECT1">
+				<h1 class="SECT1"><a name="AEN879"></a>Working With Signals And Slots</h1>
+				<p>As you know, the concept of signals and slots is one of the central ideas in Qt. It is therefore not very astonishing that Qt Designer provides two means to facilitate the use of signals and slots in Qt dialogs: the slots tool and the connection tool.</p>
+				<div class="SECT2">
+					<h2 class="SECT2"><a name="AEN886"></a>The Connection Tool</h2>
+					<p>The connection tool lets you view and edit already existing connections between components. In a tabular display for each connection, it shows the sender by name, the emitted signal, the receiver by name, and the slot to which the signal is connected (see <a href="#QT-DESIGNER-FIG-CONNECTIONSTOOL">Figure 5-1</a>). If you want to make an additional connection between a sending and a receiving object, you can click on the <span class="GUILABEL">Edit</span> button. A new window pops up that shows the signals of the sending widget GUI element and the slots of the receiving widget, as well as a list of already existing connections. By simply clicking on a slot, you can add a new connection between these two components. When you mark a connection, the <span class="GUILABEL">Disconnect</span> button becomes available and lets you remove a connection again. From here, you even have access to the slots tool for creating your own slots, which we will cover in the next section.</p>
+					<div class="FIGURE">
+						<a name="QT-DESIGNER-FIG-CONNECTIONSTOOL"></a>
+						<p><b>Figure 5-1. The connection tool</b></p>
+						<p><img src="figures/connecttool.png"></p>
+					</div>
+					<p>Note that the connection tool does not distinguish between predefined Qt slots and slots that you have defined yourself. By simply creating your own slots, you can easily augment the connection possibilities.</p>
+					<p>As useful as the connection tool is, it only lets you delete connections or add connections between those components that already have existing connections. You cannot add new component pairs here. This is exclusively done graphically in the form editor. Also, it is not possible to create a new connection with only the keyboard ; you always need to use the mouse technique described here.</p>
+					<p>You have already seen how to connect two widgets in the form editor: Simply hit the <b class="KEYCAP">F3</b> key or click on the connection icon. The mouse cursor will change into a cross. Click on the widget that should be the sender in your new connection, and see how a pink rectangle is drawn around it. Now move the mouse cursor across your form and watch how a second pink rectangle surrounds your current target object; i.e., the object that is on the receiving side of the connection. Once you release the mouse button, the connection tool window that you already know will open.</p>
+					<p>In case you hit <b class="KEYCAP">F3</b> by accident, it is good to know how to leave this distressing mode where everything suddenly gets pink. If you have not started dragging the mouse&#151;i.e., you have not even clicked on the sending component&#151;you can simply hit the <b class="KEYCAP">Esc</b> key to get out of this mode. This works even if you are already dragging the mouse button but have not yet released it. However, depending on your mouse and keyboard, it might be difficult to operate the mouse and hit a key at the same time. In this case, either click on the pointer tool icon or just release the mouse anywhere and click <span class="GUILABEL">Cancel</span> in the dialog that pops up; no connection whatsoever will be made.</p>
+				</div>
+				<div class="SECT2">
+					<h2 class="SECT2"><a name="AEN909"></a>The Slots Tool</h2>
+					<p>In simpler dialogs, using just the predefined slots is probably enough. But in more sophisticated dialogs, you will most likely want to define your own slots. This is of course possible; you do it with the slots tool. You access the slots tool by selecting <span class="GUIMENU">Edit/Slots</span> from the menu. A dialog window will pop up that shows all slots of the form you are currently editing. If you have not added any of your own yet, you will see only Qt's predefined slots. Each slot is listed with its name and parameters, its access specifier, and whether it is &ldquo;in use,&rdquo; meaning whether it has a signal connected to it. Note that it is not necessary for each slot to be in use: A slot could be defined for outside use, for connections being made from other forms or other parts of the application you are writing. These connections would then be made not within Qt Designer but in handwritten code.</p>
+					<p>The access specifier might need some explanation. As you probably know, a public C++ method can be called from within any other class, but a protected method can be called only from within the same class or from within classes that inherit from it. A private method can be called only from within the same class. The same applies to slots, because at the end of the day, slots are just C++ methods.</p>
+					<p>When should a slot be public, and when should it be protected? Here, the same criteria apply as for ordinary methods that are not slots: If the slot will be connected to from outside of the class, it must be public; otherwise, it should be protected, following the rule to expose as little of the functionality of a class as possible to the outside.</p>
+					<p>If you look at the <span class="GUILABEL">Slot Properties</span> group box, where you can change the properties of the currently marked slot, and more specifically at the combo box, where you can select the access specifier, you might notice that it is not possible to make a slot private. Why is that? As you have already learned in the tutorial, in order to implement your own functionality, you need to subclass from the created form class and implement the functionality (whether it is in a slot or elsewhere) there. But since we now have a hierarchy of classes, the slot cannot be made private, because that would make it impossible to call it from another class. It would simply not be useful in the Qt Designer context any longer. <a href="#FTN.AEN930" name="AEN930">[1]</a></p>
+					<p>OK, so now you know how you can change the name and access specifier of a slot: Click on the slot in the slot list, and change the name and parameters and/or the access specifier in the <span class="GUILABEL">Slot Properties</span> group box. It is probably obvious that you can remove a slot by marking it and clicking the <span class="GUILABEL">Delete Slot</span> button. Thus, the only thing left to explain is how to create new slots. To do this, click on the <span class="GUILABEL">New Slot</span> button. A new slot will be added to the slot list with the name <tt class="LITERAL">new_slot()</tt>, no parameters, and public access. It is marked as the current slot, so you can edit its properties right away. Think whether you want to connect to this slot from the outside (in which case it should have public access) or not (in which case it should have protected access). Change the name to something more descriptive (many developers like to start the names of their slots with <tt class="LITERAL">slot</tt> to make it more obvious that they are slots). Finally, if your slot should have parameters, add these between the parentheses after the slot name. For example, if the slot should have two integer parameters and be called <tt class="LITERAL">slotMovePosition()</tt>, you would provide the following in the edit field:</p>
+					<pre class="SCREEN">slotMovePosition(int,int)</pre>
+					<p>Note that you do not have to (and should not) specify the return type; slots always have <tt class="LITERAL">void</tt> as their return type, which is added by Qt Designer automatically.</p>
+					<p>All changes that you make are directly taken over to the slot list, so you do not need to &ldquo;save&rdquo; your changes anywhere. Just click the <span class="GUILABEL">OK</span> button when you are done. On the other hand, closing the dialog with the <span class="GUILABEL">Cancel</span> button or the <b class="KEYCAP">Esc</b> key will remove your changes.</p>
+				</div>
+			</div>
+		</div>
+		<h3 class="FOOTNOTES">Notes</h3>
+		<p>
+		<table border="0" class="FOOTNOTES" width="100%">
+			<tr>
+				<td align="left" valign="top" width="5%"> <a href="#AEN930" name="FTN.AEN930">[1]</a></td>
+				<td align="left" valign="top" width="95%">It is perfectly OK to make slots private in classes that are not created with Qt Designer. This is a very common design pattern in handcrafted forms, where private slots implement dialog-internal changes, like disabling or enabling some widgets when the state of another widget changes.</td>
+			</tr>
+		</table>
+		</p>
+		<div class="NAVFOOTER">
+			<br>
+			<br>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top"> <a href="chap4_2.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="34%" align="center" valign="top"> <a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"> <a href="chap5_2.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font  color="white">Popular Mechanics: Working With Spacers</font></td>
+					<td width="34%" align="center" valign="top"> <a href="part1index.html"><img height="20" width="20" src="arrows/up.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><font  color="white">Changing The Tab Order</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

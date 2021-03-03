@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QGVector Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QGVector Class Reference</h1><br clear="all">
+<p>
+The QGVector class is an internal class for implementing Qt collection classes.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qgvector-h.html">qgvector.h</a>&gt;</code>
+<p>
+Inherits <a href="qcollection.html">QCollection</a>.
+<p>Inherited by <a href="qvector.html">QVector</a>.
+<p><a href="qgvector-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">QDataStream&amp; <b>read</b> ( QDataStream &amp; ) (internal)</div>
+<li><div class="fn">QDataStream&amp; <b>write</b> ( QDataStream &amp; ) const (internal)</div>
+<li><div class="fn">virtual int <a href="#0a2891"><b>compareItems</b></a> ( Item, Item ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn"><b>QGVector</b> () (internal)</div>
+<li><div class="fn"><b>QGVector</b> ( uint size ) (internal)</div>
+<li><div class="fn"><b>QGVector</b> ( const QGVector &amp; v ) (internal)</div>
+<li><div class="fn"><b>~QGVector</b> () (internal)</div>
+<li><div class="fn">QGVector&amp; <b>operator=</b> ( const QGVector &amp; v ) (internal)</div>
+<li><div class="fn">Item* <a href="#9b9dbe"><b>data</b></a> () const</div>
+<li><div class="fn">uint <a href="#71f790"><b>size</b></a> () const</div>
+<li><div class="fn">virtual uint <a href="#813b33"><b>count</b></a> () const</div>
+<li><div class="fn">bool <b>insert</b> ( uint index, Item ) (internal)</div>
+<li><div class="fn">bool <b>remove</b> ( uint index ) (internal)</div>
+<li><div class="fn">Item <b>take</b> ( uint index ) </div>
+<li><div class="fn">virtual void <b>clear</b> () (internal)</div>
+<li><div class="fn">bool <b>resize</b> ( uint newsize ) (internal)</div>
+<li><div class="fn">bool <b>fill</b> ( Item, int flen ) (internal)</div>
+<li><div class="fn">void <b>sort</b> () (internal)</div>
+<li><div class="fn">int <b>bsearch</b> ( Item ) const (internal)</div>
+<li><div class="fn">int <b>findRef</b> ( Item, uint index ) const (internal)</div>
+<li><div class="fn">int <b>find</b> ( Item, uint index ) const (internal)</div>
+<li><div class="fn">uint <b>containsRef</b> ( Item ) const (internal)</div>
+<li><div class="fn">uint <b>contains</b> ( Item ) const (internal)</div>
+<li><div class="fn">Item <a href="#960963"><b>at</b></a> ( uint index ) const</div>
+<li><div class="fn">bool <b>insertExpand</b> ( uint index, Item ) (internal)</div>
+<li><div class="fn">void <b>toList</b> ( QGList * ) const (internal)</div>
+<li><div class="fn">virtual QDataStream&amp; <a href="#9eae85"><b>read</b></a> ( QDataStream &amp;, Item &amp; ) </div>
+<li><div class="fn">virtual QDataStream&amp; <a href="#d318b9"><b>write</b></a> ( QDataStream &amp;, Item ) const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QGVector class is an internal class for implementing Qt collection classes.
+<p>
+QGVector is a strictly internal class that acts as a base class for
+the <a href="qvector.html">QVector</a> collection class.
+<p>QGVector has some virtual functions that may be reimplemented in
+subclasses to customize behavior.
+<p><ul>
+<li> <a href="#0a2891">compareItems</a>() compares two collection/vector items.
+<li> <a href="#9eae85">read</a>() reads a collection/vector item from a <a href="qdatastream.html">QDataStream</a>.
+<li> <a href="#1e85f8">write</a>() writes a collection/vector item to a QDataStream.
+</ul>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a href="qcollection.html#Item">Item</a> <a name="960963"></a>QGVector::at ( uint index ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">int <a name="0a2891"></a>QGVector::compareItems ( <a href="qcollection.html#Item">Item</a> d1, <a href="qcollection.html#Item">Item</a> d2 ) <code>[virtual]</code></h3>
+<p>This virtual function compares two list items.
+<p>Returns:
+<ul>
+<li> 0 if <em>item1</em> == <em>item2</em>
+<li> non-zero if <em>item1</em> != <em>item2</em>
+</ul>
+<p>This function returns <em>int</em> rather than <em>bool</em> so that
+reimplementations can return one of three values and use it to sort
+by:
+<p><ul>
+<li> 0 if <em>item1</em> == <em>item2</em>
+<li> &gt; 0 (positive integer) if <em>item1</em> &gt; <em>item2</em>
+<li> &lt; 0 (negative integer) if <em>item1</em> &lt; <em>item2</em>
+</ul>
+<p>The <a href="qvector.html#fbcadb">QVector::sort</a>() and <a href="qvector.html#f7d8e6">QVector::bsearch</a>() functions require that
+compareItems() is implemented as described here.
+<p>This function should not modify the vector because some const
+functions call compareItems().
+<h3 class="fn">uint <a name="813b33"></a>QGVector::count () const <code>[virtual protected]</code></h3>
+<p>For internal use only.
+<p>Reimplemented from <a href="qcollection.html#2213fa">QCollection.</a>
+<h3 class="fn"><a href="qcollection.html#Item">Item</a> * <a name="9b9dbe"></a>QGVector::data () const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qdatastream.html">QDataStream</a> &amp; <a name="9eae85"></a>QGVector::read ( <a href="qdatastream.html">QDataStream</a> &amp; s, <a href="qcollection.html#Item">Item</a> &amp; d ) <code>[virtual protected]</code></h3>
+<p>Reads a collection/vector item from the stream <em>s</em> and returns a reference
+to the stream.
+<p>The default implementation sets <em>item</em> to 0.
+<p>See also  <a href="#1e85f8">write</a>().
+<h3 class="fn">uint <a name="71f790"></a>QGVector::size () const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qdatastream.html">QDataStream</a> &amp; <a name="d318b9"></a>QGVector::write ( <a href="qdatastream.html">QDataStream</a> &amp; s, <a href="qcollection.html#Item">Item</a> ) const <code>[virtual protected]</code></h3>
+<p>Writes a collection/vector item to the stream <em>s</em> and returns a reference
+to the stream.
+<p>The default implementation does nothing.
+<p>See also  <a href="#9eae85">read</a>().
+<h3 class="fn"><a name="0c8f8b"></a>QGVector::QGVector () <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a name="a6893c"></a>QGVector::QGVector ( const QGVector &amp; a ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a name="2772b8"></a>QGVector::QGVector ( uint size ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a name="d44d7c"></a>QGVector::~QGVector () <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">int <a name="9564c3"></a>QGVector::bsearch ( <a href="qcollection.html#Item">Item</a> d ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="a696d2"></a>QGVector::clear () <code>[virtual protected]</code></h3>
+<p>For internal use only.
+<p>Reimplemented from <a href="qcollection.html#e9c603">QCollection.</a>
+<h3 class="fn">uint <a name="d8b62d"></a>QGVector::contains ( <a href="qcollection.html#Item">Item</a> d ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">uint <a name="707cec"></a>QGVector::containsRef ( <a href="qcollection.html#Item">Item</a> d ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">bool <a name="201f17"></a>QGVector::fill ( <a href="qcollection.html#Item">Item</a> d, int flen ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">int <a name="c00c68"></a>QGVector::find ( <a href="qcollection.html#Item">Item</a> d, uint index ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">int <a name="8559a6"></a>QGVector::findRef ( <a href="qcollection.html#Item">Item</a> d, uint index ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">bool <a name="171f85"></a>QGVector::insert ( uint index, <a href="qcollection.html#Item">Item</a> d ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">bool <a name="01c7c1"></a>QGVector::insertExpand ( uint index, <a href="qcollection.html#Item">Item</a> d ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">QGVector&amp; <a name="1175f9"></a>QGVector::operator= ( const QGVector &amp; v ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qdatastream.html">QDataStream</a> &amp; <a name="c00918"></a>QGVector::read ( <a href="qdatastream.html">QDataStream</a> &amp; s )</h3>
+<p>For internal use only.
+<h3 class="fn">bool <a name="6793c0"></a>QGVector::remove ( uint index ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">bool <a name="1dc853"></a>QGVector::resize ( uint newsize ) <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="997ed7"></a>QGVector::sort () <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="7e002a"></a>QGVector::toList ( <a href="qglist.html">QGList</a> * list ) const <code>[protected]</code></h3>
+<p>For internal use only.
+<h3 class="fn"><a href="qdatastream.html">QDataStream</a> &amp; <a name="1e85f8"></a>QGVector::write ( <a href="qdatastream.html">QDataStream</a> &amp; s ) const</h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

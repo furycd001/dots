@@ -1,0 +1,112 @@
+/****************************************************************************
+** $Id: qt/doc/modules.doc   2.3.2   edited 2001-01-26 $
+**
+** Documentation to some of the modules
+**
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page modules.html
+
+\title About Modules
+
+When you install Qt, certain modules are built into the library. For
+the Qt Enterprise Edition, Qt Evaluation Edition and Qt Free Edition
+this is all modules. For Qt Professional Edition, the base modules
+are available -
+the <i>tools</i>, <i>kernel</i>, <i>widgets</i>, <i>dialog</i>,
+<i>iconview</i>, and <i>workspace</i> modules.
+Trolltech does not currently offer modules for sale individually.
+
+All modules may be used only under the terms of the licenses associated
+with each Edition.
+
+*/
+
+
+/*! \page iconview.html
+
+\title Qt IconView Module
+
+The icon view module provides a powerful visualization widget dubbed
+\l QIconView. API and feature-wise it is similar to \l QListView and
+\l QListBox. It contains optinally labelled pixmap items that the user
+can select, drag around, rename, delete and more.
+
+<center><a href="qiconview.html"><img src="qiconview-w.png" alt="Screenshot of QIconVIew"></a></center>
+
+Please see the \link qiconview.html class documentation \endlink for
+details.
+*/
+
+/*! \page table.html
+
+\title Qt Table Module
+
+The table module provides a  flexible and editable table widget dubbed \l QTable.
+
+<center><a href="qtable.html"><img src="qtable.png" alt="Screenshot of QTable"></a></center>
+
+QTable is the abstract widget of choice whenever you need to present
+spreadsheet data to the user or let the user edit such data.
+
+Please see the \link qtable.html class documentation \endlink for
+details.
+*/
+
+/*! \page canvas.html
+
+\title Qt Canvas Module
+
+The canvas module provides a highly optimized 2D graphic area called \l QCanvas.
+Upon the canvas, you place \link QCanvasItem QCanvasItems \endlink and view
+the canvas with 1 or more \link QCanvasView QCanvasViews \endlink, which are
+QWidgets.
+
+<center><a href="qcanvas.html"><img src="qcanvas.png" alt="Screenshot
+of QCanvas"></a></center>
+
+QCanvas features fast redrawing, animation, collision detection and
+more.
+Please see the documentation of the above classes for details.
+*/
+
+/*! \page workspace.html
+
+\title Qt Workspace Module
+
+The workspace module provides a workspace window that can contain
+decorated document windows for Multi Document Interfaces (MDI).
+
+It is implemented in a single class \l QWorkspace.
+
+Please see the \link qworkspace.html class documentation \endlink for
+details.
+*/

@@ -1,0 +1,4 @@
+#!/bin/sh
+qembed splash.png > splash.h
+perl -pi -e s/Embed/Embed2/ splash.h
+perl -pi -e s/embed_vec/embed_vec2/ splash.h

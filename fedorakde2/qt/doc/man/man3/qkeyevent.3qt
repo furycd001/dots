@@ -1,0 +1,162 @@
+'\" t
+.TH QKeyEvent 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QKeyEvent \- Parameters that describe a key event
+.br
+.PP
+\fC#include <qevent.h>\fR
+.PP
+Inherits QEvent.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQKeyEvent\fR ( Type " "type" ", int " "key" ", int " "ascii" ", int " "state" ", const QString & text=QString::null, bool " "autorep" "=FALSE, ushort " "count" "=1 ) "
+.br
+.ti -1c
+.BI "int \fBkey\fR () const"
+.br
+.ti -1c
+.BI "int \fBascii\fR () const"
+.br
+.ti -1c
+.BI "ButtonState \fBstate\fR () const"
+.br
+.ti -1c
+.BI "ButtonState \fBstateAfter\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisAccepted\fR () const"
+.br
+.ti -1c
+.BI "QString \fBtext\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisAutoRepeat\fR () const"
+.br
+.ti -1c
+.BI "int \fBcount\fR () const"
+.br
+.ti -1c
+.BI "void \fBaccept\fR () "
+.br
+.ti -1c
+.BI "void \fBignore\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QKeyEvent class contains parameters that describe a key event.
+.PP
+Key events occur when a key is pressed or released when a widget has keyboard input focus.
+.PP
+A key event contains a special accept flag which tells whether the receiver wants the key. You should call QKeyEvent::ignore() if the key press or release event is not handled by your widget.
+.PP
+The QWidget::setEnable() function can be used to enable or disable mouse and keyboard events for a widget.
+.PP
+The event handlers QWidget::keyPressEvent() and QWidget::keyReleaseEvent() receive key events.
+.PP
+See also QFocusEvent and QWidget::grabKeyboard().
+.PP
+Examples:
+.(l
+picture/picture.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QKeyEvent::QKeyEvent ( Type type, int key, int ascii, int state, const QString & text=QString::null, bool autorep=FALSE, ushort count=1 )"
+Constructs a key event object.
+.PP
+The \fItype\fR parameter must be \fCQEvent::KeyPress\fR or \fCQEvent::KeyRelease.\fR
+.PP
+If \fIkey\fR is 0, the event is not a result of a known key (e.g. it may be the result of a compose sequence or keyboard macro).
+.PP
+\fItext\fR will be returned by text().
+.PP
+If \fIautorep\fR is TRUE then isAutoRepeat() will be TRUE.
+.PP
+\fIcount\fR is the number of single keys.
+.PP
+The accept flag is set to TRUE.
+.SH "void QKeyEvent::accept ()"
+Sets the accept flag of the key event object.
+.PP
+Setting the accept parameter indicates that the receiver of the event wants the key event. Unwanted key events are sent to the parent widget.
+.PP
+The accept flag is set by default.
+.PP
+See also ignore().
+.SH "int QKeyEvent::ascii () const"
+Returns the ASCII code of the key that was pressed or released. We recommend using text() instead.
+.PP
+See also text().
+.PP
+Examples:
+.(l
+picture/picture.cpp
+.)l
+.SH "int QKeyEvent::count () const"
+Returns the number of single keys for this event. If text() is not empty, this is simply the length of the string.
+.PP
+However, Qt also compresses invisible keycodes, such as BackSpace. For those, count() returns the number of key presses/repeats this event represents.
+.PP
+See also QWidget::setKeyCompression().
+.SH "void QKeyEvent::ignore ()"
+Clears the accept flag parameter of the key event object.
+.PP
+Clearing the accept parameter indicates that the event receiver does not want the key event. Unwanted key events are sent to the parent widget.
+.PP
+The accept flag is set by default.
+.PP
+See also accept().
+.SH "bool QKeyEvent::isAccepted () const"
+Returns TRUE if the receiver of the event wants to keep the key.
+.SH "bool QKeyEvent::isAutoRepeat () const"
+Returns TRUE if this event comes from an auto-repeating key and FALSE if it comes from an initial press.
+.PP
+Note that if the event is a multiple-key compressed event which partly is due to autorepeat, this function returns an indeterminate value.
+.SH "int QKeyEvent::key () const"
+Returns the code of the key that was pressed or released.
+.PP
+The header file qnamespace.h lists the possible keyboard codes. These codes are independent of the underlying window system.
+.PP
+Key code 0 means that the event is not a result of a known key (e.g. it may be the result of a compose sequence or keyboard macro).
+.SH "ButtonState QKeyEvent::state () const"
+Returns the keyboard modifier flags that existed immediately before the event occurred.
+.PP
+The returned value is \fCShiftButton, ControlButton\fR and \fCAltButton\fR OR'ed together.
+.PP
+See also stateAfter().
+.SH "ButtonState QKeyEvent::stateAfter () const"
+Returns the keyboard modifier flags that existed immediately after the event occurred.
+.PP
+\fBWarning:\fR This function cannot be trusted.
+.PP
+See also state().
+.SH "QString QKeyEvent::text () const"
+Returns the Unicode text which this key generated.
+.PP
+See also  QWidget::setKeyCompression().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qkeyevent.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qkeyevent.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - iconview/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Iconview</h1><br clear="all">
+
+  This example implements a flexible icon view which can store
+  lots of icon items. It supports Drag'n'Drop, different selection modes,
+  view modes, rubberband selection, etc.
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/iconview/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qiconview.h"></a><a href="qiconview-h.html">qiconview.h</a>&gt;
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a name="qdragobject.h"></a><a href="qdragobject-h.html">qdragobject.h</a>&gt;
+#include &lt;<a name="qpixmap.h"></a><a href="qpixmap-h.html">qpixmap.h</a>&gt;
+#include &lt;<a name="qiconset.h"></a><a href="qiconset-h.html">qiconset.h</a>&gt;
+
+#include &lt;<a name="qmime.h"></a><a href="qmime-h.html">qmime.h</a>&gt;
+#include &lt;stdio.h&gt;
+
+class ListenDND : public QObject
+{
+    Q_OBJECT
+
+public:
+    ListenDND( <a name="QWidget"></a><a href="qwidget.html">QWidget</a> *w )
+        : view( w )
+    {}
+
+public slots:
+    void dropped( <a name="QDropEvent"></a><a href="qdropevent.html">QDropEvent</a> *mime ) {
+        printf( "Dropped Mimesource %p into the view %p\n", mime, view );
+        printf( "  Formats:\n" );
+        int i = 0;
+        const char *str = mime-&gt;<a name="format"></a><a href="qdropevent.html#d81a92">format</a>( i );
+        printf( "    %s\n", str );
+        while ( str ) {
+            printf( "    %s\n", str );
+            str = mime-&gt;<a href="qdropevent.html#d81a92">format</a>( ++i );
+        }
+    };
+    void moved() {
+        printf( "All selected items were moved to another widget\n" );
+    }
+
+protected:
+    <a href="qwidget.html">QWidget</a> *view;
+
+};
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    <a name="QIconView"></a><a href="qiconview.html">QIconView</a> qiconview;
+    qiconview.<a name="setSelectionMode"></a><a href="qiconview.html#98457a">setSelectionMode</a>( QIconView::Extended );
+
+    for ( unsigned int i = 0; i &lt; 3000; i++ ) {
+        <a name="QIconViewItem"></a><a href="qiconviewitem.html">QIconViewItem</a> *item = new <a href="qiconviewitem.html">QIconViewItem</a>( &amp;qiconview, QString( "Item %1" ).arg( i + 1 ) );
+        item-&gt;<a name="setRenameEnabled"></a><a href="qiconviewitem.html#2eb423">setRenameEnabled</a>( TRUE );
+    }
+
+    qiconview.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Iconview" );
+
+    ListenDND listen_dnd( &amp;qiconview );
+    <a name="QObject::connect"></a><a href="qobject.html#7f8e37">QObject::connect</a>( &amp;qiconview, SIGNAL( dropped( <a href="qdropevent.html">QDropEvent</a> *, const QValueList&lt;<a name="QIconDragItem"></a><a href="qicondragitem.html">QIconDragItem</a>&gt; &amp; ) ),
+                      &amp;listen_dnd, SLOT( dropped( <a href="qdropevent.html">QDropEvent</a> * ) ) );
+    <a href="qobject.html#7f8e37">QObject::connect</a>( &amp;qiconview, SIGNAL( moved() ), &amp;listen_dnd, SLOT( moved() ) );
+
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;qiconview );
+    qiconview.<a name="show"></a><a href="qscrollview.html#45ec27">show</a>();
+    qiconview.<a name="resize"></a><a href="qscrollview.html#3480d1">resize</a>( qiconview.<a name="sizeHint"></a><a href="qiconview.html#157488">sizeHint</a>() );
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+
+#include "main.moc"
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

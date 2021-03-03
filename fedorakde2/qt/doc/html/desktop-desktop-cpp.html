@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - desktop/desktop.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Painting on the Desktop</h1><br clear="all">
+
+  The desktop demo contains three routines, each of which draws
+  something on the desktop.  It does some nice stuff with QPainter,
+  and also demonstrates how one can treat the desktop as a widget like
+  any other.
+
+  <hr>
+
+  Implementation:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/desktop/desktop.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qimage.h"></a><a href="qimage-h.html">qimage.h</a>&gt;
+#include &lt;<a name="qbitmap.h"></a><a href="qbitmap-h.html">qbitmap.h</a>&gt;
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a name="qdropsite.h"></a><a href="qdropsite-h.html">qdropsite.h</a>&gt;
+#include &lt;<a name="qdragobject.h"></a><a href="qdragobject-h.html">qdragobject.h</a>&gt;
+#include &lt;stdio.h&gt;
+
+static double seed = 0.353535353535;
+static const int KINDA_RAND_MAX = 32767;
+
+static int kindaRand()
+{
+    seed = seed*147;
+    seed = seed - (double) ((int) seed);
+    return (int) ( seed*(KINDA_RAND_MAX + 1) );
+}
+
+static int velocity( int i )                    // change velocity
+{
+    const int velmax = 15;
+    const int velmin = 4;
+    if ( i == 1 || i == 2 )
+        i = (kindaRand()&amp;0x7fff % velmax)/3 + velmin;
+    else
+        i = (kindaRand()&amp;0x7fff % velmax) + velmin;
+    return i;
+}
+
+//
+// Draw polygon on desktop.
+//
+
+void poly()
+{
+    <a name="QWidget"></a><a href="qwidget.html">QWidget</a> *d = QApplication::desktop();
+    d-&gt;<a name="setBackgroundColor"></a><a href="qwidget.html#c09181">setBackgroundColor</a>( Qt::white );         // white desktop
+
+    const int maxpoints = 5;
+    const int maxcurves = 8;
+    static int xvel[maxpoints];
+    static int yvel[maxpoints];
+    int head = 0;
+    int tail = -maxcurves + 2;
+    <a name="QPointArray"></a><a href="qpointarray.html">QPointArray</a> *a = new <a href="qpointarray.html">QPointArray</a>[ maxcurves ];
+    register QPointArray *p;
+    <a name="QRect"></a><a href="qrect.html">QRect</a> r = d-&gt;<a name="rect"></a><a href="qwidget.html#75ae71">rect</a>();                        // desktop rectangle
+
+    int i;
+    for ( i=0; i&lt;maxcurves; i++ )
+        a[i].resize( maxpoints );
+    p = &amp;a[0];
+    for ( i=0; i&lt;maxpoints; i++ ) {             // setup first polygon points
+        p-&gt;setPoint( i, (kindaRand()&amp;0x7fff) % r.<a name="width"></a><a href="qrect.html#45fe95">width</a>(),
+                        (kindaRand()&amp;0x7fff) % r.<a name="height"></a><a href="qrect.html#581ab8">height</a>() );
+        xvel[i] = velocity(i);
+        yvel[i] = velocity(i);
+    }
+
+    <a name="QPainter"></a><a href="qpainter.html">QPainter</a> paint;
+    paint.<a name="begin"></a><a href="qpainter.html#02ed5d">begin</a>( d );                           // start painting desktop
+
+    for ( int ntimes=0; ntimes&lt;2000; ntimes++ ) {
+        paint.<a name="setBrush"></a><a href="qpainter.html#3e0cc8">setBrush</a>( <a name="QColor"></a><a href="qcolor.html">QColor</a>(kindaRand()%360, 180, 255, QColor::Hsv) );
+        paint.<a name="drawPolygon"></a><a href="qpainter.html#2efe17">drawPolygon</a>( a[head] );
+        if ( ++tail &gt;= maxcurves )
+            tail = 0;
+
+        int minx=r.<a name="left"></a><a href="qrect.html#369cab">left</a>(), maxx=r.<a name="right"></a><a href="qrect.html#896e32">right</a>();
+        int miny=r.<a name="top"></a><a href="qrect.html#4dd27e">top</a>(),  maxy=r.<a name="bottom"></a><a href="qrect.html#2de4b0">bottom</a>();
+        int x, y;
+        p = &amp;a[head];
+        if ( ++head &gt;= maxcurves )
+            head = 0;
+        for ( i=0; i&lt;maxpoints; i++ ) {         // calc new curve
+            p-&gt;point( i, &amp;x, &amp;y );
+            x += xvel[i];
+            y += yvel[i];
+            if ( x &gt;= maxx ) {
+                x = maxx - (x - maxx + 1);
+                xvel[i] = -velocity(i);
+            }
+            if ( x &lt;= minx ) {
+                x = minx + (minx - x + 1);
+                xvel[i] = velocity(i);
+            }
+            if ( y &gt;= maxy ) {
+                y = maxy - (y - maxy + 1);
+                yvel[i] = -velocity(i);
+            }
+            if ( y &lt;= miny ) {
+                y = miny + (miny - y + 1);
+                yvel[i] = velocity(i);
+            }
+            a[head].setPoint( i, x, y );
+        }
+    }
+    paint.<a name="end"></a><a href="qpainter.html#365784">end</a>();                                // painting done
+    delete[] a;
+}
+
+//
+// Rotate pattern on desktop.
+//
+
+void rotate()
+{
+    int i;
+    const int w = 64;
+    const int h = 64;
+    <a name="QImage"></a><a href="qimage.html">QImage</a> image( w, h, 8, 128 );               // create image
+    for ( i=0; i&lt;128; i++ )                     // build color table
+        image.<a name="setColor"></a><a href="qimage.html#271983">setColor</a>( i, <a name="qRgb"></a><a href="qcolor.html#dab147">qRgb</a>(i,0,0) );
+    for ( int y=0; y&lt;h; y++ ) {                 // set image pixels
+        uchar *p = image.<a name="scanLine"></a><a href="qimage.html#7632a9">scanLine</a>(y);
+        for ( int x=0; x&lt;w; x++ )
+            *p++ = (x+y)%128;
+    }
+
+    <a name="QPixmap"></a><a href="qpixmap.html">QPixmap</a> pm;
+    pm = image;                                 // convert image to pixmap
+    pm.<a name="setOptimization"></a><a href="qpixmap.html#41f5cf">setOptimization</a>( QPixmap::BestOptim );   // rotation will be faster
+
+    <a href="qwidget.html">QWidget</a> *d = QApplication::desktop();       // w = desktop widget
+
+    for ( i=0; i&lt;=360; i += 2 ) {
+        <a name="QWMatrix"></a><a href="qwmatrix.html">QWMatrix</a> m;
+        m.<a name="rotate"></a><a href="qwmatrix.html#71020d">rotate</a>( i );                          // rotate coordinate system
+        <a href="qpixmap.html">QPixmap</a> rpm = pm.<a name="xForm"></a><a href="qpixmap.html#ff5fcf">xForm</a>( m );            // rpm = rotated pixmap
+        d-&gt;<a name="setBackgroundPixmap"></a><a href="qwidget.html#7e417f">setBackgroundPixmap</a>( rpm );          // set desktop pixmap
+        d-&gt;<a name="update"></a><a href="qwidget.html#a66a88">update</a>();                            // repaint desktop
+    }
+}
+
+//
+// Generates a marble-like pattern in pm.
+//
+
+void generateStone( <a href="qpixmap.html">QPixmap</a> *pm,
+                    const QColor &amp;c1, const QColor &amp;c2, const QColor &amp;c3 )
+{
+    <a href="qpainter.html">QPainter</a> p;
+    <a name="QPen"></a><a href="qpen.html">QPen</a> p1 ( c1, 0 );
+    <a href="qpen.html">QPen</a> p2 ( c2, 0 );
+    <a href="qpen.html">QPen</a> p3 ( c3, 0 );
+
+    p.<a href="qpainter.html#02ed5d">begin</a>( pm );
+    for( int i = 0 ; i &lt; pm-&gt;<a name="width"></a><a href="qpixmap.html#86dbc5">width</a>() ; i++ )
+        for( int j = 0 ; j &lt; pm-&gt;<a name="height"></a><a href="qpixmap.html#d5bb33">height</a>() ; j++ ) {
+            int r = kindaRand();
+            if ( r &lt; KINDA_RAND_MAX / 3 )
+                p.<a name="setPen"></a><a href="qpainter.html#0183e4">setPen</a>( p1 );
+            else if ( r &lt; KINDA_RAND_MAX / 3 * 2 )
+                p.<a href="qpainter.html#0183e4">setPen</a>( p2 );
+            else
+                p.<a href="qpainter.html#0183e4">setPen</a>( p3 );
+            p.<a name="drawPoint"></a><a href="qpainter.html#8e172b">drawPoint</a>( i,j );
+        }
+    p.<a href="qpainter.html#365784">end</a>();
+}
+
+void drawShadeText( <a href="qpainter.html">QPainter</a> *p, int x, int y, const char *text,
+                    const QColor &amp;topColor, const QColor &amp;bottomColor,
+                    int sw = 2 )
+{
+    if ( !p-&gt;<a name="isActive"></a><a href="qpainter.html#08ba62">isActive</a>() )
+        return;
+
+    p-&gt;<a href="qpainter.html#0183e4">setPen</a>( bottomColor );
+    p-&gt;<a name="drawText"></a><a href="qpainter.html#0f088f">drawText</a>( x+sw, y+sw, text );
+    p-&gt;<a href="qpainter.html#0183e4">setPen</a>( topColor );
+    p-&gt;<a href="qpainter.html#0f088f">drawText</a>( x, y, text );
+}
+
+// NOTE: desktop drag/drop is experimental
+
+class DesktopWidget : public QWidget, private QDropSite
+{
+public:
+    DesktopWidget( const char *s, QWidget *parent=0, const char *name=0 );
+   ~DesktopWidget();
+    void paintEvent( <a name="QPaintEvent"></a><a href="qpaintevent.html">QPaintEvent</a> * );
+
+    void dragEnterEvent( <a name="QDragEnterEvent"></a><a href="qdragenterevent.html">QDragEnterEvent</a> *e )
+    {
+        if ( <a name="QImageDrag::canDecode"></a><a href="qimagedrag.html#c35128">QImageDrag::canDecode</a>(e) )
+            e-&gt;<a name="accept"></a><a href="qdropevent.html#da0c5a">accept</a>();
+    }
+
+    void dragLeaveEvent( <a name="QDragLeaveEvent"></a><a href="qdragleaveevent.html">QDragLeaveEvent</a> * )
+    {
+    }
+
+    void dragMoveEvent( <a name="QDragMoveEvent"></a><a href="qdragmoveevent.html">QDragMoveEvent</a> *e )
+    {
+        e-&gt;<a href="qdropevent.html#da0c5a">accept</a>();
+    }
+
+    void dropEvent( <a name="QDropEvent"></a><a href="qdropevent.html">QDropEvent</a> * e )
+    {
+        <a href="qpixmap.html">QPixmap</a> pmp;
+        if ( <a name="QImageDrag::decode"></a><a href="qimagedrag.html#037fd2">QImageDrag::decode</a>( e, pmp ) ) {
+            setBackgroundPixmap( pmp );
+            update();
+        }
+    }
+
+private:
+    <a href="qpixmap.html">QPixmap</a> *pm;
+    <a name="QString"></a><a href="qstring.html">QString</a> text;
+};
+
+DesktopWidget::DesktopWidget( const char *s, QWidget *parent, const char *name )
+    : <a href="qwidget.html">QWidget</a>( parent, name, WType_Desktop | WPaintDesktop),
+        <a name="QDropSite"></a><a href="qdropsite.html">QDropSite</a>(this)
+{
+    text = s;
+    pm   = 0;
+}
+
+DesktopWidget::~DesktopWidget()
+{
+    delete pm;
+}
+
+void <a name="341"></a>DesktopWidget::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * )
+{
+    <a href="qcolor.html">QColor</a> c1 = backgroundColor();
+    <a href="qcolor.html">QColor</a> c2 = c1.<a name="light"></a><a href="qcolor.html#b8743e">light</a>(104);
+    <a href="qcolor.html">QColor</a> c3 = c1.<a name="dark"></a><a href="qcolor.html#b8dbb6">dark</a>(106);
+    if ( !pm ) {
+        pm = new <a href="qpixmap.html">QPixmap</a>( 64, 64 );
+        generateStone( pm, c1, c2, c3 );
+        <a href="qwidget.html#7e417f">setBackgroundPixmap</a>( *pm );
+        <a href="qwidget.html#a66a88">update</a>();
+    }
+    <a href="qrect.html">QRect</a> br = fontMetrics().boundingRect( text );
+    <a href="qpixmap.html">QPixmap</a> offscreen( br.<a href="qrect.html#45fe95">width</a>(), br.<a href="qrect.html#581ab8">height</a>() );
+    int x = width()/2  - br.<a href="qrect.html#45fe95">width</a>()/2;
+    int y = height()/2 - br.<a href="qrect.html#581ab8">height</a>()/2;
+    offscreen.<a name="fill"></a><a href="qpixmap.html#6910a0">fill</a>( this, x, y );
+    <a href="qpainter.html">QPainter</a> p;
+    p.<a href="qpainter.html#02ed5d">begin</a>( &amp;offscreen );
+    drawShadeText( &amp;p, -br.<a name="x"></a><a href="qrect.html#fccae7">x</a>(), -br.<a name="y"></a><a href="qrect.html#f448f7">y</a>(), text, c2, c3, 3 );
+    p.<a href="qpainter.html#365784">end</a>();
+    <a name="bitBlt"></a><a href="qpaintdevice.html#35ae2e">bitBlt</a>( this, x, y, &amp;offscreen );
+}
+
+void desktopWidget( const char *s = "Trolltech" )
+{
+    DesktopWidget *t = new DesktopWidget(s);
+    t-&gt;<a href="qwidget.html#a66a88">update</a>();
+    qApp-&gt;exec();
+    delete t;
+}
+
+void desktopText( const char *s = "Trolltech" )
+{
+    const int border = 20;
+
+    <a href="qcolor.html">QColor</a> c1 =  qApp-&gt;palette().normal().background();
+    <a href="qcolor.html">QColor</a> c2 = c1.<a href="qcolor.html#b8743e">light</a>(104);
+    <a href="qcolor.html">QColor</a> c3 = c1.<a href="qcolor.html#b8dbb6">dark</a>(106);
+
+    <a href="qpixmap.html">QPixmap</a> pm(10,10);
+
+    <a href="qpainter.html">QPainter</a> p;
+    p.<a href="qpainter.html#02ed5d">begin</a>( &amp;pm );
+    <a href="qrect.html">QRect</a> r = p.<a name="fontMetrics"></a><a href="qpainter.html#73b2e5">fontMetrics</a>().boundingRect( s );
+    p.<a href="qpainter.html#365784">end</a>();
+
+    int appWidth  =  qApp-&gt;desktop()-&gt;width();
+    int appHeight =  qApp-&gt;desktop()-&gt;height();
+    if ( r.<a href="qrect.html#45fe95">width</a>() &gt; appWidth - border*2 )
+        r.<a name="setWidth"></a><a href="qrect.html#5b765c">setWidth</a>( appWidth - border*2 );
+    if ( r.<a href="qrect.html#581ab8">height</a>() &gt; appHeight - border*2 )
+        r.<a name="setHeight"></a><a href="qrect.html#324bcf">setHeight</a>( appHeight - border*2 );
+
+    pm.<a name="resize"></a><a href="qpixmap.html#b4f156">resize</a>( r.<a name="size"></a><a href="qrect.html#507cd9">size</a>() + QSize( border*2, border*2 ) );
+    generateStone( &amp;pm, c1, c2, c3 );
+    p.<a href="qpainter.html#02ed5d">begin</a>( &amp;pm );
+    drawShadeText( &amp;p, -r.<a href="qrect.html#fccae7">x</a>() + border, -r.<a href="qrect.html#f448f7">y</a>() + border, s, c2, c3 );
+    p.<a href="qpainter.html#365784">end</a>();
+
+    qApp-&gt;desktop()-&gt;setBackgroundPixmap( pm );
+}
+
+//
+// The program starts here.
+//
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> app( argc, argv );
+
+    if ( argc &gt; 1 ) {
+        <a name="QFont"></a><a href="qfont.html">QFont</a> f( "charter", 96, QFont::Black );
+        f.<a name="setStyleHint"></a><a href="qfont.html#7beece">setStyleHint</a>( QFont::Times );
+        app.<a name="setFont"></a><a href="qapplication.html#3d926a">setFont</a>( f );
+    }
+
+    bool validOptions = FALSE;
+
+    if ( argc == 2 ) {
+        validOptions = TRUE;
+        if ( strcmp(argv[1],"-poly") == 0 )
+            poly();
+        else if ( strcmp(argv[1],"-rotate") == 0 )
+            rotate();
+        else if ( strcmp(argv[1],"-troll") == 0 )
+            desktopText();
+        else if ( strcmp(argv[1],"-trollwidget") == 0 )
+            desktopWidget();
+        else
+            validOptions = FALSE;
+    }
+    if ( argc == 3 ) {
+        validOptions = TRUE;
+        if ( strcmp(argv[1],"-shadetext") == 0 )
+            desktopText( argv[2] );
+        else if ( strcmp(argv[1],"-shadewidget") == 0 )
+            desktopWidget( argv[2] );
+        else
+            validOptions = FALSE;
+    }
+    if ( !validOptions ) {
+        fprintf( stderr, "Usage:\n\tdesktop -poly"
+                               "\n\tdesktop -rotate"
+                               "\n\tdesktop -troll"
+                               "\n\tdesktop -trollwidget"
+                               "\n\tdesktop -shadetext &lt;text&gt;"
+                               "\n\tdesktop -shadewidget &lt;text&gt;\n" );
+        rotate();
+    }
+    return 0;
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

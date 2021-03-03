@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Tutorial - Chapter 5: Building Blocks
+</title></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>Chapter 5: Building Blocks</h1><br clear="all">
+<p>
+<center><img src="t5.png" alt="Screenshot of tutorial five"></center>
+<p>
+This example shows how to create and connect together several widgets
+using signals and slots, and how to handle resize events. <pre>/****************************************************************
+**
+** Qt tutorial 5
+**
+****************************************************************/
+
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a href="qslider-h.html">qslider.h</a>&gt;
+#include &lt;<a href="qlcdnumber-h.html">qlcdnumber.h</a>&gt;
+#include &lt;<a href="qfont-h.html">qfont.h</a>&gt;
+
+#include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+
+class MyWidget : public QVBox
+{
+public:
+    MyWidget( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+};
+
+MyWidget::MyWidget( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+        : <a href="qvbox.html">QVBox</a>( parent, name )
+{
+    <a href="qpushbutton.html">QPushButton</a> *quit = new <a href="qpushbutton.html">QPushButton</a>( "Quit", this, "quit" );
+    quit-&gt;<a href="qwidget.html#c52788">setFont</a>( <a href="qfont.html">QFont</a>( "Times", 18, QFont::Bold ) );
+
+    <a href="qobject.html#7f8e37">connect</a>( quit, SIGNAL(clicked()), qApp, SLOT(quit()) );
+
+    <a href="qlcdnumber.html">QLCDNumber</a> *lcd  = new <a href="qlcdnumber.html">QLCDNumber</a>( 2, this, "lcd" );
+
+    <a href="qslider.html">QSlider</a> * slider = new <a href="qslider.html">QSlider</a>( Horizontal, this, "slider" );
+    slider-&gt;<a href="qrangecontrol.html#f2409c">setRange</a>( 0, 99 );
+    slider-&gt;<a href="qslider.html#a03234">setValue</a>( 0 );
+
+    <a href="qobject.html#7f8e37">connect</a>( slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)) );
+}
+
+int main( int argc, char **argv )
+{
+    <a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    MyWidget w;
+    a.<a href="qapplication.html#7ad759">setMainWidget</a>( &amp;w );
+    w.<a href="qwidget.html#200ee5">show</a>();
+    return a.<a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p>
+<h2>Line by Line Walk-Through</h2>  <pre>
+    #include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+    #include &lt;<a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+    #include &lt;<a href="qslider-h.html">qslider.h</a>&gt;
+    #include &lt;<a href="qlcdnumber-h.html">qlcdnumber.h</a>&gt;
+    #include &lt;<a href="qfont-h.html">qfont.h</a>&gt;
+    
+    #include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+</pre>
+<p>
+Three new include files here.  qslider.h and qlcdnumber.h are there
+because we use two new widgets; QSlider and QLCDNumber.  qvbox.h is
+there because we use Qt's automatic layout support.  <pre>
+    class MyWidget : public QVBox
+    {
+    public:
+        MyWidget( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+    };
+</pre>
+<p>
+<a name=constructor></a> <pre>
+    MyWidget::MyWidget( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+            : <a href="qvbox.html">QVBox</a>( parent, name )
+    {
+</pre>
+<p>
+MyWidget is now derived from QVBox instead of QWidget. That way we use
+the layout of the QVBox (which places all of its children vertically
+inside itself). Resizes are handled automatically by the QVBox and
+therefore by MyWidget too, now.  <pre>
+        <a href="qlcdnumber.html">QLCDNumber</a> *lcd  = new <a href="qlcdnumber.html">QLCDNumber</a>( 2, this, "lcd" );
+</pre>
+<p>
+<code>lcd</code> is a QLCDNumber, a widget which displays numbers in an LCD-like
+fashion.  This instance is set up to display two digits, be a child of
+<em>this</em> and is named "lcd". <pre>
+        <a href="qslider.html">QSlider</a> * slider = new <a href="qslider.html">QSlider</a>( Horizontal, this, "slider" );
+        slider-&gt;<a href="qrangecontrol.html#f2409c">setRange</a>( 0, 99 );
+        slider-&gt;<a href="qslider.html#a03234">setValue</a>( 0 );
+</pre>
+<p>
+QSlider is a classical slider; a widget where the user can drag
+something to adjust an integer value in a range.  Here, we create a
+horizontal one, set its range to 0-99 (inclusive, see the <a href="qrangecontrol.html#f2409c">QSlider::setRange()</a> documentation) and its initial value to 0. <pre>
+        <a href="qobject.html#7f8e37">connect</a>( slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)) );
+</pre>
+<p>
+Here we use the <a href="signalsandslots.html">signal/slot mechanism</a>
+to connect the slider's valueChanged() signal to the LCD number's
+display() slot.
+<p>
+Whenever the slider's value changes, it broadcasts the new value by
+emitting the valueChanged() signal.  Since that signal is connected to
+the LCD number's display() slot, the slot is called when the signal is
+broadcast.  Neither of the objects know about the other.  This is
+essential in component programming.
+<p>
+Slots are otherwise normal C++ member functions and follow the normal
+C++ access rules.
+<p>
+<h2>Behavior</h2>
+<p>
+The LCD number reflects everything you do to the slider, and the
+widget handles resizing well.  Notice how the LCD number widget
+changes in size when the window is resized (because it can), but the
+others stay about the same (because they would look stupid otherwise).
+<p>
+<h2>Exercises</h2>
+<p>
+Try changing the LCD number to add more digits or <a href="qlcdnumber.html#4521f9">change mode.</a> You can even add four push
+buttons to set the number base.
+<p>
+You can also change the slider's range.
+<p>
+Perhaps it would have been better to use <a href="qspinbox.html">QSpinBox</a> than a slider?
+<p>
+Try to make the application quit when the LCD number overflows.
+<p>
+You may now go on to <a href="t6.html">chapter six.</a>
+<p>
+[<a href="t4.html">Previous tutorial</a>]
+[<a href="t6.html">Next tutorial</a>]
+[<a href="tutorial.html">Main tutorial page</a>]
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

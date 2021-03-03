@@ -1,0 +1,93 @@
+/****************************************************************************
+** $Id: qt/doc/winsystem.doc   2.3.2   edited 2001-01-26 $
+**
+** Windowsystem-specific pages
+**
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#if defined(DEBUG)
+static char ident[] = "$Id: qt/doc/winsystem.doc   2.3.2   edited 2001-01-26 $";
+#endif
+
+/*! \page winsystem.html
+
+\title Windowsystem-specific Notes
+
+Qt is a cross-platform GUI toolkit, so almost the entire API is the
+same on all platforms and windowsystems. However some development tasks
+may require you to write small windowsystem-specific tasks.
+This page documents the windowsystem-specific parts of the Qt API.
+Note that any use of these features renders your application non-portable
+to other Qt-supported windowsystems, so protect such code with appropriate
+"#ifdef" directives (see below), preferably with code for each platform to which
+you wish to retain portability.
+
+For information about which platforms are supported by Qt, see the
+<a href="http://www.trolltech.com/products/platforms/">Platform Notes</a>.
+
+<a name=x11>
+<h2>Qt/X11</h2>
+</a>
+
+When compiling for this platform, the macro <tt>_WS_X11_</tt> is defined.
+
+<p>
+<i>Not documented here. Please contact Trolltech Technical Support
+if you have queries.</i>
+
+<a name=win>
+<h2>Qt/Windows</h2>
+</a>
+
+When compiling for this platform, the macro <tt>_WS_WIN_</tt> is defined.
+
+<i>Not documented here. Please contact Trolltech Technical Support
+if you have queries.</i>
+
+<a name=qws>
+<h2>Qt/Embedded</h2>
+</a>
+
+When compiling for this platform, the macro <tt>_WS_QWS_</tt> is defined
+(the window system is literally the Qt Window System).
+
+<ul>
+ <li><a href=install-qws.html>Installation</a>
+ <li><a href=running-qws.html>Running Qt/Embedded applications</a>
+ <li><a href=porting-qws.html>Porting your applications to Qt/Embedded</a>
+ <li><a href=fonts-qws.html>Font formats and definitions</a>
+ <li><a href=charinput-qws.html>Character input (keyboard, pen, ...)</a>
+ <li><a href=pointer-qws.html>Pointer handling (mouse, pen, ...)</a>
+ <li><a href=features.html>Reduce memory use with the feature definition file</a>
+ <li><a href=casestudy-qws.html>A case study embedding on Cassiopeia</a>
+</ul>
+
+*/

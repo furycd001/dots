@@ -1,0 +1,10 @@
+TEMPLATE	= app
+CONFIG		+= qt dll release
+HEADERS		= 
+SOURCES		= qtimage.cpp
+unix:LIBS	= -lqnp -lXt
+win32:LIBS	= $(QTDIR)/lib/qnp.lib
+DEF_FILE	= qtimage.def
+RC_FILE		= qtimage.rc
+TARGET		= qtimage
+win32:TARGET	= npqtimage

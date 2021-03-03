@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QMapIterator Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QMapIterator Class Reference</h1><br clear="all">
+<p>
+The QMapIterator class provides an iterator for <a href="qmap.html">QMap</a>.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qmap-h.html">qmap.h</a>&gt;</code>
+<p><a href="qmapiterator-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#61336e"><b>QMapIterator</b></a> () </div>
+<li><div class="fn"><a href="#eaf4f5"><b>QMapIterator</b></a> ( QMapNode&lt;K, T&gt; * p ) </div>
+<li><div class="fn"><a href="#ddb52f"><b>QMapIterator</b></a> ( const QMapIterator&lt;K,T&gt; &amp; it ) </div>
+<li><div class="fn">bool <a href="#dd06b8"><b>operator==</b></a> ( const QMapIterator&lt;K,T&gt; &amp; it ) const</div>
+<li><div class="fn">bool <a href="#ddfd65"><b>operator!=</b></a> ( const QMapIterator&lt;K,T&gt; &amp; it ) const</div>
+<li><div class="fn">T&amp; <a href="#57a1c9"><b>operator*</b></a> () </div>
+<li><div class="fn">const T&amp; <a href="#c66e69"><b>operator*</b></a> () const</div>
+<li><div class="fn">const K&amp; <a href="#6639c3"><b>key</b></a> () const</div>
+<li><div class="fn">T&amp; <a href="#f7b448"><b>data</b></a> () </div>
+<li><div class="fn">const T&amp; <a href="#78950a"><b>data</b></a> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QMapIterator class provides an iterator for <a href="qmap.html">QMap</a>.
+<p>
+You can not create an iterator by yourself. Instead you have to ask
+a map to give you one. An iterator has only the size of a pointer.
+On 32 bit machines that means 4 bytes otherwise 8 bytes. That makes
+them very fast. In fact they resemble the semantics of pointers as
+good as possible and they are almost as fast as usual pointers.
+<p>Example:
+<pre>    #include &lt;qmap.h&gt;
+    #include &lt;qstring.h&gt;
+    #include &lt;stdio.h&gt;
+
+    class Employee
+    {
+    public:
+        Employee(): s(0) {}
+        Employee( const QString&amp; name, int salary )
+            : n(name), s(salary)
+        {}
+
+        <a href="qstring.html">QString</a>     name()   const              { return n; }
+        int         salary() const              { return s; }
+        void        setSalary( int salary )     { s = salary; }
+    private:
+        <a href="qstring.html">QString</a>     n;
+        int         s;
+    };
+
+    void main()
+    {
+        typedef QMap&lt;<a href="qstring.html">QString</a>,Employee&gt; EmployeeMap;
+        EmployeeMap map;                // map of Employee
+
+        map.insert( "Gates", Employee("Bill", 50000) );
+        map.insert( "Ballmer", Employee("Steve",80000) );
+        map.insert( "Sommer,", Employee("Ron",  60000) );
+
+        Employee joe( "Joe", 50000 );
+        map.insert( "Doe", joe );
+        joe.setSalary( 4000 );
+
+        EmployeeMap::Iterator it;
+        for( it = map.begin(); it != map.end(); ++it )
+            printf( "%s, %s earns %d\n", it.key().latin1(), it.data().name().latin1(), it.data().salary() );
+    }
+</pre>
+<p>Program output:
+<pre>        Ballmer, Steve earns 80000
+        Doe, Joe earns 50000
+        Gates, Bill earns 50000
+        Sommer, Ron earns 60000
+</pre>
+<p>The only way to traverse a map is to use iterators.  QMap is highly
+optimized for performance and memory usage.  On the other hand that
+means that you have to be a bit more careful by what you are
+doing. QMap does not know about all its iterators and the iterators
+don't even know to which map they belong. That makes things fast and
+slim but a bit dangerous because it is up to you to make sure that
+iterators you are using are still valid. <a href="qdictiterator.html">QDictIterator</a> will be able
+to give warnings while QMapIterator may end up in an undefined
+state.
+<p>For every Iterator there is a ConstIterator. When accessing a QMap
+in a const environment or if the reference or pointer to the map is
+itself const, then you have to use the ConstIterator. Its semantics
+are the same, but it returns only const references to the item it
+points to.
+<p>See also  <a href="qmap.html">QMap</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="61336e"></a>QMapIterator::QMapIterator ()</h3>
+<p>Creates an uninitialized iterator.
+<h3 class="fn"><a name="eaf4f5"></a>QMapIterator::QMapIterator ( QMapNode&lt;K, T&gt; * p )</h3>
+<p>Constructs an iterator starting at node <em>p.</em>
+<h3 class="fn"><a name="ddb52f"></a>QMapIterator::QMapIterator ( const QMapIterator&lt;K,T&gt; &amp; it )</h3>
+<p>Constructs a copy of the iterator.
+<h3 class="fn">T&amp; <a name="f7b448"></a>QMapIterator::data ()</h3>
+<p>Returns a reference to the current item.
+<h3 class="fn">const T&amp; <a name="78950a"></a>QMapIterator::data () const</h3>
+<p>Returns a const reference to the data of the current item.
+<h3 class="fn">const K&amp; <a name="6639c3"></a>QMapIterator::key () const</h3>
+<p>Returns a const reference to the data of the current key.
+<h3 class="fn">bool <a name="ddfd65"></a>QMapIterator::operator!= ( const QMapIterator&lt;K,T&gt; &amp; it ) const</h3>
+<p>Compares both iterators and returns TRUE if they point to different
+items.
+<h3 class="fn">T&amp; <a name="57a1c9"></a>QMapIterator::operator* ()</h3>
+<p>Asterix operator. Returns a reference to the current item. The same
+as <a href="#78950a">data</a>().
+<h3 class="fn">const T&amp; <a name="c66e69"></a>QMapIterator::operator* () const</h3>
+<p>Asterix operator. Returns a const reference to the current item. The
+same as <a href="#78950a">data</a>().
+<h3 class="fn">bool <a name="dd06b8"></a>QMapIterator::operator== ( const QMapIterator&lt;K,T&gt; &amp; it ) const</h3>
+<p>Compares both iterators and returns TRUE if they point to the same
+item.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

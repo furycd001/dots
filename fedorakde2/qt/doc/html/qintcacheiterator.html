@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QIntCacheIterator Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QIntCacheIterator Class Reference</h1><br clear="all">
+<p>
+The QIntCacheIterator class provides an iterator for <a href="qintcache.html">QIntCache</a> collections.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qcache-h.html">qcache.h</a>&gt;</code>
+<p>
+Inherits <a href="qgcacheiterator.html">QGCacheIterator</a>.
+<p><a href="qintcacheiterator-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#10081e"><b>QIntCacheIterator</b></a> ( const QIntCache&lt;type&gt; &amp; cache ) </div>
+<li><div class="fn"><a href="#e79037"><b>QIntCacheIterator</b></a> ( const QIntCacheIterator&lt;type&gt; &amp; ci ) </div>
+<li><div class="fn">QIntCacheIterator&lt;type&gt;&amp; <a href="#aaebfd"><b>operator=</b></a> ( const QIntCacheIterator&lt;type&gt; &amp; ci ) </div>
+<li><div class="fn">uint <a href="#aeb903"><b>count</b></a> () const</div>
+<li><div class="fn">bool <a href="#d8c067"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">bool <a href="#7d600c"><b>atFirst</b></a> () const</div>
+<li><div class="fn">bool <a href="#67e20b"><b>atLast</b></a> () const</div>
+<li><div class="fn">type* <a href="#488f6d"><b>toFirst</b></a> () </div>
+<li><div class="fn">type* <a href="#709300"><b>toLast</b></a> () </div>
+<li><div class="fn">operator <a href=qintcacheiterator.html#e03277><b>type*</b></a> ()const</div>
+<li><div class="fn">type* <a href="#306ef9"><b>current</b></a> () const</div>
+<li><div class="fn">long <a href="#1d2e5e"><b>currentKey</b></a> () const</div>
+<li><div class="fn">type* <a href="#efa4fe"><b>operator</b></a> () </div>
+<li><div class="fn">type* <a href="#17eb19"><b>operator++</b></a> () </div>
+<li><div class="fn">type* <a href="#595782"><b>operator+=</b></a> ( uint jump ) </div>
+<li><div class="fn">type* <a href="#8403e5"><b>operator--</b></a> () </div>
+<li><div class="fn">type* <a href="#2d8aa5"><b>operator-=</b></a> ( uint jump ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QIntCacheIterator class provides an iterator for <a href="qintcache.html">QIntCache</a> collections.
+<p>
+Note that the traversal order is arbitrary, you are not guaranteed
+any particular order.  If new objects are inserted into the cache
+while the iterator is active, the iterator may or may not see them.
+<p>Multiple iterators are completely independent, even when they
+operate on the same QIntCache. QIntCache updates all iterators that refer
+an item when that item is removed.
+<p>QIntCacheIterator provides an <a href="#17eb19">operator++</a>(), and an <a href="#595782">operator+=</a>() to
+traverse the cache, <a href="#306ef9">current</a>() and <a href="#1d2e5e">currentKey</a>() to access the current
+cache item and its key, <a href="#7d600c">atFirst</a>() <a href="#67e20b">atLast</a>() which return TRUE if the
+iterator points to the first/last item in the cache, <a href="#d8c067">isEmpty</a>() which
+returns TRUE if the cache is empty and finally <a href="#aeb903">count</a>() which returns
+the number of items in the cache.
+<p>Note that atFirst() and atLast() refer to the iterator's arbitrary
+ordering, not to the cache's internal LRU list.
+<p>See also  <a href="qintcache.html">QIntCache</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="10081e"></a>QIntCacheIterator::QIntCacheIterator ( const <a href="qintcache.html">QIntCache</a>&lt;type&gt; &amp; cache )</h3>
+<p>Constructs an iterator for <em>cache.</em>  The current iterator item is
+set to point on the first item in the <em>cache</em> (or rather, the first
+item is defined to be the item at which this constructor sets the
+iterator to point).
+<h3 class="fn"><a name="e79037"></a>QIntCacheIterator::QIntCacheIterator ( const QIntCacheIterator&lt;type&gt; &amp; ci )</h3>
+<p>Constructs an iterator for the same cache as <em>ci.</em>  The new
+iterator starts at the same item as ci.<a href="#306ef9">current</a>(), but moves
+independently from there on.
+<h3 class="fn"><a name="e03277"></a>QIntCacheIterator::operator type * () const</h3>
+<p>Cast operator. Returns a pointer to the current iterator item.
+Same as <a href="#306ef9">current</a>().
+<h3 class="fn">bool <a name="7d600c"></a>QIntCacheIterator::atFirst () const</h3>
+<p>Returns TRUE if the iterator points to the first item in the
+cache. Note that this refers to the iterator's arbitrary ordering,
+not to the cache's internal LRU list.
+<p>See also  <a href="#488f6d">toFirst</a>() and <a href="#67e20b">atLast</a>().
+<h3 class="fn">bool <a name="67e20b"></a>QIntCacheIterator::atLast () const</h3>
+<p>Returns TRUE if the iterator points to the last item in the
+cache. Note that this refers to the iterator's arbitrary ordering,
+not to the cache's internal LRU list.
+<p>See also  <a href="#709300">toLast</a>() and <a href="#7d600c">atFirst</a>().
+<h3 class="fn">uint <a name="aeb903"></a>QIntCacheIterator::count () const</h3>
+<p>Returns the number of items in the cache on which this iterator operates.
+<p>See also  <a href="#d8c067">isEmpty</a>().
+<h3 class="fn">type * <a name="306ef9"></a>QIntCacheIterator::current () const</h3>
+<p>Returns a pointer to the current iterator item.
+<h3 class="fn">long <a name="1d2e5e"></a>QIntCacheIterator::currentKey () const</h3>
+<p>Returns the key for the current iterator item.
+<h3 class="fn">bool <a name="d8c067"></a>QIntCacheIterator::isEmpty () const</h3>
+<p>Returns TRUE if the cache is empty, i.e. <a href="#aeb903">count</a>() == 0, otherwise
+FALSE.
+<p>See also  <a href="#aeb903">count</a>().
+<h3 class="fn">type * <a name="efa4fe"></a>QIntCacheIterator::operator() ()</h3>
+<p>Makes the succeeding item current and returns the original current
+item.
+<p>If the current iterator item was the last item in the cache or if it
+was null, null is returned.
+<h3 class="fn">type * <a name="17eb19"></a>QIntCacheIterator::operator++ ()</h3>
+<p>Prefix ++ makes the iterator point to the item just after <em><a href="#306ef9">current</a>(),</em> and makes that the new current item for the iterator.  If
+current() was the last item, <a href="#8403e5">operator--</a>() returns 0.
+<h3 class="fn">type * <a name="595782"></a>QIntCacheIterator::operator+= ( uint jump )</h3>
+<p>Returns the item <em>jump</em> positions after the current item, or null if
+it is beyond the last item.  Makes this the current item.
+<h3 class="fn">type * <a name="8403e5"></a>QIntCacheIterator::operator-- ()</h3>
+<p>Prefix -- makes the iterator point to the item just before <em><a href="#306ef9">current</a>(),</em> and makes that the new current item for the iterator.  If
+current() was the first item, operator--() returns 0.
+<h3 class="fn">type * <a name="2d8aa5"></a>QIntCacheIterator::operator-= ( uint jump )</h3>
+<p>Returns the item <em>jump</em> positions before the current item, or null if
+it is beyond the first item.  Makes this the current item.
+<h3 class="fn">QIntCacheIterator&lt;type&gt;&amp; <a name="aaebfd"></a>QIntCacheIterator::operator= ( const QIntCacheIterator&lt;type&gt; &amp; ci )</h3>
+<p>Makes this an iterator for the same cache as <em>ci.</em>  The new
+iterator starts at the same item as ci.<a href="#306ef9">current</a>(), but moves
+independently thereafter.
+<h3 class="fn">type * <a name="488f6d"></a>QIntCacheIterator::toFirst ()</h3>
+<p>Sets the iterator to point to the first item in the cache and
+returns a pointer to the item.
+<p>Sets the iterator to null and returns null if if the cache is empty.
+<p>See also  <a href="#709300">toLast</a>() and <a href="#d8c067">isEmpty</a>().
+<h3 class="fn">type * <a name="709300"></a>QIntCacheIterator::toLast ()</h3>
+<p>Sets the iterator to point to the last item in the cache and
+returns a pointer to the item.
+<p>Sets the iterator to null and returns null if if the cache is empty.
+<p>See also  <a href="#488f6d">toFirst</a>() and <a href="#d8c067">isEmpty</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,248 @@
+'\" t
+.TH QBrush 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QBrush \- Defines the fill pattern of shapes drawn by a
+.br
+.PP
+\fC#include <qbrush.h>\fR
+.PP
+Inherits Qt.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQBrush\fR () "
+.br
+.ti -1c
+.BI "\fBQBrush\fR ( BrushStyle ) "
+.br
+.ti -1c
+.BI "\fBQBrush\fR ( const QColor &, BrushStyle=SolidPattern ) "
+.br
+.ti -1c
+.BI "\fBQBrush\fR ( const QColor &, const QPixmap & ) "
+.br
+.ti -1c
+.BI "\fBQBrush\fR ( const QBrush & ) "
+.br
+.ti -1c
+.BI "\fB~QBrush\fR () "
+.br
+.ti -1c
+.BI "QBrush& \fBoperator=\fR ( const QBrush & ) "
+.br
+.ti -1c
+.BI "BrushStyle \fBstyle\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetStyle\fR ( BrushStyle ) "
+.br
+.ti -1c
+.BI "const QColor& \fBcolor\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetColor\fR ( const QColor & ) "
+.br
+.ti -1c
+.BI "QPixmap* \fBpixmap\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPixmap\fR ( const QPixmap & ) "
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QBrush & p ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QBrush & b ) const"
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QBrush & " "b" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QBrush & " "b" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QBrush class defines the fill pattern of shapes drawn by a QPainter.
+.PP
+A brush has a style and a color. One of the brush styles is a custom pattern, which is defined by a QPixmap.
+.PP
+The brush style defines the fill pattern. The default brush style is \fCNoBrush\fR (depends on how you construct a brush). This style tells the painter to not fill shapes. The standard style for filling is called \fCSolidPattern.\fR
+.PP
+The brush color defines the color of the fill pattern. The QColor documentation lists the predefined colors.
+.PP
+Use the QPen class for specifying line/outline styles.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPainter painter;
+.br
+    QBrush   brush( yellow );           // yellow solid pattern
+.br
+    painter.begin( &anyPaintDevice );   // paint something
+.br
+    painter.setBrush( brush );          // set the yellow brush
+.br
+    painter.setPen( NoPen );            // do not draw outline
+.br
+    painter.drawRect( 40,30, 200,100 ); // draw filled rectangle
+.br
+    painter.setBrush( NoBrush );        // do not fill
+.br
+    painter.setPen( black );            // set black pen, 0 pixel width
+.br
+    painter.drawRect( 10,10, 30,20 );   // draw rectangle outline
+.br
+    painter.end();                      // painting done
+.fi
+.PP
+See the setStyle() function for a complete list of brush styles.
+.PP
+See also QPainter, QPainter::setBrush() and QPainter::setBrushOrigin().
+.PP
+Examples:
+.(l
+drawdemo/drawdemo.cpp picture/picture.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QBrush::QBrush ()"
+Constructs a default black brush with the style \fCNoBrush\fR (will not fill shapes).
+.SH "QBrush::QBrush ( BrushStyle style )"
+Constructs a black brush with the specified style.
+.PP
+See also setStyle().
+.SH "QBrush::QBrush ( const QColor & color, BrushStyle style=SolidPattern )"
+Constructs a brush with a specified color and style.
+.PP
+See also setColor() and setStyle().
+.SH "QBrush::QBrush ( const QColor & color, const QPixmap & pixmap )"
+Constructs a brush with a specified color and a custom pattern.
+.PP
+The color will only have an effect for monochrome pixmaps, i.e. QPixmap::depth() == 1.
+.PP
+See also setColor() and setPixmap().
+.SH "QBrush::QBrush ( const QBrush & b )"
+Constructs a brush which is a shallow copy of \fIb.\fR
+.SH "QBrush::~QBrush ()"
+Destructs the brush.
+.SH "const QColor & QBrush::color () const"
+Returns the brush color.
+.PP
+See also setColor().
+.SH "bool QBrush::operator!= ( const QBrush & b ) const"
+Returns TRUE if the brush is different from \fIb,\fR or FALSE if the brushes are equal.
+.PP
+Two brushes are different if they have different styles, colors or pixmaps.
+.PP
+See also operator==().
+.SH "QBrush & QBrush::operator= ( const QBrush & b )"
+Assigns \fIb\fR to this brush and returns a reference to this brush.
+.SH "bool QBrush::operator== ( const QBrush & b ) const"
+Returns TRUE if the brush is equal to \fIb,\fR or FALSE if the brushes are different.
+.PP
+Two brushes are equal if they have equal styles, colors and pixmaps.
+.PP
+See also operator!=().
+.SH "QPixmap * QBrush::pixmap () const"
+Returns a pointer to the custom brush pattern.
+.PP
+A null pointer is returned if no custom brush pattern has been set.
+.PP
+See also setPixmap().
+.SH "void QBrush::setColor ( const QColor & c )"
+Sets the brush color to \fIc.\fR
+.PP
+See also color() and setStyle().
+.PP
+Examples:
+.(l
+picture/picture.cpp
+.)l
+.SH "void QBrush::setPixmap ( const QPixmap & pixmap )"
+Sets the brush pixmap. The style is set to \fCCustomPattern.\fR
+.PP
+The current brush color will only have an effect for monochrome pixmaps, i.e. QPixmap::depth() == 1.
+.PP
+See also pixmap() and color().
+.SH "void QBrush::setStyle ( BrushStyle s )"
+Sets the brush style to \fIs.\fR
+.PP
+The brush styles are:
+.TP
+\fCNoBrush\fR will not fill shapes (default).
+.TP
+\fCSolidPattern\fR solid (100%) fill pattern.
+.TP
+\fCDense1Pattern\fR 94% fill pattern.
+.TP
+\fCDense2Pattern\fR 88% fill pattern.
+.TP
+\fCDense3Pattern\fR 63% fill pattern.
+.TP
+\fCDense4Pattern\fR 50% fill pattern.
+.TP
+\fCDense5Pattern\fR 37% fill pattern.
+.TP
+\fCDense6Pattern\fR 12% fill pattern.
+.TP
+\fCDense7Pattern\fR 6% fill pattern.
+.TP
+\fCHorPattern\fR horizontal lines pattern.
+.TP
+\fCVerPattern\fR vertical lines pattern.
+.TP
+\fCCrossPattern\fR crossing lines pattern.
+.TP
+\fCBDiagPattern\fR diagonal lines (directed / ) pattern.
+.TP
+\fCFDiagPattern\fR diagonal lines (directed \\ ) pattern.
+.TP
+\fCDiagCrossPattern\fR diagonal crossing lines pattern.
+.TP
+\fCCustomPattern\fR set when a pixmap pattern is being used.
+.PP
+See also style().
+.SH "BrushStyle QBrush::style () const"
+Returns the brush style.
+.PP
+See also setStyle().
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "QDataStream & operator<< (QDataStream & s, const QBrush & b)"
+Writes a brush to the stream and returns a reference to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "QDataStream & operator>> (QDataStream & s, QBrush & b)"
+Reads a brush from the stream and returns a reference to the stream.
+.PP
+See also  Format of the QDataStream operators
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qbrush.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qbrush.3qt) and the Qt
+version (2.3.2).

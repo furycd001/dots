@@ -1,0 +1,126 @@
+'\" t
+.TH QHostAddress 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QHostAddress \- IP address
+.br
+.PP
+\fC#include <qhostaddress.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQHostAddress\fR () "
+.br
+.ti -1c
+.BI "\fBQHostAddress\fR ( Q_UINT32 ip4Addr ) "
+.br
+.ti -1c
+.BI "\fBQHostAddress\fR ( Q_UINT8 * ip6Addr ) "
+.br
+.ti -1c
+.BI "\fBQHostAddress\fR ( const QHostAddress & ) "
+.br
+.ti -1c
+.BI "virtual \fB~QHostAddress\fR () "
+.br
+.ti -1c
+.BI "QHostAddress& \fBoperator=\fR ( const QHostAddress & ) "
+.br
+.ti -1c
+.BI "void \fBsetAddress\fR ( Q_UINT32 ip4Addr ) "
+.br
+.ti -1c
+.BI "void \fBsetAddress\fR ( Q_UINT8 * ip6Addr ) "
+.br
+.ti -1c
+.BI "bool \fBsetAddress\fR ( const QString & address ) "
+.br
+.ti -1c
+.BI "bool \fBisIp4Addr\fR () const"
+.br
+.ti -1c
+.BI "Q_UINT32 \fBip4Addr\fR () const"
+.br
+.ti -1c
+.BI "QString \fBtoString\fR () const"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QHostAddress & ) const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QHostAddress class provides an IP address.
+.PP
+This class contains an IP address in a platform- and protocol-independent manner. That is, it'll store the address in a way you can access easily on any platform, and it'll store both IPv4 and IPv6 addresses.
+.PP
+QHostAddress is normally used with the classes QSocket, QServerSocket and QSocketDevice to set up a server or to connect to a host.
+.PP
+See also QSocket, QServerSocket and QSocketDevice.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QHostAddress::QHostAddress ()"
+Creates a socket address object with the IP address 0.0.0.0.
+.SH "QHostAddress::QHostAddress ( Q_UINT32 ip4Addr )"
+Creates a socket address object with a specified IPv4 address.
+.SH "QHostAddress::QHostAddress ( Q_UINT8 * ip6Addr )"
+Creates a socket address object with a specified IPv6 address.
+.PP
+\fIip6Addr\fR must be a 16 byte array in network byte order (high-order byte first).
+.SH "QHostAddress::QHostAddress ( const QHostAddress & address )"
+Creates a copy of \fIaddress.\fR
+.SH "QHostAddress::~QHostAddress () \fC[virtual]\fR"
+Destructs the socket address object.
+.SH "Q_UINT32 QHostAddress::ip4Addr () const"
+Returns the IPv4 address as a number.
+.PP
+For example, if the address is 127.0.0.1, the returned value is 2130706433 (hex: 7f000001).
+.PP
+This value is only valid when isIp4Addr() returns TRUE.
+.PP
+See also toString().
+.SH "bool QHostAddress::isIp4Addr () const"
+Return true if the host address represents a IPv4 address.
+.SH "QHostAddress & QHostAddress::operator= ( const QHostAddress & address )"
+Assigns another socket address object \fIaddress\fR to this object and returns a reference to this object.
+.SH "bool QHostAddress::operator== ( const QHostAddress & other ) const"
+Returns TRUE if this socket address is identical to \fIother,\fR or FALSE if they are different.
+.SH "bool QHostAddress::setAddress ( const QString & address )"
+Sets the IPv4 or IPv6 address specified by the string representation \fIaddress\fR (e.g. "127.0.0.1").
+.PP
+If this function is not able to parse the address it will return FALSE and the address is not changed.
+.SH "void QHostAddress::setAddress ( Q_UINT32 ip4Addr )"
+Set a IPv4 address specified by \fIip4Addr.\fR
+.SH "void QHostAddress::setAddress ( Q_UINT8 * ip6Addr )"
+Set a IPv6 address specified by \fIip6Addr.\fR
+.PP
+\fIip6Addr\fR must be a 16 byte array in network byte order (high-order byte first).
+.SH "QString QHostAddress::toString () const"
+Returns the address as a string.
+.PP
+For example, if the address is the IPv4 address 127.0.0.1, the returned string is "127.0.0.1".
+.PP
+See also  ip4Addr().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qhostaddress.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qhostaddress.3qt) and the Qt
+version (2.3.2).

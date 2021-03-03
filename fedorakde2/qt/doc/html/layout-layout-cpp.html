@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - layout/layout.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Layout Managers</h1><br clear="all">
+
+  This example shows simple and intermediate use of Qt's layout
+  classes, QGridLayout, QBoxLayout etc.
+
+  <hr>
+
+  Implementation:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/layout/layout.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a name="qlabel.h"></a><a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a name="qcolor.h"></a><a href="qcolor-h.html">qcolor.h</a>&gt;
+#include &lt;<a name="qpushbutton.h"></a><a href="qpushbutton-h.html">qpushbutton.h</a>&gt;
+#include &lt;<a name="qlayout.h"></a><a href="qlayout-h.html">qlayout.h</a>&gt;
+#include &lt;<a name="qlineedit.h"></a><a href="qlineedit-h.html">qlineedit.h</a>&gt;
+#include &lt;<a name="qmultilineedit.h"></a><a href="qmultilineedit-h.html">qmultilineedit.h</a>&gt;
+#include &lt;<a name="qmenubar.h"></a><a href="qmenubar-h.html">qmenubar.h</a>&gt;
+#include &lt;<a name="qpopupmenu.h"></a><a href="qpopupmenu-h.html">qpopupmenu.h</a>&gt;
+
+class ExampleWidget : public QWidget
+{
+public:
+    ExampleWidget( <a name="QWidget"></a><a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0 );
+    ~ExampleWidget();
+private:
+};
+
+ExampleWidget::ExampleWidget( <a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qwidget.html">QWidget</a>( parent, name )
+{
+    // Make the top-level layout; a vertical box to contain all widgets
+    // and sub-layouts.
+    <a name="QBoxLayout"></a><a href="qboxlayout.html">QBoxLayout</a> *topLayout = new <a name="QVBoxLayout"></a><a href="qvboxlayout.html">QVBoxLayout</a>( this, 5 );
+
+    // Create a menubar...
+    <a name="QMenuBar"></a><a href="qmenubar.html">QMenuBar</a> *menubar = new <a href="qmenubar.html">QMenuBar</a>( this );
+    menubar-&gt;<a name="setSeparator"></a><a href="qmenubar.html#815978">setSeparator</a>( QMenuBar::InWindowsStyle );
+    <a name="QPopupMenu"></a><a href="qpopupmenu.html">QPopupMenu</a>* popup;
+    popup = new <a href="qpopupmenu.html">QPopupMenu</a>( this );
+    popup-&gt;<a name="insertItem"></a><a href="qmenudata.html#0076cb">insertItem</a>( "&amp;Quit", qApp, SLOT(quit()) );
+    menubar-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;File", popup );
+
+    // ...and tell the layout about it.
+    topLayout-&gt;setMenuBar( menubar );
+
+    // Make an hbox that will hold a row of buttons.
+    <a name="QBoxLayout"></a><a href="qboxlayout.html#5b6ca2">QBoxLayout</a> *buttons = new <a name="QHBoxLayout"></a><a href="qhboxlayout.html">QHBoxLayout</a>( topLayout);
+    int i;
+    for ( i = 1; i &lt;= 4; i++ ) {
+        <a name="QPushButton"></a><a href="qpushbutton.html">QPushButton</a>* but = new <a href="qpushbutton.html">QPushButton</a>( this );
+        <a name="QString"></a><a href="qstring.html">QString</a> s;
+        s.<a name="sprintf"></a><a href="qstring.html#926f67">sprintf</a>( "Button %d", i );
+        but-&gt;<a name="setText"></a><a href="qbutton.html#989f4f">setText</a>( s );
+
+        // Set horizontal stretch factor to 10 to let the buttons
+        // stretch horizontally. The buttons will not stretch
+        // vertically, since bigWidget below will take up vertical
+        // stretch.
+        buttons-&gt;addWidget( but, 10 );
+        // (Actually, the result would have been the same with a
+        // stretch factor of 0; if no items in a layout have non-zero
+        // stretch, the space is divided equally between members.)
+    }
+
+    // Make another hbox that will hold a left-justified row of buttons.
+    <a href="qboxlayout.html#5b6ca2">QBoxLayout</a> *buttons2 = new <a href="qhboxlayout.html">QHBoxLayout</a>( topLayout );
+
+    <a href="qpushbutton.html">QPushButton</a>* but = new <a href="qpushbutton.html">QPushButton</a>( "Button five", this );
+    buttons2-&gt;<a name="addWidget"></a><a href="qboxlayout.html#ebba99">addWidget</a>( but );
+
+    but = new <a href="qpushbutton.html">QPushButton</a>( "Button 6", this );
+    buttons2-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( but );
+
+    // Fill up the rest of the hbox with stretchable space, so that
+    // the buttons get their minimum width and are pushed to the left.
+    buttons2-&gt;addStretch( 10 );
+
+    // Make  a big widget that will grab all space in the middle.
+    <a name="QMultiLineEdit"></a><a href="qmultilineedit.html">QMultiLineEdit</a> *bigWidget = new <a href="qmultilineedit.html">QMultiLineEdit</a>( this );
+    bigWidget-&gt;<a name="setText"></a><a href="qmultilineedit.html#3fd8c1">setText</a>( "This widget will get all the remaining space" );
+    bigWidget-&gt;<a name="setFrameStyle"></a><a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Plain );
+
+    // Set vertical stretch factor to 10 to let the bigWidget stretch
+    // vertically. It will stretch horizontally because there are no
+    // widgets beside it to take up horizontal stretch.
+    //    topLayout-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( bigWidget, 10 );
+    topLayout-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( bigWidget); //###
+
+    // Make a grid that will hold a vertical table of QLabel/QLineEdit
+    // pairs next to a large QMultiLineEdit.
+
+    // Don't use hard-coded row/column numbers in QGridLayout, you'll
+    // regret it when you have to change the layout.
+    const int numRows = 3;
+    const int labelCol = 0;
+    const int linedCol = 1;
+    const int multiCol = 2;
+
+    // Let the grid-layout have a spacing of 10 pixels between
+    // widgets, overriding the default from topLayout.
+    <a name="QGridLayout"></a><a href="qgridlayout.html">QGridLayout</a> *grid = new <a href="qgridlayout.html">QGridLayout</a>( topLayout, 0, 0, 10 );
+    int row;
+
+    for ( row = 0; row &lt; numRows; row++ ) {
+        <a name="QLineEdit"></a><a href="qlineedit.html">QLineEdit</a> *ed = new <a href="qlineedit.html">QLineEdit</a>( this );
+        // The line edit goes in the second column
+        grid-&gt;<a name="addWidget"></a><a href="qgridlayout.html#dac29c">addWidget</a>( ed, row, linedCol );   
+
+        // Make a label that is a buddy of the line edit
+        <a href="qstring.html">QString</a> s;
+        s.<a href="qstring.html#926f67">sprintf</a>( "Line &amp;%d", row+1 );
+        <a name="QLabel"></a><a href="qlabel.html">QLabel</a> *label = new <a href="qlabel.html">QLabel</a>( ed, s, this );
+        // The label goes in the first column.
+        grid-&gt;addWidget( label, row, labelCol );
+    }
+
+    // The multiline edit will cover the entire vertical range of the
+    // grid (rows 0 to numRows) and stay in column 2.
+
+    <a href="qmultilineedit.html">QMultiLineEdit</a> *med = new <a href="qmultilineedit.html">QMultiLineEdit</a>( this );
+    grid-&gt;<a name="addMultiCellWidget"></a><a href="qgridlayout.html#92faca">addMultiCellWidget</a>( med, 0, -1, multiCol, multiCol );
+
+    // The labels will take the space they need. Let the remaining
+    // horizontal space be shared so that the multiline edit gets
+    // twice as much as the line edit.
+        grid-&gt;setColStretch( linedCol, 10 );
+        grid-&gt;<a name="setColStretch"></a><a href="qgridlayout.html#df80c4">setColStretch</a>( multiCol, 20 );
+
+    // Add a widget at the bottom.
+    <a href="qlabel.html">QLabel</a>* sb = new <a href="qlabel.html">QLabel</a>( this );
+    sb-&gt;<a name="setText"></a><a href="qlabel.html#bc5ea6">setText</a>("Let's pretend this is a status bar");
+    sb-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+    // This widget will use all horizontal space, and have a fixed height.
+
+    // we should have made a subclass and implemented sizePolicy there...
+    sb-&gt;<a name="setFixedHeight"></a><a href="qwidget.html#5e7ab2">setFixedHeight</a>( sb-&gt;<a name="sizeHint"></a><a href="qlabel.html#f40fcc">sizeHint</a>().height() );
+
+    sb-&gt;<a name="setAlignment"></a><a href="qlabel.html#4743c8">setAlignment</a>( AlignVCenter | AlignLeft );
+    topLayout-&gt;<a href="qboxlayout.html#ebba99">addWidget</a>( sb );
+
+    topLayout-&gt;<a name="activate"></a><a href="qlayout.html#1cb33d">activate</a>();
+}
+
+ExampleWidget::~ExampleWidget()
+{
+    // All child widgets are deleted by Qt.
+    // The top-level layout and all its sub-layouts are deleted by Qt.
+}
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    ExampleWidget f;
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>(&amp;f);
+    f.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Caption");
+    f.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

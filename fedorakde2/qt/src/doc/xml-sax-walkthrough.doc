@@ -1,0 +1,183 @@
+/****************************************************************************
+** $Id: qt/doc/xml-sax-walkthrough.doc   2.3.2   edited 2001-01-26 $
+**
+** Documentation on the sax interface of the xml module
+**
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page xml-sax-walkthrough.html
+
+
+\title Walkthrough: How to use the Qt SAX2 classes
+
+For a general discussion of the XML topics in Qt please refer to
+the document \link xml.html Qt XML Module. \endlink
+To learn more about SAX2  see the document describing
+\link xml-sax.html the Qt SAX2 implementation. \endlink
+
+Before reading on you should at least be familiar with 
+the <a href="xml-sax.html#introSAX2">Introduction to SAX2.</a>
+
+
+<a name="quickStart"></a>
+<h2>A tiny parser</h2>
+
+In this section we will present a small example reader that outputs
+the names of all elements in an XML document on the command line. 
+The element names are indented corresponding to their nesting level.
+
+As mentioned in <a href="xml-sax.html#introSAX2">Introduction to SAX2</a> 
+we have to implement the functions of the handler classes that we are
+interested in. In our case these are only three:
+\l QXmlContentHandler::startDocument(),
+\l QXmlContentHandler::startElement() and
+\l QXmlContentHandler::endElement().
+
+For this purpose we use a subclass of the \l QXmlDefaultHandler (remember
+that the special handler classes are all abstract and the default handler class
+provides an implementation that does not change the parsing behavior):
+
+\include xml/tagreader/structureparser.h
+
+Apart from the private helper variable \e indent that we will use to
+get indentation right, there is nothing special about our new 
+\e StructureParser class.
+
+\dontinclude xml/tagreader/structureparser.cpp
+
+Even the implementation is straight-forward: 
+
+\skip include
+\until qstring.h
+
+First we overload \l QXmlContentHandler::startElement() with a non-empty version.
+
+\line startDocument
+\until }
+
+At the beginning of the document we simply 
+set \e indent to an empty string because we
+want to print out the root element without any indentation.
+Also we return TRUE so that the parser continues without 
+reporting an error.
+
+Because we want to be informed when the parser comes
+accross a start tag of an element and subsequently print it out, we
+have to overload \l QXmlContentHandler::startElement(). 
+
+\line startElement
+\until } 
+
+This is what the implementation does: The name of the element with
+preceding indentation is printed out followed by a linebreak.
+Strictly speaking \e qName contains the local element name 
+without an eventual prefix denoting the
+<a href="xml.html#namespaces">namespace</a>.
+
+If another element follows before the current element's end tag
+it should be indented. Therefore we add four spaces to the
+\e indent string.
+
+Finally we return TRUE in order to let the parser continue without
+errors.
+
+The last functionality we need to add is the parser's behaviour when an 
+end tag occurs. This means overloading \l QXmlContentHandler::endElement().
+
+\line endElement
+\until }  
+
+Obviously we then should shorten the \e indent string by the four
+whitespaces added in startElement().
+
+With this we're done with our parser and can start writing the main() 
+program.
+
+\dontinclude xml/tagreader/tagreader.cpp
+
+\skip include
+\until qxml.h 
+
+\until for
+
+Successively we deal with all files given as command line arguments.
+
+\line handler
+
+The next step is to create an instance of the \e StructureParser. 
+
+\line xmlFile
+\line QXmlInputSource
+
+Then we create a
+\l QXmlInputSource for the XML file to be parsed. 
+
+\line reader
+\line setContentHandler
+
+After that we set up the reader. As our \e StructureParser
+class deals with \l QXmlContentHandler functionality only 
+we simply register it as the content handler of our choice.
+
+\line parse
+
+Now we take our input source and start parsing.
+
+\line }
+\until }
+
+
+Running the program on the following XML file...
+
+\include xml/tagreader/animals.xml
+
+... produces the following output:
+\code
+animals
+    mammals
+        monkeys
+            gorilla
+            orang-utan
+    birds
+        pigeon
+        penguin 
+\endcode
+
+It will however refuse to produce the correct result if you e.g. insert
+a whitespace between a &lt; and the element name in your test-XML file.
+To prevent such annoyances
+you should always install an error handler with \l
+QXmlReader::setErrorHandler(). This allows you to report
+parsing errors to the user.
+
+
+
+*/

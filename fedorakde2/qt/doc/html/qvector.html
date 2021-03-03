@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QVector Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QVector Class Reference</h1><br clear="all">
+<p>
+The QVector class is a template collection class that provides a vector (array).
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qvector-h.html">qvector.h</a>&gt;</code>
+<p>
+Inherits <a href="qgvector.html">QGVector</a>.
+<p><a href="qvector-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#46b863"><b>QVector</b></a> () </div>
+<li><div class="fn"><a href="#c09d25"><b>QVector</b></a> ( uint size ) </div>
+<li><div class="fn"><a href="#dd2097"><b>QVector</b></a> ( const QVector&lt;type&gt; &amp; v ) </div>
+<li><div class="fn"><a href="#4107c1"><b>~QVector</b></a> () </div>
+<li><div class="fn">QVector&lt;type&gt;&amp; <a href="#46a69e"><b>operator=</b></a> ( const QVector&lt;type&gt; &amp; v ) </div>
+<li><div class="fn">type** <a href="#c80e45"><b>data</b></a> () const</div>
+<li><div class="fn">uint <a href="#a7a380"><b>size</b></a> () const</div>
+<li><div class="fn">virtual uint <a href="#faeeff"><b>count</b></a> () const</div>
+<li><div class="fn">bool <a href="#b10d19"><b>isEmpty</b></a> () const</div>
+<li><div class="fn">bool <a href="#7ced52"><b>isNull</b></a> () const</div>
+<li><div class="fn">bool <a href="#58ad16"><b>resize</b></a> ( uint size ) </div>
+<li><div class="fn">bool <a href="#9593ea"><b>insert</b></a> ( uint i, const type * d ) </div>
+<li><div class="fn">bool <a href="#9c6a69"><b>remove</b></a> ( uint i ) </div>
+<li><div class="fn">type* <a href="#086f78"><b>take</b></a> ( uint i ) </div>
+<li><div class="fn">virtual void <a href="#e5aafd"><b>clear</b></a> () </div>
+<li><div class="fn">bool <a href="#608812"><b>fill</b></a> ( const type * d, int size=-1 ) </div>
+<li><div class="fn">void <a href="#fbcadb"><b>sort</b></a> () </div>
+<li><div class="fn">int <a href="#f7d8e6"><b>bsearch</b></a> ( const type * d ) const</div>
+<li><div class="fn">int <a href="#e449f4"><b>findRef</b></a> ( const type * d, uint i=0 ) const</div>
+<li><div class="fn">int <a href="#3fb8e5"><b>find</b></a> ( const type * d, uint i= 0 ) const</div>
+<li><div class="fn">uint <a href="#f1498c"><b>containsRef</b></a> ( const type * d ) const</div>
+<li><div class="fn">uint <a href="#d927fe"><b>contains</b></a> ( const type * d ) const</div>
+<li><div class="fn">type* <a href="#429208"><b>operator[]</b></a> ( int i ) const</div>
+<li><div class="fn">type* <a href="#c1bd9f"><b>at</b></a> ( uint i ) const</div>
+<li><div class="fn">void <a href="#da5158"><b>toList</b></a> ( QGList * list ) const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QVector class is a template collection class that provides a vector (array).
+<p>
+QVector is implemented as a template class. Define a template
+instance QVector&lt;X&gt; to create a vector that contains pointers to
+X, or X*.
+<p>A vector is the same as an array. The main difference between
+QVector and <a href="qarray.html">QArray</a> is that QVector stores pointers to the elements,
+while QArray stores the elements themselves (i.e. QArray is
+value-based).
+<p>Unless where otherwise stated, all functions that remove items from
+the vector will also delete the element pointed to if auto-deletion
+is enabled - see <a href="qcollection.html#a8ef9f">setAutoDelete</a>(). By default, auto-deletion is
+disabled. This behaviour can be changed in a subclass by
+reimplementing the virtual method <a href="qcollection.html#8d78e7">deleteItem</a>().
+<p>Functions that compares items, e.g. <a href="#3fb8e5">find</a>() and <a href="#fbcadb">sort</a>(), will do so
+using the virtual function <a href="qgvector.html#0a2891">compareItems</a>(). The default
+implementation of this function will only compare the absolute
+pointer values. Reimplement compareItems() in a subclass to get
+searching and sorting based on the item contents.
+<p>See also  <a href="collection.html">Collection Classes</a> and <a href="qarray.html">QArray</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="46b863"></a>QVector::QVector ()</h3>
+<p>Constructs a null vector.
+<p>See also  <a href="#7ced52">isNull</a>().
+<h3 class="fn"><a name="dd2097"></a>QVector::QVector ( const QVector&lt;type&gt; &amp; v )</h3>
+<p>Constructs a copy of <em>v.</em> Only the pointers are copied (i.e. shallow copy).
+<h3 class="fn"><a name="c09d25"></a>QVector::QVector ( uint size )</h3>
+<p>Constructs an vector with room for <em>size</em> items.  Makes a null
+vector if <em>size</em> == 0.
+<p>All <em>size</em> positions in the vector are initialized to 0.
+<p>See also  <a href="#a7a380">size</a>(), <a href="#58ad16">resize</a>() and <a href="#7ced52">isNull</a>().
+<h3 class="fn"><a name="4107c1"></a>QVector::~QVector ()</h3>
+<p>Removes all items from the vector, and destroys the vector itself.
+<p>See also  <a href="#e5aafd">clear</a>().
+<h3 class="fn">type * <a name="c1bd9f"></a>QVector::at ( uint i ) const</h3>
+<p>Returns the item at position <em>i,</em> or 0 if there is no item at
+that position. <em>i</em> must be less than <a href="#a7a380">size</a>().
+<h3 class="fn">int <a name="f7d8e6"></a>QVector::bsearch ( const type * d ) const</h3>
+<p>In a sorted array, finds the first occurrence of <em>d</em> using binary
+search. For a sorted array, this is generally much faster than
+<a href="#3fb8e5">find</a>(), which does a linear search.
+<p>Returns the position of <em>d,</em> or -1 if <em>d</em> could not be found. <em>d</em>
+may not be 0.
+<p>Compares items using the virtual function <a href="qgvector.html#0a2891">compareItems</a>().
+<p>See also  <a href="#fbcadb">sort</a>() and <a href="#3fb8e5">find</a>().
+<h3 class="fn">void <a name="e5aafd"></a>QVector::clear () <code>[virtual]</code></h3>
+<p>Removes all items from the vector, and destroys the vector
+itself.
+<p>The vector becomes a null vector.
+<p>See also  <a href="#7ced52">isNull</a>().
+<p>Reimplemented from <a href="qcollection.html#e9c603">QCollection.</a>
+<h3 class="fn">uint <a name="d927fe"></a>QVector::contains ( const type * d ) const</h3>
+<p>Returns the number of occurrences of item <em>d</em> in the vector.
+<p>Compares items using the virtual function <a href="qgvector.html#0a2891">compareItems</a>().
+<p>See also  <a href="#f1498c">containsRef</a>().
+<h3 class="fn">uint <a name="f1498c"></a>QVector::containsRef ( const type * d ) const</h3>
+<p>Returns the number of occurrences of the item pointer <em>d</em> in the
+vector.
+<p>This function does <em>not</em> use <a href="qgvector.html#0a2891">compareItems</a>() to compare items.
+<p>See also  <a href="#e449f4">findRef</a>().
+<h3 class="fn">uint <a name="faeeff"></a>QVector::count () const <code>[virtual]</code></h3>
+<p>Returns the number of items in the vector. The vector is empty if
+count() == 0.
+<p>See also  <a href="#b10d19">isEmpty</a>() and <a href="#a7a380">size</a>().
+<p>Reimplemented from <a href="qcollection.html#2213fa">QCollection.</a>
+<h3 class="fn">type ** <a name="c80e45"></a>QVector::data () const</h3>
+<p>Returns a pointer to the actual vector data, which is an array of type*.
+<p>The vector is a null vector if data() == 0 (null pointer).
+<p>See also  <a href="#7ced52">isNull</a>().
+<h3 class="fn">bool <a name="608812"></a>QVector::fill ( const type * d, int size=-1 )</h3>
+<p>Inserts item <em>d</em> in all positions in the vector. Any existing items
+are removed. If <em>d</em> is 0, the vector becomes empty.
+<p>If <em>size</em> >= 0, the vector is first resized to <em>size.</em> By default,
+<em>size</em> is -1.
+<p>Returns TRUE if successful, or FALSE if the memory cannot be allocated
+(only if a resize has been requested).
+<p>See also  <a href="#58ad16">resize</a>(), <a href="#9593ea">insert</a>() and <a href="#b10d19">isEmpty</a>().
+<h3 class="fn">int <a name="3fb8e5"></a>QVector::find ( const type * d, uint i= 0 ) const</h3>
+<p>Finds the first occurrence of item <em>d</em> in the vector, using linear
+search. The search starts at position <em>i,</em> which must be less than
+<a href="#a7a380">size</a>(). <em>i</em> is by default 0; i.e. the search starts at the start of
+the vector.
+<p>Returns the position of <em>v,</em> or -1 if <em>v</em> could not be found.
+<p>Compares items using the virtual function <a href="qgvector.html#0a2891">compareItems</a>().
+<p>See also  <a href="#e449f4">findRef</a>() and <a href="#f7d8e6">bsearch</a>().
+<h3 class="fn">int <a name="e449f4"></a>QVector::findRef ( const type * d, uint i=0 ) const</h3>
+<p>Finds the first occurrence of the item pointer <em>d</em> in the vector,
+using linear search. The search starts at position <em>i,</em> which must
+be less than <a href="#a7a380">size</a>(). <em>i</em> is by default 0; i.e. the search starts at
+the start of the vector.
+<p>Returns the position of <em>d,</em> or -1 if <em>d</em> could not be found.
+<p>This function does <em>not</em> use <a href="qgvector.html#0a2891">compareItems</a>() to compare items.
+<p>See also  <a href="#3fb8e5">find</a>() and <a href="#f7d8e6">bsearch</a>().
+<h3 class="fn">bool <a name="9593ea"></a>QVector::insert ( uint i, const type * d )</h3>
+<p>Sets position <em>i</em> in the vector to contain the item <em>d. i</em> must
+be less than <a href="#a7a380">size</a>(). Any previous element in position <em>i</em> is removed.
+<p>See also  <a href="#c1bd9f">at</a>().
+<h3 class="fn">bool <a name="b10d19"></a>QVector::isEmpty () const</h3>
+<p>Returns TRUE if the vector is empty, i.e. <a href="#faeeff">count</a>() == 0, otherwise FALSE.
+<p>See also  <a href="#faeeff">count</a>().
+<h3 class="fn">bool <a name="7ced52"></a>QVector::isNull () const</h3>
+<p>Returns TRUE if the vector is null, otherwise FALSE.
+<p>A null vector has <a href="#a7a380">size</a>() == 0 and <a href="#c80e45">data</a>() == 0.
+<p>See also  <a href="#a7a380">size</a>().
+<h3 class="fn">QVector&lt;type&gt; &amp; <a name="46a69e"></a>QVector::operator= ( const QVector&lt;type&gt; &amp; v )</h3>
+<p>Assigns <em>v</em> to this vector and returns a reference to this vector.
+<p>This vector is first cleared, then all the items from <em>v</em> is copied
+into this vector. Only the pointers are copied (i.e. shallow copy).
+<p>See also  <a href="#e5aafd">clear</a>().
+<h3 class="fn">type * <a name="429208"></a>QVector::operator[] ( int i ) const</h3>
+<p>Returns the item at position <em>i,</em> or 0 if there is no item at
+that position. <em>i</em> must be less than <a href="#a7a380">size</a>().
+<p>Equivalent to <a href="#c1bd9f">at</a>( <em>i</em> ).
+<p>See also  <a href="#c1bd9f">at</a>().
+<h3 class="fn">bool <a name="9c6a69"></a>QVector::remove ( uint i )</h3>
+<p>Removes the item at position <em>i</em> in the vector, if there is one.
+<em>i</em> must be less than <a href="#a7a380">size</a>().
+<p>Returns TRUE unless <em>i</em> is out of range.
+<p>See also  <a href="#086f78">take</a>() and <a href="#c1bd9f">at</a>().
+<h3 class="fn">bool <a name="58ad16"></a>QVector::resize ( uint size )</h3>
+<p>Resizes (expands or shrinks) the vector to <em>size</em> elements. The array
+becomes a null array if <em>size</em> == 0.
+<p>Any items in position <em>size</em> or beyond in the vector are removed.
+New positions are initialized 0.
+<p>Returns TRUE if successful, or FALSE if the memory cannot be allocated.
+<p>See also  <a href="#a7a380">size</a>() and <a href="#7ced52">isNull</a>().
+<h3 class="fn">uint <a name="a7a380"></a>QVector::size () const</h3>
+<p>Returns the size of the vector, i.e. the number of vector
+positions. This is also the maximum number of items the vector can
+hold.
+<p>The vector is a null vector if size() == 0.
+<p>See also  <a href="#7ced52">isNull</a>(), <a href="#58ad16">resize</a>() and <a href="#faeeff">count</a>().
+<h3 class="fn">void <a name="fbcadb"></a>QVector::sort ()</h3>
+<p>Sorts the items in ascending order. Any empty positions will be put
+last.
+<p>Compares items using the virtual function <a href="qgvector.html#0a2891">compareItems</a>().
+<p>See also  <a href="#f7d8e6">bsearch</a>().
+<h3 class="fn">type* <a name="086f78"></a>QVector::take ( uint i )</h3>
+<p>Returns the item at position <em>i</em> in the vector, and removes that
+item from the vector. <em>i</em> must be less than <a href="#a7a380">size</a>(). If there is no
+item at position <em>i,</em> 0 is returned.
+<p>In contrast to <a href="#9c6a69">remove</a>(), this function does <em>not</em> call <a href="qcollection.html#8d78e7">deleteItem</a>()
+for the removed item.
+<p>See also  <a href="#9c6a69">remove</a>() and <a href="#c1bd9f">at</a>().
+<h3 class="fn">void <a name="da5158"></a>QVector::toList ( <a href="qglist.html">QGList</a> * list ) const</h3>
+<p>Copies all items in this vector to the list <em>list.</em> First, <em>list</em>
+is cleared, then all items are appended to <em>list.</em>
+<p>See also  <a href="qlist.html">QList</a>, <a href="qstack.html">QStack</a> and <a href="qqueue.html">QQueue</a>.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

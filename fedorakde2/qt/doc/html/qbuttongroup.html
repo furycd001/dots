@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QButtonGroup Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QButtonGroup Class Reference</h1><br clear="all">
+<p>
+The QButtonGroup widget organizes <a href="qbutton.html">QButton</a> widgets in a group.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qbuttongroup-h.html">qbuttongroup.h</a>&gt;</code>
+<p>
+Inherits <a href="qgroupbox.html">QGroupBox</a>.
+<p>Inherited by <a href="qhbuttongroup.html">QHButtonGroup</a> and <a href="qvbuttongroup.html">QVButtonGroup</a>.
+<p><a href="qbuttongroup-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#563e29"><b>QButtonGroup</b></a> ( QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#837c07"><b>QButtonGroup</b></a> ( const QString &amp; title, QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#f00c6b"><b>QButtonGroup</b></a> ( int columns, Orientation o, QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#a827d6"><b>QButtonGroup</b></a> ( int columns, Orientation o, const QString &amp; title, QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn">bool <a href="#1d6f90"><b>isExclusive</b></a> () const</div>
+<li><div class="fn">bool <a href="#0e8f21"><b>isRadioButtonExclusive</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#1075ee"><b>setExclusive</b></a> ( bool ) </div>
+<li><div class="fn">virtual void <a href="#d67431"><b>setRadioButtonExclusive</b></a> ( bool ) </div>
+<li><div class="fn">int <a href="#10bf2d"><b>insert</b></a> ( QButton *, int id=-1 ) </div>
+<li><div class="fn">void <a href="#66e1b1"><b>remove</b></a> ( QButton * ) </div>
+<li><div class="fn">QButton* <a href="#9e0875"><b>find</b></a> ( int id ) const</div>
+<li><div class="fn">int <a href="#c947e8"><b>id</b></a> ( QButton * ) const</div>
+<li><div class="fn">int <a href="#7c506a"><b>count</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#5dc823"><b>setButton</b></a> ( int id ) </div>
+<li><div class="fn">virtual void <a href="#6a2fbb"><b>moveFocus</b></a> ( int ) </div>
+<li><div class="fn">QButton* <a href="#1952fb"><b>selected</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#2ddfc7"><b>pressed</b></a> ( int id ) </div>
+<li><div class="fn">void <a href="#61ef11"><b>released</b></a> ( int id ) </div>
+<li><div class="fn">void <a href="#c8e107"><b>clicked</b></a> ( int id ) </div>
+</ul>
+<h2>Protected Slots</h2>
+<ul>
+<li><div class="fn">void <b>buttonPressed</b> () (internal)</div>
+<li><div class="fn">void <b>buttonReleased</b> () (internal)</div>
+<li><div class="fn">void <b>buttonClicked</b> () (internal)</div>
+<li><div class="fn">void <b>buttonToggled</b> ( bool on ) (internal)</div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>bool<td>exclusive<td>isExclusive<td>setExclusive<td>&nbsp;
+<tr><td>bool<td>radioButtonExclusive<td>isRadioButtonExclusive<td>setRadioButtonExclusive<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QButtonGroup widget organizes <a href="qbutton.html">QButton</a> widgets in a group.
+<p>
+A button group widget makes it easier to deal with groups of
+buttons.  A button in a button group is associated with a unique
+identifer. The button group emits a <a href="#c8e107">clicked</a>() signal with this
+identifier when the button is clicked. Thus, a button group is an
+ideal solution when you have several similar buttons and want to
+connect all their clicked() signals, for example, to one slot.
+<p>An <a href="#1075ee">exclusive</a> button group switches off
+all toggle buttons except the one that was clicked. A button group
+is by default non-exclusive. All <a href="qradiobutton.html">radio
+buttons</a> that are <a href="#10bf2d">inserted</a>, will be
+mutually exclusive even if the button group is non-exclusive.
+<p>There are two ways of using a button group:
+<ol>
+<li>The button group is a parent widget of a number of buttons,
+i.e. the button group is the parent argument in the button constructor.
+The buttons are assigned identifiers 0, 1, 2 etc. in the order they are
+created. A QButtonGroup can display a frame and a title because it inherits
+<a href="qgroupbox.html">QGroupBox</a>.
+<li>The button group is an invisible widget and the contained buttons
+have some other parent widget.  A button must then be manually inserted
+using the <a href="#10bf2d">insert</a>() function with an identifer.
+</ol>
+<p><img src=qbttngrp-m.png> <img src=qbttngrp-w.png>
+<p>See also  <a href="qbutton.html">QButton</a>, <a href="qpushbutton.html">QPushButton</a>, <a href="qcheckbox.html">QCheckBox</a> and <a href="qradiobutton.html">QRadioButton</a>.
+<p>Examples:
+ <a href="xform-xform-cpp.html#QButtonGroup">xform/xform.cpp</a>
+ <a href="i18n-main-cpp.html#QButtonGroup">i18n/main.cpp</a>
+ <a href="drawdemo-drawdemo-cpp.html#QButtonGroup">drawdemo/drawdemo.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="563e29"></a>QButtonGroup::QButtonGroup ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a button group with no title.
+<p>The <em>parent</em> and <em>name</em> arguments are passed to the <a href="qwidget.html">QWidget</a> constructor.
+<h3 class="fn"><a name="837c07"></a>QButtonGroup::QButtonGroup ( const <a href="qstring.html">QString</a> &amp; title, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a button group with a title.
+<p>The <em>parent</em> and <em>name</em> arguments are passed to the <a href="qwidget.html">QWidget</a> constructor.
+<h3 class="fn"><a name="f00c6b"></a>QButtonGroup::QButtonGroup ( int strips, <a href="qt.html#Orientation">Orientation</a> orientation, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a button group with no title. Child widgets will be arranged
+in <em>strips</em> rows or columns (depending on <em>orientation).</em>
+<p>The <em>parent</em> and <em>name</em> arguments are passed to the <a href="qwidget.html">QWidget</a> constructor.
+<h3 class="fn"><a name="a827d6"></a>QButtonGroup::QButtonGroup ( int strips, <a href="qt.html#Orientation">Orientation</a> orientation, const <a href="qstring.html">QString</a> &amp; title, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a button group with a <em>title.</em> Child widgets will be arranged
+in <em>strips</em> rows or columns (depending on <em>orientation).</em>
+<p>The <em>parent</em> and <em>name</em> arguments are passed to the <a href="qwidget.html">QWidget</a> constructor.
+<h3 class="fn"><a name="53026e"></a>QButtonGroup::~QButtonGroup ()</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="c8e107"></a>QButtonGroup::clicked ( int id ) <code>[signal]</code></h3>
+<p>This signal is emitted when a button in the group is
+<a href="qbutton.html#da7248">clicked</a>.
+The <em>id</em> argument is the button's identifier.
+<h3 class="fn">int <a name="7c506a"></a>QButtonGroup::count () const</h3>
+<p>Returns the number of buttons in the group.
+<h3 class="fn"><a href="qbutton.html">QButton</a> * <a name="9e0875"></a>QButtonGroup::find ( int id ) const</h3>
+<p>Finds and returns a pointer to the button with the specified identifier
+<em>id.</em>
+<p>Returns null if the button was not found.
+<h3 class="fn">int <a name="c947e8"></a>QButtonGroup::id ( <a href="qbutton.html">QButton</a> * button ) const</h3>
+<p>Returns the id of <em>button,</em> or -1 if <em>button</em> is not a member of
+this group.
+<h3 class="fn">int <a name="10bf2d"></a>QButtonGroup::insert ( <a href="qbutton.html">QButton</a> * button, int id=-1 )</h3>
+<p>Inserts a button with the identifier <em>id</em> into the button group.
+Returns the button identifier.
+<p>It is not necessary to manually insert buttons that have this button
+group as their parent widget. An exception is when you want custom
+identifiers instead of the default 0, 1, 2 etc.
+<p>The button is assigned the identifier <em>id</em> or an automatically
+generated identifier.  It works as follows: If <em>id</em> >= 0, this
+identifier is assigned.  If <em>id</em> == -1 (default), the identifier is
+equal to the number of buttons in the group.  If <em>id</em> is any other
+negative integer, for instance -2, a unique identifier (negative
+integer &lt;= -2) is generated.
+<p>Inserting several buttons with <em>id</em> = -1 assigns the identifiers 0,
+1, 2, etc.
+<p>See also  <a href="#9e0875">find</a>(), <a href="#66e1b1">remove</a>() and <a href="#1075ee">setExclusive</a>().
+<p>Examples:
+ <a href="xform-xform-cpp.html#insert">xform/xform.cpp</a>
+<h3 class="fn">bool <a name="1d6f90"></a>QButtonGroup::isExclusive () const</h3>
+<p>Returns TRUE if the button group is exclusive, otherwise FALSE.
+<p>See also  <a href="#1075ee">setExclusive</a>().
+<h3 class="fn">bool <a name="0e8f21"></a>QButtonGroup::isRadioButtonExclusive () const</h3>
+<p>Returns whether this button group will treat radio buttons as
+mutually exclusive. The default is TRUE.
+<p>See also  <a href="#d67431">setRadioButtonExclusive</a>().
+<h3 class="fn">void <a name="6a2fbb"></a>QButtonGroup::moveFocus ( int key ) <code>[virtual]</code></h3>
+<p>Moves the keyboard focus according to <em>key,</em> and if appropriate
+checks the new focus item.
+<p>This function does nothing unless the keyboard focus points to one
+of the button group members and <em>key</em> is one of <code>Key_Up, Key_Down, Key_Left</code> and <code>Key_Right.</code>
+<h3 class="fn">void <a name="2ddfc7"></a>QButtonGroup::pressed ( int id ) <code>[signal]</code></h3>
+<p>This signal is emitted when a button in the group is
+<a href="qbutton.html#a27000">pressed</a>.
+The <em>id</em> argument is the button's identifier.
+<h3 class="fn">void <a name="61ef11"></a>QButtonGroup::released ( int id ) <code>[signal]</code></h3>
+<p>This signal is emitted when a button in the group is
+<a href="qbutton.html#e6fa8e">released</a>.
+The <em>id</em> argument is the button's identifier.
+<h3 class="fn">void <a name="66e1b1"></a>QButtonGroup::remove ( <a href="qbutton.html">QButton</a> * button )</h3>
+<p>Removes a button from the button group.
+<p>See also  <a href="#10bf2d">insert</a>().
+<h3 class="fn"><a href="qbutton.html">QButton</a> * <a name="1952fb"></a>QButtonGroup::selected ()</h3>
+<p>Returns a pointer to the selected radio button in this group, if
+one exists, or 0 if there is no selected radio button in this group.
+<p><b>Warning: </b>In future versions of Qt, the selected toggle button will be returned.
+<h3 class="fn">void <a name="5dc823"></a>QButtonGroup::setButton ( int id ) <code>[virtual]</code></h3>
+<p>Sets the button with id <em>id</em> to be on, and if this is an
+exclusive group, all other button in the group to be off.
+<h3 class="fn">void <a name="1075ee"></a>QButtonGroup::setExclusive ( bool enable ) <code>[virtual]</code></h3>
+<p>Sets the button group to be exclusive if <em>enable</em> is TRUE,
+or to be non-exclusive if <em>enable</em> is FALSE.
+<p>An exclusive button group switches off all other toggle buttons when
+one is switched on. This is ideal for groups of <a href="qradiobutton.html">radio buttons</a>. A non-exclusive group allow many buttons to be
+switched on at the same time.
+<p>The default setting is FALSE.
+<p>See also  <a href="#1d6f90">isExclusive</a>().
+<h3 class="fn">void <a name="d67431"></a>QButtonGroup::setRadioButtonExclusive ( bool on ) <code>[virtual]</code></h3>
+<p>If <em>on</em> is TRUE, this button group will treat radio buttons as
+mutually exclusive, and other buttons according to
+<a href="#1d6f90">isExclusive</a>().
+<h3 class="fn">void <a name="3d5a7f"></a>QButtonGroup::buttonClicked () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="ff8208"></a>QButtonGroup::buttonPressed () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="a12762"></a>QButtonGroup::buttonReleased () <code>[protected slot]</code></h3>
+<p>For internal use only.
+<h3 class="fn">void <a name="6c8799"></a>QButtonGroup::buttonToggled ( bool on ) <code>[protected slot]</code></h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

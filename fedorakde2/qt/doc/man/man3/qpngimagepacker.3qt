@@ -1,0 +1,60 @@
+'\" t
+.TH QPNGImagePacker 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QPNGImagePacker \- Creates well-compressed PNG animations
+.br
+.PP
+\fC#include <qpngio.h>\fR
+.PP
+Inherits QPNGImageWriter.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQPNGImagePacker\fR ( QIODevice *, int " "depth" ", int convflags ) "
+.br
+.ti -1c
+.BI "void \fBsetPixelAlignment\fR ( int x ) "
+.br
+.ti -1c
+.BI "bool \fBpackImage\fR ( const QImage & img ) "
+.br
+.in -1c
+.SH DESCRIPTION
+Creates well-compressed PNG animations.
+.PP
+By using transparency, QPNGImagePacker allows you to build a PNG image from a sequence of QImages.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QPNGImagePacker::QPNGImagePacker ( QIODevice * iod, int storage_depth, int conversionflags )"
+Create an image packer that writes PNG data to \fIiod,\fR using a \fIstorage_depth\fR bit encoding (use 8 or 32, depending on the desired quality and compression requirements).
+.SH "bool QPNGImagePacker::packImage ( const QImage & img )"
+Add the image \fIimg\fR to the PNG animation, analyzing the differences between this and the previous image to improve compression.
+.SH "void QPNGImagePacker::setPixelAlignment ( int x )"
+Align pixel differences to \fIx\fR pixels.  For example, using 8 can
+improve playback on certain hardware.  Normally the default of 1-pixel
+alignment (ie. no alignment) gives bets compression and performance.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qpngimagepacker.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qpngimagepacker.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,164 @@
+'\" t
+.TH QSizePolicy 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QSizePolicy \- A layout attribute describing horizontal and vertical resizing
+.br
+.PP
+\fC#include <qsizepolicy.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBSizeType\fR { Fixed = 0, Minimum = MayGrow, Maximum = MayShrink, Preferred = MayGrow|MayShrink, MinimumExpanding = Minimum|ExpMask, Expanding = MinimumExpanding|MayShrink }"
+.br
+.ti -1c
+.BI "enum \fBExpandData\fR { NoDirection = 0, Horizontal = 1, Vertical = 2, BothDirections = Horizontal | Vertical }"
+.br
+.ti -1c
+.BI "\fBQSizePolicy\fR () "
+.br
+.ti -1c
+.BI "\fBQSizePolicy\fR ( SizeType " "hor" ", SizeType " "ver" ", bool " "hfw" " = FALSE ) "
+.br
+.ti -1c
+.BI "SizeType \fBhorData\fR () const"
+.br
+.ti -1c
+.BI "SizeType \fBverData\fR () const"
+.br
+.ti -1c
+.BI "bool \fBmayShrinkHorizontally\fR () const"
+.br
+.ti -1c
+.BI "bool \fBmayShrinkVertically\fR () const"
+.br
+.ti -1c
+.BI "bool \fBmayGrowHorizontally\fR () const"
+.br
+.ti -1c
+.BI "bool \fBmayGrowVertically\fR () const"
+.br
+.ti -1c
+.BI "ExpandData \fBexpanding\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetHorData\fR ( SizeType d ) "
+.br
+.ti -1c
+.BI "void \fBsetVerData\fR ( SizeType d ) "
+.br
+.ti -1c
+.BI "void \fBsetHeightForWidth\fR ( bool b ) "
+.br
+.ti -1c
+.BI "bool \fBhasHeightForWidth\fR () const"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QSizePolicy & s ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QSizePolicy & s ) const"
+.br
+.in -1c
+.SH DESCRIPTION
+A layout attribute describing horizontal and vertical resizing.
+.PP
+The size policy of a widget is an expression of its willingness to be resized in various ways.
+.PP
+Widgets which reimplement QWidget::sizePolicy() return a QSizePolicy describing the horizontal and vertical resizing policy best used when laying out the widget. Only one of the constructors is of interest in most applications.
+.PP
+QSizePolicy contains two independent SizeType objects, one which describes the widgets's horizontal size policy and one which describes its vertical size policy, and it contains a flag to indicate whether the height and width of its preferred size are related.
+.PP
+The per-dimension SizeType objects are set in the usual constructor, and can be queried using a variety of functions, none of which are really interesting to application programmers.
+.PP
+The hasHeightForWidth() flag indicates whether the widget's sizeHint() is width-dependent (like a word-wrapping label).
+.PP
+See also QSizePolicy::SizeType.
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QSizePolicy::ExpandData"
+This enum type describes in which directions a widget can make use of extra space. There are four possible values: 
+.TP
+\fCNoDirection\fR - the widget cannot make us of extra space in any direction.
+.TP
+\fCHorizontal\fR - the widget can usefully be wider than sizeHint() says.
+.TP
+\fCVertical\fR - the widget can usefully be taller than sizeHint() says.
+.TP
+\fCBothDirections\fR - the widget can usefully be both wider and taller than sizeHint() says.
+.IP
+.SH "QSizePolicy::SizeType"
+The per-dimension sizing types used when constructing a QSizePolicy are: 
+.TP
+\fCFixed\fR - the sizeHint() is the only acceptable alternative, so widget can never grow or shrink (eg. the vertical direction of a pushbutton).
+.TP
+\fCMinimum\fR - the sizeHint() is minimal, and sufficient. The widget can be expanded, but there is no advantage to it being larger (eg. the horizontal direction of a pushbutton).
+.TP
+\fCMaximum\fR - the sizeHint() is a maximum. The widget can be shrunk any amount without detriment if other widgets need the space (eg. a separator line).
+.TP
+\fCPreferred\fR - the sizeHint() is best, but the widget can be shrunk below that and still be useful. The widget can be expanded, but there is no advantage to it being larger than sizeHint() (the default QWidget policy).
+.TP
+\fCMinimumExpanding\fR - the sizeHint() is a minimum. The widget can make use of extra space, so it should get as much space as possible (not currently used by any standard Qt widgets).
+.TP
+\fCExpanding\fR - the sizeHint() is a sensible size, but the widget can be shrunk below that and still be useful. The widget can make use of extra space, so it should get as much space as possible (eg. the horizontal direction of a slider).
+.IP
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QSizePolicy::QSizePolicy ()"
+Default constructor, produces a minimally initialized QSizePolicy.
+.SH "QSizePolicy::QSizePolicy ( SizeType hor, SizeType ver, bool hfw = FALSE )"
+This is the constructor normally used to return a value in the overridden QWidget::sizePolicy() function of a QWidget subclass.
+.PP
+It constructs a QSizePolicy with independent horizontal and vertical sizing types, \fIhor\fR and \fIver\fR respectively. These sizing types affect how the widget is treated by the layout engine.
+.PP
+If \fIhfw\fR is TRUE, the preferred height of the widget is dependent on the width of the widget (for example, a QLabel with automatic word-breaking).
+.SH "QSizePolicy::ExpandData QSizePolicy::expanding() const"
+Returns a value indicating if the widget can make use of extra space (ie. if it "wants" to grow) horizontally and/or vertically.
+.SH "bool QSizePolicy::hasHeightForWidth () const"
+Returns TRUE if the widget's preferred height depends on its width.
+.SH "QSizePolicy::SizeType QSizePolicy::horData() const"
+Returns the horizontal component of the size policy.
+.SH "bool QSizePolicy::mayGrowHorizontally () const"
+Returns TRUE if the widget can sensibly be wider than its sizeHint().
+.SH "bool QSizePolicy::mayGrowVertically () const"
+Returns TRUE if the widget can sensibly be taller than its sizeHint().
+.SH "bool QSizePolicy::mayShrinkHorizontally () const"
+Returns TRUE if the widget can sensibly be narrower than its sizeHint().
+.SH "bool QSizePolicy::mayShrinkVertically () const"
+Returns TRUE if the widget can sensibly be lower than its sizeHint().
+.SH "void QSizePolicy::setHeightForWidth ( bool b )"
+Sets the hasHeightForWidth() flag to \fIb.\fR
+.SH "void QSizePolicy::setHorData ( SizeType d )"
+Sets the horizontal component of the size policy to \fId.\fR
+.SH "void QSizePolicy::setVerData ( SizeType d )"
+Sets the vertical component of the size policy to \fId.\fR
+.SH "QSizePolicy::SizeType QSizePolicy::verData() const"
+Returns the vertical component of the size policy.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qsizepolicy.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qsizepolicy.3qt) and the Qt
+version (2.3.2).

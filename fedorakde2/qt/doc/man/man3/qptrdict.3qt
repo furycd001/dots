@@ -1,0 +1,336 @@
+'\" t
+.TH QPtrDict 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QPtrDict \- Template class that provides a dictionary based on
+.br
+.PP
+\fC#include <qptrdict.h>\fR
+.PP
+Inherits QGDict.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQPtrDict\fR ( int " "size" "=17 ) "
+.br
+.ti -1c
+.BI "\fBQPtrDict\fR ( const QPtrDict<type> & dict ) "
+.br
+.ti -1c
+.BI "\fB~QPtrDict\fR () "
+.br
+.ti -1c
+.BI "QPtrDict<type>& \fBoperator=\fR ( const QPtrDict<type> & dict ) "
+.br
+.ti -1c
+.BI "virtual uint \fBcount\fR () const"
+.br
+.ti -1c
+.BI "uint \fBsize\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "void \fBinsert\fR ( void * " "key" ", const type * item ) "
+.br
+.ti -1c
+.BI "void \fBreplace\fR ( void * " "key" ", const type * item ) "
+.br
+.ti -1c
+.BI "bool \fBremove\fR ( void * key ) "
+.br
+.ti -1c
+.BI "type* \fBtake\fR ( void * key ) "
+.br
+.ti -1c
+.BI "type* \fBfind\fR ( void * key ) const"
+.br
+.ti -1c
+.BI "type* \fBoperator[]\fR ( void * key ) const"
+.br
+.ti -1c
+.BI "virtual void \fBclear\fR () "
+.br
+.ti -1c
+.BI "void \fBresize\fR ( uint newsize ) "
+.br
+.ti -1c
+.BI "void \fBstatistics\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QPtrDict class is a template class that provides a dictionary based on \fCvoid*\fR keys.
+.PP
+QPtrDict is implemented as a template class. Define a template instance QPtrDict<X> to create a dictionary that operates on pointers to X, or X*.
+.PP
+A dictionary is a collection that associates an item with a key. The key is used for inserting and looking up an item. QPtrDict has \fCvoid*\fR keys.
+.PP
+The dictionary has very fast insertion and lookup.
+.PP
+Example:
+.PP
+.nf
+.br
+    #include <qptrdict.h>
+.br
+    #include <stdio.h>
+.br
+.br
+    void main()
+.br
+    {
+.br
+        int *a = new int[12];
+.br
+        int *b = new int[10];
+.br
+        int *c = new int[18];
+.br
+        int *d = new int[13];
+.br
+.br
+        QPtrDict<char> dict;               // maps void* -> char*
+.br
+.br
+        dict.insert( a, "a is int[12]" );  // describe pointers
+.br
+        dict.insert( b, "b is int[10]" );
+.br
+        dict.insert( c, "c is int[18]" );
+.br
+.br
+        printf( "%s\\n", dict[a] );         // print descriptions
+.br
+        printf( "%s\\n", dict[b] );
+.br
+        printf( "%s\\n", dict[c] );
+.br
+.br
+        if ( !dict[d] )
+.br
+            printf( "d not in dictionary\\n" );
+.br
+    }
+.fi
+.PP
+Program output:
+.PP
+.nf
+.br
+        a is int[12]
+.br
+        b is int[10]
+.br
+        c is int[18]
+.br
+        d not in dictionary
+.fi
+.PP
+The dictionary in our example maps \fCint*\fR keys to \fCchar*\fR items. QPtrDict implements the [] operator to lookup an item.
+.PP
+QPtrDict is implemented by QGDict as a hash array with a fixed number of entries. Each array entry points to a singly linked list of buckets, in which the dictionary items are stored.
+.PP
+When an item is inserted with a key, the key is converted (hashed) to an integer index into the hash array using the \fCmod\fR operation. The item is inserted before the first bucket in the list of buckets.
+.PP
+Looking up an item is normally very fast. The key is again hashed to an array index. Then QPtrDict scans the list of buckets and returns the item found or null if the item was not found. You cannot insert null pointers into a dictionary.
+.PP
+The size of the hash array is very important. In order to get good performance, you should use a suitably large prime number. Suitable means equal to or larger than the maximum expected number of dictionary items.
+.PP
+Items with equal keys are allowed. When inserting two items with the same key, only the last inserted item will be visible (last in, first out) until it is removed.
+.PP
+Example:
+.PP
+.nf
+.br
+    #include <qptrdict.h>
+.br
+    #include <stdio.h>
+.br
+.br
+    void main()
+.br
+    {
+.br
+        QPtrDict<char> dict;            // maps char* ==> char*
+.br
+.br
+        double *ptr = new double[28];
+.br
+        dict.insert( ptr, "first" );
+.br
+        dict.insert( ptr, "second" );
+.br
+.br
+        printf( "%s\\n", dict[ptr] );
+.br
+        dict.remove( ptr );
+.br
+        printf( "%s\\n", dict[ptr] );
+.br
+    }
+.fi
+.PP
+Program output:
+.PP
+.nf
+.br
+        second
+.br
+        first
+.fi
+.PP
+The QPtrDictIterator class can traverse the dictionary contents, but only in an arbitrary order. Multiple iterators may independently traverse the same dictionary.
+.PP
+Calling setAutoDelete(TRUE) for a dictionary tells it to delete items that are removed . The default is to not delete items when they are removed.
+.PP
+When inserting an item into a dictionary, only the pointer is copied, not the item itself. This is called a shallow copy. It is possible to make the dictionary copy all of the item's data (known as a deep copy) when an item is inserted. insert() calls the virtual function QCollection::newItem() for the item to be inserted. Inherit a dictionary and reimplement it if you want deep copies.
+.PP
+When removing a dictionary item, the virtual function QCollection::deleteItem() is called. QPtrDict's default implementation is to delete the item if auto-deletion is enabled.
+.PP
+See also QPtrDictIterator, QDict, QAsciiDict, QIntDict and Collection Classes
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QPtrDict::QPtrDict ( const QPtrDict<type> & dict )"
+Constructs a copy of \fIdict.\fR
+.PP
+Each item in \fIdict\fR are inserted into this dictionary. Only the pointers are copied (shallow copy).
+.SH "QPtrDict::QPtrDict ( int size=17 )"
+Constructs a dictionary using an internal hash array with the size \fIsize.\fR
+.PP
+Setting \fIsize\fR to a suitably large prime number (equal to or greater than the expected number of entries) makes the hash distribution better and hence the loopup faster.
+.SH "QPtrDict::~QPtrDict ()"
+Removes all items from the dictionary and destroys it.
+.PP
+All iterators that access this dictionary will be reset.
+.PP
+See also setAutoDelete().
+.SH "void QPtrDict::clear () \fC[virtual]\fR"
+Removes all items from the dictionary.
+.PP
+The removed items are deleted if auto-deletion is enabled.
+.PP
+All dictionary iterators that access this dictionary will be reset.
+.PP
+See also remove(), take() and setAutoDelete().
+.PP
+Reimplemented from QCollection.
+.SH "uint QPtrDict::count () const \fC[virtual]\fR"
+Returns the number of items in the dictionary.
+.PP
+See also isEmpty().
+.PP
+Reimplemented from QCollection.
+.SH "type * QPtrDict::find ( void * key ) const"
+Returns the item associated with \fIkey,\fR or null if the key does not exist in the dictionary.
+.PP
+This function uses an internal hashing algorithm to optimize lookup.
+.PP
+If there are two or more items with equal keys, then the last inserted of these will be found.
+.PP
+Equivalent to the [] operator.
+.PP
+See also operator[]().
+.SH "void QPtrDict::insert ( void * key, const type * item )"
+Inserts the \fIkey\fR with the \fIitem\fR into the dictionary.
+.PP
+The key does not have to be a unique dictionary key. If multiple items are inserted with the same key, only the last item will be visible.
+.PP
+Null items are not allowed.
+.PP
+See also replace().
+.SH "bool QPtrDict::isEmpty () const"
+Returns TRUE if the dictionary is empty, i.e. count() == 0. Returns FALSE otherwise.
+.PP
+See also count().
+.SH "QPtrDict<type> & QPtrDict::operator= ( const QPtrDict<type> & dict )"
+Assigns \fIdict\fR to this dictionary and returns a reference to this dictionary.
+.PP
+This dictionary is first cleared, then each item in \fIdict\fR is inserted into this dictionary. Only the pointers are copied (shallow copy), unless newItem() has been reimplemented().
+.SH "type * QPtrDict::operator[] ( void * key ) const"
+Returns the item associated with \fIkey,\fR or null if the key does not exist in the dictionary.
+.PP
+This function uses an internal hashing algorithm to optimize lookup.
+.PP
+If there are two or more items with equal keys, then the last inserted of these will be found.
+.PP
+Equivalent to the find() function.
+.PP
+See also find().
+.SH "bool QPtrDict::remove ( void * key )"
+Removes the item associated with \fIkey\fR from the dictionary. Returns TRUE if successful, or FALSE if the key does not exist in the dictionary.
+.PP
+If there are two or more items with equal keys, then the last inserted of these will be removed.
+.PP
+The removed item is deleted if auto-deletion is enabled.
+.PP
+All dictionary iterators that refer to the removed item will be set to point to the next item in the dictionary traversing order.
+.PP
+See also take(), clear() and setAutoDelete().
+.SH "void QPtrDict::replace ( void * key, const type * item )"
+Replaces an item which has a key equal to \fIkey\fR with \fIitem.\fR
+.PP
+If the item does not already exist, it will be inserted.
+.PP
+Null items are not allowed.
+.PP
+Equivalent to:
+.PP
+.nf
+.br
+    QPtrDict<char> dict;
+.br
+        ...
+.br
+    if ( dict.find(key) )
+.br
+        dict.remove( key );
+.br
+    dict.insert( key, item );
+.fi
+.PP
+If there are two or more items with equal keys, then the last inserted of these will be replaced.
+.PP
+See also insert().
+.SH "void QPtrDict::resize ( uint newsize )"
+Changes the size of the hashtable the \fInewsize.\fR The contents of the dictionary are preserved, but all iterators on the dictionary become invalid.
+.SH "uint QPtrDict::size () const"
+Returns the size of the internal hash array (as specified in the constructor).
+.PP
+See also count().
+.SH "void QPtrDict::statistics () const"
+Debugging-only function that prints out the dictionary distribution using qDebug().
+.SH "type * QPtrDict::take ( void * key )"
+Takes the item associated with \fIkey\fR out of the dictionary without deleting it (even if auto-deletion is enabled).
+.PP
+If there are two or more items with equal keys, then the last inserted of these will be taken.
+.PP
+Returns a pointer to the item taken out, or null if the key does not exist in the dictionary.
+.PP
+All dictionary iterators that refer to the taken item will be set to point to the next item in the dictionary traversing order.
+.PP
+See also  remove(), clear() and setAutoDelete().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qptrdict.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qptrdict.3qt) and the Qt
+version (2.3.2).

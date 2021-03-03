@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QCanvasRectangle Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QCanvasRectangle Class Reference<br><small>[ <a href="canvas.html">canvas module</a> ]</small></h1><br clear="all">
+<p>
+A rectangle with a movable top-left point.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qcanvas-h.html">qcanvas.h</a>&gt;</code>
+<p>
+Inherits <a href="qcanvaspolygonalitem.html">QCanvasPolygonalItem</a>.
+<p><a href="qcanvasrectangle-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#5fe4cb"><b>QCanvasRectangle</b></a> ( QCanvas * canvas ) </div>
+<li><div class="fn"><a href="#c747f8"><b>QCanvasRectangle</b></a> ( const QRect &amp;, QCanvas * canvas ) </div>
+<li><div class="fn"><a href="#16a768"><b>QCanvasRectangle</b></a> ( int x, int y, int width, int height, QCanvas * canvas ) </div>
+<li><div class="fn"><a href="#e523cb"><b>~QCanvasRectangle</b></a> () </div>
+<li><div class="fn">int <a href="#aabeed"><b>width</b></a> () const</div>
+<li><div class="fn">int <a href="#6d637a"><b>height</b></a> () const</div>
+<li><div class="fn">void <a href="#09027d"><b>setSize</b></a> ( int w, int h ) </div>
+<li><div class="fn">QSize <a href="#910d5c"><b>size</b></a> () const</div>
+<li><div class="fn">QRect <a href="#7c5daa"><b>rect</b></a> () const</div>
+<li><div class="fn">virtual int <a href="#5353c5"><b>rtti</b></a> () const</div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#632368"><b>drawShape</b></a> ( QPainter &amp; ) </div>
+<li><div class="fn">QPointArray <b>chunks</b> () const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+A rectangle with a movable top-left point.
+<p>
+Paints a rectangle in a <a href="qbrush.html">QBrush</a> and <a href="qpen.html">QPen</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="5fe4cb"></a>QCanvasRectangle::QCanvasRectangle ( <a href="qcanvas.html">QCanvas</a> * canvas )</h3>
+<p>Constructs a rectangle (0,0,32,32) on <em>canvas.</em>
+<h3 class="fn"><a name="c747f8"></a>QCanvasRectangle::QCanvasRectangle ( const <a href="qrect.html">QRect</a> &amp; r, <a href="qcanvas.html">QCanvas</a> * canvas )</h3>
+<p>Constructs a rectangle positioned and sized by <em>r</em> on <em>canvas.</em>
+<h3 class="fn"><a name="16a768"></a>QCanvasRectangle::QCanvasRectangle ( int x, int y, int width, int height, <a href="qcanvas.html">QCanvas</a> * canvas )</h3>
+<p>Constructs a rectangle with position <em>x, y</em>
+and size <em>width</em> by <em>height,</em> on <em>canvas.</em>
+<h3 class="fn"><a name="e523cb"></a>QCanvasRectangle::~QCanvasRectangle ()</h3>
+<p>Destructs the rectangle.
+<h3 class="fn"><a href="qpointarray.html">QPointArray</a> <a name="1800db"></a>QCanvasRectangle::areaPoints () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qcanvaspolygonalitem.html#e56d42">QCanvasPolygonalItem.</a>
+<h3 class="fn">bool <a name="f5573d"></a>QCanvasRectangle::collidesWith ( const <a href="qcanvasitem.html">QCanvasItem</a> * i ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qcanvasitem.html#1d22d3">QCanvasItem.</a>
+<h3 class="fn">void <a name="632368"></a>QCanvasRectangle::drawShape ( <a href="qpainter.html">QPainter</a> &amp; p ) <code>[virtual protected]</code></h3>
+<p>Draws the rectangle on <em>p.</em>
+<p>Reimplemented from <a href="qcanvaspolygonalitem.html#b0e0fb">QCanvasPolygonalItem.</a>
+<h3 class="fn">int <a name="6d637a"></a>QCanvasRectangle::height () const</h3>
+<p>Returns the height of the rectangle.
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="7c5daa"></a>QCanvasRectangle::rect () const</h3>
+<p>Returns the integer-converted <a href="qcanvasitem.html#e0e6af">x</a>(), <a href="qcanvasitem.html#2eabbd">y</a>() position and <a href="#910d5c">size</a>() of the rectangle
+as a <a href="qrect.html">QRect</a>.
+<h3 class="fn">int <a name="5353c5"></a>QCanvasRectangle::rtti () const <code>[virtual]</code></h3>
+<p>Returns 5.
+<p>See also  <a href="qcanvasitem.html#f75ac7">QCanvasItem::rtti</a>().
+<p>Reimplemented from <a href="qcanvasitem.html#f75ac7">QCanvasItem.</a>
+<h3 class="fn">void <a name="09027d"></a>QCanvasRectangle::setSize ( int width, int height )</h3>
+<p>Sets the <em>width</em> and <em>height</em> of the rectangle.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="910d5c"></a>QCanvasRectangle::size () const</h3>
+<p>Returns the <a href="#aabeed">width</a>() and <a href="#6d637a">height</a>() of the rectangle.
+<p>See also  <a href="#7c5daa">rect</a>() and <a href="#09027d">setSize</a>().
+<h3 class="fn">int <a name="aabeed"></a>QCanvasRectangle::width () const</h3>
+<p>Returns the width of the rectangle.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,85 @@
+/****************************************************************************
+** $Id: qt/doc/y2k.doc   2.3.2   edited 2001-01-26 $
+**
+** Qt Year 2000 Compliance
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page y2k.html
+
+\title Year 2000 Compliance Statement
+
+Trolltech defines <i>Year 2000 Compliance</i> as a requirement that a
+product or part of product does not contain errors related to
+transition from December 31, 1999 to January 1, 2000, or to the
+existence of February 29, 2000.
+
+This document certifies that the API provided by Qt and the
+implementation of Qt are both Year 2000 Compliant, and that the use of
+underlying APIs by Qt does not have any known problems.
+
+<h2 align="center">The API Provided by Qt</h2>
+
+Several parts of Qt deal with dates and times:<ul>
+<li>\l QDate - provides date management
+<li>\l QDateTime - provides date/time management
+<li>\l QTime - provides time management (within a date)
+<li>\l QTimer - provides delayed or regular execution of code.
+</ul>
+
+All of these classes' external APIs are Year 2000 Compliant: QDate and
+QDateTime offer only four-digit years as output, QTime and QTimer do
+not deal with years or leap days at all.
+
+<h2 align="center">Implementation Issues in Qt</h2>
+
+All date/time calculation and storage in Qt uses number of days,
+seconds or milliseconds, and is thus Year 2000 Compliant.
+
+This applies to the above four classes and also to \l QFileDialog
+(which can sort files by time/date), \l QFileInfo (which operates on
+file times/dates) and \l QApplication (which does various internal
+housekeeping tasks).
+
+The conversion to <tt>year/month/date</tt> format in QDate (and
+QDateTime) has been verified to be correct for all of December 31,
+1999, January 1, 2000, February 28 and 29, 2000, March 1, 2000,
+January 1, 2001 and March 1, 2001.
+
+Qt has been verified to be robust in case of time/date errors (such as
+time warps) in the underlying operating system.
+
+<h2 align="center">Use of System APIs</h2>
+
+It is of course impossible for Trolltech to ensure that both of the
+window systems and all of the operating systems on which Qt runs are
+Year 2000 Compliant.  However, Qt does not use any APIs that are known
+to have any Year 2000-related bugs, or seem at risk to have any.  */

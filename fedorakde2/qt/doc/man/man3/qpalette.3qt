@@ -1,0 +1,262 @@
+'\" t
+.TH QPalette 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QPalette \- Color groups for each widget state
+.br
+.PP
+\fC#include <qpalette.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQPalette\fR () "
+.br
+.ti -1c
+.BI "QPalette ( const QColor & button ) \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "\fBQPalette\fR ( const QColor & " "button" ", const QColor & background ) "
+.br
+.ti -1c
+.BI "\fBQPalette\fR ( const QColorGroup & " "active" ", const QColorGroup & " "disabled" ", const QColorGroup & inactive ) "
+.br
+.ti -1c
+.BI "\fBQPalette\fR ( const QPalette & ) "
+.br
+.ti -1c
+.BI "\fB~QPalette\fR () "
+.br
+.ti -1c
+.BI "QPalette& \fBoperator=\fR ( const QPalette & ) "
+.br
+.ti -1c
+.BI "enum \fBColorGroup\fR { Normal, Disabled, Active, Inactive, NColorGroups }"
+.br
+.ti -1c
+.BI "const QColor& \fBcolor\fR ( ColorGroup, QColorGroup::ColorRole ) const"
+.br
+.ti -1c
+.BI "const QBrush& \fBbrush\fR ( ColorGroup, QColorGroup::ColorRole ) const"
+.br
+.ti -1c
+.BI "void \fBsetColor\fR ( ColorGroup, QColorGroup::ColorRole, const QColor & ) "
+.br
+.ti -1c
+.BI "void \fBsetBrush\fR ( ColorGroup, QColorGroup::ColorRole, const QBrush & ) "
+.br
+.ti -1c
+.BI "void \fBsetColor\fR ( QColorGroup::ColorRole, const QColor & ) "
+.br
+.ti -1c
+.BI "void \fBsetBrush\fR ( QColorGroup::ColorRole, const QBrush & ) "
+.br
+.ti -1c
+.BI "QPalette \fBcopy\fR () const"
+.br
+.ti -1c
+.BI "const QColorGroup& \fBactive\fR () const"
+.br
+.ti -1c
+.BI "const QColorGroup& \fBdisabled\fR () const"
+.br
+.ti -1c
+.BI "const QColorGroup& \fBinactive\fR () const"
+.br
+.ti -1c
+.BI "const QColorGroup& normal () const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "void \fBsetActive\fR ( const QColorGroup & ) "
+.br
+.ti -1c
+.BI "void \fBsetDisabled\fR ( const QColorGroup & ) "
+.br
+.ti -1c
+.BI "void \fBsetInactive\fR ( const QColorGroup & ) "
+.br
+.ti -1c
+.BI "void setNormal ( const QColorGroup & ) \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QPalette & p ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QPalette & p ) const"
+.br
+.ti -1c
+.BI "bool \fBisCopyOf\fR ( const QPalette & ) "
+.br
+.ti -1c
+.BI "int \fBserialNumber\fR () const"
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QPalette & " "p" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QPalette & " "p" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QPalette class contains color groups for each widget state.
+.PP
+A palette consists of three color groups: a \fIactive,\fR a \fIdisabled\fR and an \fIinactive\fR color group. All widgets contain a palette, and all the widgets in Qt use their palette to draw themselves. This makes the user interface consistent and easily configurable.
+.PP
+If you make a new widget you are strongly advised to use the colors in the palette rather than hard-coding specific colors.
+.PP
+The color groups are: 
+.TP
+The active() group is used for the window that has keyboard focus. 
+.TP
+The inactive() group is used for other windows. 
+.TP
+The disabled() group is used for widgets (not windows) that are disabled for some reason. 
+.PP
+Of course, both active and inactive windows can contain disabled widgets. (Disabled widgets are often called \fIinaccessible\fR or \fIgrayed out.)\fR
+.PP
+In Motif style, active() and inactive() look precisely the same. In Windows 2000 style and Macintosh Platinum style, the two styles look slightly different.
+.PP
+There are setActive(), setInactive() and setDisabled() functions to modify the palette. Qt also supports a normal() group; this is an obsolete alias for active(), supported for backward compatibility.
+.PP
+(The split between normal() and active() prior to Qt 2.1 did not work except in the simplest of cases, hence the change to the current, more powerful design.)
+.PP
+See also QApplication::setPalette(), QWidget::setPalette(), QColorGroup and QColor.
+.PP
+Examples:
+.(l
+i18n/main.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QPalette::QPalette ()"
+Constructs a palette that consists of color groups with only black colors.
+.SH "QPalette::QPalette ( const QColor & button )"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Constructs a palette from the \fIbutton\fR color. The other colors are automatically calculated, based on this color. Background will be the button color as well.
+.SH "QPalette::QPalette ( const QColor & button, const QColor & background )"
+Constructs a palette from a \fIbutton\fR color and a background. The other colors are automatically calculated, based on these colors.
+.SH "QPalette::QPalette ( const QColorGroup & active, const QColorGroup & disabled, const QColorGroup & inactive )"
+Constructs a palette that consists of the three color groups \fIactive, disabled\fR and \fIinactive.\fR See QPalette for definitions of the color groups and QColorGroup::ColorRole for definitions of each color role in the three groups.
+.PP
+See also QColorGroup, QColorGroup::ColorRole and QPalette.
+.SH "QPalette::QPalette ( const QPalette & p )"
+Constructs a copy of \fIp.\fR
+.PP
+This constructor is fast (it uses copy-on-write).
+.SH "QPalette::~QPalette ()"
+Destructs the palette.
+.SH "const QColorGroup & QPalette::active () const"
+Returns the active color group of this palette.
+.PP
+See also QColorGroup, setActive(), inactive() and disabled().
+.SH "const QBrush & QPalette::brush ( ColorGroup gr, QColorGroup::ColorRole r ) const"
+Returns the brush in \fIgr\fR used for color role \fIr.\fR
+.PP
+See also color(), setBrush() and QColorGroup::ColorRole.
+.SH "const QColor & QPalette::color ( ColorGroup gr, QColorGroup::ColorRole r ) const"
+Returns the color in \fIgr\fR used for color role \fIr.\fR
+.PP
+See also brush(), setColor() and QColorGroup::ColorRole.
+.SH "QPalette QPalette::copy () const"
+Return a deep copy of this palette. This is slower than the copy constructor and assignment operator and offers no advantages any more.
+.SH "const QColorGroup & QPalette::disabled () const"
+Returns the disabled color group of this palette.
+.PP
+See also QColorGroup, setDisabled(), active() and inactive().
+.SH "const QColorGroup & QPalette::inactive () const"
+Returns the inactive color group of this palette.
+.PP
+See also QColorGroup, setInactive(), active() and disabled().
+.SH "bool QPalette::isCopyOf ( const QPalette & p )"
+Returns TRUE if this palette and \fIp\fR are copies of each other, ie. one of them was created as a copy of the other and neither was subsequently modified. This is much stricter than equality.
+.PP
+See also operator= and operator==.
+.SH "const QColorGroup & QPalette::normal () const"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Use active() instead.
+.SH "bool QPalette::operator!= ( const QPalette & p ) const"
+Returns TRUE (slowly) if this palette is different from \fIp,\fR or FALSE (usually quickly) if they are equal.
+.SH "QPalette & QPalette::operator= ( const QPalette & p )"
+Assigns \fIp\fR to this palette and returns a reference to this palette.
+.PP
+This is fast (it uses copy-on-write).
+.PP
+See also copy().
+.SH "bool QPalette::operator== ( const QPalette & p ) const"
+Returns TRUE (usually quickly) if this palette is equal to \fIp,\fR or FALSE (slowly) if they are different.
+.SH "int QPalette::serialNumber () const"
+Returns a number that uniquely identifies this QPalette object. The serial number is intended for caching. Its value may not be used for anything other than equality testing.
+.PP
+Note that QPalette uses copy-on-write, and the serial number changes during the lazy copy operation (detach()), not during a shallow copy (copy constructor or assignment).
+.PP
+See also QPixmap, QPixmapCache and QCache.
+.SH "void QPalette::setActive ( const QColorGroup & g )"
+Sets the \fCActive\fR color group to \fIg.\fR
+.PP
+See also active(), setDisabled(), setInactive() and QColorGroup.
+.SH "void QPalette::setBrush ( QColorGroup::ColorRole r, const QBrush & b )"
+Sets the brush in for color role \fIr\fR in all three color groups to \fIb.\fR
+.PP
+See also brush(), setColor(), QColorGroup::ColorRole, active(), inactive() and disabled().
+.SH "void QPalette::setBrush ( ColorGroup gr, QColorGroup::ColorRole r, const QBrush & b )"
+Sets the brush in \fIgr\fR used for color role \fIr\fR to \fIb.\fR
+.PP
+See also brush(), setColor() and QColorGroup::ColorRole.
+.SH "void QPalette::setColor ( QColorGroup::ColorRole r, const QColor & c )"
+Sets the color of the brush in \fIgr\fR used for color role \fIr\fR to \fIc.\fR
+.PP
+See also color(), setBrush() and QColorGroup::ColorRole.
+.SH "void QPalette::setColor ( ColorGroup gr, QColorGroup::ColorRole r, const QColor & c )"
+Sets the brush in \fIgr\fR used for color role \fIr\fR to the solid color \fIc.\fR
+.PP
+See also setBrush(), color() and QColorGroup::ColorRole.
+.SH "void QPalette::setDisabled ( const QColorGroup & g )"
+Sets the \fCDisabled\fR color group to \fIg.\fR
+.PP
+See also disabled(), setActive() and setInactive().
+.SH "void QPalette::setInactive ( const QColorGroup & g )"
+Sets the \fCInactive\fR color group to \fIg.\fR
+.PP
+See also active(), setDisabled(), setActive() and QColorGroup.
+.SH "void QPalette::setNormal ( const QColorGroup & g )"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Use setActive() instead.
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "QDataStream & operator>> (QDataStream & s, QPalette & p)"
+Reads a palette from the stream and returns a reference to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "QDataStream & operator<< (QDataStream & s, const QPalette & p)"
+Writes a palette to the stream and returns a reference to the stream.
+.PP
+See also  Format of the QDataStream operators
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qpalette.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qpalette.3qt) and the Qt
+version (2.3.2).

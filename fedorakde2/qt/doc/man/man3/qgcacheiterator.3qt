@@ -1,0 +1,113 @@
+'\" t
+.TH QGCacheIterator 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QGCacheIterator \- An internal class for implementing
+.br
+.PP
+\fC#include <qgcache.h>\fR
+.PP
+Inherited by QAsciiCacheIterator, QCacheIterator and QIntCacheIterator.
+.PP
+.SS "Protected Members"
+.TP
+\fBQGCacheIterator\fR ( const QGCache & ) (internal)
+.TP
+\fBQGCacheIterator\fR ( const QGCacheIterator & ) (internal)
+.TP
+\fB~QGCacheIterator\fR () (internal)
+.TP
+QGCacheIterator& \fBoperator=\fR ( const QGCacheIterator & ) (internal)
+.TP
+uint \fBcount\fR () const (internal)
+.TP
+bool \fBatFirst\fR () const (internal)
+.TP
+bool \fBatLast\fR () const (internal)
+.TP
+QCollection::Item \fBtoFirst\fR () (internal)
+.TP
+QCollection::Item \fBtoLast\fR () (internal)
+.TP
+QCollection::Item \fBget\fR () const (internal)
+.TP
+QString \fBgetKeyString\fR () const (internal)
+.TP
+const char* \fBgetKeyAscii\fR () const (internal)
+.TP
+long \fBgetKeyInt\fR () const (internal)
+.TP
+QCollection::Item \fBoperator\fR ()() (internal)
+.TP
+QCollection::Item \fBoperator++\fR () (internal)
+.TP
+QCollection::Item \fBoperator+=\fR ( uint ) (internal)
+.TP
+QCollection::Item \fBoperator--\fR () (internal)
+.TP
+QCollection::Item \fBoperator-=\fR ( uint ) (internal)
+.SH DESCRIPTION
+An internal class for implementing QCacheIterator and QIntCacheIterator.
+.PP
+QGCacheIterator is a strictly internal class that does the heavy work for QCacheIterator and QIntCacheIterator.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QGCacheIterator::QGCacheIterator ( const QGCache & c ) \fC[protected]\fR"
+For internal use only.
+.SH "QGCacheIterator::QGCacheIterator ( const QGCacheIterator & ci ) \fC[protected]\fR"
+For internal use only.
+.SH "QGCacheIterator::~QGCacheIterator () \fC[protected]\fR"
+For internal use only.
+.SH "bool QGCacheIterator::atFirst () const \fC[protected]\fR"
+For internal use only.
+.SH "bool QGCacheIterator::atLast () const \fC[protected]\fR"
+For internal use only.
+.SH "uint QGCacheIterator::count () const \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::get() const \fC[protected]\fR"
+For internal use only.
+.SH "const char * QGCacheIterator::getKeyAscii () const \fC[protected]\fR"
+For internal use only.
+.SH "long QGCacheIterator::getKeyInt () const \fC[protected]\fR"
+For internal use only.
+.SH "QString QGCacheIterator::getKeyString () const \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::operator()() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::operator++() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::operator+=( uint jump ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::operator--() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::operator-=( uint jump ) \fC[protected]\fR"
+For internal use only.
+.SH "QGCacheIterator & QGCacheIterator::operator= ( const QGCacheIterator & ci ) \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::toFirst() \fC[protected]\fR"
+For internal use only.
+.SH "QCollection::Item QGCacheIterator::toLast() \fC[protected]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qgcacheiterator.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qgcacheiterator.3qt) and the Qt
+version (2.3.2).

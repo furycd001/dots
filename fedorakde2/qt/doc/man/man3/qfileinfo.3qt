@@ -1,0 +1,448 @@
+'\" t
+.TH QFileInfo 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFileInfo \- System-independent file information
+.br
+.PP
+\fC#include <qfileinfo.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBPermissionSpec\fR { ReadUser = 0400, WriteUser = 0200, ExeUser = 0100, ReadGroup = 0040, WriteGroup = 0020, ExeGroup = 0010, ReadOther = 0004, WriteOther = 0002, ExeOther = 0001 }"
+.br
+.ti -1c
+.BI "\fBQFileInfo\fR () "
+.br
+.ti -1c
+.BI "\fBQFileInfo\fR ( const QString & file ) "
+.br
+.ti -1c
+.BI "\fBQFileInfo\fR ( const QFile & ) "
+.br
+.ti -1c
+.BI "\fBQFileInfo\fR ( const QDir &, const QString & fileName ) "
+.br
+.ti -1c
+.BI "\fBQFileInfo\fR ( const QFileInfo & ) "
+.br
+.ti -1c
+.BI "\fB~QFileInfo\fR () "
+.br
+.ti -1c
+.BI "QFileInfo& \fBoperator=\fR ( const QFileInfo & ) "
+.br
+.ti -1c
+.BI "void \fBsetFile\fR ( const QString & file ) "
+.br
+.ti -1c
+.BI "void \fBsetFile\fR ( const QFile & ) "
+.br
+.ti -1c
+.BI "void \fBsetFile\fR ( const QDir &, const QString & fileName ) "
+.br
+.ti -1c
+.BI "bool \fBexists\fR () const"
+.br
+.ti -1c
+.BI "void \fBrefresh\fR () const"
+.br
+.ti -1c
+.BI "bool \fBcaching\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetCaching\fR ( bool ) "
+.br
+.ti -1c
+.BI "QString \fBfilePath\fR () const"
+.br
+.ti -1c
+.BI "QString \fBfileName\fR () const"
+.br
+.ti -1c
+.BI "QString \fBabsFilePath\fR () const"
+.br
+.ti -1c
+.BI "QString \fBbaseName\fR () const"
+.br
+.ti -1c
+.BI "QString \fBextension\fR ( bool " "complete" " = TRUE ) const"
+.br
+.ti -1c
+.BI "QString \fBdirPath\fR ( bool " "absPath" " = FALSE ) const"
+.br
+.ti -1c
+.BI "QDir \fBdir\fR ( bool " "absPath" " = FALSE ) const"
+.br
+.ti -1c
+.BI "bool \fBisReadable\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisWritable\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisExecutable\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisRelative\fR () const"
+.br
+.ti -1c
+.BI "bool \fBconvertToAbs\fR () "
+.br
+.ti -1c
+.BI "bool \fBisFile\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisDir\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisSymLink\fR () const"
+.br
+.ti -1c
+.BI "QString \fBreadLink\fR () const"
+.br
+.ti -1c
+.BI "QString \fBowner\fR () const"
+.br
+.ti -1c
+.BI "uint \fBownerId\fR () const"
+.br
+.ti -1c
+.BI "QString \fBgroup\fR () const"
+.br
+.ti -1c
+.BI "uint \fBgroupId\fR () const"
+.br
+.ti -1c
+.BI "bool \fBpermission\fR ( int permissionSpec ) const"
+.br
+.ti -1c
+.BI "uint \fBsize\fR () const"
+.br
+.ti -1c
+.BI "QDateTime \fBlastModified\fR () const"
+.br
+.ti -1c
+.BI "QDateTime \fBlastRead\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QFileInfo class provides system-independent file information.
+.PP
+QFileInfo provides information about a file's name and position (path) in the file system, its access rights and whether it is a directory or a symbolic link. Its size and last modified/read times are also available.
+.PP
+To speed up performance QFileInfo caches information about the file. Since files can be changed by other users or programs, or even by other parts of the same program there is a function that refreshes the file information; refresh(). If you would rather like a QFileInfo to access the file system every time you request information from it, you can call the function setCaching( FALSE ).
+.PP
+A QFileInfo can point to a file using either a relative or an absolute file path. Absolute file paths begin with the directory separator ('/') or a drive specification (not applicable to UNIX). Relative file names begin with a directory name or a file name and specify a path relative to the current directory. An example of an absolute path is the string "/tmp/quartz". A relative path might look like" src/fatlib". You can use the function isRelative() to check if a QFileInfo is using a relative or an absolute file path. You can call the function convertToAbs() to convert a relative QFileInfo to an absolute one.
+.PP
+If you need to read and traverse directories, see the QDir class.
+.PP
+Examples:
+.(l
+i18n/main.cpp dirview/main.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFileInfo::QFileInfo ()"
+Constructs a new empty QFileInfo.
+.SH "QFileInfo::QFileInfo ( const QDir & d, const QString & fileName )"
+Constructs a new QFileInfo that gives information about the file named \fIfileName\fR in the directory \fId.\fR
+.PP
+If the directory has a relative path, the QFileInfo will also have one.
+.PP
+See also isRelative().
+.SH "QFileInfo::QFileInfo ( const QFile & file )"
+Constructs a new QFileInfo that gives information about \fIfile.\fR
+.PP
+If the file has a relative path, the QFileInfo will also have one.
+.PP
+See also isRelative().
+.SH "QFileInfo::QFileInfo ( const QString & file )"
+Constructs a new QFileInfo that gives information about the given file. The string given can be an absolute or a relative file path.
+.PP
+See also bool, setFile(QString, ), isRelative(), QDir::setCurrent() and QDir::isRelativePath().
+.SH "QFileInfo::QFileInfo ( const QFileInfo & fi )"
+Constructs a new QFileInfo that is a copy of \fIfi.\fR
+.SH "QFileInfo::~QFileInfo ()"
+Destructs the QFileInfo.
+.SH "QString QFileInfo::absFilePath () const"
+Returns the absolute path name.
+.PP
+The absolute path name is the file name including the absolute path. If the QFileInfo is absolute (i.e. not relative) this function will return the same string as filePath().
+.PP
+Note that this function can be time-consuming under UNIX. (in the order of milliseconds on a 486 DX2/66 running Linux).
+.PP
+See also isRelative() and filePath().
+.SH "QString QFileInfo::baseName () const"
+Returns the base name of the file.
+.PP
+The base name consists of all characters in the file name up to (but not including) the first '.' character. The path is not included.
+.PP
+Example:
+.PP
+.nf
+.br
+     QFileInfo fi( "/tmp/abdomen.lower" );
+.br
+     QString base = fi.baseName();              // base = "abdomen"
+.fi
+.PP
+See also fileName() and extension().
+.SH "bool QFileInfo::caching () const"
+Returns TRUE if caching is enabled.
+.PP
+See also setCaching() and refresh().
+.SH "bool QFileInfo::convertToAbs ()"
+Converts the file path name to an absolute path.
+.PP
+If it is already absolute nothing is done.
+.PP
+See also filePath() and isRelative().
+.SH "QDir QFileInfo::dir ( bool absPath = FALSE ) const"
+Returns the directory path of the file.
+.PP
+If the QFileInfo is relative and \fIabsPath\fR is FALSE, the QDir will be relative, otherwise it will be absolute.
+.PP
+See also dirPath(), filePath(), fileName() and isRelative().
+.SH "QString QFileInfo::dirPath ( bool absPath = FALSE ) const"
+Returns the directory path of the file.
+.PP
+If \fIabsPath\fR is TRUE an absolute path is always returned.
+.PP
+See also dir(), filePath(), fileName() and isRelative().
+.SH "bool QFileInfo::exists () const"
+Returns TRUE if the file pointed to exists, otherwise FALSE.
+.PP
+Examples:
+.(l
+i18n/main.cpp
+.)l
+.SH "QString QFileInfo::extension ( bool complete = TRUE ) const"
+Returns the extension name of the file.
+.PP
+If \fIcomplete\fR is TRUE (the default), extension() returns the string of all characters in the file name after (but not including) the first '.' character. For a file named "archive.tar.gz" this returns "tar.gz".
+.PP
+If \fIcomplete\fR is FALSE, extension() returns the string of all characters in the file name after (but not including) the last '.' character. For a file named "archive.tar.gz" this returns "gz".
+.PP
+Example:
+.PP
+.nf
+.br
+     QFileInfo fi( "lex.yy.c" );
+.br
+     QString ext = fi.extension();              // ext = "yy.c"
+.br
+     QString ext = fi.extension( FALSE );       // ext = "c"
+.fi
+.PP
+See also fileName() and baseName().
+.SH "QString QFileInfo::fileName () const"
+Returns the name of the file, the file path is not included.
+.PP
+Example:
+.PP
+.nf
+.br
+     QFileInfo fi( "/tmp/abdomen.lower" );
+.br
+     QString name = fi.fileName();              // name = "abdomen.lower"
+.fi
+.PP
+See also isRelative(), filePath(), baseName() and extension().
+.SH "QString QFileInfo::filePath () const"
+Returns the name, i.e. the file name including the path (which can be absolute or relative).
+.PP
+See also isRelative() and absFilePath().
+.PP
+Examples:
+.(l
+dirview/main.cpp
+.)l
+.SH "QString QFileInfo::group () const"
+Returns the group the file belongs to.
+.PP
+On systems where files do not have groups this function always returns 0.
+.PP
+Note that this function can be time-consuming under UNIX (in the order of milliseconds on a 486 DX2/66 running Linux).
+.PP
+See also groupId(), owner() and ownerId().
+.SH "uint QFileInfo::groupId () const"
+Returns the id of the group the file belongs to.
+.PP
+On systems where files do not have groups this function always returns ((uind) -2).
+.PP
+See also group(), owner() and ownerId().
+.SH "bool QFileInfo::isDir () const"
+Returns TRUE if we are pointing to a directory or a symbolic link to a directory.
+.PP
+See also isFile() and isSymLink().
+.SH "bool QFileInfo::isExecutable () const"
+Returns TRUE if the file is executable.
+.PP
+See also isReadable(), isWritable() and permission().
+.SH "bool QFileInfo::isFile () const"
+Returns TRUE if we are pointing to a real file.
+.PP
+See also isDir() and isSymLink().
+.SH "bool QFileInfo::isReadable () const"
+Returns TRUE if the file is readable.
+.PP
+See also isWritable(), isExecutable() and permission().
+.SH "bool QFileInfo::isRelative () const"
+Returns TRUE if the file path name is relative to the current directory, FALSE if the path is absolute (e.g. under UNIX a path is relative if it does not start with a '/').
+.PP
+According to Einstein this function should always return TRUE.
+.SH "bool QFileInfo::isSymLink () const"
+Returns TRUE if we are pointing to a symbolic link.
+.PP
+See also isFile(), isDir() and readLink().
+.SH "bool QFileInfo::isWritable () const"
+Returns TRUE if the file is writable.
+.PP
+See also isReadable(), isExecutable() and permission().
+.SH "QDateTime QFileInfo::lastModified () const"
+Returns the date and time when the file was last modified.
+.PP
+See also lastRead().
+.SH "QDateTime QFileInfo::lastRead () const"
+Returns the date and time when the file was last read (accessed).
+.PP
+On systems that do not support last read times, the modification time is returned.
+.PP
+See also lastModified().
+.SH "QFileInfo & QFileInfo::operator= ( const QFileInfo & fi )"
+Makes a copy of \fIfi\fR and assigns it to this QFileInfo.
+.SH "QString QFileInfo::owner () const"
+Returns the owner of the file.
+.PP
+On systems where files do not have owners this function returns 0.
+.PP
+Note that this function can be time-consuming under UNIX. (in the order of milliseconds on a 486 DX2/66 running Linux).
+.PP
+See also ownerId(), group() and groupId().
+.SH "uint QFileInfo::ownerId () const"
+Returns the id of the owner of the file.
+.PP
+On systems where files do not have owners this function returns ((uint) -2).
+.PP
+See also owner(), group() and groupId().
+.SH "bool QFileInfo::permission ( int permissionSpec ) const"
+Tests for file permissions. The \fIpermissionSpec\fR argument can be several flags of type PermissionSpec or'ed together to check for permission combinations.
+.PP
+On systems where files do not have permissions this function always returns TRUE.
+.PP
+Example:
+.PP
+.nf
+.br
+    QFileInfo fi( "/tmp/tonsils" );
+.br
+    if ( fi.permission( QFileInfo::WriteUser | QFileInfo::ReadGroup ) )
+.br
+        qWarning( "Tonsils can be changed by me, and the group can read them.");
+.br
+    if ( fi.permission( QFileInfo::WriteGroup | QFileInfo::WriteOther ) )
+.br
+        qWarning( "Danger! Tonsils can be changed by the group or others!" );
+.fi
+.PP
+See also isReadable(), isWritable() and isExecutable().
+.SH "QString QFileInfo::readLink () const"
+Returns the name a symlink points to, or a null QString if the object does not refer to a symbolic link.
+.PP
+This name may not represent an existing file; it is only a string. QFileInfo::exists() returns TRUE if the symlink points to an existing file.
+.PP
+See also exists(), isSymLink(), isDir() and isFile().
+.SH "void QFileInfo::refresh () const"
+Refresh the information about the file, i.e. read in information from the file system the next time a cached property is fetched.
+.PP
+See also setCaching().
+.SH "void QFileInfo::setCaching ( bool enable )"
+Enables caching of file information if \fIenable\fR is TRUE, or disables it if \fIenable\fR is FALSE.
+.PP
+When caching is enabled, QFileInfo reads the file information the first time
+.PP
+Caching is enabled by default.
+.PP
+See also refresh() and caching().
+.SH "void QFileInfo::setFile ( const QDir & d, const QString & fileName )"
+Sets the file to obtains information about to \fIfileName\fR in the directory \fId.\fR
+.PP
+If the directory has a relative path, the QFileInfo will also have one.
+.PP
+See also isRelative().
+.SH "void QFileInfo::setFile ( const QFile & file )"
+Sets the file to obtain information about.
+.PP
+If the file has a relative path, the QFileInfo will also have one.
+.PP
+See also isRelative().
+.SH "void QFileInfo::setFile ( const QString & file )"
+Sets the file to obtain information about.
+.PP
+The string given can be an absolute or a relative file path. Absolute file paths begin with the directory separator (e.g. '/' under UNIX) or a drive specification (not applicable to UNIX). Relative file names begin with a directory name or a file name and specify a path relative to the current directory.
+.PP
+Example:
+.PP
+.nf
+.br
+    #include <qfileinfo.h>
+.br
+    #include <qdir.h>
+.br
+.br
+    void test()
+.br
+    {
+.br
+        QString absolute = "/liver/aorta";
+.br
+        QString relative = "liver/aorta";
+.br
+        QFileInfo fi1( absolute );
+.br
+        QFileInfo fi2( relative );
+.br
+.br
+        QDir::setCurrent( QDir::rootDirPath() );
+.br
+                                // fi1 and fi2 now point to the same file
+.br
+.br
+        QDir::setCurrent( "/tmp" );
+.br
+                                // fi1 now points to "/liver/aorta",
+.br
+                                // while fi2 points to "/tmp/liver/aorta"
+.br
+    }
+.fi
+.PP
+See also isRelative(), QDir::setCurrent() and QDir::isRelativePath().
+.SH "uint QFileInfo::size () const"
+Returns the file size in bytes, or 0 if the file does not exist if the size
+cannot be fetched.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfileinfo.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfileinfo.3qt) and the Qt
+version (2.3.2).

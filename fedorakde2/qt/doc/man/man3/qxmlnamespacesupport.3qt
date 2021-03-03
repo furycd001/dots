@@ -1,0 +1,132 @@
+'\" t
+.TH QXmlNamespaceSupport 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QXmlNamespaceSupport \- Helper class for XML readers which want to include namespace support
+.br
+.PP
+\fC#include <qxml.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQXmlNamespaceSupport\fR () "
+.br
+.ti -1c
+.BI "\fB~QXmlNamespaceSupport\fR () "
+.br
+.ti -1c
+.BI "void \fBsetPrefix\fR ( const QString &, const QString & ) "
+.br
+.ti -1c
+.BI "QString \fBprefix\fR ( const QString & ) const"
+.br
+.ti -1c
+.BI "QString \fBuri\fR ( const QString & ) const"
+.br
+.ti -1c
+.BI "void \fBsplitName\fR ( const QString &, QString &, QString & ) const"
+.br
+.ti -1c
+.BI "void \fBprocessName\fR ( const QString &, bool, QString &, QString & ) const"
+.br
+.ti -1c
+.BI "QStringList \fBprefixes\fR () const"
+.br
+.ti -1c
+.BI "QStringList \fBprefixes\fR ( const QString & ) const"
+.br
+.ti -1c
+.BI "void \fBpushContext\fR () "
+.br
+.ti -1c
+.BI "void \fBpopContext\fR () "
+.br
+.ti -1c
+.BI "void \fBreset\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QXmlNamespaceSupport class is a helper class for XML readers which want to include namespace support.
+.PP
+It provides some functions that makes it easy to handle namespaces. Its main use is for subclasses of QXmlReader which want to provide namespace support.
+.PP
+See also the namespace description
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QXmlNamespaceSupport::QXmlNamespaceSupport ()"
+Constructs a QXmlNamespaceSupport.
+.SH "QXmlNamespaceSupport::~QXmlNamespaceSupport ()"
+Destructs a QXmlNamespaceSupport.
+.SH "void QXmlNamespaceSupport::popContext ()"
+Reverts to the previous namespace context.
+.PP
+Normally, you should pop the context at the end of each XML element. After popping the context, all namespace prefix mappings that were previously in force are restored.
+.SH "QString QXmlNamespaceSupport::prefix ( const QString & uri ) const"
+Returns one of the prefixes mapped to a namespace URI.
+.PP
+If more than one prefix is currently mapped to the same URI, this function will make an arbitrary selection; if you want all of the prefixes, use the prefixes() function instead.
+.PP
+Note: this will never return the empty (default) prefix; to check for a default prefix, use the uri() function with an argument of "".
+.SH "QStringList QXmlNamespaceSupport::prefixes () const"
+Returns an enumeration of all prefixes currently declared.
+.PP
+Note: if there is a default prefix, it will not be returned in this enumeration; check for the default prefix using uri() with an argument of "".
+.SH "QStringList QXmlNamespaceSupport::prefixes ( const QString & uri ) const"
+Returns a list of all prefixes currently declared for a URI.
+.PP
+The xml: prefix will be included. If you want only one prefix that's mapped to the namespace URI, and you don't care which one you get, use the prefix() function instead.
+.PP
+Note: the empty (default) prefix is never included in this enumeration; to check for the presence of a default namespace, use uri() with an argument of "".
+.SH "void QXmlNamespaceSupport::processName ( const QString & qname, bool isAttribute, QString & nsuri, QString & localname ) const"
+Processes a raw XML 1.0 name in the current context by removing the prefix and looking it up among the prefixes currently declared.
+.PP
+First parameter is the raw XML 1.0 name to be processed. The second parameter is a flag wheter the name is the name of an attribute (TRUE) or not (FALSE).
+.PP
+The return values will be stored in the last two parameters as follows:
+.TP
+The namespace URI, or an empty string if none is in use.
+.TP
+The local name (without prefix).
+.PP
+If the raw name has a prefix that has not been declared, then the return value will be empty.
+.PP
+Note that attribute names are processed differently than element names: an unprefixed element name will received the default namespace (if any), while an unprefixed element name will not.
+.SH "void QXmlNamespaceSupport::pushContext ()"
+Starts a new namespace context.
+.PP
+Normally, you should push a new context at the beginning of each XML element: the new context will automatically inherit the declarations of its parent context, but it will also keep track of which declarations were made within this context.
+.SH "void QXmlNamespaceSupport::reset ()"
+Resets this namespace support object for reuse.
+.SH "void QXmlNamespaceSupport::setPrefix ( const QString & pre, const QString & uri )"
+This function declares a prefix in the current namespace context; the prefix will remain in force until this context is popped, unless it is shadowed in a descendant context.
+.PP
+Note that there is an asymmetry in this library: while prefix() will not return the default "" prefix, even if you have declared one; to check for a default prefix, you have to look it up explicitly using uri(). This asymmetry exists to make it easier to look up prefixes for attribute names, where the default prefix is not allowed.
+.SH "void QXmlNamespaceSupport::splitName ( const QString & qname, QString & prefix, QString & localname ) const"
+Splits the name at the ':' and returns the prefix and the local name.
+.SH "QString QXmlNamespaceSupport::uri ( const QString & prefix ) const"
+Looks up a prefix in the current context and returns the currently-mapped
+namespace URI. Use the empty string ("") for the default namespace.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qxmlnamespacesupport.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qxmlnamespacesupport.3qt) and the Qt
+version (2.3.2).

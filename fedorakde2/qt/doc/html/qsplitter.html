@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QSplitter Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QSplitter Class Reference</h1><br clear="all">
+<p>
+The QSplitter class implements a splitter widget.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qsplitter-h.html">qsplitter.h</a>&gt;</code>
+<p>
+Inherits <a href="qframe.html">QFrame</a>.
+<p><a href="qsplitter-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">enum <a href="#ResizeMode"><b>ResizeMode</b></a> { Stretch, KeepSize, FollowSizeHint }</div>
+<li><div class="fn"><a href="#b0612a"><b>QSplitter</b></a> ( QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#e839b1"><b>QSplitter</b></a> ( Orientation, QWidget * parent=0, const char * name=0 ) </div>
+<li><div class="fn"><a href="#006da1"><b>~QSplitter</b></a> () </div>
+<li><div class="fn">virtual void <a href="#5ae208"><b>setOrientation</b></a> ( Orientation ) </div>
+<li><div class="fn">Orientation <a href="#0dd282"><b>orientation</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#33bf83"><b>setResizeMode</b></a> ( QWidget * w, ResizeMode ) </div>
+<li><div class="fn">virtual void <a href="#28096e"><b>setOpaqueResize</b></a> ( bool = TRUE ) </div>
+<li><div class="fn">bool <a href="#566963"><b>opaqueResize</b></a> () const</div>
+<li><div class="fn">void <a href="#14b4ef"><b>moveToFirst</b></a> ( QWidget * ) </div>
+<li><div class="fn">void <a href="#6ee598"><b>moveToLast</b></a> ( QWidget * ) </div>
+<li><div class="fn">void <a href="#d2b706"><b>refresh</b></a> () </div>
+<li><div class="fn">QValueList&lt;int&gt; <a href="#cf6c00"><b>sizes</b></a> () const</div>
+<li><div class="fn">void <a href="#8fd8cf"><b>setSizes</b></a> ( QValueList&lt;int&gt; ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#22df18"><b>childEvent</b></a> ( QChildEvent * ) </div>
+<li><div class="fn">int <a href="#dfa446"><b>idAfter</b></a> ( QWidget * ) const</div>
+<li><div class="fn">void <a href="#63b3b0"><b>moveSplitter</b></a> ( QCOORD pos, int id ) </div>
+<li><div class="fn">virtual void <a href="#9dbf35"><b>drawSplitter</b></a> ( QPainter *, QCOORD x, QCOORD y, QCOORD w, QCOORD h ) </div>
+<li><div class="fn">int <a href="#bf79cb"><b>adjustPos</b></a> ( int, int ) </div>
+<li><div class="fn">virtual void <a href="#297618"><b>setRubberband</b></a> ( int ) </div>
+<li><div class="fn">void <a href="#a93ad9"><b>getRange</b></a> ( int id, int *, int * ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>Orientation<td>orientation<td>orientation<td>setOrientation<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QSplitter class implements a splitter widget.
+<p>
+A splitter lets the user control the size of child widgets by
+dragging the boundary between the children. Any number of widgets
+may be controlled.
+<p>To show a <a href="qlistbox.html">QListBox</a>, a <a href="qlistview.html">QListView</a> and a <a href="qmultilineedit.html">QMultiLineEdit</a> side by side:
+<p><pre>    <a href="qsplitter.html">QSplitter</a> *split = new <a href="qsplitter.html">QSplitter</a>( parent );
+    <a href="qlistbox.html">QListBox</a> *lb = new <a href="qlistbox.html">QListBox</a>( split );
+    <a href="qlistview.html">QListView</a> *lv = new <a href="qlistview.html">QListView</a>( split );
+    <a href="qmultilineedit.html">QMultiLineEdit</a> *ed = new <a href="qmultilineedit.html">QMultiLineEdit</a>( split );
+</pre>
+<p>In QSplitter the boundary can be either horizontal or vertical.  The
+default is horizontal (the children are side by side) and you
+can use <a href="#5ae208">setOrientation</a>( QSplitter::Vertical ) to set it to vertical.
+<p>By default, all widgets can be as large or as small as the user
+wishes, down to <a href="qwidget.html#553e08">minimumSizeHint()</a>.
+You can naturally use <a href="qwidget.html#c0b5fb">setMinimumSize</a>() and/or
+<a href="qwidget.html#c78dce">setMaximumSize</a>() on the children. Use <a href="#33bf83">setResizeMode</a>() to specify that
+a widget should keep its size when the splitter is resized.
+<p>QSplitter normally resizes the children only at the end of a
+resize operation, but if you call <a href="#28096e">setOpaqueResize</a>( TRUE ), the
+widgets are resized as often as possible.
+<p>The initial distribution of size between the widgets is determined
+by the initial size of each widget. You can also use <a href="#8fd8cf">setSizes</a>() to
+set the sizes of all the widgets. The function <a href="#cf6c00">sizes</a>() returns the
+sizes set by the user.
+<p>If you <a href="qwidget.html#410481">hide</a>() a child, its space will be distributed among the other
+children. When you <a href="qwidget.html#200ee5">show</a>() it again, it will be reinstated.
+<p><img src=qsplitter-m.png> <img src=qsplitter-w.png>
+<p>See also  <a href="qtabbar.html">QTabBar</a>.
+<p>Examples:
+ <a href="mainlyQt-editor-cpp.html#QSplitter">mainlyQt/editor.cpp</a>
+ <a href="splitter-splitter-cpp.html#QSplitter">splitter/splitter.cpp</a>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="ResizeMode">QSplitter::ResizeMode</a></h3>
+This enum type describes how QSplitter will resize each of its child widgets.  The currently defined values are: <ul>
+<li> <code>Stretch</code> - the widget will be resized when the splitter
+itself is resized.
+<li> <code>KeepSize</code> - QSplitter will try to keep this widget's size
+unchanged.
+<li> <code>FollowSizeHint</code> - QSplitter will resize the widget when its
+size hint changes.
+<p></ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="e839b1"></a>QSplitter::QSplitter ( <a href="qt.html#Orientation">Orientation</a> o, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs splitter with orientation <em>o.</em>
+<h3 class="fn"><a name="b0612a"></a>QSplitter::QSplitter ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0 )</h3>
+<p>Constructs a horizontal splitter.
+<h3 class="fn"><a name="006da1"></a>QSplitter::~QSplitter ()</h3>
+<p>Destructs the splitter.
+<h3 class="fn">int <a name="bf79cb"></a>QSplitter::adjustPos ( int p, int id ) <code>[protected]</code></h3>
+<p>Returns the legal position closest to <em>p</em> of the splitter with id <em>id.</em>
+<p>See also  <a href="#dfa446">idAfter</a>().
+<h3 class="fn">void <a name="22df18"></a>QSplitter::childEvent ( <a href="qchildevent.html">QChildEvent</a> * c ) <code>[virtual protected]</code></h3>
+<p>Tells the splitter that a child widget has been inserted/removed.
+<p>Reimplemented from <a href="qobject.html#27f3ff">QObject.</a>
+<h3 class="fn">void <a name="9dbf35"></a>QSplitter::drawSplitter ( <a href="qpainter.html">QPainter</a> * p, QCOORD x, QCOORD y, QCOORD w, QCOORD h ) <code>[virtual protected]</code></h3>
+<p>Draws the splitter handle in the rectangle described by <em>x, y, w, h</em> using painter <em>p.</em>
+<p>See also  <a href="qstyle.html#acbd66">QStyle::drawSplitter</a>.
+<h3 class="fn">bool <a name="1501ec"></a>QSplitter::event ( <a href="qevent.html">QEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#c67adb">QObject.</a>
+<h3 class="fn">void <a name="a93ad9"></a>QSplitter::getRange ( int id, int * min, int * max ) <code>[protected]</code></h3>
+<p>Returns the valid range of the splitter with id <em>id</em> in <em>min</em> and <em>max.</em>
+<p>See also  <a href="#dfa446">idAfter</a>().
+<h3 class="fn">int <a name="dfa446"></a>QSplitter::idAfter ( <a href="qwidget.html">QWidget</a> * w ) const <code>[protected]</code></h3>
+<p>Returns the id of the splitter to the right of or below the widget <em>w,</em>
+or 0 if there is no such splitter.
+(ie. it is either not in this QSplitter, or it is at the end).
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="68adc8"></a>QSplitter::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn">void <a name="63b3b0"></a>QSplitter::moveSplitter ( QCOORD p, int id ) <code>[protected]</code></h3>
+<p>Moves the left/top edge of the splitter handle with id <em>id</em> as
+close as possible to <em>p</em> which is the distance from the left (or
+top) edge of the widget.
+<p>See also  <a href="#dfa446">idAfter</a>().
+<h3 class="fn">void <a name="14b4ef"></a>QSplitter::moveToFirst ( <a href="qwidget.html">QWidget</a> * w )</h3>
+<p>Moves <em>w</em> to the leftmost/top position.
+<p>Examples:
+ <a href="splitter-splitter-cpp.html#moveToFirst">splitter/splitter.cpp</a>
+<h3 class="fn">void <a name="6ee598"></a>QSplitter::moveToLast ( <a href="qwidget.html">QWidget</a> * w )</h3>
+<p>Moves <em>w</em> to the rightmost/bottom position.
+<h3 class="fn">bool <a name="566963"></a>QSplitter::opaqueResize () const</h3>
+<p>Returns TRUE if opaque resize is on, FALSE otherwise.
+<p>See also  <a href="#28096e">setOpaqueResize</a>().
+<h3 class="fn"><a href="qt.html#Orientation">Orientation</a> <a name="0dd282"></a>QSplitter::orientation () const</h3>
+<p>Returns the orientation (<code>Horizontal</code> or <code>Vertical)</code> of the splitter.
+<p>See also  <a href="#5ae208">setOrientation</a>().
+<h3 class="fn">void <a name="d2b706"></a>QSplitter::refresh ()</h3>
+<p>Updates the splitter state. You should not need to call this
+function during normal use of the splitter.
+<h3 class="fn">void <a name="a09069"></a>QSplitter::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">void <a name="28096e"></a>QSplitter::setOpaqueResize ( bool on = TRUE ) <code>[virtual]</code></h3>
+<p>Sets opaque resize to <em>on.</em> Opaque resize is initially turned off.
+<p>See also  <a href="#566963">opaqueResize</a>().
+<p>Examples:
+ <a href="mainlyQt-editor-cpp.html#setOpaqueResize">mainlyQt/editor.cpp</a>
+ <a href="splitter-splitter-cpp.html#setOpaqueResize">splitter/splitter.cpp</a>
+<h3 class="fn">void <a name="5ae208"></a>QSplitter::setOrientation ( <a href="qt.html#Orientation">Orientation</a> o ) <code>[virtual]</code></h3>
+<p>Sets the orientation to <em>o.</em>  By default the orientation is
+horizontal (the widgets are side by side).
+<p>See also  <a href="#0dd282">orientation</a>().
+<h3 class="fn">void <a name="33bf83"></a>QSplitter::setResizeMode ( <a href="qwidget.html">QWidget</a> * w, <a href="qsplitter.html#ResizeMode">ResizeMode</a> mode )</h3>
+<p>Sets resize mode of <em>w</em> to <em>mode.</em>
+<p>See also  <a href="#ResizeMode">ResizeMode</a>.
+<p>Examples:
+ <a href="splitter-splitter-cpp.html#setResizeMode">splitter/splitter.cpp</a>
+<h3 class="fn">void <a name="297618"></a>QSplitter::setRubberband ( int p ) <code>[virtual protected]</code></h3>
+<p>Shows a rubber band at position <em>p.</em> If <em>p</em> is negative, the
+rubber band is removed.
+<h3 class="fn">void <a name="8fd8cf"></a>QSplitter::setSizes ( <a href="qvaluelist.html">QValueList</a>&lt;int&gt; list )</h3>
+<p>Sets the size parameters to the values given in <em>list.</em>
+If the splitter is horizontal, the values set the sizes from
+left to right. If it is vertical, the sizes are applied from
+top to bottom.
+Extra values in <em>list</em> are ignored.
+<p>If <em>list</em> contains too few values, the result is undefined
+but the program will still be well-behaved.
+<p>See also  <a href="#cf6c00">sizes</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="bbe7f8"></a>QSplitter::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="c4be56"></a>QSplitter::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn"><a href="qvaluelist.html">QValueList</a>&lt;int&gt; <a name="cf6c00"></a>QSplitter::sizes () const</h3>
+<p>Returns a list of the size parameters of all the widgets in this
+splitter.
+<p>Giving the values to <a href="#8fd8cf">setSizes</a>() will give a splitter with the same
+layout as this one.
+<p>See also  <a href="#8fd8cf">setSizes</a>().
+<h3 class="fn">void <a name="a31a72"></a>QSplitter::styleChange ( <a href="qstyle.html">QStyle</a> &amp; old ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#5e2e23">QWidget.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

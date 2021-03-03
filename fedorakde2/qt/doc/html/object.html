@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Qt Object Model</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Qt Object Model</h1><br clear="all">
+The standard C++ Object Model provides very efficient runtime support
+of the object paradigm. On the negative side, its static nature shows
+inflexibility in certain problem domains. Graphical User Interface
+programming is one example that requires both runtime efficiency and a
+high level of flexibility. Qt provides this, by combining the speed of
+C++ with the flexibility of the Qt Object Model.
+<p>
+In addition to C++, Qt provides
+<p>
+<ul>
+<li> a very powerful mechanism for seamless object
+  communication dubbed <a href="signalsandslots.html">signals and
+  slots</a>,
+<li> queryable and designable <a href="properties.html">object
+  properties</a>,
+<li> powerful <a href="eventsandfilters.html">events and event filters</a>,
+<li> scoped <a href="i18n.html">string translation for internationalization</a>,
+<li> sophisticated interval driven <a href="timers.html">timers</a>
+  that make it possible to elegantly integrate many tasks in an
+  event-driven GUI.
+<li> hierarchical and queryable <a href="objecttrees.html">object
+  trees</a> that organize object ownership in a natural way.
+<li> guarded pointers, <a href="qguardedptr.html">QGuardedPtr</a>, that are automatically
+  set to null when the referenced object is destroyed, unlike normal C++
+  pointers which become "dangling pointers" in that case. 
+</ul>
+<p>
+Many of these Qt features are implemented with standard C++
+techniques, based on inheritance from <a href="qobject.html">QObject</a>. Others, like the
+object communication mechanism and the dynamic property system,
+require the <a href="metaobjects.html">Meta Object System</a> provided
+by Qt's own <a href="moc.html">Meta Object Compiler (moc)</a>. Think
+of the Meta Object System as a C++ extension that makes the language
+better suited for true component GUI programming.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

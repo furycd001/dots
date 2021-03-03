@@ -1,0 +1,384 @@
+'\" t
+.TH QLayout 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QLayout \- The base class of geometry specifiers
+.br
+.PP
+\fC#include <qabstractlayout.h>\fR
+.PP
+Inherits QLayoutItem and QObject.
+.PP
+Inherited by QBoxLayout and QGridLayout.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQLayout\fR ( QWidget * " "parent" ", int " "margin" "=0, int " "space" "=-1, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQLayout\fR ( QLayout * " "parentLayout" ", int " "space" "=-1, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQLayout\fR ( int " "space" "=-1, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QLayout\fR () "
+.br
+.ti -1c
+.BI "int \fBmargin\fR () const"
+.br
+.ti -1c
+.BI "int \fBspacing\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetMargin\fR ( int ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetSpacing\fR ( int ) "
+.br
+.ti -1c
+.BI "enum { unlimited = QWIDGETSIZE_MAX }"
+.br
+.ti -1c
+.BI "enum \fBResizeMode\fR { FreeResize, Minimum, Fixed }"
+.br
+.ti -1c
+.BI "void \fBsetResizeMode\fR ( ResizeMode ) "
+.br
+.ti -1c
+.BI "ResizeMode \fBresizeMode\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetMenuBar\fR ( QMenuBar * w ) "
+.br
+.ti -1c
+.BI "QMenuBar* \fBmenuBar\fR () const"
+.br
+.ti -1c
+.BI "QWidget* \fBmainWidget\fR () "
+.br
+.ti -1c
+.BI "bool \fBisTopLevel\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetAutoAdd\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBautoAdd\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBinvalidate\fR () "
+.br
+.ti -1c
+.BI "bool \fBactivate\fR () "
+.br
+.ti -1c
+.BI "void \fBadd\fR ( QWidget * w ) "
+.br
+.ti -1c
+.BI "virtual void \fBaddItem\fR ( QLayoutItem * ) "
+.br
+.ti -1c
+.BI "virtual QSizePolicy::ExpandData \fBexpanding\fR () const"
+.br
+.ti -1c
+.BI "virtual QSize \fBminimumSize\fR () const"
+.br
+.ti -1c
+.BI "virtual QSize \fBmaximumSize\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetGeometry\fR ( const QRect & ) "
+.br
+.ti -1c
+.BI "virtual QLayoutIterator \fBiterator\fR () "
+.br
+.ti -1c
+.BI "virtual bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "int \fBtotalHeightForWidth\fR ( int w ) const (internal)"
+.br
+.ti -1c
+.BI "QSize \fBtotalMinimumSize\fR () const (internal)"
+.br
+.ti -1c
+.BI "QSize \fBtotalMaximumSize\fR () const (internal)"
+.br
+.ti -1c
+.BI "QSize \fBtotalSizeHint\fR () const (internal)"
+.br
+.ti -1c
+.BI "bool \fBsupportsMargin\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetEnabled\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBisEnabled\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual bool \fBeventFilter\fR ( QObject *, QEvent * ) "
+.br
+.ti -1c
+.BI "void \fBaddChildLayout\fR ( QLayout * l ) "
+.br
+.ti -1c
+.BI "void \fBdeleteAllItems\fR () "
+.br
+.ti -1c
+.BI "void \fBsetSupportsMargin\fR ( bool ) "
+.br
+.ti -1c
+.BI "QRect \fBalignmentRect\fR ( const QRect & ) const"
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+int	margin	margin	setMargin
+int	spacing	spacing	setSpacing
+ResizeMode	resizeMode	resizeMode	setResizeMode
+.TE
+.fi
+
+.SH DESCRIPTION
+The QLayout class is the base class of geometry specifiers.
+.PP
+This is an abstract base class. The concrete layout managers QBoxLayout and QGridLayout inherit from this one.
+.PP
+For users of Q*Layout or QMainWindow, there is seldom need to use any of the basic functions provided by QLayout, such as setResizeMode() or setMenuBar(). See the layout overview page for more information.
+.PP
+To make your own layout manager, make a subclass of QGLayoutIterator and implement the functions addItem(), sizeHint(), setGeometry() and iterator(). You should also implement minimumSize(), otherwise your layout will be resized to zero size if there is little space. To support children whose height depend on their widths, implement hasHeightForWidth() and heightForWidth(). See the custom layout page for an in-depth description.
+.PP
+Geometry management stops when the layout manager is deleted.
+.SS "Member Type Documentation"
+.SH "QLayout::ResizeMode"
+The possible values are are:
+.TP
+\fCFixed\fR - the main widget's size is set to sizeHint(), it cannot be resized at all.
+.TP
+\fCMinimum\fR - The main widget's minimum size is set to minimumSize(), it cannot be smaller.
+.TP
+\fCFreeResize\fR - the widget is not constrained.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QLayout::QLayout ( QWidget * parent, int border=0, int space=-1, const char * name=0 )"
+Constructs a new top-level QLayout with main widget \fIparent. parent\fR may not be 0.
+.PP
+\fIborder\fR is the number of pixels between the edge of the widget and the managed children. \fIspace\fR sets the value of spacing(), which gives the spacing between widgets. The default value for \fIspace\fR is -1, which means that the value of \fIborder\fR is used.
+.PP
+\fIname\fR is the internal object name
+.PP
+There can only be one top-level layout for a widget. It is returned by QWidget::layout().
+.SH "QLayout::QLayout ( QLayout * parentLayout, int space=-1, const char * name=0 )"
+Constructs a new child QLayout, and places it inside \fIparentLayout,\fR using the default placement defined by addItem().
+.PP
+If \fIspace\fR is -1, this QLayout inherits \fIparentLayout's\fR spacing(), otherwise \fIspace\fR is used.
+.SH "QLayout::QLayout ( int space=-1, const char * name=0 )"
+Constructs a new child QLayout, If \fIspace\fR is -1, this QLayout inherits its parent's spacing(), otherwise \fIspace\fR is used.
+.PP
+This layout has to be inserted into another layout before geometry management will work.
+.SH "QLayout::~QLayout ()"
+Destructs the layout, deleting all child layouts. Geometry management stops when a toplevel layout is deleted.
+.SH "bool QLayout::activate ()"
+Redoes the layout for mainWidget(). You should generally not need to call this, as it is automatically called at most appropriate times.
+.PP
+However, if you set up a QLayout for a visible widget without resizing that widget, you need to call this function in order to lay it out.
+.PP
+See also QWidget::updateGeometry().
+.PP
+Examples:
+.(l
+layout/layout.cpp popup/popup.cpp scrollview/scrollview.cpp
+.)l
+.SH "void QLayout::add ( QWidget * w )"
+Adds \fIw\fR to this layout in a manner specific to the layout. This function uses addItem.
+.PP
+Examples:
+.(l
+customlayout/main.cpp
+.)l
+.SH "void QLayout::addChildLayout ( QLayout * l ) \fC[protected]\fR"
+This function is called from addLayout functions in subclasses, to add \fIl\fR layout as a sublayout.
+.SH "void QLayout::addItem ( QLayoutItem * item ) \fC[virtual]\fR"
+Implemented in subclasses to add \fIitem.\fR How it is added is specific to each subclass.
+.PP
+Note that the ownership of \fIitem\fR is transferred to the layout, and it is the layout's responsibility to delete it.
+.PP
+Reimplemented in QGridLayout and QBoxLayout.
+.SH "QRect QLayout::alignmentRect ( const QRect & r ) const \fC[protected]\fR"
+Returns the rectangle that should be covered when the geometry of this layout is set to \fIr,\fR if this layout supports setAlignment().
+.PP
+The result is calculated from sizeHint() and expanding(). It is never larger than \fIr.\fR
+.SH "bool QLayout::autoAdd () const"
+Returns TRUE if this layout automatically grabs all new mainWidget()'s new children and adds them as defined by addItem(). This only has effect for top-level layouts, ie. layouts that are direct children of their mainWidget().
+.PP
+autoAdd() is disabled by default.
+.PP
+See also setAutoAdd().
+.SH "void QLayout::deleteAllItems () \fC[protected]\fR"
+Removes and deletes all items in this layout.
+.SH "bool QLayout::eventFilter ( QObject * o, QEvent * e ) \fC[virtual protected]\fR"
+Performs child widget layout when the parent widget is resized. Also handles removal of widgets and child layouts.
+.PP
+Reimplemented from QObject.
+.SH "QSizePolicy::ExpandData QLayout::expanding() const \fC[virtual]\fR"
+Returns whether this layout can make use of more space than sizeHint(). A value of Vertical or Horizontal means that it wants to grow in only one dimension, while BothDirections means that it wants to grow in both dimensions.
+.PP
+The default implementation returns BothDirections.
+.PP
+Reimplemented from QLayoutItem.
+.SH "QRect QLayout::geometry () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QLayoutItem.
+.SH "void QLayout::invalidate () \fC[virtual]\fR"
+Invalidates cached information. Reimplementations must call this.
+.PP
+Reimplemented from QLayoutItem.
+.SH "bool QLayout::isEmpty () const \fC[virtual]\fR"
+Returns TRUE if this layout is empty. The default implementation returns FALSE.
+.PP
+Reimplemented from QLayoutItem.
+.SH "bool QLayout::isEnabled () const"
+Returns whether or not this layout is enabled.
+.PP
+See also setEnabled().
+.SH "bool QLayout::isTopLevel () const"
+Returns TRUE if this layout is a top level layout, i.e. not a child of another layout.
+.SH "QLayoutIterator QLayout::iterator () \fC[virtual]\fR"
+Returns an iterator over the children of this layout.
+.PP
+This function must be implemented by subclasses.
+.PP
+Reimplemented from QLayoutItem.
+.SH "QLayout * QLayout::layout () \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QLayoutItem.
+.SH "QWidget * QLayout::mainWidget ()"
+Returns the main widget (parent widget) of this layout, or 0 if this layout is a sub-layout which is not yet inserted.
+.SH "int QLayout::margin () const"
+returns the width of the outside border of the layout.
+.PP
+See also spacing() and setMargin().
+.SH "QSize QLayout::maximumSize () const \fC[virtual]\fR"
+Returns the maximum size of this layout. This is the largest size that the layout can have, while still respecting the specifications. Does not include what's needed by margin() or menuBar().
+.PP
+The default implementation allows unlimited resizing.
+.PP
+Reimplemented from QLayoutItem.
+.SH "QMenuBar* QLayout::menuBar () const"
+Returns the menu bar set for this layout, or a null pointer if no menu bar is set.
+.SH "QSize QLayout::minimumSize () const \fC[virtual]\fR"
+Returns the minimum size of this layout. This is the smallest size that the layout can have, while still respecting the specifications. Does not include what's needed by margin() or menuBar().
+.PP
+The default implementation allows unlimited resizing.
+.PP
+Reimplemented from QLayoutItem.
+.SH "QLayout::ResizeMode QLayout::resizeMode() const"
+Returns the resize mode.
+.SH "void QLayout::setAutoAdd ( bool b ) \fC[virtual]\fR"
+Sets autoAdd() if \fIb\fR is TRUE.
+.PP
+See also autoAdd().
+.PP
+Examples:
+.(l
+i18n/main.cpp
+.)l
+.SH "void QLayout::setEnabled ( bool enable )"
+Enables this layout if \fIenable\fR is TRUE, otherwise disables it.
+.PP
+An enabled layout adjusts dynamically to changes, a disabled layout acts as if it was not existing.
+.PP
+By default, all layouts are enabled.
+.PP
+See also isEnabled().
+.SH "void QLayout::setGeometry ( const QRect & r ) \fC[virtual]\fR"
+This function is reimplemented in subclasses to perform layout.
+.PP
+The default implementation maintains the geometry() information. Reimplementors must call this function.
+.PP
+Reimplemented from QLayoutItem.
+.SH "void QLayout::setMargin ( int border ) \fC[virtual]\fR"
+Sets the outside border of the layout to \fIborder.\fR
+.PP
+For some layout classes, this function only has an effect on top-level layouts; QBoxLayout and QGridLayout support margins for child layouts.
+.PP
+For some layout classes, this function only has an effect on top-level layouts; QBoxLayout and QGridLayout support margins for child layouts.
+.PP
+See also margin(), setSpacing() and supportsMargin().
+.SH "void QLayout::setMenuBar ( QMenuBar * w ) \fC[virtual]\fR"
+Makes the geometry manager take account of the menu bar \fIw.\fR All child widgets are placed below the bottom edge of the menu bar.
+.PP
+A menu bar does its own geometry managing, never do addWidget() on a QMenuBar.
+.PP
+Examples:
+.(l
+scrollview/scrollview.cpp
+.)l
+.SH "void QLayout::setResizeMode ( ResizeMode mode )"
+Sets the resize mode to \fImode.\fR
+.PP
+The default mode is \fCMinimum\fR for top level widgets, and \fCFreeResize\fR for all others.
+.PP
+See also QLayout::ResizeMode.
+.SH "void QLayout::setSpacing ( int space ) \fC[virtual]\fR"
+Sets the internal spacing of the layout to \fIspace.\fR
+.PP
+See also spacing() and setMargin().
+.SH "void QLayout::setSupportsMargin ( bool b ) \fC[protected]\fR"
+Sets the value returned by supportsMargin(). If \fIb\fR is TRUE, margin() handling is implemented by the subclass. If \fIb\fR is FALSE (the default) QLayout will add margin() around top-level layouts.
+.PP
+If \fIb\fR is TRUE, margin handling needs to be implemented in setGeometry(), maximumSize(), minimumSize(), sizeHint() and heightForWidth().
+.PP
+See also supportsMargin().
+.SH "int QLayout::spacing () const"
+Returns the spacing between widgets inside the layout.
+.PP
+See also margin() and setSpacing().
+.SH "bool QLayout::supportsMargin () const"
+Returns TRUE if this layout supports setMargin() on non-toplevel layouts.
+.PP
+See also setMargin().
+.SH "int QLayout::totalHeightForWidth ( int w ) const"
+For internal use only.
+.SH "QSize QLayout::totalMaximumSize () const"
+For internal use only.
+.SH "QSize QLayout::totalMinimumSize () const"
+For internal use only.
+.SH "QSize QLayout::totalSizeHint () const"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qlayout.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qlayout.3qt) and the Qt
+version (2.3.2).

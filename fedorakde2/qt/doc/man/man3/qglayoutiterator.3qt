@@ -1,0 +1,67 @@
+'\" t
+.TH QGLayoutIterator 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QGLayoutIterator \- The abstract base class of internal layout iterators
+.br
+.PP
+\fC#include <qabstractlayout.h>\fR
+.PP
+Inherits QShared.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual \fB~QGLayoutIterator\fR () "
+.br
+.ti -1c
+.BI "virtual QLayoutItem* \fBnext\fR () "
+.br
+.ti -1c
+.BI "virtual QLayoutItem* \fBcurrent\fR () "
+.br
+.ti -1c
+.BI "virtual QLayoutItem* \fBtakeCurrent\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The abstract base class of internal layout iterators.
+.PP
+To be subclassed by custom layout implementors. The functions that need to be implemented are next(), current() and takeCurrent().
+.PP
+The QGLayoutIterator implements the functionality of QLayoutIterator. Each subclass of QLayout needs a QGLayoutIterator subclass.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QGLayoutIterator::~QGLayoutIterator () \fC[virtual]\fR"
+Destroys the iterator.
+.SH "QLayoutItem * QGLayoutIterator::current () \fC[virtual]\fR"
+Implemented in subclasses to return the current item, or 0 if there is no current item.
+.SH "QLayoutItem * QGLayoutIterator::next () \fC[virtual]\fR"
+Implemented in subclasses to move the iterator to the next item and return that item, or 0 if there is no next item.
+.SH "QLayoutItem * QGLayoutIterator::takeCurrent () \fC[virtual]\fR"
+Implemented in subclasses to remove the current item from the layout
+without deleting it, move the iterator to the next item and return
+the removed item, or 0 if no item was removed.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qglayoutiterator.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qglayoutiterator.3qt) and the Qt
+version (2.3.2).

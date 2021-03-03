@@ -1,0 +1,417 @@
+'\" t
+.TH QSlider 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QSlider \- Vertical or horizontal slider
+.br
+.PP
+\fC#include <qslider.h>\fR
+.PP
+Inherits QRangeControl and QWidget.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBTickSetting\fR { NoMarks = 0, Above = 1, Left = Above, Below = 2, Right = Below, Both = 3 }"
+.br
+.ti -1c
+.BI "\fBQSlider\fR ( QWidget * " "parent" ", const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQSlider\fR ( Orientation, QWidget * " "parent" ", const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQSlider\fR ( int " "minValue" ", int " "maxValue" ", int " "pageStep" ", int " "value" ", Orientation, QWidget * " "parent" ", const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetOrientation\fR ( Orientation ) "
+.br
+.ti -1c
+.BI "Orientation \fBorientation\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetTracking\fR ( bool enable ) "
+.br
+.ti -1c
+.BI "bool \fBtracking\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetPalette\fR ( const QPalette & ) "
+.br
+.ti -1c
+.BI "QRect \fBsliderRect\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetTickmarks\fR ( TickSetting ) "
+.br
+.ti -1c
+.BI "TickSetting \fBtickmarks\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetTickInterval\fR ( int ) "
+.br
+.ti -1c
+.BI "int \fBtickInterval\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetMinValue\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBsetMaxValue\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBsetLineStep\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBsetPageStep\fR ( int ) "
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "virtual void \fBsetValue\fR ( int ) "
+.br
+.ti -1c
+.BI "void \fBaddStep\fR () "
+.br
+.ti -1c
+.BI "void \fBsubtractStep\fR () "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBvalueChanged\fR ( int value ) "
+.br
+.ti -1c
+.BI "void \fBsliderPressed\fR () "
+.br
+.ti -1c
+.BI "void \fBsliderMoved\fR ( int value ) "
+.br
+.ti -1c
+.BI "void \fBsliderReleased\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBupdateMask\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBvalueChange\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBrangeChange\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBpaintSlider\fR ( QPainter *, const QColorGroup &, const QRect & ) "
+.br
+.ti -1c
+.BI "void \fBdrawTicks\fR ( QPainter *, const QColorGroup &, int, int, int=1 ) const"
+.br
+.ti -1c
+.BI "void drawWinGroove ( QPainter *, QCOORD ) \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "void drawTicks ( QPainter *, int, int, int=1 ) const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "virtual int \fBthickness\fR () const"
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+int	minValue	minValue	setMinValue
+int	maxValue	maxValue	setMaxValue
+int	lineStep	lineStep	setLineStep
+int	pageStep	pageStep	setPageStep
+int	value	value	setValue
+bool	tracking	tracking	setTracking
+Orientation	orientation	orientation	setOrientation
+TickSetting	tickmarks	tickmarks	setTickmarks
+int	tickInterval	tickInterval	setTickInterval
+.TE
+.fi
+
+.SH DESCRIPTION
+The QSlider widget provides a vertical or horizontal slider.
+.PP
+The slider is the classic widget for controlling a bounded value. It lets the user move a slider along a horizontal or vertical groove, and translates the slider's position into an integer value in the legal range.
+.PP
+QSlider inherits QRangeControl, which provides the "integer" side of the slider. setRange() and value() are likely to be used by practically all slider users; see the QRangeControl documentation for information about the many other functions that class provides.
+.PP
+The main functions offered by the slider itself are tickmark and orientation control; you can use setTickmarks() to indicate where you want the tickmarks to be, setTickInterval() to indicate how many of them you want, and setOrientation() to indicate whether the slider is to e horizontal or vertical.
+.PP
+A slider has a default focusPolicy() of \fIWeakWheelFocus,\fR i.e. it accepts focus on Tab and by using the mouse wheel, and a suitable keyboard interface.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QScrollBar, QSpinBox and GUI Design Handbook: Slider
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QSlider::TickSetting"
+This enum specifies where the tick marks are to be drawn, relative to the slider's groove and the handle the user moves. The possible values are \fCNoMarks\fR (no tickmarks are drawn), \fCAbove, Below, Left, Right\fR and \fCBoth.\fR
+.PP
+\fCNoMarks\fR means to not draw any tickmarks; \fCBoth\fR means to draw tickmarks on both sides of the groove. \fCAbove\fR and \fCBelow\fR mean to draw tickmarks above and below the (horizontal) slider. \fCLeft\fR and \fCRight\fR mean to draw tickmarks to the left and right of the (vertical) slider.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QSlider::QSlider ( Orientation orientation, QWidget * parent, const char * name=0 )"
+Constructs a slider.
+.PP
+The \fIorientation\fR must be QSlider::Vertical or QSlider::Horizontal.
+.PP
+The \fIparent\fR and \fIname\fR arguments are sent to the QWidget constructor.
+.SH "QSlider::QSlider ( QWidget * parent, const char * name=0 )"
+Constructs a vertical slider.
+.PP
+The \fIparent\fR and \fIname\fR arguments are sent to the QWidget constructor.
+.SH "QSlider::QSlider ( int minValue, int maxValue, int pageStep, int value, Orientation orientation, QWidget * parent, const char * name=0 )"
+Constructs a slider.
+.PP
+Arguments:
+.TP
+\fIminValue\fR is the minimum slider value.
+.TP
+\fImaxValue\fR is the maximum slider value.
+.TP
+\fIstep\fR is the page step value.
+.TP
+\fIvalue\fR is the initial value.
+.TP
+\fIorientation\fR must be QSlider::Vertical or QSlider::Horizontal. The \fIparent\fR and \fIname\fR arguments are sent to the QWidget constructor.
+.SH "void QSlider::addStep () \fC[slot]\fR"
+Moves the slider one pageStep() upwards.
+.SH "void QSlider::drawTicks ( QPainter * p, const QColorGroup & g, int dist, int w, int i=1 ) const \fC[protected]\fR"
+Using \fIp,\fR draws tickmarks at a distance of \fIdist\fR from the edge of the widget, using \fIw\fR pixels and with an interval of \fIi.\fR
+.PP
+Setting the colorgroup is useful to reuse the code to draw a mask if the slider supports transparceny.
+.PP
+See also setAutoMask() and updateMask().
+.SH "void QSlider::drawTicks ( QPainter * p, int dist, int w, int i=1 ) const \fC[protected]\fR"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+\\overload
+.PP
+Do not reimplement this function, it's only there for compatibility reasons. It simply calls the other version with colorGroup() as the second argument.
+.SH "void QSlider::drawWinGroove ( QPainter * p, QCOORD c ) \fC[protected]\fR"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Draws the "groove" on which the slider moves, using the painter \fIp. c\fR gives the distance from the top (or left) edge of the widget to the center of the groove.
+.SH "void QSlider::focusInEvent ( QFocusEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::focusOutEvent ( QFocusEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::keyPressEvent ( QKeyEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "int QSlider::lineStep () const"
+Reimplemented for internal reasons; the API is not affected.
+.SH "int QSlider::maxValue () const"
+Reimplemented for internal reasons; the API is not affected.
+.SH "int QSlider::minValue () const"
+Reimplemented for internal reasons; the API is not affected.
+.SH "QSize QSlider::minimumSizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::mouseMoveEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::mousePressEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::mouseReleaseEvent ( QMouseEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "Orientation QSlider::orientation () const"
+Returns the slider orientation; QSlider::Vertical or QSlider::Horizontal.
+.PP
+See also setOrientation().
+.SH "int QSlider::pageStep () const"
+Reimplemented for internal reasons; the API is not affected.
+.SH "void QSlider::paintEvent ( QPaintEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::paintSlider ( QPainter * p, const QColorGroup & g, const QRect & r ) \fC[virtual protected]\fR"
+Paints the slider button using painter \fIp\fR with size, a colorgroup and position given by \fIr.\fR Reimplement this function to change the look of the slider button.
+.PP
+Setting the colorgroup is useful to reuse the code to draw a mask if the slider supports transparceny.
+.PP
+See also setAutoMask() and updateMask().
+.SH "void QSlider::rangeChange () \fC[virtual protected]\fR"
+Implements the virtual QRangeControl function.
+.PP
+Reimplemented from QRangeControl.
+.SH "void QSlider::resizeEvent ( QResizeEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::setLineStep ( int i )"
+Sets the line step to \fIi.\fR
+.PP
+Calls the virtual stepChange() function if the new line step is different from the previous setting.
+.PP
+See also lineStep(), QRangeControl::setSteps(), setPageStep() and setRange().
+.SH "void QSlider::setMaxValue ( int i )"
+A convenience function which just calls setRange( minValue(), i )
+.PP
+See also setRange().
+.SH "void QSlider::setMinValue ( int i )"
+A convenience function which just calls setRange( i, maxValue() )
+.PP
+See also setRange().
+.SH "void QSlider::setOrientation ( Orientation orientation ) \fC[virtual]\fR"
+Sets the slider orientation. The \fIorientation\fR must be QSlider::Vertical or QSlider::Horizontal.
+.PP
+See also orientation().
+.SH "void QSlider::setPageStep ( int i )"
+Sets the page step to \fIi.\fR
+.PP
+Calls the virtual stepChange() function if the new page step is different from the previous setting.
+.PP
+See also pageStep(), QRangeControl::setSteps(), setLineStep() and setRange().
+.SH "void QSlider::setPalette ( const QPalette & p ) \fC[virtual]\fR"
+Reimplements the virtual function QWidget::setPalette().
+.PP
+Sets the background color to the mid color for Motif style sliders.
+.SH "void QSlider::setTickInterval ( int i ) \fC[virtual]\fR"
+Sets the interval between tickmarks to \fIi.\fR This is a value interval, not a pixel interval. If \fIi\fR is 0, the slider will choose between lineStep() and pageStep(). The initial value of tickInterval() is 0.
+.PP
+See also tickInterval(), QRangeControl::lineStep() and QRangeControl::pageStep().
+.SH "void QSlider::setTickmarks ( TickSetting s )"
+Sets the way tickmarks are displayed by the slider. \fIs\fR can take the following values:
+.TP
+\fCNoMarks\fR
+.TP
+\fCAbove\fR
+.TP
+\fCLeft\fR
+.TP
+\fCBelow\fR
+.TP
+\fCRight\fR
+.TP
+\fCBoth\fR The initial value is \fCNoMarks.\fR
+.PP
+See also tickmarks() and setTickInterval().
+.SH "void QSlider::setTracking ( bool enable ) \fC[virtual]\fR"
+Enables slider tracking if \fIenable\fR is TRUE, or disables tracking if \fIenable\fR is FALSE.
+.PP
+If tracking is enabled (default), the slider emits the valueChanged() signal whenever the slider is being dragged. If tracking is disabled, the slider emits the valueChanged() signal when the user releases the mouse button (unless the value happens to be the same as before).
+.PP
+See also tracking().
+.SH "void QSlider::setValue ( int value ) \fC[virtual slot]\fR"
+Makes QRangeControl::setValue() available as a slot.
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "QSize QSlider::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSizePolicy QSlider::sizePolicy () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::sliderMoved ( int value ) \fC[signal]\fR"
+This signal is emitted when the slider is dragged, with the new slider value as an argument.
+.SH "void QSlider::sliderPressed () \fC[signal]\fR"
+This signal is emitted when the user presses the slider with the mouse.
+.SH "QRect QSlider::sliderRect () const"
+Returns the slider handle rectangle. (The actual moving-around thing.).
+.SH "void QSlider::sliderReleased () \fC[signal]\fR"
+This signal is emitted when the user releases the slider with the mouse.
+.SH "void QSlider::styleChange ( QStyle & old ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QSlider::subtractStep () \fC[slot]\fR"
+Moves the slider one pageStep() downwards.
+.SH "int QSlider::thickness () const \fC[virtual protected]\fR"
+Returns the number of pixels to use for the business part of the slider (i.e. the non-tickmark portion). The remaining space is shared equally between the tickmark regions. This function and sizeHint() are closely related; if you change one, you almost certainly have to change the other.
+.SH "int QSlider::tickInterval () const"
+Returns the interval between tickmarks. Returns 0 if the slider chooses between pageStep() and lineStep().
+.PP
+See also setTickInterval().
+.SH "QSlider::TickSetting QSlider::tickmarks() const"
+Returns the tickmark settings for this slider.
+.PP
+See also setTickmarks().
+.SH "bool QSlider::tracking () const"
+Returns TRUE if tracking is enabled, or FALSE if tracking is disabled.
+.PP
+Tracking is initially enabled.
+.PP
+See also setTracking().
+.SH "void QSlider::updateMask () \fC[virtual protected]\fR"
+Reimplementation of QWidget::updateMask(). Draws the mask of the slider when transparency is required.
+.PP
+See also QWidget::setAutoMask().
+.PP
+Reimplemented from QWidget.
+.SH "int QSlider::value () const"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "void QSlider::valueChange () \fC[virtual protected]\fR"
+Implements the virtual QRangeControl function.
+.PP
+Reimplemented from QRangeControl.
+.SH "void QSlider::valueChanged ( int value ) \fC[signal]\fR"
+This signal is emitted when the slider value is changed, with the new slider value as an argument.
+.SH "void QSlider::wheelEvent ( QWheelEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qslider.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qslider.3qt) and the Qt
+version (2.3.2).

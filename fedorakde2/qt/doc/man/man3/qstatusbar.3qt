@@ -1,0 +1,198 @@
+'\" t
+.TH QStatusBar 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QStatusBar \- Horizontal bar suitable for presenting status information
+.br
+.PP
+\fC#include <qstatusbar.h>\fR
+.PP
+Inherits QWidget.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQStatusBar\fR ( QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fB~QStatusBar\fR () "
+.br
+.ti -1c
+.BI "void \fBaddWidget\fR ( QWidget *, int " "stretch" " = 0, bool = FALSE ) "
+.br
+.ti -1c
+.BI "void \fBremoveWidget\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "void \fBsetSizeGripEnabled\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBisSizeGripEnabled\fR () const"
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "void \fBmessage\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBmessage\fR ( const QString &, int ) "
+.br
+.ti -1c
+.BI "void \fBclear\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBpaintEvent\fR ( QPaintEvent * ) "
+.br
+.ti -1c
+.BI "void \fBreformat\fR () "
+.br
+.ti -1c
+.BI "void \fBhideOrShow\fR () "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+bool	sizeGripEnabled	isSizeGripEnabled	setSizeGripEnabled
+.TE
+.fi
+
+.SH DESCRIPTION
+The QStatusBar class provides a horizontal bar suitable for presenting status information.
+.PP
+Each status indicator falls into one of three categories:
+.TP
+\fITemporary\fR - occupies most of the status bar briefly. Used e.g. for explaining tool tip texts or menu entries.
+.TP
+\fINormal\fR - occupies part of the status bar and may be hidden by temporary messages. Used e.g. for displaying the page and line number in a word processor.
+.TP
+\fIPermanent\fR - is never hidden. Used for important mode indications. Some applications put a Caps Lock indicator in the status bar.
+.PP
+QStatusBar lets you display all three types of indicator.
+.PP
+To display a \fItemporary\fR message, call message(), perhaps by connecting a suitable signal to it. To remove a temporary message, call clear(). There are two variants of message(), one which displays the message until the next clear() or mesage(), and one which also has a time limit:
+.PP
+.nf
+.br
+     connect( loader, SIGNAL(progressMessage(const QString&)),
+.br
+              statusBar(), SLOT(message(const QString&)) );
+.br
+.br
+     statusBar()->message("Loading...");  // Initial message
+.br
+     loader.loadStuff();                  // Emits progress messages
+.br
+     statusBar()->message("Done.", 2000); // Final message for 2 seconds
+.fi
+.PP
+\fINormal\fR and \fIpermanent\fR messages are displayed by creating a small widget then adding it to the status bar with addWidget(). Widgets like QLabel, QProgressBar, or even QToolButton are useful for adding to status bars. removeWidget() is used to remove widgets.
+.PP
+.nf
+.br
+     statusBar()->addWidget(new MyReadWriteIndication(statusBar()));
+.fi
+.PP
+By default, QStatusBar provides a QSizeGrip in the lower-right corner. You can disable this with setSizeGripEnabled(FALSE);
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QToolBar, QMainWindow, QLabel and GUI Design Handbook: Status Bar.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QStatusBar::QStatusBar ( QWidget * parent = 0, const char * name = 0 )"
+Constructs a status bar with just a size grip.
+.PP
+See also setSizeGripEnabled().
+.SH "QStatusBar::~QStatusBar ()"
+Destructs the status bar and frees any allocated resources.
+.SH "void QStatusBar::addWidget ( QWidget * widget, int stretch = 0, bool permanent = FALSE )"
+Adds \fIwidget\fR to this status bar.
+.PP
+\fIwidget\fR is permanently visible if \fIpermanent\fR is TRUE, and is obscured by temporary messages if \fIpermanent\fR is FALSE. The default is FALSE.
+.PP
+\fIstretch\fR is used to compute a suitable size for \fIwidget\fR as the status bar grows and shrinks. The default of 0 uses a minimum of space.
+.PP
+If \fIpermanent\fR is TRUE, \fIwidget\fR is located at the far right of the status bar. If \fIpermanent\fR is FALSE (the default) \fIwidget\fR is located just to the left of the first permanent widget.
+.PP
+This function may cause some flicker.
+.PP
+See also removeWidget().
+.SH "void QStatusBar::clear () \fC[slot]\fR"
+Removes any temporary message being shown.
+.PP
+See also message().
+.SH "bool QStatusBar::event ( QEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QObject.
+.SH "void QStatusBar::hideOrShow () \fC[protected]\fR"
+Ensures that the right widgets are visible. Used by message() and clear().
+.SH "bool QStatusBar::isSizeGripEnabled () const"
+Returns whether the QSizeGrip in the bottom right of the status bar is enabled.
+.PP
+See also setSizeGripEnabled().
+.SH "void QStatusBar::message ( const QString & message ) \fC[slot]\fR"
+Hide the normal status indicators and display \fImessage,\fR until clear() or another message() is called.
+.PP
+See also clear().
+.SH "void QStatusBar::message ( const QString & message, int ms ) \fC[slot]\fR"
+Hide the normal status indications and display \fImessage\fR for \fIms\fR milli-seconds, or until clear() or another message() is called, whichever is first.
+.SH "void QStatusBar::paintEvent ( QPaintEvent * ) \fC[virtual protected]\fR"
+Shows the temporary message, if appropriate.
+.PP
+Reimplemented from QWidget.
+.SH "void QStatusBar::reformat () \fC[protected]\fR"
+Changes the status bar's appearance to account for item changes. Special subclasses may need this, but normally geometry management will take care of any necessary rearrangements.
+.SH "void QStatusBar::removeWidget ( QWidget * widget )"
+Removes \fIwidget\fR from the status bar.
+.PP
+This function may cause some flicker.
+.PP
+Note that \fIwidget\fR is not deleted.
+.PP
+See also addWidget().
+.SH "void QStatusBar::resizeEvent ( QResizeEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QStatusBar::setSizeGripEnabled ( bool enabled )"
+Enables or disables the QSizeGrip in the bottom right of the status bar. By default, the size grip is enabled.
+.PP
+See also  isSizeGripEnabled().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qstatusbar.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qstatusbar.3qt) and the Qt
+version (2.3.2).

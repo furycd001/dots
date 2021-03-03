@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QNetworkOperation Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QNetworkOperation Class Reference</h1><br clear="all">
+<p>
+This class is used to define operations for network protocols and return the state, arguments, etc.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qnetworkprotocol-h.html">qnetworkprotocol.h</a>&gt;</code>
+<p>
+Inherits <a href="qobject.html">QObject</a>.
+<p><a href="qnetworkoperation-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#676025"><b>QNetworkOperation</b></a> ( QNetworkProtocol::Operation operation, const QString &amp; arg0, const QString &amp; arg1, const QString &amp; arg2 ) </div>
+<li><div class="fn"><a href="#f62b8a"><b>QNetworkOperation</b></a> ( QNetworkProtocol::Operation operation, const QByteArray &amp; arg0, const QByteArray &amp; arg1, const QByteArray &amp; arg2 ) </div>
+<li><div class="fn"><a href="#c6d758"><b>~QNetworkOperation</b></a> () </div>
+<li><div class="fn">void <a href="#278d07"><b>setState</b></a> ( QNetworkProtocol::State state ) </div>
+<li><div class="fn">void <a href="#a18232"><b>setProtocolDetail</b></a> ( const QString &amp; detail ) </div>
+<li><div class="fn">void <a href="#2b3a40"><b>setErrorCode</b></a> ( int ec ) </div>
+<li><div class="fn">void <a href="#d6caeb"><b>setArg</b></a> ( int num, const QString &amp; arg ) </div>
+<li><div class="fn">void <a href="#f608c5"><b>setRawArg</b></a> ( int num, const QByteArray &amp; arg ) </div>
+<li><div class="fn">QNetworkProtocol::Operation <a href="#54b287"><b>operation</b></a> () const</div>
+<li><div class="fn">QNetworkProtocol::State <a href="#0f94ff"><b>state</b></a> () const</div>
+<li><div class="fn">QString <a href="#e142fb"><b>arg</b></a> ( int num ) const</div>
+<li><div class="fn">QByteArray <a href="#630e4d"><b>rawArg</b></a> ( int num ) const</div>
+<li><div class="fn">QString <a href="#bf6b66"><b>protocolDetail</b></a> () const</div>
+<li><div class="fn">int <a href="#20f6c2"><b>errorCode</b></a> () const</div>
+<li><div class="fn">void <a href="#d88c61"><b>free</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+This class is used to define operations for network protocols and return the state, arguments, etc.
+<p>
+For each operation, which a network protocol should process
+such an object is created to describe the operation and the current
+state.
+<p>For a detailed description about the Qt Network Architecture, and
+also how to implement and use network protocols in Qt, look
+at the <a href="network.html">Qt Network Documentation</a>.
+<p>See also  <a href="qnetworkprotocol.html">QNetworkProtocol</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="f62b8a"></a>QNetworkOperation::QNetworkOperation ( <a href="qnetworkprotocol.html#Operation">QNetworkProtocol::Operation</a> operation, const <a href="qbytearray.html">QByteArray</a> &amp; arg0, const <a href="qbytearray.html">QByteArray</a> &amp; arg1, const <a href="qbytearray.html">QByteArray</a> &amp; arg2 )</h3>
+<p>Constructs a network operation object. <em>operation</em> is the type
+of the operation, <em>arg0, arg1</em> and  <em>arg2</em> are the first three
+raw data arguments of the operation.
+The state is initialized to QNetworkProtocol::StWaiting.
+<h3 class="fn"><a name="676025"></a>QNetworkOperation::QNetworkOperation ( <a href="qnetworkprotocol.html#Operation">QNetworkProtocol::Operation</a> operation, const <a href="qstring.html">QString</a> &amp; arg0, const <a href="qstring.html">QString</a> &amp; arg1, const <a href="qstring.html">QString</a> &amp; arg2 )</h3>
+<p>Constructs a network operation object. <em>operation</em> is the type
+of the operation, <em>arg0, arg1</em> and  <em>arg2</em> are the
+first three arguments of the operation.
+The state is initialized to QNetworkProtocol::StWaiting.
+<h3 class="fn"><a name="c6d758"></a>QNetworkOperation::~QNetworkOperation ()</h3>
+<p>Destructor.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="e142fb"></a>QNetworkOperation::arg ( int num ) const</h3>
+<p>Returns the argument <em>num</em> of the operation. If this argument was
+not set already, an empty string is returned.
+<h3 class="fn">int <a name="20f6c2"></a>QNetworkOperation::errorCode () const</h3>
+<p>If an operation failed, you get the error code using
+this methode.
+<h3 class="fn">void <a name="d88c61"></a>QNetworkOperation::free ()</h3>
+<p>If this method is called the QNetworkOperation deletes itself after it
+has been 1 second unused, which means for 1 second no method of the
+QNetworkOperation has been accessed.
+<p>Because QNetworkOperation pointers are passed around a lot the <a href="qnetworkprotocol.html">QNetworkProtocol</a>
+can't delete these at the correct time. So, if a QNetworkProtocol doesn't need an operation
+anymore and calls this method, so that it gets deleted correctly.
+<p>You should never need to call the method yourself!.
+<h3 class="fn">QNetworkProtocol::Operation <a name="54b287"></a>QNetworkOperation::operation() const</h3>
+<p>Returns the type of the operation.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="bf6b66"></a>QNetworkOperation::protocolDetail () const</h3>
+<p>If the operation failed, using this method you may
+get a more detailed error message.
+<h3 class="fn"><a href="qbytearray.html">QByteArray</a> <a name="630e4d"></a>QNetworkOperation::rawArg ( int num ) const</h3>
+<p>Returns the raw data argument <em>num</em> of the operation. If this argument was
+not set already, an empty bytearray is returned.
+<h3 class="fn">void <a name="d6caeb"></a>QNetworkOperation::setArg ( int num, const <a href="qstring.html">QString</a> &amp; arg )</h3>
+<p>Sets the argument <em>num</em> of the network operation to <em>arg.</em>
+<h3 class="fn">void <a name="2b3a40"></a>QNetworkOperation::setErrorCode ( int ec )</h3>
+<p>If the operation failed, the protocol should set an error code
+to describe the error more detailed. Preferable one of the
+error codes defined in <a href="qnetworkprotocol.html">QNetworkProtocol</a> should be used.
+<h3 class="fn">void <a name="a18232"></a>QNetworkOperation::setProtocolDetail ( const <a href="qstring.html">QString</a> &amp; detail )</h3>
+<p>If the operation failed a <em>detailed</em> error message can be set.
+<h3 class="fn">void <a name="f608c5"></a>QNetworkOperation::setRawArg ( int num, const <a href="qbytearray.html">QByteArray</a> &amp; arg )</h3>
+<p>Sets the raw data argument <em>num</em> of the network operation to <em>arg.</em>
+<h3 class="fn">void <a name="278d07"></a>QNetworkOperation::setState ( <a href="qnetworkprotocol.html#State">QNetworkProtocol::State</a> state )</h3>
+<p>Sets the <em>state</em> of the operation object. This should be done
+by the network protocol during processing it, and at the end
+it should be set to QNetworkProtocol::StDone or QNetworkProtocol::StFailed
+depending on success or failure.
+<h3 class="fn">QNetworkProtocol::State <a name="0f94ff"></a>QNetworkOperation::state() const</h3>
+<p>Returns the state of the operation. Using that you
+can find out if an operation is still waiting to get processed,
+if it is in process or if has been done successfully or if it failed.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,346 @@
+'\" t
+.TH QPoint 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QPoint \- Defines a point in the plane
+.br
+.PP
+\fC#include <qpoint.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQPoint\fR () "
+.br
+.ti -1c
+.BI "\fBQPoint\fR ( int " "xpos" ", int ypos ) "
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "int \fBx\fR () const"
+.br
+.ti -1c
+.BI "int \fBy\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetX\fR ( int x ) "
+.br
+.ti -1c
+.BI "void \fBsetY\fR ( int y ) "
+.br
+.ti -1c
+.BI "int \fBmanhattanLength\fR () const"
+.br
+.ti -1c
+.BI "QCOORD& \fBrx\fR () "
+.br
+.ti -1c
+.BI "QCOORD& \fBry\fR () "
+.br
+.ti -1c
+.BI "QPoint& \fBoperator+=\fR ( const QPoint & p ) "
+.br
+.ti -1c
+.BI "QPoint& \fBoperator-=\fR ( const QPoint & p ) "
+.br
+.ti -1c
+.BI "QPoint& \fBoperator*=\fR ( int c ) "
+.br
+.ti -1c
+.BI "QPoint& \fBoperator*=\fR ( double c ) "
+.br
+.ti -1c
+.BI "QPoint& \fBoperator/=\fR ( int c ) "
+.br
+.ti -1c
+.BI "QPoint& \fBoperator/=\fR ( double c ) "
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "QPoint \fBoperator/\fR (const QPoint & " "p" ", double " "c" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator*\fR (double " "c" ", const QPoint & " "p" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator/\fR (const QPoint & " "p" ", int " "c" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QPoint & " "p" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator*\fR (int " "c" ", const QPoint & " "p" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QPoint & " "p" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator*\fR (const QPoint & " "p" ", double " "c" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator*\fR (const QPoint & " "p" ", int " "c" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator+\fR (const QPoint & " "p1" ", const QPoint & " "p2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR (const QPoint & " "p1" ", const QPoint & " "p2" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator-\fR (const QPoint & " "p" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR (const QPoint & " "p1" ", const QPoint & " "p2" ")"
+.br
+.ti -1c
+.BI "QPoint \fBoperator-\fR (const QPoint & " "p1" ", const QPoint & " "p2" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QPoint class defines a point in the plane.
+.PP
+A point is specified by an x coordinate and a y coordinate.
+.PP
+The coordinate type is \fCQCOORD\fR (a 32-bit integer). The minimum value of \fCQCOORD\fR is \fCQCOORD_MIN\fR (-2147483648) and the maximum value is \fCQCOORD_MAX\fR (2147483647).
+.PP
+The coordinates are accessed by the functions x() and y(), they can be set by setX() and setY(), or by the reference functions rx() and ry().
+.PP
+Given a point \fIp,\fR the following statements are all equivalent:
+.PP
+.nf
+.br
+     p.setX( p.x() + 1 );
+.br
+     p += QPoint( 1, 0 );
+.br
+     p.rx()++;
+.fi
+.PP
+A QPoint can also be used as a vector. Addition and subtraction of QPoint are defined as for vectors (each component is added separately). You can divide or multiply a QPoint by an \fCint\fR or a \fCdouble.\fR The function manhattanLength() gives an inexpensive approximation to the length of the QPoint interpreted as a vector.
+.PP
+Example:
+.PP
+.nf
+.br
+     //QPoint oldPos is defined somewhere else
+.br
+.br
+     MyWidget::mouseMoveEvent( QMouseEvent *e )
+.br
+     {
+.br
+        QPoint vector = e->pos() - oldPos;
+.br
+        if ( vector.manhattanLength() > 3 )
+.br
+           ... //mouse has moved more than 3 pixels since oldPos
+.br
+     }
+.fi
+.PP
+QPoints can be compared for equality or inequality, and they can be written to and read from a QStream.
+.PP
+See also QSize and QRect.
+.PP
+Examples:
+.(l
+drawlines/connect.cpp xform/xform.cpp qmag/qmag.cpp forever/forever.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QPoint::QPoint ()"
+Constructs a point with coordinates (0,0) (isNull() returns TRUE).
+.SH "QPoint::QPoint ( int xpos, int ypos )"
+Constructs a point with the x value \fIxpos\fR and y value \fIypos.\fR
+.SH "bool QPoint::isNull () const"
+Returns TRUE if both the x value and the y value are 0.
+.SH "int QPoint::manhattanLength () const"
+Returns the sum of the absolute values of x() and y(), traditionally known as the "Manhattan length" of the vector from the origin to the point. The tradition arises since such distances apply to travelers who can only travel on a rectangular grid, like the streets of Manhattan.
+.PP
+This is a useful approximation to the true length, sqrt(pow(x(),2)+pow(y(),2)).
+.SH "QPoint & QPoint::operator*= ( double c )"
+Multiplies both x and y with \fIc,\fR and return a reference to this point.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p( -1, 4 );
+.br
+    p *= 2.5;                   // p becomes (-3,10)
+.fi
+.PP
+Note that the result is truncated.
+.SH "QPoint & QPoint::operator*= ( int c )"
+Multiplies both x and y with \fIc,\fR and return a reference to this point.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p( -1, 4 );
+.br
+    p *= 2;                     // p becomes (-2,8)
+.fi
+.SH "QPoint & QPoint::operator+= ( const QPoint & p )"
+Adds \fIp\fR to the point and returns a reference to this point.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p(  3, 7 );
+.br
+    QPoint q( -1, 4 );
+.br
+    p += q;                     // p becomes (2,11)
+.fi
+.SH "QPoint & QPoint::operator-= ( const QPoint & p )"
+Subtracts \fIp\fR from the point and returns a reference to this point.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p(  3, 7 );
+.br
+    QPoint q( -1, 4 );
+.br
+    p -= q;                     // p becomes (4,3)
+.fi
+.SH "QPoint & QPoint::operator/= ( double c )"
+Divides both x and y by \fIc,\fR and return a reference to this point.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p( -3, 10 );
+.br
+    p /= 2.5;                   // p becomes (-1,4)
+.fi
+.PP
+Note that the result is truncated.
+.SH "QPoint & QPoint::operator/= ( int c )"
+Divides both x and y by \fIc,\fR and return a reference to this point.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p( -2, 8 );
+.br
+    p /= 2;                     // p becomes (-1,4)
+.fi
+.SH "QCOORD & QPoint::rx ()"
+Returns a reference to the x coordinate of the point.
+.PP
+Using a reference makes it possible to directly manipulate x.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p( 1, 2 );
+.br
+    p.rx()--;                   // p becomes (0,2)
+.fi
+.PP
+See also ry().
+.SH "QCOORD & QPoint::ry ()"
+Returns a reference to the y coordinate of the point.
+.PP
+Using a reference makes it possible to directly manipulate y.
+.PP
+Example:
+.PP
+.nf
+.br
+    QPoint p( 1, 2 );
+.br
+    p.ry()++;                   // p becomes (1,3)
+.fi
+.PP
+See also rx().
+.SH "void QPoint::setX ( int x )"
+Sets the x coordinate of the point to \fIx.\fR
+.PP
+See also x() and setY().
+.SH "void QPoint::setY ( int y )"
+Sets the y coordinate of the point to \fIy.\fR
+.PP
+See also y() and setX().
+.SH "int QPoint::x () const"
+Returns the x coordinate of the point.
+.PP
+See also setX() and y().
+.SH "int QPoint::y () const"
+Returns the y coordinate of the point.
+.PP
+See also setY() and x().
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "QPoint operator/ (const QPoint & p, double c)"
+Returns the QPoint formed by dividing both components of \fIp\fR by \fIc.\fR
+.PP
+Note that the result is truncated.
+.SH "QPoint operator* (double c, const QPoint & p)"
+Returns the QPoint formed by multiplying both components of \fIp\fR by \fIc.\fR
+.PP
+Note that the result is truncated.
+.SH "QPoint operator/ (const QPoint & p, int c)"
+Returns the QPoint formed by dividing both components of \fIp\fR by \fIc.\fR
+.SH "QDataStream & operator<< (QDataStream & s, const QPoint & p)"
+Writes a QPoint to the stream and returns a reference to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "QPoint operator* (int c, const QPoint & p)"
+Returns the QPoint formed by multiplying both components of \fIp\fR by \fIc.\fR
+.SH "QDataStream & operator>> (QDataStream & s, QPoint & p)"
+Reads a QPoint from the stream and returns a reference to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "QPoint operator* (const QPoint & p, double c)"
+Returns the QPoint formed by multiplying both components of \fIp\fR by \fIc.\fR
+.PP
+Note that the result is truncated.
+.SH "QPoint operator* (const QPoint & p, int c)"
+Returns the QPoint formed by multiplying both components of \fIp\fR by \fIc.\fR
+.SH "QPoint operator+ (const QPoint & p1, const QPoint & p2)"
+Returns the sum of \fIp1\fR and \fIp2;\fR each component is added separately.
+.SH "bool operator!= (const QPoint & p1, const QPoint & p2)"
+Returns TRUE if \fIp1\fR and \fIp2\fR are different, or FALSE if they are equal.
+.SH "QPoint operator- (const QPoint & p)"
+Returns the QPoint formed by changing the sign of both components of \fIp,\fR equivalent to \fCQPoint(0,0) - p\fR
+.SH "bool operator== (const QPoint & p1, const QPoint & p2)"
+Returns TRUE if \fIp1\fR and \fIp2\fR are equal, or FALSE if they are different.
+.SH "QPoint operator- (const QPoint & p1, const QPoint & p2)"
+Returns \fIp2\fR subtracted from \fIp1;\fR each component is
+subtracted separately.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qpoint.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qpoint.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,116 @@
+'\" t
+.TH QXtWidget 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QXtWidget \- Allows mixing of Xt/Motif and Qt widgets
+.br
+.PP
+\fC#include <qxt.h>\fR
+.PP
+Inherits QWidget.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQXtWidget\fR ( const char * " "name" ", Widget " "parent" ", bool " "managed" "=FALSE ) "
+.br
+.ti -1c
+.BI "\fBQXtWidget\fR ( const char * " "name" ", WidgetClass " "widget_class" ", QWidget * " "parent" "=0, ArgList " "args" "=0, Cardinal " "num_args" "=0, bool " "managed" "=FALSE ) "
+.br
+.ti -1c
+.BI "\fB~QXtWidget\fR () "
+.br
+.ti -1c
+.BI "Widget \fBxtWidget\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisActiveWindow\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetActiveWindow\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "bool \fBx11Event\fR ( XEvent * ) "
+.br
+.in -1c
+.SH DESCRIPTION
+This class is defined in the \fBQt Xt/Motif Extension\fR, which can be found in the \fCqt/extensions\fR directory. It is not included in the main Qt API.
+.PP
+Allows mixing of Xt/Motif and Qt widgets.
+.PP
+QXtWidget acts as a bridge between Xt and Qt. For utilizing old Xt widgets, it can be a QWidget based on a Xt widget class. For including Qt widgets in an existing Xt/Motif application, it can be a special Xt widget class that is a QWidget. See the constructors for the different behaviors.
+.PP
+Examples:
+.(l
+mainlyQt/editor.cpp mainlyXt/editor.cpp mainlyMotif/editor.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QXtWidget::QXtWidget ( const char * name, Widget parent, bool managed=FALSE )"
+Constructs a QXtWidget of the special Xt widget class known as" QWidget" to the resource manager.
+.PP
+Use this constructor to utilize Qt widgets in an Xt/Motif application. The QXtWidget is a QWidget, so you can create subwidgets, layouts, etc. using Qt functionality.
+.SH "QXtWidget::QXtWidget ( const char * name, WidgetClass widget_class, QWidget * parent=0, ArgList args=0, Cardinal num_args=0, bool managed=FALSE )"
+Constructs a QXtWidget of the given \fIwidget_class.\fR
+.PP
+Use this constructor to utilize Xt or Motif widgets in a Qt application. The QXtWidget looks and behaves like the Xt class, but can be used like any QWidget.
+.PP
+Note that Xt requires that the most toplevel Xt widget is a shell. That means, if \fIparent\fR is a QXtWidget, the \fIwidget_class\fR can be of any kind. If there isn't a parent or the parent is just a normal QWidget, \fIwidget_class\fR should be something like \fCtopLevelShellWidgetClass.\fR
+.PP
+If the \fImanaged\fR parameter is TRUE and \fIparent\fR in not NULL, XtManageChild it used to manage the child.
+.SH "QXtWidget::~QXtWidget ()"
+Destructs the QXtWidget.
+.SH "bool QXtWidget::isActiveWindow () const"
+Different from QWidget::isActiveWindow().
+.SH "void QXtWidget::moveEvent ( QMoveEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QXtWidget::resizeEvent ( QResizeEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Examples:
+.(l
+mainlyQt/editor.cpp mainlyXt/editor.cpp
+.)l
+.PP
+Reimplemented from QWidget.
+.SH "void QXtWidget::setActiveWindow () \fC[virtual]\fR"
+Implement a degree of focus handling for Xt widgets.
+.PP
+Reimplemented from QWidget.
+.SH "bool QXtWidget::x11Event ( XEvent * e ) \fC[protected]\fR"
+Reimplemented to produce the Xt effect of getting focus when the mouse enters the widget. \fIThis may be changed.\fR
+.SH "Widget QXtWidget::xtWidget () const"
+Returns the Xt widget equivalent for the Qt widget.
+.PP
+Examples:
+.(l
+mainlyXt/editor.cpp mainlyMotif/editor.cpp
+.)l
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qxtwidget.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qxtwidget.3qt) and the Qt
+version (2.3.2).

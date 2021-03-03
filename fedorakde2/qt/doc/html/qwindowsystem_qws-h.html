@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qwindowsystem_qws.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qwindowsystem_qws.h</h1><br clear="all">
+This is the verbatim text of the qwindowsystem_qws.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/kernel/qwindowsystem_qws.h   2.3.2   edited 2001-10-16 $
+**
+** Definition of Qt/FB central server classes
+**
+** Created : 991025
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the kernel module of the Qt GUI Toolkit.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses for Qt/Embedded may use this file in accordance with the
+** Qt Embedded Commercial License Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QTFB_H
+#define QTFB_H
+
+#ifndef QT_H
+#include &lt;qwssocket_qws.h&gt;
+#include &lt;qmap.h&gt;
+#include &lt;qdatetime.h&gt;
+#include &lt;qlist.h&gt;
+#include &lt;qimage.h&gt;
+
+#include "qwsproperty_qws.h"
+#include "qwscommand_qws.h"
+#include "qwsevent_qws.h"
+#include "qkeyboard_qws.h"
+#endif // QT_H
+
+struct SWCursorData;
+class QWSCursor;
+class QWSClient;
+class QWSRegionManager;
+class QGfx;
+class QWSServerData;
+
+class QWSInternalWindowInfo
+{
+
+public:
+
+    int winid;
+    unsigned int clientid;
+    QString name;   // Corresponds to QObject name of top-level widget
+
+};
+
+struct QWSWindowData;
+
+class QWSScreenSaver
+{
+public:
+    virtual ~QWSScreenSaver();
+    virtual void restore()=0;
+    virtual bool save(int level)=0;
+};
+
+class <a href="qwswindow.html">QWSWindow</a>
+{
+    friend class QWSServer;
+public:
+    QWSWindow(int i, QWSClient* client);
+    ~QWSWindow();
+
+    int winId() const { return id; }
+    const QString &amp;name() const { return rgnName; }
+    const QString &amp;caption() const { return rgnCaption; }
+    QWSClient* client() const { return c; }
+    QRegion requested() const { return requested_region; }
+    QRegion allocation() const { return allocated_region; }
+    bool isVisible() const { return !requested_region.isEmpty(); }
+    bool isPartiallyObscured() const { return requested_region!=allocated_region; }
+    bool isFullyObscured() const { return allocated_region.isEmpty(); }
+
+    void raise();
+    void lower();
+    void show();
+    void hide();
+    void setActiveWindow();
+
+private:
+    bool hidden() const { return requested_region.isEmpty(); }
+    bool forClient(const QWSClient* cl) const { return cl==c; }
+
+    void setName( const QString &amp;n );
+    void setCaption( const QString &amp;c );
+
+    void addAllocation( QWSRegionManager *, QRegion );
+    void removeAllocation( QWSRegionManager *, QRegion );
+
+    int  allocationIndex() const { return alloc_region_idx; }
+    void setAllocationIndex( int i ) { alloc_region_idx = i; modified = TRUE; }
+    void updateAllocation();
+
+    void setNeedAck( bool n ) { needAck = n; }
+
+    void focus(bool get);
+    int focusPriority() const { return last_focus_time; }
+    void operation( QWSWindowOperationEvent::Operation o );
+    void shuttingDown() { last_focus_time=0; }
+
+private:
+    int id;
+    QString rgnName;
+    QString rgnCaption;
+    int alloc_region_idx;
+    bool modified;
+    bool needAck;
+    bool onTop;
+    QWSClient* c;
+    QRegion requested_region;
+    QRegion allocated_region;
+    QRegion exposed;
+    int last_focus_time;
+    QWSWindowData *d;
+};
+
+#ifndef QT_NO_SOUND
+class QWSSoundServer;
+#ifdef QT_USE_OLD_QWS_SOUND
+
+class QWSSoundServer : public QObject {
+    Q_OBJECT
+public:
+    QWSSoundServer(QObject* parent);
+    ~QWSSoundServer();
+    void playFile(const QString&amp; filename);
+private slots:
+    void feedDevice(int fd);
+private:
+    QWSSoundServerData* d;
+};
+#endif
+#endif
+
+/*********************************************************************
+ *
+ * Class: QWSServer
+ *
+ *********************************************************************/
+
+class QWSMouseHandler;
+struct QWSCommandStruct;
+
+#ifndef QT_NO_QWS_MULTIPROCESS
+class <a href="qwsserver.html">QWSServer</a> : public QWSServerSocket
+#else
+class <a href="qwsserver.html">QWSServer</a> : public QObject
+#endif
+{
+    friend class QCopChannel;
+    friend class QWSMouseHandler;
+    friend class QWSWindow;
+    friend class QWSDisplay;
+    Q_OBJECT
+
+public:
+    QWSServer( int flags = 0, QObject *parent=0, const char *name=0 );
+    ~QWSServer();
+    enum ServerFlags { DisableKeyboard = 0x01,
+                       DisableMouse = 0x02 };
+
+    
+    enum GUIMode { NoGui = FALSE, NormalGUI = TRUE, Server };
+    
+    static void sendKeyEvent(int unicode, int keycode, int modifiers, bool isPress,
+                             bool autoRepeat);
+    static void processKeyEvent(int unicode, int keycode, int modifiers, bool isPress,
+                                bool autoRepeat);
+#ifndef QT_NO_QWS_KEYBOARD    
+    typedef struct KeyMap {
+        int  key_code;
+        ushort unicode;
+        ushort shift_unicode;
+        ushort ctrl_unicode;
+    };
+
+    static const KeyMap *keyMap();
+
+    class KeyboardFilter
+    {
+    public:
+        virtual bool filter(int unicode, int keycode, int modifiers, bool isPress,
+                      bool autoRepeat)=0;
+    };
+    
+    static void setKeyboardFilter( KeyboardFilter *f );
+#endif    
+    static void setDefaultMouse( const char * );
+    static void setDefaultKeyboard( const char * );
+    static void setMaxWindowRect(const QRect&amp;);
+    static void sendMouseEvent(const QPoint&amp; pos, int state);
+
+    static void setDesktopBackground( const QImage &amp;img );
+    static void setDesktopBackground( const QColor &amp; );
+    static QWSMouseHandler *mouseHandler();
+    static void setMouseHandler(QWSMouseHandler*);
+#ifndef QT_NO_QWS_KEYBOARD    
+    static QWSKeyboardHandler* keyboardHandler();
+    static void setKeyboardHandler(QWSKeyboardHandler* kh);
+#endif
+    QWSWindow *windowAt( const QPoint&amp; pos );
+
+    const QList&lt;QWSWindow&gt; &amp;clientWindows() { return windows; }
+
+    void openMouse();
+    void closeMouse();
+#ifndef QT_NO_QWS_KEYBOARD    
+    void openKeyboard();
+    void closeKeyboard();
+#endif
+
+    static void setScreenSaver(QWSScreenSaver*);
+    static void setScreenSaverIntervals(int* ms);
+    static void setScreenSaverInterval(int);
+    static bool screenSaverActive();
+    static void screenSaverActivate(bool);
+
+    // the following are internal.
+    void refresh();
+    void enablePainting(bool);
+    static void processEventQueue();
+    static QList&lt;QWSInternalWindowInfo&gt; * windowList();
+
+    void sendPropertyNotifyEvent( int property, int state );
+#ifndef QT_NO_QWS_PROPERTIES
+    QWSPropertyManager *manager() {
+        return &amp;propertyManager;
+    }
+#endif
+    
+    static QPoint mousePosition;
+
+    static void startup( int flags );
+    static void closedown();
+
+    enum WindowEvent { Create=0x01, Destroy=0x02, Hide=0x04, Show=0x08,
+                       Raise=0x10, Lower=0x20, Geometry=0x40 };
+
+signals:
+    void windowEvent( QWSWindow *w, QWSServer::WindowEvent e );
+#ifndef QT_NO_COP
+    void newChannel( const QString&amp; );
+#endif    
+private:
+#ifndef QT_NO_COP
+    static void sendQCopEvent( QWSClient *c, const QCString &amp;ch,
+                               const QCString &amp;msg, const QByteArray &amp;data,
+                               bool response = FALSE );
+#endif
+    void move_region( const QWSRegionMoveCommand * );
+    void set_altitude( const QWSChangeAltitudeCommand * );
+    void request_focus( const QWSRequestFocusCommand * );
+    void request_region( int, QRegion );
+    void destroy_region( const QWSRegionDestroyCommand * );
+    void name_region( const QWSRegionNameCommand * );
+
+    static void emergency_cleanup();
+
+    static QColor *bgColor;
+    static QImage *bgImage;
+
+    void sendMaxWindowRectEvents();
+#ifndef QT_NO_QWS_MULTIPROCESS
+    void newConnection( int socket );
+#endif
+    void invokeIdentify( QWSIdentifyCommand *cmd, QWSClient *client );
+    void invokeCreate( QWSCreateCommand *cmd, QWSClient *client );
+    void invokeRegionName( const QWSRegionNameCommand *cmd, QWSClient *client );
+    void invokeRegion( QWSRegionCommand *cmd, QWSClient *client );
+    void invokeRegionMove( const QWSRegionMoveCommand *cmd, QWSClient *client );
+    void invokeRegionDestroy( const QWSRegionDestroyCommand *cmd, QWSClient *client );
+    void invokeSetAltitude( const QWSChangeAltitudeCommand *cmd, QWSClient *client );
+#ifndef QT_NO_QWS_PROPERTIES
+    void invokeAddProperty( QWSAddPropertyCommand *cmd );
+    void invokeSetProperty( QWSSetPropertyCommand *cmd );
+    void invokeRemoveProperty( QWSRemovePropertyCommand *cmd );
+    void invokeGetProperty( QWSGetPropertyCommand *cmd, QWSClient *client );
+#endif //QT_NO_QWS_PROPERTIES
+    void invokeSetSelectionOwner( QWSSetSelectionOwnerCommand *cmd );
+    void invokeConvertSelection( QWSConvertSelectionCommand *cmd );
+    void invokeSetFocus( const QWSRequestFocusCommand *cmd, QWSClient *client );
+
+    void initIO();
+    void setFocus( QWSWindow*, bool gain );
+#ifndef QT_NO_QWS_CURSOR
+    void invokeDefineCursor( QWSDefineCursorCommand *cmd, QWSClient *client );
+    void invokeSelectCursor( QWSSelectCursorCommand *cmd, QWSClient *client );
+#endif
+    void invokeGrabMouse( QWSGrabMouseCommand *cmd, QWSClient *client );
+    void invokeGrabKeyboard( QWSGrabKeyboardCommand *cmd, QWSClient *client );
+#ifndef QT_NO_SOUND
+    void invokePlaySound( QWSPlaySoundCommand *cmd, QWSClient *client );
+#endif
+#ifndef QT_NO_COP
+    void invokeRegisterChannel( QWSQCopRegisterChannelCommand *cmd,
+                                QWSClient *client );
+    void invokeQCopSend( QWSQCopSendCommand *cmd, QWSClient *client );
+
+#endif
+
+    QWSMouseHandler* newMouseHandler(const QString&amp; spec);
+#ifndef QT_NO_QWS_KEYBOARD    
+    QWSKeyboardHandler* newKeyboardHandler(const QString&amp; spec);
+#endif
+    void openDisplay();
+    void closeDisplay();
+
+    void showCursor();
+    void hideCursor();
+    void initializeCursor();
+    void paintServerRegion();
+    void paintBackground( QRegion );
+    void clearRegion( const QRegion &amp;r, const QColor &amp;c );
+    void refreshBackground();
+
+private slots:
+#ifndef QT_NO_QWS_MULTIPROCESS
+    void clientClosed();
+    void doClient();
+#endif
+    void setMouse(const QPoint&amp; pos,int bstate);
+
+    void screenSaverWake();
+    void screenSaverSleep();
+    void screenSaverTimeout();
+
+private:
+    void screenSave(int level);
+    void doClient( QWSClient * );
+    typedef QMapIterator&lt;int,QWSClient*&gt; ClientIterator;
+    typedef QMap&lt;int,QWSClient*&gt; ClientMap;
+    void releaseMouse(QWSWindow* w);
+    void releaseKeyboard(QWSWindow* w);
+
+    uchar* sharedram;
+    int ramlen;
+
+    QGfx *gfx;
+
+    ClientMap client;
+#ifndef QT_NO_QWS_PROPERTIES
+    QWSPropertyManager propertyManager;
+#endif
+    struct SelectionOwner {
+        int windowid;
+        struct Time {
+            void set( int h, int m, int s, int s2 ) {
+                hour = h; minute = m; sec = s; ms = s2;
+            }
+            int hour, minute, sec, ms;
+        } time;
+    } selectionOwner;
+    QTime timer;
+    QWSServerData* d;
+    int* screensaverinterval;
+
+    QWSWindow *focusw;
+    QWSWindow *mouseGrabber;
+    bool mouseGrabbing;
+    int swidth, sheight, sdepth;
+#ifndef QT_NO_QWS_CURSOR
+    bool cursorNeedsUpdate;
+    QWSCursor *cursor;      // cursor currently shown
+    QWSCursor *nextCursor;  // cursor to show once grabbing is off
+#endif
+    QRegion screenRegion;   // the entire display region
+    QRegion serverRegion;
+    QRegion dirtyBackground;
+    bool disablePainting;
+    QList&lt;QWSMouseHandler&gt; mousehandlers;
+#ifndef QT_NO_QWS_KEYBOARD    
+    QList&lt;QWSKeyboardHandler&gt; keyboardhandlers;
+#endif
+
+    QList&lt;QWSCommandStruct&gt; commandQueue;
+    QWSRegionManager *rgnMan;
+
+    // Window management
+    QList&lt;QWSWindow&gt; windows; // first=topmost
+    QWSWindow* newWindow(int id, QWSClient* client);
+    QWSWindow* findWindow(int windowid, QWSClient* client);
+    void moveWindowRegion(QWSWindow*, int dx, int dy );
+    QRegion setWindowRegion(QWSWindow*, QRegion r );
+    void raiseWindow( QWSWindow *, int = 0);
+    void lowerWindow( QWSWindow *, int = -1);
+    void exposeRegion( QRegion , int index = 0 );
+    void notifyModified( QWSWindow *active = 0 );
+    void syncRegions( QWSWindow *active = 0 );
+
+    void setCursor(QWSCursor *curs);
+
+    // multimedia
+#ifndef QT_NO_SOUND
+    QWSSoundServer *soundserver;
+#endif
+#ifndef QT_NO_COP
+    QMap&lt;QString, QList&lt;QWSClient&gt; &gt; channels;
+#endif
+};
+
+extern QWSServer *qwsServer; //there can be only one
+
+
+/*********************************************************************
+ *
+ * Class: QWSClient
+ *
+ *********************************************************************/
+
+struct QWSMouseEvent;
+
+typedef QMap&lt;int, QWSCursor*&gt; QWSCursorMap;
+
+class QWSClient : public QObject
+{
+    Q_OBJECT
+public:
+    QWSClient( QObject* parent, int socket );
+    ~QWSClient();
+
+    int socket() const;
+
+    void setIdentity(const QString&amp;);
+    QString identity() const { return id; }
+
+    void sendEvent( QWSEvent* event );
+    void sendConnectedEvent( const char *display_spec );
+    void sendMaxWindowRectEvent();
+    void sendRegionModifyEvent( int winid, QRegion exposed, bool ack );
+    void sendFocusEvent( int winid, bool get );
+    void sendPropertyNotifyEvent( int property, int state );
+    void sendPropertyReplyEvent( int property, int len, char *data );
+    void sendSelectionClearEvent( int windowid );
+    void sendSelectionRequestEvent( QWSConvertSelectionCommand *cmd, int windowid );
+    QWSCommand* readMoreCommand();
+
+    QWSCursorMap cursors;       // cursors defined by this client
+signals:
+    void connectionClosed();
+    void readyRead();
+private slots:
+    void closeHandler();
+    void errorHandler( int );
+private:
+    int s; // XXX csocket-&gt;d-&gt;socket-&gt;socket() is this value
+#ifndef QT_NO_QWS_MULTIPROCESS
+    QWSSocket *csocket;
+#endif
+    QWSCommand* command;
+    uint isClosed : 1;
+    QString id;
+};
+
+#endif
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

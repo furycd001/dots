@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QLayoutIterator Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QLayoutIterator Class Reference</h1><br clear="all">
+<p>
+The QLayoutIterator class provides iterators over <a href="qlayoutitem.html">QLayoutItem</a>
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qabstractlayout-h.html">qabstractlayout.h</a>&gt;</code>
+<p><a href="qlayoutiterator-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#b579e0"><b>QLayoutIterator</b></a> ( QGLayoutIterator * i ) </div>
+<li><div class="fn"><a href="#7cd933"><b>QLayoutIterator</b></a> ( const QLayoutIterator &amp; i ) </div>
+<li><div class="fn"><a href="#69b911"><b>~QLayoutIterator</b></a> () </div>
+<li><div class="fn">QLayoutIterator&amp; <a href="#3ee111"><b>operator=</b></a> ( const QLayoutIterator &amp; i ) </div>
+<li><div class="fn">QLayoutItem* <a href="#c83ab1"><b>operator++</b></a> () </div>
+<li><div class="fn">QLayoutItem* <a href="#a031f3"><b>current</b></a> () </div>
+<li><div class="fn">QLayoutItem* <a href="#6ca0c6"><b>takeCurrent</b></a> () </div>
+<li><div class="fn">void <a href="#030b6a"><b>deleteCurrent</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QLayoutIterator class provides iterators over <a href="qlayoutitem.html">QLayoutItem</a>
+<p>
+Use <a href="qlayoutitem.html#40af74">QLayoutItem::iterator</a>() to create an iterator over a layout.
+<p>QLayoutIterator uses explicit sharing with a reference count. If
+an iterator is copied, and one of the copies is modified,
+both iterators will be modified.
+<p>A QLayoutIterator is not protected against changes in its layout. If
+the layout is modified or deleted, the iterator will become invalid.
+It is not possible to test for validity. It is safe to delete an
+invalid layout. Any other access may lead to an illegal memory
+reference, and the abnormal termination of the program.
+<p>Calling <a href="#6ca0c6">takeCurrent</a>() or <a href="#030b6a">deleteCurrent</a>() leaves the iterator in a
+valid state, but may invalidate any other iterators that access the
+same layout.
+<p>The following code will draw a rectangle for each layout item
+in the layout structure of the widget.
+<pre>  static void paintLayout( <a href="qpainter.html">QPainter</a> *p, QLayoutItem *lay )
+  {
+      <a href="qlayoutiterator.html">QLayoutIterator</a> it = lay-&gt;iterator();
+      <a href="qlayoutitem.html">QLayoutItem</a> *child;
+      while ( (child = it.<a href="#a031f3">current</a>() ) ) {
+          paintLayout( p, child );
+          it.next();
+      }
+      p-&gt;<a href="qpainter.html#4c0077">drawRect</a>( lay-&gt;geometry() );
+  }
+  void ExampleWidget::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * )
+  {
+      <a href="qpainter.html">QPainter</a> p( this );
+      if ( layout() )
+          paintLayout( &amp;p, layout() );
+  }
+</pre>
+<p>All the functionality of QLayoutIterator is implemented by
+subclasses of <a href="qglayoutiterator.html">QGLayoutIterator</a>. Note that there is not much
+point in subclassing QLayoutIterator, since none of the functions
+are virtual.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="b579e0"></a>QLayoutIterator::QLayoutIterator ( <a href="qglayoutiterator.html">QGLayoutIterator</a> * gi )</h3>
+<p>Constructs an iterator based on <em>gi.</em> The constructed iterator takes
+ownership of <em>gi,</em> and will delete it.
+<p>This constructor is provided for layout implementors. Application
+programmers should use <a href="qlayoutitem.html#40af74">QLayoutItem::iterator</a>() to create an iterator
+over a layout.
+<h3 class="fn"><a name="7cd933"></a>QLayoutIterator::QLayoutIterator ( const QLayoutIterator &amp; i )</h3>
+<p>Creates a shallow copy of <em>i;</em> if the copy is modified, then the
+original will also be modified.
+<h3 class="fn"><a name="69b911"></a>QLayoutIterator::~QLayoutIterator ()</h3>
+<p>Destroys the iterator.
+<h3 class="fn"><a href="qlayoutitem.html">QLayoutItem</a> * <a name="a031f3"></a>QLayoutIterator::current ()</h3>
+<p>Returns the current item, or 0 if there is no current item.
+<h3 class="fn">void <a name="030b6a"></a>QLayoutIterator::deleteCurrent ()</h3>
+<p>Removes and deletes the current child item from the layout and moves the
+iterator to the next item. This iterator will still be valid, but any
+other iterator over the same layout may become invalid.
+<h3 class="fn"><a href="qlayoutitem.html">QLayoutItem</a> * <a name="c83ab1"></a>QLayoutIterator::operator++ ()</h3>
+<p>Moves the iterator to the next child item, and returns that item, or 0
+if there is no such item.
+<h3 class="fn">QLayoutIterator &amp; <a name="3ee111"></a>QLayoutIterator::operator= ( const QLayoutIterator &amp; i )</h3>
+<p>Assigns <em>i</em> to this iterator and returns a reference to this iterator.
+<h3 class="fn"><a href="qlayoutitem.html">QLayoutItem</a> * <a name="6ca0c6"></a>QLayoutIterator::takeCurrent ()</h3>
+<p>Removes the current child item from the layout without deleting it
+and moves the iterator to the next item. Returns the removed item, or
+0 if there was no item to be removed. This iterator will still be
+valid, but any other iterator over the same layout may become
+invalid.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

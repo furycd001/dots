@@ -1,0 +1,741 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QListView Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QListView Class Reference</h1><br clear="all">
+<p>
+The QListView class implements a list/tree view.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qlistview-h.html">qlistview.h</a>&gt;</code>
+<p>
+Inherits <a href="qscrollview.html">QScrollView</a>.
+<p><a href="qlistview-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#152e32"><b>QListView</b></a> ( QWidget * parent, const char * name, WFlags f ) </div>
+<li><div class="fn"><a href="#4c62e9"><b>QListView</b></a> ( QWidget * parent = 0, const char * name = 0 ) </div>
+<li><div class="fn"><a href="#2c6917"><b>~QListView</b></a> () </div>
+<li><div class="fn">int <a href="#0fdfbe"><b>treeStepSize</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#101838"><b>setTreeStepSize</b></a> ( int ) </div>
+<li><div class="fn">virtual void <a href="#57cb86"><b>insertItem</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">virtual void <a href="#f6a8c5"><b>takeItem</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">virtual void removeItem ( QListViewItem * ) <em>(obsolete)</em></div>
+<li><div class="fn">virtual void <a href="#66f548"><b>clear</b></a> () </div>
+<li><div class="fn">QHeader* <a href="#db5808"><b>header</b></a> () const</div>
+<li><div class="fn">virtual int <a href="#2323b8"><b>addColumn</b></a> ( const QString &amp; label, int size = -1 ) </div>
+<li><div class="fn">virtual int <a href="#43adc9"><b>addColumn</b></a> ( const QIconSet &amp; iconset, const QString &amp; label, int size = -1 ) </div>
+<li><div class="fn">void <a href="#441d06"><b>removeColumn</b></a> ( int index ) </div>
+<li><div class="fn">virtual void <a href="#251e98"><b>setColumnText</b></a> ( int column, const QString &amp; label ) </div>
+<li><div class="fn">virtual void <a href="#e70de9"><b>setColumnText</b></a> ( int column, const QIconSet &amp; iconset, const QString &amp; label ) </div>
+<li><div class="fn">QString <a href="#58d229"><b>columnText</b></a> ( int column ) const</div>
+<li><div class="fn">virtual void <a href="#634c74"><b>setColumnWidth</b></a> ( int column, int width ) </div>
+<li><div class="fn">int <a href="#ba8e61"><b>columnWidth</b></a> ( int column ) const</div>
+<li><div class="fn">enum <a href="#WidthMode"><b>WidthMode</b></a> { Manual, Maximum }</div>
+<li><div class="fn">virtual void <a href="#64d81e"><b>setColumnWidthMode</b></a> ( int column, WidthMode ) </div>
+<li><div class="fn">WidthMode <a href="#30f706"><b>columnWidthMode</b></a> ( int column ) const</div>
+<li><div class="fn">int <a href="#c86fe0"><b>columns</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#e8a8cc"><b>setColumnAlignment</b></a> ( int, int ) </div>
+<li><div class="fn">int <a href="#1440c7"><b>columnAlignment</b></a> ( int ) const</div>
+<li><div class="fn">QListViewItem* <a href="#957ecf"><b>itemAt</b></a> ( const QPoint &amp; screenPos ) const</div>
+<li><div class="fn">QRect <a href="#654c4e"><b>itemRect</b></a> ( const QListViewItem * ) const</div>
+<li><div class="fn">int <a href="#be105b"><b>itemPos</b></a> ( const QListViewItem * ) </div>
+<li><div class="fn">void <a href="#f848fa"><b>ensureItemVisible</b></a> ( const QListViewItem * ) </div>
+<li><div class="fn">void <a href="#03645b"><b>repaintItem</b></a> ( const QListViewItem * ) const</div>
+<li><div class="fn">virtual void <a href="#eb6bf2"><b>setMultiSelection</b></a> ( bool enable ) </div>
+<li><div class="fn">bool <a href="#a4ab63"><b>isMultiSelection</b></a> () const</div>
+<li><div class="fn">enum <a href="#SelectionMode"><b>SelectionMode</b></a> { Single, Multi, Extended, NoSelection }</div>
+<li><div class="fn">void <a href="#fda740"><b>setSelectionMode</b></a> ( SelectionMode mode ) </div>
+<li><div class="fn">SelectionMode <a href="#999797"><b>selectionMode</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#37fa63"><b>clearSelection</b></a> () </div>
+<li><div class="fn">virtual void <a href="#8e2ad6"><b>setSelected</b></a> ( QListViewItem *, bool ) </div>
+<li><div class="fn">bool <a href="#82320d"><b>isSelected</b></a> ( const QListViewItem * ) const</div>
+<li><div class="fn">QListViewItem* <a href="#bd9aa7"><b>selectedItem</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#a4bbb7"><b>setOpen</b></a> ( QListViewItem *, bool ) </div>
+<li><div class="fn">bool <a href="#9bea31"><b>isOpen</b></a> ( const QListViewItem * ) const</div>
+<li><div class="fn">virtual void <a href="#b22cc2"><b>setCurrentItem</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">QListViewItem* <a href="#48da41"><b>currentItem</b></a> () const</div>
+<li><div class="fn">QListViewItem* <a href="#3d56f5"><b>firstChild</b></a> () const</div>
+<li><div class="fn">int <a href="#a30499"><b>childCount</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#93889b"><b>setAllColumnsShowFocus</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#485d51"><b>allColumnsShowFocus</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#3c2967"><b>setItemMargin</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#673ee3"><b>itemMargin</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#bbcc31"><b>setRootIsDecorated</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#dbdbf3"><b>rootIsDecorated</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#811f05"><b>setSorting</b></a> ( int column, bool increasing = TRUE ) </div>
+<li><div class="fn">void <a href="#ae9727"><b>sort</b></a> () </div>
+<li><div class="fn">virtual bool <a href="#3faa98"><b>eventFilter</b></a> ( QObject * o, QEvent * ) </div>
+<li><div class="fn">void <a href="#b07c12"><b>setShowSortIndicator</b></a> ( bool show ) </div>
+<li><div class="fn">bool <a href="#d67e91"><b>showSortIndicator</b></a> () const</div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">void <a href="#b9f1d7"><b>invertSelection</b></a> () </div>
+<li><div class="fn">void <a href="#1e404c"><b>selectAll</b></a> ( bool select ) </div>
+<li><div class="fn">void <a href="#ddfb2d"><b>triggerUpdate</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#05d55e"><b>selectionChanged</b></a> () </div>
+<li><div class="fn">void <a href="#888dec"><b>selectionChanged</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">void <a href="#09b249"><b>currentChanged</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">void <a href="#18ce48"><b>clicked</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">void <a href="#dea984"><b>clicked</b></a> ( QListViewItem *, const QPoint &amp;, int ) </div>
+<li><div class="fn">void <a href="#710f15"><b>pressed</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">void <a href="#c1b672"><b>pressed</b></a> ( QListViewItem *, const QPoint &amp;, int ) </div>
+<li><div class="fn">void <a href="#653d82"><b>doubleClicked</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">void <a href="#25ca1d"><b>returnPressed</b></a> ( QListViewItem * ) </div>
+<li><div class="fn">void <a href="#ea819f"><b>rightButtonClicked</b></a> ( QListViewItem *, const QPoint &amp;, int ) </div>
+<li><div class="fn">void <a href="#ff1fbb"><b>rightButtonPressed</b></a> ( QListViewItem *, const QPoint &amp;, int ) </div>
+<li><div class="fn">void <a href="#3088d2"><b>mouseButtonPressed</b></a> ( int, QListViewItem *, const QPoint &amp;, int ) </div>
+<li><div class="fn">void <a href="#423bea"><b>mouseButtonClicked</b></a> ( int, QListViewItem *, const QPoint &amp;, int ) </div>
+<li><div class="fn">void <a href="#8dd6f6"><b>onItem</b></a> ( QListViewItem * item ) </div>
+<li><div class="fn">void <a href="#dc5983"><b>onViewport</b></a> () </div>
+<li><div class="fn">void <a href="#bb7944"><b>expanded</b></a> ( QListViewItem * item ) </div>
+<li><div class="fn">void <a href="#132983"><b>collapsed</b></a> ( QListViewItem * item ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#bcd36c"><b>contentsMousePressEvent</b></a> ( QMouseEvent * e ) </div>
+<li><div class="fn">virtual void <a href="#a15942"><b>contentsMouseReleaseEvent</b></a> ( QMouseEvent * e ) </div>
+<li><div class="fn">virtual void <a href="#f62cf3"><b>contentsMouseMoveEvent</b></a> ( QMouseEvent * e ) </div>
+<li><div class="fn">virtual void <a href="#0bdad0"><b>contentsMouseDoubleClickEvent</b></a> ( QMouseEvent * e ) </div>
+<li><div class="fn">virtual void <a href="#ce5fcf"><b>resizeEvent</b></a> ( QResizeEvent * e ) </div>
+<li><div class="fn">virtual void <a href="#4fb89f"><b>drawContentsOffset</b></a> ( QPainter *, int ox, int oy, int cx, int cy, int cw, int ch ) </div>
+<li><div class="fn">virtual void <a href="#c3df6e"><b>paintEmptyArea</b></a> ( QPainter *, const QRect &amp; ) </div>
+</ul>
+<h2>Protected Slots</h2>
+<ul>
+<li><div class="fn">void <a href="#61c9a0"><b>updateContents</b></a> () </div>
+<li><div class="fn">void <a href="#1ea0c0"><b>doAutoScroll</b></a> () </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>int<td>columns<td>columns<td>&nbsp;<td>&nbsp;
+<tr><td>bool<td>multiSelection<td>isMultiSelection<td>setMultiSelection<td> DESIGNABLE false
+<tr><td>SelectionMode<td>selectionMode<td>selectionMode<td>setSelectionMode<td>&nbsp;
+<tr><td>int<td>childCount<td>childCount<td>&nbsp;<td>&nbsp;
+<tr><td>bool<td>allColumnsShowFocus<td>allColumnsShowFocus<td>setAllColumnsShowFocus<td>&nbsp;
+<tr><td>bool<td>showSortIndicator<td>showSortIndicator<td>setShowSortIndicator<td>&nbsp;
+<tr><td>int<td>itemMargin<td>itemMargin<td>setItemMargin<td>&nbsp;
+<tr><td>bool<td>rootIsDecorated<td>rootIsDecorated<td>setRootIsDecorated<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QListView class implements a list/tree view.
+<p>
+It can display and control a hierarchy of multi-column items, and
+provides the ability to add new items at any time, let the user
+select one or many items, sort the list in increasing or decreasing
+order by any column, and so on.
+<p>The simplest mode of usage is to create a QListView, add some column
+headers using <a href="#2323b8">addColumn</a>(), create one or more <a href="qlistviewitem.html">QListViewItem</a> objects
+with the QListView as parent, set up the list view's <a href="qwidget.html#e515c8">geometry</a>(), and
+<a href="#a21cde">show</a>() it.
+<p>The main setup functions are <ul>
+<li>addColumn() - adds a column, with text and perhaps width.
+<li><a href="#64d81e">setColumnWidthMode</a>() - sets the column to be resized
+automatically or not.
+<li><a href="#93889b">setAllColumnsShowFocus</a>() - decides whether items should show
+keyboard focus using all columns, or just column 0.  The default is
+to show focus using just column 0.
+<li><a href="#bbcc31">setRootIsDecorated</a>() - decides whether root items can be opened
+and closed by the user, and have open/close decoration to their left.
+The default is FALSE.
+<li><a href="#101838">setTreeStepSize</a>() - decides the how many pixels an item's
+children are indented relative to their parent.  The default is 20.
+This is mostly a matter of taste.
+<li><a href="#811f05">setSorting</a>() - decides whether the items should be sorted,
+whether it should be in ascending or descending order, and by what
+column it should be sorted.</ul>
+<p>To handle events such as mouse-presses on the listview, derived classes
+can reimplement the <a href="qscrollview.html">QScrollView</a> functions
+<a href="qscrollview.html#495587">contentsMousePressEvent</a>,
+<a href="qscrollview.html#2aef88">contentsMouseReleaseEvent</a>,
+<a href="qscrollview.html#95a0fd">contentsMouseDoubleClickEvent</a>,
+<a href="qscrollview.html#31fb33">contentsMouseMoveEvent</a>,
+<a href="qscrollview.html#51f465">contentsDragEnterEvent</a>,
+<a href="qscrollview.html#5b452f">contentsDragMoveEvent</a>,
+<a href="qscrollview.html#31a415">contentsDragLeaveEvent</a>,
+<a href="qscrollview.html#43ab2d">contentsDropEvent</a>, and
+<a href="qscrollview.html#4ef2d5">contentsWheelEvent</a>.
+<p>There are also several functions for mapping between items and
+coordinates.  <a href="#957ecf">itemAt</a>() returns the item at a position on-screen,
+<a href="#654c4e">itemRect</a>() returns the rectangle an item occupies on the screen and
+<a href="#be105b">itemPos</a>() returns the position of any item (not on-screen, in the
+list view).  <a href="#3d56f5">firstChild</a>() returns the item at the top of the view
+(not necessarily on-screen) so you can iterate over the items using
+either <a href="qlistviewitem.html#376b5c">QListViewItem::itemBelow</a>() or a combination of
+<a href="qlistviewitem.html#ce655c">QListViewItem::firstChild</a>() and <a href="qlistviewitem.html#6ee12f">QListViewItem::nextSibling</a>().
+<p>Naturally, QListView provides a <a href="#66f548">clear</a>() function, as well as an
+explicit <a href="#57cb86">insertItem</a>() for when QListViewItem's default insertion
+won't do.
+<p>There is a variety of selection modes, described in the
+<a href="#SelectionMode">QListView::SelectionMode</a> documentation. The default is
+single-selection, and you can change it using <a href="#fda740">setSelectionMode</a>().
+For compatibility with previous Qt versions there is still the
+<a href="#eb6bf2">setMultiSelection</a>() methode. Calling setMultiSelection( TRUE )
+is equivalent to setSelectionMode( Multi ), and setMultiSelection( FALSE )
+is equivalent to setSelectionMode( Single ). It's suggested not to
+use setMultiSelection() anymore, but to use setSelectionMode()
+instead.
+<p>Since QListView offers multiple selection it has to display keyboard
+focus and selection state separately.  Therefore there are functions
+both to set the selection state of an item, <a href="#8e2ad6">setSelected</a>(), and to
+select which item displays keyboard focus, <a href="#b22cc2">setCurrentItem</a>().
+<p>QListView emits two groups of signals: One group signals changes in
+selection/focus state and one signals selection.  The first group
+consists of <a href="#05d55e">selectionChanged</a>(), applicable to all list views, and
+selectionChanged( QListViewItem * ), applicable only to
+single-selection list view, and <a href="#09b249">currentChanged</a>( QListViewItem * ).
+The second group consists of <a href="#653d82">doubleClicked</a>( QListViewItem * ),
+<a href="#25ca1d">returnPressed</a>( QListViewItem * ) and <a href="#ea819f">rightButtonClicked</a>(
+QListViewItem *, const <a href="qpoint.html">QPoint</a>&, int ), etc.
+<p>In Motif style, QListView deviates fairly strongly from the look and
+feel of the Motif hierarchical tree view.  This is done mostly to
+provide a usable keyboard interface and to make the list view look
+better with a white background.<p><b>Warning:</b> The list view assumes ownership of all list view items
+and will delete them when it does not need them any more.
+<p><img src=qlistview-m.png> <img src=qlistview-w.png>
+<p>Examples:
+ <a href="xml-tagreader-with-features-tagreader-cpp.html#QListView">xml/tagreader-with-features/tagreader.cpp</a>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="SelectionMode">QListView::SelectionMode</a></h3>
+This enumerated type is used by QListView to indicate how it reacts
+to selection by the user.  It has four values: <ul>
+<li> <code>Single</code> - When the user selects an item, any already-selected
+item becomes unselected, and the user cannot unselect the selected
+item. This means that the user can never clear the selection, even
+though the selection may be cleared by the application programmer
+using <a href="#37fa63">QListView::clearSelection</a>().
+<li> <code>Multi</code> - When the user selects an item in the most ordinary
+way, the selection status of that item is toggled and the other
+items are left alone.
+<li> <code>Extended</code> - When the user selects an item in the most
+ordinary way, the selection is cleared and the new item selected.
+However, if the user presses the CTRL key when clicking on an item,
+the clicked item gets toggled and all other items are left untouched. And
+if the user presses the SHIFT key while clicking on an item, all items
+between the current item and the clicked item get selected or unselected
+depending on the state of the clicked item.
+Also multiple items can be selected by dragging the mouse while the
+left mouse button stayes pressed.
+<li> <code>NoSelection</code> - Items cannot be selected.
+<p></ul>
+<p>In other words, <code>Single</code> is a real single-selection listview, <code>Multi</code> a real multi-selection listview, and <code>Extended</code> listview
+where users can select multiple items but usually want to select
+either just one or a range of contiguous items, and <code>NoSelection</code>
+is for a listview where the user can look but not touch.
+<h3 class="fn"><a name="WidthMode">QListView::WidthMode</a></h3>
+This enum type describes how the width of a column in the view
+changes.  The currently defined modes are: <ul>
+<li> <code>Manual</code> - the column width does not change automatically
+<li> <code>Maximum</code> - the column is automatically sized according to the
+widths of all items in the column.  (Note: The column never shrinks
+in this case.) This means the column is always resized to the
+width of the item with the largest width in the column.
+<p></ul>
+<p>See also  <a href="#634c74">setColumnWidth</a>(), <a href="#64d81e">setColumnWidthMode</a>() and <a href="#ba8e61">columnWidth</a>().
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="4c62e9"></a>QListView::QListView ( <a href="qwidget.html">QWidget</a> * parent = 0, const char * name = 0 )</h3>
+<p>Constructs a new empty list view, with <em>parent</em> as a parent and <em>name</em>
+as object name.
+<p>Performance is boosted by modifying the widget flags so that only part
+of the <a href="qlistviewitem.html">QListViewItem</a> children is redrawn.  This may be unsuitable for
+custom QListViewItem classes, in which case <code>WNorthWestGravity</code> and
+<code>WRepaintNoErase</code> should be cleared.
+<p>See also  <a href="qwidget.html#ef7827">QWidget::clearWFlags</a>() and <a href="qt.html#WidgetFlags">Qt::WidgetFlags</a>.
+<h3 class="fn"><a name="152e32"></a>QListView::QListView ( <a href="qwidget.html">QWidget</a> * parent, const char * name, WFlags f )</h3>
+<p>Constructs a new empty list view, with <em>parent</em> as a parent and <em>name</em>
+as object name.
+<p>Performance is boosted by modifying the widget flags <em>f</em> so that only
+part of the <a href="qlistviewitem.html">QListViewItem</a> children is redrawn.  This may be unsuitable
+for custom QListViewItem classes, in which case <code>WNorthWestGravity</code> and
+<code>WRepaintNoErase</code> should be cleared.
+<p>See also  <a href="qwidget.html#ef7827">QWidget::clearWFlags</a>() and <a href="qt.html#WidgetFlags">Qt::WidgetFlags</a>.
+<h3 class="fn"><a name="2c6917"></a>QListView::~QListView ()</h3>
+<p>Destructs the listview, deleting all items in it, and frees up all
+allocated resources.
+<h3 class="fn">int <a name="43adc9"></a>QListView::addColumn ( const <a href="qiconset.html">QIconSet</a> &amp; iconset, const <a href="qstring.html">QString</a> &amp; label, int width = -1 ) <code>[virtual]</code></h3>
+<p>Adds a new column at the right end of the widget, with the header <em>label</em> and <em>iconset,</em> and returns the index of the column.
+<p>If <em>width</em> is negative, the new column will have <a href="#WidthMode">WidthMode</a> Maximum,
+otherwise it will be Manual at <em>width</em> pixels wide.
+<p>See also  <a href="#251e98">setColumnText</a>(), <a href="#634c74">setColumnWidth</a>() and <a href="#64d81e">setColumnWidthMode</a>().
+<h3 class="fn">int <a name="2323b8"></a>QListView::addColumn ( const <a href="qstring.html">QString</a> &amp; label, int width = -1 ) <code>[virtual]</code></h3>
+<p>Adds a new column at the right end of the widget, with the header <em>label,</em> and returns the index of the column.
+<p>If <em>width</em> is negative, the new column will have <a href="#WidthMode">WidthMode</a> Maximum,
+otherwise it will be Manual at <em>width</em> pixels wide.
+<p>See also  <a href="#251e98">setColumnText</a>(), <a href="#634c74">setColumnWidth</a>() and <a href="#64d81e">setColumnWidthMode</a>().
+<p>Examples:
+ <a href="dirview-main-cpp.html#addColumn">dirview/main.cpp</a>
+<h3 class="fn">bool <a name="485d51"></a>QListView::allColumnsShowFocus () const</h3>
+<p>Returns TRUE if the items in this list view indicate focus and
+selection state using all of their columns, else FALSE.
+<p>See also  <a href="#93889b">setAllColumnsShowFocus</a>().
+<h3 class="fn">int <a name="a30499"></a>QListView::childCount () const</h3>
+<p>Returns the current number of parentless <a href="qlistviewitem.html">QListViewItem</a> objects in
+this QListView, like <a href="qlistviewitem.html#eb8339">QListViewItem::childCount</a>() returns the number
+of child items for a QListViewItem.
+<p>See also  <a href="qlistviewitem.html#eb8339">QListViewItem::childCount</a>().
+<h3 class="fn">void <a name="66f548"></a>QListView::clear () <code>[virtual]</code></h3>
+<p>Remove and delete all the items in this list view, and trigger an
+update.
+<p>See also  <a href="#ddfb2d">triggerUpdate</a>().
+<h3 class="fn">void <a name="37fa63"></a>QListView::clearSelection () <code>[virtual]</code></h3>
+<p>Sets all items to be not selected, updates the list view as
+necessary and emits the <a href="#05d55e">selectionChanged</a>() signals.  Note that for
+multi-selection list views, this function needs to iterate over <em>all</em>
+items.
+<p>See also  <a href="#8e2ad6">setSelected</a>() and <a href="#eb6bf2">setMultiSelection</a>().
+<h3 class="fn">void <a name="18ce48"></a>QListView::clicked ( <a href="qlistviewitem.html">QListViewItem</a> * item ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the user clicks (mouse pressed + mouse released)
+into the listview.
+<em>item</em> is the pointer to the clicked listview item or NULL, if the user didn't click on an item.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<h3 class="fn">void <a name="dea984"></a>QListView::clicked ( <a href="qlistviewitem.html">QListViewItem</a> * item, const <a href="qpoint.html">QPoint</a> &amp; pnt, int c ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the user clicks (mouse pressed + mouse released)
+into the listview.
+<em>item</em> is the pointer to the clicked listview item or NULL, if the user didn't click on an item.
+<em>pnt</em> is the position where the user
+has clicked, and <em>c</em> the column into which the user clicked.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<h3 class="fn">void <a name="132983"></a>QListView::collapsed ( <a href="qlistviewitem.html">QListViewItem</a> * item ) <code>[signal]</code></h3>
+<p>This signals is emitted when the <em>item</em> has been collapsed. This means
+the children of the item are hidden because the user double-clicked
+the item or clicked on the root decoration, or <a href="#a4bbb7">setOpen</a>() with FALSE
+as argument has been called.
+<p>See also  <a href="#bb7944">expanded</a>().
+<h3 class="fn">int <a name="1440c7"></a>QListView::columnAlignment ( int column ) const</h3>
+<p>Returns the alignment of logical column <em>column.</em>  The default
+is <code>AlignLeft.</code>
+<p>See also  <a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a>.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="58d229"></a>QListView::columnText ( int c ) const</h3>
+<p>Returns the text of column <em>c.</em>
+<h3 class="fn">int <a name="ba8e61"></a>QListView::columnWidth ( int c ) const</h3>
+<p>Returns the width of column <em>c.</em>
+<h3 class="fn">QListView::WidthMode <a name="30f706"></a>QListView::columnWidthMode( int c ) const</h3>
+<p>Returns the currently set <a href="#WidthMode">WidthMode</a> for column <em>c.</em>
+<p>See also  <a href="#64d81e">setColumnWidthMode</a>().
+<h3 class="fn">int <a name="c86fe0"></a>QListView::columns () const</h3>
+<p>Returns the number of columns of this list view.
+<p>See also  <a href="#2323b8">addColumn</a>() and <a href="#441d06">removeColumn</a>().
+<h3 class="fn">void <a name="0bdad0"></a>QListView::contentsMouseDoubleClickEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Processes mouse double-click events on behalf of the viewed widget.
+<p>Reimplemented from <a href="qscrollview.html#95a0fd">QScrollView.</a>
+<h3 class="fn">void <a name="f62cf3"></a>QListView::contentsMouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Processes mouse move events on behalf of the viewed widget.
+<p>Reimplemented from <a href="qscrollview.html#31fb33">QScrollView.</a>
+<h3 class="fn">void <a name="bcd36c"></a>QListView::contentsMousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Processes mouse move events on behalf of the viewed widget.
+<p>Reimplemented from <a href="qscrollview.html#495587">QScrollView.</a>
+<h3 class="fn">void <a name="a15942"></a>QListView::contentsMouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Processes mouse move events on behalf of the viewed widget.
+<p>Reimplemented from <a href="qscrollview.html#2aef88">QScrollView.</a>
+<h3 class="fn">void <a name="09b249"></a>QListView::currentChanged ( <a href="qlistviewitem.html">QListViewItem</a> * ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the current item has changed
+(normally after the screen update).  The current item is the item
+responsible for indicating keyboard focus.
+<p>The argument is the newly current item, or 0 if the change was to
+make no item current.  This can happen e.g. if all items in the list
+view are deleted.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<p>See also  <a href="#b22cc2">setCurrentItem</a>() and <a href="#48da41">currentItem</a>().
+<h3 class="fn"><a href="qlistviewitem.html">QListViewItem</a> * <a name="48da41"></a>QListView::currentItem () const</h3>
+<p>Returns a pointer to the currently highlighted item, or 0 if
+there isn't any.
+<p>See also  <a href="#b22cc2">setCurrentItem</a>().
+<h3 class="fn">void <a name="1ea0c0"></a>QListView::doAutoScroll () <code>[protected slot]</code></h3>
+<p>This slot handles auto-scrolling when the mouse button is pressed
+and the mouse is outside the widget.
+<h3 class="fn">void <a name="653d82"></a>QListView::doubleClicked ( <a href="qlistviewitem.html">QListViewItem</a> * item ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever an item is double-clicked.  It's
+emitted on the second button press, not the second button release.
+<em>item</em> is the listview item onto which the user did the double click.
+<h3 class="fn">void <a name="4fb89f"></a>QListView::drawContentsOffset ( <a href="qpainter.html">QPainter</a> * p, int ox, int oy, int cx, int cy, int cw, int ch ) <code>[virtual protected]</code></h3>
+<p>Calls <a href="qlistviewitem.html#0ab6b5">QListViewItem::paintCell</a>() and/or
+<a href="qlistviewitem.html#fa92f2">QListViewItem::paintBranches</a>() for all list view items that
+require repainting.  See the documentation for those functions for
+details.
+<p>Reimplemented from <a href="qscrollview.html#d9fbf6">QScrollView.</a>
+<h3 class="fn">void <a name="f176c0"></a>QListView::enabledChange ( bool e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#048926">QWidget.</a>
+<h3 class="fn">void <a name="f848fa"></a>QListView::ensureItemVisible ( const <a href="qlistviewitem.html">QListViewItem</a> * i )</h3>
+<p>Ensures that <em>i</em> is made visible, scrolling the list view
+vertically as required and opens (expands)also all parent items if they
+hide their children.
+<p>See also  <a href="#654c4e">itemRect</a>() and <a href="qscrollview.html#523aa2">QScrollView::ensureVisible</a>().
+<h3 class="fn">bool <a name="3faa98"></a>QListView::eventFilter ( <a href="qobject.html">QObject</a> * o, <a href="qevent.html">QEvent</a> * e ) <code>[virtual]</code></h3>
+<p>Redirects events for the viewport to <a href="qwidget.html#2ecc04">mousePressEvent</a>(),
+<a href="#18b362">keyPressEvent</a>() and friends.
+<p>Reimplemented from <a href="qobject.html#bd20fe">QObject.</a>
+<h3 class="fn">void <a name="bb7944"></a>QListView::expanded ( <a href="qlistviewitem.html">QListViewItem</a> * item ) <code>[signal]</code></h3>
+<p>This signals is emitted when the <em>item</em> has been expanded. This means
+the children of the item are shown because the user double-clicked
+the item or clicked on the root decoration, or <a href="#a4bbb7">setOpen</a>() with TRUE
+as argument has been called.
+<p>See also  <a href="#132983">collapsed</a>().
+<h3 class="fn"><a href="qlistviewitem.html">QListViewItem</a> * <a name="3d56f5"></a>QListView::firstChild () const</h3>
+<p>Returns the first item in this QListView.  You can use its <a href="qlistviewitem.html#ce655c">firstChild()</a> and <a href="qlistviewitem.html#6ee12f">nextSibling()</a> functions to
+traverse the entire tree of items.
+<p>Returns 0 if there is no first item.
+<p>See also  <a href="#957ecf">itemAt</a>(), <a href="qlistviewitem.html#376b5c">QListViewItem::itemBelow</a>() and <a href="qlistviewitem.html#606758">QListViewItem::itemAbove</a>().
+<h3 class="fn">void <a name="aeb5d4"></a>QListView::focusInEvent ( <a href="qfocusevent.html">QFocusEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#21a4b8">QWidget.</a>
+<h3 class="fn">void <a name="d35c06"></a>QListView::focusOutEvent ( <a href="qfocusevent.html">QFocusEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#de664a">QWidget.</a>
+<h3 class="fn"><a href="qheader.html">QHeader</a> * <a name="db5808"></a>QListView::header () const</h3>
+<p>Returns a pointer to the <a href="qheader.html">QHeader</a> object that manages this list
+view's columns.  Please don't modify the header behind the list
+view's back.
+<p>Acceptable methods to call are:
+<ul>
+<li>void <a href="qheader.html#181587">QHeader::setClickEnabled</a>( bool, int logIdx = -1 );
+<li>void <a href="qheader.html#ca39d6">QHeader::setResizeEnabled</a>( bool, int logIdx = -1 );
+<li>void <a href="qheader.html#5d8f20">QHeader::setMovingEnabled</a>( bool );
+</ul>
+<h3 class="fn">void <a name="57cb86"></a>QListView::insertItem ( <a href="qlistviewitem.html">QListViewItem</a> * i ) <code>[virtual]</code></h3>
+<p>Inserts <em>i</em> into the list view as a top-level item.  You do not
+need to call this unless you've called <a href="#f6a8c5">takeItem</a>( <em>i</em> ) or
+<a href="qlistviewitem.html#9690c6">QListViewItem::takeItem</a>( i ) and need to reinsert <em>i</em> elsewhere.
+<p>See also  <a href="qlistviewitem.html#9690c6">QListViewItem::takeItem</a>(), (important) and <a href="#f6a8c5">takeItem</a>().
+<h3 class="fn">void <a name="b9f1d7"></a>QListView::invertSelection () <code>[slot]</code></h3>
+<p>Inverts the selection. Works only in Multi and Extended selection mode.
+<h3 class="fn">bool <a name="a4ab63"></a>QListView::isMultiSelection () const</h3>
+<p>Returns TRUE if this list view is in multi-selection mode and
+FALSE if it is in single-selection mode.
+<p>See also  <a href="#eb6bf2">setMultiSelection</a>().
+<h3 class="fn">bool <a name="9bea31"></a>QListView::isOpen ( const <a href="qlistviewitem.html">QListViewItem</a> * item ) const</h3>
+<p>Identical to <em>item->isOpen().</em>  Provided for completeness.
+<p>See also  <a href="#a4bbb7">setOpen</a>().
+<h3 class="fn">bool <a name="82320d"></a>QListView::isSelected ( const <a href="qlistviewitem.html">QListViewItem</a> * i ) const</h3>
+<p>Returns <a href="qlistviewitem.html#35710b">i-&gt;isSelected().</a>
+<p>Provided only because QListView provides <a href="#8e2ad6">setSelected</a>() and trolls
+are neat creatures and like neat, orthogonal interfaces.
+<h3 class="fn"><a href="qlistviewitem.html">QListViewItem</a> * <a name="957ecf"></a>QListView::itemAt ( const <a href="qpoint.html">QPoint</a> &amp; viewPos ) const</h3>
+<p>Returns a pointer to the <a href="qlistviewitem.html">QListViewItem</a> at <em>viewPos.</em>  Note
+that <em>viewPos</em> is in the coordinate system of <a href="qscrollview.html#26f2bf">viewport</a>(), not in
+the listview's own, much larger, coordinate system.
+<p>itemAt() returns 0 if there is no such item.
+<p>Note, that you also get the pointer to the item if <em>viewPos</em> points onto the
+root decoration (see <a href="#bbcc31">setRootIsDecorated</a>()) of the item. To check if
+<em>viewPos</em> is on the root decoration of the item or not, you can do something
+like
+<p><pre>  <a href="qlistviewitem.html">QListViewItem</a> *i = itemAt( p );
+  if ( i ) {
+      if ( p.x() &gt; header()-&gt;cellPos( header()-&gt;mapToActual( 0 ) ) +
+             treeStepSize() * ( i-&gt;<a href="qlistviewitem.html#1e0f46">depth</a>() + ( rootIsDecorated() ? 1 : 0) ) + itemMargin() ||
+             p.x() &lt; header()-&gt;cellPos( header()-&gt;mapToActual( 0 ) ) ) {
+          ; // p is not not in root decoration
+      else
+          ; // p is in the root decoration
+  }
+</pre>
+<p>This might be interesting if you use this method to find out where the user
+clicked and if you e.g. want to start a drag (which you do not want to do if the
+user clicked onto the root decoration of an item)
+<p>See also  <a href="#be105b">itemPos</a>() and <a href="#654c4e">itemRect</a>().
+<h3 class="fn">int <a name="673ee3"></a>QListView::itemMargin () const</h3>
+<p>Returns the advisory item margin which list items may use.
+<p>See also  <a href="qlistviewitem.html#0ab6b5">QListViewItem::paintCell</a>() and <a href="#3c2967">setItemMargin</a>().
+<h3 class="fn">int <a name="be105b"></a>QListView::itemPos ( const <a href="qlistviewitem.html">QListViewItem</a> * item )</h3>
+<p>Returns the y coordinate of <em>item</em> in the list view's
+coordinate system.  This functions is normally much slower than
+<a href="#957ecf">itemAt</a>(), but it works for all items, while itemAt() normally works
+only for items on the screen.
+<p>This is a thin wrapper around <a href="qlistviewitem.html#62cba9">QListViewItem::itemPos</a>().
+<p>See also  <a href="#957ecf">itemAt</a>() and <a href="#654c4e">itemRect</a>().
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="654c4e"></a>QListView::itemRect ( const <a href="qlistviewitem.html">QListViewItem</a> * i ) const</h3>
+<p>Returns the rectangle on the screen <em>i</em> occupies in
+<a href="qscrollview.html#26f2bf">viewport</a>()'s coordinates, or an invalid rectangle if <em>i</em> is a null
+pointer or is not currently visible.
+<p>The rectangle returned does not include any children of the
+rectangle (ie. it uses <a href="qlistviewitem.html#a67980">QListViewItem::height</a>() rather than
+<a href="qlistviewitem.html#231dfa">QListViewItem::totalHeight</a>()).  If you want the rectangle including
+children, you can use something like this code:
+<p><pre>    <a href="qrect.html">QRect</a> r( listView-&gt;itemRect( item ) );
+    r.<a href="qrect.html#324bcf">setHeight</a>( (QCOORD)(QMIN( item-&gt;totalHeight(),
+                                listView-&gt;viewport-&gt;height() - r.<a href="qrect.html#f448f7">y</a>() ) ) )
+</pre>
+<p>Note the way it avoids too-high rectangles.  totalHeight() can be
+much larger than the window system's coordinate system allows.
+<p>itemRect() is comparatively slow.  It's best to call it only for
+items that are probably on-screen.
+<h3 class="fn">void <a name="18b362"></a>QListView::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#0a4482">QWidget.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="69946b"></a>QListView::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn">void <a name="423bea"></a>QListView::mouseButtonClicked ( int button, <a href="qlistviewitem.html">QListViewItem</a> * item, const <a href="qpoint.html">QPoint</a> &amp; pos, int c ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the user clicks (mouse pressed + mouse released)
+into the listview. <em>button</em> is the mouse button which the user pressed,
+<em>item</em> is the pointer to the clicked listview item or NULL, if the user didn't click on an item, and
+<em>c</em> the listview column into which the user pressed (this argument is only valid, if <em>item</em>
+is not NULL!)
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<h3 class="fn">void <a name="3088d2"></a>QListView::mouseButtonPressed ( int button, <a href="qlistviewitem.html">QListViewItem</a> * item, const <a href="qpoint.html">QPoint</a> &amp; pos, int c ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the user pressed the mouse button
+onto the listview. <em>button</em> is the mouse button which the user pressed,
+<em>item</em> is the pointer to the pressed listview item or NULL, if the user didn't press on an item, and
+<em>c</em> the listview column into which the user pressed (this argument is only valid, if <em>item</em>
+is not NULL!)
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<h3 class="fn">void <a name="8dd6f6"></a>QListView::onItem ( <a href="qlistviewitem.html">QListViewItem</a> * i ) <code>[signal]</code></h3>
+<p>This signal is emitted, when the user moves the mouse cursor onto an item.
+It´s only emitted once per item.
+<h3 class="fn">void <a name="dc5983"></a>QListView::onViewport () <code>[signal]</code></h3>
+<p>This signal is emitted, when the user moves the mouse cursor, which was
+on an item away from the item onto the viewport.
+<h3 class="fn">void <a name="c3df6e"></a>QListView::paintEmptyArea ( <a href="qpainter.html">QPainter</a> * p, const <a href="qrect.html">QRect</a> &amp; rect ) <code>[virtual protected]</code></h3>
+<p>Paints <em>rect</em> so that it looks like empty background using
+painter p.  <em>rect</em> is is widget coordinates, ready to be fed to <em>p.</em>
+<p>The default function fills <em>rect</em> with <a href="qwidget.html#d92bf4">colorGroup</a>().brush( QColorGroup::Base ).
+<h3 class="fn">void <a name="710f15"></a>QListView::pressed ( <a href="qlistviewitem.html">QListViewItem</a> * item ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the user presses the mouse button
+on a listview.
+<em>item</em> is the pointer to the listview item onto which the user pressed the
+mouse button or NULL, if the user didn't press the mouse on an item.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<h3 class="fn">void <a name="c1b672"></a>QListView::pressed ( <a href="qlistviewitem.html">QListViewItem</a> * item, const <a href="qpoint.html">QPoint</a> &amp; pnt, int c ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the user presses the mouse button
+on a listview.
+<em>item</em> is the pointer to the listview item onto which the user pressed the
+mouse button or NULL, if the user didn't press the mouse on an item.
+<em>pnt</em> is the position of the mouse cursor, and <em>c</em> the
+column into which the mouse cursor was when the user pressed the mouse
+button.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<h3 class="fn">void <a name="441d06"></a>QListView::removeColumn ( int index )</h3>
+<p>Removes the column at position <em>index.</em>
+<h3 class="fn">void <a name="026820"></a>QListView::removeItem ( <a href="qlistviewitem.html">QListViewItem</a> * i ) <code>[virtual]</code></h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>This function has been renamed <a href="#f6a8c5">takeItem</a>().
+<h3 class="fn">void <a name="03645b"></a>QListView::repaintItem ( const <a href="qlistviewitem.html">QListViewItem</a> * item ) const</h3>
+<p>Repaints <em>item</em> on the screen, if <em>item</em> is currently visible.
+Takes care to avoid multiple repaints.
+<h3 class="fn">void <a name="ce5fcf"></a>QListView::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Ensures that the header is correctly sized and positioned.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">void <a name="25ca1d"></a>QListView::returnPressed ( <a href="qlistviewitem.html">QListViewItem</a> * ) <code>[signal]</code></h3>
+<p>This signal is emitted when enter or return is pressed.  The
+argument is <a href="#48da41">currentItem</a>().
+<h3 class="fn">void <a name="ea819f"></a>QListView::rightButtonClicked ( <a href="qlistviewitem.html">QListViewItem</a> *, const <a href="qpoint.html">QPoint</a> &amp;, int ) <code>[signal]</code></h3>
+<p>This signal is emitted when the right button is clicked (ie. when
+it's released).  The arguments are the relevant <a href="qlistviewitem.html">QListViewItem</a> (may
+be 0), the point in global coordinates and the relevant column (or -1 if the
+click was outside the list).
+<h3 class="fn">void <a name="ff1fbb"></a>QListView::rightButtonPressed ( <a href="qlistviewitem.html">QListViewItem</a> *, const <a href="qpoint.html">QPoint</a> &amp;, int ) <code>[signal]</code></h3>
+<p>This signal is emitted when the right button is pressed.  Then
+arguments are the relevant <a href="qlistviewitem.html">QListViewItem</a> (may be 0), the point in
+global coordinates and the relevant column (or -1 if the
+click was outside the list).
+<h3 class="fn">bool <a name="dbdbf3"></a>QListView::rootIsDecorated () const</h3>
+<p>Returns TRUE if root items can be opened and closed by the user,
+FALSE if not.
+<h3 class="fn">void <a name="1e404c"></a>QListView::selectAll ( bool select ) <code>[slot]</code></h3>
+<p>If <em>select</em> is TRUE, all items get selected, else all get unselected.
+This works only in the selection modes Multi and Extended. In
+Single and NoSelection mode the selection of the current item is
+just set to <em>select.</em>
+<h3 class="fn"><a href="qlistviewitem.html">QListViewItem</a> * <a name="bd9aa7"></a>QListView::selectedItem () const</h3>
+<p>Returns a pointer to the selected item, if the list view is in
+single-selection mode and an item is selected.
+<p>If no items are selected or the list view is in multi-selection mode
+this function returns 0.
+<p>See also  <a href="#8e2ad6">setSelected</a>() and <a href="#eb6bf2">setMultiSelection</a>().
+<h3 class="fn">void <a name="05d55e"></a>QListView::selectionChanged () <code>[signal]</code></h3>
+<p>This signal is emitted whenever the set of selected items has
+changed (normally before the screen update).  It is available both
+in single-selection and multi-selection mode, but is most meaningful
+in multi-selection mode.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<p>See also  <a href="#8e2ad6">setSelected</a>() and <a href="qlistviewitem.html#36a59f">QListViewItem::setSelected</a>().
+<h3 class="fn">void <a name="888dec"></a>QListView::selectionChanged ( <a href="qlistviewitem.html">QListViewItem</a> * ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the selected item has changed in
+single-selection mode (normally after the screen update).  The
+argument is the newly selected item.
+<p>There is another signal which is more useful in multi-selection
+mode.
+<p>Note that you may not delete any <a href="qlistviewitem.html">QListViewItem</a> objects in slots
+connected to this signal.
+<p>See also  <a href="#8e2ad6">setSelected</a>(), <a href="qlistviewitem.html#36a59f">QListViewItem::setSelected</a>() and <a href="#09b249">currentChanged</a>().
+<h3 class="fn">QListView::SelectionMode <a name="999797"></a>QListView::selectionMode() const</h3>
+<p>Returns the selection mode of the list view.  The initial mode is <code>Single.</code>
+<p>See also  <a href="#fda740">setSelectionMode</a>(), <a href="#a4ab63">isMultiSelection</a>() and <a href="#eb6bf2">setMultiSelection</a>().
+<h3 class="fn">void <a name="93889b"></a>QListView::setAllColumnsShowFocus ( bool enable ) <code>[virtual]</code></h3>
+<p>Sets this list view to assume that the items show focus and
+selection state using all of their columns if <em>enable</em> is TRUE, or
+that they show it just using column 0 if <em>enable</em> is FALSE.
+<p>The default is FALSE.
+<p>Setting this to TRUE if it isn't necessary can cause noticeable
+flicker.
+<p>See also  <a href="#485d51">allColumnsShowFocus</a>().
+<p>Examples:
+ <a href="dirview-main-cpp.html#setAllColumnsShowFocus">dirview/main.cpp</a>
+<h3 class="fn">void <a name="e8a8cc"></a>QListView::setColumnAlignment ( int column, int align ) <code>[virtual]</code></h3>
+<p>Configures the logical column <em>column</em> to have alignment <em>align.</em>
+The alignment is ultimately passed to <a href="qlistviewitem.html#0ab6b5">QListViewItem::paintCell</a>()
+for each item in the view.
+<p>See also  <a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a>.
+<h3 class="fn">void <a name="e70de9"></a>QListView::setColumnText ( int column, const <a href="qiconset.html">QIconSet</a> &amp; iconset, const <a href="qstring.html">QString</a> &amp; label ) <code>[virtual]</code></h3>
+<p>Sets the heading text of column <em>column</em> to <em>iconset</em> and <em>label.</em>  The leftmost colum is number 0.
+<h3 class="fn">void <a name="251e98"></a>QListView::setColumnText ( int column, const <a href="qstring.html">QString</a> &amp; label ) <code>[virtual]</code></h3>
+<p>Sets the heading text of column <em>column</em> to <em>label.</em>  The leftmost
+colum is number 0.
+<h3 class="fn">void <a name="634c74"></a>QListView::setColumnWidth ( int column, int w ) <code>[virtual]</code></h3>
+<p>Sets the width of column <em>column</em> to <em>w</em> pixels.  Note that if the
+column has a <a href="#WidthMode">WidthMode</a> other than Manual, this width setting may be
+subsequently overridden.  The leftmost colum is number 0.
+<h3 class="fn">void <a name="64d81e"></a>QListView::setColumnWidthMode ( int c, <a href="qlistview.html#WidthMode">WidthMode</a> mode )</h3>
+<p>Sets column <em>c</em> to behave according to <em>mode.</em>  The default depends
+on whether the width argument to addColumn was positive or negative.
+<p>See also  <a href="qlistviewitem.html#2032bf">QListViewItem::width</a>().
+<h3 class="fn">void <a name="8000a5"></a>QListView::setContentsPos ( int x, int y ) <code>[virtual slot]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qscrollview.html#15a368">QScrollView.</a>
+<h3 class="fn">void <a name="b22cc2"></a>QListView::setCurrentItem ( <a href="qlistviewitem.html">QListViewItem</a> * i ) <code>[virtual]</code></h3>
+<p>Sets <em>i</em> to be the current highlighted item and repaints
+appropriately.  This highlighted item is used for keyboard
+navigation and focus indication; it doesn't mean anything else.
+<p>See also  <a href="#48da41">currentItem</a>().
+<h3 class="fn">void <a name="f973e0"></a>QListView::setFont ( const <a href="qfont.html">QFont</a> &amp; f ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="3c2967"></a>QListView::setItemMargin ( int m ) <code>[virtual]</code></h3>
+<p>Sets the advisory item margin which list items may use to <em>m.</em>
+<p>The item margin defaults to one pixel and is the margin between the
+item's edges and the area where it draws its contents.
+<a href="qlistviewitem.html#cb4828">QListViewItem::paintFocus</a>() draws in the margin.
+<p>See also  <a href="qlistviewitem.html#0ab6b5">QListViewItem::paintCell</a>().
+<h3 class="fn">void <a name="eb6bf2"></a>QListView::setMultiSelection ( bool enable ) <code>[virtual]</code></h3>
+<p>Sets the list view to multi-selection mode if <em>enable</em> is TRUE,
+and to single-selection mode if <em>enable</em> is FALSE.
+<p>If you enable multi-selection mode, it's possible to specify
+if this mode should be <em>extended</em> or not. Extended means, that the
+user can only select multiple items when pressing the Shift
+or Control button at the same time.
+<p>See also  <a href="#a4ab63">isMultiSelection</a>().
+<h3 class="fn">void <a name="a4bbb7"></a>QListView::setOpen ( <a href="qlistviewitem.html">QListViewItem</a> * item, bool open ) <code>[virtual]</code></h3>
+<p>Sets <em>item</em> to be open if <em>open</em> is TRUE and <em>item</em> is
+expandable, and to be closed if <em>open</em> is FALSE.  Repaints
+accordingly.
+<p>Does nothing if <em>item</em> is not expandable.
+<p>See also  <a href="qlistviewitem.html#1c5a28">QListViewItem::setOpen</a>() and <a href="qlistviewitem.html#725aac">QListViewItem::setExpandable</a>().
+<h3 class="fn">void <a name="47260b"></a>QListView::setPalette ( const <a href="qpalette.html">QPalette</a> &amp; p ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="bbcc31"></a>QListView::setRootIsDecorated ( bool enable ) <code>[virtual]</code></h3>
+<p>Sets this list view to show open/close signs on root items if <em>enable</em> is TRUE, and to not show such signs if <em>enable</em> is FALSE.
+<p>Open/close signs is a little + or - in windows style, an arrow in
+Motif style.
+<h3 class="fn">void <a name="8e2ad6"></a>QListView::setSelected ( <a href="qlistviewitem.html">QListViewItem</a> * item, bool selected ) <code>[virtual]</code></h3>
+<p>Sets <em>item</em> to be selected if <em>selected</em> is TRUE, and to be not
+selected if <em>selected</em> is FALSE.
+<p>If the list view is in single-selection mode and <em>selected</em> is
+TRUE, the currently selected item is unselected and <em>item</em> made
+current.  Unlike <a href="qlistviewitem.html#36a59f">QListViewItem::setSelected</a>(), this function updates
+the list view as necessary and emits the <a href="#05d55e">selectionChanged</a>() signals.
+<p>See also  <a href="#82320d">isSelected</a>(), <a href="#eb6bf2">setMultiSelection</a>(), <a href="#a4ab63">isMultiSelection</a>() and <a href="#b22cc2">setCurrentItem</a>().
+<h3 class="fn">void <a name="fda740"></a>QListView::setSelectionMode ( <a href="qlistview.html#SelectionMode">SelectionMode</a> mode )</h3>
+<p>Sets the list view's selection mode, which may be one of
+<code>Single</code> (the default), <code>Extended, Multi</code> or <code>NoSelection.</code>
+<p>See also  <a href="#999797">selectionMode</a>().
+<h3 class="fn">void <a name="b07c12"></a>QListView::setShowSortIndicator ( bool show )</h3>
+<p>If <em>show</em> is TRUE, draw an arrow in the header of the listview
+to indicate the sort order of the listview contents. The arrow
+will be drawn in the correct column and will point to the correct
+direction. Set <em>show</em> to FALSE to disable this feature.
+<p>See also  <a href="qheader.html#a526e9">QHeader::setSortIndicator</a>().
+<h3 class="fn">void <a name="811f05"></a>QListView::setSorting ( int column, bool ascending = TRUE ) <code>[virtual]</code></h3>
+<p>Set the list view to be sorted by <em>column</em> and to be sorted
+in ascending order if <em>ascending</em> is TRUE or descending order if it
+is FALSE.
+<p>If <em>column</em> is -1, sorting is disabled and the user cannot sort
+columns by clicking on the column headers.
+<h3 class="fn">void <a name="101838"></a>QListView::setTreeStepSize ( int l ) <code>[virtual]</code></h3>
+<p>Sets the the number of pixels a child is offset from its parent,
+in a tree view to <em>l.</em>  The default is 20.
+<p>See also  <a href="#0fdfbe">treeStepSize</a>().
+<p>Examples:
+ <a href="dirview-main-cpp.html#setTreeStepSize">dirview/main.cpp</a>
+<h3 class="fn">void <a name="a21cde"></a>QListView::show () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Examples:
+ <a href="dirview-main-cpp.html#show">dirview/main.cpp</a>
+<p>Reimplemented from <a href="qwidget.html#200ee5">QWidget.</a>
+<h3 class="fn">void <a name="678e3d"></a>QListView::showEvent ( <a href="qshowevent.html">QShowEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#542dc0">QWidget.</a>
+<h3 class="fn">bool <a name="d67e91"></a>QListView::showSortIndicator () const</h3>
+<p>Returns TRUE, if the sort order and column are indicated
+in the header, else FALSE.
+<p>See also  QListView::setSortIndicator().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="4c21f2"></a>QListView::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn">void <a name="ae9727"></a>QListView::sort ()</h3>
+<p>(Re)sorts the listview using the last sorting configuration (sort column
+and ascending/descending).
+<h3 class="fn">void <a name="fc63a6"></a>QListView::styleChange ( <a href="qstyle.html">QStyle</a> &amp; old ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#5e2e23">QWidget.</a>
+<h3 class="fn">void <a name="f6a8c5"></a>QListView::takeItem ( <a href="qlistviewitem.html">QListViewItem</a> * i ) <code>[virtual]</code></h3>
+<p>Removes <em>i</em> from the list view; <em>i</em> must be a top-level item.
+The warnings regarding <a href="qlistviewitem.html#9690c6">QListViewItem::takeItem</a>( i ) apply to this
+function too.
+<p>See also  <a href="qlistviewitem.html#9690c6">QListViewItem::takeItem</a>(), (important) and <a href="#57cb86">insertItem</a>().
+<h3 class="fn">int <a name="0fdfbe"></a>QListView::treeStepSize () const</h3>
+<p>Returns the number of pixels a child is offset from its parent.
+This number has meaning only for tree views.  The default is 20.
+<p>See also  <a href="#101838">setTreeStepSize</a>().
+<h3 class="fn">void <a name="ddfb2d"></a>QListView::triggerUpdate () <code>[slot]</code></h3>
+<p>Triggers a size, geometry and content update during the next
+iteration of the event loop.  Cleverly makes sure that there'll be
+just one update, to avoid flicker.
+<h3 class="fn">void <a name="61c9a0"></a>QListView::updateContents () <code>[protected slot]</code></h3>
+<p>Updates the sizes of the viewport, header, scrollbars and so on.
+Don't call this directly; call <a href="#ddfb2d">triggerUpdate</a>() instead.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

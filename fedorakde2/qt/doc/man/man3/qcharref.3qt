@@ -1,0 +1,43 @@
+'\" t
+.TH QCharRef 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCharRef \- Helper class for
+.br
+.PP
+\fC#include <qstring.h>\fR
+.PP
+.SH DESCRIPTION
+The QCharRef class is a helper class for QString.
+.PP
+It provides the ability to work on characters in a QString in a natural fashion.
+.PP
+When you get an object of type QCharRef, you can assign to it, which will operate on the string from which you got it. That is its whole purpose in life. It becomes invalid once further modifications are made to the string: If you want to keep it, copy it into a QChar.
+.PP
+Most of the QChar member functions also exist in QCharRef. However, they are not explicitly documented here.
+.PP
+See also  QString::operator[](), QString::at() and QChar.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcharref.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcharref.3qt) and the Qt
+version (2.3.2).

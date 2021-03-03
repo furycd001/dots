@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - picture/picture.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Picture</h1><br clear="all">
+
+  This example shows how to make, store to file, and read a picture as
+  a set of drawing commands.
+
+  <hr>
+
+  Implementation:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/picture/picture.cpp   2.3.2   edited 2001-10-18 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qpicture.h"></a><a href="qpicture-h.html">qpicture.h</a>&gt;
+#include &lt;<a name="qpixmap.h"></a><a href="qpixmap-h.html">qpixmap.h</a>&gt;
+#include &lt;<a name="qwidget.h"></a><a href="qwidget-h.html">qwidget.h</a>&gt;
+#include &lt;<a name="qmessagebox.h"></a><a href="qmessagebox-h.html">qmessagebox.h</a>&gt;
+#include &lt;<a name="qfile.h"></a><a href="qfile-h.html">qfile.h</a>&gt;
+#include &lt;ctype.h&gt;
+
+void paintCar( <a name="QPainter"></a><a href="qpainter.html">QPainter</a> *p )                    // paint a car
+{
+    <a name="QPointArray"></a><a href="qpointarray.html">QPointArray</a> a;
+    <a name="QBrush"></a><a href="qbrush.html">QBrush</a> brush( Qt::yellow, Qt::SolidPattern );
+    p-&gt;<a name="setBrush"></a><a href="qpainter.html#3e0cc8">setBrush</a>( brush );                       // use solid, yellow brush
+
+    a.setPoints( 5, 50,50, 350,50, 450,120, 450,250, 50,250 );
+    p-&gt;<a name="drawPolygon"></a><a href="qpainter.html#2efe17">drawPolygon</a>( a );                        // draw car body
+
+    <a name="QFont"></a><a href="qfont.html">QFont</a> f( "courier", 12, QFont::Bold );
+    p-&gt;<a name="setFont"></a><a href="qpainter.html#998df2">setFont</a>( f );
+
+    <a name="QColor"></a><a href="qcolor.html">QColor</a> windowColor( 120, 120, 255 );        // a light blue color
+    brush.<a name="setColor"></a><a href="qbrush.html#fdde27">setColor</a>( windowColor );              // set this brush color
+    p-&gt;<a href="qpainter.html#3e0cc8">setBrush</a>( brush );                       // set brush
+    p-&gt;<a name="drawRect"></a><a href="qpainter.html#4c0077">drawRect</a>( 80, 80, 250, 70 );             // car window
+    p-&gt;<a name="drawText"></a><a href="qpainter.html#0f088f">drawText</a>( 180, 80, 150, 70, Qt::AlignCenter, "--  Qt  --\nTrolltech AS" );
+
+    <a name="QPixmap"></a><a href="qpixmap.html">QPixmap</a> pixmap;
+    if ( pixmap.<a name="load"></a><a href="qpixmap.html#a728cf">load</a>("flag.bmp") )              // load and draw image
+        p-&gt;<a name="drawPixmap"></a><a href="qpainter.html#c64b89">drawPixmap</a>( 100, 85, pixmap );
+
+    p-&gt;<a name="setBackgroundMode"></a><a href="qpainter.html#10e1fd">setBackgroundMode</a>( Qt::OpaqueMode );             // set opaque mode
+    p-&gt;<a href="qpainter.html#3e0cc8">setBrush</a>( Qt::DiagCrossPattern );                // black diagonal cross pattern
+    p-&gt;<a name="drawEllipse"></a><a href="qpainter.html#f4ec3a">drawEllipse</a>( 90, 210, 80, 80 );          // back wheel
+    p-&gt;<a href="qpainter.html#3e0cc8">setBrush</a>( Qt::CrossPattern );            // black cross fill pattern
+    p-&gt;<a href="qpainter.html#f4ec3a">drawEllipse</a>( 310, 210, 80, 80 );         // front wheel
+}
+
+class PictureDisplay : public QWidget           // picture display widget
+{
+public:
+    PictureDisplay( const char *fileName );
+   ~PictureDisplay();
+protected:
+    void        paintEvent( <a name="QPaintEvent"></a><a href="qpaintevent.html">QPaintEvent</a> * );
+    void        keyPressEvent( <a name="QKeyEvent"></a><a href="qkeyevent.html">QKeyEvent</a> * );
+private:
+    <a name="QPicture"></a><a href="qpicture.html">QPicture</a>   *pict;
+    <a name="QString"></a><a href="qstring.html">QString</a>     name;
+};
+
+PictureDisplay::PictureDisplay( const char *fileName )
+{
+    pict = new <a href="qpicture.html">QPicture</a>;
+    name = fileName;
+    if ( !pict-&gt;<a name="load"></a><a href="qpicture.html#f0cc08">load</a>(fileName) ) {              // cannot load picture
+        delete pict;
+        pict = 0;
+        name.<a name="sprintf"></a><a href="qstring.html#926f67">sprintf</a>( "Not able to load picture: %s", fileName );
+    }
+}
+
+PictureDisplay::~PictureDisplay()
+{
+    delete pict;
+}
+
+void <a name="369"></a>PictureDisplay::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * )
+{
+    <a href="qpainter.html">QPainter</a> paint( this );                     // paint widget
+    if ( pict )
+        paint.<a name="drawPicture"></a><a href="qpainter.html#de93a0">drawPicture</a>( *pict );             // draw picture
+    else
+        paint.<a href="qpainter.html#0f088f">drawText</a>( <a name="rect"></a><a href="qwidget.html#75ae71">rect</a>(), AlignCenter, name );
+}
+
+void <a name="370"></a>PictureDisplay::keyPressEvent( <a href="qkeyevent.html">QKeyEvent</a> *k )
+{
+    switch ( tolower(k-&gt;<a name="ascii"></a><a href="qkeyevent.html#f0af69">ascii</a>()) ) {
+        case 'r':                               // reload
+            pict-&gt;<a href="qpicture.html#f0cc08">load</a>( name );
+            <a name="update"></a><a href="qwidget.html#a66a88">update</a>();
+            break;
+        case 'q':                               // quit
+            <a name="QApplication::exit"></a><a href="qapplication.html#7328f6">QApplication::exit</a>();
+            break;
+    }
+}
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );               // QApplication required!
+
+    const char *fileName = "car.pic";                   // default picture file name
+
+    if ( argc == 2 )                            // use argument as file name
+        fileName = argv[1];
+
+    if ( !QFile::exists(fileName) ) {
+        <a href="qpicture.html">QPicture</a> pict;                          // our picture
+        <a href="qpainter.html">QPainter</a> paint;                         // our painter
+
+        paint.<a name="begin"></a><a href="qpainter.html#02ed5d">begin</a>( &amp;pict );                   // begin painting onto picture
+        paintCar( &amp;paint );                             // paint!
+        paint.<a name="end"></a><a href="qpainter.html#365784">end</a>();                            // painting done
+
+        pict.<a name="save"></a><a href="qpicture.html#2d7ded">save</a>( fileName );                  // save picture
+        <a name="QMessageBox::information"></a><a href="qmessagebox.html#66b7c8">QMessageBox::information</a>(0, "Qt picture example", "Saved.  Run me again!");
+        return 0;
+    } else {
+        PictureDisplay test( fileName );                // create picture display
+        a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;test);                        // set main widget
+        test.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Picture");
+        test.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();                            // show it
+
+        return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();                                // start event loop
+    }
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

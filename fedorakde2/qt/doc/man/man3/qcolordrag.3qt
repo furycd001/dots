@@ -1,0 +1,73 @@
+'\" t
+.TH QColorDrag 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QColorDrag \- Drag-and-drop object for transferring colors
+.br
+.PP
+\fC#include <qdragobject.h>\fR
+.PP
+Inherits QStoredDrag.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQColorDrag\fR ( const QColor & " "col" ", QWidget * " "dragsource" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fBQColorDrag\fR ( QWidget * " "dragSource" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "void \fBsetColor\fR ( const QColor & col ) "
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "bool \fBcanDecode\fR ( QMimeSource * ) "
+.br
+.ti -1c
+.BI "bool \fBdecode\fR ( QMimeSource *, QColor & col ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QColorDrag class provides a drag-and-drop object for transferring colors.
+.PP
+This class provides a drag object which can be used to transfer data about colors for drag-and-drop and over the clipboard. It's e.g. used in the QColorDialog.
+.PP
+For detailed information about drag-and-drop, see the QDragObject class.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QColorDrag::QColorDrag ( QWidget * dragsource = 0, const char * name = 0 )"
+Constructs a color drag with a while color.
+.SH "QColorDrag::QColorDrag ( const QColor & col, QWidget * dragsource = 0, const char * name = 0 )"
+Constructs a color drag with the color \fIcol.\fR
+.SH "bool QColorDrag::canDecode ( QMimeSource * e ) \fC[static]\fR"
+Returns TRUE, if the color drag object can decode the mime source \fIe.\fR
+.SH "bool QColorDrag::decode ( QMimeSource * e, QColor & col ) \fC[static]\fR"
+Decodes the mime source \fIe\fR and sets the decoded values to \fIcol.\fR
+.SH "void QColorDrag::setColor ( const QColor & col )"
+Sets the color of the color drag to \fIcol\fR
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcolordrag.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcolordrag.3qt) and the Qt
+version (2.3.2).

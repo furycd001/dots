@@ -1,0 +1,57 @@
+'\" t
+.TH QStrIList 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QStrIList \- Doubly linked list of
+.br
+.PP
+\fC#include <qstrlist.h>\fR
+.PP
+Inherits QStrList.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQStrIList\fR ( bool " "deepCopies" "=TRUE ) "
+.br
+.ti -1c
+.BI "\fB~QStrIList\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QStrIList class provides a doubly linked list of \fCchar*\fR with case insensitive compare.
+.PP
+This class is a QList<char> instance (a list of char*).
+.PP
+QStrIList is similar to QStrList except that it is case insensitive. The virtual compareItems() function is reimplemented and does a case insensitive string comparison. The inSort() function will insert strings in a sorted order.
+.PP
+The QStrListIterator class is an iterator for QStrList.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QStrIList::QStrIList ( bool deepCopies=TRUE )"
+Constructs a list of strings. Will make deep copies of all inserted strings if \fIdeepCopies\fR is TRUE, or uses shallow copies if \fIdeepCopies\fR is FALSE.
+.SH "QStrIList::~QStrIList ()"
+Destroys the list.  All strings are removed.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qstrilist.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qstrilist.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,197 @@
+/****************************************************************************
+** $Id: qt/doc/installation.doc   2.3.2   edited 2001-04-03 $
+**
+** Installation page
+**
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#if defined(DEBUG)
+static char ident[] = "$Id: qt/doc/installation.doc   2.3.2   edited 2001-04-03 $";
+#endif
+
+/*! \page installation.html
+
+\title Installation
+
+<p>
+The installation procedure is different for the different Qt platforms:
+
+<ul>
+ <li><a href=install-x11.html>Qt/X11</a>
+ <li><a href=install-win.html>Qt/Windows</a>
+ <li><a href=install-qws.html>Qt/Embedded</a>
+</ul>
+*/
+
+/*! \page install-x11.html
+
+\title Installing Qt/X11
+
+<p>
+You may need to be root, depending on the permissions of the directories
+where you choose to install Qt.
+
+<ul>
+<li>Unpack the archive if you have not done so already:
+
+<pre>
+	cd /usr/local
+	gunzip qt-x11-<i>version</i>.tar.gz	# uncompress the archive
+	tar xf qt-x11-<i>version</i>.tar	# unpack it
+</pre>
+
+<p>
+    This creates the directory /usr/local/qt-<i>version</i> containing the
+    files from the main archive.
+<p>
+    Rename qt-<i>version</i> to qt (or make a symlink):
+<pre>
+	mv qt-<i>version</i> qt
+</pre>
+    The rest of this file assumes that Qt is installed in /usr/local/qt.
+</p>
+<li>Set some environment variables in the file .profile (or .login,
+    depending on your shell) in your home directory. (Create the
+    file if it is not there already.)
+
+<table>
+	<tr><td>QTDIR		   <td> wherever you installed Qt
+	<tr><td>PATH		   <td> to locate the moc program and other Qt tools
+	<tr><td>MANPATH 	   <td> to access the Qt man pages
+	<tr><td>LD_LIBRARY_PATH	   <td> for the shared Qt library
+	<tr><td>QT_FONTPATH	   <td> optional. A list of directories where Qt can find type1 or true type fonts for
+					print embedding. 
+</table>
+
+<p>
+    This is done like this:
+
+<p>
+    In .profile (if your shell is bash, ksh, zsh or sh), add the
+    following lines:
+<pre>
+	QTDIR=/usr/local/qt
+	PATH=$QTDIR/bin:$PATH
+	MANPATH=$QTDIR/man:$MANPATH
+	LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+
+	export QTDIR PATH MANPATH LD_LIBRARY_PATH
+</pre>
+
+    In .login (in case your shell is csh or tcsh), add the following lines:
+
+<pre>
+	setenv QTDIR /usr/local/qt
+	setenv PATH $QTDIR/bin:$PATH
+	setenv MANPATH $QTDIR/man:$MANPATH
+	setenv LD_LIBRARY_PATH $QTDIR/lib:$LD_LIBRARY_PATH
+</pre>
+
+<p>
+    If you have some true type or type1 fonts installed in non
+    standard places, you might want to set the QT_FONTPATH environment
+    variable to point to these directories. This is not needed, when
+    all fonts are accessed through local font directories or a local
+    font server, as Qt will automatically scan the fontpath and the
+    font servers configuration file. All directories in the fontpath
+    will need to have a valid fonts.dir file, so Qt can map from X11
+    font names to the corresponding embeddable font.
+</p>
+
+<p>
+    After you have done this, you will need to login again, or
+    re-source the profile before continuing, so that at least $QTDIR
+    is set.  The installation will give an error message and not
+    proceed otherwise.
+</p>
+
+<li> Install your license file.  For the free edition, you do not need
+    a license file.  For Professional and Enterprise editions, install
+    your license file as described in your distribution.
+</p>
+
+<li> Building.
+<p>
+    This step compiles the Qt library, and builds the example programs,
+    the tutorial, and the tools (eg. the Designer).
+<p>
+    Type:
+<pre>
+	./configure
+</pre>
+<p>
+    This will configure the Qt library for your machine. Note that
+    GIF support is turned off by default. Run ./configure -help
+    to get a list of configuration options. Read PLATFORMS for a
+    list of supported platforms.
+<p>
+    To create the library and compile all examples and the tutorial:
+<pre>
+	make
+</pre>
+    If your platform or compiler is not supported, read PORTING.  If it is
+    supported but you have problems, see <a href=http://www.trolltech.com/platforms/>http://www.trolltech.com/platforms/</a>
+</p>
+
+<li> In very few cases you may need to run /sbin/ldconfig or something
+    similar at this point if you are using shared libraries.
+<p>
+    If you have problems running the example programs, e.g. messages like
+<pre>
+	 can't load library 'libqt.so.2'
+</pre>
+    you probably need to put a reference to the qt library in a
+    configuration file and run /sbin/ldconfig as root on your system.
+    And don't forget to set LD_LIBRARY_PATH as explained in 2) above.
+</p>
+
+<li> The online HTML documentation is installed in /usr/local/qt/doc/html/
+    The main page is /usr/local/qt/doc/html/index.html
+    The man pages are installed in /usr/local/qt/doc/man/
+</p>
+</ul>
+
+<p>
+You're done.  Qt is now installed.
+
+*/
+
+/*! \page install-win.html
+
+\title Installing Qt/Windows
+
+The Qt/Windows distribution is distributed as a self-extracting archive
+with a built-in installer. Just follow the installation wizard.
+<p>
+Once installed, you may want to unpack alternative makefile sets which
+are packaged in the <tt>mkfiles</tt> directory - unpack them directly
+into you Qt directory, overwriting previous makefiles.
+*/

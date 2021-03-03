@@ -1,0 +1,165 @@
+'\" t
+.TH QListBoxItem 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QListBoxItem \- This is the base class of all list box items
+.br
+.PP
+\fC#include <qlistbox.h>\fR
+.PP
+Inherited by QListBoxPixmap and QListBoxText.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQListBoxItem\fR ( QListBox * " "listbox" " = 0 ) "
+.br
+.ti -1c
+.BI "\fBQListBoxItem\fR ( QListBox * " "listbox" ", QListBoxItem * after ) "
+.br
+.ti -1c
+.BI "virtual \fB~QListBoxItem\fR () "
+.br
+.ti -1c
+.BI "virtual QString \fBtext\fR () const"
+.br
+.ti -1c
+.BI "virtual const QPixmap* \fBpixmap\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBheight\fR ( const QListBox * ) const"
+.br
+.ti -1c
+.BI "virtual int \fBwidth\fR ( const QListBox * ) const"
+.br
+.ti -1c
+.BI "bool \fBselected\fR () const"
+.br
+.ti -1c
+.BI "bool \fBcurrent\fR () const"
+.br
+.ti -1c
+.BI "QListBox* \fBlistBox\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetSelectable\fR ( bool b ) "
+.br
+.ti -1c
+.BI "bool \fBisSelectable\fR () const"
+.br
+.ti -1c
+.BI "QListBoxItem* \fBnext\fR () const"
+.br
+.ti -1c
+.BI "QListBoxItem* \fBprev\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBpaint\fR ( QPainter * ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetText\fR ( const QString & text ) "
+.br
+.ti -1c
+.BI "void \fBsetCustomHighlighting\fR ( bool ) "
+.br
+.in -1c
+.SH DESCRIPTION
+This is the base class of all list box items.
+.PP
+This class is the abstract base class of all list box items. If you need to insert customized items into a QListBox, you must inherit this class and reimplement paint(), height() and width().
+.PP
+See also QListBox.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QListBoxItem::QListBoxItem ( QListBox * listbox = 0 )"
+Constructs an empty list box item in the listbox \fIlistbox\fR
+.SH "QListBoxItem::QListBoxItem ( QListBox * listbox, QListBoxItem * after )"
+Constructs an empty list box item in the listbox \fIlistbox\fR and inserts it after the item \fIafter.\fR
+.SH "QListBoxItem::~QListBoxItem () \fC[virtual]\fR"
+Destroys the list box item.
+.SH "bool QListBoxItem::current () const"
+Returns TRUE if the item is the current item, else FALSE.
+.PP
+See also QListBox::currentItem(), QListBox::item() and selected().
+.SH "int QListBoxItem::height ( const QListBox * lb ) const \fC[virtual]\fR"
+Implement this function to return the height of your item. The \fIlb\fR parameter is the same as listBox() and is provided for convenience and compatibility.
+.PP
+See also paint() and width().
+.PP
+Reimplemented in QListBoxPixmap and QListBoxText.
+.SH "bool QListBoxItem::isSelectable () const"
+Returns if this item is selectable or not.
+.PP
+See also setSelectable().
+.SH "QListBox * QListBoxItem::listBox () const"
+Returns a pointer to the listbox containing this item.
+.SH "QListBoxItem * QListBoxItem::next () const"
+Returns the item which comes after this in the listbox. If this is the last item, 0 is returned.
+.SH "void QListBoxItem::paint ( QPainter * p ) \fC[virtual protected]\fR"
+Implement this function to draw your item.
+.PP
+See also height() and width().
+.PP
+Reimplemented in QListBoxPixmap and QListBoxText.
+.SH "const QPixmap * QListBoxItem::pixmap () const \fC[virtual]\fR"
+Returns the pixmap connected with the item, if any.
+.PP
+The default implementation of this function returns a null pointer.
+.PP
+Reimplemented in QListBoxPixmap.
+.SH "QListBoxItem * QListBoxItem::prev () const"
+Returns the item which comes before this in the listbox. If this is the first item, 0 is returned.
+.SH "bool QListBoxItem::selected () const"
+Returns TRUE if the item is selected, else FALSE.
+.PP
+See also QListBox::isSelected() and current().
+.SH "void QListBoxItem::setCustomHighlighting ( bool b ) \fC[protected]\fR"
+Defines whether the list box items is responsible to draw itself in a highlighted state when being selected.
+.PP
+If \fIb\fR is FALSE (the default), then the listbox will draw some default highlight indicator before calling paint().
+.PP
+See also selected() and paint().
+.SH "void QListBoxItem::setSelectable ( bool b )"
+Specifies if this item may be selected by the user or not.
+.PP
+See also isSelectable().
+.SH "void QListBoxItem::setText ( const QString & text ) \fC[virtual protected]\fR"
+Sets the text of the widget, which is used for sorting too. The text is not shown unless explicitly drawn in paint().
+.PP
+See also text().
+.SH "QString QListBoxItem::text () const \fC[virtual]\fR"
+Returns the text of the item, which is used for sorting too.
+.PP
+See also setText().
+.SH "int QListBoxItem::width ( const QListBox * lb ) const \fC[virtual]\fR"
+Implement this function to return the width of your item. The \fIlb\fR parameter is the same as listBox() and is provided for convenience and compatibility.
+.PP
+See also paint() and height().
+.PP
+Reimplemented in QListBoxPixmap and QListBoxText.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qlistboxitem.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qlistboxitem.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,572 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Walkthrough: A Simple Application</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Walkthrough: A Simple Application</h1><br clear="all">
+This walkthrough shows simple use of <a href="qmainwindow.html">QMainWindow</a>, <a href="qmenubar.html">QMenuBar</a>, <a href="qpopupmenu.html">QPopupMenu</a>, <a href="qtoolbar.html">QToolBar</a> and <a href="qstatusbar.html">QStatusBar</a> - the classes that every
+modern application window tends to use.
+<p>
+It further shows some use of <a href="qwhatsthis.html">QWhatsThis</a> (for simple help) and a
+typical main() using <a href="qapplication.html">QApplication</a>.
+<p>
+Finally, it shows a typical printout function that uses <a href="qprinter.html">QPrinter</a>.
+<p>
+<h2>The declaration of ApplicationWindow</h2
+<p>
+Here's the header file in full: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/application/application.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef APPLICATION_H
+#define APPLICATION_H
+
+#include &lt;<a href="qmainwindow-h.html">qmainwindow.h</a>&gt;
+
+class QMultiLineEdit;
+class QToolBar;
+class QPopupMenu;
+
+class ApplicationWindow: public QMainWindow
+{
+    Q_OBJECT
+public:
+    ApplicationWindow();
+    ~ApplicationWindow();
+
+protected:
+    void closeEvent( <a href="qcloseevent.html">QCloseEvent</a>* );
+
+private slots:
+    void newDoc();
+    void load();
+    void load( const char *fileName );
+    void save();
+    void saveAs();
+    void print();
+
+    void about();
+    void aboutQt();
+
+private:
+    <a href="qprinter.html">QPrinter</a> *printer;
+    <a href="qmultilineedit.html">QMultiLineEdit</a> *e;
+    <a href="qtoolbar.html">QToolBar</a> *fileTools;
+    <a href="qstring.html">QString</a> filename;
+};
+
+#endif
+</pre>
+<p>
+There's nothing much particular about this.  It declares a class that
+inherits QMainWindow, with some slots and some private variables.  And
+it uses a class predeclarations to speed up compiles: <code>QMultiLineEdit,</code> <code>QToolBar</code> and <code>QPopupMenu</code> are declared, not
+included.  make depend then won't think that every .cpp file that
+includes application.h needs to be recompiled when e.g. qpopupmenu.h
+changes.
+<p>
+<a href="simplemain"></a>
+<h2>The simple main()</h2
+<p>
+Here's examples/main.cpp, in full. <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/application/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+#include "application.h"
+
+int main( int argc, char ** argv ) {
+    <a href="qapplication.html">QApplication</a> a( argc, argv );
+    ApplicationWindow * mw = new ApplicationWindow();
+    mw-&gt;<a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Application" );
+    mw-&gt;<a href="qmainwindow.html#eb53e3">show</a>();
+    a.<a href="qobject.html#7f8e37">connect</a>( &amp;a, SIGNAL(lastWindowClosed()), &amp;a, SLOT(quit()) );
+    return a.<a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p>
+We'll go over main() in detail.  <pre>
+    int main( int argc, char ** argv ) {
+        <a href="qapplication.html">QApplication</a> a( argc, argv );
+</pre>
+<p>
+We create a QApplication object with the usual constructor and let it
+parse <em>argc</em> and <em>argv</em> so that on X11, this program behaves as X
+programs are expected to. <pre>
+        ApplicationWindow * mw = new ApplicationWindow();
+        mw-&gt;<a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Application" );
+        mw-&gt;<a href="qmainwindow.html#eb53e3">show</a>();
+</pre>
+<p>
+We create an ApplicationWindow as a top-level widget, set its window
+system caption to "Document 1", and show() it.
+<p>
+<a name="close"></a> <pre>
+        a.<a href="qobject.html#7f8e37">connect</a>( &amp;a, SIGNAL(lastWindowClosed()), &amp;a, SLOT(quit()) );
+</pre>
+<p>
+When the application's last window is closed, it should quit. <pre>
+        return a.<a href="qapplication.html#84c7bf">exec</a>();
+</pre>
+<p>
+Having completed the application initialization, we start the main
+event loop (the GUI), and eventually return the error code
+QApplication returns when it leaves the event loop.
+(<a href="qapplication.html#7328f6">QApplication::exit()</a> lets any part of the program set this code in
+a way that doesn't prohibit an orderly closedown.) <pre>
+    }
+</pre>
+<p>
+<h2>The implementation of ApplicationWindow</h2> 
+<p>
+Since the implementation is much larger (almost 200 lines) we won't
+include it in full but instead include bits and pieces as necessary.
+We skip the preliminary #include and some text constants, and start
+with the constructor.  <pre>
+    ApplicationWindow::ApplicationWindow()
+        : <a href="qmainwindow.html">QMainWindow</a>( 0, "example application main window", WDestructiveClose )
+    {
+</pre>
+<p>
+ApplicationWindow inherits QMainWindow, the Qt class that provides
+typical application main windows, with menu bars, tool bars, etc.  <pre>
+        int id;
+    
+        printer = new <a href="qprinter.html">QPrinter</a>;
+</pre>
+<p>
+The application example can print things, and we chose to have a
+QPrinter object lying around so that when the user changes a setting
+during one printing, the new setting will be the default next time. <pre>
+        <a href="qpixmap.html">QPixmap</a> openIcon, saveIcon, printIcon;
+</pre>
+<p>
+This example is simple enough to have just three commands.  These
+variables are used to hold the icons for each of them. <pre>
+        fileTools = new <a href="qtoolbar.html">QToolBar</a>( this, "file operations" );
+</pre>
+<p>
+We create a tool bar in <em>this</em> window for putting some tools in. <pre>
+        fileTools-&gt;setLabel( <a href="qobject.html#2418a9">tr</a>( "File Operations" ) );
+    
+        openIcon = QPixmap( fileopen );
+        <a href="qtoolbutton.html">QToolButton</a> * fileOpen
+            = new <a href="qtoolbutton.html">QToolButton</a>( openIcon, "Open File", QString::null,
+                               this, SLOT(load()), fileTools, "open file" );
+    
+        saveIcon = QPixmap( filesave );
+        <a href="qtoolbutton.html">QToolButton</a> * fileSave
+            = new <a href="qtoolbutton.html">QToolButton</a>( saveIcon, "Save File", QString::null,
+                               this, SLOT(save()), fileTools, "save file" );
+    
+        printIcon = QPixmap( fileprint );
+        <a href="qtoolbutton.html">QToolButton</a> * filePrint
+            = new <a href="qtoolbutton.html">QToolButton</a>( printIcon, "Print File", QString::null,
+                               this, SLOT(print()), fileTools, "print file" );
+</pre>
+<p>
+And then we create three tool buttons in that tool bar, each with the
+appropriate icons and tool-tip text.  The three buttons are connected
+to slots in this object, for example the "Print File" button is
+connected to ApplicationWindow::print(). <pre>
+        (void)QWhatsThis::whatsThisButton( fileTools );
+</pre>
+<p>
+Then we create a fourth button in the toolbar: A special button that
+provides "What's This?" help.  This must be set up using a special
+function, as its mouse interface needs to be a little unusual. <pre>
+        <a href="qwhatsthis.html#dfcd18">QWhatsThis::add</a>( fileOpen, fileOpenText );
+        <a href="qmimesourcefactory.html#5c7072">QMimeSourceFactory::defaultFactory</a>()-&gt;setPixmap( "fileopen", openIcon );
+        <a href="qwhatsthis.html#dfcd18">QWhatsThis::add</a>( fileSave, fileSaveText );
+        <a href="qwhatsthis.html#dfcd18">QWhatsThis::add</a>( filePrint, filePrintText );
+</pre>
+<p>
+We add What's This? help for each of the three buttons, and tell the
+QML engine that when a help text wants the "fileopen" image, it should
+use the pixmap we've defined. <pre>
+        <a href="qpopupmenu.html">QPopupMenu</a> * file = new <a href="qpopupmenu.html">QPopupMenu</a>( this );
+        <a href="qmainwindow.html#0eb7bc">menuBar</a>()-&gt;insertItem( "&amp;File", file );
+    
+        file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;New", this, SLOT(newDoc()), CTRL+Key_N );
+    
+        id = file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( openIcon, "&amp;Open",
+                               this, SLOT(load()), CTRL+Key_O );
+        file-&gt;<a href="qmenudata.html#88eb55">setWhatsThis</a>( id, fileOpenText );
+    
+        id = file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( saveIcon, "&amp;Save",
+                               this, SLOT(save()), CTRL+Key_S );
+        file-&gt;<a href="qmenudata.html#88eb55">setWhatsThis</a>( id, fileSaveText );
+        id = file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "Save &amp;as...", this, SLOT(saveAs()) );
+        file-&gt;<a href="qmenudata.html#88eb55">setWhatsThis</a>( id, fileSaveText );
+        file-&gt;<a href="qmenudata.html#e34b79">insertSeparator</a>();
+        id = file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( printIcon, "&amp;Print",
+                               this, SLOT(print()), CTRL+Key_P );
+        file-&gt;<a href="qmenudata.html#88eb55">setWhatsThis</a>( id, filePrintText );
+        file-&gt;<a href="qmenudata.html#e34b79">insertSeparator</a>();
+        file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;Close", this, SLOT(<a href="qwidget.html#3d9c87">close</a>()), CTRL+Key_W );
+        file-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;Quit", qApp, SLOT( closeAllWindows() ), CTRL+Key_Q );
+</pre>
+<p>
+We create a QPopupMenu item for the File menu, add it to the menu bar,
+populate it with three commands, and set What's This? help for them.
+<p>
+Note in particular how What's This? help and pixmaps are used in both
+the toolbar (above) and the menu bar (here). <pre>
+        <a href="qpopupmenu.html">QPopupMenu</a> * help = new <a href="qpopupmenu.html">QPopupMenu</a>( this );
+        <a href="qmainwindow.html#0eb7bc">menuBar</a>()-&gt;insertSeparator();
+        <a href="qmainwindow.html#0eb7bc">menuBar</a>()-&gt;insertItem( "&amp;Help", help );
+    
+        help-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "&amp;About", this, SLOT(about()), Key_F1 );
+        help-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "About &amp;<a href="qt.html">Qt</a>", this, SLOT(aboutQt()) );
+        help-&gt;<a href="qmenudata.html#e34b79">insertSeparator</a>();
+        help-&gt;<a href="qmenudata.html#0076cb">insertItem</a>( "What's &amp;This", this, SLOT(<a href="qmainwindow.html#f50ce2">whatsThis</a>()), SHIFT+Key_F1 );
+</pre>
+<p>
+We create a Help menu, add it to the menu bar, and insert a few
+commands in the Help menu. <pre>
+        e = new <a href="qmultilineedit.html">QMultiLineEdit</a>( this, "editor" );
+        e-&gt;setFocus();
+        <a href="qmainwindow.html#fce9ba">setCentralWidget</a>( e );
+</pre>
+<p>
+We create a multi-line edit widget, set the initial focus to be there,
+and make it the central widget of this window.
+<p>
+QMainWindow::centralWidget() is the meat: It's what the menu bar,
+status bar and tool bars are all arranged around.  Since this
+application is an editor, the central widget is a text editing widget
+:) <pre>
+        <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( "Ready", 2000 );
+</pre>
+<p>
+We make the status bar say "Ready" for two seconds at startup, just to
+tell the user that this window has finished initialization and can be
+used. <pre>
+        <a href="qwidget.html#ff9d07">resize</a>( 450, 600 );
+</pre>
+<p>
+We provide a nice default size for the new window. <pre>
+    }
+</pre>
+<p>
+That's it. <pre>
+    ApplicationWindow::~ApplicationWindow()
+    {
+        delete printer;
+    }
+</pre>
+<p>
+The only thing this widget needs to do in its destructor is delete the
+printer it created.  All the other objects are child widgets, which Qt
+will delete as appropriate.  Simple. <pre>
+    void ApplicationWindow::newDoc()
+    {
+        ApplicationWindow *ed = new ApplicationWindow;
+        ed-&gt;<a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Application");
+        ed-&gt;<a href="qmainwindow.html#eb53e3">show</a>();
+    }
+</pre>
+<p>
+This slot, connected to the File->New menu item and the "new file"
+tool button, simply creates a new ApplicationWindow, sets some size
+and shows it. <pre>
+    void ApplicationWindow::load()
+    {
+        <a href="qstring.html">QString</a> fn = QFileDialog::getOpenFileName( QString::null, QString::null,
+                                                   this);
+        if ( !fn.<a href="qstring.html#c62623">isEmpty</a>() )
+            load( fn );
+        else
+            <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( "Loading aborted", 2000 );
+    }
+</pre>
+<p>
+This slot is connected to the "load file" menu item and tool button.
+As you can see, it asks the user for a file name and then either loads
+that file or gives an error message in the status bar.
+<p>
+(We give an error message in the status bar since that's less
+bothersome.  We could have used a <a href="qmessagebox.html">QMessageBox</a>, but since we assume
+the user will notice that no file was loaded, we just use the status
+bar, and the user won't need to hit Enter to make some window go
+away.) <pre>
+    void ApplicationWindow::load( const char *fileName )
+    {
+        <a href="qfile.html">QFile</a> f( fileName );
+        if ( !f.<a href="qfile.html#255995">open</a>( IO_ReadOnly ) )
+            return;
+    
+        e-&gt;setAutoUpdate( FALSE );
+        e-&gt;clear();
+    
+        <a href="qtextstream.html">QTextStream</a> t(&amp;f);
+        while ( !t.<a href="qtextstream.html#bb145b">eof</a>() ) {
+            <a href="qstring.html">QString</a> s = t.<a href="qtextstream.html#ae4af4">readLine</a>();
+            e-&gt;append( s );
+        }
+        f.<a href="qfile.html#64e640">close</a>();
+    
+        e-&gt;setAutoUpdate( TRUE );
+        e-&gt;repaint();
+        e-&gt;setEdited( FALSE );
+        <a href="qwidget.html#d6a291">setCaption</a>( fileName );
+        <a href="qstring.html">QString</a> s;
+        s.<a href="qstring.html#926f67">sprintf</a>( "Loaded document %s", fileName );
+        <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( s, 2000 );
+    }
+</pre>
+<p>
+This function loads a file into the editor.  It takes care to turn off
+auto-update of the editor, for faster loading and less flicker.  When
+it's done, it sets the window system caption to the file name and
+displays a success message for two seconds in the status bar. <pre>
+    void ApplicationWindow::save()
+    {
+        if ( filename.isEmpty() ) {
+            saveAs();
+            return;
+        }
+    
+        <a href="qstring.html">QString</a> text = e-&gt;text();
+        <a href="qfile.html">QFile</a> f( filename );
+        if ( !f.<a href="qfile.html#255995">open</a>( IO_WriteOnly ) ) {
+            <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( <a href="qstring.html">QString</a>("Could not write to %1").arg(filename),
+                                  2000 );
+            return;
+        }
+    
+        <a href="qtextstream.html">QTextStream</a> t( &amp;f );
+        t &lt;&lt; text;
+        f.<a href="qfile.html#64e640">close</a>();
+</pre>
+<p>
+This function saves the current file.  Nothing remarkable in the first
+part. <pre>
+        e-&gt;setEdited( FALSE );
+</pre>
+<p>
+Tell the editor that the contents haven't been edited since the last
+save.  When the user closes the window, ApplicationWindow may want to
+ask "Save?". <pre>
+        <a href="qwidget.html#d6a291">setCaption</a>( filename );
+</pre>
+<p>
+It may be that the document was saved under a different name than the
+caption, so we set the window caption just to be sure. <pre>
+        <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( <a href="qstring.html">QString</a>( "File %1 saved" ).arg( filename ), 2000 );
+    }
+</pre>
+<p>
+That was all. <pre>
+    void ApplicationWindow::saveAs()
+    {
+        <a href="qstring.html">QString</a> fn = QFileDialog::getSaveFileName( QString::null, QString::null,
+                                                   this );
+        if ( !fn.<a href="qstring.html#c62623">isEmpty</a>() ) {
+            filename = fn;
+            save();
+        } else {
+            <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( "Saving aborted", 2000 );
+        }
+    }
+</pre>
+<p>
+This function asks for a new name, saves the document under that name,
+and implicitly changes the window system caption to the new name.
+<p>
+<a name="printer"></a> <pre>
+    void ApplicationWindow::print()
+    {
+        const int Margin = 10;
+        int pageNo = 1;
+</pre>
+<p>
+print() is called by the File->Print menu item and the "print" tool
+button.
+<p>
+Since we don't want to print to the very edges of the paper, we use a
+little margin: 10 points.  And we keep track of the page count. <pre>
+        if ( printer-&gt;setup(this) ) {               // printer dialog
+</pre>
+<p>
+QPrinter::setup() invokes a print dialog, configures the printer
+object, and returns TRUE if the user wants to print or FALSE if not.
+So, we test the return value, and if it's TRUE, we... <pre>
+            <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( "Printing..." );
+</pre>
+<p>
+... set a status bar message in case printing takes any time. <pre>
+            <a href="qpainter.html">QPainter</a> p;
+            if( !p.<a href="qpainter.html#02ed5d">begin</a>( printer ) )
+                return;                             // paint on printer
+    
+            p.<a href="qpainter.html#998df2">setFont</a>( e-&gt;font() );
+            int yPos        = 0;                    // y position for each line
+            <a href="qfontmetrics.html">QFontMetrics</a> fm = p.<a href="qpainter.html#73b2e5">fontMetrics</a>();
+            <a href="qpaintdevicemetrics.html">QPaintDeviceMetrics</a> metrics( printer ); // need width/height
+                                                    // of printer surface
+</pre>
+<p>
+We create a painter for the output, select font, and set up some
+variables we'll need. <pre>
+            for( int i = 0 ; i &lt; e-&gt;numLines() ; i++ ) {
+</pre>
+<p>
+For each line in the text editing widget, we want to print it. <pre>
+                if ( Margin + yPos &gt; metrics.<a href="qpaintdevicemetrics.html#d4fedb">height</a>() - Margin ) {
+</pre>
+<p>
+Before we print each line: Is there space for it on the current page,
+given the margins we want to use?  IF not, we want to start a new
+page. <pre>
+                    <a href="qstring.html">QString</a> msg( "Printing (page " );
+                    msg += QString::number( ++pageNo );
+                    msg += ")...";
+                    <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( msg );
+                    printer-&gt;newPage();             // no more room on this page
+                    yPos = 0;                       // back to top of page
+</pre>
+<p>
+Four lines to tell the user what we're doing, two lines to do it. <pre>
+                }
+</pre>
+<p>
+Okay, now we know there's space for this line. <pre>
+                p.<a href="qpainter.html#0f088f">drawText</a>( Margin, Margin + yPos,
+                            metrics.<a href="qpaintdevicemetrics.html#95eb7b">width</a>(), fm.<a href="qfontmetrics.html#e6e380">lineSpacing</a>(),
+                            ExpandTabs | DontClip,
+                            e-&gt;textLine( i ) );
+</pre>
+<p>
+Use the painter to print it.
+<p>
+In Qt, output to printer use the exact same code as output to screen,
+pixmaps and picture metafiles.  Therefore, we don't call a QPrinter
+function to draw text, we call a QPainter function.  QPainter works on
+all the output devices and has a device independent API.  Most of its
+code is device-independent, too, which means that it's less likely
+that your application will have odd bugs.  (If the same code is used
+to print as to draw on the screen, it's less likely that you'll have
+printing-only or screen-only bugs.) <pre>
+                yPos = yPos + fm.<a href="qfontmetrics.html#e6e380">lineSpacing</a>();
+</pre>
+<p>
+Keep count of how much of the paper we've used. <pre>
+            }
+</pre>
+<p>
+At this point we've printed all of the text in the editing widget. <pre>
+            p.<a href="qpainter.html#365784">end</a>();                                // send job to printer
+            <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( "Printing completed", 2000 );
+</pre>
+<p>
+So we tell the printer to finish off the last page and tell the user
+that we're done. <pre>
+        } else {
+            <a href="qmainwindow.html#530937">statusBar</a>()-&gt;message( "Printing aborted", 2000 );
+        }
+</pre>
+<p>
+If the user did not want to print (and <a href="qprinter.html#c3cd23">QPrinter::setup()</a> returned
+FALSE), we acknowledge that. <pre>
+    }
+</pre>
+<p>
+Tha's all.  We have printed a text document.
+<p>
+<a name="closeEvent"></a> <pre>
+    void ApplicationWindow::closeEvent( <a href="qcloseevent.html">QCloseEvent</a>* ce )
+    {
+</pre>
+<p>
+This event get to process window-system close events.  A close event
+is subtly different from a hide event: hide may often mean "iconify"
+but close means that the window is going away for good. <pre>
+        if ( !e-&gt;edited() ) {
+            ce-&gt;<a href="qcloseevent.html#7cf66f">accept</a>();
+            return;
+        }
+</pre>
+<p>
+If the text hasn't been edited, we just accept the event.  The window
+will be closed, and since we used the <code>WDestructiveClose</code> widget
+flag, the widget will be deleted. <pre>
+        switch( <a href="qmessagebox.html#66b7c8">QMessageBox::information</a>( this, "Qt Application Example",
+                                          "The document has been changed since "
+                                          "the last save.",
+                                          "Save Now", "Cancel", "Leave Anyway",
+                                          0, 1 ) ) {
+        case 0:
+            save();
+            ce-&gt;<a href="qcloseevent.html#7cf66f">accept</a>();
+            break;
+        case 1:
+        default: // just for sanity
+            ce-&gt;<a href="qcloseevent.html#ee1736">ignore</a>();
+            break;
+        case 2:
+            ce-&gt;<a href="qcloseevent.html#7cf66f">accept</a>();
+            break;
+        }
+    }
+</pre>
+<p>
+We know the text has been edited, so we ask the user: What do you want
+to do?  If the user wants to save and then exit, we do that.  If the
+user wants to not exit, we ignore the close event (there is a chance
+that we can't block it but we try).  If the user just wants to exit,
+abandoning the edits, that's very simple. <pre>
+    void ApplicationWindow::about()
+    {
+        <a href="qmessagebox.html#f6c3cd">QMessageBox::about</a>( this, "Qt Application Example",
+                            "This example demonstrates simple use of "
+                            "QMainWindow,\nQMenuBar and QToolBar.");
+    }
+    
+    void ApplicationWindow::aboutQt()
+    {
+        <a href="qmessagebox.html#b72270">QMessageBox::aboutQt</a>( this, "Qt Application Example" );
+    }
+</pre>
+<p>
+These two slots use ready-made "about" functions to say a little about
+this program and the GUI toolkit it uses.  (You don't need to provide
+an About Qt in your programs, but if you use Qt for free we'd
+appreciate it if you tell people what you're using.)
+<p>
+That's all.  A complete, almost useful application with nice help.
+Almost as good as the "editors" some computer vendors have shipped
+with their desktops.  In less than 300 lines of code.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

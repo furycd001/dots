@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Qt Template library</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Qt Template library</h1><br clear="all">
+Thq Qt Template Library is a set of templates within Qt dealing with
+containers of objects.  It provides a list of objects, a stack of
+objects, a map (or dictionary) from one type to another, and
+associated iterators and algorithms.
+<p>
+Qt also contains similar classes that deal with pointers to objects;
+<a href="qvaluelist.html">QValueList</a> vs. <a href="qlist.html">QList</a>, etc.  Compared to the pointer-based
+templates, the QTL offers easy copying of the container, real support
+for classes that e.g. require constructors, expand to much more object
+code, can often be a bit faster, require that the objects stored can
+be copied, and finally, have a worse record of compiler problems.
+<p>
+Compared to the STL, the QTL contains only the most important features
+of the STL, has more regular function naming, has no platform
+differences, is often a little slower and often expands to less object
+code.
+<p>
+If you can not make copies of the objects you want to store you are
+better off with QCollection and friends. They were designed to handle
+exactly that kind of pointer semantics. This applies for example to
+all classes derived from <a href="qobject.html">QObject</a>. A QObject does not have a copy
+constructor, so using it as value is impossible. You may choose be
+store pointers to QObjects in a QValueList, but using QList directly
+seems to be the better choice for this kind of application
+domain. QList, like all other QCollection based containers, provides
+far more sanity checking than a speed-optimized value
+based container.
+<p>
+If you have objects that implement value semantics, use the Qt
+template library.  Value semantics require at least
+<ul>
+<li>a copy constructor,
+<li>an assignment operator and
+<li> a default constructor, i.e. a constructor that does not take
+any arguments.
+</ul>
+Note that a fast copy constructor is absolutely crucial for a good
+overall performance of the container, since many copy operations are
+going to happen.
+<p>
+Examples for value based classes are QRect, QPoint, QSize and all
+simple C++ types like int, bool or double.
+<p>
+The Qt template library is designed for speed. Especially iterators
+are extremely fast. On the drawback side, less error checking is done
+than in the QCollection based containers. A template library container
+for example does not track associated iterators. This makes certain
+validity checks, like on removing items, impossible to perform
+automatically.
+<p>
+<h2> Iterators </h2>
+<p>
+The Qt template library deals with value objects, not with pointers.
+For that reason, there is no other way of iterating over containers
+than using iterators. This is no disadvantage as the size of an
+iterator matches the size of a normal pointer - 32 or 64 bits
+depending on your CPU architecture.
+<p>
+To iterate over a container, use a loop like this:
+<p>
+<pre>        typedef QValueList&lt;int&gt; List;
+        List l;
+        for( List::Iterator it = l.begin(); it != l.end(); ++it )
+                printf("Number is %i\n",*it);
+</pre>
+<p>
+begin() returns the iterator pointing at the first element, while
+end() returns an iterator that points <em>after</em> the last
+element. end() marks an invalid position, it can never be
+dereferenced. It's the break condition in any iteration, may it be
+from begin() or fromLast(). For maximum speed, use increment or
+decrement iterators with the prefix operator (++it, --it) instead of the the
+postfix one (it++, it--), since the former is slightly faster.
+<p>
+The same concept applies to the other container classes:
+<p>
+<pre>        typedef QMap&lt;<a href="qstring.html">QString</a>,QString&gt; Map;
+        Map map;
+        for( Map::Iterator it = map.begin(); it != map.end(); ++it )
+                printf("Key=%s Data=%s\n", it.key().ascii(), it.data().ascii() );
+
+        typedef QArray&lt;int&gt; Array;
+        Array array;
+        for( Array::Iterator it = array.begin(); it != array.end(); ++it )
+                printf("Data=%i\n", *it );
+</pre>
+<p>
+There are two kind of iterators, the volatile iterator shown in the
+examples above and a version that returns a const reference to its
+current object, the ConstIterator. Const iterators are required
+whenever the container itself is const, such as a member variable
+inside a const function. Assigning a ConstIterator to a normal
+Iterator is not allowed as it would violate const semantics.
+<p>
+<h2> Algorithms </h2>
+<p>
+The template library defines a number of algorithms that operate on
+its containers: qHeapSort(), qBubbleSort(), qSwap() and
+qCopy(). These algorithms are implemented as template functions.
+<p>
+qHeapSort() and qBubbleSort() provide the well known sorting
+algorithms. You can use them like this:
+<p>
+<pre>        typedef QValueList&lt;int&gt; List;
+        List l;
+        l &lt;&lt; 42 &lt;&lt; 100 &lt;&lt; 1234 &lt;&lt; 12 &lt;&lt; 8;
+        qHeapSort( l );
+
+        List l2;
+        l2 &lt;&lt; 42 &lt;&lt; 100 &lt;&lt; 1234 &lt;&lt; 12 &lt;&lt; 8;
+        List::Iterator b = l2.find( 100 );
+        List::Iterator e = l2.find( 8 );
+        qHeapSort( b, e );
+
+        double arr[] = { 3.2, 5.6, 8.9 };
+        qHeapSort( arr, arr + 3 );
+</pre>
+<p>
+The first example sorts the entire list. The second one sorts all
+elements enclosed in the two iterators, namely 100, 1234 and 12.  The
+third example shows that iterators act like pointers and can be
+treated as such.
+<p>
+Naturally, the sorting templates won't work with const iterators.
+<p>
+Another utility is qSwap(). It exchanges the values of two variables:
+<p>
+<pre>        <a href="qstring.html">QString</a> second( "Einstein" );
+        <a href="qstring.html">QString</a> name( "Albert" );
+        qSwap( second, name );
+</pre>
+<p>
+Another template function is qCopy(). It copies a container or a slice
+of it to an OutputIterator, in this case a QTextOStreamIterator:
+<p>
+<pre>        typedef QValueList&lt;int&gt; List;
+        List l;
+        l &lt;&lt; 100 &lt;&lt; 200 &lt;&lt; 300;
+        <a href="qtextostream.html">QTextOStream</a> str( stdout );
+        qCopy( l, QTextOStreamIterator( str ) );
+</pre>
+<p>
+In addition, you can use any Qt template library iterator as the
+OutputIterator. Just make sure that the right hand of the iterator has
+as many elements present as you want to insert. The following example
+illustrates this:
+<p>
+<pre>        <a href="qstringlist.html">QStringList</a> l1, l2;
+        l1 &lt;&lt; "Weis" &lt;&lt; "Ettrich" &lt;&lt; "Arnt" &lt;&lt; "Sue";
+        l2 &lt;&lt; "Torben" &lt;&lt; "Matthias";
+        qCopy( l2, l1.begin();
+</pre>
+<p>
+At the end of this code fragment, the List l1 contains "Torben",
+"Matthias", "Arnt" and "Sue", with the prior contents being
+overwritten. Another flavor of qCopy() takes three arguments to make
+it possible to copy a slice of a container:
+<p>
+<pre>        typedef QValueList&lt;int&gt; List;
+        List l;
+        l &lt;&lt; 42 &lt;&lt; 100 &lt;&lt; 1234 &lt;&lt; 12 &lt;&lt; 8;
+        List::Iterator b = l.find( 100 );
+        List::Iterator e = l.find( 8 );
+        <a href="qtextostream.html">QTextOStream</a> str( stdout );
+        qCopy( b, e, QTextOStreamIterator( str ) );
+</pre>
+<p>
+If you write new algorithms, consider writing them as template
+functions in order to make them usable with as many containers
+possible.  In the above example, you could just as easily print out a
+standard C++ array with qCopy():
+<p>
+<pre>        int arr[] = { 100, 200, 300 };
+        <a href="qtextostream.html">QTextOStream</a> str( stdout );
+        qCopy( arr, arr + 3, QTextOStreamIterator( str ) );
+</pre>
+<p>
+<h2> Streaming </h2>
+<p>
+All mentioned containers can be serialized with the respective
+streaming operators. Here is an example.
+<p>
+<pre>        <a href="qdatastream.html">QDataStream</a> str(...);
+        <a href="qvaluelist.html">QValueList</a>&lt;<a href="qrect.html">QRect</a>&gt; l;
+        // ... fill the list here
+        str &lt;&lt; l;
+</pre>
+<p>
+The container can be read in again with:
+<p>
+<pre>        <a href="qvaluelist.html">QValueList</a>&lt;<a href="qrect.html">QRect</a>&gt; l;
+        str &gt;&gt; l;
+</pre>
+<p>
+The same applies to QStringList, QValueStack and QMap.
+
+<p>Classes:<ul plain>
+<li><a href="qmap.html">QMap</a>
+    (Value based template class that provides a dictionary)
+<li><a href="qmapconstiterator.html">QMapConstIterator</a>
+    (Iterator for <a href="qmap.html">QMap</a>)
+<li><a href="qmapiterator.html">QMapIterator</a>
+    (Iterator for <a href="qmap.html">QMap</a>)
+<li><a href="qstringlist.html">QStringList</a>
+    (A list of strings)
+<li><a href="qvaluelist.html">QValueList</a>
+    (Value based template class that provides doubly linked lists)
+<li><a href="qvaluelistconstiterator.html">QValueListConstIterator</a>
+    (Iterator for <a href="qvaluelist.html">QValueList</a>)
+<li><a href="qvaluelistiterator.html">QValueListIterator</a>
+    (Iterator for <a href="qvaluelist.html">QValueList</a>)
+<li><a href="qvaluestack.html">QValueStack</a>
+    (Value based template class that provides a stack)
+</ul>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

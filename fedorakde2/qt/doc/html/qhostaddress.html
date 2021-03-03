@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QHostAddress Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QHostAddress Class Reference<br><small>[ <a href="network.html">network module</a> ]</small></h1><br clear="all">
+<p>
+The QHostAddress class provides an IP address.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qhostaddress-h.html">qhostaddress.h</a>&gt;</code>
+<p><a href="qhostaddress-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#bb150a"><b>QHostAddress</b></a> () </div>
+<li><div class="fn"><a href="#d3d30f"><b>QHostAddress</b></a> ( Q_UINT32 ip4Addr ) </div>
+<li><div class="fn"><a href="#2f2d6e"><b>QHostAddress</b></a> ( Q_UINT8 * ip6Addr ) </div>
+<li><div class="fn"><a href="#3d54f6"><b>QHostAddress</b></a> ( const QHostAddress &amp; ) </div>
+<li><div class="fn">virtual <a href="#907be6"><b>~QHostAddress</b></a> () </div>
+<li><div class="fn">QHostAddress&amp; <a href="#65dab7"><b>operator=</b></a> ( const QHostAddress &amp; ) </div>
+<li><div class="fn">void <a href="#4189ce"><b>setAddress</b></a> ( Q_UINT32 ip4Addr ) </div>
+<li><div class="fn">void <a href="#cbb412"><b>setAddress</b></a> ( Q_UINT8 * ip6Addr ) </div>
+<li><div class="fn">bool <a href="#93cdfd"><b>setAddress</b></a> ( const QString &amp; address ) </div>
+<li><div class="fn">bool <a href="#914640"><b>isIp4Addr</b></a> () const</div>
+<li><div class="fn">Q_UINT32 <a href="#532c98"><b>ip4Addr</b></a> () const</div>
+<li><div class="fn">QString <a href="#256b57"><b>toString</b></a> () const</div>
+<li><div class="fn">bool <a href="#2c9253"><b>operator==</b></a> ( const QHostAddress &amp; ) const</div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QHostAddress class provides an IP address.
+<p>
+This class contains an IP address in a platform- and protocol-independent
+manner.  That is, it'll store the address in a way you can access easily on
+any platform, and it'll store both IPv4 and IPv6 addresses.
+<p>QHostAddress is normally used with the classes <a href="qsocket.html">QSocket</a>, <a href="qserversocket.html">QServerSocket</a> and
+<a href="qsocketdevice.html">QSocketDevice</a> to set up a server or to connect to a host.
+<p>See also  <a href="qsocket.html">QSocket</a>, <a href="qserversocket.html">QServerSocket</a> and <a href="qsocketdevice.html">QSocketDevice</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="bb150a"></a>QHostAddress::QHostAddress ()</h3>
+<p>Creates a socket address object with the IP address 0.0.0.0.
+<h3 class="fn"><a name="d3d30f"></a>QHostAddress::QHostAddress ( Q_UINT32 ip4Addr )</h3>
+<p>Creates a socket address object with a specified IPv4 address.
+<h3 class="fn"><a name="2f2d6e"></a>QHostAddress::QHostAddress ( Q_UINT8 * ip6Addr )</h3>
+<p>Creates a socket address object with a specified IPv6 address.
+<p><em>ip6Addr</em> must be a 16 byte array in network byte order (high-order byte
+first).
+<h3 class="fn"><a name="3d54f6"></a>QHostAddress::QHostAddress ( const QHostAddress &amp; address )</h3>
+<p>Creates a copy of <em>address.</em>
+<h3 class="fn"><a name="907be6"></a>QHostAddress::~QHostAddress () <code>[virtual]</code></h3>
+<p>Destructs the socket address object.
+<h3 class="fn">Q_UINT32 <a name="532c98"></a>QHostAddress::ip4Addr () const</h3>
+<p>Returns the IPv4 address as a number.
+<p>For example, if the address is 127.0.0.1, the returned value is
+2130706433 (hex: 7f000001).
+<p>This value is only valid when <a href="#914640">isIp4Addr</a>() returns TRUE.
+<p>See also  <a href="#256b57">toString</a>().
+<h3 class="fn">bool <a name="914640"></a>QHostAddress::isIp4Addr () const</h3>
+<p>Return true if the host address represents a IPv4 address.
+<h3 class="fn">QHostAddress &amp; <a name="65dab7"></a>QHostAddress::operator= ( const QHostAddress &amp; address )</h3>
+<p>Assigns another socket address object <em>address</em> to this object and
+returns a reference to this object.
+<h3 class="fn">bool <a name="2c9253"></a>QHostAddress::operator== ( const QHostAddress &amp; other ) const</h3>
+<p>Returns TRUE if this socket address is identical to <em>other,</em> or FALSE
+if they are different.
+<h3 class="fn">bool <a name="93cdfd"></a>QHostAddress::setAddress ( const <a href="qstring.html">QString</a> &amp; address )</h3>
+<p>Sets the IPv4 or IPv6 address specified by the string representation
+<em>address</em> (e.g. "127.0.0.1").
+<p>If this function is not able to parse the address it will return FALSE and
+the address is not changed.
+<h3 class="fn">void <a name="4189ce"></a>QHostAddress::setAddress ( Q_UINT32 ip4Addr )</h3>
+<p>Set a IPv4 address specified by <em>ip4Addr.</em>
+<h3 class="fn">void <a name="cbb412"></a>QHostAddress::setAddress ( Q_UINT8 * ip6Addr )</h3>
+<p>Set a IPv6 address specified by <em>ip6Addr.</em>
+<p><em>ip6Addr</em> must be a 16 byte array in network byte order (high-order byte
+first).
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="256b57"></a>QHostAddress::toString () const</h3>
+<p>Returns the address as a string.
+<p>For example, if the address is the IPv4 address 127.0.0.1, the
+returned string is "127.0.0.1".
+<p>See also  <a href="#532c98">ip4Addr</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

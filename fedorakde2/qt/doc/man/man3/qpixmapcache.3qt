@@ -1,0 +1,145 @@
+'\" t
+.TH QPixmapCache 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QPixmapCache \- Application-global cache for pixmaps
+.br
+.PP
+\fC#include <qpixmapcache.h>\fR
+.PP
+.SS "Static Public Members"
+.TP
+int \fBcacheLimit\fR () 
+.TP
+void \fBsetCacheLimit\fR ( int ) 
+.TP
+QPixmap* \fBfind\fR ( const QString & key ) 
+.TP
+bool \fBfind\fR ( const QString & key, QPixmap & ) 
+.TP
+bool insert ( const QString & key, QPixmap * ) \fI(obsolete)\fR
+.TP
+void \fBinsert\fR ( const QString & key, const QPixmap & ) 
+.TP
+void \fBclear\fR () 
+.SH DESCRIPTION
+The QPixmapCache class provides an application-global cache for pixmaps.
+.PP
+This class is a tool for optimized drawing with QPixmap. You can use it to store temporary pixmaps that are expensive to generate, without using more storage space than cacheLimit(). Use insert() to insert pixmaps, find() to find them and clear() to empty the cache.
+.PP
+Here follows an example. QRadioButton has a non-trivial visual representation. In the function QRadioButton::drawButton(), we do not draw the radio button directly. Instead, we first check the global pixmap cache for a pixmap with the key "$qt_radio_nnn_", where \fCnnn\fR is a numerical value that specifies the the radio button state. If a pixmap is found, we bitBlt() it onto the widget and return. Otherwise, we create a new pixmap, draw the radio button in the pixmap and finally insert the pixmap in the global pixmap cache, using the key above. The bitBlt() is 10 times faster than drawing the radio button. All radio buttons in the program share the cached pixmap since QPixmapCache is application-global.
+.PP
+QPixmapCache contains no member data, only static functions to access the global pixmap cache. It creates an internal QCache for caching the pixmaps.
+.PP
+The cache associates a pixmap with a normal string (key). If two pixmaps are inserted into the cache using equal keys, then the last pixmap will hide the first pixmap. The QDict and QCache classes do exactly the same.
+.PP
+The cache becomes full when the total size of all pixmaps in the cache exceeds cacheLimit(). The initial cache limit is 1024 KByte (1 MByte); it is changed with setCacheLimit(). A pixmap takes roughly width*height*depth/8 bytes of memory.
+.PP
+See the QCache documentation for more details about the cache mechanism.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "int QPixmapCache::cacheLimit () \fC[static]\fR"
+Returns the cache limit (in kilobytes).
+.PP
+The default setting is 1024 kilobytes.
+.PP
+See also setCacheLimit().
+.SH "void QPixmapCache::clear () \fC[static]\fR"
+Removes all pixmaps from the cache.
+.SH "QPixmap * QPixmapCache::find ( const QString & key ) \fC[static]\fR"
+Returns the pixmap associated with \fIkey\fR in the cache, or null if there is no such pixmap.
+.PP
+\fB NOTE: if valid, you should copy the pixmap immediately (this is quick since QPixmaps are implicitly shared), because subsequent insertions into the cache could cause the pointer to become invalid. For this reason, we recommend you use find(const QString&, QPixmap&) instead. \fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QPixmap* pp;
+.br
+    QPixmap p;
+.br
+    if ( (pp=QPixmapCache::find("my_previous_copy", pm)) ) {
+.br
+        p = *pp;
+.br
+    } else {
+.br
+        p.load("bigimage.png");
+.br
+        QPixmapCache::insert("my_previous_copy", new QPixmap(p));
+.br
+    }
+.br
+    painter->drawPixmap(0, 0, p);
+.fi
+.SH "bool QPixmapCache::find ( const QString & key, QPixmap & pm ) \fC[static]\fR"
+Looks for a cached pixmap associated with \fIkey\fR in the cache. If a pixmap is found, the function sets \fIpm\fR to that pixmap and returns TRUE. Otherwise, the function returns FALSE and does not change \fIpm.\fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QPixmap p;
+.br
+    if ( !QPixmapCache::find("my_previous_copy", pm) ) {
+.br
+        pm.load("bigimage.png");
+.br
+        QPixmapCache::insert("my_previous_copy", pm);
+.br
+    }
+.br
+    painter->drawPixmap(0, 0, p);
+.fi
+.SH "bool QPixmapCache::insert ( const QString & key, QPixmap * pm ) \fC[static]\fR"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Inserts the pixmap \fIpm\fR associated with \fIkey\fR into the cache. Returns TRUE if successful, or FALSE if the pixmap is too big for the cache.
+.PP
+\fB NOTE: \fIpm\fR must be allocated on the heap (using \fCnew).\fR
+.PP
+If this function returns FALSE, you must delete \fIpm\fR yourself.
+.PP
+If this function returns TRUE, do not use \fIpm\fR afterwards or keep references to it, as any other insertions into the cache, from anywhere in the application, or within Qt itself, could cause the pixmap to be discarded from the cache, and the pointer to become invalid.
+.PP
+Due to these dangers, we strongly recommend that you use insert(const QString&, const QPixmap&) instead. \fR
+.SH "void QPixmapCache::insert ( const QString & key, const QPixmap & pm ) \fC[static]\fR"
+Inserts a copy of the pixmap \fIpm\fR associated with \fIkey\fR into the cache.
+.PP
+All pixmaps inserted by the Qt library have a key starting with "$qt..". Use something else for your own pixmaps.
+.PP
+When a pixmap is inserted and the cache is about to exceed its limit, it removes pixmaps until there is enough room for the pixmap to be inserted.
+.PP
+The oldest pixmaps (least recently accessed in the cache) are deleted when more space is needed.
+.PP
+See also setCacheLimit().
+.SH "void QPixmapCache::setCacheLimit ( int n ) \fC[static]\fR"
+Sets the cache limit to \fIn\fR kilobytes.
+.PP
+The default setting is 1024 kilobytes.
+.PP
+See also  cacheLimit().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qpixmapcache.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qpixmapcache.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QNetworkProtocol Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QNetworkProtocol Class Reference</h1><br clear="all">
+<p>
+This is the base class for network protocols which provides a common API for network protocols.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qnetworkprotocol-h.html">qnetworkprotocol.h</a>&gt;</code>
+<p>
+Inherits <a href="qobject.html">QObject</a>.
+<p>Inherited by <a href="qftp.html">QFtp</a> and <a href="qlocalfs.html">QLocalFs</a>.
+<p><a href="qnetworkprotocol-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">enum <a href="#State"><b>State</b></a> { StWaiting = 0, StInProgress, StDone, StFailed, StStopped }</div>
+<li><div class="fn">enum <a href="#Operation"><b>Operation</b></a> { OpListChildren = 1, OpMkdir = 2, OpRemove = 4, OpRename = 8, OpGet = 32, OpPut = 64 }</div>
+<li><div class="fn">enum <a href="#ConnectionState"><b>ConnectionState</b></a> { ConHostFound, ConConnected, ConClosed }</div>
+<li><div class="fn">enum <a href="#Error"><b>Error</b></a> { NoError = 0, ErrValid, ErrUnknownProtocol, ErrUnsupported, ErrParse, ErrLoginIncorrect, ErrHostNotFound, ErrListChlidren, ErrMkdir, ErrRemove, ErrRename, ErrGet, ErrPut, ErrFileNotExisting, ErrPermissionDenied }</div>
+<li><div class="fn"><a href="#4643a8"><b>QNetworkProtocol</b></a> () </div>
+<li><div class="fn">virtual <a href="#375513"><b>~QNetworkProtocol</b></a> () </div>
+<li><div class="fn">virtual void <a href="#60363e"><b>setUrl</b></a> ( QUrlOperator * u ) </div>
+<li><div class="fn">virtual void <a href="#e5f0a1"><b>setAutoDelete</b></a> ( bool b, int i = 10000 ) </div>
+<li><div class="fn">bool <a href="#0edb2d"><b>autoDelete</b></a> () const</div>
+<li><div class="fn">virtual int <a href="#b14420"><b>supportedOperations</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#9d8ab9"><b>addOperation</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">QUrlOperator* <a href="#f0dcef"><b>url</b></a> () const</div>
+<li><div class="fn">QNetworkOperation* <a href="#fb33d6"><b>operationInProgress</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#259030"><b>clearOperationQueue</b></a> () </div>
+<li><div class="fn">virtual void <a href="#181ca4"><b>stop</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#543105"><b>data</b></a> ( const QByteArray &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#0f7bc8"><b>connectionStateChanged</b></a> ( int state, const QString &amp; data ) </div>
+<li><div class="fn">void <a href="#064e28"><b>finished</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#a18f1c"><b>start</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#dd3aac"><b>newChildren</b></a> ( const QValueList&lt;QUrlInfo&gt; &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#481e72"><b>newChild</b></a> ( const QUrlInfo &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#948f37"><b>createdDirectory</b></a> ( const QUrlInfo &amp;, QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#a740a9"><b>removed</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#a2dc9a"><b>itemChanged</b></a> ( QNetworkOperation * res ) </div>
+<li><div class="fn">void <a href="#b3f822"><b>dataTransferProgress</b></a> ( int bytesDone, int bytesTotal, QNetworkOperation * res ) </div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">void <a href="#e0692e"><b>registerNetworkProtocol</b></a> ( const QString &amp; protocol, QNetworkProtocolFactoryBase * protocolFactory ) </div>
+<li><div class="fn">QNetworkProtocol* <a href="#648137"><b>getNetworkProtocol</b></a> ( const QString &amp; protocol ) </div>
+<li><div class="fn">bool <a href="#ccf6d7"><b>hasOnlyLocalFileSystem</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <b>processOperation</b> ( QNetworkOperation * op ) (internal)</div>
+<li><div class="fn">virtual void <a href="#ad78b8"><b>operationListChildren</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">virtual void <a href="#7247d4"><b>operationMkDir</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">virtual void <a href="#55d574"><b>operationRemove</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">virtual void <a href="#bcf224"><b>operationRename</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">virtual void <a href="#eb8b13"><b>operationGet</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">virtual void <a href="#cb0f5e"><b>operationPut</b></a> ( QNetworkOperation * op ) </div>
+<li><div class="fn">virtual bool <a href="#b1886c"><b>checkConnection</b></a> ( QNetworkOperation * op ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+This is the base class for network protocols which provides a common API for network protocols.
+<p>
+This is a baseclass which should be used for implementations
+of network protocols which can then be used in Qt (e.g.
+in the filedialog) together with the <a href="qurloperator.html">QUrlOperator</a>.
+<p>The easiest way to implement a new network protocol is, to
+reimplement the operation[something]( <a href="qnetworkoperation.html">QNetworkOperation</a> * )
+methods. Of course only the ones, which are supported, should
+be reimplemented. To specify which operations are supported,
+also reimplement <a href="#b14420">supportedOperations</a>() and return an int there,
+which is ore'd together using the supported operations from
+the <a href="#Operation">QNetworkProtocol::Operation</a> enum.
+<p>When you implement a network protocol this way, be careful
+that you always emit the correct signals. Also, always emit
+the <a href="#064e28">finished</a>() signal when an operation is done (on failure or
+success!). The Qt Network Architecture relies on correctly emitted
+finished() signals.
+<p>For a detailed description about the Qt Network Architecture, and
+also how to implement and use network protocols in Qt, look
+at the <a href="network.html">Qt Network Documentation</a>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="ConnectionState">QNetworkProtocol::ConnectionState</a></h3>
+When the connection state of a network protocol changes, it emits
+the signal <a href="#0f7bc8">connectionStateChanged</a>(). The first argument is one
+of following values:
+<p><ul>
+<li> <code>ConHostFound</code> - Host has been found
+<li> <code>ConConnected</code> - Connection to the host has been established
+<li> <code>ConClosed</code> - connection has been closed
+</ul>
+<h3 class="fn"><a name="Error">QNetworkProtocol::Error</a></h3>
+When an operation failed (finished without success) the <a href="qnetworkoperation.html">QNetworkOperation</a>
+of the operation returns an error code, which is one of following values:
+<p><ul>
+<li><code>NoError</code> - No error occurred
+<li><code>ErrValid</code> - The URL you are operating on is not valid
+<li><code>ErrUnknownProtocol</code> - There is no protocol implementation available for the protocol of the URL you are operating on (e.g. if the protocol is http and no http implementation has been registered)
+<li><code>ErrUnsupported</code> - The operation is not supported by the protocol
+<li><code>ErrParse</code> - Parse error of the URL
+<li><code>ErrLoginIncorrect</code> - You needed to login but the username and or password are wrong
+<li><code>ErrHostNotFound</code> - The specified host (in the URL) couldn´t be found
+<li><code>ErrListChlidren</code> - An error occurred while listing the children
+<li><code>ErrMkdir</code> - An error occurred when creating a directory
+<li><code>ErrRemove</code> - An error occurred while removing a child
+<li><code>ErrRename</code>  - An error occurred while renaming a child
+<li><code>ErrGet</code> - An error occurred while getting (retrieving) data
+<li><code>ErrPut</code> - An error occurred while putting (uploading) data
+<li><code>ErrFileNotExisting</code> - A file which is needed by the operation doesn't exist
+<li><code>ErrPermissionDenied</code> - The permission for doing the operation has been denied
+</ul>
+<p>When implementing custom network protocols, you should also use these
+values of error codes. If this is not possible, you can define your own ones
+by using an integer value which doesn't conflict with one of these vales.
+<h3 class="fn"><a name="Operation">QNetworkProtocol::Operation</a></h3>
+This enum lists all possible operations which a network protocol
+can support. <a href="#b14420">supportedOperations</a>() returns an int which is or'd
+together of these values, also the type() or a <a href="qnetworkoperation.html">QNetworkOperation</a>
+is always one of these values.
+<p><ul>
+<li> <code>OpListChildren</code> - Listing the children of a URL, e.g. of a directory
+<li> <code>OpMkdir</code> - Create a directory
+<li> <code>OpRemove</code> - remove a child (e.g. file)
+<li> <code>OpRename</code> - rename a child (e.g. file )
+<li> <code>OpGet</code> - get data from a location
+<li> <code>OpPut</code> - put data to a location
+</ul>
+<h3 class="fn"><a name="State">QNetworkProtocol::State</a></h3>
+This enum contains the state which a <a href="qnetworkoperation.html">QNetworkOperation</a>
+can have:
+<p><ul>
+<li> <code>StWaiting</code> - The operation is in the queue of the QNetworkProtocol
+and is waiting for being prcessed
+<li> <code>StInProgress</code> - The operation is just processed
+<li> <code>StDone</code> - The operation has been processed succesfully
+<li> <code>StFailed</code> - The operation has been processed but an error occurred
+<li> <code>StStopped</code> - The operation has been processed but has been stopped before it finished
+</ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="4643a8"></a>QNetworkProtocol::QNetworkProtocol ()</h3>
+<p>Constructor of the network protocol baseclass. Does some initialization
+and connecting of signals and slots.
+<h3 class="fn"><a name="375513"></a>QNetworkProtocol::~QNetworkProtocol () <code>[virtual]</code></h3>
+<p>Destructor.
+<h3 class="fn">void <a name="9d8ab9"></a>QNetworkProtocol::addOperation ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual]</code></h3>
+<p>Adds the operation <em>op</em> the operation queue. The operation
+will be processed as soon as possible. This method returns
+immediately.
+<h3 class="fn">bool <a name="0edb2d"></a>QNetworkProtocol::autoDelete () const</h3>
+<p>Returns TRUE, of autodeleting is enabled, else FALSE.
+<p>See also  <a href="#e5f0a1">QNetworkProtocol::setAutoDelete</a>().
+<h3 class="fn">bool <a name="b1886c"></a>QNetworkProtocol::checkConnection ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>For processing operations the newtork protocol baseclass calls this
+method quite often. This should be reimplemented by new
+network protocols. It should return TRUE, if the connection
+is ok (open), else FALSE. If the connection is not open, the protocol
+should open it.
+<p>If the connection can't be opened (e.g. because you already tried it,
+but the host couldn't be found or something like that), set the state
+of <em>op</em> to QNetworkProtocol::StFailed and emit the <a href="#064e28">finished</a>() signal with
+this <a href="qnetworkoperation.html">QNetworkOperation</a> as argument.
+<p><em>op</em> is the operation which needs an open connection.
+<p>Reimplemented in <a href="qftp.html#c6480e">QFtp</a>.
+<h3 class="fn">void <a name="259030"></a>QNetworkProtocol::clearOperationQueue () <code>[virtual]</code></h3>
+<p>Clears the operation queue.
+<h3 class="fn">void <a name="0f7bc8"></a>QNetworkProtocol::connectionStateChanged ( int state, const <a href="qstring.html">QString</a> &amp; data ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever the state of the connection of
+the network protocol is changed. <em>state</em> describes the new state,
+which is one of
+ConHostFound,
+ConConnected,
+ConClosed
+<em>data</em> is a message text.
+<h3 class="fn">void <a name="948f37"></a>QNetworkProtocol::createdDirectory ( const <a href="qurlinfo.html">QUrlInfo</a> &amp; i, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when mkdir() has been succesful
+and the directory has been created. <em>i</em> holds the information
+about the new directory.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on and using op->arg( 0 )
+you also get the filename of the new directory.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">void <a name="543105"></a>QNetworkProtocol::data ( const <a href="qbytearray.html">QByteArray</a> &amp; data, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when new <em>data</em> has been received
+after e.g. calling get() or put(). <em>op</em> holds the name of the file which data
+is retrieved in the first argument and the data in the second argument (raw).
+You get them with op->arg( 0 ) and op->rawArg( 1 ).
+<p><em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">void <a name="b3f822"></a>QNetworkProtocol::dataTransferProgress ( int bytesDone, int bytesTotal, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>When transferring data (using put() or get()) this signal is emitted during the progress.
+<em>bytesDone</em> tells how many bytes of <em>bytesTotal</em> are transferred. More information
+about the operation is stored in the <em>op,</em> the pointer to the network operation
+which is processed. <em>bytesTotal</em> may be -1, which means that the number of total
+bytes is not known.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">void <a name="064e28"></a>QNetworkProtocol::finished ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when an operation of some sort finished.
+This signal is emitted always, this means on success and on failure.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation which has been finished, including the state and so on.
+To check if the operation was successful or not, check the state and
+error code of the operation object.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">QNetworkProtocol * <a name="648137"></a>QNetworkProtocol::getNetworkProtocol ( const <a href="qstring.html">QString</a> &amp; protocol ) <code>[static]</code></h3>
+<p>Static method to get a new instance of a network protocol. E.g. if
+you need to do some FTP operations, do
+<p><a href="qftp.html">QFtp</a> *ftp = QNetworkProtocol::getNetworkProtocol( "ftp" );
+<p>This returns now either NULL, if no protocol for ftp was registered,
+or a pointer to a new instance of an FTP implementation. The ownership
+of the pointer is transferred to you, so you have to delete it, if you
+don´t need it anymore.
+<p>Normally you should not work directly with network protocols, so
+you will not need to call this method yourself. Rather use the
+<a href="qurloperator.html">QUrlOperator</a>, which makes working with network protocols
+much more convenient.
+<p>See also  <a href="qurloperator.html">QUrlOperator</a>.
+<h3 class="fn">bool <a name="ccf6d7"></a>QNetworkProtocol::hasOnlyLocalFileSystem () <code>[static]</code></h3>
+<p>Returns TRUE, if only a protocol for working on the local filesystem is
+registered, or FALSE if also other network protocols are registered.
+<h3 class="fn">void <a name="a2dc9a"></a>QNetworkProtocol::itemChanged ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted whenever a file, which is a child of this URL,
+has been changed e.g. by successfully calling rename(). <em>op</em> holds
+the original and the new filenames in the first and second arguments.
+You get them with op->arg( 0 ) and op->arg( 1 ).
+<p><em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">void <a name="481e72"></a>QNetworkProtocol::newChild ( const <a href="qurlinfo.html">QUrlInfo</a> &amp; i, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted if a new child has been read. QNetworkProtocol
+automatically connects that to a slot which creates a list of <a href="qurlinfo.html">QUrlInfo</a> objects
+(with just the one QUrlInfo <em>i)</em> and emits then <a href="#dd3aac">newChildren</a>() signal with this
+created list.
+<p>So this is just a convenience signal when implementing an own network protocol. In all
+other cases just care about the newChildren() signal with the list of QUrlInfo objects.
+<h3 class="fn">void <a name="dd3aac"></a>QNetworkProtocol::newChildren ( const <a href="qvaluelist.html">QValueList</a>&lt;<a href="qurlinfo.html">QUrlInfo</a>&gt; &amp; i, <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted after listChildren() was called and
+new children (e.g. files) have been read from list of files. <em>i</em>
+holds the information about the new children.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<p>When implementing an own network protocol and reading children in most
+cases you don't read one child at once, but a list of them. That's why this signal
+takes a list of <a href="qurlinfo.html">QUrlInfo</a> objects. But if you read only one child at once, you can
+use the convenience signal <a href="#481e72">newChild</a>(), which takes only a single QUrlInfo object.
+<h3 class="fn">void <a name="eb8b13"></a>QNetworkProtocol::operationGet ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>When implemeting a new newtork protocol this method should
+be reimplemented, if the protocol supports getting data, and
+process this <a href="qnetworkoperation.html">QNetworkOperation</a>.
+<p>When you reimplement this method, it's very important that
+you emit the correct signals at the correct time (esp. the
+<a href="#064e28">finished</a>() signal after processing an operation). So have
+a look at the <a href="network.html">Qt Network Documentation</a>,
+there it is described in detail how to reimplement this method. Also
+you may look at the example implementation of
+qt/extenstions/network/examples/networkprotocol/nntp.cpp.
+<h3 class="fn"><a href="qnetworkoperation.html">QNetworkOperation</a> * <a name="fb33d6"></a>QNetworkProtocol::operationInProgress () const</h3>
+<p>Returns the operation, which is just processed, or NULL
+of none is processed at the moment.
+<h3 class="fn">void <a name="ad78b8"></a>QNetworkProtocol::operationListChildren ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>When implemeting a new newtork protocol this method should
+be reimplemented, if the protocol supports listing children, and
+this method should then process this <a href="qnetworkoperation.html">QNetworkOperation</a>.
+<p>When you reimplement this method, it's very important that
+you emit the correct signals at the correct time (esp. the
+<a href="#064e28">finished</a>() signal after processing an operation). So have
+a look at the <a href="network.html">Qt Network Documentation</a>,
+there it is described in detail how to reimplement this method. Also
+you may look at the example implementation of
+qt/extenstions/network/examples/networkprotocol/nntp.cpp.
+<h3 class="fn">void <a name="7247d4"></a>QNetworkProtocol::operationMkDir ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>When implemeting a new newtork protocol this method should
+be reimplemented, if the protocol supports making directories, and
+this method should then process this <a href="qnetworkoperation.html">QNetworkOperation</a>.
+<p>When you reimplement this method, it's very important that
+you emit the correct signals at the correct time (esp. the
+<a href="#064e28">finished</a>() signal after processing an operation). So have
+a look at the <a href="network.html">Qt Network Documentation</a>,
+there it is described in detail how to reimplement this method. Also
+you may look at the example implementation of
+qt/extenstions/network/examples/networkprotocol/nntp.cpp.
+<h3 class="fn">void <a name="cb0f5e"></a>QNetworkProtocol::operationPut ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>When implemeting a new newtork protocol this method should
+be reimplemented, if the protocol supports putting data, and
+this method should then process this <a href="qnetworkoperation.html">QNetworkOperation</a>.
+<p>When you reimplement this method, it's very important that
+you emit the correct signals at the correct time (esp. the
+<a href="#064e28">finished</a>() signal after processing an operation). So have
+a look at the <a href="network.html">Qt Network Documentation</a>,
+there it is described in detail how to reimplement this method. Also
+you may look at the example implementation of
+qt/extenstions/network/examples/networkprotocol/nntp.cpp.
+<h3 class="fn">void <a name="55d574"></a>QNetworkProtocol::operationRemove ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>When implemeting a new newtork protocol this method should
+be reimplemented, if the protocol supports removing children, and
+this method should then process this <a href="qnetworkoperation.html">QNetworkOperation</a>.
+<p>When you reimplement this method, it's very important that
+you emit the correct signals at the correct time (esp. the
+<a href="#064e28">finished</a>() signal after processing an operation). So have
+a look at the <a href="network.html">Qt Network Documentation</a>,
+there it is described in detail how to reimplement this method. Also
+you may look at the example implementation of
+qt/extenstions/network/examples/networkprotocol/nntp.cpp.
+<h3 class="fn">void <a name="bcf224"></a>QNetworkProtocol::operationRename ( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) <code>[virtual protected]</code></h3>
+<p>When implemeting a new newtork protocol this method should
+be reimplemented, if the protocol supports renaming children, and
+this method should then process this <a href="qnetworkoperation.html">QNetworkOperation</a>.
+<p>When you reimplement this method, it's very important that
+you emit the correct signals at the correct time (esp. the
+<a href="#064e28">finished</a>() signal after processing an operation). So have
+a look at the <a href="network.html">Qt Network Documentation</a>,
+there it is described in detail how to reimplement this method. Also
+you may look at the example implementation of
+qt/extenstions/network/examples/networkprotocol/nntp.cpp.
+<h3 class="fn">void <a name="e0692e"></a>QNetworkProtocol::registerNetworkProtocol ( const <a href="qstring.html">QString</a> &amp; protocol, QNetworkProtocolFactoryBase * protocolFactory ) <code>[static]</code></h3>
+<p>Static method to register a network protocol for Qt. E.g. if you have
+a implementation of NNTP (called Nntp), which is derived from
+QNetworkProtocol, call
+<p>QNetworkProtocol::registerNetworkProtocol( "nntp", new QNetworkProtocolFactory<Nntp> );
+<p>After that, this implementation is registered for nntp operations.
+<h3 class="fn">void <a name="a740a9"></a>QNetworkProtocol::removed ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>This signal is emitted when remove() has been succesful
+and the file has been removed. <em>op</em> holds the filename
+of the removed file in the first argument, you get it
+with op->arg( 0 ).
+<p><em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">void <a name="e5f0a1"></a>QNetworkProtocol::setAutoDelete ( bool b, int i = 10000 ) <code>[virtual]</code></h3>
+<p>Because it's sometimes hard to care about removing network protocol
+instances, QNetworkProtocol provides an autodelete mechanism. If
+you set <em>b</em> to TRUE, this network protocol instance gets removed
+after it has been <em>i</em> milliseconds inactive (this means <em>i</em> ms after
+the last operation has been processed).
+If you set <em>b</em> to FALSE, the autodelete mechanism is switched off.
+<p>NOTE: If you switch on autodeleting, the QNetworkProtocol also
+deletes its <a href="qurloperator.html">QUrlOperator</a>!.
+<h3 class="fn">void <a name="60363e"></a>QNetworkProtocol::setUrl ( <a href="qurloperator.html">QUrlOperator</a> * u ) <code>[virtual]</code></h3>
+<p>Sets the <a href="qurloperator.html">QUrlOperator</a>, on which the protocol works.
+<p>See also  <a href="qurloperator.html">QUrlOperator</a>.
+<h3 class="fn">void <a name="a18f1c"></a>QNetworkProtocol::start ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[signal]</code></h3>
+<p>Some operations (like listChildren()) emit this signal
+when they start processing the operation.
+<em>op</em> is the pointer to the operation object, which contains all infos
+of the operation, including the state and so on.
+<p>When a protocol emits this signal, QNetworkProtocol is smart enough
+to let the <a href="qurloperator.html">QUrlOperator</a>, which is used by the network protocol, emit
+its corresponding signal.
+<h3 class="fn">void <a name="181ca4"></a>QNetworkProtocol::stop () <code>[virtual]</code></h3>
+<p>Stops the current operation which is just processed and clears
+all waiting operations.
+<h3 class="fn">int <a name="b14420"></a>QNetworkProtocol::supportedOperations () const <code>[virtual]</code></h3>
+<p>Returns an int, which is or'd together using the enum values
+of <code><a href="#Operation">QNetworkProtocol::Operation</a>,</code> which describes which operations
+are supported by the network protocol. Should be reimplemented by new
+network protocols.
+<h3 class="fn"><a href="qurloperator.html">QUrlOperator</a> * <a name="f0dcef"></a>QNetworkProtocol::url () const</h3>
+<p>Returns the <a href="qurloperator.html">QUrlOperator</a> on which the protocol works.
+<h3 class="fn">void <a name="c6ad3a"></a>QNetworkProtocol::processOperation ( <a href="qnetworkoperation.html">QNetworkOperation</a> * op ) <code>[virtual protected]</code></h3>
+<p>For internal use only.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QCDEStyle Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QCDEStyle Class Reference</h1><br clear="all">
+<p>
+CDE Look and Feel
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qcdestyle-h.html">qcdestyle.h</a>&gt;</code>
+<p>
+Inherits <a href="qmotifstyle.html">QMotifStyle</a>.
+<p><a href="qcdestyle-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#63af7d"><b>QCDEStyle</b></a> ( bool useHighlightCols = FALSE ) </div>
+<li><div class="fn">virtual <a href="#0be3dc"><b>~QCDEStyle</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+CDE Look and Feel
+<p>
+This style provides a slightly improved Motif look similar to some
+versions of the Common Desktop Environment (CDE). The main
+difference are thinner frames and more modern radio buttons and
+check boxes. Together with a dark background and a bright
+text/foreground color, the style looks quite attractive (at least
+for Motif fans).
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="63af7d"></a>QCDEStyle::QCDEStyle ( bool useHighlightCols = FALSE )</h3>
+<p>Constructs a QCDEStyle
+<p>If useHighlightCols is FALSE (the default value), then the style
+will polish the application's color palette to emulate the Motif
+way of highlighting, which is a simple inversion between the base
+and the text color.
+<h3 class="fn"><a name="0be3dc"></a>QCDEStyle::~QCDEStyle () <code>[virtual]</code></h3>
+<p>Destructs the style.
+<h3 class="fn">int <a name="1bf325"></a>QCDEStyle::defaultFrameWidth () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#5fd38b">QStyle.</a>
+<h3 class="fn">void <a name="d17dbb"></a>QCDEStyle::drawArrow ( <a href="qpainter.html">QPainter</a> * p, ArrowType type, bool down, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool enabled, const <a href="qbrush.html">QBrush</a> * = 0 )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="2b9f13"></a>QCDEStyle::drawExclusiveIndicator ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool on, bool down = FALSE, bool = TRUE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#7efc7e">QStyle.</a>
+<h3 class="fn">void <a name="ae908d"></a>QCDEStyle::drawIndicator ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, int s, bool down = FALSE, bool = TRUE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#6010f7">QStyle.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

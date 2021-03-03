@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Tutorial - t11/cannon.h</title>
+</head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>Source code for <a href="t11.html">tutorial 11</a>: cannon.h</h1><br clear="all">
+<hr> <pre>/****************************************************************
+**
+** Definition of CannonField class, Qt tutorial 11
+**
+****************************************************************/
+
+#ifndef CANNON_H
+#define CANNON_H
+
+class QTimer;
+
+#include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+
+class CannonField : public QWidget
+{
+    Q_OBJECT
+public:
+    CannonField( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+
+    int   angle() const { return ang; }
+    int   force() const { return f; }
+    <a href="qsizepolicy.html">QSizePolicy</a> sizePolicy() const;
+
+public slots:
+    void  setAngle( int degrees );
+    void  setForce( int newton );
+    void  shoot();
+
+private slots:
+    void  moveShot();
+
+signals:
+    void  angleChanged( int );
+    void  forceChanged( int );
+
+protected:
+    void  paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * );
+
+private:
+    void  paintShot( <a href="qpainter.html">QPainter</a> * );
+    void  paintCannon( <a href="qpainter.html">QPainter</a> * );
+    <a href="qrect.html">QRect</a> cannonRect() const;
+    <a href="qrect.html">QRect</a> shotRect() const;
+
+    int ang;
+    int f;
+
+    int timerCount;
+    <a href="qtimer.html">QTimer</a> * autoShootTimer;
+    float shoot_ang;
+    float shoot_f;
+};
+
+#endif // CANNON_H
+</pre>
+<p>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

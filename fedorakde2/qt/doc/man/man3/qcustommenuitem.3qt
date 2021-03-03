@@ -1,0 +1,99 @@
+'\" t
+.TH QCustomMenuItem 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCustomMenuItem \- Abstract base class for custom menu items in popup menus
+.br
+.PP
+\fC#include <qmenudata.h>\fR
+.PP
+Inherits Qt.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCustomMenuItem\fR () "
+.br
+.ti -1c
+.BI "virtual \fB~QCustomMenuItem\fR () "
+.br
+.ti -1c
+.BI "virtual bool \fBfullSpan\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisSeparator\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetFont\fR ( const QFont & font ) "
+.br
+.ti -1c
+.BI "virtual void \fBpaint\fR ( QPainter * " "p" ", const QColorGroup & " "cg" ", bool " "act" ", bool " "enabled" ", int " "x" ", int " "y" ", int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "virtual QSize \fBsizeHint\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QCustomMenuItem class is an abstract base class for custom menu items in popup menus.
+.PP
+A custom menu item is a menu item that is defined by two purely virtual functions, paint() and sizeHint(). The size hint tells the menu how much space it needs to reserve for this item, whereas paint is called whenever the item needs painting.
+.PP
+This simply mechanism gives applications the possibility to create all kinds of application specific menu items. Examples are items showing different fonts in a word processor, or menus that allow the selection of drawing utilities in a vector drawing program.
+.PP
+A custom item is inserted into a popup menu with QPopupMenu::insertItem().
+.PP
+Per default, a custom item can also have an icon set and/or an accelerator key. You can, however, reimplement fullSpan() to return TRUE if you want the item to span the entire popup menu width. This is in particular useful for labels.
+.PP
+If you want the custom item to be treated as a separator only, reimplement isSeparator() to return TRUE.
+.PP
+Note that you can also insert pixmaps or bitmaps as items into a popup menu. A custom menu item, however, offers even more flexibility and - which is especially important under windows style - the possibility to draw the item with a different color when it is highlighted.
+.PP
+menu/menu.cpp shows a simply example how custom menu items can be used.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QMenuData and QPopupMenu.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCustomMenuItem::QCustomMenuItem ()"
+Constructs a QCustomMenuItem.
+.SH "QCustomMenuItem::~QCustomMenuItem () \fC[virtual]\fR"
+Destructs a QCustomMenuItem.
+.SH "bool QCustomMenuItem::fullSpan () const \fC[virtual]\fR"
+Returns whether this item wants to span the entire popup menu width. The default is FALSE, meaning that the menu may show an icon and/or an accelerator key for this item as well.
+.SH "bool QCustomMenuItem::isSeparator () const \fC[virtual]\fR"
+Returns whether this item is just a separator.
+.SH "void QCustomMenuItem::paint ( QPainter * p, const QColorGroup & cg, bool act, bool enabled, int x, int y, int w, int h ) \fC[virtual]\fR"
+Paints this item. When this function is invoked, the painter \fIp\fR is set to the right font and the right foreground color suitable for a menu item text. The item is active according to \fIact\fR and enabled/disabled according to \fIenabled.\fR The geometry values \fIx, y, w\fR and h specify where to draw the item.
+.PP
+Do not draw any background, this has already been done by the popup menu according to the current gui style.
+.SH "void QCustomMenuItem::setFont ( const QFont & ) \fC[virtual]\fR"
+Sets the font of the custom menu item.
+.PP
+This function is called whenever the font in the popup menu changes. For menu items that show their own individual font entry, you want to ignore this.
+.SH "QSize QCustomMenuItem::sizeHint () \fC[virtual]\fR"
+Returns the size hint of this item.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcustommenuitem.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcustommenuitem.3qt) and the Qt
+version (2.3.2).

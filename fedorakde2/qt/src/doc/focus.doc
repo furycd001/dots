@@ -1,0 +1,193 @@
+/****************************************************************************
+** $Id: qt/doc/focus.doc   2.3.2   edited 2001-01-26 $
+**
+** Documentation of focus handling in Qt
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*! \page focus.html
+
+\title Keyboard Focus Overview
+
+Keyboard focus, like much else on the human end of a GUI, tends to be
+full of exceptions and not at all neat.
+
+The basic problem is that the user's keystrokes can be directed at any
+of several windows on the screen, and any of several widgets inside
+the intended window.  The user presses a key, wishing it to go to the
+right place.  The window system is responsible for directing the
+keystroke to the window the user wishes, the application running that
+window for directing each keystroke to the widget the user wishes.  Of
+course the user's wish moves at whim.
+
+The application's responsibilities is the subject of this page.
+
+<h2>Focus motion</h2>
+
+There are, historically, a few ways in which the user directs the
+keyboard focus at a desired widget: <ol>
+
+<li> The user presses Tab (or Shift-Tab) (or sometimes Enter).
+
+<li> The user clicks a widget.
+
+<li> The user presses a keyboard shortcut.
+
+<li> The user uses the mouse wheel.
+
+<li> The user moves the focus to this window, and the application has
+to guess to which widget.
+
+</ol>
+
+Each of these motion mechanisms is different, and different types of
+widgets receive focus in only some of them.  We'll cover each of them
+in turn.
+
+<h2>Tab/Shift-Tab.</h2>
+
+Pressing Tab is by far the most common way to move focus using the
+keyboard.  Sometimes in data-entry applications Enter does the same as
+Tab.  We will ignore that for the moment.
+
+Tab, in all window systems in common use today, moves the keyboard
+focus to the next widget in a circular per-window list.  Tab moves
+focus along the circular list in one direction, Shift-Tab in the
+other.  The order in which Tab moves is called the tab order.
+
+In Qt, this list is kept in the \l QFocusData class.  There is one
+QFocusData object per window, and widgets automatically append
+themselves to the end of it when \l QWidget::setFocusPolicy() is
+called with an appropriate \l QWidget::FocusPolicy.  You can customize
+the tab order using \l QWidget::setTabOrder().  (If you don't, Tab
+generally moves focus in the order of widget construction.)
+
+Since pressing Tab is so common, most widgets that can have focus
+should support tab focus.  The major exception is widgets that are
+only seldom used, and where there is some keyboard accelerator or
+error handler that moves the focus.
+
+For example, in a data entry dialog, there might be a field that is
+only necessary in one per cent of all cases.  In such a dialog, Tab
+could skip this field, and the dialog could use one of these two
+mechanisms: <ul>
+
+<li> If the program can determine whether the field is needed, it can
+move focus there when the user finishes entry and presses Ok, or when
+the user presses Enter after finishing the other fields.
+
+<li> The label for the field can include a keyboard shortcut that
+moves focus to this field.
+
+</ul>
+
+There is also another exception to Tab support is text-entry widgets
+that must support tab; almost all text editors fall into this class.
+Qt treats Control-Tab as Tab and Control-Shift-Tab as Shift-Tab, and
+such widgets can reimplement \l QWidget::event() and handle Tab before
+calling QWidget::event() to get normal processing of all other keys.
+However, since some systems use Control-Tab for other purposes, and
+many users aren't aware of Control-Tab anyway, this isn't a complete
+solution.
+
+<h2>The user clicks a widget.</h2>
+
+This is perhaps even more common than pressing Tab on computers with a
+good mouse or other pointing device.
+
+Clicking to move the focus is slightly more powerful than Tab.  While
+it moves the focus \e to a widget, for editor widgets it also moves
+the text cursor (the widget's internal focus) to the spot where the
+mouse is clicked.
+
+Since it is so common, it's a good idea to support it for most
+widgets.  People are used to it.  However, there is also an important
+reason to avoid it: You may not want to remove focus from the widget
+where it was.
+
+For example, in a word processor, when the user clicks the 'B'
+(boldface) tool button, what should happen to the keyboard focus?
+Should it remain where it was, almost certainly in the editing widget,
+or should it move to the 'B' button?
+
+We advise supporting click-to-focus for widgets that support text
+entry, and to avoid it for most widgets where a mouse click has a
+different effect.  (For buttons, we also recommend adding a keyboard
+shortcut - \l QButton and its subclasses make that very easy.)
+
+For widgets that don't fall into either class, we have no advice.
+
+In Qt, only the \l QWidget::setFocusPolicy() function affects
+click-to-focus.
+
+<h2>The user presses a keyboard shortcut.</h2>
+
+It's not unusual for keyboard shortcuts to move the focus.  This can
+happen implicitly by opening modal dialogs, but also explicitly using
+focus accelerators such as are provided by \l QLabel::setBuddy(), \l
+QGroupBox and \l QTabBar.
+
+We advise supporting shortcut focus for all widgets that the user may
+want to jump to.  For example, a tab dialog can have keyboard
+shortcuts for each of its pages, so the user can press e.g. Alt-P to
+step to the <u>P</u>rinting page.  But don't overdo this - there are
+only a few keys, and it's also important to provide keyboard shortcuts
+for commands.  Alt-P is also used for Paste, Play, Print and Print Here
+in the <a href="accelerators.html">standard list of shortcuts,</a> for
+example.
+
+<h2>The user uses the mouse wheel.</h2>
+
+On Microsoft Windows, mouse wheel usage is always handled by the
+widget that has keyboard focus.  On X11, it's handled by the widget
+that get other mouse events.
+
+The way Qt handles this platform difference is by letting widgets move
+the keyboard focus when the wheel is used.  With the right focus
+policy on each widget, applications can work idiomatically correctly
+on both Windows and X11.
+
+
+
+<h2>The user moves the focus to this window.</h2>
+
+(and the application has to guess to which widget).
+
+This can be simple: If the focus has been in this window before, then
+the last widget to have focus should regain it.  Qt does that
+automatically.
+
+If focus has never been in this window before and you know where focus
+should start out, call \l QWidget::setFocus() on that widget before
+you \l QWidget::show() it.  If you don't, Qt will pick some suitable
+widget.
+
+*/

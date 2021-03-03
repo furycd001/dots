@@ -1,0 +1,43 @@
+/*! \page qnx-framebuffer.html
+
+
+\title Qnx framebuffer specific notes
+
+There are quite a few additional environment variables that
+need to be set.
+
+LD_LIBRARY_PATH=/lib/dll::$(QTDIR)/lib:$(LD_LIBRARY_PATH)
+CVSDIR should be set to the directory where you checked out the
+gddk.
+
+Once the library is built, you'll need to set more env vars to run
+your programs.
+
+These variables refer to the PCI settings of your video card.
+The example is appropriate for my i810 card.
+QWS_DEVICEID=7125
+QWS_VENDORID=8086
+QWS_INDEX=0
+
+This variable refers to the screen parameters you would like set.
+Read your video and monitor documentation or if you have Photon,
+use crttrap to figure out what you want.
+QWS_SIZE = 1024x768x24@60
+gives 1024 by 768 with 24 bit colour and 60 hz refresh
+
+Set QWS_MOUSE_PROTO to the mouse device you specified with 
+your pointer resource handler. Only relative devices such as
+mice are supported, not absolute devices such as touchscreens.
+Make sure that when you run your input device resource manager,
+you specify to not start the Photon interface. Eg:
+	devi-hirun -P kbd fd -d/dev/kbd ps2 kb -2
+will allow you to use the keyboard and a PS/2 mouse by redirecting
+the console input. Note that you wont be able to type anything
+once you redirect the input! 
+QWS_MOUSE_PROTO=/dev/devi/mouse0
+
+Exporting DL_DEBUG=1 will give you some more information from
+the dynamic loader.
+
+luke@trolltech.com is responsible for this port. Please email me
+with any bugs or comments, with the subject line qt-qnx-port. */

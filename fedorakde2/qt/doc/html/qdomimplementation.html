@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QDomImplementation Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QDomImplementation Class Reference<br><small>[ <a href="xml.html">XML module</a> ]</small></h1><br clear="all">
+<p>
+The QDomImplementation class provides information about the features of the DOM implementation.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qdom-h.html">qdom.h</a>&gt;</code>
+<p><a href="qdomimplementation-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#a2dc4e"><b>QDomImplementation</b></a> () </div>
+<li><div class="fn"><a href="#c9b83a"><b>QDomImplementation</b></a> ( const QDomImplementation &amp; ) </div>
+<li><div class="fn">virtual <a href="#d3e225"><b>~QDomImplementation</b></a> () </div>
+<li><div class="fn">QDomImplementation&amp; <a href="#36d117"><b>operator=</b></a> ( const QDomImplementation &amp; ) </div>
+<li><div class="fn">bool <a href="#cd0100"><b>operator==</b></a> ( const QDomImplementation &amp; ) const</div>
+<li><div class="fn">bool <a href="#96c357"><b>operator!=</b></a> ( const QDomImplementation &amp; ) const</div>
+<li><div class="fn">virtual bool <a href="#4c7f13"><b>hasFeature</b></a> ( const QString &amp; feature, const QString &amp; version ) </div>
+<li><div class="fn">bool <a href="#beba3f"><b>isNull</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QDomImplementation class provides information about the features of the DOM implementation.
+<p>
+This class describes the features that are supported by the DOM
+implementation. Currently only the XML subset of DOM Level 1 is supported.
+<p>Normally you will use the function <a href="qdomdocument.html#3a9eb3">QDomDocument::implementation</a>() to get the
+implementation object.
+<p>For further information about the Document Objct Model see
+<a href="http://www.w3.org/TR/REC-DOM-Level-1/">http://www.w3.org/TR/REC-DOM-Level-1/</a>.
+For a more general introduction of the DOM implementation see the
+<a href="qdomdocument.html">QDomDocument</a> documentation.
+<p>See also  <a href="#4c7f13">hasFeature</a>().
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a2dc4e"></a>QDomImplementation::QDomImplementation ()</h3>
+<p>Constructs a QDomImplementation object.
+<h3 class="fn"><a name="c9b83a"></a>QDomImplementation::QDomImplementation ( const QDomImplementation &amp; x )</h3>
+<p>Copy constructor.
+<h3 class="fn"><a name="d3e225"></a>QDomImplementation::~QDomImplementation () <code>[virtual]</code></h3>
+<p>Destructor.
+<h3 class="fn">bool <a name="4c7f13"></a>QDomImplementation::hasFeature ( const <a href="qstring.html">QString</a> &amp; feature, const <a href="qstring.html">QString</a> &amp; version ) <code>[virtual]</code></h3>
+<p>The function returns TRUE if QDom implements the requested <em>version</em> of a <em>feature.</em>
+<p>Currently only the feature "XML" in version "1.0" is supported.
+<h3 class="fn">bool <a name="beba3f"></a>QDomImplementation::isNull ()</h3>
+<p>Returns TRUE if the object was not created by <a href="qdomdocument.html#3a9eb3">QDomDocument::implementation</a>().
+<h3 class="fn">bool <a name="96c357"></a>QDomImplementation::operator!= ( const QDomImplementation &amp; x ) const</h3>
+<p>Returns TRUE if both objects were created from different QDomDocuments.
+<h3 class="fn">QDomImplementation&amp; <a name="36d117"></a>QDomImplementation::operator= ( const QDomImplementation &amp; x )</h3>
+<p>Assignment operator.
+<h3 class="fn">bool <a name="cd0100"></a>QDomImplementation::operator== ( const QDomImplementation &amp; x ) const</h3>
+<p>Returns TRUE if both objects were created from the same <a href="qdomdocument.html">QDomDocument</a>.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

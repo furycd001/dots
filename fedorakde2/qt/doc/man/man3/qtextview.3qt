@@ -1,0 +1,337 @@
+'\" t
+.TH QTextView 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QTextView \- A sophisticated single-page rich text viewer
+.br
+.PP
+\fC#include <qtextview.h>\fR
+.PP
+Inherits QScrollView.
+.PP
+Inherited by QTextBrowser.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQTextView\fR ( QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQTextView\fR ( const QString & " "text" ", const QString & context = QString::null, QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QTextView\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetText\fR ( const QString & " "text" ", const QString & context ) "
+.br
+.ti -1c
+.BI "void \fBsetText\fR ( const QString & text ) "
+.br
+.ti -1c
+.BI "virtual QString \fBtext\fR () const"
+.br
+.ti -1c
+.BI "virtual QString \fBcontext\fR () const"
+.br
+.ti -1c
+.BI "TextFormat \fBtextFormat\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetTextFormat\fR ( TextFormat ) "
+.br
+.ti -1c
+.BI "QStyleSheet* \fBstyleSheet\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetStyleSheet\fR ( QStyleSheet * styleSheet ) "
+.br
+.ti -1c
+.BI "void \fBsetPaper\fR ( const QBrush & pap ) "
+.br
+.ti -1c
+.BI "const QBrush& \fBpaper\fR () "
+.br
+.ti -1c
+.BI "const QBrush& \fBpaper\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPaperColorGroup\fR ( const QColorGroup & colgrp ) "
+.br
+.ti -1c
+.BI "const QColorGroup& \fBpaperColorGroup\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetLinkColor\fR ( const QColor & ) "
+.br
+.ti -1c
+.BI "const QColor& \fBlinkColor\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetLinkUnderline\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBlinkUnderline\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetMimeSourceFactory\fR ( QMimeSourceFactory * factory ) "
+.br
+.ti -1c
+.BI "QMimeSourceFactory* \fBmimeSourceFactory\fR () const"
+.br
+.ti -1c
+.BI "QString \fBdocumentTitle\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBheightForWidth\fR ( int w ) const"
+.br
+.ti -1c
+.BI "void \fBappend\fR ( const QString & text ) "
+.br
+.ti -1c
+.BI "bool \fBhasSelectedText\fR () const"
+.br
+.ti -1c
+.BI "QString \fBselectedText\fR () const"
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "void \fBcopy\fR () "
+.br
+.ti -1c
+.BI "void \fBselectAll\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBkeyPressEvent\fR ( QKeyEvent * ) "
+.br
+.ti -1c
+.BI "QRichText& \fBrichText\fR () const"
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+QString	text	text	setText
+TextFormat	textFormat	textFormat	setTextFormat
+QBrush	paper	paper	setPaper
+QColorGroup	paperColorGroup	paperColorGroup	setPaperColorGroup
+QColor	linkColor	linkColor	setLinkColor
+bool	linkUnderline	linkUnderline	setLinkUnderline
+QString	documentTitle	documentTitle
+.TE
+.fi
+
+.SH DESCRIPTION
+A sophisticated single-page rich text viewer.
+.PP
+Unlike QSimpleRichText, which merely draws small pieces of rich text, a QTextView is a real widget, with scrollbars when necessary, for showing large text documents.
+.PP
+The rendering style and available tags are defined by a styleSheet(). Currently, a small XML/CSS1 subset including embedded images and tables is supported. See QStyleSheet for details. Possible images within the text document are resolved by using a QMimeSourceFactory. See setMimeSourceFactory() for details.
+.PP
+Using QTextView is quite similar to QLabel. It's mainly a call to setText() to set the contents. Setting the background color is slightly different from other widgets, since a text view is a scrollable widget that naturally provides a scrolling background. You can specify the colorgroup of the displayed text with setPaperColorGroup() or directly define the paper background with setPaper(). QTextView supports both plain color and complex pixmap backgrounds.
+.PP
+Note that we do not intend to add a full-featured web browser widget to Qt (since that would easily double Qt's size and only few applications would benefit from it). In particular, the rich text support in Qt is supposed to provide a fast, portable and sufficient way to add reasonable online help facilities to applications. We will, however, extend it to some degree in future versions of Qt.
+.PP
+For even more, like hypertext capabilities, see QTextBrowser.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QTextView::QTextView ( QWidget * parent=0, const char * name=0 )"
+Constructs an empty QTextView with the standard \fIparent\fR and \fIname\fR optional arguments.
+.SH "QTextView::QTextView ( const QString & text, const QString & context = QString::null, QWidget * parent=0, const char * name=0 )"
+Constructs a QTextView displaying the contents \fItext\fR with context \fIcontext,\fR with the standard \fIparent\fR and \fIname\fR optional arguments.
+.SH "QTextView::~QTextView ()"
+Destructs the view.
+.SH "void QTextView::append ( const QString & text )"
+Appends \fItext\fR to the current text.
+.PP
+Useful for log viewers.
+.PP
+\fBWarning:\fR This function has known problems (incorrect painting and layouting). If this problem occures to you, use setText( text() + theNewText ) instead. The new richtext engine, which is part of Qt 3.0, is able to handle append(), insert(), etc. properly.
+.SH "QString QTextView::context () const \fC[virtual]\fR"
+Returns the context of the view.
+.PP
+See also text() and setText().
+.SH "void QTextView::copy () \fC[slot]\fR"
+Copies the marked text to the clipboard.
+.SH "QString QTextView::documentTitle () const"
+Returns the document title parsed from the content.
+.SH "void QTextView::drawContentsOffset ( QPainter * p, int ox, int oy, int cx, int cy, int cw, int ch ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTextView::focusInEvent ( QFocusEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QTextView::focusOutEvent ( QFocusEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "bool QTextView::hasSelectedText () const"
+Returns TRUE if there is any text selected, FALSE otherwise.
+.PP
+See also selectedText().
+.SH "int QTextView::heightForWidth ( int w ) const \fC[virtual]\fR"
+Returns the height of the view given a width of \fIw.\fR
+.PP
+Reimplemented from QWidget.
+.SH "void QTextView::keyPressEvent ( QKeyEvent * e ) \fC[virtual protected]\fR"
+Provides scrolling and paging.
+.PP
+Reimplemented from QWidget.
+.SH "const QColor& QTextView::linkColor () const"
+Returns the current link color.
+.PP
+The color may either have been set with setLinkColor() or stem from the document's body tag.
+.PP
+See also setLinkColor().
+.SH "bool QTextView::linkUnderline () const"
+Returns whether or not links should be displayed underlined.
+.SH "QMimeSourceFactory* QTextView::mimeSourceFactory () const"
+Returns the current mime source factory for the view.
+.PP
+See also setMimeSourceFactory().
+.SH "void QTextView::paletteChange ( const QPalette & p ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "const QBrush& QTextView::paper ()"
+Returns the brush used to paint the background.
+.SH "const QBrush& QTextView::paper () const"
+Returns the brush used to paint the background.
+.SH "const QColorGroup& QTextView::paperColorGroup () const"
+Returns the colorgroup of the paper.
+.PP
+See also setPaperColorGroup() and setPaper().
+.SH "void QTextView::resizeEvent ( QResizeEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QRichText& QTextView::richText () const \fC[protected]\fR"
+Returns the document defining the view as drawable and queryable rich text object. This is not currently useful for applications.
+.SH "void QTextView::selectAll () \fC[slot]\fR"
+Selects all text.
+.SH "QString QTextView::selectedText () const"
+Returns a copy of the selected text in plain text format.
+.PP
+See also hasSelectedText().
+.SH "void QTextView::setLinkColor ( const QColor & col )"
+Sets the color used to display links in the document to \fCcol.\fR
+.PP
+See also linkColor().
+.SH "void QTextView::setLinkUnderline ( bool u )"
+Defines whether or not links should be displayed underlined.
+.SH "void QTextView::setMimeSourceFactory ( QMimeSourceFactory * factory )"
+Sets the mime source factory for the view. The factory is used to resolve named references within rich text documents. If no factory has been specified, the text view uses the default factory QMimeSourceFactory::defaultFactory().
+.PP
+Ownership of \fIfactory\fR is \fInot\fR transferred to make it possible for several text view widgets to share the same mime source.
+.PP
+See also mimeSourceFactory().
+.SH "void QTextView::setPaper ( const QBrush & pap )"
+Sets the brush to use as the background to \fIpap.\fR
+.PP
+This may be a nice parchment or marble pixmap or simply another plain color.
+.PP
+Technically, setPaper() is just a convenience function to set the base brush of the paperColorGroup().
+.PP
+See also paper().
+.SH "void QTextView::setPaperColorGroup ( const QColorGroup & colgrp )"
+Sets the full colorgroup of the paper to \fIcolgrp.\fR If not specified otherwise in the document itself, any text will use QColorGroup::text(). The background will be painted with QColorGroup::brush(QColorGroup::Base).
+.PP
+See also paperColorGroup() and setPaper().
+.SH "void QTextView::setStyleSheet ( QStyleSheet * styleSheet )"
+Sets the style sheet of the view.
+.PP
+See also styleSheet().
+.SH "void QTextView::setText ( const QString & text, const QString & context ) \fC[virtual]\fR"
+Changes the contents of the view to the string \fItext\fR and the context to \fIcontext.\fR
+.PP
+\fItext\fR may be interpreted either as plain text or as rich text, depending on the textFormat(). The default setting is \fCAutoText,\fR i.e. the text view autodetects the format from \fItext.\fR
+.PP
+The optional \fIcontext\fR is used to resolve references within the text document, for example image sources. It is passed directly to the mimeSourceFactory() when quering data.
+.PP
+See also text() and setTextFormat().
+.PP
+Reimplemented in QTextBrowser.
+.SH "void QTextView::setText ( const QString & text )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+Changes the contents of the view to the string \fItext.\fR
+.PP
+\fItext\fR may be interpreted either as plain text or as rich text, depending on the textFormat(). The default setting is \fCAutoText,\fR i.e. the text view autodetects the format from \fItext.\fR
+.PP
+This function calls setText( text, QString::null ), i.e. it sets a text without any context.
+.PP
+See also text() and setTextFormat().
+.SH "void QTextView::setTextFormat ( Qt::TextFormat format )"
+Sets the text format to \fIformat.\fR Possible choices are
+.TP
+\fCPlainText\fR - all characters are displayed verbatim, including all blanks and linebreaks.
+.TP
+\fCRichText\fR - rich text rendering. The available styles are defined in the default stylesheet QStyleSheet::defaultSheet().
+.TP
+\fCAutoText\fR - this is also the default. The label autodetects which rendering style suits best, \fCPlainText\fR or \fCRichText.\fR Technically, this is done by using the QStyleSheet::mightBeRichText() heuristic.
+.SH "void QTextView::showEvent ( QShowEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QStyleSheet* QTextView::styleSheet () const"
+Returns the current style sheet of the view.
+.PP
+See also setStyleSheet().
+.SH "QString QTextView::text () const \fC[virtual]\fR"
+Returns the contents of the view.
+.PP
+See also context() and setText().
+.SH "Qt::TextFormat QTextView::textFormat() const"
+Returns the current text format.
+.PP
+See also setTextFormat().
+.SH "void QTextView::viewportMouseMoveEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTextView::viewportMousePressEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTextView::viewportMouseReleaseEvent ( QMouseEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "void QTextView::viewportResizeEvent ( QResizeEvent * ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QScrollView.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qtextview.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qtextview.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,115 @@
+'\" t
+.TH QActionGroup 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QActionGroup \- Combines actions to a group
+.br
+.PP
+\fC#include <qaction.h>\fR
+.PP
+Inherits QAction.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQActionGroup\fR ( QWidget * " "parent" ", const char * " "name" " = 0, bool " "exclusive" " = TRUE ) "
+.br
+.ti -1c
+.BI "\fB~QActionGroup\fR () "
+.br
+.ti -1c
+.BI "void \fBsetExclusive\fR ( bool ) "
+.br
+.ti -1c
+.BI "bool \fBisExclusive\fR () const"
+.br
+.ti -1c
+.BI "void \fBinsert\fR ( QAction * ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBselected\fR ( QAction * ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+bool	exclusive	isExclusive	setExclusive
+.TE
+.fi
+
+.SH DESCRIPTION
+The QActionGroup class combines actions to a group.
+.PP
+An action group makes it easier to deal with groups of actions. It allows to add, remove or activate its children with a single call and provides radio semantics ("one of many" choice) for toggle actions.
+.PP
+QActionGroup is an action by its own and thus can be treated as such. Standard action functions like addTo(), removeFrom() and setEnabled() are automatically performed on all members of the group, i.e. for example that adding a group to a toolbar creates a tool button for each child action.
+.PP
+Toggle action handling is controlled with the setExclusive() flag, with the default being TRUE. An exclusive group switches off all toggle actions except the one that was activated. This results in a" one of many" choice similar to a group of radio buttons (see QRadioButton). An exclusive group emits the signal selected() whenever the current child action changes.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QActionGroup::QActionGroup ( QWidget * parent, const char * name = 0, bool exclusive = TRUE )"
+Constructs an action group with parent \fIparent\fR and name \fIname.\fR
+.PP
+If \fIexclusive\fR is TRUE, any toggle action that is a member of this group is toggled off by another action being toggled on.
+.SH "QActionGroup::~QActionGroup ()"
+Destroys the object and frees any allocated resources.
+.SH "bool QActionGroup::addTo ( QWidget * w ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QAction.
+.SH "void QActionGroup::insert ( QAction * action )"
+Inserts action \fIaction\fR to the group.
+.PP
+It is not necessary to manually insert actions that have this action group as their parent object.
+.SH "bool QActionGroup::isExclusive () const"
+Returns TRUE if the action group is exclusive, otherwise FALSE.
+.PP
+See also setExclusive().
+.SH "bool QActionGroup::removeFrom ( QWidget * w ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QAction.
+.SH "void QActionGroup::selected ( QAction * ) \fC[signal]\fR"
+This signal is emitted in exclusive groups when the current toggle action changes.
+.PP
+See also setExclusive().
+.SH "void QActionGroup::setEnabled ( bool enable ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QAction.
+.SH "void QActionGroup::setExclusive ( bool enable )"
+Sets the action group to be exclusive if \fIenable\fR is TRUE, or to be non-exclusive if \fIenable\fR is FALSE.
+.PP
+In an exclusive group, any toggle action that is a member of this group is toggled off by another action being toggled on.
+.PP
+See also  isExclusive().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qactiongroup.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qactiongroup.3qt) and the Qt
+version (2.3.2).

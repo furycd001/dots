@@ -1,0 +1,71 @@
+'\" t
+.TH QImageFormatType 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QImageFormatType \- Factory that makes
+.br
+.PP
+\fC#include <qasyncimageio.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "virtual \fB~QImageFormatType\fR () "
+.br
+.ti -1c
+.BI "virtual QImageFormat* \fBdecoderFor\fR ( const uchar * " "buffer" ", int length ) "
+.br
+.ti -1c
+.BI "virtual const char* \fBformatName\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQImageFormatType\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+Factory that makes QImageFormat objects.
+.PP
+While the QImageIO class allows for \fIcomplete\fR loading of images, QImageFormatType allows for \fIincremental\fR loading of images.
+.PP
+New image file formats are installed by creating objects of derived classes of QImageFormatType. They must implement decoderFor() and formatName().
+.PP
+QImageFormatType is a very simple class. Its only task is to recognize image data in some format and make a new object, subclassed from QImageFormat, which can decode that format.
+.PP
+The factories for formats built into Qt are automatically defined before any other factory is initialized. If two factories would recognize an image format, the factory created last will override the earlier one, thus you can override current and future built-in formats.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QImageFormatType::QImageFormatType () \fC[protected]\fR"
+Constructs a factory. It automatically registers itself with QImageDecoder.
+.SH "QImageFormatType::~QImageFormatType () \fC[virtual]\fR"
+Destroys a factory. It automatically unregisters itself from QImageDecoder.
+.SH "virtual QImageFormat* QImageFormatType::decoderFor ( const uchar * buffer, int length ) \fC[virtual]\fR"
+Returns a decoder for decoding an image which starts with the give bytes. This function should only return a decoder if it is definite that the decoder applies to data with the given header. Returns 0 if there is insufficient data in the header to make a positive identification, or if the data is not recognized.
+.SH "virtual const char* QImageFormatType::formatName () const \fC[virtual]\fR"
+Returns the name of the format supported by decoders from this factory.
+The string is statically allocated.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qimageformattype.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qimageformattype.3qt) and the Qt
+version (2.3.2).

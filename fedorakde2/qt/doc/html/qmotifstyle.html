@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QMotifStyle Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QMotifStyle Class Reference</h1><br clear="all">
+<p>
+Motif Look and Feel
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qmotifstyle-h.html">qmotifstyle.h</a>&gt;</code>
+<p>
+Inherits <a href="qcommonstyle.html">QCommonStyle</a>.
+<p>Inherited by <a href="qcdestyle.html">QCDEStyle</a>, <a href="qinterlacestyle.html">QInterlaceStyle</a>, <a href="qmotifplusstyle.html">QMotifPlusStyle</a> and <a href="qsgistyle.html">QSGIStyle</a>.
+<p><a href="qmotifstyle-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#a59c9a"><b>QMotifStyle</b></a> ( bool useHighlightCols = FALSE ) </div>
+<li><div class="fn">virtual <a href="#b5f0d1"><b>~QMotifStyle</b></a> () </div>
+<li><div class="fn">void <a href="#1a60e9"><b>setUseHighlightColors</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#b498c5"><b>useHighlightColors</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#f7b459"><b>drawButton</b></a> ( QPainter * p, int x, int y, int w, int h, const QColorGroup &amp; g, bool sunken = FALSE, const QBrush * fill = 0 ) </div>
+<li><div class="fn">virtual void <a href="#accf58"><b>drawExclusiveIndicatorMask</b></a> ( QPainter * p, int x, int y, int, int, bool ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Motif Look and Feel
+<p>
+This class implements the Motif look and feel. It almost completely
+resembles the original Motif look as defined by the Open Group, but
+also contains minor improvements. The Motif style is Qt's default
+GUI style on UNIX platforms.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a59c9a"></a>QMotifStyle::QMotifStyle ( bool useHighlightCols = FALSE )</h3>
+<p>Constructs a QMotifStyle.
+<p>If useHighlightCols is FALSE (default value), then the style will
+polish the application's color palette to emulate the Motif way of
+highlighting, which is a simple inversion between the base and the
+text color.
+<h3 class="fn"><a name="b5f0d1"></a>QMotifStyle::~QMotifStyle () <code>[virtual]</code></h3>
+<p>Destructs the style.
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="60f462"></a>QMotifStyle::comboButtonFocusRect ( int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#6bc9bd">QStyle.</a>
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="d63df0"></a>QMotifStyle::comboButtonRect ( int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#71383f">QStyle.</a>
+<h3 class="fn">void <a name="f51f20"></a>QMotifStyle::drawArrow ( <a href="qpainter.html">QPainter</a> * p, ArrowType type, bool down, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool enabled, const <a href="qbrush.html">QBrush</a> * = 0 )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="bd0508"></a>QMotifStyle::drawBevelButton ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool sunken = FALSE, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#77c5c0">QStyle.</a>
+<h3 class="fn">void <a name="f7b459"></a>QMotifStyle::drawButton ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool sunken = FALSE, const <a href="qbrush.html">QBrush</a> * fill = 0 ) <code>[virtual]</code></h3>
+<p>Draws a press-sensitive shape.
+<p>Reimplemented from <a href="qstyle.html#20fd59">QStyle.</a>
+<h3 class="fn">void <a name="46fa56"></a>QMotifStyle::drawCheckMark ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool act, bool dis ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#7df57d">QStyle.</a>
+<h3 class="fn">void <a name="ef6042"></a>QMotifStyle::drawComboButton ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool = FALSE, bool editable = FALSE, bool = TRUE, const <a href="qbrush.html">QBrush</a> * fb = 0 ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#42f8ae">QStyle.</a>
+<h3 class="fn">void <a name="3cdd16"></a>QMotifStyle::drawExclusiveIndicator ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, bool on, bool down = FALSE, bool = TRUE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#7efc7e">QStyle.</a>
+<h3 class="fn">void <a name="accf58"></a>QMotifStyle::drawExclusiveIndicatorMask ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, bool ) <code>[virtual]</code></h3>
+<p>Draws the mask of a mark indicating the state of an exclusive choice.
+<p>Reimplemented from <a href="qstyle.html#a0db5b">QStyle.</a>
+<h3 class="fn">void <a name="4ad9ac"></a>QMotifStyle::drawFocusRect ( <a href="qpainter.html">QPainter</a> * p, const <a href="qrect.html">QRect</a> &amp; r, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, const <a href="qcolor.html">QColor</a> * bg =0, bool atBorder = FALSE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#2cbe51">QStyle.</a>
+<h3 class="fn">void <a name="5b78ba"></a>QMotifStyle::drawIndicator ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, int s, bool down = FALSE, bool = TRUE ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#6010f7">QStyle.</a>
+<h3 class="fn">void <a name="dd9548"></a>QMotifStyle::drawPopupMenuItem ( <a href="qpainter.html">QPainter</a> * p, bool checkable, int maxpmw, int tab, QMenuItem * mi, const <a href="qpalette.html">QPalette</a> &amp; pal, bool act, bool enabled, int x, int y, int w, int h ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#c5672c">QStyle.</a>
+<h3 class="fn">void <a name="14f77c"></a>QMotifStyle::drawPushButton ( <a href="qpushbutton.html">QPushButton</a> * btn, <a href="qpainter.html">QPainter</a> * p ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#e6ad17">QStyle.</a>
+<h3 class="fn">void <a name="a64e97"></a>QMotifStyle::drawScrollBarControls ( <a href="qpainter.html">QPainter</a> * p, const <a href="qscrollbar.html">QScrollBar</a> * sb, int sliderStart, uint controls, uint activeControl ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#e3d23d">QStyle.</a>
+<h3 class="fn">void <a name="f452a7"></a>QMotifStyle::drawSlider ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, <a href="qt.html#Orientation">Orientation</a> orient, bool, bool ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#11145c">QStyle.</a>
+<h3 class="fn">void <a name="1326cb"></a>QMotifStyle::drawSliderGroove ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, QCOORD, <a href="qt.html#Orientation">Orientation</a> ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#c3fcb9">QStyle.</a>
+<h3 class="fn">void <a name="f915c3"></a>QMotifStyle::drawSplitter ( <a href="qpainter.html">QPainter</a> * p, int x, int y, int w, int h, const <a href="qcolorgroup.html">QColorGroup</a> &amp; g, <a href="qt.html#Orientation">Orientation</a> orient ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#acbd66">QStyle.</a>
+<h3 class="fn">void <a name="594942"></a>QMotifStyle::drawTab ( <a href="qpainter.html">QPainter</a> * p, const <a href="qtabbar.html">QTabBar</a> * tb, <a href="qtab.html">QTab</a> * t, bool selected )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="4d4fe6"></a>QMotifStyle::drawTabMask ( <a href="qpainter.html">QPainter</a> * p, const <a href="qtabbar.html">QTabBar</a> * tb, <a href="qtab.html">QTab</a> * t, bool selected )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="802388"></a>QMotifStyle::exclusiveIndicatorSize () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#d71caa">QStyle.</a>
+<h3 class="fn">int <a name="181253"></a>QMotifStyle::extraPopupMenuItemWidth ( bool checkable, int maxpmw, QMenuItem * mi, const <a href="qfontmetrics.html">QFontMetrics</a> &amp; ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#92de44">QStyle.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="a8c659"></a>QMotifStyle::indicatorSize () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#cf9356">QStyle.</a>
+<h3 class="fn">void <a name="bbb916"></a>QMotifStyle::polish ( <a href="qapplication.html">QApplication</a> * a )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="4fd856"></a>QMotifStyle::polish ( <a href="qpalette.html">QPalette</a> &amp; pal )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="205f05"></a>QMotifStyle::polish ( <a href="qwidget.html">QWidget</a> * w ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#6bd45e">QStyle.</a>
+<h3 class="fn">void <a name="4265a0"></a>QMotifStyle::polishPopupMenu ( <a href="qpopupmenu.html">QPopupMenu</a> * p ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#763b69">QStyle.</a>
+<h3 class="fn">int <a name="232ef1"></a>QMotifStyle::popupMenuItemHeight ( bool, QMenuItem * mi, const <a href="qfontmetrics.html">QFontMetrics</a> &amp; fm ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#cf0842">QStyle.</a>
+<h3 class="fn">void <a name="f36cca"></a>QMotifStyle::scrollBarMetrics ( const <a href="qscrollbar.html">QScrollBar</a> * sb, int &amp; sliderMin, int &amp; sliderMax, int &amp; sliderLength, int &amp; buttonDim ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#b1809e">QStyle.</a>
+<h3 class="fn">void <a name="1a60e9"></a>QMotifStyle::setUseHighlightColors ( bool arg )</h3>
+<p>If the argument is FALSE, then the style will polish the
+application's color palette to emulate the
+Motif way of highlighting, which is a simple inversion between the
+base and the text color.
+<p>The effect will show up the next time a application palette is set
+via <a href="qapplication.html#63c60d">QApplication::setPalette</a>(). The current color palette of the
+application remains unchanged.
+<p>See also  <a href="qstyle.html#07b10b">QStyle::polish</a>(, <a href="qpalette.html">QPalette</a>& and ).
+<h3 class="fn">int <a name="718777"></a>QMotifStyle::sliderLength () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#4f5f44">QStyle.</a>
+<h3 class="fn">int <a name="4cda25"></a>QMotifStyle::splitterWidth () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qstyle.html#e7d3e3">QStyle.</a>
+<h3 class="fn">void <a name="375328"></a>QMotifStyle::tabbarMetrics ( const <a href="qtabbar.html">QTabBar</a> * t, int &amp; hframe, int &amp; vframe, int &amp; overlap )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">bool <a name="b498c5"></a>QMotifStyle::useHighlightColors () const</h3>
+<p>Returns whether the style treats the highlight colors of the palette
+Motif-like, which is a simple inversion between the base and the
+text color. The default is FALSE.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

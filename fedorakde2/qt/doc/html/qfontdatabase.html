@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QFontDatabase Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QFontDatabase Class Reference</h1><br clear="all">
+<p>
+Provides information about available fonts.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qfontdatabase-h.html">qfontdatabase.h</a>&gt;</code>
+<p><a href="qfontdatabase-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#8ec470"><b>QFontDatabase</b></a> () </div>
+<li><div class="fn">QStringList <a href="#44bb3f"><b>families</b></a> ( bool onlyForLocale = TRUE ) const</div>
+<li><div class="fn">QValueList&lt;int&gt; <a href="#d66f6f"><b>pointSizes</b></a> ( const QString &amp; family, const QString &amp; style = QString::null, const QString &amp; charSet = QString::null ) </div>
+<li><div class="fn">QStringList <a href="#21aebf"><b>styles</b></a> ( const QString &amp; family, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">QStringList <a href="#fe91d5"><b>charSets</b></a> ( const QString &amp; familyName, bool onlyForLocale = TRUE ) const</div>
+<li><div class="fn">QFont <a href="#6af68a"><b>font</b></a> ( const QString familyName, const QString &amp; style, int pointSize, const QString charSetName = QString::null ) </div>
+<li><div class="fn">bool <a href="#fa13da"><b>isBitmapScalable</b></a> ( const QString &amp; family, const QString &amp; style = QString::null, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">bool <a href="#52baf1"><b>isSmoothlyScalable</b></a> ( const QString &amp; family, const QString &amp; style = QString::null, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">bool <a href="#65d243"><b>isScalable</b></a> ( const QString &amp; family, const QString &amp; style = QString::null, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">bool <a href="#eb4f4e"><b>isFixedPitch</b></a> ( const QString &amp; family, const QString &amp; style = QString::null, const QString &amp; charset = QString::null ) const</div>
+<li><div class="fn">QValueList&lt;int&gt; <a href="#833f16"><b>smoothSizes</b></a> ( const QString &amp; family, const QString &amp; style, const QString &amp; charSet = QString::null ) </div>
+<li><div class="fn">bool <a href="#2a7c6a"><b>italic</b></a> ( const QString &amp; family, const QString &amp; style, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">bool <a href="#b69653"><b>bold</b></a> ( const QString &amp; family, const QString &amp; style, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">int <a href="#afbb88"><b>weight</b></a> ( const QString &amp; family, const QString &amp; style, const QString &amp; charSet = QString::null ) const</div>
+<li><div class="fn">QString <a href="#78ef96"><b>styleString</b></a> ( const QFont &amp; ) </div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">QValueList&lt;int&gt; <a href="#eed4ef"><b>standardSizes</b></a> () </div>
+<li><div class="fn">QString <a href="#a6e0d2"><b>verboseCharSetName</b></a> ( const QString &amp; charSetName ) </div>
+<li><div class="fn">QString <a href="#a56e9e"><b>charSetSample</b></a> ( const QString &amp; charSetName ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Provides information about available fonts.
+<p>
+QFontDatabase provides information about the available fonts of the
+underlying window system.
+<p>Most often you will simply want to query the database for all font
+<a href="#44bb3f">families</a>(), and their respective <a href="#d66f6f">pointSizes</a>(), <a href="#21aebf">styles</a>() and
+<a href="#fe91d5">charSets</a>().
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="8ec470"></a>QFontDatabase::QFontDatabase ()</h3>
+<p>Creates a font database object.
+<h3 class="fn">bool <a name="b69653"></a>QFontDatabase::bold ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns if the font which matches the settings <em>family, style</em> and
+<em>charSet</em> is bold or not.
+<p>See also  <a href="#2a7c6a">italic</a>() and <a href="#afbb88">weight</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="a56e9e"></a>QFontDatabase::charSetSample ( const <a href="qstring.html">QString</a> &amp; charSetName ) <code>[static]</code></h3>
+<p>Returns some sample characters which are in the charset <em>charSetName.</em>
+<h3 class="fn"><a href="qstringlist.html">QStringList</a> <a name="fe91d5"></a>QFontDatabase::charSets ( const <a href="qstring.html">QString</a> &amp; family, bool onlyForLocale = TRUE ) const</h3>
+<p>Returns a list of all char sets in which the font <em>family</em> is available in the
+current locale if <em>onlyForLocale</em> is TRUE, otherwise all charsets of <em>family</em>
+independent of the locale are returned.
+<h3 class="fn"><a href="qstringlist.html">QStringList</a> <a name="44bb3f"></a>QFontDatabase::families ( bool onlyForLocale = TRUE ) const</h3>
+<p>Returns a list of names of all available font families in the current locale if
+<em>onlyForLocale</em> is TRUE, otherwise really all available font families independent
+of the current locale are returned.
+<p>If a family exists in several foundries, the returned name will be "foundry-family".
+<h3 class="fn"><a href="qfont.html">QFont</a> <a name="6af68a"></a>QFontDatabase::font ( const <a href="qstring.html">QString</a> family, const <a href="qstring.html">QString</a> &amp; style, int pointSize, const <a href="qstring.html">QString</a> charSet = QString::null )</h3>
+<p>Returns a <a href="qfont.html">QFont</a> object which matches the settings of <em>family, style, pointsize</em> and <em>charSet.</em> If no matching font could be created
+an empty QFont object is returned.
+<h3 class="fn">bool <a name="fa13da"></a>QFontDatabase::isBitmapScalable ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style = QString::null, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns whether the font which matches <em>family, style</em> and <em>charSet</em> is
+a scaleable bitmap font. Scaling a bitmap font produces a bad, often hardly
+readable result, as the pixels of the font are scaled. It's better to scale such
+a font only to the available fixed sizes (which you can get with <a href="#833f16">smoothSizes</a>()).
+<p>See also  <a href="#65d243">isScalable</a>() and <a href="#52baf1">isSmoothlyScalable</a>().
+<h3 class="fn">bool <a name="eb4f4e"></a>QFontDatabase::isFixedPitch ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style = QString::null, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns whether the font which matches <em>family, style</em> and <em>charSet</em> is
+fixed pitch.
+<h3 class="fn">bool <a name="65d243"></a>QFontDatabase::isScalable ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style = QString::null, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns TRUE if the font which matches the settings <em>family, style</em> and <em>charSet</em>
+is scaleable.
+<p>See also  <a href="#fa13da">isBitmapScalable</a>() and <a href="#52baf1">isSmoothlyScalable</a>().
+<h3 class="fn">bool <a name="52baf1"></a>QFontDatabase::isSmoothlyScalable ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style = QString::null, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns whether the font which matches <em>family, style</em> and <em>charSet</em> is
+a smoothly scaleable. If this function returns TRUE, it's save to scale this font
+to every size as the result will always look good.
+<p>See also  <a href="#65d243">isScalable</a>() and <a href="#fa13da">isBitmapScalable</a>().
+<h3 class="fn">bool <a name="2a7c6a"></a>QFontDatabase::italic ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns if the font which matches the settings <em>family, style</em> and
+<em>charSet</em> is italic or not.
+<p>See also  <a href="#afbb88">weight</a>() and <a href="#b69653">bold</a>().
+<h3 class="fn"><a href="qvaluelist.html">QValueList</a>&lt;int&gt; <a name="d66f6f"></a>QFontDatabase::pointSizes ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style = QString::null, const <a href="qstring.html">QString</a> &amp; charSet = QString::null )</h3>
+<p>Returns a list of all available sizes of the font <em>family</em> in the
+style <em>style</em> and the char set <em>charSet.</em>
+<p>See also  <a href="#833f16">smoothSizes</a>() and <a href="#eed4ef">standardSizes</a>().
+<h3 class="fn"><a href="qvaluelist.html">QValueList</a>&lt;int&gt; <a name="833f16"></a>QFontDatabase::smoothSizes ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style, const <a href="qstring.html">QString</a> &amp; charSet = QString::null )</h3>
+<p>Returns the point sizes of a font which matches <em>family, style</em> and <em>charSet,</em>
+that is guaranteed to look good. For non-scalable fonts and smoothly scalable fonts this function
+is equivalent to <a href="#d66f6f">pointSizes</a>().
+<p>See also  <a href="#d66f6f">pointSizes</a>() and <a href="#eed4ef">standardSizes</a>().
+<h3 class="fn"><a href="qvaluelist.html">QValueList</a>&lt;int&gt; <a name="eed4ef"></a>QFontDatabase::standardSizes () <code>[static]</code></h3>
+<p>Returns a list of standard fontsizes.
+<p>See also  <a href="#833f16">smoothSizes</a>() and <a href="#d66f6f">pointSizes</a>().
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="78ef96"></a>QFontDatabase::styleString ( const <a href="qfont.html">QFont</a> &amp; f )</h3>
+<p>Returns a string with describes the style of the font <em>f.</em> This is Something like
+"Bold Italic".
+<h3 class="fn"><a href="qstringlist.html">QStringList</a> <a name="21aebf"></a>QFontDatabase::styles ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Retruns all available styles of the font <em>family</em> in the
+char set <em>charSet.</em>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="a6e0d2"></a>QFontDatabase::verboseCharSetName ( const <a href="qstring.html">QString</a> &amp; charSetName ) <code>[static]</code></h3>
+<p>Returns a string which gives a quite detailed description of the <em>charSetName</em>
+which can be used e.g. for displaying in a dialog for the user.
+<h3 class="fn">int <a name="afbb88"></a>QFontDatabase::weight ( const <a href="qstring.html">QString</a> &amp; family, const <a href="qstring.html">QString</a> &amp; style, const <a href="qstring.html">QString</a> &amp; charSet = QString::null ) const</h3>
+<p>Returns the weight of the font which matches the settings <em>family, style</em> and
+<em>charSet.</em>
+<p>See also  <a href="#2a7c6a">italic</a>() and <a href="#b69653">bold</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QIconDragItem Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QIconDragItem Class Reference<br><small>[ <a href="iconview.html">iconview module</a> ]</small></h1><br clear="all">
+<p>
+The QIconDragItem class is the internal data structure of a <a href="qicondrag.html">QIconDrag</a>
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qiconview-h.html">qiconview.h</a>&gt;</code>
+<p><a href="qicondragitem-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#1953fd"><b>QIconDragItem</b></a> () </div>
+<li><div class="fn">virtual <a href="#f32e54"><b>~QIconDragItem</b></a> () </div>
+<li><div class="fn">virtual QByteArray <a href="#c00cb9"><b>data</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#89eea4"><b>setData</b></a> ( const QByteArray &amp; d ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QIconDragItem class is the internal data structure of a <a href="qicondrag.html">QIconDrag</a>
+<p>
+This class is used internally in the QIconDrag to store the data of each item
+(in fact, a list of QIconDragItems is used by QIconDrag).
+<p>So, normally for each iconview item which is dragged, a QIconDragItem
+class (or a class derived from QIconDragItem) is created and stored
+in the QIconDrag object.
+<p>See <a href="qiconview.html#8a680b">QIconView::dragObject</a>() for more information.
+<p>An example, how to implement this, is in the QtFileIconView example.
+(qt/examples/qfileiconview/qfileiconview.h and qt/examples/qfileiconview/qfileiconview.cpp).
+<p>Examples:
+ <a href="iconview-main-cpp.html#QIconDragItem">iconview/main.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="1953fd"></a>QIconDragItem::QIconDragItem ()</h3>
+<p>Constructs a QIconDragItem with no data.
+<h3 class="fn"><a name="f32e54"></a>QIconDragItem::~QIconDragItem () <code>[virtual]</code></h3>
+<p>Destructor.
+<h3 class="fn"><a href="qbytearray.html">QByteArray</a> <a name="c00cb9"></a>QIconDragItem::data () const <code>[virtual]</code></h3>
+<p>Returns the data of this QIconDragItem.
+<h3 class="fn">bool <a name="deb5e1"></a>QIconDragItem::operator== ( const QIconDragItem &amp; i ) const</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="89eea4"></a>QIconDragItem::setData ( const <a href="qbytearray.html">QByteArray</a> &amp; d ) <code>[virtual]</code></h3>
+<p>Sets the data of this QIconDragItem.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

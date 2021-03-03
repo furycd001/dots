@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QSjisCodec Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QSjisCodec Class Reference</h1><br clear="all">
+<p>
+Provides conversion to and from Shift-JIS.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qsjiscodec-h.html">qsjiscodec.h</a>&gt;</code>
+<p>
+Inherits <a href="qtextcodec.html">QTextCodec</a>.
+<p><a href="qsjiscodec-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#9e5146"><b>QSjisCodec</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+Provides conversion to and from Shift-JIS.
+<p>
+The <a href="qjiscodec.html">QJisCodec</a> class subclasses <a href="qtextcodec.html">QTextCodec</a> to provide support for
+Shift-JIS, an encoding of JIS X 0201 Latin, JIS X 0201 Kana or JIS X
+0208.
+<p>The environment variable <code>UNICODEMAP_JP</code> can be used to fine-tune how
+<a href="qjpunicodeconv.html">QJpUnicodeConv</a>, <a href="qeucjpcodec.html">QEucJpCodec</a>, QJisCodec and QSjisCodec do their work.
+The QJpUnicodeConv documentation describes how to use this variable.
+<p>It was largely written by Serika Kurusugawa a.k.a. Junji Takagi, and
+is included in Qt with the author's permission, and the grateful
+thanks of the Trolltech team. Here is the copyright statement for
+that code:
+<p>Copyright (c) 1999 Serika Kurusugawa, All rights reserved.
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met: <ol>
+<li> Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+<li> Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+</ol>
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="9e5146"></a>QSjisCodec::QSjisCodec ()</h3>
+<p>Creates a Shift-JIS codec.  Note that this is done automatically by
+the <a href="qapplication.html">QApplication</a>, you do not need construct your own.
+<h3 class="fn"><a href="qcstring.html">QCString</a> <a name="6ff2cf"></a>QSjisCodec::fromUnicode ( const <a href="qstring.html">QString</a> &amp; uc, int &amp; len_in_out ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qtextcodec.html#ec806f">QTextCodec.</a>
+<h3 class="fn">int <a name="695cdc"></a>QSjisCodec::heuristicContentMatch ( const char * chars, int len ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qtextcodec.html#fc6ed5">QTextCodec.</a>
+<h3 class="fn">int <a name="988e8c"></a>QSjisCodec::heuristicNameMatch ( const char * hint ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qtextcodec.html#1fb71a">QTextCodec.</a>
+<h3 class="fn"><a href="qtextdecoder.html">QTextDecoder</a>* <a name="3635a0"></a>QSjisCodec::makeDecoder () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qtextcodec.html#01e228">QTextCodec.</a>
+<h3 class="fn">int <a name="dc8de3"></a>QSjisCodec::mibEnum () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">const char* <a name="fa1a4b"></a>QSjisCodec::name () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qtextcodec.html#150a9d">QTextCodec.</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="1e94eb"></a>QSjisCodec::toUnicode ( const char * chars, int len ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qtextcodec.html#32c727">QTextCodec.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

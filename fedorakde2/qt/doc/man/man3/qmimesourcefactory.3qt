@@ -1,0 +1,185 @@
+'\" t
+.TH QMimeSourceFactory 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QMimeSourceFactory \- An extensible supply of MIME-typed data
+.br
+.PP
+\fC#include <qmime.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQMimeSourceFactory\fR () "
+.br
+.ti -1c
+.BI "virtual \fB~QMimeSourceFactory\fR () "
+.br
+.ti -1c
+.BI "virtual const QMimeSource* \fBdata\fR ( const QString & abs_name ) const"
+.br
+.ti -1c
+.BI "virtual QString \fBmakeAbsolute\fR ( const QString & " "abs_or_rel_name" ", const QString & context ) const"
+.br
+.ti -1c
+.BI "const QMimeSource* \fBdata\fR ( const QString & " "abs_or_rel_name" ", const QString & context ) const"
+.br
+.ti -1c
+.BI "virtual void \fBsetText\fR ( const QString & " "abs_name" ", const QString & text ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetImage\fR ( const QString & " "abs_name" ", const QImage & im ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetPixmap\fR ( const QString & " "abs_name" ", const QPixmap & pm ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetData\fR ( const QString & " "abs_name" ", QMimeSource * data ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetFilePath\fR ( const QStringList & ) "
+.br
+.ti -1c
+.BI "virtual QStringList \fBfilePath\fR () const"
+.br
+.ti -1c
+.BI "void \fBaddFilePath\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetExtensionType\fR ( const QString & " "ext" ", const char * mimetype ) "
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QMimeSourceFactory* \fBdefaultFactory\fR () "
+.br
+.ti -1c
+.BI "void \fBsetDefaultFactory\fR ( QMimeSourceFactory * ) "
+.br
+.in -1c
+.SH DESCRIPTION
+An extensible supply of MIME-typed data.
+.PP
+A QMimeSourceFactory provides an abstract interface to a collection of information. Each piece of information is represented by a QMimeSource object, which can be examined and converted to concrete data types by functions like QImageDrag::canDecode() and QImageDrag::decode().
+.PP
+The base QMimeSourceFactory can be used in two ways: as an abstraction of a collection of files, or as specifically stored data. For it to access files, call setFilePath() before accessing data. For stored data, call setData() for each item (there are also convenience functions setText(), setImage(), and setPixmap() that simply call setData() with massaged parameters).
+.PP
+The rich text widgets QTextView and QTextBrowser use QMimeSourceFactory to resolve references such as images or links within rich text documents. They either access the default factory ( see defaultFactory() ) or their own ( see QTextView::setMimeSourceFactory() ). Other classes that are capable of displaying rich text like QLabel, QWhatsThis or QMessageBox always use the default factory.
+.PP
+As mentioned earlier, a factory can also be used as container to store data associated with a name. This technique is useful whenever rich text contains images that are stored in the program itself, not loaded from the hard disk. Your program may for example define some image data as
+.PP
+.nf
+.br
+  static const char* myimage_xpm[]={
+.br
+  "...",
+.br
+  ...
+.br
+  "..."};
+.fi
+.PP
+To be able to use this image within some rich text, for example inside a QLabel, you have to create a QImage from the raw data and insert it into the factory with a unique name:
+.PP
+.nf
+.br
+  QMimeSourceFactory::defaultFactory()->setImage( "myimage", QImage(myimage_data) );
+.fi
+.PP
+Now you can create a rich text QLabel with
+.PP
+.nf
+.br
+  QLabel* label = new QLabel(
+.br
+      "Rich text with embedded image:<img source=\\"myimage\\">"
+.br
+      "Isn't that <em>cute</em>?" );
+.fi
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QMimeSourceFactory::QMimeSourceFactory ()"
+Constructs a QMimeSourceFactory which has no file path and no stored content.
+.SH "QMimeSourceFactory::~QMimeSourceFactory () \fC[virtual]\fR"
+Destructs the QMimeSourceFactory, deleting all stored content.
+.SH "void QMimeSourceFactory::addFilePath ( const QString & p )"
+Adds another search path.
+.PP
+See also setFilePath().
+.SH "const QMimeSource* QMimeSourceFactory::data ( const QString & abs_name ) const \fC[virtual]\fR"
+Returns a reference to the data associated with \fIabs_name.\fR The return value only remains valid until a subsequent call to this function for the same object, and only if setData() is not called to modify the data, so you should immediately decode the result.
+.PP
+If there is no data associated with \fIabs_name\fR in the factory's store, the factory tries to access the local filesystem. If \fIabs_name\fR isn't an absolute filename, the factory will search for it on all defined paths ( see setFilePath() ).
+.PP
+The factory understands all image formats supported by QImageIO. Any other mime types are determined by the filename extension. The default settings are
+.PP
+.nf
+.br
+  setExtensionType("html", "text/html;charset=iso8859-1");
+.br
+  setExtensionType("htm", "text/html;charset=iso8859-1");
+.br
+  setExtensionType("txt", "text/plain");
+.br
+  setExtensionType("xml", "text/xml;charset=UTF-8");
+.fi
+.PP
+The effect of these is that filenames ending in "html" or "htm" will be treated as text encoded in the iso8859-1 encoding, those ending in "txt" will be treated as text encoded in the local encoding; those ending in "xml" will be treated as text encoded in UTF8 encoding. The text subtype ("html"," plain", or "xml") does not affect the factory, but users of the factory may behave differently. We recommend creating "xml" files where practical as such files can be viewed regardless of the run-time encoding, and can encode any Unicode characters without resorting to encoding definitions inside the file.
+.PP
+Any file data that is not recognized will be retrieved as a QMimeSource providing the "application/octet-stream" MIME type, which is just uninterpreted binary data. You can add further extensions or change existing ones with subsequent calls to setExtensionType(). If the extension mechanism is not sufficient for you problem domain, you may inherit QMimeSourceFactory and reimplement this function to perform some more clever mime type detection. The same applies if you want to use the mime source factory for accessing URL referenced data over a network.
+.SH "const QMimeSource* QMimeSourceFactory::data ( const QString & abs_or_rel_name, const QString & context ) const"
+A convenience function. See data(const QString& abs_name).
+.SH "QMimeSourceFactory* QMimeSourceFactory::defaultFactory () \fC[static]\fR"
+Returns the application-wide default mime source factory. This factory is used by rich text rendering classes such as QSimpleRichText, QWhatsThis and also QMessageBox to resolve named references within rich text documents. It serves also as initial factory for the more complex render widgets QTextView and QTextBrowser.
+.PP
+See also setDefaultFactory().
+.SH "QStringList QMimeSourceFactory::filePath () const \fC[virtual]\fR"
+Returns the currently set search paths.
+.SH "QString QMimeSourceFactory::makeAbsolute ( const QString & abs_or_rel_name, const QString & context ) const \fC[virtual]\fR"
+Converts the absolute or relative data item name \fIabs_or_rel_name\fR to an absolute name, interpreted within the context of the data item named \fIcontext\fR (this must be an absolute name).
+.SH "void QMimeSourceFactory::setData ( const QString & abs_name, QMimeSource * data ) \fC[virtual]\fR"
+Sets \fIdata\fR to be the data item associated with the absolute name \fIabs_name.\fR Note that the ownership of \fIdata\fR is transferred to the factory - do not delete or access the pointer after passing it to this function.
+.SH "void QMimeSourceFactory::setDefaultFactory ( QMimeSourceFactory * factory ) \fC[static]\fR"
+Sets the default \fIfactory,\fR destroying any previously set mime source provider. The ownership of the factory is transferred.
+.PP
+See also defaultFactory().
+.SH "void QMimeSourceFactory::setExtensionType ( const QString & ext, const char * mimetype ) \fC[virtual]\fR"
+Sets the MIME-type to be associated with a filename extension. This determines the MIME-type for files found via a path set by setFilePath().
+.SH "void QMimeSourceFactory::setFilePath ( const QStringList & path ) \fC[virtual]\fR"
+Sets a list of directories which will be searched when named data is requested.
+.PP
+See also filePath().
+.SH "void QMimeSourceFactory::setImage ( const QString & abs_name, const QImage & image ) \fC[virtual]\fR"
+Sets \fIimage\fR to be the data item associated with the absolute name \fIabs_name.\fR
+.PP
+Equivalent to setData(abs_name, new QImageDrag(image)).
+.SH "void QMimeSourceFactory::setPixmap ( const QString & abs_name, const QPixmap & pixmap ) \fC[virtual]\fR"
+Sets \fIpixmap\fR to be the data item associated with the absolute name \fIabs_name.\fR
+.SH "void QMimeSourceFactory::setText ( const QString & abs_name, const QString & text ) \fC[virtual]\fR"
+Sets \fItext\fR to be the data item associated with the absolute name \fIabs_name.\fR
+.PP
+Equivalent to setData(abs_name, new QTextDrag(text)).
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qmimesourcefactory.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qmimesourcefactory.3qt) and the Qt
+version (2.3.2).

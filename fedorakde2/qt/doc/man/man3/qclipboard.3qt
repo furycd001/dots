@@ -1,0 +1,171 @@
+'\" t
+.TH QClipboard 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QClipboard \- Access to the window system clipboard
+.br
+.PP
+\fC#include <qclipboard.h>\fR
+.PP
+Inherits QObject.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "void \fBclear\fR () "
+.br
+.ti -1c
+.BI "QMimeSource* \fBdata\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetData\fR ( QMimeSource * ) "
+.br
+.ti -1c
+.BI "QString \fBtext\fR () const"
+.br
+.ti -1c
+.BI "QString \fBtext\fR ( QCString & subtype ) const"
+.br
+.ti -1c
+.BI "void \fBsetText\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "QImage \fBimage\fR () const"
+.br
+.ti -1c
+.BI "QPixmap \fBpixmap\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetImage\fR ( const QImage & ) "
+.br
+.ti -1c
+.BI "void \fBsetPixmap\fR ( const QPixmap & ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBdataChanged\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBconnectNotify\fR ( const char * ) (internal)"
+.br
+.in -1c
+.SH DESCRIPTION
+The QClipboard class provides access to the window system clipboard.
+.PP
+The clipboard offers a simple mechanism to copy and paste data between applications.
+.PP
+QClipboard supports the same data types that QDragObject does, and uses similar mechanisms. For advanced clipboard usage, you should read the drag-and-drop documentation.
+.PP
+There is only one QClipboard object in an application, and you can gain access to it using QApplication::clipboard().
+.PP
+Example:
+.PP
+.nf
+.br
+    QClipboard *cb = QApplication::clipboard();
+.br
+    QString text;
+.br
+.br
+    // Copy text from the clipboard (paste)
+.br
+    text = cb->text();
+.br
+    if ( text )
+.br
+        qDebug( "The clipboard contains: %s", text );
+.br
+.br
+    // Copy text into the clipboard
+.br
+    cb->setText( "This text can be pasted by other programs" );
+.fi
+.PP
+QClipboard features some convenience functions to access common data types: The methods setText() allows exchanging unicode text easily over the clipboard, while setPixmap() setImage() allows to exchange QPixmap and QImage between applications. setData() is the ultimate in flexibility: It allows you to add any QMimeSource onto the clipboard. (There are corresponding getters for each of these, e.g. text().)
+.PP
+You can clear the clipboard by calling the method clear().
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "void QClipboard::clear ()"
+Clears the clipboard contents.
+.SH "QMimeSource* QClipboard::data () const"
+Returns a reference to a QMimeSource representation of the current clipboard data.
+.SH "void QClipboard::dataChanged () \fC[signal]\fR"
+This signal is emitted when the clipboard data is changed.
+.SH "bool QClipboard::event ( QEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QObject.
+.SH "QImage QClipboard::image () const"
+Returns the clipboard image, or a null image if the clipboard does not contain an image, or if it contains an image in an unsupported image format.
+.PP
+See also setImage(), pixmap(), data() and QImage::isNull().
+.SH "QPixmap QClipboard::pixmap () const"
+Returns the clipboard pixmap, or null if the clipboard does not contain any pixmap. Note that this can lose information - for example, if the image is 24-bit and the display 8-bit the result is converted to 8 bits, and if the image has an alpha channel the result just has a mask.
+.PP
+See also setPixmap(), image(), data() and QPixmap::convertFromImage().
+.SH "void QClipboard::setData ( QMimeSource * src )"
+Sets the clipboard data. Ownership of the data is transferred to the clipboard - the only ways to remove this data is to set something else, or to call clear(). The QDragObject subclasses are reasonable things to put on the clipboard (but do not try to call QDragObject::drag() on the same object). Any QDragObject placed in the clipboard should have a parent of 0. Do not put QDragMoveEvent or QDropEvent subclasses on the clipboard, as they do not belong to the event handler which receives them.
+.PP
+The setText() and setPixmap() functions are simpler wrappers for this.
+.SH "void QClipboard::setImage ( const QImage & image )"
+Copies \fIimage\fR into the clipboard.
+.PP
+This is shorthand for:
+.PP
+.nf
+.br
+    setData(new QImageDrag(image))
+.fi
+.PP
+See also image(), setPixmap() and setData().
+.SH "void QClipboard::setPixmap ( const QPixmap & pixmap )"
+Copies \fIpixmap\fR into the clipboard. Note that this is slower than setImage() - it needs to convert the QPixmap to a QImage first.
+.PP
+See also pixmap(), setImage() and setData().
+.SH "void QClipboard::setText ( const QString & text )"
+Copies \fItext\fR into the clipboard.
+.PP
+See also text() and setData().
+.SH "QString QClipboard::text () const"
+Returns the clipboard as plain text, or a null string if the clipboard does not contain any text.
+.PP
+See also setText(), data() and QString::operator!().
+.SH "QString QClipboard::text ( QCString & subtype ) const"
+Returns the clipboard text in subtype \fIsubtype,\fR or a null string if the clipboard does not contain any text. If \fIsubtype\fR is null, any subtype is acceptable, and \fIsubtype\fR is set to the chosen subtype.
+.PP
+Common values for \fIsubtype\fR are "plain" and "html".
+.PP
+See also setText(), data() and QString::operator!().
+.SH "void QClipboard::connectNotify ( const char * ) \fC[virtual protected]\fR"
+For internal use only.
+.PP
+Reimplemented from QObject.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qclipboard.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qclipboard.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - forever/forever.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>A Rectangle Draw "Benchmark"</h1><br clear="all">
+
+  This example continuously draws rectangles in a window and
+  has another widget that counts the number of rectangles that
+  are drawn per second.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/forever/forever.h   2.3.2   edited 2001-01-26 $
+**
+** Definition of something or other
+**
+** Created : 979899
+**
+** Copyright (C) 1997 by Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef FOREVER_H
+#define FOREVER_H
+
+#include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+
+const int numColors = 120;
+
+class Forever : public QWidget
+{
+    Q_OBJECT
+public:
+    Forever( <a href="qwidget.html">QWidget</a> *parent=0, const char *name=0 );
+protected:
+    void        timerEvent( <a href="qtimerevent.html">QTimerEvent</a> * );
+private slots:
+    void        updateCaption();
+private:
+    int         rectangles;
+    <a href="qcolor.html">QColor</a>      colors[numColors];
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/forever/forever.cpp   2.3.2   edited 2001-10-18 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qtimer.h"></a><a href="qtimer-h.html">qtimer.h</a>&gt;
+#include &lt;<a name="qpainter.h"></a><a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;stdlib.h&gt;                             // defines rand() function
+
+#include "forever.h"
+
+//
+// Forever - a widget that draws rectangles forever.
+//
+
+//
+// Constructs a Forever widget.
+//
+
+Forever::Forever( <a name="QWidget"></a><a href="qwidget.html">QWidget</a> *parent, const char *name )
+    : <a href="qwidget.html">QWidget</a>( parent, name )
+{
+    for (int a=0; a&lt;numColors; a++) {
+        colors[a] = QColor( rand()&amp;255,
+                            rand()&amp;255,
+                            rand()&amp;255 );
+    }
+    rectangles = 0;
+    <a name="startTimer"></a><a href="qobject.html#4c6b67">startTimer</a>( 0 );                            // run continuous timer
+    <a name="QTimer"></a><a href="qtimer.html">QTimer</a> * counter = new <a href="qtimer.html">QTimer</a>( this );
+    <a name="connect"></a><a href="qobject.html#7f8e37">connect</a>( counter, SIGNAL(timeout()),
+             this, SLOT(<a name="updateCaption"></a><a href="#333">updateCaption</a>()) );
+    counter-&gt;<a name="start"></a><a href="qtimer.html#ce33bc">start</a>( 1000 );
+}
+
+void <a name="333"></a>Forever::updateCaption()
+{
+    <a name="QString"></a><a href="qstring.html">QString</a> s;
+    s.<a name="sprintf"></a><a href="qstring.html#926f67">sprintf</a>( "Qt Example - Forever - %d rectangles/second", rectangles );
+    rectangles = 0;
+    <a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( s );
+}
+
+//
+// Handles timer events for the Forever widget.
+//
+
+void <a name="334"></a>Forever::timerEvent( <a name="QTimerEvent"></a><a href="qtimerevent.html">QTimerEvent</a> * )
+{
+    <a name="QPainter"></a><a href="qpainter.html">QPainter</a> paint( this );                     // painter object
+    paint.<a name="setPen"></a><a href="qpainter.html#0183e4">setPen</a>( NoPen );                      // do not draw outline
+    int w = width();
+    int h = height();
+    if( w &lt;= 0 || h &lt;= 0 ) 
+        return;
+    for ( int i=0; i&lt;100; i++ ) {
+        paint.<a name="setBrush"></a><a href="qpainter.html#3e0cc8">setBrush</a>( colors[i % numColors]); // set random brush color
+        <a name="QPoint"></a><a href="qpoint.html">QPoint</a> p1( rand()%w, rand()%h );        // p1 = top left
+        <a href="qpoint.html">QPoint</a> p2( rand()%w, rand()%h );        // p2 = bottom right
+        <a name="QRect"></a><a href="qrect.html">QRect</a> r( p1, p2 );
+        paint.<a name="drawRect"></a><a href="qpainter.html#4c0077">drawRect</a>( r );                    // draw filled rectangle
+        rectangles++;
+    }
+}
+
+//
+// Create and display Forever widget.
+//
+
+int main( int argc, char **argv )
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );               // create application object
+    Forever always;                             // create widget
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;always );                 // set as main widget
+    always.<a href="qwidget.html#d6a291">setCaption</a>("Qt Example - Forever");
+    always.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();                              // show widget
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();                            // run event loop
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

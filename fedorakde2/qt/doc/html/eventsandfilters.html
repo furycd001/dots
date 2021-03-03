@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Events and Event Filters</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Events and Event Filters</h1><br clear="all">
+An event, in Qt, is an object that inherits <a href="qevent.html">QEvent</a>.  Events are
+delivered to objects that inherit <a href="qobject.html">QObject</a> through calling <a href="qobject.html#c67adb">QObject::event()</a>.  Event delivery means that an event has occurred, the
+QEvent indicates precisely what, and the QObject needs to react.  Most
+events are specific to <a href="qwidget.html">QWidget</a> and its subclasses, but there are
+important events that aren't related to graphics, such as socket
+activation, which is the event used by <a href="qsocketnotifier.html">QSocketNotifier</a> for its
+work.
+<p>
+Some events come from the window system, e.g. <a href="qmouseevent.html">QMouseEvent</a>, some
+from other sources, e.g. <a href="qtimerevent.html">QTimerEvent</a>, and some come from the
+application program.  Qt is symmetric, as usual, so you can send
+events in exactly the same ways as Qt's own event loop does.
+<p>
+Most events types have special classes, most commonly <a href="qresizeevent.html">QResizeEvent</a>,
+<a href="qpaintevent.html">QPaintEvent</a>, <a href="qmouseevent.html">QMouseEvent</a>, <a href="qkeyevent.html">QKeyEvent</a> and <a href="qcloseevent.html">QCloseEvent</a>.
+There are many others, perhaps forty or so, but most are rather odd.
+<p>
+Each class, <a href="qresizeevent.html">QResizeEvent</a> is an excellent example, subclasses QEvent
+and adds event-specific functions.  In the case of QResizeEvent, <a href="qresizeevent.html#a1e820">QResizeEvent::size()</a> and <a href="qresizeevent.html#9d3d24">QResizeEvent::oldSize()</a> are added.
+<p>
+Some classes support more than one event type.  <a href="qmouseevent.html">QMouseEvent</a>
+supports mouse moves, presses, shift-presses, drags, clicks,
+right-presses, and so on ad infinitum.
+<p>
+Since programs need to react in varied and complicated ways, Qt's
+event delivery mechanisms are rather flexible.  The documentation for
+<a href="qapplication.html#80dc5b">QApplication::notify()</a> concisely tells the whole story, here we
+will explain enough for 99% of applications.
+<p>
+The normal way for an event to be delivered is by calling a virtual
+function.  For example, <a href="qpaintevent.html">QPaintEvent</a> is delivered by calling <a href="qwidget.html#e3d821">QWidget::paintEvent()</a>.  This virtual function is responsible for
+reacting appropriately, normally by repainting the widget.
+<p>
+Occasionally there isn't a such an event-specific function, or the
+event-specific function isn't sufficient.  The most common example is
+tab key presses.  Normally, those are interpreted by QWidget to move
+the keyboard focus, but a few widgets need the tab key for themselves.
+<p>
+These objects can reimplement <a href="qobject.html#c67adb">QObject::event()</a>, the general event
+handler, and either do their event handling before or after the usual
+handling, or replace it completely.  A very odd widget that both
+interprets tab and has an application-specific custom event might
+contain:
+<p>
+<pre>  bool MyClass:event( <a href="qevent.html">QEvent</a> * e ) {
+      if ( e-&gt;<a href="qevent.html#4d3e5b">type</a>() == QEvent::KeyPress ) {
+          <a href="qkeyevent.html">QKeyEvent</a> * ke = (<a href="qkeyevent.html">QKeyEvent</a>*) e;
+          if ( ke-&gt;<a href="qkeyevent.html#b1e63d">key</a>() == Key_Tab ) {
+              // special tab handling here
+              k-&gt;accept();
+              return TRUE;
+          }
+      } else if ( e-&gt;<a href="qevent.html#4d3e5b">type</a>() &gt;= QEvent::User ) {
+          <a href="qcustomevent.html">QCustomEvent</a> * c = (<a href="qcustomevent.html">QCustomEvent</a>*) e;
+          // custom event handling here
+          return TRUE;
+      }
+      <a href="qwidget.html#6ff658">QWidget::event</a>( e );
+  }
+</pre>
+<p>
+More commonly, an object needs to look at another's events.  Qt
+supports this using <a href="qobject.html#185219">QObject::installEventFilter()</a> (and the
+corresponding remove).  For example, dialogs commonly want to filter
+key presses for some widgets, e.g. to modify Return-key handling.
+<p>
+An event filter gets to process events before the target object does.
+The filter's <a href="qobject.html#bd20fe">QObject::eventFilter()</a> implementation is called, and
+can accept or reject the filter, and allow or deny further processing
+of the event.  If all the event filters allow further processing of an
+event, the event is sent to the target object itself.  If one of them
+stops processing, the target and any later event filters don't get to
+see the event at all.
+<p>
+It's also possible to filter <em>all</em> events for the entire application,
+by installing an event filter on <a href="qapplication.html">QApplication</a>.  This is what <a href="qtooltip.html">QToolTip</a> does in order to see <em>all</em> the mouse and keyboard activity.
+Of course, this is very powerful, but it also slows down event
+delivery of every single event in the entire application, so it's best
+avoided.
+<p>
+The global event filters are called before the object-specific
+filters.
+<p>
+Finally, many applications want to create and send their own events.
+<p>
+Creating an event of a built-in type is very simple: Create an object
+of the relevant type, and then call <a href="qapplication.html#333290">QApplication::sendEvent()</a> or <a href="qapplication.html#96d77e">QApplication::postEvent()</a>.
+<p>
+sendEvent() processes the event immediately - when sendEvent()
+returns, (the event filters and) the object have already processed the
+event.  For many event classes there is a function called isAccepted()
+tells you whether the event was accepted or rejected by the last
+handler that was called.
+<p>
+postEvent() posts the event on a queue for later dispatch.  The next
+time Qt's main event loop runs, it dispatches all posted events, with
+some optimization.  For example, if there are several resize events,
+they are are compacted into one.  The same applies to paint events: <a href="qwidget.html#a66a88">QWidget::update()</a> calls postEvent(), which minimizes flickering and
+increases speed by avoiding multiple repaints.
+<p>
+postEvent() is also often used during object initialization, since the
+posted event will typically be dispatched very soon after the
+initialization of the object is complete.
+<p>
+To create events of a custom type, you need to define an event number,
+which must be greater than <code>QEvent::User,</code> and probably you also need
+to subclass <a href="qcustomevent.html">QCustomEvent</a> in order to pass characteristics about
+your custom event.  See the documentation to <a href="qcustomevent.html">QCustomEvent</a> for
+details.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,170 @@
+
+Qt 2.3.1 is a bugfix release. It keeps both forward and backward
+compatibility (source and binary) with Qt 2.3.0
+
+
+****************************************************************************
+*			    General					   *
+****************************************************************************
+
+- correctly reinitialize internal data structures on QApplication destruction to
+  allow the sequential creation of multiple QApplication objects.
+
+- Some bugfixes for the new support for Xft (antialiased fonts on X11)
+	correct clipping when drawing with Xft
+	correctly handle family names starting with a number
+	handle case when no Xft font could be loaded
+	correctly report bounding rectangles of strings
+
+- Printing on Windows
+	work around a bug in some HP printer drivers
+	correctly map between Qt and Windows page sizes
+
+- Improved build on HP/UX, AIX and SCO
+
+****************************************************************************
+*			   Library					   *
+****************************************************************************
+
+- QAction
+	use unique object names for generated objects
+
+- QCanvasView
+	even less flicker
+
+- QClipboard on Windows
+	keep clipboard contents even after application exit
+
+- QDns:
+	fixed a crash.
+
+- QFont
+	correctly report fixed pitch on Windows
+	make inFont work correctly on X11
+
+- QFontDataBase on X11:
+	report correct sizes when monitor resolution != 75 dpi
+	some fixes for asian character sets
+
+- QImageIO
+	fixed saving of paletted PNGs
+
+- QLineEdit
+	fixed keyboard selection after undo/redo
+
+- QListBox
+	fix numRows() and numCols() for empty listboxes	
+
+- QMovie
+	some performance optimizations
+
+- QPainter on X11
+	fixed clipping problems occuring in some cases in paint events
+	fix drawText when using scaled painters
+
+- QPopupMenu on Windows:
+	child widgets now receive mouse events
+	fix placement of menus
+
+- QPrintDialog on X11
+	more tolerant parsing of /etc/printcap
+
+- QPrinter on X11
+	search some more places for embeddable fonts
+	produce smaller postscript when printing grayscale images
+
+- QRichText
+	fixed a problem in the HTML parser
+	handle translated painters correctly
+	fixed endless loop occurring rarely when printing long tables
+
+- QString
+	fixed toULong for base != 10
+
+- QThread
+	some smaller fixes in QWaitCondition and sleep functions
+	don't lock application mutex for console applications
+
+- QToolBar
+	fixed moving of toolbars between main windows
+	Insert toolbuttons with associated popup menus as a submenu in the
+	extension popup
+
+- QUrl / QFileDialog
+	delete files with special characters
+	improved processed processing of filenames on different platforms
+	allow digits in protocol names
+
+- QUrlOperator
+	some memory leaks are fixed (one of them caused a segmentation
+	fault if FTP was used and the FTP server timed out)
+
+- QWidget
+	preserve Widget flags when toggling to and from FullScreen mode.
+	fixed some focus issues with the menubar's Alt-mode (clearFocus() 
+	did not always behave as desired).
+	X11 only: fixed mouse move event compression when using
+	QWidget::scroll().
+
+- QWizard
+	correct update of finished and next button
+
+- QWorkSpace
+	fixed minimize/maximize behaviour, hide maximize controls when the
+	workspace gets hidden
+	some focus handling fixes
+
+- Windows event processing
+	Use mouse position at event generation time rather than processing
+	time.
+
+
+****************************************************************************
+*			   Extensions					   *
+****************************************************************************
+
+- OpenGL
+	workaround for some Windows OpenGL drivers
+
+- Browser plugins
+	fixed OpenGL handling in plugins
+
+****************************************************************************
+*			      Other					   *
+****************************************************************************
+
+- Turn off Windows 2000 fading effects on color depths of less than 32 bit
+
+- Designer:
+	clear namespace when deleting widgets
+
+- fix some memory leaks in the network module
+
+- Better support for VNC
+
+****************************************************************************
+*               Changes that might affect runtime behavior                 *
+****************************************************************************
+
+- QWheelEvent
+	make accept the default state for QWheelEvent as documented
+
+- QPrinter on Windows
+	unknown page sizes now return QPrinter::Custom instead of the
+	wrong QPrinter::A4
+
+****************************************************************************
+*		    Qt/Embedded-specific changes		           *
+****************************************************************************
+
+- USB Keyboard support improved.
+- Printing support improved.
+- Development support for non-Linux platforms (eg. with QVfb on FreeBSD).
+- QWSServer/QWSWindow now have a more useable (and documented) API.
+- Pixmap brush polygon fills are now supported.
+- Fixed freezing of modal widgets inside manager events.
+- Bug fixes in masked blit, scrolling, clipped alpha-blended images,
+   focus handling, and QCopChannel::isRegistered().
+- iPAQ buttons F1..F4 are now F9..F12 (F4 pops up Comboboxes!)
+- Support for more mice.
+- Fixes to compile with GCC 3.0snapshots.

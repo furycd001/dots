@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Object Trees and Object Ownership</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Object Trees and Object Ownership</h1><br clear="all">
+<a href="qobject.html">QObjects</a> organize themselves in object trees.
+When you create a QObject with another object as parent, it's added to
+the parent's <a href="qobject.html#f790ce">children()</a> list, and
+is deleted when the parent is.  This turns out to fit the needs of GUI
+objects well.  For example, a <a href="qaccel.html">QAccel</a> (keyboard accelerator) is a
+child of the right window, so when the user closes that window, the
+accelerator is deleted too.
+<p>
+The static function <a href="qobject.html#3cb047">QObject::objectTrees()</a> gives you access to all
+the root objects that currently exist.
+<p>
+<a href="qwidget.html">QWidget</a>, the base class of everything that shows up on the screen,
+extends the parent/child relationship: a child normally also becomes a
+so-called child widget, i.e. it is displayed in its parent's
+coordinate system and is graphically clipped by its parent's
+boundaries.  Thus, when the the application deletes a message box
+after it's been closed, the message box' OK button is deleted too,
+just the way you would want, because the button is a child of the
+message box.
+<p>
+Of course, you can also delete a child object yourself, and it will
+remove itself from its parent.  For example, when the user removes a
+toolbar that could often result in the application deleting one of the
+<a href="qtoolbar.html">QToolBar</a> objects, and the tool bar's <a href="qmainwindow.html">QMainWindow</a> parent would
+then notice the change and reconfigure its screen space.
+<p>
+The debugging functions <a href="qobject.html#c21cea">QObject::dumpObjectTree()</a> and <a href="qobject.html#d459b3">QObject::dumpObjectInfo()</a> are often useful when an application looks or
+acts strangely.
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

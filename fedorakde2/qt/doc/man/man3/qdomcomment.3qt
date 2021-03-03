@@ -1,0 +1,91 @@
+'\" t
+.TH QDomComment 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDomComment \- Represents an XML comment
+.br
+.PP
+\fC#include <qdom.h>\fR
+.PP
+Inherits QDomCharacterData.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDomComment\fR () "
+.br
+.ti -1c
+.BI "\fBQDomComment\fR ( const QDomComment & x ) "
+.br
+.ti -1c
+.BI "QDomComment& \fBoperator=\fR ( const QDomComment & ) "
+.br
+.ti -1c
+.BI "\fB~QDomComment\fR () "
+.br
+.ti -1c
+.BI "virtual QDomNode::NodeType \fBnodeType\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisComment\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QDomComment class represents an XML comment.
+.PP
+A comment in the parsed XML such as
+.PP
+.nf
+.br
+  <!-- this is a comment -->
+.fi
+.PP
+is represented by QDomComment objects in the parsed Dom tree.
+.PP
+For further information about the Document Objct Model see http://www.w3.org/TR/REC-DOM-Level-1/. For a more general introduction of the DOM implementation see the QDomDocument documentation.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDomComment::QDomComment ()"
+Constructs an empty comment. To construct a comment with content, use the QDomDocument::createComment() function.
+.SH "QDomComment::QDomComment ( const QDomComment & x )"
+Copy constructor.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "QDomComment::~QDomComment ()"
+Destructor.
+.SH "bool QDomComment::isComment () const \fC[virtual]\fR"
+Returns TRUE.
+.PP
+Reimplemented from QDomNode.
+.SH "QDomNode::NodeType QDomComment::nodeType() const \fC[virtual]\fR"
+Returns \fCCommentNode.\fR
+.PP
+Reimplemented from QDomNode.
+.SH "QDomComment& QDomComment::operator= ( const QDomComment & x )"
+Assignment operator.
+.PP
+The data of the copy is shared: modifying one will also change the other. If
+you want to make a real copy, use cloneNode() instead.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdomcomment.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdomcomment.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QGridLayout Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QGridLayout Class Reference</h1><br clear="all">
+<p>
+The QGridLayout class lays out widgets in a grid.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qlayout-h.html">qlayout.h</a>&gt;</code>
+<p>
+Inherits <a href="qlayout.html">QLayout</a>.
+<p><a href="qgridlayout-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#492465"><b>QGridLayout</b></a> ( QWidget * parent, int nRows = 1, int nCols = 1, int border=0, int space = -1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#2fd6fe"><b>QGridLayout</b></a> ( int nRows = 1, int nCols = 1, int space = -1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#c7b878"><b>QGridLayout</b></a> ( QLayout * parentLayout, int nRows = 1, int nCols = 1, int space = -1, const char * name=0 ) </div>
+<li><div class="fn"><a href="#bca48f"><b>~QGridLayout</b></a> () </div>
+<li><div class="fn">virtual QSize <a href="#81d455"><b>sizeHint</b></a> () const</div>
+<li><div class="fn">virtual QSize <a href="#dad856"><b>minimumSize</b></a> () const</div>
+<li><div class="fn">virtual QSize <a href="#f731ea"><b>maximumSize</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#fa038a"><b>setRowStretch</b></a> ( int row, int stretch ) </div>
+<li><div class="fn">virtual void <a href="#df80c4"><b>setColStretch</b></a> ( int col, int stretch ) </div>
+<li><div class="fn">int <a href="#7e6158"><b>rowStretch</b></a> ( int row ) const</div>
+<li><div class="fn">int <a href="#7cba90"><b>colStretch</b></a> ( int col ) const</div>
+<li><div class="fn">int <a href="#eb0692"><b>numRows</b></a> () const</div>
+<li><div class="fn">int <a href="#bed9ab"><b>numCols</b></a> () const</div>
+<li><div class="fn">QRect <a href="#0f9f67"><b>cellGeometry</b></a> ( int row, int col ) const</div>
+<li><div class="fn">virtual bool <a href="#9141b9"><b>hasHeightForWidth</b></a> () const</div>
+<li><div class="fn">virtual int <a href="#c213e1"><b>heightForWidth</b></a> ( int ) const</div>
+<li><div class="fn">virtual QSizePolicy::ExpandData <a href="#99ccc5"><b>expanding</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#86ef06"><b>invalidate</b></a> () </div>
+<li><div class="fn">virtual void <a href="#fe33c3"><b>addItem</b></a> ( QLayoutItem * ) </div>
+<li><div class="fn">void <a href="#012fc9"><b>addItem</b></a> ( QLayoutItem * item, int row, int col ) </div>
+<li><div class="fn">void <a href="#67545e"><b>addMultiCell</b></a> ( QLayoutItem *, int fromRow, int toRow, int fromCol, int toCol, int align = 0 ) </div>
+<li><div class="fn">void <a href="#dac29c"><b>addWidget</b></a> ( QWidget *, int row, int col, int align = 0 ) </div>
+<li><div class="fn">void <a href="#92faca"><b>addMultiCellWidget</b></a> ( QWidget *, int fromRow, int toRow, int fromCol, int toCol, int align = 0 ) </div>
+<li><div class="fn">void <a href="#a409bc"><b>addLayout</b></a> ( QLayout * layout, int row, int col ) </div>
+<li><div class="fn">void <a href="#247b09"><b>addMultiCellLayout</b></a> ( QLayout * layout, int fromRow, int toRow, int fromCol, int toCol, int align = 0 ) </div>
+<li><div class="fn">void <a href="#5bee52"><b>addRowSpacing</b></a> ( int row, int minsize ) </div>
+<li><div class="fn">void <a href="#32d91d"><b>addColSpacing</b></a> ( int col, int minsize ) </div>
+<li><div class="fn">void <a href="#8c9014"><b>expand</b></a> ( int rows, int cols ) </div>
+<li><div class="fn">enum <b>Corner</b> { TopLeft, TopRight, BottomLeft, BottomRight }</div>
+<li><div class="fn">void <a href="#948c46"><b>setOrigin</b></a> ( Corner ) </div>
+<li><div class="fn">virtual void <a href="#e4d9b7"><b>setGeometry</b></a> ( const QRect &amp; ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">bool <a href="#0901ff"><b>findWidget</b></a> ( QWidget * w, int * r, int * c ) </div>
+<li><div class="fn">void <a href="#9dcc74"><b>add</b></a> ( QLayoutItem *, int row, int col ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QGridLayout class lays out widgets in a grid.
+<p>
+QGridLayout takes the space it gets (from its parent layout or from
+the <a href="qlayout.html#21ac4b">mainWidget</a>()), divides it up into rows and columns, and puts
+each of the widgets it manages into the correct cell(s).
+<p>Columns and rows behave identically; we will discuss columns but
+there are equivalent functions for rows.
+<p>Each column has a minimum width and a stretch factor.  The minimum
+width is the greatest of that set using <a href="#32d91d">addColSpacing</a>() and the
+minimum width of each widget in that column.  The stretch factor is
+set using <a href="#df80c4">setColStretch</a>() and determines how much of the available
+space the column will get, over and above its necessary minimum.
+<p>Normally, each managed widget or layout is put into a cell of its
+own using <a href="#dac29c">addWidget</a>(), <a href="#a409bc">addLayout</a>(), or by the <a href="qlayout.html#a83e73">auto-add facility</a>, but you can also put widget
+into multiple cells using <a href="#92faca">addMultiCellWidget</a>().  If you do that,
+QGridLayout will make a guess at how to distribute the size over the
+columns/rows (based on the stretch factors). You can adjust the
+minimum width of each column/row using addColSpacing()/<a href="#5bee52">addRowSpacing</a>().
+<p>This illustration shows a fragment of a dialog with a five-column,
+three-row grid (the grid is shown overlaid in magenta):
+<p><img src="gridlayout.png" width="425" height="150">
+<p>Columns 0, 2 and 4 in this dialog fragment are made up of a <a href="qlabel.html">QLabel</a>,
+a <a href="qlineedit.html">QLineEdit</a> and a <a href="qlistbox.html">QListBox</a>.  Columns 1 and 2 are placeholders, made
+with addColSpacing().  Row 0 consists of three QLabel objects, row 1
+of three QLineEdit objects and row 2 of three QListBox objects.
+<p>Since we did not want any space between the rows, we had to use
+placeholder columns to get the right amount of space between the
+columns.
+<p>Note that the columns and rows are not equally wide/tall: If you
+want two columns to be equally wide, you must set the columns'
+minimum widths and stretch factors to be the same yourself.  You do
+this using addColSpacing() and setStretch().
+<p>If the QGridLayout is not the top-level layout (ie. is not managing
+all of the widget's area and children), you must add it to its
+parent layout when you have created it, but before you can do
+anything with it.  The normal way to add a layout is by calling
+parentLayout->addLayout().
+<p>Once you have done that, you can start putting widgets and other
+layouts in the cells of your grid layout using addWidget(),
+addLayout() and addMultiCellWidget().
+<p>QGridLayout also includes two margin widths: The border width and
+the inter-box width.  The border width is the width of the reserved
+space along each of the QGridLayout's four sides.  The intra-widget
+width is the width of the automatically allocated spacing between
+neighbouring boxes.
+<p>The border width defaults to 0, and the intra-widget width defaults
+to the same as the border width.  Both are set using arguments to
+the constructor.
+<p>See also the <a href="layout.html">Layout Overview</a> documentation.
+<p>Examples:
+ <a href="cursor-cursor-cpp.html#QGridLayout">cursor/cursor.cpp</a>
+ <a href="layout-layout-cpp.html#QGridLayout">layout/layout.cpp</a>
+ <a href="rot13-rot13-cpp.html#QGridLayout">rot13/rot13.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="c7b878"></a>QGridLayout::QGridLayout ( <a href="qlayout.html">QLayout</a> * parentLayout, int nRows = 1, int nCols = 1, int space = -1, const char * name=0 )</h3>
+<p>Constructs a new grid that is placed inside <em>parentLayout,</em>
+with <em>nRows</em> rows and <em>nCols</em> columns,
+If <em>space</em> is -1, this QGridLayout will inherits its parent's
+<a href="qlayout.html#372777">spacing</a>(), otherwise <em>space</em> is used.
+<p>This grid is placed according to  <em>parentLayout's</em> default placement
+rules.
+<h3 class="fn"><a name="492465"></a>QGridLayout::QGridLayout ( <a href="qwidget.html">QWidget</a> * parent, int nRows = 1, int nCols = 1, int border=0, int space = -1, const char * name=0 )</h3>
+<p>Constructs a new QGridLayout with <em>nRows</em> rows, <em>nCols</em> columns
+and main widget <em>parent. parent</em> may not be 0.
+<p><em>border</em> is the number of pixels between the edge of the widget and
+the managed children.  <em>space</em> is the default number of pixels
+between cells.  If <em>space</em> is -1 the value
+of <em>border</em> is used.
+<p><em>name</em> is the internal object name.
+<h3 class="fn"><a name="2fd6fe"></a>QGridLayout::QGridLayout ( int nRows = 1, int nCols = 1, int space = -1, const char * name=0 )</h3>
+<p>Constructs a new grid with <em>nRows</em> rows and <em>nCols</em> columns,
+If <em>space</em> is -1, this QGridLayout will inherits its parent's
+<a href="qlayout.html#372777">spacing</a>(), otherwise <em>space</em> is used.
+<p>You have to insert this grid into another layout. You can insert
+widgets and layouts in this layout at any time, but layout will not
+be performed before it is inserted.
+<h3 class="fn"><a name="bca48f"></a>QGridLayout::~QGridLayout ()</h3>
+<p>Destructs the grid layout. Geometry management is terminated if
+this is a top-level grid.
+<h3 class="fn">void <a name="9dcc74"></a>QGridLayout::add ( <a href="qlayoutitem.html">QLayoutItem</a> * item, int row, int col ) <code>[protected]</code></h3>
+<p>Adds <em>item</em> at position <em>row, col.</em> The layout takes over ownership
+of <em>item.</em>
+<h3 class="fn">void <a name="32d91d"></a>QGridLayout::addColSpacing ( int col, int minsize )</h3>
+<p>Sets the minimum width of <em>col</em> to <em>minsize</em> pixels.
+<h3 class="fn">void <a name="fe33c3"></a>QGridLayout::addItem ( <a href="qlayoutitem.html">QLayoutItem</a> * item ) <code>[virtual]</code></h3>
+<p>Adds <em>item</em> to the next free position of this layout.
+<p>Reimplemented from <a href="qlayout.html#db69d5">QLayout.</a>
+<h3 class="fn">void <a name="012fc9"></a>QGridLayout::addItem ( <a href="qlayoutitem.html">QLayoutItem</a> * item, int row, int col )</h3>
+<p>Adds <em>item</em> at position <em>row, col.</em> The layout takes over ownership
+of <em>item.</em>
+<h3 class="fn">void <a name="a409bc"></a>QGridLayout::addLayout ( <a href="qlayout.html">QLayout</a> * layout, int row, int col )</h3>
+<p>Places another layout at position (<em>row, col)</em> in the grid.
+The top left position is (0,0).
+<h3 class="fn">void <a name="67545e"></a>QGridLayout::addMultiCell ( <a href="qlayoutitem.html">QLayoutItem</a> * item, int fromRow, int toRow, int fromCol, int toCol, int alignment = 0 )</h3>
+<p>Adds the <em>item</em> to the cell grid, spanning multiple rows/columns.
+<p>Alignment is specified by <em>alignment</em> which is a bitwise OR of
+<a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a> values.
+The default alignment is 0, which means
+that the widget fills the entire cell.
+<h3 class="fn">void <a name="247b09"></a>QGridLayout::addMultiCellLayout ( <a href="qlayout.html">QLayout</a> * layout, int fromRow, int toRow, int fromCol, int toCol, int alignment = 0 )</h3>
+<p>Adds the layout <em>w</em> to the cell grid, spanning multiple rows/columns.
+<p>Alignment is specified by <em>alignment</em> which is a bitwise OR of
+<a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a> values.
+The default alignment is 0, which means
+that the widget fills the entire cell.
+<p>A non-zero alignment indicates that the layout should not grow to
+fill the available space, but should be sized according to
+<a href="#81d455">sizeHint</a>().
+<h3 class="fn">void <a name="92faca"></a>QGridLayout::addMultiCellWidget ( <a href="qwidget.html">QWidget</a> * w, int fromRow, int toRow, int fromCol, int toCol, int alignment = 0 )</h3>
+<p>Adds the widget <em>w</em> to the cell grid, spanning multiple rows/columns.
+<p>Alignment is specified by <em>alignment</em> which is a bitwise OR of
+<a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a> values.
+The default alignment is 0, which means
+that the widget fills the entire cell.
+<p>A non-zero alignment indicates that the widget should not grow to
+fill the available space, but should be sized according to
+<a href="#81d455">sizeHint</a>().
+<p>Examples:
+ <a href="cursor-cursor-cpp.html#addMultiCellWidget">cursor/cursor.cpp</a>
+ <a href="layout-layout-cpp.html#addMultiCellWidget">layout/layout.cpp</a>
+<h3 class="fn">void <a name="5bee52"></a>QGridLayout::addRowSpacing ( int row, int minsize )</h3>
+<p>Sets the minimum height of <em>row</em> to <em>minsize</em> pixels.
+<h3 class="fn">void <a name="dac29c"></a>QGridLayout::addWidget ( <a href="qwidget.html">QWidget</a> * w, int row, int col, int alignment = 0 )</h3>
+<p>Adds the widget <em>w</em> to the cell grid at <em>row, col.</em>
+The top left position is (0,0)
+<p>Alignment is specified by <em>alignment</em> which is a bitwise OR of
+<a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a> values.
+The default alignment is 0, which means
+that the widget fills the entire cell.
+<p>Note 1: You should not call this if you have enabled the
+<a href="qlayout.html#a83e73">auto-add facility of the layout</a>.
+<p>Note 2: The <em>alignment</em> parameter is interpreted more aggressively
+than in previous versions of Qt.  A non-default alignment now
+indicates that the widget should not grow to fill the available
+space, but should be sized according to <a href="#81d455">sizeHint</a>().
+<p>Examples:
+ <a href="cursor-cursor-cpp.html#addWidget">cursor/cursor.cpp</a>
+ <a href="layout-layout-cpp.html#addWidget">layout/layout.cpp</a>
+ <a href="rot13-rot13-cpp.html#addWidget">rot13/rot13.cpp</a>
+<h3 class="fn"><a href="qrect.html">QRect</a> <a name="0f9f67"></a>QGridLayout::cellGeometry ( int row, int col ) const</h3>
+<p>Returns the geometry of the cell with row <em>row,</em> and column
+<em>col</em> in the grid. Returns an invalid rectangle if <em>row</em> or
+<em>col</em> is outside the grid.<p><b>Warning:</b> in the current version of Qt, this function does not return
+valid results until <a href="#e4d9b7">setGeometry</a>() has been called, ie. after the
+<a href="qlayout.html#21ac4b">mainWidget</a>() is visible.
+<h3 class="fn">int <a name="7cba90"></a>QGridLayout::colStretch ( int col ) const</h3>
+<p>Returns the stretch factor for column <em>col.</em>
+<p>See also  <a href="#df80c4">setColStretch</a>().
+<h3 class="fn">void <a name="8c9014"></a>QGridLayout::expand ( int nRows, int nCols )</h3>
+<p>Expands this grid so that it will have <em>nRows</em> rows and <em>nCols</em> columns.
+Will not shrink the grid. You should not need to call this function, as
+QGridLayout expands automatically as new items are inserted.
+<h3 class="fn">QSizePolicy::ExpandData <a name="99ccc5"></a>QGridLayout::expanding() const <code>[virtual]</code></h3>
+<p>Returns the expansiveness of this layout.
+<p>Reimplemented from <a href="qlayoutitem.html#132fc8">QLayoutItem.</a>
+<h3 class="fn">bool <a name="0901ff"></a>QGridLayout::findWidget ( <a href="qwidget.html">QWidget</a> * w, int * row, int * col ) <code>[protected]</code></h3>
+<p>Searches for <em>w</em> in this layout (not including child layouts).  If
+<em>w</em> is found, it sets <em>row</em> and <em>col</em> to the row and column and
+returns TRUE. If <em>w</em> is not found, FALSE is returned.<p><b>Warning:</b> If a widget spans  multiple rows/columns, the top-left cell is returned.
+<h3 class="fn">bool <a name="9141b9"></a>QGridLayout::hasHeightForWidth () const <code>[virtual]</code></h3>
+<p>Returns whether this layout's preferred height depends on its width.
+<p>Reimplemented from <a href="qlayoutitem.html#27843f">QLayoutItem.</a>
+<h3 class="fn">int <a name="c213e1"></a>QGridLayout::heightForWidth ( int w ) const <code>[virtual]</code></h3>
+<p>Returns the layout's preferred height when it is <em>w</em> pixels wide.
+<p>Reimplemented from <a href="qlayoutitem.html#03af08">QLayoutItem.</a>
+<h3 class="fn">void <a name="86ef06"></a>QGridLayout::invalidate () <code>[virtual]</code></h3>
+<p>Resets cached information.
+<p>Reimplemented from <a href="qlayoutitem.html#91d950">QLayoutItem.</a>
+<h3 class="fn"><a href="qlayoutiterator.html">QLayoutIterator</a> <a name="9b8c68"></a>QGridLayout::iterator () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qlayoutitem.html#40af74">QLayoutItem.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="f731ea"></a>QGridLayout::maximumSize () const <code>[virtual]</code></h3>
+<p>Returns the maximum size needed by this grid.
+<p>Reimplemented from <a href="qlayoutitem.html#7c9b8e">QLayoutItem.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="dad856"></a>QGridLayout::minimumSize () const <code>[virtual]</code></h3>
+<p>Returns the minimum size needed by this grid.
+<p>Reimplemented from <a href="qlayoutitem.html#83838c">QLayoutItem.</a>
+<h3 class="fn">int <a name="bed9ab"></a>QGridLayout::numCols () const</h3>
+<p>Returns the number of columns in this grid.
+<h3 class="fn">int <a name="eb0692"></a>QGridLayout::numRows () const</h3>
+<p>Returns the number of rows in this grid.
+<h3 class="fn">int <a name="7e6158"></a>QGridLayout::rowStretch ( int row ) const</h3>
+<p>Returns the stretch factor for row <em>row.</em>
+<p>See also  <a href="#fa038a">setRowStretch</a>().
+<h3 class="fn">void <a name="df80c4"></a>QGridLayout::setColStretch ( int col, int stretch ) <code>[virtual]</code></h3>
+<p>Sets the stretch factor of column <em>col</em> to <em>stretch.</em>
+The first column is number 0.
+<p>The stretch factor  is relative to the other columns in this grid.
+Columns with higher stretch factor take more of the available space.
+<p>The default stretch factor is 0.
+If the stretch factor is 0 and no other column in this table can
+grow at all, the column may still grow.
+<p>See also  <a href="#7cba90">colStretch</a>(), <a href="#32d91d">addColSpacing</a>() and <a href="#fa038a">setRowStretch</a>().
+<p>Examples:
+ <a href="layout-layout-cpp.html#setColStretch">layout/layout.cpp</a>
+<h3 class="fn">void <a name="e4d9b7"></a>QGridLayout::setGeometry ( const <a href="qrect.html">QRect</a> &amp; r ) <code>[virtual]</code></h3>
+<p>Resizes managed widgets within the rectangle <em>r.</em>
+<p>Reimplemented from <a href="qlayoutitem.html#0c6928">QLayoutItem.</a>
+<h3 class="fn">void <a name="948c46"></a>QGridLayout::setOrigin ( Corner c )</h3>
+<p>Sets which of the four corners of the grid corresponds to (0,0).
+<h3 class="fn">void <a name="fa038a"></a>QGridLayout::setRowStretch ( int row, int stretch ) <code>[virtual]</code></h3>
+<p>Sets the stretch factor of row <em>row</em> to <em>stretch.</em>
+The first row is number 0.
+<p>The stretch factor  is relative to the other rows in this grid.
+Rows with higher stretch factor take more of the available space.
+<p>The default stretch factor is 0.
+If the stretch factor is 0 and no other row in this table can
+grow at all, the row may still grow.
+<p>See also  <a href="#7e6158">rowStretch</a>(), <a href="#5bee52">addRowSpacing</a>() and <a href="#df80c4">setColStretch</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="81d455"></a>QGridLayout::sizeHint () const <code>[virtual]</code></h3>
+<p>Returns the preferred size of this grid.
+<p>Reimplemented from <a href="qlayoutitem.html#48b5b2">QLayoutItem.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

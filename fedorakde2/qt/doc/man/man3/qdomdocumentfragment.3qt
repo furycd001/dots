@@ -1,0 +1,90 @@
+'\" t
+.TH QDomDocumentFragment 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDomDocumentFragment \- Tree of QDomNodes which is usually not a complete
+.br
+.PP
+\fC#include <qdom.h>\fR
+.PP
+Inherits QDomNode.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDomDocumentFragment\fR () "
+.br
+.ti -1c
+.BI "\fBQDomDocumentFragment\fR ( const QDomDocumentFragment & x ) "
+.br
+.ti -1c
+.BI "QDomDocumentFragment& \fBoperator=\fR ( const QDomDocumentFragment & ) "
+.br
+.ti -1c
+.BI "\fB~QDomDocumentFragment\fR () "
+.br
+.ti -1c
+.BI "virtual QDomNode::NodeType \fBnodeType\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisDocumentFragment\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QDomDocumentFragment class is a tree of QDomNodes which is usually not a complete QDomDocument.
+.PP
+If you want to do complex tree operations it is useful to have a lightweight class to store nodes and their relations. QDomDocumentFragment stores a subtree of a document which does not necessarily represent a well-formed XML document.
+.PP
+QDomDocumentFragment is also useful if you want to group several nodes in a list and insert them all together as children of some node. In these cases QDomDocumentFragment can be used as a temporary container for this list of children.
+.PP
+The most important feature of QDomDocumentFragment is, that it is treated in a special way by QDomNode::insertAfter(), QDomNode::insertBefore() and QDomNode::replaceChild(): instead of inserting the fragment itself, all children of the fragment are inserted.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDomDocumentFragment::QDomDocumentFragment ()"
+Constructs an empty DocumentFragment.
+.SH "QDomDocumentFragment::QDomDocumentFragment ( const QDomDocumentFragment & x )"
+Copy constructor.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "QDomDocumentFragment::~QDomDocumentFragment ()"
+Destructor.
+.SH "bool QDomDocumentFragment::isDocumentFragment () const \fC[virtual]\fR"
+This function reimplements QDomNode::isDocumentFragment().
+.PP
+See also nodeType() and QDomNode::toDocumentFragment().
+.PP
+Reimplemented from QDomNode.
+.SH "QDomNode::NodeType QDomDocumentFragment::nodeType() const \fC[virtual]\fR"
+Returns \fCDocumentFragment.\fR
+.PP
+See also isDocumentFragment() and QDomNode::toDocumentFragment().
+.PP
+Reimplemented from QDomNode.
+.SH "QDomDocumentFragment& QDomDocumentFragment::operator= ( const QDomDocumentFragment & x )"
+Assignment operator.
+.PP
+The data of the copy is shared: modifying one will also change the other. If
+you want to make a real copy, use cloneNode() instead.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdomdocumentfragment.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdomdocumentfragment.3qt) and the Qt
+version (2.3.2).

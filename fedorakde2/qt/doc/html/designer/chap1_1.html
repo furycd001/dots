@@ -1,0 +1,74 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>What Do You Need A GUI Designer For?</title>
+		<meta name="generator" content="Adobe GoLive 4">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="Qt Designer Tutorial and User's Manual" href="part1index.html">
+		<link rel="PREVIOUS" title="Qt Designer Tutorial and User's Manual" href="part1index.html">
+		<link rel="NEXT" title="Tutorial: Creating A Simple Application With The Help Of
+	  Qt Designer" href="chap2_1.html">
+		
+	</head>
+
+	<body class="CHAPTER" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top"><a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a></td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom"><a href="part1index.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="80%" align="center" valign="bottom"><br>
+					</td>
+					<td width="10%" align="right" valign="bottom"><a href="chap2_1.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="CHAPTER">
+			<h1><a name="AEN28"></a>Chapter 1. What Do You Need A GUI Designer For?</h1>
+			<p>If you have some experience with GUI programming under your belt, you might ask why you should use a GUI designer in the first place. After all, you have written lots of dialogs yourself, without any help from these new-fashioned code generators, GUI builders, and whatnots. Aren't these things for newbies only, for people who never learned to get their hands dirty in a text editor, a real programmer's best friend?</p>
+			<p>You might be at least partially right. If you are really good at writing dialogs by hand, know the Qt layout system inside and out, and are generally a good, quick coder, you might be able to write your dialogs yourself just as fast. But hands on your heart: You <i class="EMPHASIS">do</i> sometimes use pencil and paper to draw a sketch of your dialog, don't you? Then why not let Qt Designer be your pencil and paper? You avoid the expense and the trouble and can save a few trees.</p>
+			<p>Another thing: Even if you are very good, your dialogs do not always look the way you want them to when you compile and run your program for the first time. So it's back to the editor, fix whatever needs fixing, then recompile, relink, and restart. Using a good GUI builder shortens this development cycle a lot, because it has a preview mode that lets you see your dialog &ldquo;for real&rdquo; right away, without any compiling.</p>
+			<p>Perhaps you like the general idea of a GUI builder, and you have already tried some but felt that they decreased your productivity rather than increased it. The GUI builder may have been written to support a different work or design style than yours, or it may have been just plain bad. Having an expensive-looking case or four-color ads in famous programming magazines does not necessarily mean that the tool is actually any good.</p>
+			<p>If this description fits you, I suggest you give Qt Designer a try. It is a well-crafted tool that does not force you into any specific design style, supports all Qt widgets as well as your own, and is especially helpful with using those pesky layout managers.</p>
+			<p>There is another reason why you might want to use a GUI builder or even advocate its use in your organization: In large organizations, there are usually different groups working on the design of the dialogs in an application and on their actual implementation. The designers know a lot about user interface design and usability issues but not necessarily enough about programming to write at least the skeletons of the dialogs themselves. Without a GUI builder, the designers usually draw the dialogs, either on a sheet of paper or with a drawing program, and the programmers then try to implement this design as close to the draft as possible. With a GUI builder, on the other hand, the designers can just design the dialogs in the GUI builder and click on the <span class="GUILABEL">Generate</span> button (or use whichever means of code generation the GUI builder provides), and the code is already written&#151;the programmers can concentrate on more creative jobs. In fact, if you are a programmer, you do not even need to tell the designers about the <span class="GUILABEL">Generate</span> button&#151;just ask them to save their design; then you can take the file, load it into the GUI builder, and click that <span class="GUILABEL">Generate</span> button yourself. The designers and your boss will think that it takes you half a day to implement a dialog design, while it actually takes you only five seconds, and you can play Quake the rest of the time.</p>
+			<p>We hope that we have convinced you that it is worthwhile to make yourself familiar with Qt Designer. To ease your first steps with this tool, the next few chapters will guide you through some simple processes that will teach you the basics of Qt Designer. Further chapters will then teach you all the ins and outs.<br>
+			<br>
+			</p>
+		</div>
+		<div class="NAVFOOTER">
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top"><a href="part1index.html"><img height="20" width="20" src="arrows/left.png" border="0"></a></td>
+					<td width="34%" align="center" valign="top"><a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><a href="chap2_1.html"><img height="20" width="20" src="arrows/right.png" border="0"></a></td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font color="white" >Qt Designer Tutorial and User's Manual</font></td>
+					<td width="34%" align="center" valign="top"><a href="part1index.html"><img height="20" width="20" src="arrows/up.png" border="0"></a></td>
+					<td width="33%" align="right" valign="top"><font color="white" >Tutorial: Creating A Simple Application With The Help Of Qt Designer</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

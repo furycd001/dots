@@ -1,0 +1,126 @@
+'\" t
+.TH QDoubleValidator 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDoubleValidator \- Range checking of floating-point numbers
+.br
+.PP
+\fC#include <qvalidator.h>\fR
+.PP
+Inherits QValidator.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDoubleValidator\fR ( QWidget * " "parent" ", const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fBQDoubleValidator\fR ( double " "bottom" ", double " "top" ", int " "decimals" ", QWidget * " "parent" ", const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "\fB~QDoubleValidator\fR () "
+.br
+.ti -1c
+.BI "QValidator::State \fBvalidate\fR ( QString &, int & ) const"
+.br
+.ti -1c
+.BI "virtual void \fBsetRange\fR ( double " "bottom" ", double " "top" ", int " "decimals" " = 0 ) "
+.br
+.ti -1c
+.BI "void \fBsetBottom\fR ( double ) "
+.br
+.ti -1c
+.BI "void \fBsetTop\fR ( double ) "
+.br
+.ti -1c
+.BI "void \fBsetDecimals\fR ( int ) "
+.br
+.ti -1c
+.BI "double \fBbottom\fR () const"
+.br
+.ti -1c
+.BI "double \fBtop\fR () const"
+.br
+.ti -1c
+.BI "int \fBdecimals\fR () const"
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+double	bottom	bottom	setBottom
+double	top	top	setTop
+int	decimals	decimals	setDecimals
+.TE
+.fi
+
+.SH DESCRIPTION
+The QDoubleValidator class provides range checking of floating-point numbers.
+.PP
+QDoubleValidator provides an upper bound, a lower bound, and a limit on the number of digits after the decimal point. It does not provide a fixup() function.
+.PP
+See also QIntValidator.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDoubleValidator::QDoubleValidator ( QWidget * parent, const char * name = 0 )"
+Constructs a validator object which accepts all doubles.
+.SH "QDoubleValidator::QDoubleValidator ( double bottom, double top, int decimals, QWidget * parent, const char * name = 0 )"
+Constructs a validator object which accepts all doubles from \fIbottom\fR up to and including \fItop\fR with at most \fIdecimals\fR digits after the decimal point.
+.SH "QDoubleValidator::~QDoubleValidator ()"
+Destroys the validator, freeing any storage and other resources used.
+.SH "double QDoubleValidator::bottom () const"
+Returns the lowest valid number according to this validator.
+.PP
+See also top(), decimals() and setRange().
+.SH "int QDoubleValidator::decimals () const"
+Returns the largest number of digits a valid number can have after its decimal point.
+.PP
+See also bottom(), top() and setRange().
+.SH "void QDoubleValidator::setBottom ( double bottom )"
+Sets the validator to accept no numbers smaller than \fIbottom.\fR
+.PP
+See also setRange().
+.SH "void QDoubleValidator::setDecimals ( int decimals )"
+Sets the maximum number of digits after the decimal point.
+.SH "void QDoubleValidator::setRange ( double bottom, double top, int decimals = 0 ) \fC[virtual]\fR"
+Sets the validator to accept numbers from \fIbottom\fR up to and including \fItop\fR with at most \fIdecimals\fR digits after the decimal point.
+.SH "void QDoubleValidator::setTop ( double top )"
+Sets the validator to accept no numbers bigger than \fItop.\fR
+.PP
+See also setRange().
+.SH "double QDoubleValidator::top () const"
+Returns the highest valid number according to this validator.
+.PP
+See also bottom(), decimals() and setRange().
+.SH "QValidator::State QDoubleValidator::validate( QString & input, int & ) const"
+Returns \fIAcceptable\fR if \fIinput\fR contains a number in the legal
+range and format, \fIIntermediate\fR if it contains another number, a
+number with too many digits after the decimal point or is empty, and
+\fIInvalid\fR if \fIinput\fR is not a number.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdoublevalidator.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdoublevalidator.3qt) and the Qt
+version (2.3.2).

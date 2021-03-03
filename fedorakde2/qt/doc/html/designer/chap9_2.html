@@ -1,0 +1,554 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>The &lt;widget&gt; Element</title>
+		<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.49">
+		<link rel="HOME" href="book1.html">
+		<link rel="UP" title="The File Format Of .ui Files" href="chap9_1.html">
+		<link rel="PREVIOUS" title="The File Format Of .ui Files" href="chap9_1.html">
+		<link rel="NEXT" title="The Pixmaps In The <images> Element" href="chap9_3.html">
+		
+	</head>
+
+	<body class="SECT1" bgcolor="white" text="black" link="blue" vlink="#840084" alink="blue">
+		<div class="NAVHEADER">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="500" align="left" valign="middle"><img height="90" width="475" src="figures/title.png" border="0"></td>
+					<td></td>
+					<td align="right" valign="top"> <a href="../company/about/trolls.html">
+						<table border="0" cellpadding="0" cellspacing="0" width="137">
+							<tr>
+								<td><img height="100" width="100" src="figures/f001.png" border="0"></td>
+								<td><img height="100" width="100" src="figures/qtlogo.png" align="top" border="0"></td>
+							</tr>
+						</table>
+						</a> </td>
+				</tr>
+				<tr>
+					<td width="500"><spacer type="block" width="500" height="20"></td>
+					<td><spacer type="block" width="42" height="20"></td>
+					<td><br>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="10%" align="left" valign="bottom"> <a href="chap9_1.html"><img height="20" width="20" src="arrows/left.png" border="0"></a> </td>
+					<td width="80%" align="center" valign="bottom"><font color="white"><b>Chapter 9. The File Format Of .ui Files</b></font></td>
+					<td width="10%" align="right" valign="bottom"> <a href="chap9_3.html"><img height="20" width="20" src="arrows/right.png" border="0"></a> </td>
+				</tr>
+			</table>
+		</div>
+		<div class="SECT1">
+			<h1 class="SECT1"><a name="QT-DESIGNER-REF-UI-WIDGETELEMENT"></a> The <tt class="LITERAL">&lt;widget&gt;</tt> Element</h1>
+			<p>As its name implies, the widget element describes one widget. At the top level of the <tt class="FILENAME">.ui</tt> file, there must be exactly one such element for the top-level widget of the form, but this element can in turn contain other <tt class="LITERAL">&lt;widget&gt;</tt> elements.</p>
+			<p>A <tt class="LITERAL">&lt;widget&gt;</tt> element can have the following subelements:</p>
+			<dl>
+				<dt><tt class="LITERAL">&lt;class&gt;</tt>
+				<dd>
+				<p>There must be exactly one such element that describes the C++ class of the widget (like <tt class="LITERAL">QWidget</tt>).</p>
+				<dt><tt class="LITERAL">&lt;property&gt;</tt>
+				<dd>
+				<p>There can be any number of such elements that describe the properties of the widget that differ from the default. See the next section for a description of how <tt class="LITERAL">&lt;property&gt;</tt> elements should look.</p>
+				<dt><tt class="LITERAL">&lt;attribute&gt;</tt>
+				<dd>
+				<p>There can be any number of such elements that describe the attributes of the widget. Attributes are like properties, but are not defined in the widget and need to be treated specially. This element has the same syntax as the <tt class="LITERAL">&lt;property&gt;</tt> element.</p>
+				<dt><tt class="LITERAL">&lt;item&gt;</tt>
+				<dd>
+				<p>There can be any number of such elements that describe the items of this widget if the widget can contain items (like list boxes or icon views). See <a href="#QT-DESIGNER-REF-UI-ITEMELEMENT">the section called <i>The <tt class="LITERAL">&lt;item&gt;</tt> Element</i></a> for the exact syntax of this item.</p>
+				<dt><tt class="LITERAL">&lt;column&gt;</tt>
+				<dd>
+				<p>There can be any number of such elements that describe the columns of this widget if the widget is a list view. See <a href="#QT-DESIGNER-REF-UI-COLUMNELEMENT">the section called <i>The <tt class="LITERAL">&lt;column&gt;</tt> Element</i></a> for the exact syntax of this item.</p>
+				<dt>Child widgets
+				<dd>
+				<p>Child widgets can be specified in one of four ways:</p>
+				<dl>
+					<dt>Any number of <tt class="LITERAL">&lt;widget&gt;</tt> elements
+					<dd>
+					<p>If the widget does not use any layout management, then the children are directly specified as <tt class="LITERAL">&lt;widget&gt;</tt> elements.</p>
+					<dt>One <tt class="LITERAL">&lt;hbox&gt;</tt> element
+					<dd>
+					<p>If the widget uses a horizontal box layout as its outermost layout, then exactly one <tt class="LITERAL">&lt;hbox&gt;</tt> is specified, which in turn specifies the child widgets. See <a href="#QT-DESIGNER-REF-UI-HBOXELEMENT">the section called <i>The <tt class="LITERAL">&lt;hbox&gt;</tt> Element</i></a> for the exact syntax of this element.</p>
+					<dt>One <tt class="LITERAL">&lt;vbox&gt;</tt> element
+					<dd>
+					<p>If the widget uses a vertical box layout as its outermost layout, then exactly one <tt class="LITERAL">&lt;vbox&gt;</tt> is specified, which in turn specifies the child widgets. See <a href="#QT-DESIGNER-REF-UI-VBOXELEMENT">the section called <i>The <tt class="LITERAL">&lt;vbox&gt;</tt> Element</i></a> for the exact syntax of this element.</p>
+					<dt>One <tt class="LITERAL">&lt;grid&gt;</tt> element
+					<dd>
+					<p>If the widget uses a grid layout as its outermost layout, then exactly one <tt class="LITERAL">&lt;grid&gt;</tt> is specified, which in turn specifies the child widgets. See <a href="#QT-DESIGNER-REF-UI-GRIDELEMENT">the section called <i>The <tt class="LITERAL">&lt;grid&gt;</tt> Element</i></a> for the exact syntax of this element.</p>
+				</dl>
+			</dl>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-PROPERTYELEMENT"></a> The <tt class="LITERAL">&lt;property&gt;</tt> Element</h2>
+				<p>This element describes a property of a widget or a layout. Each property has as its first child a <tt class="LITERAL">&lt;name&gt;</tt> element that describes the name of the property (like <tt class="LITERAL">geometry</tt>) and as its second child an element whose name describes the type and whose contents describe the value of the property. <a href="#QT-DESIGNER-TABLE-PROPERTIES">Table 9-1</a> lists the possible type names together with a description of their values.</p>
+				<div class="TABLE">
+					<a name="QT-DESIGNER-TABLE-PROPERTIES"></a> 
+					<p><b>Table 9-1. Property Types</b></p>
+					<p>
+					<table border="1" class="CALSTABLE">
+						<tr>
+							<th align="left" valign="top">Element Name</th>
+							<th align="left" valign="top">Type</th>
+							<th align="left" valign="top">Description of the Value</th>
+							<th align="left" valign="top">Example</th>
+						</tr>
+						<tr>
+							<td align="left" valign="top">string</td>
+							<td align="left" valign="top">Any Unicode string value (saved in UTF-8)</td>
+							<td align="left" valign="top">String</td>
+							<td align="left" valign="top">&lt;string&gt;Some Text&lt;/string&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">cstring</td>
+							<td align="left" valign="top">Any c-string (8-bit) value</td>
+							<td align="left" valign="top">CString</td>
+							<td align="left" valign="top">&lt;string&gt;Some Text&lt;/string&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">bool</td>
+							<td align="left" valign="top">Any boolean value</td>
+							<td align="left" valign="top">Bool (1|0)</td>
+							<td align="left" valign="top">&lt;bool&gt;1&lt;/bool&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">number</td>
+							<td align="left" valign="top">Any signed numerical value</td>
+							<td align="left" valign="top">Integer</td>
+							<td align="left" valign="top">&lt;number&gt;-4&lt;/number&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">number</td>
+							<td align="left" valign="top">Any unsigned numerical value</td>
+							<td align="left" valign="top">Unsigned integer</td>
+							<td align="left" valign="top">&lt;number&gt;1&lt;/number&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">enum</td>
+							<td align="left" valign="top">Enum key</td>
+							<td align="left" valign="top">String</td>
+							<td align="left" valign="top">&lt;enum&gt;StrongFocus&lt;/enum&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">set</td>
+							<td align="left" valign="top">Set (OR'd integers)</td>
+							<td align="left" valign="top">StringList joined with '|'</td>
+							<td align="left" valign="top">&lt;set&gt;AlignLeft|AlignTop|WordWrap&lt;/set&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">rect</td>
+							<td align="left" valign="top">Rectangles</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;x&gt;Integer&lt;/x&gt;<br>
+								&lt;y&gt;Integer&lt;/y&gt;<br>
+								&lt;width&gt;Integer&lt;/width&gt;<br>
+								&lt;height&gt;Integer&lt;/height&gt;<br>
+								<i class="EMPHASIS">If you leave out one of the elements, the value of it defaults to zero (0).</i></td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;rect&gt;<br>
+								&nbsp;&nbsp;&lt;x&gt;20&lt;/x&gt;<br>
+								&nbsp;&nbsp;&lt;y&gt;30&lt;/y&gt;<br>
+								&nbsp;&nbsp;&lt;width&gt;200&lt;/width&gt;<br>
+								&nbsp;&nbsp;&lt;height&gt;25&lt;/height&gt;<br>
+								&lt;/rect&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">point</td>
+							<td align="left" valign="top">Points (coordinates)</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;x&gt;Integer&lt;/x&gt;<br>
+								&lt;y&gt;Integer&lt;/y&gt;<br>
+								<i class="EMPHASIS">If you leave out one of the elements, the value of it defaults to zero (0).</i></td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;point&gt;<br>
+								&nbsp;&nbsp;&lt;x&gt;20&lt;/x&gt;<br>
+								&nbsp;&nbsp;&lt;y&gt;30&lt;/y&gt;<br>
+								&lt;/point&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">size</td>
+							<td align="left" valign="top">Sizes</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;width&gt;Integer&lt;/width&gt;<br>
+								&lt;height&gt;Integer&lt;/height&gt;<br>
+								<i class="EMPHASIS">If you leave out one of the elements, the value of it defaults to zero (0).</i></td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;size&gt;<br>
+								&nbsp;&nbsp;&lt;width&gt;200&lt;/width&gt;<br>
+								&nbsp;&nbsp;&lt;height&gt;25&lt;/height&gt;<br>
+								&lt;/size&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">font</td>
+							<td align="left" valign="top">Font description</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;family&gt;String&lt;/family&gt;<br>
+								&lt;pointsize&gt;Integer&lt;/pointsize&gt;<br>
+								&lt;weight&gt;Integer&lt;/weight&gt;<br>
+								&lt;italic&gt;Boolean&lt;/italic&gt;<br>
+								&lt;underline&gt;Boolean&lt;/underline&gt;<br>
+								&lt;strikeout&gt;Boolean&lt;/strikeout&gt;</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;font&gt;<br>
+								&nbsp;&nbsp;&lt;family&gt;Times&lt;/family&gt;<br>
+								&nbsp;&nbsp;&lt;pointsize&gt;12&lt;/pointsize&gt;<br>
+								&nbsp;&nbsp;&lt;weight&gt;50&lt;/weight&gt;<br>
+								&nbsp;&nbsp;&lt;italic&gt;1&lt;/italic&gt;<br>
+								&nbsp;&nbsp;&lt;underline&gt;0&lt;/underline&gt;<br>
+								&nbsp;&nbsp;&lt;strikeout&gt;0&lt;/strikeout&gt;<br>
+								&lt;/font&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">color</td>
+							<td align="left" valign="top">Color description</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;red&gt;Integer&lt;/red&gt;<br>
+								&lt;green&gt;Integer&lt;/green&gt;<br>
+								&lt;blue&gt;Integer&lt;/blue&gt;</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;color&gt;<br>
+								&nbsp;&nbsp;&lt;red&gt;192&lt;/red&gt;<br>
+								&nbsp;&nbsp;&lt;green&gt;200&lt;/green&gt;<br>
+								&nbsp;&nbsp;&lt;blue&gt;50&lt;/blue&gt;<br>
+								&lt;/color&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">pixmap/image/imageset</td>
+							<td align="left" valign="top">Pixmap</td>
+							<td align="left" valign="top">Depending on whether images are saved inline or not (see earlier in the "Header Elements" section), this element looks different:
+								<dl>
+									<dt>Inline
+									<dd>
+									<p>&lt;pixmap&gt;<i class="EMPHASIS">&lt;key of pixmap in the pixmap collection&gt;</i>&lt;/pixmap&gt;</p>
+									<p><i class="EMPHASIS">The same is used for saving images and iconsets at the moment; just replace 'pixmap' with 'image' or 'iconset.' There is no special support for icon sets yet.</i></p>
+									<dt>Not Inline (Function)
+									<dd>
+									<p>&lt;pixmap&gt;<i class="EMPHASIS">&lt;Arguments for pixmap-loading function&gt;</i>&lt;/pixmap&gt;</p>
+									<p><i class="EMPHASIS">The same is used for saving images and iconsets at the moment; just replace 'pixmap' with 'image' or 'iconset.' There is no special support for icon sets.</i>
+								</dl>
+							</td>
+							<td align="left" valign="top">&lt;pixmap&gt;image1&lt;/pixmap&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">sizepolicy</td>
+							<td align="left" valign="top">SizePolicy (saved as int)</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;hsizetype&gt;SizeType&lt;/hsizetype&gt;<br>
+								&lt;vsizetype&gt;SizeType&lt;/vsizetype&gt;</p>
+								<p><i class="EMPHASIS">SizeType is saved as int and can be one of the following:</i></p>
+								<ul>
+									<li>
+									<p>Fixed (0)</p>
+									<li>
+									<p>Minimum (1)</p>
+									<li>
+									<p>Maximum (4)</p>
+									<li>
+									<p>Preferred (5)</p>
+									<li>
+									<p>MinimumExpanding (3)</p>
+									<li>
+									<p>Expanding (7)
+								</ul>
+							</td>
+							<td align="left" valign="top">
+								<p class="LITERALLAYOUT">&lt;hsizetype&gt;1&lt;/hsizetype&gt;<br>
+								&lt;vsizetype&gt;3&lt;/vsizetype&gt;</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">palette</td>
+							<td align="left" valign="top">Palette</td>
+							<td align="left" valign="top">
+									&lt;palette&gt;<br>
+										&lt;active&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Foreground</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Button</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Light</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Midlight</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Dark</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Mid</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Text</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of BrightText</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of ButtonText</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Base</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Background</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Shadow</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of Highlight</i><br>
+											&lt;/color&gt;<br>
+											&lt;color&gt;<br>
+												<i class="EMPHASIS">rgb of HighlightText</i><br>
+											&lt;/color&gt;<br>
+										&lt;/active&gt;<br>
+										&lt;disabled&gt;<br>
+											<i class="EMPHASIS">ColorGroup of disabled palette</i><br>
+										&lt;/disabled&gt;<br>
+										&lt;inactive&gt;<br>
+											<i class="EMPHASIS">ColorGroup of inactive palette</i><br>
+										&lt;/inactive&gt;<br>
+									&lt;/palette&gt;
+							</td>
+							<td align="left" valign="top">
+									&lt;palette&gt;<br>
+									&nbsp;&nbsp;&lt;active&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;0&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;0&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;0&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;170&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;170&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;255&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;255&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;255&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;255&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;212&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;212&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;255&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;85&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;85&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;127&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;113&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;113&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;170&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;0&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;0&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;0&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;255&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;255&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;255&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;0&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;0&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;0&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;255&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;255&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;255&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;218&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;218&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;218&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;0&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;0&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;0&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;90&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;36&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;0&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;red&gt;255&lt;/red&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;green&gt;255&lt;/green&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blue&gt;255&lt;/blue&gt;<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/color&gt;<br>
+									&nbsp;&nbsp;&lt;/active&gt;<br>
+									&nbsp;&nbsp;&lt;disabled&gt;<br>
+									&nbsp;&nbsp;<i class="EMPHASIS">......</i><br>
+									&nbsp;&nbsp;&lt;/disabled&gt;<br>
+									&nbsp;&nbsp;&lt;inactive&gt;<br>
+									&nbsp;&nbsp;<i class="EMPHASIS">......</i><br>
+									&nbsp;&nbsp;&lt;/inactive&gt;<br>
+									&lt;/palette&gt;
+							</td>
+						</tr>
+						<tr>
+							<td align="left" valign="top">cursor</td>
+							<td align="left" valign="top">Cursor saved as int</td>
+							<td align="left" valign="top">
+								<table border="0">
+									<tr>
+										<td>&lt;cursor&gt;cursor&lt;/cursor&gt;</td>
+									</tr>
+								</table>
+								<p><i class="EMPHASIS">The following int values are defined for cursor:</i></p>
+								<ul>
+									<li>
+									<p>ArrowCursor (0)</p>
+									<li>
+									<p>UpArrowCursor (1)</p>
+									<li>
+									<p>CrossCursor (2)</p>
+									<li>
+									<p>WaitCursor (3)</p>
+									<li>
+									<p>IbeamCursor (4)</p>
+									<li>
+									<p>SizeVerCursor (5)</p>
+									<li>
+									<p>SizeHorCursor (6)</p>
+									<li>
+									<p>SizeBDiagCursor (7)</p>
+									<li>
+									<p>SizeFDiagCursor (8)</p>
+									<li>
+									<p>SizeAllCursor (9)</p>
+									<li>
+									<p>BlankCursor (10)</p>
+									<li>
+									<p>SplitVCursor (11)</p>
+									<li>
+									<p>SplitHCursor (12)</p>
+									<li>
+									<p>PointingHandCursor (13)</p>
+									<li>
+									<p>ForbiddenCursor (14)
+								</ul>
+							</td>
+							<td align="left" valign="top">&lt;cursor&gt;5&lt;/cursor&gt;</td>
+						</tr>
+					</table>
+					</p>
+				</div>
+			</div>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-HBOXELEMENT"></a> The <tt class="LITERAL">&lt;hbox&gt;</tt> Element</h2>
+				<p>This element describes a layout that arranges its children from left to right. It must be a child of a <tt class="LITERAL">&lt;widget&gt;</tt> element. This widget is then normally a container widget (e.g., a <tt class="LITERAL">QGroupBox</tt>) or a temporary <tt class="LITERAL">QLayoutWidget</tt>. The following child elements are defined:</p>
+				<dl>
+					<dt><tt class="LITERAL">&lt;property&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a property of the layout.</p>
+					<dt><tt class="LITERAL">&lt;widget&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a child widget that is managed by the layout.</p>
+					<dt><tt class="LITERAL">&lt;spacer&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a spacer in the layout (see <a href="#QT-DESIGNER-REF-UI-SPACERELEMENT">the section called <i>The <tt class="LITERAL">&lt;spacer&gt;</tt> Element</i></a> ).</p>
+				</dl>
+			</div>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-VBOXELEMENT"></a> The <tt class="LITERAL">&lt;vbox&gt;</tt> Element</h2>
+				<p>This element describes a layout that arranges its children from top to bottom. It must be a child of a <tt class="LITERAL">&lt;widget&gt;</tt> element. This widget is then normally a container widget (e.g., a <tt class="LITERAL">QGroupBox</tt>) or a temporary <tt class="LITERAL">QLayoutWidget</tt>. The following child elements are defined:</p>
+				<dl>
+					<dt><tt class="LITERAL">&lt;property&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a property of the layout.</p>
+					<dt><tt class="LITERAL">&lt;widget&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a child widget that is managed by the layout.</p>
+					<dt><tt class="LITERAL">&lt;spacer&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a spacer in the layout (see <a href="#QT-DESIGNER-REF-UI-SPACERELEMENT">the section called <i>The <tt class="LITERAL">&lt;spacer&gt;</tt> Element</i></a> ).</p>
+				</dl>
+			</div>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-GRIDELEMENT"></a> The <tt class="LITERAL">&lt;grid&gt;</tt> Element</h2>
+				<p>This element describes a layout that arranges its children in a grid. It must be a child of a <tt class="LITERAL">&lt;widget&gt;</tt> element. This widget is then normally a container widget (e.g., a <tt class="LITERAL">QGroupBox</tt>) or a temporary <tt class="LITERAL">QLayoutWidget</tt>. The following child elements are defined:</p>
+				<dl>
+					<dt><tt class="LITERAL">&lt;property&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a property of the layout.</p>
+					<dt><tt class="LITERAL">&lt;widget&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a child widget that is managed by the layout.</p>
+					<p>Besides the elements ordinarily defined as subelements of <tt class="LITERAL">&lt;widget&gt;</tt>, there can be <tt class="LITERAL">&lt;row&gt;</tt> and <tt class="LITERAL">&lt;col&gt;</tt> elements, which specify the position of the widget in the grid. These elements themselves can have one or both of the attributes <tt class="LITERAL">rowspan</tt> and <tt class="LITERAL">colspan</tt>, which specify the number of rows and columns the cell should cover. The default is 1.</p>
+					<dt><tt class="LITERAL">&lt;spacer&gt;</tt>
+					<dd>
+					<p>There can be any number of these elements, which describe a spacer in the layout (see the next section).</p>
+					<p>Besides the elements ordinarily defined as subelements of <tt class="LITERAL">&lt;spacer&gt;</tt>, there can be <tt class="LITERAL">&lt;row&gt;</tt> and <tt class="LITERAL">&lt;col&gt;</tt> elements, which specify the position of the widget in the grid. These elements themselves can have one or both of the attributes <tt class="LITERAL">rowspan</tt> and <tt class="LITERAL">colspan</tt>, which specify the number of rows and columns the cell should cover. The default is 1.</p>
+				</dl>
+			</div>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-SPACERELEMENT"></a> The <tt class="LITERAL">&lt;spacer&gt;</tt> Element</h2>
+				<p>This element describes a spacer item inside a layout. It has four properties:</p>
+				<dl>
+					<dt><tt class="LITERAL">name</tt>
+					<dd>
+					<p>This property, of the type <i class="EMPHASIS">string</i>, describes the name of the item.</p>
+					<dt><tt class="LITERAL">orientation</tt>
+					<dd>
+					<p>This property, of the type <i class="EMPHASIS">enum</i> with the valid values <tt class="LITERAL">Horizontal</tt> and <tt class="LITERAL">Vertical</tt>, describes the orientation of the item.</p>
+					<dt><tt class="LITERAL">sizeType</tt>
+					<dd>
+					<p>This property, of the type <i class="EMPHASIS">enum</i>, describes how the item expands in its direction. See the Qt Reference Documentation for size policies for more information.</p>
+					<dt><tt class="LITERAL">geometry</tt>
+					<dd>
+					<p>This property, of the type <i class="EMPHASIS">rect</i>, describes the geometry of the spacer, which is normally useful only for fixed spacing.</p>
+				</dl>
+			</div>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-ITEMELEMENT"></a> The <tt class="LITERAL">&lt;item&gt;</tt> Element</h2>
+				<p>This element describes an item of a widget if this widget can contain items (like list boxes, icon views, etc.). The item element contains exactly one child element that describes the item. This child element is a <tt class="LITERAL">&lt;property&gt;</tt> element. Valid property names are <tt class="LITERAL">text</tt> and <tt class="LITERAL">pixmap</tt>, depending on where to insert the item.</p>
+				<p>As list views can hold a tree of items, the <tt class="LITERAL">&lt;item&gt;</tt> element can contain other <tt class="LITERAL">&lt;item&gt;</tt> elements, which are then child items. Also, as list views can have many columns, an <tt class="LITERAL">&lt;item&gt;</tt> element contains a <tt class="LITERAL">text</tt> and a <tt class="LITERAL">pixmap</tt> property for each column. The columns of a list view are described with a <tt class="LITERAL">&lt;column&gt;</tt> element (see the next section).</p>
+			</div>
+			<div class="SECT2">
+				<h2 class="SECT2"><a name="QT-DESIGNER-REF-UI-COLUMNELEMENT"></a> The <tt class="LITERAL">&lt;column&gt;</tt> Element</h2>
+				<p>This element describes the columns of a list view widget. A list view can contain multiple column elements. A column element contains the following properties, which are all optional:</p>
+				<dl>
+					<dt><tt class="LITERAL">text</tt>
+					<dd>
+					<p>This property, of type <i class="EMPHASIS">string</i>, contains the column label.</p>
+					<dt><tt class="LITERAL">pixmap</tt>
+					<dd>
+					<p>This property, of type <i class="EMPHASIS">pixmap</i>, contains the column pixmap.</p>
+					<dt><tt class="LITERAL">resizable</tt>
+					<dd>
+					<p>This property, of type <i class="EMPHASIS">bool</i>, describes whether the column may be resized by the user.</p>
+					<dt><tt class="LITERAL">movable</tt>
+					<dd>
+					<p>This property, of type <i class="EMPHASIS">bool</i>, describes whether the column may be moved by the user.<br>
+					<br>
+					</p>
+				</dl>
+			</div>
+		</div>
+		<div class="NAVFOOTER">
+			<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="black">
+				<tr>
+					<td width="33%" align="left" valign="top"> <a href="chap9_1.html"><img height="20" width="20" src="arrows/left.png" border="0"></a> </td>
+					<td width="34%" align="center" valign="top"> <a href="book1.html"><img height="20" width="25" src="arrows/home.png" border="0"></a> </td>
+					<td width="33%" align="right" valign="top"> <a href="chap9_3.html"><img height="20" width="20" src="arrows/right.png" border="0"></a> </td>
+				</tr>
+				<tr>
+					<td width="33%" align="left" valign="top"><font  color="white">The File Format Of .ui Files</font></td>
+					<td width="34%" align="center" valign="top"> <a href="chap9_1.html"><img height="20" width="20" src="arrows/up.png" border="0"></a> </td>
+					<td width="33%" align="right" valign="top"><font  color="white">The Pixmaps In The <tt class="LITERAL">&lt;images&gt;</tt> Element</font></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

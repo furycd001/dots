@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qserversocket.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qserversocket.h</h1><br clear="all">
+This is the verbatim text of the qserversocket.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/network/qserversocket.h   2.3.2   edited 2001-01-26 $
+**
+** Definition of QServerSocketClass.
+**
+** Created : 970521
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the network module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition licenses may use this
+** file in accordance with the Qt Commercial License Agreement provided
+** with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QSERVERSOCKET_H
+#define QSERVERSOCKET_H
+
+#ifndef QT_H
+#include "qobject.h"
+#include "qsocket.h"
+#endif // QT_H
+#ifndef QT_NO_NETWORK
+
+class QServerSocketPrivate;
+
+
+class Q_EXPORT <a href="qserversocket.html">QServerSocket</a> : public <a href="qobject.html">QObject</a>
+{
+    Q_OBJECT
+public:
+    QServerSocket( Q_UINT16 port, int backlog = 0,
+                   QObject *parent=0, const char *name=0 );
+    QServerSocket( const QHostAddress &amp; address, Q_UINT16 port, int backlog = 0,
+                   QObject *parent=0, const char *name=0 );
+    QServerSocket( QObject *parent=0, const char *name=0 );
+    virtual ~QServerSocket();
+
+    bool ok() const;
+
+    Q_UINT16 port() const ;
+
+    int socket() const ;
+    virtual void setSocket( int socket );
+
+    QHostAddress address() const ;
+
+    virtual void newConnection( int socket ) = 0;
+
+protected:
+    QSocketDevice *socketDevice();
+
+private slots:
+    void incomingConnection( int socket );
+
+private:
+    QServerSocketPrivate *d;
+    void init( const QHostAddress &amp; address, Q_UINT16 port, int backlog );
+};
+
+#endif // QT_NO_NETWORK
+#endif // QSERVERSOCKET_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

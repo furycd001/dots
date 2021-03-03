@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - qpicture.h include file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>qpicture.h</h1><br clear="all">
+This is the verbatim text of the qpicture.h include file.  It is
+provided only for illustration; the copyright
+remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** &#36;Id&#58; qt/src/kernel/qpicture.h   2.3.2   edited 2001-01-26 $
+**
+** Definition of QPicture class
+**
+** Created : 940729
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the kernel module of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QPICTURE_H
+#define QPICTURE_H
+
+#ifndef QT_H
+#include "qpaintdevice.h"
+#include "qbuffer.h"
+#endif // QT_H
+
+#ifndef QT_NO_PICTURE
+
+class Q_EXPORT <a href="qpicture.html">QPicture</a> : public <a href="qpaintdevice.html">QPaintDevice</a>           // picture class
+{
+public:
+    QPicture( int formatVersion = 0 );
+   ~QPicture();
+
+    bool        isNull() const;
+
+    uint        size() const;
+    const char* data() const;
+    virtual void setData( const char* data, uint size );
+
+    bool        play( QPainter * );
+
+    bool        load( const QString &amp;fileName );
+    bool        save( const QString &amp;fileName );
+
+    QPicture&amp; operator= (const QPicture&amp;);
+
+    friend Q_EXPORT QDataStream &amp;operator&lt;&lt;( QDataStream &amp;, const QPicture &amp; );
+    friend Q_EXPORT QDataStream &amp;operator&gt;&gt;( QDataStream &amp;, QPicture &amp; );
+
+protected:
+    bool        cmd( int, QPainter *, QPDevCmdParam * );
+    int         metric( int ) const;
+
+private:
+    bool        exec( QPainter *, QDataStream &amp;, int );
+    void        resetFormat();
+    QBuffer     pictb;
+    int         trecs;
+    bool        formatOk;
+    int         formatMajor;
+    int         formatMinor;
+
+private:       // Disabled copy constructor
+#if defined(Q_DISABLE_COPY)
+    QPicture( const QPicture &amp; );
+#endif
+};
+
+
+inline bool QPicture::isNull() const
+{
+    return pictb.buffer().isNull();
+}
+
+inline uint QPicture::size() const
+{
+    return pictb.buffer().size();
+}
+
+inline const char* QPicture::data() const
+{
+    return pictb.buffer().data();
+}
+
+
+/*****************************************************************************
+  QPicture stream functions
+ *****************************************************************************/
+
+Q_EXPORT QDataStream &amp;operator&lt;&lt;( QDataStream &amp;, const QPicture &amp; );
+Q_EXPORT QDataStream &amp;operator&gt;&gt;( QDataStream &amp;, QPicture &amp; );
+
+#endif // QT_NO_PICTURE
+
+#endif // QPICTURE_H
+
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

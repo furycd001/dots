@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - tooltip/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Advanced use of tool tips</h1><br clear="all">
+
+  This example widget demonstrates how to use tool tips for static and
+  dynamic regions within a widget.
+
+  It displays two blue and one red rectangle.  The blue ones move every
+  time you click on them, the red one is static.  There are dynamic
+  tool tips on the blue rectangles and a static tool tip on the red one.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/tooltip/tooltip.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a href="qwidget-h.html">qwidget.h</a>&gt;
+#include &lt;<a href="qtooltip-h.html">qtooltip.h</a>&gt;
+
+class DynamicTip : public QToolTip
+{
+public:
+    DynamicTip( <a href="qwidget.html">QWidget</a> * parent );
+
+protected:
+    void maybeTip( const QPoint &amp; );
+};
+
+class TellMe : public QWidget
+{
+    Q_OBJECT
+public:
+    TellMe( <a href="qwidget.html">QWidget</a> * parent = 0, const char * name = 0 );
+    ~TellMe();
+
+    <a href="qrect.html">QRect</a> tip( const QPoint &amp; );
+
+protected:
+    void paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * );
+    void mousePressEvent( <a href="qmouseevent.html">QMouseEvent</a> * );
+    void resizeEvent( <a href="qresizeevent.html">QResizeEvent</a> * );
+
+private:
+    <a href="qrect.html">QRect</a> randomRect();
+
+    <a href="qrect.html">QRect</a> r1, r2, r3;
+    DynamicTip * t;
+};
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/tooltip/tooltip.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "tooltip.h"
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a href="qpainter-h.html">qpainter.h</a>&gt;
+#include &lt;stdlib.h&gt;
+
+DynamicTip::DynamicTip( <a href="qwidget.html">QWidget</a> * parent )
+    : <a href="qtooltip.html">QToolTip</a>( parent )
+{
+    // no explicit initialization needed
+}
+
+void <a name="310"></a>DynamicTip::maybeTip( const QPoint &amp;pos )
+{
+    if ( !parentWidget()-&gt;inherits( "TellMe" ) )
+        return;
+
+    <a href="qrect.html">QRect</a> r( ((TellMe*)parentWidget())-&gt;tip(pos) );
+    if ( !r.<a href="qrect.html#6d4ece">isValid</a>() )
+        return;
+
+    <a href="qstring.html">QString</a> s;
+    s.<a href="qstring.html#926f67">sprintf</a>( "position: %d,%d", r.<a href="qrect.html#3daab9">center</a>().x(), r.<a href="qrect.html#3daab9">center</a>().y() );
+    <a href="qtooltip.html#585b31">tip</a>( r, s );
+}
+
+TellMe::TellMe( <a href="qwidget.html">QWidget</a> * parent , const char * name  )
+    : <a href="qwidget.html">QWidget</a>( parent, name )
+{
+    <a href="qwidget.html#c0b5fb">setMinimumSize</a>( 30, 30 );
+    r1 = randomRect();
+    r2 = randomRect();
+    r3 = randomRect();
+
+    t = new DynamicTip( this );
+
+    <a href="qtooltip.html#184bfe">QToolTip::add</a>( this, r3, "this color is called red" ); // &lt;- helpful
+}
+
+TellMe::~TellMe()
+{
+    delete t;
+    t = 0;
+}
+
+void <a name="311"></a>TellMe::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * e )
+{
+    <a href="qpainter.html">QPainter</a> p( this );
+
+    // I try to be efficient here, and repaint only what's needed
+
+    if ( e-&gt;rect().intersects( r1 ) ) {
+        p.<a href="qpainter.html#3e0cc8">setBrush</a>( blue );
+        p.<a href="qpainter.html#4c0077">drawRect</a>( r1 );
+    }
+
+    if ( e-&gt;rect().intersects( r2 ) ) {
+        p.<a href="qpainter.html#3e0cc8">setBrush</a>( blue );
+        p.<a href="qpainter.html#4c0077">drawRect</a>( r2 );
+    }
+
+    if ( e-&gt;rect().intersects( r3 ) ) {
+        p.<a href="qpainter.html#3e0cc8">setBrush</a>( red );
+        p.<a href="qpainter.html#4c0077">drawRect</a>( r3 );
+    }
+}
+
+void <a name="312"></a>TellMe::mousePressEvent( <a href="qmouseevent.html">QMouseEvent</a> * e )
+{
+    if ( r1.contains( e-&gt;<a href="qmouseevent.html#ac6f25">pos</a>() ) )
+        r1 = randomRect();
+    if ( r2.contains( e-&gt;<a href="qmouseevent.html#ac6f25">pos</a>() ) )
+        r2 = randomRect();
+    <a href="qwidget.html#7569b1">repaint</a>();
+}
+
+void <a name="313"></a>TellMe::resizeEvent( <a href="qresizeevent.html">QResizeEvent</a> * )
+{
+    if ( !rect().contains( r1 ) )
+         r1 = randomRect();
+    if ( !rect().contains( r2 ) )
+         r2 = randomRect();
+}
+
+<a href="qrect.html">QRect</a> <a name="314"></a>TellMe::randomRect()
+{
+    return QRect( ::rand() % (<a href="qwidget.html#2edab1">width</a>() - 20), ::rand() % (<a href="qwidget.html#e3c588">height</a>() - 20),
+                  20, 20 );
+}
+
+<a href="qrect.html">QRect</a> <a name="315"></a>TellMe::tip( const QPoint &amp; p )
+{
+    if ( r1.contains( p ) )
+        return r1;
+    else if ( r2.contains( p ) )
+        return r2;
+    else
+        return QRect( 0,0, -1,-1 );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/tooltip/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include "tooltip.h"
+
+int main( int argc, char ** argv ) 
+{
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    TellMe mw;
+    mw.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Dynamic Tool Tips" );
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;mw );
+    mw.<a name="show"></a><a href="qwidget.html#200ee5">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

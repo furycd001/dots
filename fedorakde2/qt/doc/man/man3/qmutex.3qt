@@ -1,0 +1,143 @@
+'\" t
+.TH QMutex 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QMutex \- Access serialization between threads
+.br
+.PP
+\fC#include <qthread.h>\fR
+.PP
+Inherits Qt.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQMutex\fR ( bool " "recursive" " = FALSE ) "
+.br
+.ti -1c
+.BI "virtual \fB~QMutex\fR () "
+.br
+.ti -1c
+.BI "void \fBlock\fR () "
+.br
+.ti -1c
+.BI "void \fBunlock\fR () "
+.br
+.ti -1c
+.BI "bool \fBlocked\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QMutex class provides access serialization between threads.
+.PP
+The purpose of a QMutex is to protect an object, data structure or section of code so that only one thread can access it at a time (In Java terms, this is similar to the synchronized keyword). For example, say there is a method which prints a message to the user on two lines:
+.PP
+.nf
+.br
+  void someMethod()
+.br
+  {
+.br
+     qDebug("Hello");
+.br
+     qDebug("World");
+.br
+  }
+.fi
+.PP
+If this method is called simultaneously from two threads then the following sequence could result:
+.PP
+.nf
+.br
+  Hello
+.br
+  Hello
+.br
+  World
+.br
+  World
+.fi
+.PP
+If we add a mutex:
+.PP
+.nf
+.br
+  QMutex mutex;
+.br
+.br
+  void someMethod()
+.br
+  {
+.br
+     mutex.lock();
+.br
+     qDebug("Hello");
+.br
+     qDebug("World");
+.br
+     mutex.unlock();
+.br
+  }
+.fi
+.PP
+In Java terms this would be:
+.PP
+.nf
+.br
+  void someMethod()
+.br
+  {
+.br
+     synchronized {
+.br
+       qDebug("Hello");
+.br
+       qDebug("World");
+.br
+     }
+.br
+  }
+.fi
+.PP
+Then only one thread can execute someMethod at a time and the order of messages is always correct. This is a trivial example, of course, but applies to any other case where things need to happen in a particular sequence.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QMutex::QMutex ( bool recursive = FALSE )"
+Constructs a new mutex. The mutex is created in an unlocked state. A recursive mutex is created if \fIrecursive\fR is TRUE; a normal mutex is created if \fIrecursive\fR is FALSE (default argument). With a recursive mutex, a thread can lock the same mutex multiple times and it will not be unlocked until a corresponding number of unlock() calls have been made.
+.SH "QMutex::~QMutex () \fC[virtual]\fR"
+Destroys the mutex.
+.SH "void QMutex::lock ()"
+Attempt to lock the mutex. If another thread has locked the mutex then this call will block until that thread has unlocked it.
+.PP
+See also unlock().
+.SH "bool QMutex::locked ()"
+Returns TRUE if the mutex is locked by another thread and FALSE if not.
+.PP
+\fINOTE:\fR Due to differing implementations of recursive mutexes on various platforms, calling this function from the same thread that previous locked the mutex will return undefined results.
+.SH "void QMutex::unlock ()"
+Unlocks the mutex. Attempting to unlock a mutex in a different thread to the one that locked it results in an error. Unlocking a mutex that is not locked results in undefined behaviour (varies between different Operating Systems' thread implementations).
+.PP
+See also  lock().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qmutex.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qmutex.3qt) and the Qt
+version (2.3.2).

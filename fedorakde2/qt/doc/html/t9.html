@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Tutorial - Chapter 9: With Cannon You Can
+</title></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<p>
+<h1 align=center>Chapter 9: With Cannon You Can</h1><br clear="all">
+<p>
+<center><img src="t9.png" alt="Screenshot of tutorial nine"></center>
+<p>
+In this example, we become graphic, by drawing a cute little blue
+cannon.  Only cannon.cpp differs from the previous chapter.
+<p>
+<ul>
+<li><a href="t9-lcdrange-h.html">lcdrange.h</a> contains the LCDRange
+class definition
+<li><a href="t9-lcdrange-cpp.html">lcdrange.cpp</a> contains the LCDRange
+implementation
+<li><a href="t9-cannon-h.html">cannon.h</a> contains the CannonField class
+definition
+<li><a href="t9-cannon-cpp.html">cannon.cpp</a> contains the CannonField
+implementation
+<li><a href="t9-main-cpp.html">main.cpp</a> contains MyWidget and main.
+<li><a href="t9-makefile.html">Makefile</a> contains some rules for
+generating the meta object information necessary for <a
+href="signalsandslots.html">signal/slot creation.</a>
+</ul>
+<p>
+<h2>Line by Line Walk-Through</h2>
+<p>
+<h3><a href="t9-cannon-cpp.html">cannon.cpp</a></h3>   <pre>
+    void CannonField::paintEvent( <a href="qpaintevent.html">QPaintEvent</a> * )
+    {
+        <a href="qpainter.html">QPainter</a> p( this );
+</pre>
+<p>
+We'll now start to use QPainter in earnest.  We create a painter that
+operates on this widget. <pre>
+        p.<a href="qpainter.html#3e0cc8">setBrush</a>( blue );
+</pre>
+<p>
+When QPainter fills a rectangle, a circle or something, it fills the
+shape using its brush.  Here, we set it to use a blue brush.  (We
+could also use a pattern.) <pre>
+        p.<a href="qpainter.html#0183e4">setPen</a>( NoPen );
+</pre>
+<p>
+And the edges of what QPainter draws are drawn using the pen.  Here we
+set it to NoPen, meaning that there will be no special edge when we
+draw something.  The blue brush will go all the way to the edges of
+the things we draw.  <pre>
+        p.<a href="qpainter.html#eb778c">translate</a>( 0, <a href="qwidget.html#75ae71">rect</a>().bottom() );
+</pre>
+<p>
+The <a href="qpainter.html#eb778c">QPainter::translate()</a> function translates the coordinate system
+of the QPainter, i.e.  moves it by an offset.  Here we set the (0,0)
+point to the bottom left corner of the widget.  The x and y directions
+remain unchanged, i.e.  all the y coordinates inside the widget are now
+negative (see <a href="coordsys.html">The Coordinate System</a> for
+more information about Qt's coordinate system). <pre>
+        p.<a href="qpainter.html#3ca7a2">drawPie</a>( <a href="qrect.html">QRect</a>(-35, -35, 70, 70), 0, 90*16 );
+</pre>
+<p>
+The drawPie() function draws a pie shape inside the specified
+rectangle using a start angle and an arc length.  The angles are
+specified in 1/16th of a degree.  Zero degrees is at the 3 o'clock
+position.  The drawing direction is counter-clockwise.  Here we draw a
+quarter of a circle in the bottom left corner of the widget.  The pie
+is filled with blue and has no outline. <pre>
+        p.<a href="qpainter.html#b5205c">rotate</a>( -ang );
+</pre>
+<p>
+The QPainter::rotate() function rotates the coordinate system of the
+QPainter around the origin.  The rotation argument is a <code>float</code> given
+in degrees (not given in 1/16th of a degree as above) and clockwise.
+Here we rotate the coordinate system <code>ang</code> degrees counter-clockwise. <pre>
+        p.<a href="qpainter.html#4c0077">drawRect</a>( <a href="qrect.html">QRect</a>(33, -4, 15, 8) );
+</pre>
+<p>
+The QPainter::drawRect() function draws the specified rectangle.  Here
+we draw the barrel of the cannon.
+<p>
+It can often be difficult to envision the resulting drawing when the
+coordinate system has been transformed (translated, rotated, scaled or
+sheared) as above.
+<p>
+In this case, the coordinate system is first translated, then rotated.
+If the rectangle QRect(33, -4, 15, 8) had been drawn in the translated
+coordinate system, it would have looked like this:
+<p>
+<img src="t9_1.png" alt="The cannon, translated but not rotated">
+<p>
+Note that the rectangle is clipped by the border of the CannonField
+widget.  When we rotate the coordinate system, for instance 60
+degrees, the rectangle will be rotated around (0,0), which is the
+bottom left corner, since we have translated the coordinate system.
+The result looks like this:
+<p>
+<img src="t9_2.png" alt="The cannon, translated and rotated">
+<p>
+We're done, except that we haven't explained why Windows didn't dither
+this time.   <pre>
+    int main( int argc, char **argv )
+    {
+        <a href="qapplication.html#1ee2d1">QApplication::setColorSpec</a>( QApplication::CustomColor );
+        <a href="qapplication.html">QApplication</a> a( argc, argv );
+</pre>
+<p>
+We tell Qt that we want a different color allocation strategy for this
+program.  There is no single correct color allocation strategy.  Since
+this program uses an unusual yellow but not many colors, <code>CustomColor</code> is best.  There are several other allocation strategies.
+You can read about them in the <a href="qapplication.html#1ee2d1">QApplication::setColorSpec()</a>
+documentation.
+<p>
+Mostly, you can ignore this - the default is good.  Occasionally some
+applications with unusual color use look bad, and often changing the
+allocation strategy helps.
+<p>
+<h2>Behavior</h2>
+<p>
+When the slider is operated, the angle of the drawn cannon changes
+accordingly.
+<p>
+The Q on the Quit button is now underlined, and Alt-Q does what you
+think it does.  If you do not know why, you didn't do the exercises in
+chapter eight.
+<p>
+You may notice that the cannon flickers annoyingly, especially on a
+slow machine.  We'll fix this in the next chapter.
+<p>
+<h2>Exercises</h2>
+<p>
+Set a different pen instead of NoPen.  Set a patterned brush.
+<p>
+Try "Q&uit" or "Qu&it" as button text instead of "&Quit" - what
+happens?
+<p>
+You may now go on to <a href="t10.html">chapter ten.</a>
+<p>
+[<a href="t8.html">Previous tutorial</a>]
+[<a href="t10.html">Next tutorial</a>]
+[<a href="tutorial.html">Main tutorial page</a>]
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Windowsystem-specific Notes</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Windowsystem-specific Notes</h1><br clear="all">
+Qt is a cross-platform GUI toolkit, so almost the entire API is the
+same on all platforms and windowsystems. However some development tasks
+may require you to write small windowsystem-specific tasks.
+This page documents the windowsystem-specific parts of the Qt API.
+Note that any use of these features renders your application non-portable
+to other Qt-supported windowsystems, so protect such code with appropriate
+"#ifdef" directives (see below), preferably with code for each platform to which
+you wish to retain portability.
+<p>
+For information about which platforms are supported by Qt, see the
+<a href="http://www.trolltech.com/products/platforms/">Platform Notes</a>.
+<p>
+<a name=x11>
+<h2>Qt/X11</h2>
+</a>
+<p>
+When compiling for this platform, the macro <tt>_WS_X11_</tt> is defined.
+<p>
+<i>Not documented here. Please contact Trolltech Technical Support
+if you have queries.</i>
+<p>
+<a name=win>
+<h2>Qt/Windows</h2>
+</a>
+<p>
+When compiling for this platform, the macro <tt>_WS_WIN_</tt> is defined.
+<p>
+<i>Not documented here. Please contact Trolltech Technical Support
+if you have queries.</i>
+<p>
+<a name=qws>
+<h2>Qt/Embedded</h2>
+</a>
+<p>
+When compiling for this platform, the macro <tt>_WS_QWS_</tt> is defined
+(the window system is literally the Qt Window System).
+<p>
+<ul>
+ <li><a href=install-qws.html>Installation</a>
+ <li><a href=running-qws.html>Running Qt/Embedded applications</a>
+ <li><a href=porting-qws.html>Porting your applications to Qt/Embedded</a>
+ <li><a href=fonts-qws.html>Font formats and definitions</a>
+ <li><a href=charinput-qws.html>Character input (keyboard, pen, ...)</a>
+ <li><a href=pointer-qws.html>Pointer handling (mouse, pen, ...)</a>
+ <li><a href=features.html>Reduce memory use with the feature definition file</a>
+ <li><a href=casestudy-qws.html>A case study embedding on Cassiopeia</a>
+</ul>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

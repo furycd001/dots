@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QProgressBar Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QProgressBar Class Reference</h1><br clear="all">
+<p>
+The QProgressBar widget provides a horizontal progress bar.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qprogressbar-h.html">qprogressbar.h</a>&gt;</code>
+<p>
+Inherits <a href="qframe.html">QFrame</a>.
+<p><a href="qprogressbar-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#f3ac40"><b>QProgressBar</b></a> ( QWidget * parent=0, const char * name=0, WFlags f=0 ) </div>
+<li><div class="fn"><a href="#cfafe9"><b>QProgressBar</b></a> ( int totalSteps, QWidget * parent=0, const char * name=0, WFlags f=0 ) </div>
+<li><div class="fn">int <a href="#ca5354"><b>totalSteps</b></a> () const</div>
+<li><div class="fn">int <a href="#b58826"><b>progress</b></a> () const</div>
+<li><div class="fn">void <a href="#1b3d8a"><b>setCenterIndicator</b></a> ( bool on ) </div>
+<li><div class="fn">bool <a href="#35ef31"><b>centerIndicator</b></a> () const</div>
+<li><div class="fn">void <a href="#1af7f3"><b>setIndicatorFollowsStyle</b></a> ( bool ) </div>
+<li><div class="fn">bool <a href="#2c9a3f"><b>indicatorFollowsStyle</b></a> () const</div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">void <a href="#e0ce26"><b>reset</b></a> () </div>
+<li><div class="fn">virtual void <a href="#d536e0"><b>setTotalSteps</b></a> ( int totalSteps ) </div>
+<li><div class="fn">virtual void <a href="#22694b"><b>setProgress</b></a> ( int progress ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#61de6d"><b>drawContentsMask</b></a> ( QPainter * ) </div>
+<li><div class="fn">virtual bool <a href="#89d98e"><b>setIndicator</b></a> ( QString &amp; progress_str, int progress, int totalSteps ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>int<td>totalSteps<td>totalSteps<td>setTotalSteps<td>&nbsp;
+<tr><td>int<td>progress<td>progress<td>setProgress<td>&nbsp;
+<tr><td>bool<td>centerIndicator<td>centerIndicator<td>setCenterIndicator<td>&nbsp;
+<tr><td>bool<td>indicatorFollowsStyle<td>indicatorFollowsStyle<td>setIndicatorFollowsStyle<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QProgressBar widget provides a horizontal progress bar.
+<p>
+A progress bar is used to give the user an indication of progress
+of an operation. To reassure them that the application has not crashed.
+<p>QProgressBar only implements the basic progress display, while
+<a href="qprogressdialog.html">QProgressDialog</a> provides a fuller encapsulation.
+<p><img src=qprogbar-m.png> <img src=qprogbar-w.png>
+<p>See also  <a href="qprogressdialog.html">QProgressDialog</a> and <a href="guibooks.html#fowler">GUI Design Handbook: Progress Indicator</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="f3ac40"></a>QProgressBar::QProgressBar ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0, WFlags f=0 )</h3>
+<p>Constructs a progress bar.
+<p>The total number of steps is set to 100 by default.
+<p><em>parent, name</em> and <em>f</em> are sent to the <a href="qframe.html#2ba897">QFrame::QFrame</a>()
+constructor.
+<p>See also  <a href="#d536e0">setTotalSteps</a>().
+<h3 class="fn"><a name="cfafe9"></a>QProgressBar::QProgressBar ( int totalSteps, <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0, WFlags f=0 )</h3>
+<p>Constructs a progress bar.
+<p><em>totalSteps</em> is the total number of steps in the operation of which
+this progress bar shows the progress.  For example, if the operation
+is to examine 50 files, this value would be 50, then before
+examining the first file, call <a href="#22694b">setProgress</a>(0), and after examining
+the last file call setProgress(50).
+<p><em>parent, name</em> and <em>f</em> are sent to the <a href="qframe.html#2ba897">QFrame::QFrame</a>()
+constructor.
+<p>See also  <a href="#d536e0">setTotalSteps</a>() and <a href="#22694b">setProgress</a>().
+<h3 class="fn">bool <a name="35ef31"></a>QProgressBar::centerIndicator () const</h3>
+<p>Returns where the indicator string should be displayed if
+<a href="#2c9a3f">indicatorFollowsStyle</a>() is TRUE.
+<p>See also  <a href="#1b3d8a">setCenterIndicator</a>(), <a href="#2c9a3f">indicatorFollowsStyle</a>(), <a href="#1af7f3">setIndicatorFollowsStyle</a>() and <a href="#89d98e">setIndicator</a>().
+<h3 class="fn">void <a name="44664c"></a>QProgressBar::drawContents ( <a href="qpainter.html">QPainter</a> * p ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qframe.html#1991fc">QFrame.</a>
+<h3 class="fn">void <a name="61de6d"></a>QProgressBar::drawContentsMask ( <a href="qpainter.html">QPainter</a> * p ) <code>[virtual protected]</code></h3>
+<p>Draws the progressbar contents mask using the painter <em>p.</em>
+Used only in transparent mode.
+<p>See also  <a href="qwidget.html#efa8f9">QWidget::setAutoMask</a>();.
+<p>Reimplemented from <a href="qframe.html#ffb489">QFrame.</a>
+<h3 class="fn">bool <a name="2c9a3f"></a>QProgressBar::indicatorFollowsStyle () const</h3>
+<p>Returns whether the display of the indicator string should follow the
+GUI style or not.
+<p>See also  <a href="#1af7f3">setIndicatorFollowsStyle</a>(), <a href="#1b3d8a">setCenterIndicator</a>(), <a href="#35ef31">centerIndicator</a>() and <a href="#89d98e">setIndicator</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="c7a8ed"></a>QProgressBar::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn">int <a name="b58826"></a>QProgressBar::progress () const</h3>
+<p>Returns the current amount of progress, or -1 if the progress counting
+has not started.
+<p>See also  <a href="#22694b">setProgress</a>().
+<h3 class="fn">void <a name="e0ce26"></a>QProgressBar::reset () <code>[slot]</code></h3>
+<p>Reset the progress bar.
+The progress bar `rewinds'.
+<h3 class="fn">void <a name="1b3d8a"></a>QProgressBar::setCenterIndicator ( bool on )</h3>
+<p>If set to TRUE (the default) the progress bar always shows the indicator
+text at the center of the progress bar, regardless of the GUI style
+currently set.  If set to FALSE the progress bar always shows the
+indicator text outside the progress bar, regardless of the GUI style
+currently set.
+<p>Calling this function always sets <a href="#2c9a3f">indicatorFollowsStyle</a>() to FALSE.
+<p>See also  <a href="#35ef31">centerIndicator</a>(), <a href="#2c9a3f">indicatorFollowsStyle</a>(), <a href="#1af7f3">setIndicatorFollowsStyle</a>() and <a href="#89d98e">setIndicator</a>().
+<h3 class="fn">bool <a name="89d98e"></a>QProgressBar::setIndicator ( <a href="qstring.html">QString</a> &amp; indicator, int progress, int totalSteps ) <code>[virtual protected]</code></h3>
+<p>This method is called to generate the text displayed in the center of
+the progress bar.
+<p>The progress may be negative, indicating that the bar is in the "reset" state
+before any progress is set.
+<p>The default implementation it is the percentage of completion or blank in the
+reset state.
+<p>This method should return FALSE if the string is unchanged since the
+last call to the method, to allow efficient repainting of the
+progress bar.
+<h3 class="fn">void <a name="1af7f3"></a>QProgressBar::setIndicatorFollowsStyle ( bool on )</h3>
+<p>When set to TRUE (the default) the positioning of the indicator string
+follows the GUI style. When set to FALSE the indicator position is decided
+by the value of <a href="#2c9a3f">indicatorFollowsStyle</a>().
+<p>See also  <a href="#2c9a3f">indicatorFollowsStyle</a>(), <a href="#35ef31">centerIndicator</a>(), <a href="#1b3d8a">setCenterIndicator</a>() and <a href="#89d98e">setIndicator</a>().
+<h3 class="fn">void <a name="22694b"></a>QProgressBar::setProgress ( int progress ) <code>[virtual slot]</code></h3>
+<p>Sets the current amount of progress made to <em>progress</em> units of the
+total number of steps.
+<p>See also  <a href="#b58826">progress</a>() and <a href="#ca5354">totalSteps</a>().
+<h3 class="fn">void <a name="d536e0"></a>QProgressBar::setTotalSteps ( int totalSteps ) <code>[virtual slot]</code></h3>
+<p>Sets the total number of steps to <em>totalSteps.</em>
+<p>See also  <a href="#ca5354">totalSteps</a>().
+<h3 class="fn">void <a name="d35c1b"></a>QProgressBar::show () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#200ee5">QWidget.</a>
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="507616"></a>QProgressBar::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="9165fc"></a>QProgressBar::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn">void <a name="af690e"></a>QProgressBar::styleChange ( <a href="qstyle.html">QStyle</a> &amp; old ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#5e2e23">QWidget.</a>
+<h3 class="fn">int <a name="ca5354"></a>QProgressBar::totalSteps () const</h3>
+<p>Returns the total number of steps.
+<p>See also  <a href="#d536e0">setTotalSteps</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

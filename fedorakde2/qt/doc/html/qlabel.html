@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QLabel Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QLabel Class Reference</h1><br clear="all">
+<p>
+The QLabel widget provides a static information display
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;</code>
+<p>
+Inherits <a href="qframe.html">QFrame</a>.
+<p><a href="qlabel-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#b7add9"><b>QLabel</b></a> ( QWidget * parent, const char * name=0, WFlags f=0 ) </div>
+<li><div class="fn"><a href="#2bdb5b"><b>QLabel</b></a> ( const QString &amp; text, QWidget * parent, const char * name=0, WFlags f=0 ) </div>
+<li><div class="fn"><a href="#101d95"><b>QLabel</b></a> ( QWidget * buddy, const QString &amp;, QWidget * parent, const char * name=0, WFlags f=0 ) </div>
+<li><div class="fn"><a href="#b3e18a"><b>~QLabel</b></a> () </div>
+<li><div class="fn">QString <a href="#629ce8"><b>text</b></a> () const</div>
+<li><div class="fn">QPixmap* <a href="#a1bd68"><b>pixmap</b></a> () const</div>
+<li><div class="fn">QMovie* <a href="#c8eede"><b>movie</b></a> () const</div>
+<li><div class="fn">TextFormat <a href="#fecf7d"><b>textFormat</b></a> () const</div>
+<li><div class="fn">void <a href="#b5c8c1"><b>setTextFormat</b></a> ( TextFormat ) </div>
+<li><div class="fn">int <a href="#6cdfb3"><b>alignment</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#4743c8"><b>setAlignment</b></a> ( int ) </div>
+<li><div class="fn">int <a href="#f68b83"><b>indent</b></a> () const</div>
+<li><div class="fn">void <a href="#9077ed"><b>setIndent</b></a> ( int ) </div>
+<li><div class="fn">bool autoResize () const <em>(obsolete)</em></div>
+<li><div class="fn">virtual void setAutoResize ( bool ) <em>(obsolete)</em></div>
+<li><div class="fn">bool <a href="#7bc3f0"><b>hasScaledContents</b></a> () const</div>
+<li><div class="fn">void <a href="#f3987d"><b>setScaledContents</b></a> ( bool ) </div>
+<li><div class="fn">virtual void <a href="#085fdb"><b>setBuddy</b></a> ( QWidget * ) </div>
+<li><div class="fn">QWidget* <a href="#e6f867"><b>buddy</b></a> () const</div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#bc5ea6"><b>setText</b></a> ( const QString &amp; ) </div>
+<li><div class="fn">virtual void <a href="#4acf9b"><b>setPixmap</b></a> ( const QPixmap &amp; ) </div>
+<li><div class="fn">virtual void <a href="#fb7d9d"><b>setMovie</b></a> ( const QMovie &amp; ) </div>
+<li><div class="fn">virtual void <a href="#6c7708"><b>setNum</b></a> ( int ) </div>
+<li><div class="fn">virtual void <a href="#d52719"><b>setNum</b></a> ( double ) </div>
+<li><div class="fn">void <a href="#a6dd08"><b>clear</b></a> () </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#957a42"><b>drawContents</b></a> ( QPainter * ) </div>
+<li><div class="fn">virtual void <a href="#cb3c6b"><b>drawContentsMask</b></a> ( QPainter * ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>QString<td>text<td>text<td>setText<td>&nbsp;
+<tr><td>TextFormat<td>textFormat<td>textFormat<td>setTextFormat<td>&nbsp;
+<tr><td>QPixmap<td>pixmap<td>pixmap<td>setPixmap<td>&nbsp;
+<tr><td>bool<td>scaledContents<td>hasScaledContents<td>setScaledContents<td>&nbsp;
+<tr><td>Alignment<td>alignment<td>alignment<td>setAlignment<td>&nbsp;
+<tr><td>int<td>indent<td>indent<td>setIndent<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QLabel widget provides a static information display
+<p>
+QLabel is used for displaying information in the form of text or
+image to the user. No user interaction functionality is
+provided. The visual appearance of the label can be configured in
+various ways, and it can be used for specifying a focus accelerator
+key for another widget.
+<p>A QLabel can contain any of the following content types:
+<ul>
+<li> A plain text: set by passing a <a href="qstring.html">QString</a> to <a href="#bc5ea6">setText</a>().
+<li> A rich text: set by passing a QString that contains a rich text to setText().
+<li> A pixmap: set by passing a <a href="qpixmap.html">QPixmap</a> to <a href="#4acf9b">setPixmap</a>().
+<li> A movie: set by passing a <a href="qmovie.html">QMovie</a> to <a href="#fb7d9d">setMovie</a>().
+<li> A number: set by passing an <em>int</em> or a <em>double</em> to <a href="#6c7708">setNum</a>(), which converts the number to plain text.
+<li> Nothing: The same as an empty plain text. This is the default. Set by <a href="#a6dd08">clear</a>().
+</ul>
+<p>When the content is changed using any of these functions, any
+previous content is cleared.
+<p>The look of a QLabel can be tuned in several ways. All the settings
+of <a href="qframe.html">QFrame</a> are available for specifying a widget frame. The
+positioning of the content within the QLabel widget area can be
+tuned with <a href="#4743c8">setAlignment</a>() and <a href="#9077ed">setIndent</a>().  For example, this code
+sets up a sunken panel with a two-line text in the bottom right
+corner (both lines being flush with the right side of the label):
+<p><pre>    <a href="qlabel.html">QLabel</a> *label = new <a href="qlabel.html">QLabel</a>;
+    label-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+    label-&gt;<a href="#bc5ea6">setText</a>( "first line\nsecond line" );
+    label-&gt;<a href="#4743c8">setAlignment</a>( AlignBottom | AlignRight );
+</pre>
+<p>A QLabel is often used as a label for another, interactive
+widget. For this use, QLabel provides a handy mechanism for adding
+an accelerator key (see <a href="qaccel.html">QAccel</a>) that will set the keyboard focus to
+the other widget (called the QLabel's "buddy"). Example:
+<p><pre>     <a href="qlineedit.html">QLineEdit</a>* phoneEdit = new <a href="qlineedit.html">QLineEdit</a>( this, "phoneEdit" );
+     <a href="qlabel.html">QLabel</a>* phoneLabel = new <a href="qlabel.html">QLabel</a>( phoneEdit, "&amp;Phone:", this, "phoneLabel" );
+</pre>
+<p>In this example, keyboard focus is transferred to the label's buddy
+(the <a href="qlineedit.html">QLineEdit</a>) when the user presses <dfn>Alt-P.</dfn> You can also
+use the <a href="#085fdb">setBuddy</a>() function to accomplish the same.
+<p><img src=qlabel-m.png> <img src=qlabel-w.png>
+<p>See also  <a href="qlineedit.html">QLineEdit</a>, <a href="qtextview.html">QTextView</a>, <a href="qpixmap.html">QPixmap</a>, <a href="qmovie.html">QMovie</a> and <a href="guibooks.html#fowler">GUI Design Handbook: Label</a>
+<p>Examples:
+ <a href="cursor-cursor-cpp.html#QLabel">cursor/cursor.cpp</a>
+ <a href="layout-layout-cpp.html#QLabel">layout/layout.cpp</a>
+ <a href="popup-popup-cpp.html#QLabel">popup/popup.cpp</a>
+ <a href="menu-menu-cpp.html#QLabel">menu/menu.cpp</a>
+ <a href="progress-progress-cpp.html#QLabel">progress/progress.cpp</a>
+ <a href="qmag-qmag-cpp.html#QLabel">qmag/qmag.cpp</a>
+ <a href="xml-tagreader-with-features-tagreader-cpp.html#QLabel">xml/tagreader-with-features/tagreader.cpp</a>
+ <a href="movies-main-cpp.html#QLabel">movies/main.cpp</a>
+ <a href="customlayout-main-cpp.html#QLabel">customlayout/main.cpp</a>
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="101d95"></a>QLabel::QLabel ( <a href="qwidget.html">QWidget</a> * buddy, const <a href="qstring.html">QString</a> &amp; text, <a href="qwidget.html">QWidget</a> * parent, const char * name=0, WFlags f=0 )</h3>
+<p>Constructs a label with a text and a buddy.
+<p>The <em>text</em> is set with <a href="#bc5ea6">setText</a>(). The <em>buddy</em> is set with <a href="#085fdb">setBuddy</a>().
+<p>The <em>parent, name</em> and <em>f</em> arguments are passed to the <a href="qframe.html">QFrame</a>
+constructor.
+<p>See also  <a href="#bc5ea6">setText</a>(), <a href="#085fdb">setBuddy</a>(), <a href="#4743c8">setAlignment</a>(), <a href="qframe.html#558f79">setFrameStyle</a>() and <a href="#9077ed">setIndent</a>().
+<h3 class="fn"><a name="b7add9"></a>QLabel::QLabel ( <a href="qwidget.html">QWidget</a> * parent, const char * name=0, WFlags f=0 )</h3>
+<p>Constructs an empty label.
+<p>The <em>parent, name</em> and <em>f</em> arguments are passed to the <a href="qframe.html">QFrame</a>
+constructor.
+<p>See also  <a href="#4743c8">setAlignment</a>(), <a href="qframe.html#558f79">setFrameStyle</a>() and <a href="#9077ed">setIndent</a>().
+<h3 class="fn"><a name="2bdb5b"></a>QLabel::QLabel ( const <a href="qstring.html">QString</a> &amp; text, <a href="qwidget.html">QWidget</a> * parent, const char * name=0, WFlags f=0 )</h3>
+<p>Constructs a label with a text. The <em>text</em> is set with <a href="#bc5ea6">setText</a>().
+<p>The <em>parent, name</em> and <em>f</em> arguments are passed to the <a href="qframe.html">QFrame</a>
+constructor.
+<p>See also  <a href="#bc5ea6">setText</a>(), <a href="#4743c8">setAlignment</a>(), <a href="qframe.html#558f79">setFrameStyle</a>() and <a href="#9077ed">setIndent</a>().
+<h3 class="fn"><a name="b3e18a"></a>QLabel::~QLabel ()</h3>
+<p>Destructs the label.
+<h3 class="fn">int <a name="6cdfb3"></a>QLabel::alignment () const</h3>
+<p>Returns the alignment setting.
+<p>See also  <a href="#4743c8">setAlignment</a>().
+<h3 class="fn">bool <a name="016e1f"></a>QLabel::autoResize () const</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Returns TRUE if auto-resizing is enabled, or FALSE if auto-resizing
+is disabled.
+<p>Auto-resizing is disabled by default.
+<p>See also  <a href="#31d10d">setAutoResize</a>().
+<h3 class="fn"><a href="qwidget.html">QWidget</a> * <a name="e6f867"></a>QLabel::buddy () const</h3>
+<p>Returns the buddy of this label, or 0 if no buddy is currently set.
+<p>See also  <a href="#085fdb">setBuddy</a>().
+<h3 class="fn">void <a name="a6dd08"></a>QLabel::clear () <code>[slot]</code></h3>
+<p>Clears any label contents. Equivalent with <a href="#bc5ea6">setText</a>( "" ).
+<h3 class="fn">void <a name="957a42"></a>QLabel::drawContents ( <a href="qpainter.html">QPainter</a> * p ) <code>[virtual protected]</code></h3>
+<p>Draws the label contents using the painter <em>p.</em>
+<p>Reimplemented from <a href="qframe.html#1991fc">QFrame.</a>
+<h3 class="fn">void <a name="cb3c6b"></a>QLabel::drawContentsMask ( <a href="qpainter.html">QPainter</a> * p ) <code>[virtual protected]</code></h3>
+<p>Draws the label contents mask using the painter <em>p.</em>
+Used only in transparent mode.
+<p>See also  <a href="qwidget.html#efa8f9">QWidget::setAutoMask</a>();.
+<p>Reimplemented from <a href="qframe.html#ffb489">QFrame.</a>
+<h3 class="fn">void <a name="be4345"></a>QLabel::fontChange ( const <a href="qfont.html">QFont</a> &amp; ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#ac5c83">QWidget.</a>
+<h3 class="fn">bool <a name="7bc3f0"></a>QLabel::hasScaledContents () const</h3>
+<p>Returns whether the label will scale its contents to fill all
+available space.
+<p>See also  <a href="#f3987d">setScaledContents</a>().
+<h3 class="fn">int <a name="b651ea"></a>QLabel::heightForWidth ( int w ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#1a2d58">QWidget.</a>
+<h3 class="fn">int <a name="f68b83"></a>QLabel::indent () const</h3>
+<p>Returns the indent of the label.
+<p>See also  <a href="#9077ed">setIndent</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="83b7f9"></a>QLabel::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn"><a href="qmovie.html">QMovie</a>* <a name="c8eede"></a>QLabel::movie () const</h3>
+<p>If the label contains a movie, returns a pointer to it. Otherwise,
+returns 0.
+<p>See also  <a href="#fb7d9d">setMovie</a>().
+<h3 class="fn"><a href="qpixmap.html">QPixmap</a> * <a name="a1bd68"></a>QLabel::pixmap () const</h3>
+<p>If the label contains a pixmap, returns a pointer to it. Otherwise,
+returns 0.
+<p>See also  <a href="#4acf9b">setPixmap</a>().
+<h3 class="fn">void <a name="ece710"></a>QLabel::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">void <a name="4743c8"></a>QLabel::setAlignment ( int alignment ) <code>[virtual]</code></h3>
+<p>Sets the alignment of the label contents.
+<p>The <em>alignment</em> must be a bitwise OR of <a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a>
+values. The <code>WordBreak, ExpandTabs, SingleLine</code> and <code>ShowPrefix</code> flags apply only if the label contains a plain text, and
+are otherwise ignored. The <code>DontClip</code> flag is always ignored.
+<p>If the label has a buddy, the <code>ShowPrefix</code> flag is forced to TRUE.
+<p>The default alignment is <code>AlignLeft | AlignVCenter |
+ExpandTabs</code> if the label doesn't have a buddy and
+<code>AlignLeft | AlignVCenter | ExpandTabs | ShowPrefix </code> if
+the label has a buddy.
+<p>See also  <a href="qt.html#AlignmentFlags">Qt::AlignmentFlags</a>, <a href="#6cdfb3">alignment</a>(), <a href="#085fdb">setBuddy</a>() and <a href="#bc5ea6">setText</a>().
+<p>Examples:
+ <a href="cursor-cursor-cpp.html#setAlignment">cursor/cursor.cpp</a>
+ <a href="layout-layout-cpp.html#setAlignment">layout/layout.cpp</a>
+ <a href="popup-popup-cpp.html#setAlignment">popup/popup.cpp</a>
+ <a href="qmag-qmag-cpp.html#setAlignment">qmag/qmag.cpp</a>
+ <a href="customlayout-main-cpp.html#setAlignment">customlayout/main.cpp</a>
+<h3 class="fn">void <a name="fa2ec1"></a>QLabel::setAutoMask ( bool b ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#efa8f9">QWidget.</a>
+<h3 class="fn">void <a name="31d10d"></a>QLabel::setAutoResize ( bool enable ) <code>[virtual]</code></h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+Enables auto-resizing if <em>enable</em> is TRUE, or disables it if <em>enable</em> is FALSE.
+<p>When auto-resizing is enabled, the label will resize itself to fit
+the contents whenever the contents change. The top left corner is
+not moved. This is useful for QLabel widgets that are not managed by
+a <a href="qlayout.html">QLayout</a> (e.g. top-level widgets).
+<p>Auto-resizing is disabled by default.
+<p>See also  <a href="#016e1f">autoResize</a>(), <a href="qwidget.html#2ec710">adjustSize</a>() and <a href="#f40fcc">sizeHint</a>().
+<h3 class="fn">void <a name="085fdb"></a>QLabel::setBuddy ( <a href="qwidget.html">QWidget</a> * buddy ) <code>[virtual]</code></h3>
+<p>Sets the buddy of this label to <em>buddy.</em>
+<p>When the user presses the accelerator key indicated by this label,
+the keyboard focus is transferred to the label's buddy widget.
+<p>The buddy mechanism is only available for QLabels that contain a
+plain text in which one letter is prefixed with '&'. It is this
+letter that is set as the accelerator key. The letter is displayed
+underlined, and the '&' is not displayed (i.e. the <code>ShowPrefix</code>
+alignment flag is turned on; see <a href="#4743c8">setAlignment</a>()).
+<p>In a dialog, you might create two data entry widgets and a label for
+each, and set up the geometry layout so each label is just to the
+left of its data entry widget (its "buddy"), somewhat like this:
+<p><pre>    <a href="qlineedit.html">QLineEdit</a> *nameEd  = new <a href="qlineedit.html">QLineEdit</a>( this );
+    <a href="qlabel.html">QLabel</a>    *nameLb  = new <a href="qlabel.html">QLabel</a>( "&amp;Name:", this );
+    nameLb-&gt;<a href="#085fdb">setBuddy</a>( nameEd );
+    <a href="qlineedit.html">QLineEdit</a> *phoneEd = new <a href="qlineedit.html">QLineEdit</a>( this );
+    <a href="qlabel.html">QLabel</a>    *phoneLb = new <a href="qlabel.html">QLabel</a>( "&amp;Phone:", this );
+    phoneLb-&gt;<a href="#085fdb">setBuddy</a>( phoneEd );
+    // ( layout setup not shown )
+</pre>
+<p>With the code above, the focus jumps to the Name field when the user
+presses Alt-N, and to the Phone field when the user presses Alt-P.
+<p>To unset a previously set buddy, call this function with <em>buddy</em>
+set to 0.
+<p>See also  <a href="#e6f867">buddy</a>(), <a href="#bc5ea6">setText</a>(), <a href="qaccel.html">QAccel</a> and <a href="#4743c8">setAlignment</a>().
+<h3 class="fn">void <a name="9077ed"></a>QLabel::setIndent ( int indent )</h3>
+<p>Sets the indent of the label to <em>indent</em> pixels.
+<p>The indent applies to the left edge if <a href="#6cdfb3">alignment</a>() is <code>AlignLeft,</code>
+to the right edge if alignment() is <code>AlignRight,</code> to the top edge
+if alignment() is <code>AlignTop,</code> and to to the bottom edge if
+alignment() is <code>AlignBottom.</code>
+<p>If <em>indent</em> is negative, or if no indent has been set, the label
+computes the effective indent as follows: If <a href="qframe.html#07c4d2">frameWidth</a>() is 0, the
+effective indent becomes 0. If frameWidth() is greater than 0, the
+effective indent becomes half the width of the "x" character of the
+widget's current <a href="qwidget.html#167922">font</a>().
+<p>If <em>indent</em> is non-negative, the effective indent is <em>indent</em>
+pixels.
+<p>See also  <a href="#f68b83">indent</a>(), <a href="#4743c8">setAlignment</a>(), <a href="qframe.html#07c4d2">frameWidth</a>() and <a href="qwidget.html#167922">font</a>().
+<p>Examples:
+ <a href="movies-main-cpp.html#setIndent">movies/main.cpp</a>
+<h3 class="fn">void <a name="fb7d9d"></a>QLabel::setMovie ( const <a href="qmovie.html">QMovie</a> &amp; movie ) <code>[virtual slot]</code></h3>
+<p>Sets the label contents to <em>movie.</em> Any previous content is cleared.
+<p>The buddy accelerator, if any, is disabled.
+<p>The label resizes itself if auto-resizing is enabled.
+<p>See also  <a href="#c8eede">movie</a>() and <a href="#085fdb">setBuddy</a>().
+<h3 class="fn">void <a name="d52719"></a>QLabel::setNum ( double num ) <code>[virtual slot]</code></h3>
+<p>Sets the label contents to a plain text containing the printed value
+of <em>num.</em>  Does nothing if this is equal to the current contents of
+the label. Any previous content is cleared.
+<p>The buddy accelerator, if any, is disabled.
+<p>The label resizes itself if auto-resizing is enabled.
+<p>See also  <a href="#bc5ea6">setText</a>(), <a href="qstring.html#250d2f">QString::setNum</a>() and <a href="#085fdb">setBuddy</a>().
+<h3 class="fn">void <a name="6c7708"></a>QLabel::setNum ( int num ) <code>[virtual slot]</code></h3>
+<p>Sets the label contents to a plain text containing the printed value
+of <em>num.</em> Does nothing if this is equal to the current contents of
+the label. Any previous content is cleared.
+<p>The buddy accelerator, if any, is disabled.
+<p>The label resizes itself if auto-resizing is enabled.
+<p>See also  <a href="#bc5ea6">setText</a>(), <a href="qstring.html#250d2f">QString::setNum</a>() and <a href="#085fdb">setBuddy</a>().
+<h3 class="fn">void <a name="4acf9b"></a>QLabel::setPixmap ( const <a href="qpixmap.html">QPixmap</a> &amp; pixmap ) <code>[virtual slot]</code></h3>
+<p>Sets the label contents to <em>pixmap.</em> Any previous content is cleared.
+<p>The buddy accelerator, if any, is disabled.
+<p>The label resizes itself if auto-resizing is enabled.
+<p>See also  <a href="#a1bd68">pixmap</a>() and <a href="#085fdb">setBuddy</a>().
+<h3 class="fn">void <a name="f3987d"></a>QLabel::setScaledContents ( bool enable )</h3>
+<p>When called with <em>enable</em> == TRUE, and the label shows a pixmap,
+it will scale the pixmap to fill available space.
+<p>See also  <a href="#7bc3f0">hasScaledContents</a>().
+<h3 class="fn">void <a name="bc5ea6"></a>QLabel::setText ( const <a href="qstring.html">QString</a> &amp; text ) <code>[virtual slot]</code></h3>
+<p>Sets the label contents to <em>text,</em> or does nothing if <em>text</em> is
+equal to the current contents of the label. Any previous content is
+cleared.
+<p><em>text</em> will be interpreted either as a plain text or as a rich
+text, depending on the text format setting; see <a href="#b5c8c1">setTextFormat</a>(). The
+default setting is <code>AutoText,</code> i.e. QLabel will try to auto-detect
+the format of <em>text.</em>
+<p>If <em>text</em> is interpreted as a plain text, and a buddy has been set,
+the buddy accelerator key is updated from the new text.
+<p>The label resizes itself if auto-resizing is enabled.
+<p>Note that Qlabel is well suited to display small rich text documents
+only. For large documents, use <a href="qtextview.html">QTextView</a> instead. It will flicker
+less on resize and can also provide a scrollbar if necessary.
+<p>See also  <a href="#629ce8">text</a>(), <a href="#b5c8c1">setTextFormat</a>(), <a href="#085fdb">setBuddy</a>() and <a href="#4743c8">setAlignment</a>().
+<p>Examples:
+ <a href="cursor-cursor-cpp.html#setText">cursor/cursor.cpp</a>
+ <a href="layout-layout-cpp.html#setText">layout/layout.cpp</a>
+ <a href="popup-popup-cpp.html#setText">popup/popup.cpp</a>
+ <a href="qmag-qmag-cpp.html#setText">qmag/qmag.cpp</a>
+ <a href="customlayout-main-cpp.html#setText">customlayout/main.cpp</a>
+<h3 class="fn">void <a name="b5c8c1"></a>QLabel::setTextFormat ( <a href="qt.html#TextFormat">Qt::TextFormat</a> format )</h3>
+<p>Sets the text format to <em>format.</em> See the <a href="qt.html#TextFormat">Qt::TextFormat</a> enum for
+an explanation of the possible options.
+<p>The default format is <code>AutoText.</code>
+<p>See also  <a href="#fecf7d">textFormat</a>() and <a href="#bc5ea6">setText</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="f40fcc"></a>QLabel::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Examples:
+ <a href="layout-layout-cpp.html#sizeHint">layout/layout.cpp</a>
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="00bbd8"></a>QLabel::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="629ce8"></a>QLabel::text () const</h3>
+<p>Returns the label text. If the content is a plain or a rich text,
+this is the string that was passed to <a href="#bc5ea6">setText</a>(). Otherwise, it is an
+empty/null string.
+<p>See also  <a href="#bc5ea6">setText</a>(), <a href="#6c7708">setNum</a>() and <a href="#a6dd08">clear</a>().
+<h3 class="fn">Qt::TextFormat <a name="fecf7d"></a>QLabel::textFormat() const</h3>
+<p>Returns the current text format.
+<p>See also  <a href="#b5c8c1">setTextFormat</a>().
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

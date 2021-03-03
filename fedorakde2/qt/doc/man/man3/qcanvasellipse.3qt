@@ -1,0 +1,128 @@
+'\" t
+.TH QCanvasEllipse 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvasEllipse \- An ellipse with a movable center point
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+Inherits QCanvasPolygonalItem.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvasEllipse\fR ( QCanvas * canvas ) "
+.br
+.ti -1c
+.BI "\fBQCanvasEllipse\fR ( int " "width" ", int " "height" ", QCanvas * canvas ) "
+.br
+.ti -1c
+.BI "\fBQCanvasEllipse\fR ( int " "width" ", int " "height" ", int " "startangle" ", int " "angle" ", QCanvas * canvas ) "
+.br
+.ti -1c
+.BI "\fB~QCanvasEllipse\fR () "
+.br
+.ti -1c
+.BI "int \fBwidth\fR () const"
+.br
+.ti -1c
+.BI "int \fBheight\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetSize\fR ( int " "w" ", int h ) "
+.br
+.ti -1c
+.BI "void \fBsetAngles\fR ( int " "start" ", int length ) "
+.br
+.ti -1c
+.BI "int \fBangleStart\fR () const"
+.br
+.ti -1c
+.BI "int \fBangleLength\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBrtti\fR () const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawShape\fR ( QPainter & ) "
+.br
+.in -1c
+.SH DESCRIPTION
+An ellipse with a movable center point.
+.PP
+Paints an ellipse or "pie segment" with a QBrush.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvasEllipse::QCanvasEllipse ( QCanvas * canvas )"
+Constructs a 32x32 ellipse, centered at (0,0) on \fIcanvas.\fR
+.SH "QCanvasEllipse::QCanvasEllipse ( int width, int height, QCanvas * canvas )"
+Constructs a \fIwidth\fR by \fIheight\fR pixel ellipse, centered at (0,0) on \fIcanvas.\fR
+.SH "QCanvasEllipse::QCanvasEllipse ( int width, int height, int startangle, int angle, QCanvas * canvas )"
+Constructs a \fIwidth\fR by \fIheight\fR pixel ellipse, centered at (0,0) on \fIcanvas,\fR starting at angle \fIstartangle,\fR extending for angle \fIangle. startangle\fR and \fIangle\fR are in 1/16 degrees.
+.SH "QCanvasEllipse::~QCanvasEllipse ()"
+Destructs the ellipse.
+.SH "int QCanvasEllipse::angleLength () const"
+Returns the length angle in 1/16 degrees. Initially this will be 360*16 - ie. a solid ellipse.
+.PP
+See also setAngles() and angleStart().
+.SH "int QCanvasEllipse::angleStart () const"
+Returns the start angle in 1/16 degrees. Initially this will be 0.
+.PP
+See also setAngles() and angleLength().
+.SH "QPointArray QCanvasEllipse::areaPoints () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QCanvasPolygonalItem.
+.SH "bool QCanvasEllipse::collidesWith ( const QCanvasItem * i ) const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QCanvasItem.
+.SH "void QCanvasEllipse::drawShape ( QPainter & p ) \fC[virtual protected]\fR"
+Draws the ellipse, centered at x(), y().
+.PP
+Note that QCanvasPolygon does not support an outline (pen is always NoPen).
+.PP
+Reimplemented from QCanvasPolygonalItem.
+.SH "int QCanvasEllipse::height () const"
+Returns the height of the ellipse.
+.SH "int QCanvasEllipse::rtti () const \fC[virtual]\fR"
+Returns 6.
+.PP
+See also QCanvasItem::rtti().
+.PP
+Reimplemented from QCanvasItem.
+.SH "void QCanvasEllipse::setAngles ( int start, int length )"
+Sets the angles for the ellipse to start at \fIstart\fR and continue for \fIlength\fR units. Each unit is 1/16 of a degree. By default the ellipse will start at 0 and have length 360*16 - ie. a solid ellipse.
+.PP
+See also angleStart() and angleLength().
+.SH "void QCanvasEllipse::setSize ( int width, int height )"
+Sets the \fIwidth\fR and \fIheight\fR of the ellipse.
+.SH "int QCanvasEllipse::width () const"
+Returns the width of the ellipse.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvasellipse.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvasellipse.3qt) and the Qt
+version (2.3.2).

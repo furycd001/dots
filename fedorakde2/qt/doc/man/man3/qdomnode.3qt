@@ -1,0 +1,614 @@
+'\" t
+.TH QDomNode 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDomNode \- The base class for all nodes of the DOM tree
+.br
+.PP
+\fC#include <qdom.h>\fR
+.PP
+Inherited by QDomAttr, QDomCharacterData, QDomDocument, QDomDocumentFragment, QDomDocumentType, QDomElement, QDomEntity, QDomEntityReference, QDomNotation and QDomProcessingInstruction.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "enum \fBNodeType\fR { BaseNode = 0, ElementNode = 1, AttributeNode = 2, TextNode = 3, CDATASectionNode = 4, EntityReferenceNode = 5, EntityNode = 6, ProcessingInstructionNode = 7, CommentNode = 8, DocumentNode = 9, DocumentTypeNode = 10, DocumentFragmentNode = 11, NotationNode = 12, CharacterDataNode = 13 }"
+.br
+.ti -1c
+.BI "\fBQDomNode\fR () "
+.br
+.ti -1c
+.BI "\fBQDomNode\fR ( const QDomNode & ) "
+.br
+.ti -1c
+.BI "QDomNode& \fBoperator=\fR ( const QDomNode & ) "
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QDomNode & ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QDomNode & ) const"
+.br
+.ti -1c
+.BI "virtual \fB~QDomNode\fR () "
+.br
+.ti -1c
+.BI "virtual QString \fBnodeName\fR () const"
+.br
+.ti -1c
+.BI "virtual QString \fBnodeValue\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetNodeValue\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "virtual QDomNode::NodeType \fBnodeType\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNode \fBparentNode\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNodeList \fBchildNodes\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNode \fBfirstChild\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNode \fBlastChild\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNode \fBpreviousSibling\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNode \fBnextSibling\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNamedNodeMap \fBattributes\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomDocument \fBownerDocument\fR () const"
+.br
+.ti -1c
+.BI "virtual QDomNode \fBinsertBefore\fR ( const QDomNode & " "newChild" ", const QDomNode & refChild ) "
+.br
+.ti -1c
+.BI "virtual QDomNode \fBinsertAfter\fR ( const QDomNode & " "newChild" ", const QDomNode & refChild ) "
+.br
+.ti -1c
+.BI "virtual QDomNode \fBreplaceChild\fR ( const QDomNode & " "newChild" ", const QDomNode & oldChild ) "
+.br
+.ti -1c
+.BI "virtual QDomNode \fBremoveChild\fR ( const QDomNode & oldChild ) "
+.br
+.ti -1c
+.BI "virtual QDomNode \fBappendChild\fR ( const QDomNode & newChild ) "
+.br
+.ti -1c
+.BI "virtual QDomNode \fBcloneNode\fR ( bool " "deep" " = TRUE ) const"
+.br
+.ti -1c
+.BI "virtual bool \fBisAttr\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisCDATASection\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisDocumentFragment\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisDocument\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisDocumentType\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisElement\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisEntityReference\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisText\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisEntity\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisNotation\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisProcessingInstruction\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisCharacterData\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisComment\fR () const"
+.br
+.ti -1c
+.BI "QDomNode \fBnamedItem\fR ( const QString & name ) const"
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "void \fBclear\fR () "
+.br
+.ti -1c
+.BI "QDomAttr \fBtoAttr\fR () "
+.br
+.ti -1c
+.BI "QDomCDATASection \fBtoCDATASection\fR () "
+.br
+.ti -1c
+.BI "QDomDocumentFragment \fBtoDocumentFragment\fR () "
+.br
+.ti -1c
+.BI "QDomDocument \fBtoDocument\fR () "
+.br
+.ti -1c
+.BI "QDomDocumentType \fBtoDocumentType\fR () "
+.br
+.ti -1c
+.BI "QDomElement \fBtoElement\fR () "
+.br
+.ti -1c
+.BI "QDomEntityReference \fBtoEntityReference\fR () "
+.br
+.ti -1c
+.BI "QDomText \fBtoText\fR () "
+.br
+.ti -1c
+.BI "QDomEntity \fBtoEntity\fR () "
+.br
+.ti -1c
+.BI "QDomNotation \fBtoNotation\fR () "
+.br
+.ti -1c
+.BI "QDomProcessingInstruction \fBtoProcessingInstruction\fR () "
+.br
+.ti -1c
+.BI "QDomCharacterData \fBtoCharacterData\fR () "
+.br
+.ti -1c
+.BI "QDomComment \fBtoComment\fR () "
+.br
+.ti -1c
+.BI "void \fBsave\fR ( QTextStream &, int ) const"
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "\fBQDomNode\fR ( QDOM_NodePrivate * ) (internal)"
+.br
+.in -1c
+.SH DESCRIPTION
+The QDomNode class is the base class for all nodes of the DOM tree.
+.PP
+This class is the base class for almost all other classes in the DOM. Many functions in the DOM return a QDomNode. The various isXxx() functions are useful to find out the type of the node. A QDomNode can be converted to a subclass by using the toXxx() function family.
+.PP
+Copies of the QDomNode class share their data; this means modifying one will change all copies. This is especially useful in combination with functions which return a QDomNode, e.g. firstChild(). You can make an independent copy of the node with cloneNode().
+.PP
+The following example looks for the first element in an XML document and prints its name:
+.PP
+.nf
+.br
+  QDomDocument d;
+.br
+  d.setContent( someXML );
+.br
+  QDomNode n = d.firstChild();
+.br
+  while ( !n.isNull() ) {
+.br
+      if ( n.isElement ) {
+.br
+          QDomElement e = n.toElement();
+.br
+          cout << "The name of the element is " << e.tagName() << endl;
+.br
+          return;
+.br
+      }
+.br
+      n = n.nextSibling();
+.br
+  }
+.br
+  cout << "no element in the Document" << endl;
+.fi
+.PP
+For further information about the Document Objct Model see http://www.w3.org/TR/REC-DOM-Level-1/. For a more general introduction of the DOM implementation see the QDomDocument documentation.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDomNode::QDomNode ()"
+Constructs an empty node.
+.SH "QDomNode::QDomNode ( const QDomNode & n )"
+Copy constructor.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "QDomNode::~QDomNode () \fC[virtual]\fR"
+Destructor.
+.SH "QDomNode QDomNode::appendChild ( const QDomNode & newChild ) \fC[virtual]\fR"
+Appends \fInewChild\fR to the end of the children list.
+.PP
+If \fInewChild\fR is currently child of another parent, then it is reparented. If \fInewChild\fR is currently a child of this QDomNode, then its position in the list of children is changed.
+.PP
+Returns a new reference to \fInewChild.\fR
+.PP
+See also insertBefore(), insertAfter(), replaceChild() and removeChild().
+.SH "QDomNamedNodeMap QDomNode::attributes () const \fC[virtual]\fR"
+Returns a map of all attributes. Attributes are only provided for QDomElement.
+.PP
+Changing the attributes in the map will also change the attributes of this QDomNode.
+.PP
+Reimplemented in QDomElement.
+.SH "QDomNodeList QDomNode::childNodes () const \fC[virtual]\fR"
+Returns a list of all child nodes.
+.PP
+Most often you will call this function on a QDomElement object. If the XML document looks like this:
+.PP
+.nf
+.br
+  <body>
+.br
+   <h1>Heading</h1>
+.br
+   <p>Hallo <b>you</b></p>
+.br
+  </body>
+.fi
+.PP
+Then the list of child nodes for the "body"-element will contain the node created by the <h1> tag and the node created by the <p> tag.
+.PP
+The nodes in the list are not copied; so changing the nodes in the list will also change the children of this node.
+.PP
+See also firstChild() and lastChild().
+.SH "void QDomNode::clear ()"
+Dereferences the internal object. The node is then a null node.
+.PP
+See also isNull().
+.SH "QDomNode QDomNode::cloneNode ( bool deep = TRUE ) const \fC[virtual]\fR"
+Creates a real copy of the QDomNode.
+.PP
+If \fIdeep\fR is TRUE, then the cloning is done recursive. That means all children are copied, too. Otherwise the cloned node does not contain child nodes.
+.SH "QDomNode QDomNode::firstChild () const \fC[virtual]\fR"
+Returns the first child of the node. If there is no child node, a null node is returned.
+.PP
+See also lastChild() and childNodes().
+.SH "QDomNode QDomNode::insertAfter ( const QDomNode & newChild, const QDomNode & refChild ) \fC[virtual]\fR"
+Inserts the node \fInewChild\fR after the child node \fIrefChild. refChild\fR has to be a direct child of this node. If \fIrefChild\fR is null then \fInewChild\fR is appended as last child.
+.PP
+If \fInewChild\fR is currently child of another parent, then it is reparented. If \fInewChild\fR is currently a child of this QDomNode, then its position in the list of children is changed.
+.PP
+If \fInewChild\fR is a QDomDocumentFragment, then the children of the fragment are removed from the fragment and inserted after \fIrefChild.\fR
+.PP
+Returns a new reference to \fInewChild\fR on success or an empty node on failure.
+.PP
+See also insertBefore(), replaceChild(), removeChild() and appendChild().
+.SH "QDomNode QDomNode::insertBefore ( const QDomNode & newChild, const QDomNode & refChild ) \fC[virtual]\fR"
+Inserts the node \fInewChild\fR before the child node \fIrefChild. refChild\fR has to be a direct child of this node. If \fIrefChild\fR is null then \fInewChild\fR is inserted as first child.
+.PP
+If \fInewChild\fR is currently child of another parent, then it is reparented. If \fInewChild\fR is currently a child of this QDomNode, then its position in the list of children is changed.
+.PP
+If \fInewChild\fR is a QDomDocumentFragment, then the children of the fragment are removed from the fragment and inserted after \fIrefChild.\fR
+.PP
+Returns a new reference to \fInewChild\fR on success or an empty node on failure.
+.PP
+See also insertAfter(), replaceChild(), removeChild() and appendChild().
+.SH "bool QDomNode::isAttr () const \fC[virtual]\fR"
+Returns TRUE if the node is an attribute, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomAttribute; you can get the QDomAttribute with toAttribute().
+.PP
+See also toAttribute().
+.PP
+Reimplemented in QDomAttr.
+.SH "bool QDomNode::isCDATASection () const \fC[virtual]\fR"
+Returns TRUE if the node is a CDATA section, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomCDATASection; you can get the QDomCDATASection with toCDATASection().
+.PP
+See also toCDATASection().
+.PP
+Reimplemented in QDomCDATASection.
+.SH "bool QDomNode::isCharacterData () const \fC[virtual]\fR"
+Returns TRUE if the node is a character data node, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomCharacterData; you can get the QDomCharacterData with toCharacterData().
+.PP
+See also toCharacterData().
+.PP
+Reimplemented in QDomCharacterData.
+.SH "bool QDomNode::isComment () const \fC[virtual]\fR"
+Returns TRUE if the node is a comment, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomComment; you can get the QDomComment with toComment().
+.PP
+See also toComment().
+.PP
+Reimplemented in QDomComment.
+.SH "bool QDomNode::isDocument () const \fC[virtual]\fR"
+Returns TRUE if the node is a document, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomDocument; you can get the QDomDocument with toDocument().
+.PP
+See also toDocument().
+.PP
+Reimplemented in QDomDocument.
+.SH "bool QDomNode::isDocumentFragment () const \fC[virtual]\fR"
+Returns TRUE if the node is a document fragment, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomDocumentFragment; you can get the QDomDocumentFragment with toDocumentFragment().
+.PP
+See also toDocumentFragment().
+.PP
+Reimplemented in QDomDocumentFragment.
+.SH "bool QDomNode::isDocumentType () const \fC[virtual]\fR"
+Returns TRUE if the node is a document type, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomDocumentType; you can get the QDomDocumentType with toDocumentType().
+.PP
+See also toDocumentType().
+.PP
+Reimplemented in QDomDocumentType.
+.SH "bool QDomNode::isElement () const \fC[virtual]\fR"
+Returns TRUE if the node is an element, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomElement; you can get the QDomElement with toElement().
+.PP
+See also toElement().
+.PP
+Reimplemented in QDomElement.
+.SH "bool QDomNode::isEntity () const \fC[virtual]\fR"
+Returns TRUE if the node is an entity, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomEntity; you can get the QDomEntity with toEntity().
+.PP
+See also toEntity().
+.PP
+Reimplemented in QDomEntity.
+.SH "bool QDomNode::isEntityReference () const \fC[virtual]\fR"
+Returns TRUE if the node is an entity reference, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomEntityReference; you can get the QDomEntityReference with toEntityReference().
+.PP
+See also toEntityReference().
+.PP
+Reimplemented in QDomEntityReference.
+.SH "bool QDomNode::isNotation () const \fC[virtual]\fR"
+Returns TRUE if the node is a notation, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomNotation; you can get the QDomNotation with toNotation().
+.PP
+See also toNotation().
+.PP
+Reimplemented in QDomNotation.
+.SH "bool QDomNode::isNull () const"
+Returns TRUE if this node does not reference any internal object, otherwise FALSE.
+.SH "bool QDomNode::isProcessingInstruction () const \fC[virtual]\fR"
+Returns TRUE if the node is a processing instruction, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomProcessingInstruction; you can get the QProcessingInstruction with toProcessingInstruction().
+.PP
+See also toProcessingInstruction().
+.PP
+Reimplemented in QDomProcessingInstruction.
+.SH "bool QDomNode::isText () const \fC[virtual]\fR"
+Returns TRUE if the node is a text, otherwise FALSE.
+.PP
+If this function returns TRUE, this does not imply that this object is a QDomText; you can get the QDomText with toText().
+.PP
+See also toText().
+.PP
+Reimplemented in QDomText.
+.SH "QDomNode QDomNode::lastChild () const \fC[virtual]\fR"
+Returns the last child of the node. If there is no child node then a null node is returned.
+.PP
+See also firstChild() and childNodes().
+.SH "QDomNode QDomNode::namedItem ( const QString & name ) const"
+Returns the first child node for which nodeName() equals \fIname.\fR
+.PP
+If no such direct child exists, a null node is returned.
+.PP
+See also nodeName().
+.SH "QDomNode QDomNode::nextSibling () const \fC[virtual]\fR"
+Returns the next sibling in the document tree. Changing the returned node will also change the node in the document tree.
+.PP
+If you have XML like this:
+.PP
+.nf
+.br
+  <h1>Heading</h1>
+.br
+  <p>The text...</p>
+.br
+  <h2>Next heading</h2>
+.fi
+.PP
+and this QDomNode represents the <p> tag, the nextSibling will return the node representing the <h2> tag.
+.PP
+See also previousSibling().
+.SH "QString QDomNode::nodeName () const \fC[virtual]\fR"
+Returns the name of the node.
+.PP
+The meaning of the name depends on the subclass:
+.TP
+QDomElement - the tag name
+.TP
+QDomAttr - the name of the attribute
+.TP
+QDomText - the string "#text"
+.TP
+QDomCDATASection - the string "#cdata-section"
+.TP
+QDomEntityReference - the name of the referenced entity
+.TP
+QDomEntity - the name of the entity
+.TP
+QDomProcessingInstruction - the target of the processing instruction
+.TP
+QDomDocument - the string "#document"
+.TP
+QDomComment - the string "#comment"
+.TP
+QDomDocumentType - the name of the document type
+.TP
+QDomDocumentFragment - the string "#document-fragment"
+.TP
+QDomNotation - the name of the notation
+.PP
+See also nodeValue().
+.SH "QDomNode::NodeType QDomNode::nodeType() const \fC[virtual]\fR"
+Returns the type of the node.
+.PP
+See also toAttr(), toCDATASection(), toDocumentFragment(), toDocument(), toDocumentType(), toElement(), toEntityReference(), toText(), toEntity(), toNotation(), toProcessingInstruction(), toCharacterData() and toComment().
+.PP
+Reimplemented in QDomDocumentType, QDomComment, QDomDocument, QDomElement, QDomDocumentFragment, QDomNotation, QDomEntityReference, QDomProcessingInstruction, QDomAttr, QDomCharacterData, QDomEntity, QDomText and QDomCDATASection.
+.SH "QString QDomNode::nodeValue () const \fC[virtual]\fR"
+Returns the value of the node.
+.PP
+The meaning of the value depends on the subclass:
+.TP
+QDomAttr - the attribute value
+.TP
+QDomText - the text
+.TP
+QDomCDATASection - the content of the CDATA section
+.TP
+QDomProcessingInstruction - the data of the processing intruction
+.TP
+QDomComment - the comment
+.PP
+All other subclasses not listed above do not have a node value. These classes will return a null string.
+.PP
+See also setNodeValue() and nodeName().
+.SH "bool QDomNode::operator!= ( const QDomNode & n ) const"
+Returns TRUE if the two nodes are not equal, otherwise FALSE.
+.SH "QDomNode& QDomNode::operator= ( const QDomNode & n )"
+Assignment operator.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "bool QDomNode::operator== ( const QDomNode & n ) const"
+Returns TRUE if the two nodes are equal, otherwise FALSE.
+.SH "QDomDocument QDomNode::ownerDocument () const \fC[virtual]\fR"
+Returns the document to which this node belongs.
+.SH "QDomNode QDomNode::parentNode () const \fC[virtual]\fR"
+Returns the parent node, If this node has no parent, then a null node is returned (i.e. a node for which isNull() returns TRUE).
+.SH "QDomNode QDomNode::previousSibling () const \fC[virtual]\fR"
+Returns the previous sibling in the document tree. Changing the returned node will also change the node in the document tree.
+.PP
+If you have XML like this:
+.PP
+.nf
+.br
+  <h1>Heading</h1>
+.br
+  <p>The text...</p>
+.br
+  <h2>Next heading</h2>
+.fi
+.PP
+and this QDomNode represents the <p> tag, the previousSibling will return the node representing the <h1> tag.
+.PP
+See also nextSibling().
+.SH "QDomNode QDomNode::removeChild ( const QDomNode & oldChild ) \fC[virtual]\fR"
+Removes \fIoldChild\fR from the list of children. \fIoldChild\fR has to be a direct child of this node.
+.PP
+Returns a new reference to \fIoldChild\fR on success or a null node on failure.
+.PP
+See also insertBefore(), insertAfter(), replaceChild() and appendChild().
+.SH "QDomNode QDomNode::replaceChild ( const QDomNode & newChild, const QDomNode & oldChild ) \fC[virtual]\fR"
+Replaces \fIoldChild\fR with \fInewChild. oldChild\fR has to be a direct child of this node.
+.PP
+If \fInewChild\fR is currently child of another parent, then it is reparented. If \fInewChild\fR is currently a child of this QDomNode, then its position in the list of children is changed.
+.PP
+If \fInewChild\fR is a QDomDocumentFragment, then the children of the fragment are removed from the fragment and inserted after \fIrefChild.\fR
+.PP
+Returns a new reference to \fIoldChild\fR on success or a null node an failure.
+.PP
+See also insertBefore(), insertAfter(), removeChild() and appendChild().
+.SH "void QDomNode::save ( QTextStream & str, int indent ) const"
+Writes the XML representation of the node including all its children on the stream.
+.SH "void QDomNode::setNodeValue ( const QString & v ) \fC[virtual]\fR"
+Sets the value of the node to \fIv.\fR
+.PP
+See also nodeValue().
+.SH "QDomAttr QDomNode::toAttr ()"
+Converts a QDomNode into a QDomAttr. If the node is not an attribute, the returned object will be null.
+.PP
+See also isAttr().
+.SH "QDomCDATASection QDomNode::toCDATASection ()"
+Converts a QDomNode into a QDomCDATASection. If the node is not a CDATA section, the returned object will be null.
+.PP
+See also isCDATASection().
+.SH "QDomCharacterData QDomNode::toCharacterData ()"
+Converts a QDomNode into a QDomCharacterData. If the node is not a character data node the returned object will be null.
+.PP
+See also isCharacterData().
+.SH "QDomComment QDomNode::toComment ()"
+Converts a QDomNode into a QDomComment. If the node is not a comment the returned object will be null.
+.PP
+See also isComment().
+.SH "QDomDocument QDomNode::toDocument ()"
+Converts a QDomNode into a QDomDocument. If the node is not a document the returned object will be null.
+.PP
+See also isDocument().
+.SH "QDomDocumentFragment QDomNode::toDocumentFragment ()"
+Converts a QDomNode into a QDomDocumentFragment. If the node is not a document fragment the returned object will be null.
+.PP
+See also isDocumentFragment().
+.SH "QDomDocumentType QDomNode::toDocumentType ()"
+Converts a QDomNode into a QDomDocumentType. If the node is not a document type the returned object will be null.
+.PP
+See also isDocumentType().
+.SH "QDomElement QDomNode::toElement ()"
+Converts a QDomNode into a QDomElement. If the node is not an element the returned object will be null.
+.PP
+See also isElement().
+.SH "QDomEntity QDomNode::toEntity ()"
+Converts a QDomNode into a QDomEntity. If the node is not an entity the returned object will be null.
+.PP
+See also isEntity().
+.SH "QDomEntityReference QDomNode::toEntityReference ()"
+Converts a QDomNode into a QDomEntityReference. If the node is not an entity reference, the returned object will be null.
+.PP
+See also isEntityReference().
+.SH "QDomNotation QDomNode::toNotation ()"
+Converts a QDomNode into a QDomNotation. If the node is not a notation the returned object will be null.
+.PP
+See also isNotation().
+.SH "QDomProcessingInstruction QDomNode::toProcessingInstruction ()"
+Converts a QDomNode into a QDomProcessingInstruction. If the node is not a processing instruction the returned object will be null.
+.PP
+See also isProcessingInstruction().
+.SH "QDomText QDomNode::toText ()"
+Converts a QDomNode into a QDomText. If the node is not a text, the returned object will be null.
+.PP
+See also isText().
+.SH "QDomNode::QDomNode ( QDOM_NodePrivate * n ) \fC[protected]\fR"
+For internal use only.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdomnode.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdomnode.3qt) and the Qt
+version (2.3.2).

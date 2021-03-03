@@ -1,0 +1,14 @@
+This example demonstrates how to read in and display images, and the
+conversion facilities available. The CuteWidget can read a file into
+a pixmap and resizes the displayed pixmap when the widget is resized.
+
+Note that the function CuteWidget::paintEvent uses the drawPixmap function
+of QPainter to display the pixmap, the bitBlt function can also be used to
+display pixmaps.
+
+If you have installed the Qt imageio extension (see extensions/imageio
+in your Qt directory), you can build using that extension.
+
+Some of the conversion options will have no effect, depending on the
+display hardware used.  Generally, these are disabled.
+

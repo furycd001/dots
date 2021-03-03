@@ -1,0 +1,315 @@
+'\" t
+.TH QCanvasItem 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QCanvasItem \- The QCanvasItem is an abstract graphic object on a
+.br
+.PP
+\fC#include <qcanvas.h>\fR
+.PP
+Inherits Qt.
+.PP
+Inherited by QCanvasPolygonalItem, QCanvasSprite and QCanvasText.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQCanvasItem\fR ( QCanvas * canvas ) "
+.br
+.ti -1c
+.BI "virtual \fB~QCanvasItem\fR () "
+.br
+.ti -1c
+.BI "double \fBx\fR () const"
+.br
+.ti -1c
+.BI "double \fBy\fR () const"
+.br
+.ti -1c
+.BI "double \fBz\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBmoveBy\fR ( double " "dx" ", double dy ) "
+.br
+.ti -1c
+.BI "void \fBmove\fR ( double " "x" ", double y ) "
+.br
+.ti -1c
+.BI "void \fBsetX\fR ( double a ) "
+.br
+.ti -1c
+.BI "void \fBsetY\fR ( double a ) "
+.br
+.ti -1c
+.BI "void \fBsetZ\fR ( double a ) "
+.br
+.ti -1c
+.BI "bool \fBanimated\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetAnimated\fR ( bool y ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetVelocity\fR ( double " "vx" ", double vy ) "
+.br
+.ti -1c
+.BI "void \fBsetXVelocity\fR ( double vx ) "
+.br
+.ti -1c
+.BI "void \fBsetYVelocity\fR ( double vy ) "
+.br
+.ti -1c
+.BI "double \fBxVelocity\fR () const"
+.br
+.ti -1c
+.BI "double \fByVelocity\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBadvance\fR ( int stage ) "
+.br
+.ti -1c
+.BI "virtual bool \fBcollidesWith\fR ( const QCanvasItem * ) const"
+.br
+.ti -1c
+.BI "QCanvasItemList \fBcollisions\fR ( bool exact ) const"
+.br
+.ti -1c
+.BI "virtual void \fBsetCanvas\fR ( QCanvas * ) "
+.br
+.ti -1c
+.BI "virtual void \fBdraw\fR ( QPainter & ) "
+.br
+.ti -1c
+.BI "void \fBshow\fR () "
+.br
+.ti -1c
+.BI "void \fBhide\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetVisible\fR ( bool yes ) "
+.br
+.ti -1c
+.BI "bool \fBvisible\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSelected\fR ( bool yes ) "
+.br
+.ti -1c
+.BI "bool \fBselected\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetEnabled\fR ( bool yes ) "
+.br
+.ti -1c
+.BI "bool \fBenabled\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetActive\fR ( bool yes ) "
+.br
+.ti -1c
+.BI "bool \fBactive\fR () const"
+.br
+.ti -1c
+.BI "virtual int \fBrtti\fR () const"
+.br
+.ti -1c
+.BI "virtual QRect \fBboundingRect\fR () const"
+.br
+.ti -1c
+.BI "virtual QRect \fBboundingRectAdvanced\fR () const"
+.br
+.ti -1c
+.BI "QCanvas* \fBcanvas\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QCanvasItem is an abstract graphic object on a QCanvas.
+.PP
+A QCanvasItem object can be moved in the x(), y() and z() dimensions using functions such as move(), moveBy(), setY() and many others. It has a size given by boundingRect(). The item can move or change appearance automatically, using setAnimated() and setVelocity(), and you can get information about whether it collides using collidesWith() and collisions().
+.PP
+Finally, the rtti() function is used for identifying subclasses of QCanvasItem, and the canvas() returns a pointer to the canvas on which the item lives.
+.PP
+An item, by default, has no speed, no size, is not animated and has no velocity.
+.PP
+Note that you cannot easily subclass QCanvasItem yourself - the API is too low-level. Instead, you should subclass QCanvasPolygonalItem, or perhaps QCanvasRectangle or QCanvasSprite.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCanvasItem::QCanvasItem ( QCanvas * canvas )"
+Constructs a QCanvasItem on \fIcanvas.\fR
+.PP
+See also setCanvas().
+.SH "QCanvasItem::~QCanvasItem () \fC[virtual]\fR"
+Destructs the QCanvasItem. It is removed from its canvas.
+.SH "bool QCanvasItem::active () const"
+Returns TRUE if the QCanvasItem is active.
+.SH "void QCanvasItem::advance ( int phase ) \fC[virtual]\fR"
+Advances the animation of the item. The default implementation moves the item by the preset velocity if \fIstage\fR is 1, and does nothing if \fIstage\fR is 0.
+.PP
+Note that if you reimplement this funciton, you may not change the canvas in any way, add other items, or remove items.
+.PP
+See also QCanvas::advance().
+.SH "bool QCanvasItem::animated () const"
+Returns TRUE is the item is animated.
+.PP
+See also setVelocity() and setAnimated().
+.SH "QRect QCanvasItem::boundingRect () const \fC[virtual]\fR"
+Returns the bounding rectangle of pixels that the item covers.
+.PP
+See also boundingRectAdvanced().
+.PP
+Reimplemented in QCanvasText, QCanvasPolygonalItem and QCanvasSprite.
+.SH "QRect QCanvasItem::boundingRectAdvanced () const \fC[virtual]\fR"
+Returns the bounding rectangle of pixels that the item \fIwill\fR cover after advance(1) is called.
+.PP
+See also boundingRect().
+.SH "QCanvas* QCanvasItem::canvas () const"
+Returns the canvas containing the item.
+.SH "bool QCanvasItem::collidesWith ( const QCanvasItem * other ) const \fC[virtual]\fR"
+Returns TRUE if the item will collide with the \fIother\fR item \fIafter\fR they have moved by their current velocities.
+.PP
+See also collisions().
+.PP
+Reimplemented in QCanvasPolygonalItem, QCanvasRectangle, QCanvasSprite, QCanvasEllipse and QCanvasText.
+.SH "QCanvasItemList QCanvasItem::collisions ( bool exact ) const"
+Returns the list of items that this item collides with.
+.PP
+A collision is generally defined as pixels of one item drawing on the pixels of another item, but not all subclasses are so precise. Also, since pixelwise collision detection can be slow, this function works in either exact or inexact mode, according to the \fIexact\fR parameter.
+.PP
+In exact mode, items returned have been accurately tested to collide with the item.
+.PP
+In inexact mode, the items returned are only \fInear\fR the item and should be tested using collidesWith() if they are interesting collision candidates. By using this, you can ignore some items for which collisions are not interesting.
+.PP
+The returned list is just a list of QCanvasItems, but often you will need to cast the items to more useful types. The safe way to do that is to use rtti() before casting. This provides some of the functionality of standard C++ dynamic cast operation even on compilers where that is not available.
+.PP
+Note that while a QCanvasItem may be `on' a QCanvas even if it's coordinates place it far off the edge of the area of the QCanvas, collision detection only works for parts of an item that are within the area of the canvas.
+.SH "void QCanvasItem::draw ( QPainter & painter ) \fC[virtual]\fR"
+This abstract virtual function draws the item using \fIpainter.\fR
+.PP
+Reimplemented in QCanvasSprite and QCanvasPolygonalItem.
+.SH "bool QCanvasItem::enabled () const"
+Returns TRUE if the QCanvasItem is enabled.
+.SH "void QCanvasItem::hide ()"
+Shorthand for setVisible(FALSE).
+.SH "void QCanvasItem::move ( double x, double y )"
+Moves the item to (\fIx, y)\fR by calling the moveBy() virtual function.
+.SH "void QCanvasItem::moveBy ( double dx, double dy ) \fC[virtual]\fR"
+Moves the item from its current position by the given amounts.
+.PP
+Reimplemented in QCanvasPolygon and QCanvasText.
+.SH "int QCanvasItem::rtti () const \fC[virtual]\fR"
+Returns 0.
+.PP
+Although often frowned upon by purists, Run Time Type Identification is very useful in this case, as it allows a QCanvas to be an efficient indexed storage mechanism.
+.PP
+Make your derived classes return their own values for rtti(), and you can distinguish between objects returned by QCanvas::at(). You should use values greater than 1000 preferably a large random number, to allow for extensions to this class.
+.PP
+However, it is important not to overuse this facility, as it damages extensibility. For example, once you have identified a base class of a QCanvasItem found by QCanvas::at(), cast it to that type and call meaningful methods rather than acting upon the object based on its rtti value.
+.PP
+For example:
+.PP
+.nf
+.br
+    QCanvasItem* item;
+.br
+    // Find an item, eg. with QCanvasItem::collisions().
+.br
+    ...
+.br
+    if (item->rtti() == MySprite::rtti()) {
+.br
+        MySprite* s = (MySprite*)item;
+.br
+        if (s->isDamagable()) s->loseHitPoints(1000);
+.br
+        if (s->isHot()) myself->loseHitPoints(1000);
+.br
+        ...
+.br
+    }
+.fi
+.PP
+Reimplemented in QCanvasRectangle, QCanvasPolygonalItem, QCanvasLine, QCanvasEllipse and QCanvasPolygon.
+.SH "bool QCanvasItem::selected () const"
+Returns TRUE if the QCanvasItem is selected.
+.SH "void QCanvasItem::setActive ( bool yes ) \fC[virtual]\fR"
+Sets the active flag of the item to \fIyes\fR and causes it to be redrawn when QCanvas::update() is next called.
+.PP
+The behavior of QCanvas, QCanvasItem or the built-in QCanvasItem subclasses is not affected by this value. setActive() is supplied because many applications need it, but it is up to the application to define its exact meaning.
+.SH "void QCanvasItem::setAnimated ( bool y ) \fC[virtual]\fR"
+Sets the item to be animated if \fIy\fR is TRUE, or not if \fIy\fR is FALSE.
+.PP
+See also advance() and QCanvas::advance().
+.SH "void QCanvasItem::setCanvas ( QCanvas * c ) \fC[virtual]\fR"
+Sets the QCanvas upon which the QCanvasItem is to be drawn to \fIc.\fR
+.PP
+See also canvas().
+.SH "void QCanvasItem::setEnabled ( bool yes ) \fC[virtual]\fR"
+Sets the enabled flag of the item to \fIyes\fR and causes it to be redrawn when QCanvas::update() is next called.
+.PP
+The behavior of QCanvas, QCanvasItem or the built-in QCanvasItem subclasses is not affected by this value. setEnabled() is supplied because many applications need it, but it is up to the application to define its exact meaning.
+.SH "void QCanvasItem::setSelected ( bool yes ) \fC[virtual]\fR"
+Sets the selected flag of the item to \fIyes\fR and causes it to be redrawn when QCanvas::update() is next called.
+.PP
+The behavior of QCanvas, QCanvasItem or the built-in QCanvasItem subclasses is not affected by this value. setSelected() is supplied because many applications need it, but it is up to the application to define its exact meaning.
+.SH "void QCanvasItem::setVelocity ( double vx, double vy ) \fC[virtual]\fR"
+Sets the item to be animated and moving by \fIdx\fR and \fIdy\fR pixels in the horizontal and vertical directions respectively.
+.PP
+See also advance().
+.SH "void QCanvasItem::setVisible ( bool yes ) \fC[virtual]\fR"
+Makes the items visible if \fIyes\fR is TRUE, or invisible if \fIyes\fR is FALSE. The change takes effect when QCanvas::update() is next called.
+.SH "void QCanvasItem::setX ( double x )"
+Moves the item so that its X-position is \fIx.\fR
+.PP
+See also x() and move().
+.SH "void QCanvasItem::setXVelocity ( double vx )"
+Sets the horizontal component of the item's velocity to \fIvx.\fR
+.SH "void QCanvasItem::setY ( double y )"
+Moves the item so that its Y-position is \fIy.\fR
+.PP
+See also y() and move().
+.SH "void QCanvasItem::setYVelocity ( double vy )"
+Sets the vertical component of the item's velocity to \fIvy.\fR
+.SH "void QCanvasItem::setZ ( double z )"
+Sets the height of the item to \fIz.\fR Higher-z items obscure lower-z ones.
+.PP
+See also z() and move().
+.SH "void QCanvasItem::show ()"
+Shorthand for setVisible(TRUE).
+.SH "bool QCanvasItem::visible () const"
+Returns TRUE if the QCanvasItem is visible. This does \fInot\fR mean the QCanvasItem is currently in a view, merely that if a view is showing the area where the QCanvasItem is, and the item is not obscured by items at a higher z, and the view is not obscured by overlying windows, it would be visible.
+.PP
+See also setVisible() and z().
+.SH "double QCanvasItem::x () const"
+Returns the horizontal position of the item. Note that subclasses often have an origin other than the top-left corner.
+.SH "double QCanvasItem::xVelocity () const"
+Returns the horizontal component of the velocity of the item.
+.SH "double QCanvasItem::y () const"
+Returns the vertical position of the item. Note that subclasses often have an origin other than the top-left corner.
+.SH "double QCanvasItem::yVelocity () const"
+Returns the vertical component of the velocity of the item.
+.SH "double QCanvasItem::z () const"
+Returns the z height of the item, which is used for visual order:
+higher-z items obscure lower-z ones.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qcanvasitem.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qcanvasitem.3qt) and the Qt
+version (2.3.2).

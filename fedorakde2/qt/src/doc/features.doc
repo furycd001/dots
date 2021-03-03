@@ -1,0 +1,277 @@
+/****************************************************************************
+** $Id: qt/doc/features.doc   2.3.2   edited 2001-01-26 $
+**
+** Qt feature definition file documentation
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+/*! \page features.html
+
+\title The Feature Definition File
+
+The file
+<tt>src/tools/qfeatures.h</tt>
+includes the file
+<tt>src/tools/qconfig.h</tt>. By modifying <tt>qconfig.h</tt>, you
+can define a subset of the full Qt functionality that you wish to
+have available on your installation.
+
+<p>
+Note that such modification is only supported on Qt/Embedded
+platforms, where reducing the size of Qt is
+important and the application-set is often fixed.
+
+<p>
+The <tt>config.h</tt> definition file simply defines macros to disable
+features.  Some features are dependent on other features and these
+dependencies are expressed in <tt>qfeatures.h</tt>.
+
+<p>
+The available options are:
+
+<p>
+<table>
+<tr><th><big>Macro</big><th><big>Disables</big><th><big>Set automatically by</big>
+<tr><th colspan=3>Images - \l QImageIO
+<tr><td valign=top>QT_NO_IMAGEIO_BMP <td valign=top>
+    The Microsoft Bitmap image file format.
+<tr><td valign=top>QT_NO_IMAGEIO_PPM <td valign=top>
+    The Portable Pixmap image file format.
+<tr><td valign=top>QT_NO_IMAGEIO_XBM <td valign=top>
+    The X11 Bitmap image file format.
+<tr><td valign=top>QT_NO_IMAGEIO_XPM <td valign=top>
+    The X11 Pixmap image file format.
+<tr><td valign=top>QT_NO_IMAGEIO_PNG <td valign=top>
+    The Portable Network Graphics image file format.
+
+<tr><th colspan=3>Animation
+<tr><td valign=top>QT_NO_ASYNC_IO <td valign=top>
+    Asynchronous I/O - \l QAsyncIO
+<tr><td valign=top>QT_NO_ASYNC_IMAGE_IO <td valign=top>
+    Asynchronous Image I/O and GIF image support - \l QImageDecoder, etc.
+<tr><td valign=top>QT_NO_MOVIE <td valign=top>
+    Animation support - \l QMovie
+    <td valign=top>QT_NO_ASYNC_IO, QT_NO_ASYNC_IMAGE_IO
+
+<tr><th colspan=3>Fonts
+<tr><td valign=top>QT_NO_TRUETYPE <td valign=top>
+    TrueType (TTF and TTC) font file format, only used by Qt/Embedded.
+<tr><td valign=top>QT_NO_BDF <td valign=top>
+    Bitmap Distribution Format (BDF) font file format, only used by Qt/Embedded.
+<tr><td valign=top>QT_NO_FONTDATABASE <td valign=top>
+    Font database.
+
+<tr><th colspan=3>Internationalization
+
+<tr><td valign=top>QT_NO_I18N <td valign=top>
+    Conversions between Unicode and 8-bit encodings.
+<tr><td valign=top>QT_NO_UNICODETABLES <td valign=top>
+    Large tables defining such things as upper and lowercase conversions
+    for all Unicode characters.
+
+<tr><th colspan=3>MIME
+<tr><td valign=top>QT_NO_MIME <td valign=top>
+    Multipurpose Internet Mail Extensions, an internet standard for encoding
+    and tagging typed data (eg. text, images, colors) - \l QMimeSource
+<tr><td valign=top>QT_NO_RICHTEXT <td valign=top>
+    HTML-like text - \l QStyleSheet, \l QLabel
+    <td valign=top>QT_NO_MIME
+<tr><td valign=top>QT_NO_DRAGANDDROP <td valign=top>
+    Drag-and-drop data between applications - \l QDragObject
+    <td valign=top>QT_NO_MIME
+<tr><td valign=top>QT_NO_CLIPBOARD <td valign=top>
+    Cut-and-paste data between applications - \l QClipboard
+    <td valign=top>QT_NO_MIME
+
+<tr><th colspan=3>Sound
+<tr><td valign=top>QT_NO_SOUND <td valign=top>
+    Playing audio files - \l QSound
+
+<tr><th colspan=3>Scipting
+<tr><td valign=top>QT_NO_PROPERTIES <td valign=top>
+    Scripting of Qt-based applications.
+
+<tr><th colspan=3>Qt/Embedded-specific
+
+<tr><td valign=top>QT_NO_QWS_CURSOR <td valign=top>
+    The cursor sprite on Qt/Embedded. Pen-operated devices would not
+    normally need this feature.
+
+<tr><td valign=top>QT_NO_QWS_DEPTH_8GRAYSCALE <td valign=top>
+    8-bit-per-pixel - 256 levels of gray.
+    Incompatible with QWS_DEPTH_8
+
+<tr><td valign=top>QT_NO_QWS_DEPTH_8 <td valign=top>
+    8-bit-per-pixel - 216-color color-cube with 40 auxiliary colors.
+    Incompatible with QWS_DEPTH_8GRAYSCALE.
+
+<tr><td valign=top>QT_NO_QWS_DEPTH_15 <td valign=top>
+    15-bit-per-pixel - 32 levels each of Red, Blue, and Green.
+
+<tr><td valign=top>QT_NO_QWS_DEPTH_16 <td valign=top>
+    16-bit-per-pixel - 32 levels each of Red and Blue, 64 of Green.
+
+<tr><td valign=top>QT_NO_QWS_DEPTH_32 <td valign=top>
+    32-bit-per-pixel - 256 levels for each of Red, Green, and Blue.
+
+<tr><td valign=top>QT_NO_QWS_MACH64 <td valign=top>
+    Mach64 accelerated driver (demonstration only)
+
+<tr><td valign=top>QT_NO_QWS_VFB <td valign=top>
+    Virtual framebuffer running on X11 (see reference documentation).
+
+<tr><th colspan=3>Networking
+<tr><td valign=top>QT_NO_NETWORKPROTOCOL <td valign=top>
+    Abstract multi-protocol data retrieval,
+    with local file retrieval included - \l QNetworkProtocol
+
+<tr><td valign=top>QT_NO_NETWORKPROTOCOL_FTP <td valign=top>
+    FTP-protocol data retrieval.
+    <td valign=top>QT_NO_NETWORKPROTOCOL
+
+<tr><td valign=top>QT_NO_NETWORKPROTOCOL_HTTP <td valign=top>
+    <td valign=top>QT_NO_NETWORKPROTOCOL
+    HTTP-protocol data retrieval.
+
+<tr><th colspan=3>Painting/drawing
+<tr><td valign=top>QT_NO_COLORNAMES <td valign=top>
+    Color names such as "red", used by some \l QColor constructors
+    and by some HTML documents - \l QColor, \l QStyleSheet
+
+<tr><td valign=top>QT_NO_TRANSFORMATIONS <td valign=top>   // uses floating point
+    Used by a number of classes in Qt. With this, rotation and scaling
+    are possible. Without it, only co-ordinate translation - \l QWMatrix
+
+<tr><td valign=top>QT_NO_PSPRINTER <td valign=top>
+    Postscript printer support.
+
+<tr><td valign=top>QT_NO_PRINTER <td valign=top>
+    Printer support - \l QPrinter
+    <td valign=top>QT_NO_PSPRINTER on Unix
+
+<tr><td valign=top>QT_NO_PICTURE <td valign=top>
+    Save Qt drawing commands to a files - \l QPicture
+
+<tr><th colspan=3>Widgets
+<tr><td valign=top>QT_NO_WIDGETS <td valign=top>
+    Disabling this disables all widgets except \l QWidget.
+
+<tr><td valign=top>QT_NO_TEXTVIEW <td valign=top>
+    HTML document viewing - \l QTextView
+    <td valign=top>QT_NO_WIDGETS, QT_NO_RICHTEXT
+
+<tr><td valign=top>QT_NO_TEXTBROWSER <td valign=top>
+    HTML document browsing - \l QTextBrowser
+    <td valign=top>QT_NO_TEXTVIEW
+
+<tr><td valign=top>QT_NO_ICONVIEW <td valign=top>
+    Labelled icons - \l QIconView
+    <td valign=top>QT_NO_WIDGETS, QT_NO_DRAGANDDROP
+
+<tr><td valign=top>QT_NO_LISTVIEW <td valign=top>
+    Lists of information - \l QListView
+    <td valign=top>QT_NO_WIDGETS
+
+<tr><td valign=top>QT_NO_CANVAS <td valign=top>
+    Object canvas - \l QCanvas
+    <td valign=top>QT_NO_WIDGETS
+
+<tr><td valign=top>QT_NO_DIAL <td valign=top>
+    Value control - \l QDial
+    <td valign=top>QT_NO_WIDGETS
+
+<tr><td valign=top>QT_NO_WORKSPACE <td valign=top>
+    Multi-document interface - \l QWorkspace
+    <td valign=top>QT_NO_WIDGETS
+
+<tr><td valign=top>QT_NO_LCDNUMBER <td valign=top>
+    LCD-like number display - \l QLCDNumber
+    <td valign=top>QT_NO_WIDGETS
+
+<tr><th colspan=3>GUI Styles
+<tr><td valign=top>QT_NO_STYLE_WINDOWS <td valign=top>
+    Microsoft Windows style - \l QWindowsStyle
+    <td valign=top>QT_NO_WIDGETS
+<tr><td valign=top>QT_NO_STYLE_MOTIF <td valign=top>
+    OSF Motif style - \l QMotifStyle
+    <td valign=top>QT_NO_WIDGETS
+<tr><td valign=top>QT_NO_STYLE_CDE <td valign=top>
+    Open Group CDE style - \l QCDEStyle
+    <td valign=top>QT_NO_STYLE_MOTIF
+<tr><td valign=top>QT_NO_STYLE_PLATINUM <td valign=top>
+    MacOS X style - \l QPlatinumStyle
+    <td valign=top>QT_NO_WIDGETS
+<tr><td valign=top>QT_NO_STYLE_SGI <td valign=top>
+    SGI style - \l QSGIStyle
+    <td valign=top>QT_NO_STYLE_MOTIF
+
+<tr><th colspan=3>Dialogs
+<tr><td valign=top>QT_NO_DIALOGS <td valign=top>
+    Disabling this disables all common dialogs \l QWidget.
+    <td valign=top>QT_NO_WIDGETS
+
+<tr><td valign=top>QT_NO_FILEDIALOG <td valign=top>
+    The file selection dialog - \l QFileDialog
+    <td valign=top>QT_NO_DIALOGS, QT_NO_NETWORKPROTOCOL, QT_NO_LISTVIEW
+
+<tr><td valign=top>QT_NO_FONTDIALOG <td valign=top>
+    The font selection dialog - \l QFontDialog
+    <td valign=top>QT_NO_DIALOGS, QT_NO_FONTDATABASE
+
+<tr><td valign=top>QT_NO_COLORDIALOG <td valign=top>
+    The color selection dialog - \l QColorDialog
+    <td valign=top>QT_NO_DIALOGS
+
+<tr><td valign=top>QT_NO_PRINTDIALOG <td valign=top>
+    The print selection dialog - \l QPrintDialog
+    <td valign=top>QT_NO_DIALOGS, QT_NO_LISTVIEW
+
+<tr><td valign=top>QT_NO_INPUTDIALOG <td valign=top>
+    Text input dialog - \l QInputDialog
+    <td valign=top>QT_NO_DIALOGS
+
+<tr><td valign=top>QT_NO_MESSAGEBOX <td valign=top>
+    Message/prompting dialog - \l QMessageBox
+    <td valign=top>QT_NO_DIALOGS
+
+<tr><td valign=top>QT_NO_PROGRESSDIALOG <td valign=top>
+    Long-computation progress dialog - \l QProgressDialog
+    <td valign=top>QT_NO_DIALOGS
+
+<tr><td valign=top>QT_NO_TABDIALOG <td valign=top>
+    Tabbed-pages dialog - \l QTabDialog
+    <td valign=top>QT_NO_DIALOGS
+
+<tr><td valign=top>QT_NO_WIZARD <td valign=top>
+    Multi-step dialog - \l QWizard
+    <td valign=top>QT_NO_DIALOGS
+
+</table>
+*/

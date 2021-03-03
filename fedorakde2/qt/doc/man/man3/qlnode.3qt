@@ -1,0 +1,58 @@
+'\" t
+.TH QLNode 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QLNode \- Internal class for the
+.br
+.PP
+\fC#include <qglist.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "QCollection::Item \fBgetData\fR () "
+.br
+.in -1c
+.SH DESCRIPTION
+The QLNode class is an internal class for the QList template collection.
+.PP
+QLNode is a doubly linked list node; it has three pointers:
+.IP 1
+Pointer to the previous node.
+.IP 2
+Pointer to the next node.
+.IP 3
+Pointer to the actual data.
+.PP
+Sometimes it might be practical to have direct access to the list nodes in a QList, but it is seldom required.
+.PP
+\fBWarning:\fR Be very careful if you want to access the list nodes. The heap can easily get corrupted if you make a mistake.
+.PP
+See also QList::currentNode(), QList::removeNode() and QList::takeNode().
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QCollection::Item QLNode::getData()"
+Returns a pointer (\fCvoid*)\fR to the actual data in the list node.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qlnode.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qlnode.3qt) and the Qt
+version (2.3.2).

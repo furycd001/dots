@@ -1,0 +1,28 @@
+                                                   Oslo, May 14 1995
+
+This code was written to test the very first Qt skeleton. It was in
+fact the first Qt application and was written at a time when Qt only
+had pushbutton widgets and the drawing engine was limited to drawing
+text in a single font and drawing lines (no kidding, those were the
+only two drawing operations). In fact the tetrix project doubled the
+number of widgets in Qt by introducing the QLCDNumber widget. The whole
+application was written in 5 evenings and 1 weekend and is not very
+well documented. The tetrix engine is implemented in the GenericTetrix
+class and was first made on my good old 10 MHZ AT where I made a DOS
+text-mode Tetrix (using about 50 lines) to test it out, it was later
+moved to a SUN Sparc 10, where it met Qt. GenericTetrix is totally
+independent of Qt, feel free to use it in any way you like. (see the
+file gtetrix.h for a brief description of how to use it) 
+
+Enjoy!
+
+    Eirik Eng
+    -----
+
+P.S. Tetrix has later been updated to show new versions of Qt.
+
+P.P.S The tetrix program uses a special application object called
+      QDragApplication. Try to guess what it does.
+      Hint: Try pressing the right mouse button somewhere in the
+            tetrix window and start dragging....
+

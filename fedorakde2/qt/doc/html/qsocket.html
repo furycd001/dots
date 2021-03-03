@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QSocket Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QSocket Class Reference<br><small>[ <a href="network.html">network module</a> ]</small></h1><br clear="all">
+<p>
+The QSocket class provides a buffered TCP connection.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qsocket-h.html">qsocket.h</a>&gt;</code>
+<p>
+Inherits <a href="qiodevice.html">QIODevice</a> and <a href="qobject.html">QObject</a>.
+<p><a href="qsocket-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">enum <a href="#Error"><b>Error</b></a> { ErrConnectionRefused, ErrHostNotFound, ErrSocketRead }</div>
+<li><div class="fn"><a href="#53e261"><b>QSocket</b></a> ( QObject * parent=0, const char * name=0 ) </div>
+<li><div class="fn">virtual <a href="#3ea17f"><b>~QSocket</b></a> () </div>
+<li><div class="fn">enum <a href="#State"><b>State</b></a> { Idle, HostLookup, Connecting, Listening, Connection, Closing }</div>
+<li><div class="fn">State <a href="#406f14"><b>state</b></a> () const</div>
+<li><div class="fn">int <a href="#658b53"><b>socket</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#e0a9cd"><b>setSocket</b></a> ( int ) </div>
+<li><div class="fn">virtual void <a href="#57e4a6"><b>connectToHost</b></a> ( const QString &amp; host, Q_UINT16 port ) </div>
+<li><div class="fn">QString <a href="#922538"><b>peerName</b></a> () const</div>
+<li><div class="fn">virtual bool <a href="#45f735"><b>open</b></a> ( int mode ) </div>
+<li><div class="fn">virtual void <a href="#9e4421"><b>close</b></a> () </div>
+<li><div class="fn">virtual void <a href="#a0a8a9"><b>flush</b></a> () </div>
+<li><div class="fn">virtual uint <a href="#abe4ea"><b>size</b></a> () const</div>
+<li><div class="fn">virtual int <a href="#d13990"><b>at</b></a> () const</div>
+<li><div class="fn">virtual bool <a href="#b852fb"><b>at</b></a> ( int ) </div>
+<li><div class="fn">virtual bool <a href="#78c453"><b>atEnd</b></a> () const</div>
+<li><div class="fn">int <a href="#bc77c9"><b>bytesAvailable</b></a> () const</div>
+<li><div class="fn">int <a href="#644c01"><b>waitForMore</b></a> ( int msecs ) const</div>
+<li><div class="fn">int <a href="#e2e556"><b>bytesToWrite</b></a> () const</div>
+<li><div class="fn">virtual int <a href="#d942f7"><b>readBlock</b></a> ( char * data, uint maxlen ) </div>
+<li><div class="fn">virtual int <a href="#3cd3d6"><b>writeBlock</b></a> ( const char * data, uint len ) </div>
+<li><div class="fn">virtual int <a href="#42465c"><b>getch</b></a> () </div>
+<li><div class="fn">virtual int <a href="#64bd57"><b>putch</b></a> ( int ) </div>
+<li><div class="fn">virtual int <a href="#a6be3e"><b>ungetch</b></a> ( int ) </div>
+<li><div class="fn">bool <a href="#869a35"><b>canReadLine</b></a> () const</div>
+<li><div class="fn">virtual QString <a href="#0fcbe4"><b>readLine</b></a> () </div>
+<li><div class="fn">Q_UINT16 <a href="#892707"><b>port</b></a> () const</div>
+<li><div class="fn">Q_UINT16 <a href="#6c44d4"><b>peerPort</b></a> () const</div>
+<li><div class="fn">QHostAddress <a href="#967c97"><b>address</b></a> () const</div>
+<li><div class="fn">QHostAddress <a href="#bdad2c"><b>peerAddress</b></a> () const</div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#f74eb1"><b>hostFound</b></a> () </div>
+<li><div class="fn">void <a href="#482867"><b>connected</b></a> () </div>
+<li><div class="fn">void <a href="#aee02c"><b>connectionClosed</b></a> () </div>
+<li><div class="fn">void <a href="#cfaac2"><b>delayedCloseFinished</b></a> () </div>
+<li><div class="fn">void <a href="#1b4914"><b>readyRead</b></a> () </div>
+<li><div class="fn">void <a href="#b6a326"><b>bytesWritten</b></a> ( int nbytes ) </div>
+<li><div class="fn">void <a href="#5cc5fc"><b>error</b></a> ( int ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">QSocketDevice* <a href="#9dda29"><b>socketDevice</b></a> () </div>
+</ul>
+<h2>Protected Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#8fd7f6"><b>sn_read</b></a> () </div>
+<li><div class="fn">virtual void <a href="#804a95"><b>sn_write</b></a> () </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QSocket class provides a buffered TCP connection.
+<p>
+It provides a totally non-blocking <a href="qiodevice.html">QIODevice</a>, and modifies and
+extends the API of QIODevice with socket-specific code.
+<p>The functions you're likely to call most are <a href="#57e4a6">connectToHost</a>(),
+<a href="#bc77c9">bytesAvailable</a>(), <a href="#869a35">canReadLine</a>() and the ones it inherits from
+QIODevice.
+<p>connectToHost() is the most-used function.  As its name implies, it
+opens a connection to a named host.
+<p>Most network protocols are either packet-oriented or line-oriented.
+canReadLine() indicates whether a connection contains an entire
+unread line or not, and bytesAvailable() returns the number of bytes
+available for reading.
+<p>The signals <a href="#5cc5fc">error</a>(), <a href="#482867">connected</a>(), <a href="#1b4914">readyRead</a>() and <a href="#aee02c">connectionClosed</a>()
+inform you of the progress of the connection.  There are also some
+less commonly used signals.  <a href="#f74eb1">hostFound</a>() is emitted when
+connectToHost() has finished its DNS lookup and is starting its TCP
+connection. <a href="#cfaac2">delayedCloseFinished</a>() is emitted when <a href="#9e4421">close</a>()
+succeeds.  <a href="#b6a326">bytesWritten</a>() is emitted when QSocket moves data from
+its "to be written" queue into the TCP implementation.
+<p>There are several access functions for the socket: <a href="#406f14">state</a>() returns
+whether the object is idle, is doing a DNS lookup, is connecting,
+has an operational connection, etc.  <a href="#967c97">address</a>() and <a href="#892707">port</a>() return the
+IP address and port used for the connection, <a href="#bdad2c">peerAddress</a>() and
+<a href="#6c44d4">peerPort</a>() return the IP address and port used by the peer, and
+<a href="#922538">peerName</a>() returns the name of the peer (normally the name that was
+passed to connectToHost()). <a href="#658b53">socket</a>() returns a pointer to the
+<a href="qsocketdevice.html">QSocketDevice</a> used for this socket.
+<p>QSocket inherits QIODevice, and reimplements some of the functions.
+In general, you can treat it as a QIODevice for writing, and mostly
+also for reading.  The match isn't perfect, since the QIODevice API
+is designed for devices that are controlled by the same machine, and
+an asynchronous peer-to-peer network connection isn't quite like
+that.  For example, there is nothing that matches <a href="qiodevice.html#8ddedd">QIODevice::size</a>()
+exactly.  The documentation for each of <a href="#45f735">open</a>(), close(), <a href="#a0a8a9">flush</a>(),
+<a href="#abe4ea">size</a>(), <a href="#b852fb">at</a>(), <a href="#78c453">atEnd</a>(), <a href="#d942f7">readBlock</a>(), <a href="#3cd3d6">writeBlock</a>(), <a href="#42465c">getch</a>(), <a href="#64bd57">putch</a>(),
+<a href="#a6be3e">ungetch</a>() and <a href="#068c90">readLine</a>() describe the differences in detail.
+<p>See also  <a href="qsocketdevice.html">QSocketDevice</a>, <a href="qhostaddress.html">QHostAddress</a> and <a href="qsocketnotifier.html">QSocketNotifier</a>.
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="Error">QSocket::Error</a></h3>
+This enum specifies the possible errors:
+<ul>
+<li> <code>QSocket::ErrConnectionRefused</code> if the connection was refused
+<li> <code>QSocket::ErrHostNotFound</code> if the host was not found
+<li> <code>QSocket::ErrSocketRead</code> if a read from the socket failed
+</ul>
+<h3 class="fn"><a name="State">QSocket::State</a></h3>
+This enum defines the connection states:
+<ul>
+<li> <code>QSocket::Idle</code> if there is no connection
+<li> <code>QSocket::HostLookup</code> during a DNS lookup
+<li> <code>QSocket::Connecting</code> during TCP connection establishment
+<li> <code>QSocket::Connection</code> when there is an operational connection
+<li> <code>QSocket::Closing</code> if the socket is closing down, but is not
+yet closed.
+</ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="53e261"></a>QSocket::QSocket ( <a href="qobject.html">QObject</a> * parent=0, const char * name=0 )</h3>
+<p>Creates a QSocket object in <code>QSocket::Idle</code> state.
+<h3 class="fn"><a name="3ea17f"></a>QSocket::~QSocket () <code>[virtual]</code></h3>
+<p>Destructs the socket.  Closes the connection if necessary.
+<p>See also  <a href="#9e4421">close</a>().
+<h3 class="fn"><a href="qhostaddress.html">QHostAddress</a> <a name="967c97"></a>QSocket::address () const</h3>
+<p>Returns the host address of this socket. (This is normally be the
+main IP address of the host, but can be e.g. 127.0.0.1 for
+connections to localhost.).
+<h3 class="fn">bool <a name="b852fb"></a>QSocket::at ( int index ) <code>[virtual]</code></h3>
+<p>Moves the read index forward and returns TRUE if the operation
+was successful.  Moving the index forward means skipping incoming
+data.
+<p>Reimplemented from <a href="qiodevice.html#90fb01">QIODevice.</a>
+<h3 class="fn">int <a name="d13990"></a>QSocket::at () const <code>[virtual]</code></h3>
+<p>Returns the current read index.  Since QSocket is a sequential
+device, the current read index is always zero.
+<p>Reimplemented from <a href="qiodevice.html#a8b90e">QIODevice.</a>
+<h3 class="fn">bool <a name="78c453"></a>QSocket::atEnd () const <code>[virtual]</code></h3>
+<p>Returns TRUE if there is no more data to read, otherwise FALSE.
+<p>Reimplemented from <a href="qiodevice.html#d51a01">QIODevice.</a>
+<h3 class="fn">int <a name="bc77c9"></a>QSocket::bytesAvailable () const</h3>
+<p>Returns the number of incoming bytes that can be read, i.e. the
+size of the input buffer.  Equivalent to <a href="#abe4ea">size</a>().
+<p>See also  <a href="#e2e556">bytesToWrite</a>().
+<h3 class="fn">int <a name="e2e556"></a>QSocket::bytesToWrite () const</h3>
+<p>Returns the number of bytes that are waiting to be written, i.e. the
+size of the output buffer.
+<p>See also  <a href="#bc77c9">bytesAvailable</a>().
+<h3 class="fn">void <a name="b6a326"></a>QSocket::bytesWritten ( int nbytes ) <code>[signal]</code></h3>
+<p>This signal is emitted when data actually has been written to the
+network.  The <em>nbytes</em> parameter says how many bytes were written.
+<p>The <a href="#e2e556">bytesToWrite</a>() function is often used in the same context, and
+it tells how many buffered bytes there are left to write.
+<p>See also  <a href="#3cd3d6">writeBlock</a>() and <a href="#e2e556">bytesToWrite</a>().
+<h3 class="fn">bool <a name="869a35"></a>QSocket::canReadLine () const</h3>
+<p>Returns TRUE if it's possible to read an entire line of text from
+this socket at this time, or FALSE if not.
+<p>See also  <a href="qiodevice.html#fff4ec">setMode</a>() and <a href="#068c90">readLine</a>().
+<h3 class="fn">void <a name="9e4421"></a>QSocket::close () <code>[virtual]</code></h3>
+<p>Closes the socket.
+<p>The mode is set to <code>QSocket::Binary</code> and the read buffer is cleared.
+<p>If the output buffer is empty, the state is set to <code>QSocket::Idle</code>
+and the connection is terminated immediately.  If the output buffer
+still contains data to be written, QSocket goes into the
+<code>QSocket::Closing</code> state and the rest of the data will be written.
+When all of the outgoing data have been written, the state is set
+to <code>QSocket::Idle</code> and the connection is terminated.  At this
+point, the <a href="#cfaac2">delayedCloseFinished</a>() signal is emitted.
+<p>See also  <a href="#406f14">state</a>(), <a href="qiodevice.html#fff4ec">setMode</a>() and <a href="#e2e556">bytesToWrite</a>().
+<p>Reimplemented from <a href="qiodevice.html#50fcfd">QIODevice.</a>
+<h3 class="fn">void <a name="57e4a6"></a>QSocket::connectToHost ( const <a href="qstring.html">QString</a> &amp; host, Q_UINT16 port ) <code>[virtual]</code></h3>
+<p>Attempts to make a connection to <em>host</em> on the specified <em>port</em>
+and return immediately.
+<p>Any connection or pending connection is closed immediately, and
+QSocket goes into <code>HostLookup</code> state. When the lookup succeeds, it
+emits <a href="#f74eb1">hostFound</a>(), starts a TCP connection and goes into <code>Connecting</code> state.  Finally, when the connection succeeds, it emits
+<a href="#482867">connected</a>() and goes into <code>Connection</code> state.  If there is an error
+at any point, it emits <a href="#5cc5fc">error</a>().
+<p>See also  <a href="#406f14">state</a>().
+<h3 class="fn">void <a name="482867"></a>QSocket::connected () <code>[signal]</code></h3>
+<p>This signal is emitted after <a href="#57e4a6">connectToHost</a>() has been called and a
+connection has been successfully established.
+<p>See also  <a href="#57e4a6">connectToHost</a>() and <a href="#aee02c">connectionClosed</a>().
+<h3 class="fn">void <a name="aee02c"></a>QSocket::connectionClosed () <code>[signal]</code></h3>
+<p>This signal is emitted when the other end has closed the connection.
+The read buffers may contain buffered input data which you can read
+after the connection was closed.
+<p>See also  <a href="#57e4a6">connectToHost</a>() and <a href="#9e4421">close</a>().
+<h3 class="fn">void <a name="cfaac2"></a>QSocket::delayedCloseFinished () <code>[signal]</code></h3>
+<p>This signal is emitted when a delayed close is finished.
+<p>If you call <a href="#9e4421">close</a>() and there is buffered output data to be written, QSocket
+goes into the <code>QSocket::Closing</code> state and returns immediately. It will
+then keep writing to the socket until all the data has been written. Then,
+the delayCloseFinished() signal is emitted.
+<p>See also  <a href="#9e4421">close</a>().
+<h3 class="fn">void <a name="5cc5fc"></a>QSocket::error ( int ) <code>[signal]</code></h3>
+<p>This signal is emitted after an error occurred.
+<h3 class="fn">void <a name="a0a8a9"></a>QSocket::flush () <code>[virtual]</code></h3>
+<p>Implementation of the abstract virtual <a href="qiodevice.html#dfd9f0">QIODevice::flush</a>() function.
+<p>Reimplemented from <a href="qiodevice.html#dfd9f0">QIODevice.</a>
+<h3 class="fn">int <a name="42465c"></a>QSocket::getch () <code>[virtual]</code></h3>
+<p>Reads a single byte/character from the internal read buffer.
+Returns the byte/character read, or -1 if there is nothing
+to be read.
+<p>See also  <a href="#bc77c9">bytesAvailable</a>() and <a href="#64bd57">putch</a>().
+<p>Reimplemented from <a href="qiodevice.html#09409b">QIODevice.</a>
+<h3 class="fn">void <a name="f74eb1"></a>QSocket::hostFound () <code>[signal]</code></h3>
+<p>This signal is emitted after <a href="#57e4a6">connectToHost</a>() has been called and the
+host lookup has succeeded.
+<p>See also  <a href="#482867">connected</a>().
+<h3 class="fn">bool <a name="45f735"></a>QSocket::open ( int m ) <code>[virtual]</code></h3>
+<p>Opens the socket using the specified <a href="qiodevice.html">QIODevice</a> file mode.  This function
+is called automatically when needed and you should not call it yourself.
+<p>See also  <a href="#9e4421">close</a>().
+<p>Reimplemented from <a href="qiodevice.html#756b18">QIODevice.</a>
+<h3 class="fn"><a href="qhostaddress.html">QHostAddress</a> <a name="bdad2c"></a>QSocket::peerAddress () const</h3>
+<p>Returns the host address as resolved from the name specified to the
+<a href="#57e4a6">connectToHost</a>() function.
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="922538"></a>QSocket::peerName () const</h3>
+<p>Returns the host name as specified to the <a href="#57e4a6">connectToHost</a>() function.
+An empty string is returned if none has been set.
+<h3 class="fn">Q_UINT16 <a name="6c44d4"></a>QSocket::peerPort () const</h3>
+<p>Returns the peer's host port number, normally as specified to the
+<a href="#57e4a6">connectToHost</a>() function.  If none has been set, this function
+returns 0.
+<h3 class="fn">Q_UINT16 <a name="892707"></a>QSocket::port () const</h3>
+<p>Returns the host port number of this socket.
+<h3 class="fn">int <a name="64bd57"></a>QSocket::putch ( int ch ) <code>[virtual]</code></h3>
+<p>Writes the character <em>ch</em> into the output buffer.
+<p>Returns <em>ch,</em> or -1 if some error occurred.
+<p>See also  <a href="#42465c">getch</a>().
+<p>Reimplemented from <a href="qiodevice.html#71cd12">QIODevice.</a>
+<h3 class="fn">int <a name="d942f7"></a>QSocket::readBlock ( char * data, uint maxlen ) <code>[virtual]</code></h3>
+<p>Reads max <em>maxlen</em> bytes from the socket into <em>data</em> and returns
+the number of bytes read.  Returns -1 if an error occurred.
+<p>Reimplemented from <a href="qiodevice.html#c12e6e">QIODevice.</a>
+<h3 class="fn"><a href="qstring.html">QString</a> <a name="0fcbe4"></a>QSocket::readLine () <code>[virtual]</code></h3>
+<p>Returns a line of text including a terminating newline character (\<a href="n.html">n</a>).
+Returns "" if <a href="#869a35">canReadLine</a>() returns FALSE.
+<p>See also  <a href="#869a35">canReadLine</a>().
+<h3 class="fn">int <a name="068c90"></a>QSocket::readLine ( char * data, uint maxlen ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qiodevice.html#0b6051">QIODevice.</a>
+<h3 class="fn">void <a name="1b4914"></a>QSocket::readyRead () <code>[signal]</code></h3>
+<p>This signal is emitted when there is incoming data to be read.
+<p>Every time when there is new incoming data this signal is emitted once. Keep
+in mind that new incoming data is only reported once; i.e. if you do not read
+all data, this signal is not emitted again unless new data arrives on the
+socket.
+<p>See also  <a href="#d942f7">readBlock</a>(), <a href="#068c90">readLine</a>() and <a href="#bc77c9">bytesAvailable</a>().
+<h3 class="fn">void <a name="e0a9cd"></a>QSocket::setSocket ( int socket ) <code>[virtual]</code></h3>
+<p>Sets the socket to use <em>socket</em> and the <a href="#406f14">state</a>() to <code>Connected.</code> The socket
+should already be connected.
+<p>This allows one to use the QSocket class as a wrapper for other socket types
+(e.g. Unix Domain Sockets under Unix).
+<h3 class="fn">uint <a name="abe4ea"></a>QSocket::size () const <code>[virtual]</code></h3>
+<p>Returns the number of incoming bytes that can be read right now
+(like <a href="#bc77c9">bytesAvailable</a>()).
+<p>Reimplemented from <a href="qiodevice.html#8ddedd">QIODevice.</a>
+<h3 class="fn">void <a name="8fd7f6"></a>QSocket::sn_read () <code>[virtual protected slot]</code></h3>
+<p>Internal slot for handling socket read notifications.
+<h3 class="fn">void <a name="804a95"></a>QSocket::sn_write () <code>[virtual protected slot]</code></h3>
+<p>Internal slot for handling socket write notifications.
+<h3 class="fn">int <a name="658b53"></a>QSocket::socket () const</h3>
+<p>Returns the socket number, or -1 if there is no socket at the moment.
+<h3 class="fn"><a href="qsocketdevice.html">QSocketDevice</a> * <a name="9dda29"></a>QSocket::socketDevice () <code>[protected]</code></h3>
+<p>Returns a pointer to the internal socket device.  The returned pointer
+may be null.
+<p>There is normally no need to manipulate the socket device directly
+since this class does the necessary setup for most applications.
+<h3 class="fn">QSocket::State <a name="406f14"></a>QSocket::state() const</h3>
+<p>Returns the current state of the socket connection.
+<p>See also  <a href="#State">QSocket::State</a>.
+<h3 class="fn">int <a name="a6be3e"></a>QSocket::ungetch ( int ) <code>[virtual]</code></h3>
+<p>This implementation of the virtual function <a href="qiodevice.html#05a43c">QIODevice::ungetch</a>() always
+returns -1 (error) because a QSocket is a sequential device and does not
+allow any ungetch operation.
+<p>Reimplemented from <a href="qiodevice.html#05a43c">QIODevice.</a>
+<h3 class="fn">int <a name="644c01"></a>QSocket::waitForMore ( int msecs ) const</h3>
+<p>Wait upto <em>msecs</em> milliseconds for more data to be available.
+<p>If <em>msecs</em> is -1 the call will block indefinitely.
+This is a blocking call and should be avoided in event driven
+applications.
+<p>Returns the number of bytes available.
+<p>See also  <a href="#bc77c9">bytesAvailable</a>().
+<h3 class="fn">int <a name="3cd3d6"></a>QSocket::writeBlock ( const char * data, uint len ) <code>[virtual]</code></h3>
+<p>Writes <em>len</em> bytes to the socket from <em>data</em> and returns
+the number of bytes written.  Returns -1 if an error occurred.
+<p>Reimplemented from <a href="qiodevice.html#924d2f">QIODevice.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

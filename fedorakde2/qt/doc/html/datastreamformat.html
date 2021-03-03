@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Format of the QDataStream operators</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Format of the QDataStream operators</h1><br clear="all">
+The <a href="qdatastream.html">QDataStream</a> allows you to serialize some of the Qt data types. In
+the following table you find for these data types the format of the
+serialization.
+<p>
+<table>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+Q_INT8
+</td>
+<td valign=top>
+  <ul>
+  <li> signed byte
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+Q_INT16
+</td>
+<td valign=top>
+  <ul>
+  <li> signed 16 bit integer
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+Q_INT32
+</td>
+<td valign=top>
+  <ul>
+  <li> signed 32 bit integer
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+Q_UINT8
+</td>
+<td valign=top>
+  <ul>
+  <li> unsigned byte
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+Q_UINT16
+</td>
+<td valign=top>
+  <ul>
+  <li> unsigned 16 bit integer
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+Q_UINT32
+</td>
+<td valign=top>
+  <ul>
+  <li> unsigned 32 bit integer
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+float
+</td>
+<td valign=top>
+  <ul>
+  <li> 32-bit floating point number using the standard IEEE754 format
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+double
+</td>
+<td valign=top>
+  <ul>
+  <li> 64-bit floating point number using the standard IEEE754 format
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+char*
+</td>
+<td valign=top>
+  <ol>
+  <li> The length of the string including the terminating 0 (Q_UINT32)
+  <li> The string including the terminating 0, i.e. length bytes
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qbrush.html">QBrush</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The brush style (Q_UINT8)
+  <li> The brush color (QColor)
+  <li> If style == <code>CustomPattern:</code> the brush pixmap (QPixmap)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qcolor.html">QColor</a>
+</td>
+<td valign=top>
+  <ul>
+  <li> RGB value serialized as a Q_UINT32
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qcursor.html">QCursor</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> Shape id (Q_INT16)
+  <li> If shape == <code>BitmapCursor:</code> bitmap (QPixmap)
+  <li> If shape == <code>BitmapCursor:</code> mask (QPixmap)
+  <li> If shape == <code>BitmapCursor:</code> hot spot (QPoint)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qfont.html">QFont</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The point size (Q_INT16)
+  <li> The style hint (Q_UINT8)
+  <li> The char set (Q_UINT8)
+  <li> The weight (Q_UINT8)
+  <li> The font bits (Q_UINT8)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qimage.html">QImage</a>
+</td>
+<td valign=top>
+  <ul>
+  <li> Save it as a PNG image.
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qcolorgroup.html">QColorGroup</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> foreground (QBrush)
+  <li> button (QBrush)
+  <li> light (QBrush)
+  <li> midLight (QBrush)
+  <li> dark (QBrush)
+  <li> mid (QBrush)
+  <li> text (QBrush)
+  <li> brightText (QBrush)
+  <li> ButtonText (QBrush)
+  <li> base (QBrush)
+  <li> background (QBrush)
+  <li> shadow (QBrush)
+  <li> highlight (QBrush)
+  <li> highlightedText (QBrush)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qpalette.html">QPalette</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> active (QColorGroup)
+  <li> disabled (QColorGroup)
+  <li> inactive (QColorGroup)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qpen.html">QPen</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The pen style(s) (Q_UINT8)
+  <li> The pen width (Q_UINT8)
+  <li> The pen color (QColor)
+  </ol>
+</td>
+</tr>
+<p>
+<!--
+<a href="qpicture.html">QPicture</a>
+</td>
+<td valign=top>
+<p>
+Not in 2.1! Should be documented in later releases!
+-->
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qpixmap.html">QPixmap</a>
+</td>
+<td valign=top>
+  <ul>
+  <li> Save it as a PNG image.
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qpoint.html">QPoint</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The x coordinate (Q_INT32)
+  <li> The y coordinate (Q_INT32)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qpointarray.html">QPointArray</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The array size (Q_UINT32)
+  <li> The array points (QPoint)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qrect.html">QRect</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> left (Q_INT32)
+  <li> top (Q_INT32)
+  <li> right (Q_INT32)
+  <li> bottom (Q_INT32)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qregion.html">QRegion</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The size of the data, i.e. 8+16*(number of rectangles) (Q_UINT32)
+  <li> QRGN_RECTS (Q_INT32)
+  <li> The number of rectangles (Q_UINT32)
+  <li> The rectangles in sequential order (QRect)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qsize.html">QSize</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> width (Q_INT32)
+  <li> height (Q_INT32)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qvariant.html">QVariant</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The type of the data (Q_UINT32)
+  <li> The data of the specified type
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qwmatrix.html">QWMatrix</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> m11 (double)
+  <li> m12 (double)
+  <li> m21 (double)
+  <li> m22 (double)
+  <li> dx (double)
+  <li> dy (double)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qbitarray.html">QBitArray</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The array size (Q_UINT32)
+  <li> The array bits, i.e. (size+7)/8 bytes
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qbytearray.html">QByteArray</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The array size (Q_UINT32)
+  <li> The array bytes, i.e. size bytes
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qcstring.html">QCString</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The length (Q_UINT32)
+  <li> The data, i.e. length bytes
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qdate.html">QDate</a>
+</td>
+<td valign=top>
+  <ul>
+  <li> Julian day (Q_UINT32)
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qtime.html">QTime</a>
+</td>
+<td valign=top>
+  <ul>
+  <li> Milliseconds since midnight (Q_UINT32)
+  </ul>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qdatetime.html">QDateTime</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> Date (QDate)
+  <li> Time (QTime)
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qmap.html">QMap</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The number of items (Q_UINT32)
+  <li> For all items: the key and value
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qstring.html">QString</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> If isNull():
+       <ol>
+       <li> 0xffffffff (Q_UINT32)
+       </ol>
+  <li> Else:
+       <ol>
+       <li> length (Q_UINT32)
+       <li> data in utf16
+       </ol>
+  </ol>
+</td>
+</tr>
+<p>
+<tr bgcolor=#f0f0f0>
+<td valign=top>
+<a href="qvaluelist.html">QValueList</a>
+</td>
+<td valign=top>
+  <ol>
+  <li> The number of list elements (Q_UINT32)
+  <li> All the elements in sequential order
+  </ol>
+</td>
+</tr>
+<p>
+</table>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>
+Qt Toolkit - tabdialog/main.cpp example file
+</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>Tabdialog</h1><br clear="all">
+
+  This example shows how to use a dialog with multiple tabs
+  (pages). When starting it you have to specify a filename
+  as first argument. The dialog shows then infos about that
+  file seperated into some tabs.
+
+  <hr>
+
+  Header file: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/tabdialog/tabdialog.h   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#ifndef TABDIALOG_H
+#define TABDIALOG_H
+
+#include &lt;<a href="qtabdialog-h.html">qtabdialog.h</a>&gt;
+#include &lt;<a href="qstring-h.html">qstring.h</a>&gt;
+#include &lt;<a href="qfileinfo-h.html">qfileinfo.h</a>&gt;
+
+class TabDialog : public QTabDialog
+{
+    Q_OBJECT
+
+public:
+    TabDialog( <a href="qwidget.html">QWidget</a> *parent, const char *name, const QString &amp;_filename );
+
+protected:
+    <a href="qstring.html">QString</a> filename;
+    <a href="qfileinfo.html">QFileInfo</a> fileinfo;
+
+    void setupTab1();
+    void setupTab2();
+    void setupTab3();
+
+};
+
+#endif
+</pre>
+
+
+  <hr>
+
+  Implementation: <pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/tabdialog/tabdialog.cpp   2.3.2   edited 2001-01-26 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "tabdialog.h"
+
+#include &lt;<a href="qvbox-h.html">qvbox.h</a>&gt;
+#include &lt;<a href="qlabel-h.html">qlabel.h</a>&gt;
+#include &lt;<a href="qlineedit-h.html">qlineedit.h</a>&gt;
+#include &lt;<a href="qdatetime-h.html">qdatetime.h</a>&gt;
+#include &lt;<a href="qbuttongroup-h.html">qbuttongroup.h</a>&gt;
+#include &lt;<a href="qcheckbox-h.html">qcheckbox.h</a>&gt;
+#include &lt;<a href="qlistbox-h.html">qlistbox.h</a>&gt;
+#include &lt;<a href="qapplication-h.html">qapplication.h</a>&gt;
+
+TabDialog::TabDialog( <a href="qwidget.html">QWidget</a> *parent, const char *name, const QString &amp;_filename )
+    : <a href="qtabdialog.html">QTabDialog</a>( parent, name ), filename( _filename ), fileinfo( filename )
+{
+    setupTab1();
+    setupTab2();
+    setupTab3();
+
+    connect( this, SIGNAL( applyButtonPressed() ), qApp, SLOT( quit() ) );
+}
+
+void <a name="303"></a>TabDialog::setupTab1()
+{
+    <a href="qvbox.html">QVBox</a> *tab1 = new <a href="qvbox.html">QVBox</a>( this );
+    tab1-&gt;<a href="qframe.html#b11d00">setMargin</a>( 5 );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Filename:", tab1 );
+    <a href="qlineedit.html">QLineEdit</a> *fname = new <a href="qlineedit.html">QLineEdit</a>( filename, tab1 );
+    fname-&gt;<a href="qwidget.html#25775a">setFocus</a>();
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Path:", tab1 );
+    <a href="qlabel.html">QLabel</a> *path = new <a href="qlabel.html">QLabel</a>( fileinfo.dirPath( TRUE ), tab1 );
+    path-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Size:", tab1 );
+    <a href="qlabel.html">QLabel</a> *size = new <a href="qlabel.html">QLabel</a>( <a href="qstring.html">QString</a>( "%1 KB" ).arg( fileinfo.size() ), tab1 );
+    size-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Last Read:", tab1 );
+    <a href="qlabel.html">QLabel</a> *lread = new <a href="qlabel.html">QLabel</a>( fileinfo.lastRead().toString(), tab1 );
+    lread-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Last Modified:", tab1 );
+    <a href="qlabel.html">QLabel</a> *lmodif = new <a href="qlabel.html">QLabel</a>( fileinfo.lastModified().toString(), tab1 );
+    lmodif-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+
+    <a href="qtabdialog.html#193b2b">addTab</a>( tab1, "General" );
+}
+
+void <a name="304"></a>TabDialog::setupTab2()
+{
+    <a href="qvbox.html">QVBox</a> *tab2 = new <a href="qvbox.html">QVBox</a>( this );
+    tab2-&gt;<a href="qframe.html#b11d00">setMargin</a>( 5 );
+
+    <a href="qbuttongroup.html">QButtonGroup</a> *bg = new <a href="qbuttongroup.html">QButtonGroup</a>( 1, QGroupBox::Horizontal, "Permissions", tab2 );
+
+    <a href="qcheckbox.html">QCheckBox</a> *readable = new <a href="qcheckbox.html">QCheckBox</a>( "Readable", bg );
+    if ( fileinfo.isReadable() )
+        readable-&gt;<a href="qcheckbox.html#08b09c">setChecked</a>( TRUE );
+
+    <a href="qcheckbox.html">QCheckBox</a> *writable = new <a href="qcheckbox.html">QCheckBox</a>( "Writeable", bg );
+    if ( fileinfo.isWritable() )
+        writable-&gt;<a href="qcheckbox.html#08b09c">setChecked</a>( TRUE );
+
+    <a href="qcheckbox.html">QCheckBox</a> *executable = new <a href="qcheckbox.html">QCheckBox</a>( "Executable", bg );
+    if ( fileinfo.isExecutable() )
+        executable-&gt;<a href="qcheckbox.html#08b09c">setChecked</a>( TRUE );
+
+    <a href="qbuttongroup.html">QButtonGroup</a> *bg2 = new <a href="qbuttongroup.html">QButtonGroup</a>( 2, QGroupBox::Horizontal, "Owner", tab2 );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Owner", bg2 );
+    <a href="qlabel.html">QLabel</a> *owner = new <a href="qlabel.html">QLabel</a>( fileinfo.owner(), bg2 );
+    owner-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+
+    (void)new <a href="qlabel.html">QLabel</a>( "Group", bg2 );
+    <a href="qlabel.html">QLabel</a> *group = new <a href="qlabel.html">QLabel</a>( fileinfo.group(), bg2 );
+    group-&gt;<a href="qframe.html#558f79">setFrameStyle</a>( QFrame::Panel | QFrame::Sunken );
+
+    <a href="qtabdialog.html#193b2b">addTab</a>( tab2, "Permissions" );
+}
+
+void <a name="305"></a>TabDialog::setupTab3()
+{
+    <a href="qvbox.html">QVBox</a> *tab3 = new <a href="qvbox.html">QVBox</a>( this );
+    tab3-&gt;<a href="qframe.html#b11d00">setMargin</a>( 5 );
+    tab3-&gt;<a href="qhbox.html#0075a0">setSpacing</a>( 5 );
+
+    (void)new <a href="qlabel.html">QLabel</a>( <a href="qstring.html">QString</a>( "Open %1 with:" ).arg( filename ), tab3 );
+
+    <a href="qlistbox.html">QListBox</a> *prgs = new <a href="qlistbox.html">QListBox</a>( tab3 );
+    for ( unsigned int i = 0; i &lt; 30; i++ ) {
+        <a href="qstring.html">QString</a> prg = QString( "Application %1" ).arg( i );
+        prgs-&gt;<a href="qlistbox.html#04a671">insertItem</a>( prg );
+    }
+    prgs-&gt;<a href="qlistbox.html#ea0ee6">setCurrentItem</a>( 3 );
+
+    (void)new <a href="qcheckbox.html">QCheckBox</a>( <a href="qstring.html">QString</a>( "Open files with the extension '%1' always with this application" ).arg( fileinfo.extension() ), tab3 );
+
+    <a href="qtabdialog.html#193b2b">addTab</a>( tab3, "Applications" );
+}
+</pre>
+
+
+  <hr>
+
+  Main:
+<pre>/****************************************************************************
+** &#36;Id&#58; qt/examples/tabdialog/main.cpp   2.3.2   edited 2001-06-12 $
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of an example program for Qt.  This example
+** program may be used, distributed and modified without limitation.
+**
+*****************************************************************************/
+
+#include "tabdialog.h"
+#include &lt;<a name="qapplication.h"></a><a href="qapplication-h.html">qapplication.h</a>&gt;
+#include &lt;<a name="qstring.h"></a><a href="qstring-h.html">qstring.h</a>&gt;
+
+int main( int argc, char **argv )
+{
+
+    <a name="QApplication"></a><a href="qapplication.html">QApplication</a> a( argc, argv );
+
+    TabDialog tabdialog( 0, "tabdialog", QString( argc &lt; 2 ? "." : argv[1] ) );
+    tabdialog.<a name="resize"></a><a href="qdialog.html#9d0e95">resize</a>( 450, 350 );
+    tabdialog.<a name="setCaption"></a><a href="qwidget.html#d6a291">setCaption</a>( "Qt Example - Tabbed Dialog" );
+    a.<a name="setMainWidget"></a><a href="qapplication.html#7ad759">setMainWidget</a>( &amp;tabdialog );
+    tabdialog.<a name="show"></a><a href="qtabdialog.html#46b852">show</a>();
+
+    return a.<a name="exec"></a><a href="qapplication.html#84c7bf">exec</a>();
+}
+</pre>
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

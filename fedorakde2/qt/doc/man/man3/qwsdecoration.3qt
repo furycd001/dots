@@ -1,0 +1,151 @@
+'\" t
+.TH QWSDecoration 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QWSDecoration \- Allows the appearance of the Qt/Embedded Window Manager to be customized
+.br
+.PP
+\fC#include <qwsdecoration_qws.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQWSDecoration\fR () "
+.br
+.ti -1c
+.BI "virtual \fB~QWSDecoration\fR () "
+.br
+.ti -1c
+.BI "enum \fBRegion\fR { None=0, All=1, Title=2, Top=3, Bottom=4, Left=5, Right=6, TopLeft=7, TopRight=8, BottomLeft=9, BottomRight=10, Close=11, Minimize=12, Maximize=13, Normalize=14, Menu=15, LastRegion=Menu }"
+.br
+.ti -1c
+.BI "virtual QRegion \fBregion\fR ( const QWidget *, const QRect & " "rect" ", Region " "r" "=All ) "
+.br
+.ti -1c
+.BI "virtual void \fBclose\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "virtual void \fBminimize\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "virtual void \fBmaximize\fR ( QWidget * ) "
+.br
+.ti -1c
+.BI "virtual QPopupMenu* \fBmenu\fR ( const QWidget *, const QPoint & ) "
+.br
+.ti -1c
+.BI "virtual void \fBpaint\fR ( QPainter *, const QWidget * ) "
+.br
+.ti -1c
+.BI "virtual void \fBpaintButton\fR ( QPainter *, const QWidget *, Region, int state ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QWSDecoration class allows the appearance of the Qt/Embedded Window Manager to be customized.
+.PP
+Qt/Embedded provides window management to top level windows. The appearance of the borders and buttons (the decoration) around the managed windows can be customized by creating your own class derived from QWSDecoration and overriding a few methods.
+.PP
+This class is non-portable. It is available \fIonly\fR in Qt/Embedded.
+.PP
+See also QApplication::qwsSetDecoration().
+.SS "Member Type Documentation"
+.SH "QWSDecoration::Region"
+This enum describes the regions in the window decorations.
+.TP
+\fCNone\fR - used internally.
+.TP
+\fCAll\fR - the entire region used by the window decoration.
+.TP
+\fCTitle\fR - Displays the window title and allows the window to be moved by dragging.
+.TP
+\fCTop\fR - allows the top of the window to be resized.
+.TP
+\fCBottom\fR - allows the bottom of the window to be resized.
+.TP
+\fCLeft\fR - allows the left edge of the window to be resized.
+.TP
+\fCRight\fR - allows the right edge of the window to be resized.
+.TP
+\fCTopLeft\fR - allows the top-left of the window to be resized.
+.TP
+\fCTopRight\fR - allows the top-right of the window to be resized.
+.TP
+\fCBottomLeft\fR - allows the bottom-left of the window to be resized.
+.TP
+\fCBottomRight\fR - allows the bottom-right of the window to be resized.
+.TP
+\fCClose\fR - clicking in this region closes the window.
+.TP
+\fCMinimize\fR - clicking in this region minimizes the window.
+.TP
+\fCMaximize\fR - clicking in this region maximizes the window.
+.TP
+\fCNormalize\fR - returns a maximized window to previous size.
+.TP
+\fCMenu\fR - clicking in this region opens the window operations menu.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QWSDecoration::QWSDecoration ()"
+Constructs a decorator.
+.SH "QWSDecoration::~QWSDecoration () \fC[virtual]\fR"
+Destructs a decorator.
+.SH "void QWSDecoration::close ( QWidget * widget ) \fC[virtual]\fR"
+Called when the user clicks in the \fCClose\fR region.
+.PP
+\fIwidget\fR is the QWidget to be closed.
+.PP
+The default behaviour is to close the widget.
+.SH "void QWSDecoration::maximize ( QWidget * widget ) \fC[virtual]\fR"
+Called when the user clicks in the \fCMaximize\fR region.
+.PP
+\fIwidget\fR is the QWidget to be maximized.
+.PP
+The default behaviour is to resize the widget to be full-screen. This method can be overridden to, e.g. avoid launch panels.
+.SH "QPopupMenu * QWSDecoration::menu ( const QWidget *, const QPoint & ) \fC[virtual]\fR"
+Called to create a QPopupMenu containing the valid menu operations.
+.PP
+The default implementation adds all possible window operations.
+.SH "void QWSDecoration::minimize ( QWidget * ) \fC[virtual]\fR"
+Called when the user clicks in the \fCMinimize\fR region.
+.PP
+\fIwidget\fR is the QWidget to be minimized.
+.PP
+The default behaviour is to ignore this action.
+.SH "void QWSDecoration::paint ( QPainter * painter, const QWidget * widget ) \fC[virtual]\fR"
+Override to paint the border and title decoration around \fIwidget\fR using \fIpainter.\fR
+.SH "void QWSDecoration::paintButton ( QPainter * painter, const QWidget * widget, Region type, int state )"
+Override to paint a button \fItype\fR using \fIpainter.\fR
+.PP
+\fIwidget\fR is the widget whose button is to be drawn. \fIstate\fR is the state of the button. It can be a combination of the following ORed together:
+.TP
+\fCQWSButton::MouseOver\fR
+.TP
+\fCQWSButton::Clicked\fR
+.TP
+\fCQWSButton::On\fR
+.SH "QRegion QWSDecoration::region ( const QWidget * widget, const QRect & rect, Region type=All )"
+Returns the requested region \fItype\fR which will contain \fIwidget\fR
+with geometry \fIrect.\fR
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qwsdecoration.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qwsdecoration.3qt) and the Qt
+version (2.3.2).

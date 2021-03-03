@@ -1,0 +1,146 @@
+'\" t
+.TH QGuardedPtr 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QGuardedPtr \- Template class that provides guarded pointers to QObjects
+.br
+.PP
+\fC#include <qguardedptr.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQGuardedPtr\fR () "
+.br
+.ti -1c
+.BI "\fBQGuardedPtr\fR ( T * p ) "
+.br
+.ti -1c
+.BI "\fBQGuardedPtr\fR ( const QGuardedPtr<T> & p ) "
+.br
+.ti -1c
+.BI "\fB~QGuardedPtr\fR () "
+.br
+.ti -1c
+.BI "QGuardedPtr<T>& \fBoperator=\fR ( const QGuardedPtr<T> & p ) "
+.br
+.ti -1c
+.BI "QGuardedPtr<T>& \fBoperator=\fR ( T * p ) "
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR ( const QGuardedPtr<T> & p ) const"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR ( const QGuardedPtr<T> & p ) const"
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "T* \fBoperator->\fR () const"
+.br
+.ti -1c
+.BI "T& \fBoperator*\fR () const"
+.br
+.ti -1c
+.BI "operator \fBT*\fR ()const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QGuardedPtr class is a template class that provides guarded pointers to QObjects
+.PP
+A guarded pointer, QGuardedPtr<\fIX\fR>, behaves like a normal C++ pointer \fIX*,\fR except that it is automatically set to null when the referenced object is destroyed, unlike normal C++ pointers which become "dangling pointers" in that case. \fIX\fR must be a subclass of QObject.
+.PP
+Guarded pointers are useful whenever you need to store a pointer to a QObject that is owned by someone else and therefore might be destroyed while you still keep a reference to it. You can safely test the pointer for validity.
+.PP
+Example:
+.PP
+.nf
+.br
+      QGuardedPtr<QFrame> label = new QLabel( 0,"label" );
+.br
+      label->setText("I like guarded pointers");
+.br
+.br
+      delete (QLabel*) label; // emulate somebody destroying the label
+.br
+.br
+      if ( label)
+.br
+          label->show();
+.br
+      else
+.br
+.br
+          qDebug("The label has been destroyed");
+.fi
+.PP
+The program will output
+.PP
+.nf
+.br
+      The label has been destroyed
+.fi
+.PP
+rather than dereferencing an invalid address in \fClabel->show().\fR
+.PP
+The functions and operators available with a QGuardedPtr are the same as those available with a normal unguarded pointer, except the pointer arithmetic operators, ++, --, -, and +, which are normally only used with arrays of objects. Use them like normal pointers and you will not need to read this class documentation.
+.PP
+For creating guarded pointers, you can construct or assign to them from an X* or from another guarded pointer of the same type. You can compare them with each other for equality (==) and inequality (!=), or test for null with isNull(). Finally, you can dereference them using either the \fC*x\fR or the \fCx->member\fR notation.
+.PP
+A guarded pointer will automatically cast to an X* so you can freely mix guarded and unguarded pointers. This means that if you have a QGuardedPtr<QWidget>, then you can pass it to a function that requires a QWidget*. For this reason, it is of little value to declare functions to take a QGuardedPtr as a parameter - just use normal pointers. Use a QGuardedPtr when you are storing a pointer over time.
+.PP
+Note again that class \fIX\fR must inherit QObject or a compilation or link error will result.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QGuardedPtr::QGuardedPtr ()"
+Constructs a null guarded pointer.
+.PP
+See also isNull().
+.SH "QGuardedPtr::QGuardedPtr ( T * p )"
+Constructs a guarded pointer that points to same object as is pointed to by \fIp.\fR
+.SH "QGuardedPtr::QGuardedPtr ( const QGuardedPtr<T> & p )"
+Copy one guarded pointer from another. The constructed guarded pointer points to the same object that \fIp\fR pointed to (possibly null).
+.SH "QGuardedPtr::~QGuardedPtr ()"
+Destructs the guarded pointer. Note that the object \fIpointed to\fR by the pointer is \fInot\fR destructed, just as is the case with a normal unguarded pointer.
+.SH "QGuardedPtr::operator T* () const"
+Cast operator, implements pointer semantics. Because of this function, you can pass a QGuardedPtr<X> to a function where an X* is required.
+.SH "bool QGuardedPtr::isNull () const"
+Returns \fCTRUE\fR if the referenced object has been destroyed or if there is no referenced object.
+.SH "bool QGuardedPtr::operator!= ( const QGuardedPtr<T> & p ) const"
+Unequality operator, implements pointer semantics, the negation of operator==().
+.SH "T& QGuardedPtr::operator* () const"
+Dereference operator, implements pointer semantics. Just use this operator as you would with a normal C++ pointer.
+.SH "T* QGuardedPtr::operator-> () const"
+Overloaded arrow operator, implements pointer semantics. Just use this operator as you would with a normal C++ pointer.
+.SH "QGuardedPtr<T> & QGuardedPtr::operator= ( T * p )"
+Assignment operator. This guarded pointer then points to same object as is pointed to by \fIp.\fR
+.SH "QGuardedPtr<T>& QGuardedPtr::operator= ( const QGuardedPtr<T> & p )"
+Assignment operator. This guarded pointer then points to the same object as does \fIp.\fR
+.SH "bool QGuardedPtr::operator== ( const QGuardedPtr<T> & p ) const"
+Equality operator, implements traditional pointer semantics: returns TRUE if both \fIp\fR and this are null, or if both \fIp\fR and this point to the same object.
+.PP
+See also  operator!=().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qguardedptr.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qguardedptr.3qt) and the Qt
+version (2.3.2).

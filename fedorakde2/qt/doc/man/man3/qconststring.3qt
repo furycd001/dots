@@ -1,0 +1,59 @@
+'\" t
+.TH QConstString 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QConstString \- A
+.br
+.PP
+\fC#include <qstring.h>\fR
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQConstString\fR ( QChar * " "unicode" ", uint length ) "
+.br
+.ti -1c
+.BI "\fB~QConstString\fR () "
+.br
+.ti -1c
+.BI "const QString& \fBstring\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+A QString which uses constant Unicode data.
+.PP
+In order to minimize copying, highly optimized applications can use QConstString to provide a QString-compatible object from existing Unicode data. It is then the user's responsibility to make sure that the Unicode data must exist for the entire lifetime of the QConstString object.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QConstString::QConstString ( QChar * unicode, uint length )"
+Constructs a QConstString that uses the first \fIlength\fR Unicode characters in the array \fIunicode.\fR Any attempt to modify copies of the string will cause it to create a copy of the data, thus it remains forever unmodified.
+.PP
+Note that \fIunicode\fR is \fInot copied.\fR The caller \fImust\fR be able to guarantee that \fIunicode\fR will not be deleted or modified. Since that is generally not the case with \fCconst\fR strings (they are references), this constructor demands a non-const pointer even though it never modifies \fIunicode.\fR
+.SH "QConstString::~QConstString ()"
+Destroys the QConstString, creating a copy of the data if other strings are still using it.
+.SH "const QString& QConstString::string () const"
+Returns a constant string referencing the data passed during
+construction.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qconststring.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qconststring.3qt) and the Qt
+version (2.3.2).

@@ -1,0 +1,63 @@
+'\" t
+.TH QFileIconProvider 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFileIconProvider \- Icons for
+.br
+.PP
+\fC#include <qfiledialog.h>\fR
+.PP
+Inherits QObject.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQFileIconProvider\fR ( QObject * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "virtual const QPixmap* \fBpixmap\fR ( const QFileInfo & ) "
+.br
+.in -1c
+.SH DESCRIPTION
+The QFileIconProvider class provides icons for QFileDialog to use.
+.PP
+By default, QFileIconProvider is not used, but any application or library can subclass it, reimplement pixmap() to return a suitable icon, and make all QFileDialog objects use it by calling the static function QFileDialog::setIconProvider().
+.PP
+It's advisable to make all the icons QFileIconProvider returns be of the same size, or at least the same width. This makes the list view look much better.
+.PP
+See also QFileDialog.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFileIconProvider::QFileIconProvider ( QObject * parent = 0, const char * name = 0 )"
+Constructs an empty file icon provider.
+.SH "const QPixmap * QFileIconProvider::pixmap ( const QFileInfo & info ) \fC[virtual]\fR"
+Returns a pointer to a pixmap which should be used for visualizing the file with the information \fIinfo.\fR
+.PP
+If pixmap() returns 0, QFileDialog draws the default pixmap.
+.PP
+The default implementation returns particular icons for files, directories, link-files, link-directories, and blank for other types.
+.PP
+If you return a pixmap here, it should be of the size 16x16.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfileiconprovider.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfileiconprovider.3qt) and the Qt
+version (2.3.2).

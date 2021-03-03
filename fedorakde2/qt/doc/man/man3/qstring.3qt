@@ -1,0 +1,1278 @@
+'\" t
+.TH QString 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QString \- Abstraction of Unicode text and the classic C null-terminated char array (
+.br
+.PP
+\fC#include <qstring.h>\fR
+.PP
+Inherited by QConstString.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQString\fR () "
+.br
+.ti -1c
+.BI "\fBQString\fR ( QChar ) "
+.br
+.ti -1c
+.BI "\fBQString\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "\fBQString\fR ( const QByteArray & ) "
+.br
+.ti -1c
+.BI "\fBQString\fR ( const QChar * " "unicode" ", uint length ) "
+.br
+.ti -1c
+.BI "\fBQString\fR ( const char * str ) "
+.br
+.ti -1c
+.BI "\fB~QString\fR () "
+.br
+.ti -1c
+.BI "QString& \fBoperator=\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "QString& \fBoperator=\fR ( const char * ) "
+.br
+.ti -1c
+.BI "QString& \fBoperator=\fR ( const QCString & ) "
+.br
+.ti -1c
+.BI "QString& \fBoperator=\fR ( QChar c ) "
+.br
+.ti -1c
+.BI "QString& \fBoperator=\fR ( char c ) "
+.br
+.ti -1c
+.BI "bool \fBisNull\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisEmpty\fR () const"
+.br
+.ti -1c
+.BI "uint \fBlength\fR () const"
+.br
+.ti -1c
+.BI "void \fBtruncate\fR ( uint pos ) "
+.br
+.ti -1c
+.BI "void \fBfill\fR ( QChar " "c" ", int " "len" " = -1 ) "
+.br
+.ti -1c
+.BI "QString copy () const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( long " "a" ", int " "fieldwidth" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( ulong " "a" ", int " "fieldwidth" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( int " "a" ", int " "fieldwidth" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( uint " "a" ", int " "fieldwidth" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( short " "a" ", int " "fieldwidth" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( ushort " "a" ", int " "fieldwidth" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( char " "a" ", int " "fieldwidth" "=0 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( QChar " "a" ", int " "fieldwidth" "=0 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( const QString & " "a" ", int " "fieldwidth" "=0 ) const"
+.br
+.ti -1c
+.BI "QString \fBarg\fR ( double " "a" ", int " "fieldwidth" "=0, char " "fmt" "='g', int " "prec" "=-1 ) const"
+.br
+.ti -1c
+.BI "QString& \fBsprintf\fR ( const char * " "format" ", ... ) "
+.br
+.ti -1c
+.BI "int \fBfind\fR ( QChar " "c" ", int " "index" "=0, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( char " "c" ", int " "index" "=0, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const QString & " "str" ", int " "index" "=0, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const QRegExp &, int " "index" "=0 ) const"
+.br
+.ti -1c
+.BI "int \fBfind\fR ( const char * " "str" ", int " "index" "=0 ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( QChar " "c" ", int " "index" "=-1, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( char " "c" ", int " "index" "=-1, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( const QString & " "str" ", int " "index" "=-1, bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( const QRegExp &, int " "index" "=-1 ) const"
+.br
+.ti -1c
+.BI "int \fBfindRev\fR ( const char * " "str" ", int " "index" "=-1 ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( QChar " "c" ", bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( char " "c" ", bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( const char * " "str" ", bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( const QString & " "str" ", bool " "cs" "=TRUE ) const"
+.br
+.ti -1c
+.BI "int \fBcontains\fR ( const QRegExp & ) const"
+.br
+.ti -1c
+.BI "QString \fBleft\fR ( uint len ) const"
+.br
+.ti -1c
+.BI "QString \fBright\fR ( uint len ) const"
+.br
+.ti -1c
+.BI "QString \fBmid\fR ( uint " "index" ", uint " "len" "=0xffffffff ) const"
+.br
+.ti -1c
+.BI "QString \fBleftJustify\fR ( uint " "width" ", QChar " "fill" "=' ', bool " "trunc" "=FALSE ) const"
+.br
+.ti -1c
+.BI "QString \fBrightJustify\fR ( uint " "width" ", QChar " "fill" "=' ', bool " "trunc" "=FALSE ) const"
+.br
+.ti -1c
+.BI "QString \fBlower\fR () const"
+.br
+.ti -1c
+.BI "QString \fBupper\fR () const"
+.br
+.ti -1c
+.BI "QString \fBstripWhiteSpace\fR () const"
+.br
+.ti -1c
+.BI "QString \fBsimplifyWhiteSpace\fR () const"
+.br
+.ti -1c
+.BI "QString& \fBinsert\fR ( uint " "index" ", const QString & ) "
+.br
+.ti -1c
+.BI "QString& \fBinsert\fR ( uint " "index" ", const QChar *, uint len ) "
+.br
+.ti -1c
+.BI "QString& \fBinsert\fR ( uint " "index" ", QChar ) "
+.br
+.ti -1c
+.BI "QString& \fBinsert\fR ( uint " "index" ", char c ) "
+.br
+.ti -1c
+.BI "QString& \fBappend\fR ( char ) "
+.br
+.ti -1c
+.BI "QString& \fBappend\fR ( QChar ) "
+.br
+.ti -1c
+.BI "QString& \fBappend\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "QString& \fBprepend\fR ( char ) "
+.br
+.ti -1c
+.BI "QString& \fBprepend\fR ( QChar ) "
+.br
+.ti -1c
+.BI "QString& \fBprepend\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "QString& \fBremove\fR ( uint " "index" ", uint len ) "
+.br
+.ti -1c
+.BI "QString& \fBreplace\fR ( uint " "index" ", uint " "len" ", const QString & ) "
+.br
+.ti -1c
+.BI "QString& \fBreplace\fR ( uint " "index" ", uint " "len" ", const QChar *, uint clen ) "
+.br
+.ti -1c
+.BI "QString& \fBreplace\fR ( const QRegExp &, const QString & ) "
+.br
+.ti -1c
+.BI "short \fBtoShort\fR ( bool * " "ok" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "ushort \fBtoUShort\fR ( bool * " "ok" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "int \fBtoInt\fR ( bool * " "ok" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "uint \fBtoUInt\fR ( bool * " "ok" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "long \fBtoLong\fR ( bool * " "ok" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "ulong \fBtoULong\fR ( bool * " "ok" "=0, int " "base" "=10 ) const"
+.br
+.ti -1c
+.BI "float \fBtoFloat\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "double \fBtoDouble\fR ( bool * " "ok" "=0 ) const"
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( short, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( ushort, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( int, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( uint, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( long, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( ulong, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( float, char " "f" "='g', int " "prec" "=6 ) "
+.br
+.ti -1c
+.BI "QString& \fBsetNum\fR ( double, char " "f" "='g', int " "prec" "=6 ) "
+.br
+.ti -1c
+.BI "void setExpand ( uint " "index" ", QChar c ) \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "QString& \fBoperator+=\fR ( const QString & str ) "
+.br
+.ti -1c
+.BI "QString& \fBoperator+=\fR ( QChar c ) "
+.br
+.ti -1c
+.BI "QString& \fBoperator+=\fR ( char c ) "
+.br
+.ti -1c
+.BI "QChar \fBat\fR ( uint i ) const"
+.br
+.ti -1c
+.BI "QChar \fBoperator[]\fR ( int i ) const"
+.br
+.ti -1c
+.BI "QCharRef \fBat\fR ( uint i ) "
+.br
+.ti -1c
+.BI "QCharRef \fBoperator[]\fR ( int i ) "
+.br
+.ti -1c
+.BI "QChar \fBconstref\fR ( uint i ) const"
+.br
+.ti -1c
+.BI "QChar& \fBref\fR ( uint i ) "
+.br
+.ti -1c
+.BI "const QChar* \fBunicode\fR () const"
+.br
+.ti -1c
+.BI "const char* ascii () const \fI(obsolete)\fR"
+.br
+.ti -1c
+.BI "const char* \fBlatin1\fR () const"
+.br
+.ti -1c
+.BI "QCString \fButf8\fR () const"
+.br
+.ti -1c
+.BI "QCString \fBlocal8Bit\fR () const"
+.br
+.ti -1c
+.BI "bool \fBoperator!\fR () const"
+.br
+.ti -1c
+.BI "operator \fBconst char*\fR ()const"
+.br
+.ti -1c
+.BI "QString& \fBsetUnicode\fR ( const QChar * " "unicode" ", uint len ) "
+.br
+.ti -1c
+.BI "QString& \fBsetUnicodeCodes\fR ( const ushort * " "unicode_as_ushorts" ", uint len ) "
+.br
+.ti -1c
+.BI "QString& \fBsetLatin1\fR ( const char *, int " "len" "=-1 ) "
+.br
+.ti -1c
+.BI "int \fBcompare\fR ( const QString & s ) const"
+.br
+.ti -1c
+.BI "void \fBcompose\fR () "
+.br
+.ti -1c
+.BI "QChar::Direction \fBbasicDirection\fR () "
+.br
+.ti -1c
+.BI "QString \fBvisual\fR ( int " "index" " = 0, int " "len" " = -1 ) "
+.br
+.ti -1c
+.BI "bool \fBstartsWith\fR ( const QString & ) const"
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QString \fBnumber\fR ( long, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString \fBnumber\fR ( ulong, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString \fBnumber\fR ( int, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString \fBnumber\fR ( uint, int " "base" "=10 ) "
+.br
+.ti -1c
+.BI "QString \fBnumber\fR ( double, char " "f" "='g', int " "prec" "=6 ) "
+.br
+.ti -1c
+.BI "QString \fBfromLatin1\fR ( const char *, int " "len" "=-1 ) "
+.br
+.ti -1c
+.BI "QString \fBfromUtf8\fR ( const char *, int " "len" "=-1 ) "
+.br
+.ti -1c
+.BI "QString \fBfromLocal8Bit\fR ( const char *, int " "len" "=-1 ) "
+.br
+.ti -1c
+.BI "int \fBcompare\fR ( const QString & " "s1" ", const QString & s2 ) "
+.br
+.in -1c
+.SH RELATED FUNCTION DOCUMENTATION
+(Note that these are not member functions.)
+.in +1c
+.ti -1c
+.BI "bool \fBoperator==\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator<<\fR (QDataStream & " "s" ", const QString & " "str" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<=\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "QString \fBoperator+\fR (char " "c" ", const QString & " "s" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>=\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "QString \fBoperator+\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator<=\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator==\fR (const QString & " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "QDataStream & \fBoperator>>\fR (QDataStream & " "s" ", QString & " "str" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR (const QString & " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>=\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator!=\fR (const QString & " "s1" ", const char * " "s2" ")"
+.br
+.ti -1c
+.BI "QString \fBoperator+\fR (const QString & " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "QString \fBoperator+\fR (const QString & " "s" ", char " "c" ")"
+.br
+.ti -1c
+.BI "bool \fBoperator>\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.ti -1c
+.BI "QString \fBoperator+\fR (const char * " "s1" ", const QString & " "s2" ")"
+.br
+.in -1c
+.SH DESCRIPTION
+The QString class provides an abstraction of Unicode text and the classic C null-terminated char array (\fIchar*\fR).
+.PP
+QString uses implicit sharing, and so it is very efficient and easy to use.
+.PP
+In all QString methods that take \fIconst char*\fR parameters, the \fIconst char*\fR is interpreted as a classic C-style 0-terminated ASCII string. It is legal for the \fIconst char*\fR parameter to be 0. The results are undefined if the \fIconst char*\fR string is not 0-terminated. Functions that copy classic C strings into a QString will not copy the terminating 0-character. The QChar array of the QString (as returned by unicode()) is not terminated by a null.
+.PP
+A QString that has not been assigned to anything is \fInull,\fR i.e. both the length and data pointer is 0. A QString that references the empty string ("", a single '\\0' char) is \fIempty.\fR Both null and empty QStrings are legal parameters to the methods. Assigning \fIconst char * 0\fR to QString gives a null QString.
+.PP
+Note that if you find that you are mixing usage of QCString, QString, and QByteArray, this causes lots of unnecessary copying and might indicate that the true nature of the data you are dealing with is uncertain. If the data is NUL-terminated 8-bit data, use QCString; if it is unterminated (ie. contains NULs) 8-bit data, use QByteArray; if it is text, use QString.
+.PP
+See also QChar and Shared classes
+.PP
+Examples:
+.(l
+showimg/main.cpp grapher/grapher.cpp xform/xform.cpp layout/layout.cpp helpviewer/main.cpp life/main.cpp i18n/main.cpp drawdemo/drawdemo.cpp popup/popup.cpp menu/menu.cpp progress/progress.cpp qmag/qmag.cpp forever/forever.cpp rot13/rot13.cpp desktop/desktop.cpp scrollview/scrollview.cpp movies/main.cpp picture/picture.cpp hello/main.cpp
+.)l
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QString::QString ()"
+Constructs a null string.
+.PP
+See also isNull().
+.SH "QString::QString ( QChar ch )"
+Constructs a string containing the one character \fIch.\fR
+.SH "QString::QString ( const QByteArray & ba )"
+Constructs a string that is a deep copy of \fIba\fR interpreted as a classic C string.
+.SH "QString::QString ( const QChar * unicode, uint length )"
+Constructs a string that is a deep copy of the first \fIlength\fR QChar in the array \fIunicode.\fR
+.PP
+If \fIunicode\fR and \fIlength\fR are 0, a null string is created.
+.PP
+If only \fIunicode\fR is 0, the string is empty, but has \fIlength\fR characters of space preallocated - QString expands automatically anyway, but this may speed some cases up a little.
+.PP
+See also isNull().
+.SH "QString::QString ( const QString & s )"
+Constructs an implicitly-shared copy of \fIs.\fR
+.SH "QString::QString ( const char * str )"
+Constructs a string that is a deep copy of \fIstr,\fR interpreted as a classic C string.
+.PP
+If \fIstr\fR is 0 a null string is created.
+.PP
+This is a cast constructor, but it is perfectly safe: converting a Latin1 const char* to QString preserves all the information. You can disable this constructor by defining QT_NO_CAST_ASCII when you compile your applications. You can also make QString objects by using setLatin1()/fromLatin1(), or fromLocal8Bit(), fromUtf8(), or whatever encoding is appropriate for the 8-bit data you have.
+.PP
+See also isNull().
+.SH "QString::~QString ()"
+Destroys the string and frees the "real" string, if this was the last copy of that string.
+.SH "QString::operator const char * () const"
+Returns latin1(). Be sure to see the warnings documented there. Note that for new code which you wish to be strictly Unicode-clean, you can define the macro QT_NO_ASCII_CAST when compiling your code to hide this function so that automatic casts are not done. This has the added advantage that you catch the programming error described under operator!().
+.SH "QString& QString::append ( QChar ch )"
+Appends \fIch\fR to the string and returns a reference to the result. Equivalent to operator+=().
+.SH "QString& QString::append ( char ch )"
+Appends \fIch\fR to the string and returns a reference to the result. Equivalent to operator+=().
+.SH "QString& QString::append ( const QString & str )"
+Appends \fIstr\fR to the string and returns a reference to the result. Equivalent to operator+=().
+.SH "QString QString::arg ( const QString & a, int fieldwidth=0 ) const"
+Returns a string equal to this one, but with the lowest-numbered occurrence of \fC%i\fR (for a positive integer i) replaced by \fIa.\fR
+.PP
+.nf
+.br
+    label.setText( tr("Rename %1 to %2?").arg(oldName).arg(newName) );
+.fi
+.PP
+\fIfieldwidth\fR is the minimum amount of space \fIa\fR is padded to. A positive value produces right-aligned text, while a negative value produces left aligned text.
+.PP
+\fBWarning:\fR Using arg() for constructing "real" sentences programmatically is likely to lead to translation problems. Inserting objects like numbers or file names is fairly safe.
+.PP
+\fBWarning:\fR Relying on spaces to create alignment is prone to lead to translation problems.
+.PP
+If there is no \fC%i\fR pattern, a warning message (qWarning()) is printed and the text as appended at the end of the string. This is error recovery and should not occur in correct code.
+.PP
+See also QObject::tr().
+.SH "QString QString::arg ( QChar a, int fieldwidth=0 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString QString::arg ( char a, int fieldwidth=0 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is assumed to be in the Latin1 character set.
+.SH "QString QString::arg ( double a, int fieldwidth=0, char fmt='g', int prec=-1 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIis\fR formatted according to the \fIfmt\fR format specified, which is 'g' by default and can be any of 'f', 'F', 'e', 'E', 'g' or 'G', all of which have the same meaning as for sprintf(). \fIprec\fR determines the precision, just as for number() and sprintf().
+.SH "QString QString::arg ( int a, int fieldwidth=0, int base=10 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is expressed in to \fIbase\fR notation, which is decimal by default and must be in the range 2-36 inclusive.
+.SH "QString QString::arg ( long a, int fieldwidth=0, int base=10 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is expressed in to \fIbase\fR notation, which is decimal by default and must be in the range 2-36 inclusive.
+.SH "QString QString::arg ( short a, int fieldwidth=0, int base=10 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is expressed in to \fIbase\fR notation, which is decimal by default and must be in the range 2-36 inclusive.
+.SH "QString QString::arg ( uint a, int fieldwidth=0, int base=10 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is expressed in to \fIbase\fR notation, which is decimal by default and must be in the range 2-36 inclusive.
+.SH "QString QString::arg ( ulong a, int fieldwidth=0, int base=10 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is expressed in to \fIbase\fR notation, which is decimal by default and must be in the range 2-36 inclusive.
+.SH "QString QString::arg ( ushort a, int fieldwidth=0, int base=10 ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fIa\fR is expressed in to \fIbase\fR notation, which is decimal by default and must be in the range 2-36 inclusive.
+.SH "const char* QString::ascii () const"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+This functions simply calls latin1() and returns the result.
+.SH "QChar QString::at ( uint ) const"
+Returns the character at \fIi,\fR or 0 if \fIi\fR is beyond the length of the string.
+.PP
+Note: If this QString is not const or const&, the non-const at() will be used instead, which will expand the string if \fIi\fR is beyond the length of the string.
+.SH "QCharRef QString::at ( uint i )"
+Returns a reference to the character at \fIi,\fR expanding the string with QChar::null if necessary. The resulting reference can then be assigned to, or otherwise used immediately, but becomes invalid once further modifications are made to the string.
+.SH "QChar::Direction QString::basicDirection()"
+This function returns the basic directionality of the string (QChar::DirR for right to left and QChar::DirL for left to right). Useful to find the right alignment.
+.SH "int QString::compare ( const QString & s ) const"
+Compares this string to \fIs,\fR returning an integer less than, equal to, or greater than zero if it is, respectively, lexically less than, equal to, or greater than \fIs.\fR
+.SH "int QString::compare ( const QString & s1, const QString & s2 ) \fC[static]\fR"
+Compare \fIs1\fR to \fIs2\fR returning an integer less than, equal to, or greater than zero if s1 is, respectively, lexically less than, equal to, or greater than s2.
+.SH "void QString::compose ()"
+Note that this function is not supported in Qt 2.0, and is merely for experimental and illustrative purposes. It is mainly of interest to those experimenting with Arabic and other composition-rich texts.
+.PP
+Applies possible ligatures to a QString, useful when composition-rich text requires rendering with glyph-poor fonts, but also makes compositions such as QChar(0x0041) ('A') and QChar(0x0308) (Unicode accent diaresis) giving QChar(0x00c4) (German A Umlaut).
+.SH "QChar QString::constref ( uint i ) const"
+Equivalent to at(i), this returns the QChar at \fIi\fR by value.
+.PP
+See also ref().
+.SH "int QString::contains ( QChar c, bool cs=TRUE ) const"
+Returns the number of times the character \fIc\fR occurs in the string.
+.PP
+The match is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.SH "int QString::contains ( const QRegExp & rx ) const"
+Counts the number of overlapping occurrences of \fIrx\fR in the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "banana and panama";
+.br
+    QRegExp r = QRegExp("a[nm]a", TRUE, FALSE);
+.br
+    s.contains( r );                            // 4 matches
+.fi
+.PP
+See also find() and findRev().
+.SH "int QString::contains ( const QString & str, bool cs=TRUE ) const"
+Returns the number of times \fIstr\fR occurs in the string.
+.PP
+The match is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+This function counts overlapping substrings, for example, "banana" contains two occurrences of "ana".
+.PP
+See also findRev().
+.SH "int QString::contains ( char c, bool cs=TRUE ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "int QString::contains ( const char * str, bool cs=TRUE ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString QString::copy () const"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Returns a deep copy of this string.
+.PP
+Doing this is redundant in Qt 2.x, since QString is implicitly shared, and so will automatically be deeply copied as necessary.
+.SH "void QString::fill ( QChar c, int len = -1 )"
+Fills the string with \fIlen\fR characters of value \fIc.\fR
+.PP
+If \fIlen\fR is negative, the current string length is used.
+.SH "int QString::find ( QChar c, int index=0, bool cs=TRUE ) const"
+Finds the first occurrence of the character \fIc,\fR starting at position \fIindex.\fR If \fIindex\fR is -1, the search starts at the last character; if -2, at the next to last character; etc.
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIc,\fR or -1 if \fIc\fR could not be found.
+.SH "int QString::find ( const QRegExp & rx, int index=0 ) const"
+Finds the first occurrence of the regular expression \fIrx,\fR starting at position \fIindex.\fR If \fIindex\fR is -1, the search starts at the last character; if -2, at the next to last character; etc.
+.PP
+Returns the position of the next match, or -1 if \fIrx\fR was not found.
+.PP
+See also findRev(), replace() and contains().
+.SH "int QString::find ( const QString & str, int index=0, bool cs=TRUE ) const"
+Finds the first occurrence of the string \fIstr,\fR starting at position \fIindex.\fR If \fIindex\fR is -1, the search starts at the last character; if -2, at the next to last character; etc.
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIstr,\fR or -1 if \fIstr\fR could not be found.
+.SH "int QString::find ( const char * str, int index=0 ) const"
+Equivalent to find(QString(str), index).
+.SH "int QString::find ( char c, int index=0, bool cs=TRUE ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "int QString::findRev ( QChar c, int index=-1, bool cs=TRUE ) const"
+Finds the first occurrence of the character \fIc,\fR starting at position \fIindex\fR and searching backwards. If \fIindex\fR is -1, the search starts at the last character; if -2, at the next to last character; etc.
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIc,\fR or -1 if \fIc\fR could not be found.
+.SH "int QString::findRev ( const QRegExp & rx, int index=-1 ) const"
+Finds the first occurrence of the regular expression \fIrx,\fR starting at position \fIindex\fR and searching backwards. If \fIindex\fR is -1, the search starts at the last character; if -2, at the next to last character; etc.
+.PP
+Returns the position of the next match (backwards), or -1 if \fIrx\fR was not found.
+.PP
+See also find().
+.SH "int QString::findRev ( const QString & str, int index=-1, bool cs=TRUE ) const"
+Finds the first occurrence of the string \fIstr,\fR starting at position \fIindex\fR and searching backwards. If \fIindex\fR is -1, the search starts at the last character; -2, at the next to last character; etc.
+.PP
+The search is case sensitive if \fIcs\fR is TRUE, or case insensitive if \fIcs\fR is FALSE.
+.PP
+Returns the position of \fIstr,\fR or -1 if \fIstr\fR could not be found.
+.SH "int QString::findRev ( const char * str, int index=-1 ) const"
+Equivalent to findRev(QString(str), index).
+.SH "int QString::findRev ( char c, int index=-1, bool cs=TRUE ) const"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString QString::fromLatin1 ( const char * chars, int len=-1 ) \fC[static]\fR"
+Creates a QString from Latin1 text. This is the same as the QString(const char*) constructor, but you can make that constructor invisible if you compile with the define QT_NO_CAST_ASCII, in which case you can explicitly create a QString from Latin-1 text using this function.
+.SH "QString QString::fromLocal8Bit ( const char * local8Bit, int len=-1 ) \fC[static]\fR"
+Returns the unicode string decoded from the first \fIlen\fR bytes of \fIlocal8Bit.\fR If \fIlen\fR is -1 (the default), the length of \fIlocal8Bit\fR is used. If trailing partial characters are in \fIlocal8Bit,\fR they are ignored.
+.PP
+\fIlocal8Bit\fR is assumed to be encoded in a locale-specific format.
+.PP
+See QTextCodec for more diverse coding/decoding of Unicode strings.
+.SH "QString QString::fromUtf8 ( const char * utf8, int len=-1 ) \fC[static]\fR"
+Returns the unicode string decoded from the first \fIlen\fR bytes of \fIutf8.\fR If \fIlen\fR is -1 (the default), the length of \fIutf8\fR is used. If trailing partial characters are in \fIutf8,\fR they are ignored.
+.PP
+See QTextCodec for more diverse coding/decoding of Unicode strings.
+.SH "QString & QString::insert ( uint index, QChar c )"
+Insert \fIc\fR into the string at (before) position \fIindex\fR and returns a reference to the string.
+.PP
+If \fIindex\fR is beyond the end of the string, the string is extended with spaces (ASCII 32) to length \fIindex\fR and \fIc\fR is then appended.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "Ys";
+.br
+    s.insert( 1, 'e' );         // s == "Yes"
+.br
+    s.insert( 3, '!');          // s == "Yes!"
+.fi
+.PP
+See also remove() and replace().
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "QString & QString::insert ( uint index, const QChar * s, uint len )"
+Insert \fIlen\fR units of QChar data from \fIs\fR into the string before position \fIindex.\fR
+.SH "QString & QString::insert ( uint index, const QString & s )"
+Insert \fIs\fR into the string before position \fIindex.\fR
+.PP
+If \fIindex\fR is beyond the end of the string, the string is extended with spaces (ASCII 32) to length \fIindex\fR and \fIs\fR is then appended.
+.PP
+.nf
+.br
+    QString s = "I like fish";
+.br
+    s.insert( 2, "don't ");     // s == "I don't like fish"
+.br
+    s = "x";
+.br
+    s.insert( 3, "yz" );        // s == "x  yz"
+.fi
+.SH "QString& QString::insert ( uint index, char c )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "bool QString::isEmpty () const"
+Returns TRUE if the string is empty, i.e. if length() == 0. An empty string is not always a null string.
+.PP
+See example in isNull().
+.PP
+See also isNull() and length().
+.PP
+Examples:
+.(l
+qmag/qmag.cpp hello/main.cpp
+.)l
+.SH "bool QString::isNull () const"
+Returns TRUE if the string is null. A null string is also an empty string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString a;          // a.unicode() == 0,  a.length() == 0
+.br
+    QString b = "";     // b.unicode() == "", b.length() == 0
+.br
+    a.isNull();         // TRUE, because a.unicode() == 0
+.br
+    a.isEmpty();        // TRUE, because a.length() == 0
+.br
+    b.isNull();         // FALSE, because b.unicode() != 0
+.br
+    b.isEmpty();        // TRUE, because b.length() == 0
+.fi
+.PP
+See also isEmpty() and length().
+.SH "const char* QString::latin1 () const"
+Returns a Latin-1 representation of the string. Note that the returned value is undefined if the string contains non-Latin-1 characters. If you want to convert strings into formats other than Unicode, see the QTextCodec classes.
+.PP
+This function is mainly useful for boot-strapping legacy code to use Unicode.
+.PP
+The result remains valid so long as one unmodified copy of the source string exists.
+.PP
+See also utf8() and local8Bit().
+.SH "QString QString::left ( uint len ) const"
+Returns a substring that contains the \fIlen\fR leftmost characters of the string.
+.PP
+The whole string is returned if \fIlen\fR exceeds the length of the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "Pineapple";
+.br
+    QString t = s.left( 4 );    // t == "Pine"
+.fi
+.PP
+See also right(), mid() and isEmpty().
+.SH "QString QString::leftJustify ( uint width, QChar fill=' ', bool truncate=FALSE ) const"
+Returns a string of length \fIwidth\fR that contains this string and padded by the \fIfill\fR character.
+.PP
+If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is FALSE, then the returned string is a copy of the string. If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is TRUE, then the returned string is a left(\fIwidth).\fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s("apple");
+.br
+    QString t = s.leftJustify(8, '.');          // t == "apple..."
+.fi
+.PP
+See also rightJustify().
+.SH "uint QString::length () const"
+Returns the length of the string.
+.PP
+Null strings and empty strings have zero length.
+.PP
+See also isNull() and isEmpty().
+.SH "QCString QString::local8Bit () const"
+Returns the string encoded in a locale-specific format. On X11, this is the QTextCodec::codecForLocale(). On Windows, it is a system-defined encoding.
+.PP
+See QTextCodec for more diverse coding/decoding of Unicode strings.
+.PP
+See also QString::fromLocal8Bit(), latin1() and utf8().
+.SH "QString QString::lower () const"
+Returns a new string that is the string converted to lower case.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s("TeX");
+.br
+    QString t = s.lower();      // t == "tex"
+.fi
+.PP
+See also upper().
+.SH "QString QString::mid ( uint index, uint len=0xffffffff ) const"
+Returns a substring that contains the \fIlen\fR characters of this string, starting at position \fIindex.\fR
+.PP
+Returns a null string if the string is empty or \fIindex\fR is out of range. Returns the whole string from \fIindex\fR if \fIindex+len\fR exceeds the length of the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "Five pineapples";
+.br
+    QString t = s.mid( 5, 4 );                  // t == "pine"
+.fi
+.PP
+See also left() and right().
+.PP
+Examples:
+.(l
+qmag/qmag.cpp
+.)l
+.SH "QString QString::number ( double n, char f='g', int prec=6 ) \fC[static]\fR"
+This static function returns the printed value of \fIn,\fR formatted in the \fIf\fR format with \fIprec\fR precision.
+.PP
+\fIf\fR can be 'f', 'F', 'e', 'E', 'g' or 'G', all of which have the same meaning as for sprintf().
+.PP
+See also setNum().
+.SH "QString QString::number ( int n, int base=10 ) \fC[static]\fR"
+A convenience factory function that returns a string representation of the number \fIn.\fR
+.PP
+See also setNum().
+.SH "QString QString::number ( long n, int base=10 ) \fC[static]\fR"
+A convenience factory function that returns a string representation of the number \fIn.\fR
+.PP
+See also setNum().
+.SH "QString QString::number ( uint n, int base=10 ) \fC[static]\fR"
+A convenience factory function that returns a string representation of the number \fIn.\fR
+.PP
+See also setNum().
+.SH "QString QString::number ( ulong n, int base=10 ) \fC[static]\fR"
+A convenience factory function that returns a string representation of the number \fIn.\fR
+.PP
+See also setNum().
+.SH "bool QString::operator! () const"
+Returns TRUE if it is a null string, otherwise FALSE. Thus you can write:
+.PP
+.nf
+.br
+  QString name = getName();
+.br
+  if ( !name )
+.br
+    name = "Rodney";
+.fi
+.PP
+Note that if you say:
+.PP
+.nf
+.br
+  QString name = getName();
+.br
+  if ( name )
+.br
+    doSomethingWith(name);
+.fi
+.PP
+Then this will call \fCoperator const char*()\fR, which will do what you want, but rather inefficiently - you may wish to define the macro QT_NO_ASCII_CAST when writing code which you wish to strictly remain Unicode-clean.
+.PP
+When you want the above semantics, use \fC!isNull()\fR or even \fC!!\fR:
+.PP
+.nf
+.br
+  QString name = getName();
+.br
+  if ( !!name )
+.br
+    doSomethingWith(name);
+.fi
+.SH "QString & QString::operator+= ( QChar c )"
+Appends \fIc\fR to the string and returns a reference to the string.
+.SH "QString & QString::operator+= ( char c )"
+Appends \fIc\fR to the string and returns a reference to the string.
+.SH "QString& QString::operator+= ( const QString & str )"
+Appends \fIstr\fR to the string and returns a reference to the string.
+.SH "QString & QString::operator= ( const QCString & cs )"
+Assigns a deep copy of \fIcs,\fR interpreted as a classic C string, to this string and returns a reference to this string.
+.SH "QString & QString::operator= ( const QString & s )"
+Assigns a shallow copy of \fIs\fR to this string and returns a reference to this string.
+.SH "QString & QString::operator= ( const char * str )"
+Assigns a deep copy of \fIstr,\fR interpreted as a classic C string, to this string and returns a reference to this string.
+.PP
+If \fIstr\fR is 0 a null string is created.
+.PP
+See also isNull().
+.SH "QString& QString::operator= ( QChar c )"
+Sets the string to contain just the single character \fIc.\fR
+.SH "QString& QString::operator= ( char c )"
+Sets the string to contain just the single character \fIc.\fR
+.SH "QChar QString::operator[] ( int ) const"
+Returns the character at \fIi,\fR or QChar::null if \fIi\fR is beyond the length of the string.
+.PP
+Note: If this QString is not const or const&, the non-const operator[] will be used instead, which will expand the string if \fIi\fR is beyond the length of the string.
+.SH "QCharRef QString::operator[] ( int )"
+Returns an object that references the character at \fIi.\fR This reference can then be assigned to, or otherwise used immediately, but becomes invalid once further modifications are made to the string. The QCharRef internal class can be used much like a constant QChar, but if you assign to it, you change the original string (which enlarges and detaches itself). You will get compilation errors if you try to use the result as anything but a QChar.
+.SH "QString & QString::prepend ( const QString & s )"
+Prepend \fIs\fR to the string. Equivalent to insert(0,s).
+.PP
+See also insert().
+.SH "QString& QString::prepend ( QChar ch )"
+Prepends \fIch\fR to the string and returns a reference to the result.
+.PP
+See also insert().
+.SH "QString& QString::prepend ( char ch )"
+Prepends \fIch\fR to the string and returns a reference to the result.
+.PP
+See also insert().
+.SH "QChar& QString::ref ( uint i )"
+Returns the QChar at \fIi\fR by reference.
+.PP
+See also constref().
+.SH "QString & QString::remove ( uint index, uint len )"
+Removes \fIlen\fR characters starting at position \fIindex\fR from the string and returns a reference to the string.
+.PP
+If \fIindex\fR is too big, nothing happens. If \fIindex\fR is valid, but \fIlen\fR is too large, the rest of the string is removed.
+.PP
+.nf
+.br
+    QString s = "Montreal";
+.br
+    s.remove( 1, 4 );
+.br
+    // s == "Meal"
+.fi
+.PP
+See also insert() and replace().
+.SH "QString & QString::replace ( const QRegExp & rx, const QString & str )"
+Replaces every occurrence of \fIrx\fR in the string with \fIstr.\fR Returns a reference to the string.
+.PP
+Examples:
+.)l
+.PP
+.nf
+.br
+    QString s = "banana";
+.br
+    s.replace( QRegExp("a.*a"), "" );           // becomes "b"
+.br
+.br
+    QString s = "banana";
+.br
+    s.replace( QRegExp("^[bn]a"), " " );        // becomes " nana"
+.br
+.br
+    QString s = "banana";
+.br
+    s.replace( QRegExp("^[bn]a"), "" );         // NOTE! becomes ""
+.fi
+.PP
+See also find() and findRev(). qmag/qmag.cpp
+.SH "QString & QString::replace ( uint index, uint len, const QChar * s, uint slen )"
+Replaces \fIlen\fR characters starting at position \fIindex\fR by \fIslen\fR units ot QChar data from \fIs,\fR and returns a reference to the string.
+.PP
+See also insert() and remove().
+.SH "QString & QString::replace ( uint index, uint len, const QString & s )"
+Replaces \fIlen\fR characters starting at position \fIindex\fR from the string with \fIs,\fR and returns a reference to the string.
+.PP
+If \fIindex\fR is too big, nothing is deleted and \fIs\fR is inserted at the end of the string. If \fIindex\fR is valid, but \fIlen\fR is too large, \fIstr\fR replaces the rest of the string.
+.PP
+.nf
+.br
+    QString s = "Say yes!";
+.br
+    s.replace( 4, 3, "NO" );                    // s == "Say NO!"
+.fi
+.PP
+See also insert() and remove().
+.SH "QString QString::right ( uint len ) const"
+Returns a substring that contains the \fIlen\fR rightmost characters of the string.
+.PP
+The whole string is returned if \fIlen\fR exceeds the length of the string.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "Pineapple";
+.br
+    QString t = s.right( 5 );   // t == "apple"
+.fi
+.PP
+See also left(), mid() and isEmpty().
+.SH "QString QString::rightJustify ( uint width, QChar fill=' ', bool truncate=FALSE ) const"
+Returns a string of length \fIwidth\fR that contains pad characters followed by the string.
+.PP
+If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is FALSE, then the returned string is a copy of the string. If the length of the string exceeds \fIwidth\fR and \fItruncate\fR is TRUE, then the returned string is a left(\fIwidth).\fR
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s("pie");
+.br
+    QString t = s.rightJustify(8, '.');         // t == ".....pie"
+.fi
+.PP
+See also leftJustify().
+.SH "void QString::setExpand ( uint index, QChar c )"
+\fBThis function is obsolete.\fR It is provided to keep old source working, and will probably be removed in a future version of Qt. We strongly advise against using it in new code.
+.PP
+Sets the character at position \fIindex\fR to \fIc\fR and expands the string if necessary, filling with spaces.
+.PP
+This method is redundant in Qt 2.x, because operator[] will expand the string as necessary.
+.SH "QString & QString::setLatin1 ( const char * str, int len=-1 )"
+Sets this string to \fIstr,\fR interpreted as a classic Latin 1 C string. If the \fIlen\fR argument is negative (default), it is set to strlen(str).
+.PP
+If \fIstr\fR is 0 a null string is created. If \fIstr\fR is "" an empty string is created.
+.PP
+See also isNull() and isEmpty().
+.SH "QString & QString::setNum ( double n, char f='g', int prec=6 )"
+Sets the string to the printed value of \fIn,\fR formatted in the \fIf\fR format with \fIprec\fR precision, and returns a reference to the string.
+.PP
+\fIf\fR can be 'f', 'F', 'e', 'E', 'g' or 'G', all of which have the same meaning as for sprintf().
+.SH "QString & QString::setNum ( int n, int base=10 )"
+Sets the string to the printed value of \fIn\fR and returns a reference to the string.
+.SH "QString & QString::setNum ( long n, int base=10 )"
+Sets the string to the printed value of \fIn\fR and returns a reference to the string.
+.PP
+The value is converted to \fIbase\fR notation (default is decimal). The base must be a value from 2 to 36.
+.SH "QString & QString::setNum ( short n, int base=10 )"
+Sets the string to the printed value of \fIn\fR and returns a reference to the string.
+.SH "QString & QString::setNum ( uint n, int base=10 )"
+Sets the string to the printed unsigned value of \fIn\fR and returns a reference to the string.
+.SH "QString & QString::setNum ( ulong n, int base=10 )"
+Sets the string to the printed unsigned value of \fIn\fR and returns a reference to the string.
+.PP
+The value is converted to \fIbase\fR notation (default is decimal). The base must be a value from 2 to 36.
+.SH "QString & QString::setNum ( ushort n, int base=10 )"
+Sets the string to the printed unsigned value of \fIn\fR and returns a reference to the string.
+.SH "QString & QString::setNum ( float n, char f='g', int prec=6 )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString& QString::setUnicode ( const QChar * unicode, uint len )"
+Resizes the string to \fIlen\fR unicode characters and copies \fIunicode\fR into the string. If \fIunicode\fR is null, nothing is copied, but the string is resized to \fIlen\fR anyway. If \fIlen\fR is zero, the string becomes a null string.
+.PP
+See also setLatin1() and isNull().
+.SH "QString& QString::setUnicodeCodes ( const ushort * unicode_as_ushorts, uint len )"
+Resizes the string to \fIlen\fR unicode characters and copies \fIunicode_as_ushorts\fR into the string (on some X11 client platforms this will involve a byte-swapping pass).
+.PP
+If \fIunicode\fR is null, nothing is copied, but the string is resized to \fIlen\fR anyway. If \fIlen\fR is zero, the string becomes a null string.
+.PP
+See also setLatin1() and isNull().
+.SH "QString QString::simplifyWhiteSpace () const"
+Returns a new string that has white space removed from the start and the end, plus any sequence of internal white space replaced with a single space (ASCII 32).
+.PP
+White space means any character for which QChar::isSpace() returns TRUE. This includes ASCII characters 9 (TAB), 10 (LF), 11 (VT), 12 (FF), 13 (CR), and 32 (Space).
+.PP
+.nf
+.br
+    QString s = "  lots\\t of\\nwhite    space ";
+.br
+    QString t = s.simplifyWhiteSpace();         // t == "lots of white space"
+.fi
+.PP
+See also stripWhiteSpace().
+.SH "QString & QString::sprintf ( const char * cformat, ... )"
+Safely builds a formatted string from a format string and an arbitrary list of arguments. The format string supports all the escape sequences of printf() in the standard C library.
+.PP
+The %s escape sequence expects a utf8() encoded string. The format string \fIcformat\fR is expected to be in latin1. If you need a unicode format string, use QString::arg() instead. For typesafe string building, with full Unicode support, you can use QTextOStream like this:
+.PP
+.nf
+.br
+    QString str;
+.br
+    QString s = ...;
+.br
+    int x = ...;
+.br
+    QTextOStream(&str) << s << " : " << x;
+.fi
+.PP
+For translations, especially if the strings contains more than one escape sequence, you should consider using the arg() function instead. This allows the order of the replacements to be controlled by the translator, and has Unicode support.
+.PP
+See also arg().
+.PP
+Examples:
+.(l
+xform/xform.cpp layout/layout.cpp drawdemo/drawdemo.cpp popup/popup.cpp progress/progress.cpp qmag/qmag.cpp forever/forever.cpp scrollview/scrollview.cpp movies/main.cpp picture/picture.cpp
+.)l
+.SH "bool QString::startsWith ( const QString & s ) const"
+Returns whether the strings starts with \fIs,\fR or not.
+.SH "QString QString::stripWhiteSpace () const"
+Returns a new string that has white space removed from the start and the end.
+.PP
+White space means any character for which QChar::isSpace() returns TRUE. This includes ASCII characters 9 (TAB), 10 (LF), 11 (VT), 12 (FF), 13 (CR), and 32 (Space).
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = " space ";
+.br
+    QString t = s.stripWhiteSpace();            // t == "space"
+.fi
+.PP
+See also simplifyWhiteSpace().
+.SH "double QString::toDouble ( bool * ok=0 ) const"
+Returns the string converted to a \fCdouble\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "float QString::toFloat ( bool * ok=0 ) const"
+Returns the string converted to a \fCfloat\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "int QString::toInt ( bool * ok=0, int base=10 ) const"
+Returns the string converted to a \fCint\fR value.
+.PP
+.nf
+.br
+  QString str("FF");
+.br
+  bool ok;
+.br
+  int hex = str.toInt( &ok, 16 ); // will return 255, and ok set to TRUE
+.br
+  int dec = str.toInt( &ok, 10 ); // will return 0, and ok set to FALSE
+.fi
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "long QString::toLong ( bool * ok=0, int base=10 ) const"
+Returns the string converted to a \fClong\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "short QString::toShort ( bool * ok=0, int base=10 ) const"
+Returns the string converted to a \fCshort\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "uint QString::toUInt ( bool * ok=0, int base=10 ) const"
+Returns the string converted to an \fCunsigned int\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "ulong QString::toULong ( bool * ok=0, int base=10 ) const"
+Returns the string converted to an \fCunsigned long\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "ushort QString::toUShort ( bool * ok=0, int base=10 ) const"
+Returns the string converted to an \fCunsigned short\fR value.
+.PP
+If \fIok\fR is non-null, \fI*ok\fR is set to TRUE if there are no conceivable errors, and FALSE if the string is not a number at all, or if it has trailing garbage.
+.SH "void QString::truncate ( uint newLen )"
+Truncates the string at position \fInewLen\fR if newLen is less than the current length . Otherwise, nothing happens.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s = "truncate this string";
+.br
+    s.truncate( 5 );                            // s == "trunc"
+.fi
+.PP
+In Qt 1.x, it was possible to "truncate" a string to a longer length. This is no longer possible.
+.SH "const QChar* QString::unicode () const"
+Returns the Unicode representation of the string. The result remains valid until the string is modified.
+.SH "QString QString::upper () const"
+Returns a new string that is the string converted to upper case.
+.PP
+Example:
+.PP
+.nf
+.br
+    QString s("TeX");
+.br
+    QString t = s.upper();                      // t == "TEX"
+.fi
+.PP
+See also lower().
+.SH "QCString QString::utf8 () const"
+Returns the string encoded in UTF8 format.
+.PP
+See QTextCodec for more diverse coding/decoding of Unicode strings.
+.PP
+See also QString::fromUtf8(), local8Bit() and latin1().
+.SH "QString QString::visual ( int index = 0, int len = -1 )"
+This function returns the QString ordered visually. Useful for painting the string or when transforming to a visually ordered encoding.
+.SH RELATED FUNCTION DOCUMENTATION
+.SH "bool operator== (const char * s1, const QString & s2)"
+Returns TRUE if the two strings are equal, or FALSE if they are different.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) == 0\fR
+.SH "QDataStream & operator<< (QDataStream & s, const QString & str)"
+Writes a string to the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "bool operator<= (const char * s1, const QString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) <= 0\fR
+.SH "bool operator< (const QString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) < 0\fR
+.SH "bool operator> (const QString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) > 0\fR
+.SH "QString operator+ (char c, const QString & s)"
+Returns the concatenated string of c and s.
+.SH "bool operator>= (const QString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) >= 0\fR
+.SH "bool operator< (const char * s1, const QString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) < 0\fR
+.SH "QString operator+ (const QString & s1, const char * s2)"
+Returns the concatenated string of s1 and s2.
+.SH "bool operator== (const QString & s1, const char * s2)"
+Returns TRUE if the two strings are equal, or FALSE if they are different.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) == 0\fR
+.SH "bool operator<= (const QString & s1, const char * s2)"
+Returns TRUE if \fIs1\fR is alphabetically less than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) <= 0\fR
+.SH "bool operator== (const QString & s1, const QString & s2)"
+Returns TRUE if the two strings are equal, or FALSE if they are different. A null string is different from an empty, non-null string.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) == 0\fR
+.SH "bool operator!= (const char * s1, const QString & s2)"
+Returns TRUE if the two strings are different, or FALSE if they are equal.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) != 0\fR
+.SH "QDataStream & operator>> (QDataStream & s, QString & str)"
+Reads a string from the stream.
+.PP
+See also Format of the QDataStream operators
+.SH "bool operator!= (const QString & s1, const QString & s2)"
+Returns TRUE if the two strings are different, or FALSE if they are equal.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) != 0\fR
+.SH "bool operator>= (const char * s1, const QString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than or equal to \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) >= 0\fR
+.SH "bool operator!= (const QString & s1, const char * s2)"
+Returns TRUE if the two strings are different, or FALSE if they are equal.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) != 0\fR
+.SH "QString operator+ (const QString & s1, const QString & s2)"
+Returns the concatenated string of s1 and s2.
+.SH "QString operator+ (const QString & s, char c)"
+Returns the concatenated string of s and c.
+.SH "bool operator> (const char * s1, const QString & s2)"
+Returns TRUE if \fIs1\fR is alphabetically greater than \fIs2,\fR otherwise FALSE.
+.PP
+Equivalent to \fCqstrcmp(s1,s2) > 0\fR
+.SH "QString operator+ (const char * s1, const QString & s2)"
+Returns the concatenated string of s1 and s2.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qstring.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qstring.3qt) and the Qt
+version (2.3.2).

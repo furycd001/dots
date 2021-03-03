@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QIconDrag Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QIconDrag Class Reference<br><small>[ <a href="iconview.html">iconview module</a> ]</small></h1><br clear="all">
+<p>
+The QIconDrag class is the drag object which is used for moving items in the iconview
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qiconview-h.html">qiconview.h</a>&gt;</code>
+<p>
+Inherits <a href="qdragobject.html">QDragObject</a>.
+<p><a href="qicondrag-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn">virtual <a href="#41c29a"><b>~QIconDrag</b></a> () </div>
+<li><div class="fn">void <a href="#e2f3cc"><b>append</b></a> ( const QIconDragItem &amp; item, const QRect &amp; pr, const QRect &amp; tr ) </div>
+<li><div class="fn">virtual QByteArray <a href="#7cfcdb"><b>encodedData</b></a> ( const char * mime ) const</div>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class="fn">bool <a href="#fcc49a"><b>canDecode</b></a> ( QMimeSource * e ) </div>
+</ul>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QIconDrag class is the drag object which is used for moving items in the iconview
+<p>
+The QIconDrag is the drag object which is used for moving items in the
+iconview. The QIconDrag stores exact informations about the positions of
+the items, which are dragged, so that each iconview is able to draw drag
+shapes in correct positions. Also the data of each dragged item is stored here.
+<p>If you want to use extended DnD functionality of the <a href="qiconview.html">QIconView</a>, normally it's
+enough to just create a QIconDrag object in <a href="qiconview.html#8a680b">QIconView::dragObject</a>(). Then
+create for each item which should be dragged a <a href="qicondragitem.html">QIconDragItem</a> and set the
+data it represents with <a href="qicondragitem.html#89eea4">QIconDragItem::setData</a>() and add this item to the
+drag object using <a href="#e2f3cc">append</a>().
+<p>If you want to offer the data in other mime-types too, derive a class from this
+and implement the needed encoding and decoding here.
+<p>An example, how to implement this, is in the QtFileIconView example
+(qt/examples/qfileiconview/qfileiconview.h and qt/examples/qfileiconview/qfileiconview.cpp).
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="a82edf"></a>QIconDrag::QIconDrag ( <a href="qwidget.html">QWidget</a> * dragSource, const char * name = 0 )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn"><a name="41c29a"></a>QIconDrag::~QIconDrag () <code>[virtual]</code></h3>
+<p>Destructor.
+<h3 class="fn">void <a name="e2f3cc"></a>QIconDrag::append ( const <a href="qicondragitem.html">QIconDragItem</a> &amp; i, const <a href="qrect.html">QRect</a> &amp; pr, const <a href="qrect.html">QRect</a> &amp; tr )</h3>
+<p>Appends an icon drag item which should be stored in this
+dragobject and the geometry of it.
+<p>See also  <a href="qicondragitem.html">QIconDragItem</a>.
+<h3 class="fn">bool <a name="fcc49a"></a>QIconDrag::canDecode ( <a href="qmimesource.html">QMimeSource</a> * e ) <code>[static]</code></h3>
+<p>Returns TRUE if <em>e</em> can be decoded by the QIconDrag,
+else FALSE.
+<h3 class="fn"><a href="qbytearray.html">QByteArray</a> <a name="7cfcdb"></a>QIconDrag::encodedData ( const char * mime ) const <code>[virtual]</code></h3>
+<p>Returns the encoded data of the drag object if
+<em>mime</em> is application/x-qiconlist.
+<h3 class="fn">const char* <a name="0f406f"></a>QIconDrag::format ( int i ) const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

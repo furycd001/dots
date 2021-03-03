@@ -1,0 +1,242 @@
+'\" t
+.TH QDomDocument 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QDomDocument \- The representation of an XML document
+.br
+.PP
+\fC#include <qdom.h>\fR
+.PP
+Inherits QDomNode.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQDomDocument\fR () "
+.br
+.ti -1c
+.BI "\fBQDomDocument\fR ( const QString & name ) "
+.br
+.ti -1c
+.BI "\fBQDomDocument\fR ( const QDomDocument & x ) "
+.br
+.ti -1c
+.BI "QDomDocument& \fBoperator=\fR ( const QDomDocument & ) "
+.br
+.ti -1c
+.BI "\fB~QDomDocument\fR () "
+.br
+.ti -1c
+.BI "bool \fBsetContent\fR ( const QCString & text ) "
+.br
+.ti -1c
+.BI "bool \fBsetContent\fR ( const QByteArray & text ) "
+.br
+.ti -1c
+.BI "bool \fBsetContent\fR ( const QString & text ) "
+.br
+.ti -1c
+.BI "bool \fBsetContent\fR ( QIODevice * dev ) "
+.br
+.ti -1c
+.BI "QDomDocumentType \fBdoctype\fR () const"
+.br
+.ti -1c
+.BI "QDomImplementation \fBimplementation\fR () const"
+.br
+.ti -1c
+.BI "QDomElement \fBdocumentElement\fR () const"
+.br
+.ti -1c
+.BI "QDomElement \fBcreateElement\fR ( const QString & tagName ) "
+.br
+.ti -1c
+.BI "QDomDocumentFragment \fBcreateDocumentFragment\fR () "
+.br
+.ti -1c
+.BI "QDomText \fBcreateTextNode\fR ( const QString & data ) "
+.br
+.ti -1c
+.BI "QDomComment \fBcreateComment\fR ( const QString & data ) "
+.br
+.ti -1c
+.BI "QDomCDATASection \fBcreateCDATASection\fR ( const QString & data ) "
+.br
+.ti -1c
+.BI "QDomProcessingInstruction \fBcreateProcessingInstruction\fR ( const QString & " "target" ", const QString & data ) "
+.br
+.ti -1c
+.BI "QDomAttr \fBcreateAttribute\fR ( const QString & name ) "
+.br
+.ti -1c
+.BI "QDomEntityReference \fBcreateEntityReference\fR ( const QString & name ) "
+.br
+.ti -1c
+.BI "QDomNodeList \fBelementsByTagName\fR ( const QString & tagname ) const"
+.br
+.ti -1c
+.BI "virtual QDomNode::NodeType \fBnodeType\fR () const"
+.br
+.ti -1c
+.BI "virtual bool \fBisDocument\fR () const"
+.br
+.ti -1c
+.BI "QString \fBtoString\fR () const"
+.br
+.ti -1c
+.BI "QCString \fBtoCString\fR () const"
+.br
+.in -1c
+.SH DESCRIPTION
+The QDomDocument class is the representation of an XML document.
+.PP
+The QDomDocument class represents the entire XML document. Conceptually, it is the root of the document tree, and provides the primary access to the document's data.
+.PP
+Since elements, text nodes, comments, processing instructions, etc. cannot exist outside the context of a document, the document class also contains the factory functions needed to create these objects. The node objects created have an ownerDocument() function which associates them with the document within whose context they were created.
+.PP
+The parsed XML is represented internally by a tree of objects that can be accessed using the various QDom classes. All QDom classes do only reference objects in the internal tree. The internal objects in the DOM tree will get deleted, once the last QDom object referencing them and the QDomDocument are deleted.
+.PP
+Creation of elements, text nodes, etc. is done via the various factory functions provided in this class. Using the default constructors of the QDom classes will only result in empty objects, that can not be manipulated or inserted into the Document.
+.PP
+The QDom classes are typically used as follows:
+.PP
+.nf
+.br
+  QDomDocument doc( "mydocument" );
+.br
+  QFile f( "mydocument.xml" );
+.br
+  if ( !f.open( IO_ReadOnly ) )
+.br
+      return;
+.br
+  if ( !doc.setContent( &f ) ) {
+.br
+      f.close();
+.br
+      return;
+.br
+  }
+.br
+  f.close();
+.br
+.br
+  // print out the element names of all elements that are a direct child
+.br
+  // of the outermost element.
+.br
+  QDomElement docElem = doc.documentElement();
+.br
+.br
+  QDomNode n = docElem.firstChild();
+.br
+  while( !n.isNull() ) {
+.br
+      QDomElement e = n.toElement(); // try to convert the node to an element.
+.br
+      if( !e.isNull() ) { // the node was really an element.
+.br
+          cout << e.tagName() << endl;
+.br
+      }
+.br
+      n = n.nextSibling();
+.br
+  }
+.br
+.br
+  // lets append a new element to the end of the document
+.br
+  QDomElement elem = doc.createElement( "img" );
+.br
+  elem.setAttribute( "src", "myimage.png" );
+.br
+  docElem.appendChild( elem );
+.fi
+.PP
+Once \fCdoc\fR and \fCelem\fR go out of scode, the whole internal tree representing the XML document will get deleted.
+.PP
+For further information about the Document Objct Model see http://www.w3.org/TR/REC-DOM-Level-1/
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QDomDocument::QDomDocument ()"
+Constructs an empty document.
+.SH "QDomDocument::QDomDocument ( const QString & name )"
+Creates a document with the name \fIname.\fR
+.SH "QDomDocument::QDomDocument ( const QDomDocument & x )"
+Copy constructor.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "QDomDocument::~QDomDocument ()"
+Destructor.
+.SH "QDomAttr QDomDocument::createAttribute ( const QString & name )"
+Creates a new attribute that can be inserted into an element.
+.SH "QDomCDATASection QDomDocument::createCDATASection ( const QString & value )"
+Creates a new CDATA section that can be inserted into the document.
+.SH "QDomComment QDomDocument::createComment ( const QString & value )"
+Creates a new comment that can be inserted into the Document.
+.SH "QDomDocumentFragment QDomDocument::createDocumentFragment ()"
+Creates a new document fragment, that can be used to hold parts of the document, when doing complex manipulations of the document tree.
+.SH "QDomElement QDomDocument::createElement ( const QString & tagName )"
+Creates a new element with the name \fItagName\fR that can be inserted into the DOM tree.
+.SH "QDomEntityReference QDomDocument::createEntityReference ( const QString & name )"
+Creates a new entity reference.
+.SH "QDomProcessingInstruction QDomDocument::createProcessingInstruction ( const QString & target, const QString & data )"
+Creates a new processing instruction that can be inserted into the document.
+.SH "QDomText QDomDocument::createTextNode ( const QString & value )"
+Creates a text node that can be inserted into the document tree.
+.SH "QDomDocumentType QDomDocument::doctype () const"
+Returns the document type of this document.
+.SH "QDomElement QDomDocument::documentElement () const"
+Returns the root element of the document.
+.SH "QDomNodeList QDomDocument::elementsByTagName ( const QString & tagname ) const"
+Returns a QDomNodeList, that contains all elements in the document with the tag name \fItagname.\fR The order of the node list, is the order they are encountered in a preorder traversal of the element tree.
+.SH "QDomImplementation QDomDocument::implementation () const"
+Returns a QDomImplementation object.
+.SH "bool QDomDocument::isDocument () const \fC[virtual]\fR"
+Returns TRUE.
+.PP
+Reimplemented from QDomNode.
+.SH "QDomNode::NodeType QDomDocument::nodeType() const \fC[virtual]\fR"
+Returns \fCDocumentNode.\fR
+.PP
+Reimplemented from QDomNode.
+.SH "QDomDocument& QDomDocument::operator= ( const QDomDocument & x )"
+Assignment operator.
+.PP
+The data of the copy is shared: modifying one will also change the other. If you want to make a real copy, use cloneNode() instead.
+.SH "bool QDomDocument::setContent ( const QString & text )"
+This function parses the string \fItext\fR and sets it as the content of the document.
+.SH "bool QDomDocument::setContent ( QIODevice * dev )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "bool QDomDocument::setContent ( const QByteArray & buffer )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "bool QDomDocument::setContent ( const QCString & buffer )"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QCString QDomDocument::toCString () const"
+Converts the parsed document back to its textual representation.
+.SH "QString QDomDocument::toString () const"
+Converts the parsed document back to its textual representation.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qdomdocument.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qdomdocument.3qt) and the Qt
+version (2.3.2).

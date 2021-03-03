@@ -1,0 +1,323 @@
+'\" t
+.TH QLCDNumber 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QLCDNumber \- Displays a number with LCD-like digits
+.br
+.PP
+\fC#include <qlcdnumber.h>\fR
+.PP
+Inherits QFrame.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQLCDNumber\fR ( QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fBQLCDNumber\fR ( uint " "numDigits" ", QWidget * " "parent" "=0, const char * " "name" "=0 ) "
+.br
+.ti -1c
+.BI "\fB~QLCDNumber\fR () "
+.br
+.ti -1c
+.BI "enum \fBMode\fR { Hex, HEX=Hex, Dec, DEC=Dec, Oct, OCT=Oct, Bin, BIN=Bin }"
+.br
+.ti -1c
+.BI "enum \fBSegmentStyle\fR { Outline, Filled, Flat }"
+.br
+.ti -1c
+.BI "bool \fBsmallDecimalPoint\fR () const"
+.br
+.ti -1c
+.BI "int \fBnumDigits\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetNumDigits\fR ( int nDigits ) "
+.br
+.ti -1c
+.BI "bool \fBcheckOverflow\fR ( double num ) const"
+.br
+.ti -1c
+.BI "bool \fBcheckOverflow\fR ( int num ) const"
+.br
+.ti -1c
+.BI "Mode \fBmode\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetMode\fR ( Mode ) "
+.br
+.ti -1c
+.BI "SegmentStyle \fBsegmentStyle\fR () const"
+.br
+.ti -1c
+.BI "virtual void \fBsetSegmentStyle\fR ( SegmentStyle ) "
+.br
+.ti -1c
+.BI "double \fBvalue\fR () const"
+.br
+.ti -1c
+.BI "int \fBintValue\fR () const"
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "void \fBdisplay\fR ( int num ) "
+.br
+.ti -1c
+.BI "void \fBdisplay\fR ( double num ) "
+.br
+.ti -1c
+.BI "void \fBdisplay\fR ( const QString & str ) "
+.br
+.ti -1c
+.BI "virtual void \fBsetHexMode\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetDecMode\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetOctMode\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetBinMode\fR () "
+.br
+.ti -1c
+.BI "virtual void \fBsetSmallDecimalPoint\fR ( bool ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBoverflow\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "virtual void \fBdrawContents\fR ( QPainter * ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+bool	smallDecimalPoint	smallDecimalPoint	setSmallDecimalPoint
+int	numDigits	numDigits	setNumDigits
+Mode	mode	mode	setMode
+SegmentStyle	segmentStyle	segmentStyle	setSegmentStyle
+double	value	value	display
+int	intValue	intValue	display
+.TE
+.fi
+
+.SH DESCRIPTION
+The QLCDNumber widget displays a number with LCD-like digits.
+.PP
+It can display a number in just about any size, in decimal, hexadecimal, octal or binary notation, and is easy to connect to data sources via the display() slot, which is overloaded to take any of five argument types.
+.PP
+There are also slots to change the notation mode and decimal point mode.
+.PP
+QLCDNumber emits the overflow() signal when it is asked to display something beyond its range. The range is set by setNumDigits() (but setSmallDecimalPoint() influences it too).
+.PP
+These digits and other symbols can be shown: 0/O, 1, 2, 3, 4, 5/S, 6, 7, 8, 9/g, minus, decimal point, A, B, C, D, E, F, h, H, L, o, P, r, u, U, Y, colon, degree sign (which is specified as single quote in the string) and space. QLCDNumber substitutes spaces for illegal characters.
+.PP
+It is not possible to retrieve the contents of a QLCDNumber object. If you need to, we recommend that you connect the signals which feed the display() slot to another slot as well and store the value there.
+.PP
+Incidentally, QLCDNumber is the very oldest part of Qt, tracing back to a BASIC program on the Sinclair Spectrum.
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QLabel and QFrame.
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QLCDNumber::Mode"
+This type determines how numbers are shown. The possible values are:
+.TP
+\fCHex\fR - Hexadecimal
+.TP
+\fCDec\fR - Decimal
+.TP
+\fCOct\fR - Octal
+.TP
+\fCBin\fR - Binary
+.SH "QLCDNumber::SegmentStyle"
+This type determines the visual appearance of the QLCDNumber widget. The possible values are:
+.TP
+\fCOutline\fR gives raised segments filled with the background brush.
+.TP
+\fCFilled\fR gives raised segments filled with the foreground brush.
+.TP
+\fCFlat\fR gives flat segments filled with the foreground brush.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QLCDNumber::QLCDNumber ( QWidget * parent=0, const char * name=0 )"
+Constructs an LCD number, sets the number of digits to 5, the base to decimal, the decimal point mode to 'small' and the frame style to a raised box. The segmentStyle() is set to \fCOutline.\fR
+.PP
+The \fIparent\fR and \fIname\fR arguments are passed to the QFrame constructor.
+.PP
+See also setNumDigits() and setSmallDecimalPoint().
+.SH "QLCDNumber::QLCDNumber ( uint numDigits, QWidget * parent=0, const char * name=0 )"
+Constructs an LCD number, sets the number of digits to \fInumDigits,\fR the base to decimal, the decimal point mode to 'small' and the frame style to a raised box. The segmentStyle() is set to \fCOutline.\fR
+.PP
+The \fIparent\fR and \fIname\fR arguments are passed to the QFrame constructor.
+.PP
+See also setNumDigits() and setSmallDecimalPoint().
+.SH "QLCDNumber::~QLCDNumber ()"
+Destructs the LCD number.
+.SH "bool QLCDNumber::checkOverflow ( double num ) const"
+Returns TRUE if \fInum\fR is too big to be displayed in its entirety, FALSE otherwise.
+.PP
+See also display(), numDigits() and smallDecimalPoint().
+.SH "bool QLCDNumber::checkOverflow ( int num ) const"
+Returns TRUE if \fInum\fR is too big to be displayed in its entirety, FALSE otherwise.
+.PP
+See also display(), numDigits() and smallDecimalPoint().
+.SH "void QLCDNumber::display ( int num ) \fC[slot]\fR"
+Sets the contents of the display to \fInum.\fR
+.PP
+See also setMode() and smallDecimalPoint().
+.PP
+Examples:
+.(l
+xform/xform.cpp
+.)l
+.SH "void QLCDNumber::display ( const QString & s ) \fC[slot]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+This version of the function disregards mode() and smallDecimalPoint().
+.PP
+These digits and other symbols can be shown: 0/O, 1, 2, 3, 4, 5/S, 6, 7, 8, 9/g, minus, decimal point, A, B, C, D, E, F, h, H, L, o, P, r, u, U, Y, colon, degree sign (which is specified as single quote in the string) and space. QLCDNumber substitutes spaces for illegal characters.
+.SH "void QLCDNumber::display ( double num ) \fC[slot]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "void QLCDNumber::drawContents ( QPainter * p ) \fC[virtual protected]\fR"
+Draws the LCD number using painter \fIp.\fR This function is called from QFrame::paintEvent().
+.PP
+Reimplemented from QFrame.
+.SH "int QLCDNumber::intValue () const"
+Returns the last value set by one of the display() slots rounded to the nearest integer.
+.PP
+If display(QString ) was the last called, 0 is returned.
+.PP
+See also value() and display().
+.SH "QLCDNumber::Mode QLCDNumber::mode() const"
+Returns the current display mode, which is one of \fCBIN, OCT, DEC\fR and \fCHEX.\fR
+.PP
+See also setMode() and smallDecimalPoint().
+.SH "int QLCDNumber::numDigits () const"
+Returns the current number of digits. If smallDecimalPoint() is FALSE, the decimal point occupies one digit position.
+.PP
+See also setNumDigits() and smallDecimalPoint().
+.SH "void QLCDNumber::overflow () \fC[signal]\fR"
+This signal is emitted whenever the QLCDNumber is asked to display a too large number or a too long string.
+.PP
+It is never emitted by setNumDigits().
+.SH "QLCDNumber::SegmentStyle QLCDNumber::segmentStyle() const"
+Returns the style of the QLCDNumber.
+.PP
+See also setSegmentStyle().
+.SH "void QLCDNumber::setBinMode () \fC[virtual slot]\fR"
+Calls setMode( BIN ). Provided for convenience (e.g. for connecting buttons to this).
+.PP
+See also setMode(), setHexMode(), setDecMode(), setOctMode() and mode().
+.SH "void QLCDNumber::setDecMode () \fC[virtual slot]\fR"
+Calls setMode( DEC ). Provided for convenience (e.g. for connecting buttons to this).
+.PP
+See also setMode(), setHexMode(), setOctMode(), setBinMode() and mode().
+.SH "void QLCDNumber::setHexMode () \fC[virtual slot]\fR"
+Calls setMode( HEX ). Provided for convenience (e.g. for connecting buttons to this).
+.PP
+See also setMode(), setDecMode(), setOctMode(), setBinMode() and mode().
+.SH "void QLCDNumber::setMode ( Mode m )"
+Sets the display mode to \fIm,\fR which must be one of \fCBIN, OCT, DEC\fR and \fCHEX.\fR All four modes can display both integers, floating-point numbers and strings (subject to character set limitations).
+.PP
+Example:
+.PP
+.nf
+.br
+    myLcd.setMode( QLCDNumber::HEX );
+.fi
+.PP
+See also mode(), setHexMode(), setDecMode(), setOctMode(), setBinMode(), setSmallDecimalPoint() and display().
+.SH "void QLCDNumber::setNumDigits ( int numDigits ) \fC[virtual]\fR"
+Sets the number of digits shown to \fInumDigits,\fR which is forced into the [0-99] range.
+.PP
+If smallDecimalPoint() is TRUE, \fInumDigits\fR can be shown. If it is FALSE, only \fInumDigits-1\fR digits can be shown.
+.PP
+See also numDigits(), setMode(), setSmallDecimalPoint() and overflow().
+.SH "void QLCDNumber::setOctMode () \fC[virtual slot]\fR"
+Calls setMode( OCT ). Provided for convenience (e.g. for connecting buttons to this).
+.PP
+See also setMode(), setHexMode(), setDecMode(), setBinMode() and mode().
+.SH "void QLCDNumber::setSegmentStyle ( SegmentStyle s )"
+Sets the style of the QLCDNumber to \fIs.\fR
+.TP
+\fCOutline\fR gives raised segments filled with the background color.
+.TP
+\fCFilled\fR gives raised segments filled with the foreground color.
+.TP
+\fCFlat\fR gives flat segments filled with the foreground color.
+.PP
+\fCOutline\fR and \fCFilled\fR will additionally use QColorGroup::light() and QColorGroup::dark() for shadow effects.
+.PP
+See also segmentStyle().
+.SH "void QLCDNumber::setSmallDecimalPoint ( bool b ) \fC[virtual slot]\fR"
+If \fIb\fR is TRUE, the decimal point is drawn between two digits. If \fIb\fR is FALSE, the decimal point is drawn in a digit position.
+.PP
+The inter-digit space is made slightly wider when the decimal point is drawn between the digits.
+.PP
+See also smallDecimalPoint() and setMode().
+.SH "QSize QLCDNumber::sizeHint () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QSizePolicy QLCDNumber::sizePolicy () const \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "bool QLCDNumber::smallDecimalPoint () const"
+Returns TRUE if the decimal point is currently drawn between two digit positions, and FALSE if it is drawn in a digit position.
+.PP
+See also setSmallDecimalPoint() and mode().
+.SH "double QLCDNumber::value () const"
+Returns the last value set by one of the display() slots.
+.PP
+If display(QString ) was the last called, 0 is returned.
+.PP
+See also  intValue() and display().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qlcdnumber.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qlcdnumber.3qt) and the Qt
+version (2.3.2).

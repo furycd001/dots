@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qt Toolkit -  Qt Network Module</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style></head><body bgcolor="#ffffff">
+<p>
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+<h1 align=center> Qt Network Module</h1><br clear="all">
+The network module offers classes to make network programming easier
+and portable. Basically there are three sets of classes, first very
+basic classes like <a href="qsocket.html">QSocket</a>, <a href="qserversocket.html">QServerSocket</a>, <a href="qdns.html">QDns</a>, etc. which
+allow to work in a portable way with TCP/IP sockets. In addition,
+there are classes like <a href="qnetworkprotocol.html">QNetworkProtocol</a>, <a href="qnetworkoperation.html">QNetworkOperation</a> in
+the Qt base library, which provide an abstract layer for implementing
+network protocols and <code>QUrlOperator</code> which operates on such network
+protocols. Finally the third set of network classes are the passive
+ones, namely <code>QUrl</code> and <code>QUrlInfo</code> which do URL parsing and similar
+stuff.
+<p>
+The first set of classes (<a href="qsocket.html">QSocket</a>, <a href="qserversocket.html">QServerSocket</a>, <a href="qdns.html">QDns</a>, <a href="qftp.html">QFtp</a>, etc.)
+are included in the "network" module of Qt.
+<p>
+The QSocket classes are not directly related to the QNetwork classes,
+but QSocket should and will be used for implementing network
+protocols, which are directly related to the QNetwork
+classes. E.g. the QFtp class (implementation of the FTP protocol) uses
+QSockets. But QSockets don't need to be used for protocol
+implementations, e.g. QLocalFs (which is an implementation of the
+local filesystem as network protocol) uses QDir and no QSocket. Using
+QNetworkProtocols you can implement everything which fits into a
+hierarchical structure and can be accessed using URLs. This could be
+e.g. a protocol which can read pictures from a digital camera using a
+serial connection.
+<p>
+<h2>Working Network Protocol independent with QUrlOperator and
+QNetworkOperation</h2>
+<p>
+To just use existing network protocol implementations and operate on
+URLs using them is quite easy. E.g. downloading a file from an FTP
+server to the local filesystem can be done with following code:
+<p>
+<pre>    <a href="qurloperator.html">QUrlOperator</a> op;
+    op.<a href="qurloperator.html#3a9681">copy</a>( "ftp://ftp.trolltech.com/qt/source/qt-2.1.0.tar.gz", "file:/tmp", FALSE );
+</pre>
+<p>
+And that's all! Of course an implementation of the FTP protocol has to be available
+and registered for doing that. More information on that later.
+<p>
+You can also do stuff like creating directories, removing files, renaming, etc. E.g. to
+create a folder on a private FTP account do
+<p>
+<pre>    <a href="qurloperator.html">QUrlOperator</a> op( "ftp://username:password@host.domain.no/home/username" );
+    op.<a href="qurloperator.html#9867b2">mkdir</a>( "New Directory" );
+</pre>
+<p>
+That's it again. To see all available operations, look at the <code>QUrlOperator</code> class
+documentation.
+<p>
+Now as everything works asynchronous, the function call for an operation returns
+before the operation has been processed. So you don't get a return value which
+tells you something about failure or success. The return value always is a pointer
+to a <code>QNetworkOperation.</code>
+<p>
+In this <code>QNetworkOperation</code> all information about the operation is stored.
+There is e.g. a method of <code>QNetworkOperation</code> which returns the state of
+this operation. Using that you can find out all the time in which state the operation
+currently is. Also you get the arguments you passed to the <code>QUrlOperator</code>
+method, the type of the operation and some more stuff from this <code>QNetworkOperation</code>
+object. For more details see the class documentation of <code>QNetworkOperation.</code>
+<p>
+Now, later you get signals emitted by the <code>QUrlOperator,</code> which inform you about the process
+of the operations. As you can call many methods which operate on an URL of one
+<code>QUrlOperator,</code> it queues up all these operations. So you can't know which operation
+the <code>QUrlOperator</code> just processes. Because of this you get in each signal as the last argument
+a pointer to the <code>QNetworkOperation</code> object which is just processed and from which this
+signal comes.
+<p>
+Some of these operations send a <code>start()</code> signal at the beginning (depending if it makes
+sense or not), then some of them send some signals during processing the operation,
+and <b>all</b> operations send a <code>finished()</code> signal after they are done. Now, finished
+could mean that the operation has been successfully finished or that it failed. To find
+that out you can use the <code>QNetworkOperation</code> pointer you got with the <code>finished()</code>
+signal. If <code>QNetworkOperation::state()</code> equals <code>QNetworkProtocol::StDone</code> the
+operation finished successful, if it is <code>QNetworkProtocol::StFailed</code> the operation failed.
+<p>
+Now, a slot which you connected to the <code>QUrlOperator::finished(</code> QNetworkOperation * )
+signal could look like this
+<p>
+<pre>void MyClass::slotOperationFinished( <a href="qnetworkoperation.html">QNetworkOperation</a> *op )
+{
+    switch ( op-&gt;<a href="qnetworkoperation.html#54b287">operation</a>() ) {
+    case QNetworkProtocol::OpMkdir: {
+        if ( op-&gt;<a href="qnetworkoperation.html#0f94ff">state</a>() == QNetworkProtocol::StFailed )
+            <a href="qapplication.html#72e78c">qDebug</a>( "Couldn't create directory %s", op-&gt;<a href="qnetworkoperation.html#e142fb">arg</a>( 0 ).latin1() );
+        else
+            <a href="qapplication.html#72e78c">qDebug</a>( "Successfully created directory %s", op-&gt;<a href="qnetworkoperation.html#e142fb">arg</a>( 0 ).latin1() );
+    } break;
+    // ... and so on
+    }
+}
+</pre>
+<p>
+As mentioned before, some operations send other signals too. Let's take
+the list children operation as an example (e.g. read the directory of a
+directory on a FTP server):
+<p>
+<pre><a href="qurloperator.html">QUrlOperator</a> op;
+
+MyClass::MyClass() : <a href="qobject.html">QObject</a>(), op( "ftp://ftp.trolltech.com" )
+{
+    connect( &amp;op, SIGNAL( newChildren( const QValueList&lt;<a href="qurlinfo.html">QUrlInfo</a>&gt; &amp;, QNetworkOperation * ) ),
+             this, SLOT( slotInsertEntries( const QValueList&lt;<a href="qurlinfo.html">QUrlInfo</a>&gt; &amp;, QNetworkOperation * ) ) );
+    connect( &amp;op, SIGNAL( start( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) ),
+             this, SLOT( slotStart( <a href="qnetworkoperation.html">QNetworkOperation</a> *) ) );
+    connect( &amp;op, SIGNAL( finished( <a href="qnetworkoperation.html">QNetworkOperation</a> * ) ),
+             this, SLOT( slotFinished( <a href="qnetworkoperation.html">QNetworkOperation</a> *) ) );
+}
+
+void MyClass::slotInsertEntries( const QValueList&lt;<a href="qurlinfo.html">QUrlInfo</a>&gt; &amp;info, QNetworkOperation * )
+{
+    <a href="qvaluelist.html">QValueList</a>&lt;<a href="qurlinfo.html">QUrlInfo</a>&gt;::ConstIterator it = info.begin();
+    for ( ; it != info.end(); ++it ) {
+        const QUrlInfo &amp;inf = *it;
+        <a href="qapplication.html#72e78c">qDebug</a>( "Name: %s, Size: %d, Last Modified: %s",
+            inf.name().latin1(), inf.size(), inf.lastModified().toString().latin1() );
+    }
+}
+
+void MyClass::slotStart( <a href="qnetworkoperation.html">QNetworkOperation</a> * )
+{
+    <a href="qapplication.html#72e78c">qDebug</a>( "Start reading '%s'", op.<a href="qurl.html#c78524">toString</a>().latin1() );
+}
+
+void MyClass::slotFinished( <a href="qnetworkoperation.html">QNetworkOperation</a> *operation )
+{
+    if ( operation-&gt;<a href="qnetworkoperation.html#54b287">operation</a>() == QNetworkProtocol::OpListChildren ) {
+        if ( operation-&gt;<a href="qnetworkoperation.html#0f94ff">state</a>() == QNetworkProtocol::StFailed )
+            <a href="qapplication.html#72e78c">qDebug</a>( "Couldn't read '%s'! Following error occurred: %s",
+                op.<a href="qurl.html#c78524">toString</a>().latin1(), operation-&gt;<a href="qnetworkoperation.html#bf6b66">protocolDetail</a>().latin1() );
+        else
+            <a href="qapplication.html#72e78c">qDebug</a>( "Finished reading '%s'!", op.<a href="qurl.html#c78524">toString</a>().latin1() );
+    }
+}
+</pre>
+<p>
+These examples explained now how to use the <code>QUrlOperator</code> and <code>QNetworkOperations.</code>
+The network extension will contain some good examples for this too.
+<p>
+<h2>Implementing your own Network Protocol</h2>
+<p>
+<code>QNetworkProtocol</code> provides a base class for implementations
+of network protocols and an architecture to a dynamic registration
+and unregistration of network protocols. If you use this architecture
+you also don't need to care about asynchronous programming, as the
+architecture hides this and does all the work for you.
+<p>
+Limitation: As it is quite hard to design a base class for
+network protocols which satisfies all network protocols,
+the architecture described here is designed to work with all kinds
+of hierarchical structures, like filesystems. So everything which can
+be interpreted as hierarchical structure and accessed via URLs,
+can be implemented as network protocol and easily used in Qt. This
+is not limited to filesystems only!
+<p>
+To implement a network protocol create a class derived from
+<code>QNetworkProtocol.</code>
+<p>
+Other classes will use this network protocol implementation
+to operate on it. So you should reimplement following protected members
+<p>
+<pre>    void QNetworkProtocol::operationListChildren( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+    void QNetworkProtocol::operationMkDir( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+    void QNetworkProtocol::operationRemove( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+    void QNetworkProtocol::operationRename( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+    void QNetworkProtocol::operationGet( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+    void QNetworkProtocol::operationPut( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+</pre>
+<p>
+Some words about how to reimplement these methods: You always get a pointer to
+a <code>QNetworkOperation</code> as argument.  This pointer holds all information about
+the operation in the current state.  If you start processing such an operation,
+set the state to <code>QNetworkProtocol::StInProgress.</code>  If you finished processing
+the operation, set the state to <code>QNetworkProtocol::StDone</code> if it was
+successful or <code>QNetworkProtocol::StFailed</code> if an error occurred. If an
+error occurred you have to set an error code (see <code>QNetworkOperation::setErrorCode()</code> )
+and if you know some details (e.g. an error message) you can also set this
+message to the operation pointer (see <code>QNetworkOperation::setProtocolDetail()</code> ).
+Also you get all information (type, arguments, etc.) of the operation
+from this <code>QNetworkOperation</code> pointer. For details about which arguments
+you can get and set look at the class documentation of <code>QNetworkOperation.</code>
+<p>
+If you reimplement such an operation method, it's also very important
+to emit the correct signals at the correct time: In general always emit
+at the end of an operation (when you either successfully finished processing
+the operation or and error occurred) the <code>finished()</code> signal with
+the network operation as argument. The whole network architecture
+relies on correctly emitted <code>finished()</code> signals! So be careful with that!
+Then there are some more special signals which are specific to operations:
+<ul>
+  <li>Emit in <code>operationListChildren:</code>
+  <ul>
+    <li><code>start()</code> just before starting listing the children
+    <li><code>newChildren()</code> when new children are read
+  </ul>
+  <li>Emit in <code>operationMkDir:</code>
+  <ul>
+    <li><code>createdDirectory()</code> after the directory has been created
+    <li><code>newChild()</code> (or newChildren()) after the directory has been created (as a new directory is a new child)
+  </ul>
+  <li>Emit in <code>operationRemove:</code>
+  <ul>
+    <li><code>removed()</code> after the child has been removed
+  </ul>
+  <li>Emit in <code>operationRename:</code>
+  <ul>
+    <li><code>itemChanged()</code> after the child has been renamed
+  </ul>
+  <li>Emit in <code>operationGet:</code>
+  <ul>
+    <li><code>data()</code> each time new data has been read
+    <li><code>dataTransferProgress()</code> each time new data has been read to indicate how much of the
+        data has been read now.
+  </ul>
+  <li>Emit in <code>operationPut:</code>
+  <ul>
+    <li><code>dataTransferProgress()</code> each time data has been written to indicate how much of the data
+        has been written. Although you know the whole data when this operation is called, it's
+        suggested not to write the whole data at once, but to do it step by step to avoid
+        blocking the GUI and also this way the progress can be made visible to the user.
+  </ul>
+</ul>
+<p>
+And remember, always emit the <code>finished()</code> signal the the end!
+<p>
+For more details about the arguments of these signals take a look
+at the <code>QNetworkProtocol</code> class documentation.
+<p>
+Now, as argument in such a method you get the <code>QNetworkOperation</code>
+which you process. Here is a list which arguments of the <code>QNetworkOperation</code>
+you can get and which you have to set in which method:
+<p>
+(To get the URL on which you should work, use the <code>QNetworkProtocol::url()</code> method
+which returns the pointer to the URL operator. Using that you can get the path, host,
+name filter and everything else of the URL)
+<p>
+<ul>
+  <li>In <code>operationListChildren:</code>
+  <ul>
+   <li>Nothing.
+  </ul>
+  <li>In <code>operationMkDir:</code>
+  <ul>
+    <li><code>QNetworkOperation::arg(</code> 0 ) contains the name of the directory which should be created
+  </ul>
+  <li>In <code>operationRemove:</code>
+  <ul>
+    <li><code>QNetworkOperation::arg(</code> 0 ) contains the name of the file which should be removed. Normally this
+        is a relative name. But it may be absolute too, so use QUrl( op->arg( 0 ) ).fileName() to get
+        the filename.
+  </ul>
+  <li>In <code>operationRename:</code>
+  <ul>
+    <li><code>QNetworkOperation::arg(</code> 0 ) contains the name of the file which should be renamed
+    <li><code>QNetworkOperation::arg(</code> 1 ) contains the name to which it should be renamed.
+  </ul>
+  <li>In <code>operationGet:</code>
+  <ul>
+    <li><code>QNetworkOperation::arg(</code> 0 ) contains the full URL of the file which should be retrieved.
+  </ul>
+  <li>In <code>operationPut:</code>
+  <ul>
+    <li><code>QNetworkOperation::arg(</code> 0 ) contains the full URL of the file in which the data should be stored.
+    <li><code>QNetworkOperation::rawArg(</code> 1 ) contains the data which should be stored in <code>QNetworkOperation::arg(</code> 0 )
+  </ul>
+</ul>
+<p>
+So, to sum it up: If you reimplement such an operation method, you
+have to emit some special signals and <b>always</b> at the end a
+<code>finished()</code> signal, either on success or on failure. Also you have to change
+the state of the <code>QNetworkOperation</code> during processing it and can get
+and set arguments of the operation as well.
+<p>
+But it's unlikely that the network protocol you implement supports
+all these operations. So, just reimplement the operations, which
+are supported by the protocol. Additionally you have to specify which
+operations are supported then. This is done by reimplementing
+<p>
+<pre>    int QNetworkProtocol::supportedOperations() const;
+</pre>
+<p>
+In your implementation of this method return an int value
+which is constructed by or'ing together the correct values
+(supported operations) of the following enum (of <code>QNetworkProtocol):</code>
+<p>
+<pre>    enum Operation {
+        OpListChildren = 1,
+        OpMkdir = 2,
+        OpRemove = 4,
+        OpRename = 8,
+        OpGet = 32,
+        OpPut = 64
+    };
+</pre>
+<p>
+So, if your protocol e.g. supports listing children and renaming them, do
+in your implementation of <code>supportedOperations():</code>
+<p>
+<pre>    return OpListChildren | OpRename;
+</pre>
+<p>
+The last method you have to reimplement is
+<p>
+<pre>    bool QNetworkProtocol::checkConnection( <a href="qnetworkoperation.html">QNetworkOperation</a> *op );
+</pre>
+<p>
+Here you have to return TRUE, if the connection is up and ok (this means
+operations on the protocol can be done). If the connection is not ok,
+return FALSE and start to try opening it. If you will not be able to open the
+connection at all (e.g. because the host is not found), emit a <code>finished()</code>
+signal and set an error code and the <code>QNetworkProtocol::StFailed</code> state to
+the <code>QNetworkOperation</code> pointer you get here.
+<p>
+Now, you never need to check before doing an operation yourself,
+if the connection is ok. The network architecture does this, this means
+using <code>checkConnection()</code> it looks if an operation could be done and if
+not, it tries it again and again for some time and only calls an operation
+method if the connection is ok.
+<p>
+Using this knowledge it should be possible to implement network protocols. Finally
+to be able to use it with a QUrlOperator (and so e.g. in the QFileDialog), you have to
+register the network protocol implementation. This can be done like this:
+<p>
+<pre>    <a href="qnetworkprotocol.html#e0692e">QNetworkProtocol::registerNetworkProtocol</a>( "myprot", new QNetworkProtocolFactory&lt;MyProtocol&gt; );
+</pre>
+<p>
+In this case <code>MyProtocol</code> would be a class you implemented like described here
+(derived from <code>QNetworkProtocol)</code> and the name of the protocol would be
+myprot. So if you want to use it, you would do something like
+<p>
+<pre>    <a href="qurloperator.html">QUrlOperator</a> op( "myprot://host/path" );
+    op.<a href="qurloperator.html#42b8a8">listChildren</a>();
+</pre>
+<p>
+Finally as example for a network protocol implementation you could look at the
+implementation of QLocalFs. The network extension will also contain an example
+implementation of a network protocol
+<p>
+<h2>Error Handling</h2>
+<p>
+Error handling is important for both, implementing new network protocols and using
+them (through <code>QUrlOperator).</code> So first some words about error handling when using
+the network protocols:
+<p>
+As already mentioned quite some times after processing an operation has been finished
+the network operation and so the QUrlOperator emits the <code>finished()</code> signal. This has
+as argument the pointer to the processed <code>QNetworkOperation.</code> If the state of this operation
+is <code>QNetworkProtocol::StFailed,</code> the operation contains some more information about this
+error. Following error codes are defined in <code>QNetworkProtocol:</code>
+<p>
+<ul>
+  <li><code>QNetworkProtocol::NoError</code> - No error occurred
+  <li><code>QNetworkProtocol::ErrValid</code> - The URL you are operating on is not valid
+  <li><code>QNetworkProtocol::ErrUnknownProtocol</code> - There is no protocol implementation available for the protocol of the URL you are operating on (e.g. if the protocol is http and no http implementation has been registered)
+  <li><code>QNetworkProtocol::ErrUnsupported</code> - The operation is not supported by the protocol
+  <li><code>QNetworkProtocol::ErrParse</code> - Parse error of the URL
+  <li><code>QNetworkProtocol::ErrLoginIncorrect</code> - You needed to login but the username and or password are wrong
+  <li><code>QNetworkProtocol::ErrHostNotFound</code> - The specified host (in the URL) couldn´t be found
+  <li><code>QNetworkProtocol::ErrListChlidren</code> - An error occurred while listing the children
+  <li><code>QNetworkProtocol::ErrMkdir</code> - An error occurred when creating a directory
+  <li><code>QNetworkProtocol::ErrRemove</code> -An error occurred while removing a child
+  <li><code>QNetworkProtocol::ErrRename</code> - An error occurred while renaming a child
+  <li><code>QNetworkProtocol::ErrGet</code> - An error occurred while getting (retrieving) data
+  <li><code>QNetworkProtocol::ErrPut</code> - An error occurred while putting (uploading) data
+  <li><code>QNetworkProtocol::ErrFileNotExisting</code> - A file which is needed by the operation doesn't exist
+  <li><code>QNetworkProtocol::ErrPermissionDenied</code> - The permission for doing the operation has been denied
+</ul>
+<p>
+<code>QNetworkOperation::errorCode()</code> returns then one of these codes or maybe a different one
+if you use an own network protocol implementation which defines additional error codes.
+<p>
+<code>QNetworkOperation::protocolDetails()</code> may also return a string which contains an error
+message then which could e.g. be displayed for the user.
+<p>
+According to this information it should be possible to react on errors.
+<p>
+Now, if you implement your own network protocol, you will need to tell about errors
+which occurred. First you always need to be able to access the <code>QNetworkOperation</code>
+which is processed at the moment. This can be done using <code>QNetworkOperation::operationInProgress(),</code>
+which returns a pointer to the current network operation or 0 if no operation is processed at the moment.
+<p>
+Now if and error occurred and you need to handle it, do
+<p>
+<pre>    if ( operationInProgress() ) {
+        operationInProgress()-&gt;setErrorCode( error_code_of_your_error );
+        operationInProgress()-&gt;setProtocolDetails( detail ); // optional!
+        emit finished( operationInProgress() );
+        return;
+    }
+</pre>
+<p>
+That's all. The connection to the <code>QUrlOperator</code> and so on is done automatically. Additionally,
+if the error was really bad so that no more operations can be done in the current state (e.g.
+if the host couldn't be found), call, <b>before emitting <code>finished()</b></code>
+<code>QNetworkProtocol::clearOperationStack().</code>
+<p>
+Now, as error code you should use, if possible, one of the predefined error codes
+of <code>QNetworkProtocol.</code> If this is not possible, you can add own error codes - they are
+just normal <code>integers.</code> Just be careful that the value of the error code doesn't conflict
+with an existing one.
+<p>
+Documentation about the low-level classes like QSocket, QDns, etc. will be included
+in the seperate network extension.
+<p>
+
+<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

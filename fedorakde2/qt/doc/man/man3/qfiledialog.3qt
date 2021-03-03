@@ -1,0 +1,698 @@
+'\" t
+.TH QFileDialog 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFileDialog \- Dialog widget for inputting file names
+.br
+.PP
+\fC#include <qfiledialog.h>\fR
+.PP
+Inherits QDialog.
+.PP
+.SS "Public Members"
+.in +1c
+.ti -1c
+.BI "\fBQFileDialog\fR ( const QString & " "dirName" ", const QString & filter = QString::null, QWidget * " "parent" "=0, const char * " "name" " = 0, bool " "modal" " = FALSE ) "
+.br
+.ti -1c
+.BI "\fBQFileDialog\fR ( QWidget * " "parent" "=0, const char * " "name" " = 0, bool " "modal" " = FALSE ) "
+.br
+.ti -1c
+.BI "\fB~QFileDialog\fR () "
+.br
+.ti -1c
+.BI "QString \fBselectedFile\fR () const"
+.br
+.ti -1c
+.BI "QString \fBselectedFilter\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetSelection\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBselectAll\fR ( bool b ) "
+.br
+.ti -1c
+.BI "QStringList \fBselectedFiles\fR () const"
+.br
+.ti -1c
+.BI "QString \fBdirPath\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetDir\fR ( const QDir & ) "
+.br
+.ti -1c
+.BI "const QDir* \fBdir\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetShowHiddenFiles\fR ( bool s ) "
+.br
+.ti -1c
+.BI "bool \fBshowHiddenFiles\fR () const"
+.br
+.ti -1c
+.BI "void \fBrereadDir\fR () "
+.br
+.ti -1c
+.BI "void \fBresortDir\fR () "
+.br
+.ti -1c
+.BI "enum \fBMode\fR { AnyFile, ExistingFile, Directory, ExistingFiles, DirectoryOnly }"
+.br
+.ti -1c
+.BI "void \fBsetMode\fR ( Mode ) "
+.br
+.ti -1c
+.BI "Mode \fBmode\fR () const"
+.br
+.ti -1c
+.BI "enum \fBViewMode\fR { Detail, List }"
+.br
+.ti -1c
+.BI "enum \fBPreviewMode\fR { NoPreview, Contents, Info }"
+.br
+.ti -1c
+.BI "void \fBsetViewMode\fR ( ViewMode m ) "
+.br
+.ti -1c
+.BI "ViewMode \fBviewMode\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetPreviewMode\fR ( PreviewMode m ) "
+.br
+.ti -1c
+.BI "PreviewMode \fBpreviewMode\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisInfoPreviewEnabled\fR () const"
+.br
+.ti -1c
+.BI "bool \fBisContentsPreviewEnabled\fR () const"
+.br
+.ti -1c
+.BI "void \fBsetInfoPreviewEnabled\fR ( bool ) "
+.br
+.ti -1c
+.BI "void \fBsetContentsPreviewEnabled\fR ( bool ) "
+.br
+.ti -1c
+.BI "void \fBsetInfoPreview\fR ( QWidget * " "w" ", QFilePreview * preview ) "
+.br
+.ti -1c
+.BI "void \fBsetContentsPreview\fR ( QWidget * " "w" ", QFilePreview * preview ) "
+.br
+.ti -1c
+.BI "QUrl \fBurl\fR () const"
+.br
+.in -1c
+.SS "Public Slots"
+.in +1c
+.ti -1c
+.BI "void \fBsetDir\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBsetUrl\fR ( const QUrlOperator & url ) "
+.br
+.ti -1c
+.BI "void \fBsetFilter\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBsetFilters\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBsetFilters\fR ( const char ** ) "
+.br
+.ti -1c
+.BI "void \fBsetFilters\fR ( const QStringList & ) "
+.br
+.in -1c
+.SS "Signals"
+.in +1c
+.ti -1c
+.BI "void \fBfileHighlighted\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBfileSelected\fR ( const QString & ) "
+.br
+.ti -1c
+.BI "void \fBdirEntered\fR ( const QString & ) "
+.br
+.in -1c
+.SS "Static Public Members"
+.in +1c
+.ti -1c
+.BI "QString \fBgetOpenFileName\fR ( const QString & initially = QString::null, const QString & filter = QString::null, QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "QString \fBgetOpenFileName\fR ( const QString & " "initially" ", const QString & " "filter" ", QWidget * " "parent" ", const char * " "name" ", const QString & caption ) "
+.br
+.ti -1c
+.BI "QString \fBgetSaveFileName\fR ( const QString & initially = QString::null, const QString & filter = QString::null, QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "QString \fBgetSaveFileName\fR ( const QString & " "initially" ", const QString & " "filter" ", QWidget * " "parent" ", const char * " "name" ", const QString & caption ) "
+.br
+.ti -1c
+.BI "QString \fBgetExistingDirectory\fR ( const QString & dir = QString::null, QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "QString \fBgetExistingDirectory\fR ( const QString & " "dir" ", QWidget * " "parent" ", const char * " "name" ", const QString & caption ) "
+.br
+.ti -1c
+.BI "QString \fBgetExistingDirectory\fR ( const QString & " "dir" ", QWidget * " "parent" ", const char * " "name" ", const QString & " "caption" ", bool dirOnly ) "
+.br
+.ti -1c
+.BI "QStringList \fBgetOpenFileNames\fR ( const QString & filter= QString::null, const QString & dir = QString::null, QWidget * " "parent" " = 0, const char * " "name" " = 0 ) "
+.br
+.ti -1c
+.BI "QStringList \fBgetOpenFileNames\fR ( const QString & " "filter" ", const QString & " "dir" ", QWidget * " "parent" ", const char * " "name" ", const QString & caption ) "
+.br
+.ti -1c
+.BI "void \fBsetIconProvider\fR ( QFileIconProvider * ) "
+.br
+.ti -1c
+.BI "QFileIconProvider* \fBiconProvider\fR () "
+.br
+.in -1c
+.SS "Protected Members"
+.in +1c
+.ti -1c
+.BI "void \fBaddWidgets\fR ( QLabel *, QWidget *, QPushButton * ) "
+.br
+.ti -1c
+.BI "void \fBaddToolButton\fR ( QButton * " "b" ", bool " "separator" " = FALSE ) "
+.br
+.ti -1c
+.BI "void \fBaddLeftWidget\fR ( QWidget * w ) "
+.br
+.ti -1c
+.BI "void \fBaddRightWidget\fR ( QWidget * w ) "
+.br
+.ti -1c
+.BI "void \fBaddFilter\fR ( const QString & filter ) "
+.br
+.in -1c
+.SS "Properties"
+.nf
+.TS
+l l l l l
+- - - - -
+l l l l l.
+Type	Name	READ	WRITE	Options
+QString	selectedFile	selectedFile
+QString	selectedFilter	selectedFilter
+QStringList	selectedFiles	selectedFiles
+QString	dirPath	dirPath
+bool	showHiddenFiles	showHiddenFiles	setShowHiddenFiles
+Mode	mode	mode	setMode
+ViewMode	viewMode	viewMode	setViewMode
+PreviewMode	previewMode	previewMode	setPreviewMode
+bool	infoPreview	isInfoPreviewEnabled	setInfoPreviewEnabled
+bool	contentsPreview	isContentsPreviewEnabled	setContentsPreviewEnabled
+.TE
+.fi
+
+.SH DESCRIPTION
+The QFileDialog class provides a dialog widget for inputting file names.
+.PP
+This class implements a dialog which can be used if the user should select a file or a directory.
+.PP
+Example (e.g. to get a filename for saving a file):
+.PP
+.nf
+.br
+    QString fileName = QFileDialog::getSaveFileName( "newfile.txt", "Textfiles (*.txt)", this );
+.br
+    if ( !fileName.isNull() ) {                 // got a file name
+.br
+        ...
+.br
+    }
+.fi
+.PP
+To let the user specify a filename for e.g. opening a file, you could use following code:
+.PP
+.nf
+.br
+    QString s( QFileDialog::getOpenFileName( QString::null, "Images (*.png *.xpm *.jpg)", this ) );
+.br
+    if ( s.isEmpty() )
+.br
+        return;
+.br
+.br
+    open( s ); // open() being your function to read the file
+.fi
+.PP
+Other convenient static methods are QFileDialog::getExistingDirectory() to let the user choose a directory or QFileDialog::getOpenFileNames() to let the user select multiple files.
+.PP
+Additionally to these convenient static methods you can use one of QFileDialog's constructors, set a mode (see setMode()) and do more things, like adding a preview widget which will preview the current file or information of the current file while the user does the selection (see setInfoPreview(), setContentsPreview(), setInfoPreviewEnabled() and setContentsPreviewEnabled()) or add additional widgets to the filedialog then (see addWidgets(), addToolButton(), addLeftWidget() and addRightWidget()).
+.PP
+To get the selection the user did then, see selectedFile(), selectedFiles(), selectedFilter() and url(). To set these things see setUrl() and setSelection().
+.PP
+For an example about how to use this customization of the QFileDialog, take a look at the qdir example (qt/examples/qdir/qdir.cpp)
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+See also QPrintDialog.
+.PP
+Examples:
+.(l
+movies/main.cpp
+.)l
+.SS "Member Type Documentation"
+.SH "QFileDialog::Mode"
+This enum type is used to set and read QFileDialog's operating mode. The defined values are:
+.TP
+\fCAnyFile\fR - Return the name of any file, whether existing or not.
+.TP
+\fCExistingFile\fR - Return the name of a single, existing, file.
+.TP
+\fCDirectory\fR - Return the name of a directory.
+.TP
+\fCDirectoryOnly\fR - Return the name of a directory and display no files in the file views of the filedialog.
+.TP
+\fCExistingFiles\fR - Return the names of zero or more existing files.
+.PP
+Using setMode() you can set this mode to the file dialog.
+.SH "QFileDialog::PreviewMode"
+This enum type describes the preview mode of the filedialog.
+.TP
+\fCNoPreview\fR - No preview is shown at all
+.TP
+\fCContents\fR - Besides the view with the files a preview widget is shown which shows the contents of the currently selected file
+.TP
+\fCInfo\fR - Besides the view with the files a preview widget is shown which shows infos of the currently selected file
+.PP
+Using setPreviewMode() this mode can be set to the file dialog.
+.SH "QFileDialog::ViewMode"
+This enum type describes the view mode of the filedialog.
+.TP
+\fCDetail\fR - View which shows except the filename also size, date, etc. of a file in columns
+.TP
+\fCList\fR - Simple view which shows only all filenames plus icons
+.PP
+Using setViewMode() you can set this mode to the file dialog.
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "QFileDialog::QFileDialog ( QWidget * parent=0, const char * name = 0, bool modal = FALSE )"
+Constructs a file dialog with a \fIparent, name\fR and \fImodal\fR flag.
+.PP
+The dialog becomes modal if \fImodal\fR is TRUE, otherwise modeless.
+.SH "QFileDialog::QFileDialog ( const QString & dirName, const QString & filter = QString::null, QWidget * parent=0, const char * name = 0, bool modal = FALSE )"
+Constructs a file dialog with a \fIparent, name\fR and \fImodal\fR flag.
+.PP
+The dialog becomes modal if \fImodal\fR is TRUE, otherwise modeless.
+.SH "QFileDialog::~QFileDialog ()"
+Destructs the file dialog.
+.SH "void QFileDialog::addFilter ( const QString & filter ) \fC[protected]\fR"
+Adds \fIfilter\fR to the filter list and makes it the current one.
+.SH "void QFileDialog::addLeftWidget ( QWidget * w ) \fC[protected]\fR"
+Adds the widget \fIw\fR to the left of the filedialog.
+.PP
+See also addRightWidget(), addWidgets() and addToolButton().
+.SH "void QFileDialog::addRightWidget ( QWidget * w ) \fC[protected]\fR"
+Adds the widget \fIw\fR to the right of the filedialog.
+.PP
+See also addLeftWidget(), addWidgets() and addToolButton().
+.SH "void QFileDialog::addToolButton ( QButton * b, bool separator = FALSE ) \fC[protected]\fR"
+Adds a the button \fIb\fR to the row of tool buttons on the top of the filedialog. The button is appended at the end (right) of this row. If \fIseparator\fR is TRUE, a small space is inserted between the last button of the row and the new button \fIb.\fR
+.PP
+See also addWidgets(), addLeftWidget() and addRightWidget().
+.SH "void QFileDialog::addWidgets ( QLabel * l, QWidget * w, QPushButton * b ) \fC[protected]\fR"
+Adds 1-3 widgets to the bottom of the file dialog. \fIl\fR is the (optional) label, which is put beneath the "file name" and "file type" labels, \fIw\fR is a (optional) widget, which is put beneath the file type combo box, and \fIb\fR is the (you guessed it - optional) button, which is put beneath the cancel button.
+.PP
+If you don't want to add something in one of the columns, pass 0.
+.PP
+Each time calling this method adds a new row of widgets to the bottom of the filedialog.
+.PP
+See also addToolButton(), addLeftWidget() and addRightWidget().
+.SH "const QDir * QFileDialog::dir () const"
+Returns the active directory in the file dialog.
+.PP
+See also setDir().
+.SH "void QFileDialog::dirEntered ( const QString & ) \fC[signal]\fR"
+This signal is emitted when the user has selected a new directory.
+.SH "QString QFileDialog::dirPath () const"
+Returns the active directory path string in the file dialog.
+.PP
+See also dir() and setDir().
+.SH "void QFileDialog::done ( int i ) \fC[virtual slot]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QDialog.
+.SH "bool QFileDialog::eventFilter ( QObject * o, QEvent * e ) \fC[virtual]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QObject.
+.SH "void QFileDialog::fileHighlighted ( const QString & ) \fC[signal]\fR"
+This signal is emitted when the user highlights a file.
+.SH "void QFileDialog::fileSelected ( const QString & ) \fC[signal]\fR"
+This signal is emitted when the user selects a file.
+.SH "QString QFileDialog::getExistingDirectory ( const QString & dir, QWidget * parent, const char * name, const QString & caption, bool dirOnly ) \fC[static]\fR"
+Ask the user for the name of an existing directory, starting at \fIdir.\fR Returns the name of the directory the user selected.
+.PP
+If \fIdir\fR is null, getExistingDirectory() starts wherever the previous file dialog left off.
+.PP
+\fIcaption\fR specifies the caption of the dialog, if this is empty a default caption will be used. If \fIdirOnly\fR if TRUE no files will be displayed in the file view widgets.
+.SH "QString QFileDialog::getExistingDirectory ( const QString & dir = QString::null, QWidget * parent = 0, const char * name = 0 ) \fC[static]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString QFileDialog::getExistingDirectory ( const QString & dir, QWidget * parent, const char * name, const QString & caption ) \fC[static]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString QFileDialog::getOpenFileName ( const QString & startWith, const QString & filter, QWidget * parent, const char * name, const QString & caption ) \fC[static]\fR"
+Opens a modal file dialog and returns the name of the file to be opened.
+.PP
+If \fIstartWith\fR is the name of a directory, the dialog starts off in that directory. If \fIstartWith\fR is the name of an existing file, the dialogs starts in that directory, and with \fIstartWith\fR selected.
+.PP
+Only files matching \fIfilter\fR are selectable. If \fIfilter\fR is QString::null, all files are selectable. In the filter string multiple filters can be specified separated by either two semicolons next to each other or separated by newlines. To add two filters, one to show all C++ files and one to show all header files, the filter string could look like "C++ Files (*.cpp *.cc *.C *.cxx *.c++);;Header Files (*.h *.hxx *.h++)"
+.PP
+If \fIwidget\fR and/or \fIname\fR is provided, the dialog will be centered over \fIwidget\fR and named \fIname.\fR
+.PP
+getOpenFileName() returns a null string if the user cancelled the dialog.
+.PP
+This static function is less capable than the full QFileDialog object, but is convenient and easy to use.
+.PP
+Example:
+.PP
+.nf
+.br
+    // start at the current working directory and with *.cpp as filter
+.br
+    QString f = QFileDialog::getOpenFileName( QString::null, "*.cpp", this );
+.br
+    if ( !f.isEmpty() ) {
+.br
+        // the user selected a valid existing file
+.br
+    } else {
+.br
+        // the user cancelled the dialog
+.br
+    }
+.fi
+.PP
+getSaveFileName() is another convenience function, equal to this one except that it allows the user to specify the name of a nonexistent file name.
+.PP
+NOTE: In the windows version of Qt this static method uses the native windows file dialog, and not the QFileDialog.
+.PP
+See also getSaveFileName().
+.SH "QString QFileDialog::getOpenFileName ( const QString & startWith = QString::null, const QString & filter = QString::null, QWidget * parent = 0, const char * name = 0 ) \fC[static]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QStringList QFileDialog::getOpenFileNames ( const QString & filter, const QString & dir, QWidget * parent, const char * name, const QString & caption ) \fC[static]\fR"
+Lets the user select N files from a single directory, and returns a list of the selected files. The list may be empty, and the file names are fully qualified (i.e. "/usr/games/quake" or" c:\\\\quake\\\\quake").
+.PP
+\fIfilter\fR is the default glob pattern (which the user can change). The default is all files. In the filter string multiple filters can be specified separated by either two semicolons next to each other or separated by newlines. To add two filters, one to show all C++ files and one to show all header files, the filter string could look like "C++ Files (*.cpp *.cc *.C *.cxx *.c++);;Header Files (*.h *.hxx *.h++)"
+.PP
+\fIdir\fR is the starting directory. If \fIdir\fR is not supplied, QFileDialog picks something presumably useful (such as the directory where the user selected something last, or the current working directory).
+.PP
+\fIparent\fR is a widget over which the dialog should be positioned and \fIname\fR is the object name of the temporary QFileDialog object.
+.PP
+Example:
+.PP
+.nf
+.br
+    QStringList s( QFileDialog::getOpenFileNames() );
+.br
+    // do something with the files in s.
+.fi
+.PP
+NOTE: In the windows version of Qt this static method uses the native windows file dialog, and not the QFileDialog.
+.SH "QStringList QFileDialog::getOpenFileNames ( const QString & filter= QString::null, const QString & dir = QString::null, QWidget * parent = 0, const char * name = 0 ) \fC[static]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QString QFileDialog::getSaveFileName ( const QString & startWith, const QString & filter, QWidget * parent, const char * name, const QString & caption ) \fC[static]\fR"
+Opens a modal file dialog and returns the name of the file to be saved.
+.PP
+If \fIstartWith\fR is the name of a directory, the dialog starts off in that directory. If \fIstartWith\fR is the name of an existing file, the dialogs starts in that directory, and with \fIstartWith\fR selected.
+.PP
+Only files matching \fIfilter\fR are selectable. If \fIfilter\fR is QString::null, all files are selectable. In the filter string multiple filters can be specified separated by either two semicolons next to each other or separated by newlines. To add two filters, one to show all C++ files and one to show all header files, the filter string could look like "C++ Files (*.cpp *.cc *.C *.cxx *.c++);;Header Files (*.h *.hxx *.h++)"
+.PP
+If \fIwidget\fR and/or \fIname\fR is provided, the dialog will be centered over \fIwidget\fR and named \fIname.\fR
+.PP
+Returns a null string if the user cancelled the dialog.
+.PP
+This static function is less capable than the full QFileDialog object, but is convenient and easy to use.
+.PP
+Example:
+.PP
+.nf
+.br
+    // start at the current working directory and with *.cpp as filter
+.br
+    QString f = QFileDialog::getSaveFileName( QString::null, "*.cpp", this );
+.br
+    if ( !f.isEmpty() ) {
+.br
+        // the user gave a file name
+.br
+    } else {
+.br
+        // the user cancelled the dialog
+.br
+    }
+.fi
+.PP
+getOpenFileName() is another convenience function, equal to this one except that it does not allow the user to specify the name of a nonexistent file name.
+.PP
+NOTE: In the windows version of Qt this static method uses the native windows file dialog, and not the QFileDialog.
+.PP
+See also getOpenFileName().
+.SH "QString QFileDialog::getSaveFileName ( const QString & startWith = QString::null, const QString & filter = QString::null, QWidget * parent = 0, const char * name = 0 ) \fC[static]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "QFileIconProvider * QFileDialog::iconProvider () \fC[static]\fR"
+Returns the icon provider currently in use. By default there is no icon provider and this function returns 0.
+.PP
+See also setIconProvider() and QFileIconProvider.
+.SH "bool QFileDialog::isContentsPreviewEnabled () const"
+Returns TRUE if the file dialog offers the user the possibility to preview the contents of the currently selected file.
+.PP
+See also setContentsPreviewWidget().
+.SH "bool QFileDialog::isInfoPreviewEnabled () const"
+Returns TRUE if the file dialog offers the user the possibility to preview the information of the currently selected file.
+.PP
+See also setInfoPreviewEnabled().
+.SH "void QFileDialog::keyPressEvent ( QKeyEvent * ke ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "QFileDialog::Mode QFileDialog::mode() const"
+Returns the file mode of this dialog.
+.PP
+See also setMode().
+.SH "QFileDialog::PreviewMode QFileDialog::previewMode() const"
+Returns the preview mode of the filedialog.
+.PP
+See also setPreviewMode().
+.SH "void QFileDialog::rereadDir ()"
+Re-reads the active directory in the file dialog.
+.PP
+It is seldom necessary to call this function. It is provided in case the directory contents change and you want to refresh the directory list box.
+.SH "void QFileDialog::resizeEvent ( QResizeEvent * e ) \fC[virtual protected]\fR"
+Reimplemented for internal reasons; the API is not affected.
+.PP
+Reimplemented from QWidget.
+.SH "void QFileDialog::resortDir ()"
+Resorts the displayed directory.
+.SH "void QFileDialog::selectAll ( bool b )"
+If you pass TRUE for \fIb\fR all files are selected, otherwise they are de-selected. This only works in ExistingFiles mode.
+.SH "QString QFileDialog::selectedFile () const"
+Returns the selected file name.
+.PP
+If a file name was selected, the returned string contains the absolute path name. The returned string is an empty string if no file name was selected.
+.PP
+See also QString::isNull(), QFileDialog::selectedFiles() and QFileDialog::selectedFilter().
+.SH "QStringList QFileDialog::selectedFiles () const"
+Returns a list of selected files. This is only useful, if the mode of the filedialog is ExistingFiles. Else the list will only contain one entry, which is the the selectedFile. If no files were selected, this list is empty.
+.PP
+See also QFileDialog::selectedFile() and QValueList::isEmpty().
+.SH "QString QFileDialog::selectedFilter () const"
+Returns the filter which the user has chosen in the file dialog.
+.PP
+See also QString::isNull() and QFileDialog::selectedFiles().
+.SH "void QFileDialog::setContentsPreview ( QWidget * w, QFilePreview * preview )"
+Sets the widget which should be used for displaying the contents of a file to \fIw\fR and the preview object of that to \fIpreview.\fR
+.PP
+Normally as preview widget you create a class which derives from a widget type class (which actually displays the preview) and from QFilePreview. So you will pass here two times the same pointer then.
+.PP
+A implementation of a preview class could look like this:
+.PP
+.nf
+.br
+  class MyPreview : public QWidget, public QFilePreview
+.br
+  {
+.br
+  public:
+.br
+      MyPreview() : QWidget(), QFilePreview() {}
+.br
+      // reimplementation from QFilePreview
+.br
+      void previewUrl( const QUrl &url ) {
+.br
+          QPainter p( this );
+.br
+          p.drawThePreviewOfUrl();
+.br
+          p.end();
+.br
+      }
+.br
+  }
+.fi
+.PP
+Later you would use this...
+.PP
+.nf
+.br
+  MyPreview *preview = new MyPreview;
+.br
+  fd.setInfoPreviewEnabled( TRUE );
+.br
+  fd.setInfoPreview( preview, preview );
+.fi
+.SH "void QFileDialog::setContentsPreviewEnabled ( bool contents )"
+Specifies if the filedialog should offer the possibility to preview the contents of the currently selected file, if \fIcontents\fR is TRUE, else not.
+.PP
+See also setInfoPreview().
+.SH "void QFileDialog::setDir ( const QDir & dir )"
+Sets a directory path for the file dialog.
+.PP
+See also dir().
+.SH "void QFileDialog::setDir ( const QString & pathstr ) \fC[slot]\fR"
+Sets a directory path string for the file dialog.
+.PP
+See also dir().
+.SH "void QFileDialog::setFilter ( const QString & newFilter ) \fC[slot]\fR"
+Sets the filter spec in use to \fInewFilter.\fR
+.PP
+If \fInewFilter\fR matches the regular expression \fC([a-zA-Z0-9\\.\\*\\?\\ \\+\\;]*)$\fR (ie. it ends with a normal wildcard expression enclosed in parentheses), only the parenthesized is used. This means that these calls are all equivalent:
+.PP
+.nf
+.br
+     fd->setFilter( "All C++ files (*.cpp *.cc *.C *.cxx *.c++)" );
+.br
+     fd->setFilter( "*.cpp *.cc *.C *.cxx *.c++" )
+.br
+     fd->setFilter( "All C++ files (*.cpp;*.cc;*.C;*.cxx;*.c++)" );
+.br
+     fd->setFilter( "*.cpp;*.cc;*.C;*.cxx;*.c++" )
+.fi
+.SH "void QFileDialog::setFilters ( const char ** types ) \fC[slot]\fR"
+Sets this file dialog to offer \fItypes\fR in the File Type combo box. \fItypes\fR must be a null-terminated list of strings; each string must be in the format described in the documentation for setFilter().
+.PP
+See also setFilter().
+.SH "void QFileDialog::setFilters ( const QString & ) \fC[slot]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "void QFileDialog::setFilters ( const QStringList & ) \fC[slot]\fR"
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.SH "void QFileDialog::setIconProvider ( QFileIconProvider * provider ) \fC[static]\fR"
+Sets all file dialogs to use \fIprovider\fR to select icons to draw for each file. By default there is no icon provider, and QFileDialog simply draws a "folder" icon next to each directory and nothing next to the files.
+.PP
+See also QFileIconProvider and iconProvider().
+.PP
+Examples:
+.(l
+showimg/main.cpp
+.)l
+.SH "void QFileDialog::setInfoPreview ( QWidget * w, QFilePreview * preview )"
+Sets the widget which should be used for displaying information of a file to \fIw\fR and the preview object of that to \fIpreview.\fR
+.PP
+Normally as preview widget you create a class which derives from a widget type class (which actually displays the preview) and from QFilePreview. So you will pass here two times the same pointer then.
+.PP
+A implementation of a preview class could look like this:
+.PP
+.nf
+.br
+  class MyPreview : public QWidget, public QFilePreview
+.br
+  {
+.br
+  public:
+.br
+      MyPreview() : QWidget(), QFilePreview() {}
+.br
+      // reimplementation from QFilePreview
+.br
+      void previewUrl( const QUrl &url ) {
+.br
+          QPainter p( this );
+.br
+          p.drawThePreviewOfUrl();
+.br
+          p.end();
+.br
+      }
+.br
+  }
+.fi
+.PP
+Later you would use this...
+.PP
+.nf
+.br
+  MyPreview *preview = new MyPreview;
+.br
+  fd.setInfoPreviewEnabled( TRUE );
+.br
+  fd.setInfoPreview( preview, preview );
+.fi
+.SH "void QFileDialog::setInfoPreviewEnabled ( bool info )"
+Specifies if the filedialog should offer the possibility to preview the information of the currently selected file, if \fIinfo\fR is TRUE, else not.
+.PP
+See also setInfoPreview().
+.SH "void QFileDialog::setMode ( Mode newMode )"
+Sets this file dialog to \fInewMode,\fR which can be one of \fCDirectory\fR (directories are accepted), \fCExistingFile\fR (existing files are accepted), \fCAnyFile\fR (any valid file name is accepted) or \fCExistingFiles\fR (like \fCExistingFile,\fR but multiple files may be selected)
+.PP
+See also mode().
+.SH "void QFileDialog::setPreviewMode ( PreviewMode m )"
+Set the preview mode of the filedialog. You can choose between NoPreview, Info and Contents.
+.PP
+To be able to set a preview mode other than NoPreview you need to set the preview widget, and enable this preview mode.
+.PP
+See also setInfoPreviewEnabled(), setContentsPreviewEnabled(), setInfoPreview() and setContentsPreview().
+.SH "void QFileDialog::setSelection ( const QString & filename )"
+Sets the default selection to \fIfilename.\fR If \fIfilename\fR is absolute, setDir() is also called.
+.SH "void QFileDialog::setShowHiddenFiles ( bool s )"
+If \fIs\fR is TRUE, hidden files are shown in the filedialog, else no hidden files are shown.
+.SH "void QFileDialog::setUrl ( const QUrlOperator & url ) \fC[slot]\fR"
+Sets the \fIurl\fR which should be used as working directory.
+.SH "void QFileDialog::setViewMode ( ViewMode m )"
+Sets the viewmode of the filedialog. You can choose between Detail, List.
+.PP
+See also setPreviewMode().
+.SH "bool QFileDialog::showHiddenFiles () const"
+Returns TRUE if hidden files are shown in the filedialog, else FALSE.
+.SH "QUrl QFileDialog::url () const"
+Returns the URL of the current working directory.
+.SH "QFileDialog::ViewMode QFileDialog::viewMode() const"
+Returns the viewmode of the filedialog.
+.PP
+See also  setViewMode().
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfiledialog.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfiledialog.3qt) and the Qt
+version (2.3.2).

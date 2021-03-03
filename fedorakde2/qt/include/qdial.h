@@ -1,0 +1,1 @@
+../src/widgets/qdial.h

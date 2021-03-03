@@ -1,0 +1,773 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Qt Toolkit - QScrollView Class</title><style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }body { background: white; color: black; }
+--></style>
+</head><body bgcolor="#ffffff">
+
+<table width="100%">
+<tr><td><a href="index.html">
+<img width="100" height="100" src="qtlogo.png"
+alt="Home" border="0"><img width="100"
+height="100" src="face.png" alt="Home" border="0">
+</a><td valign=top><div align=right><img src="dochead.png" width="472" height="27"><br>
+<a href="classes.html"><b>Classes</b></a>
+- <a href="annotated.html">Annotated</a>
+- <a href="hierarchy.html">Tree</a>
+- <a href="functions.html">Functions</a>
+- <a href="index.html">Home</a>
+- <a href="topicals.html"><b>Structure</b></a>
+</div>
+</table>
+
+<h1 align=center>QScrollView Class Reference</h1><br clear="all">
+<p>
+The QScrollView widget provides a scrolling area with on-demand scrollbars.
+<a href="#details">More...</a>
+<p>
+<code>#include &lt;<a href="qscrollview-h.html">qscrollview.h</a>&gt;</code>
+<p>
+Inherits <a href="qframe.html">QFrame</a>.
+<p>Inherited by <a href="qcanvasview.html">QCanvasView</a>, <a href="qiconview.html">QIconView</a>, <a href="qlistbox.html">QListBox</a>, <a href="qlistview.html">QListView</a>, <a href="qtable.html">QTable</a> and <a href="qtextview.html">QTextView</a>.
+<p><a href="qscrollview-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class="fn"><a href="#6d0ad8"><b>QScrollView</b></a> ( QWidget * parent=0, const char * name=0, WFlags f=0 ) </div>
+<li><div class="fn"><a href="#41f510"><b>~QScrollView</b></a> () </div>
+<li><div class="fn">enum <a href="#ResizePolicy"><b>ResizePolicy</b></a> { Default, Manual, AutoOne, AutoOneFit }</div>
+<li><div class="fn">virtual void <a href="#2cef65"><b>setResizePolicy</b></a> ( ResizePolicy ) </div>
+<li><div class="fn">ResizePolicy <a href="#56a4c7"><b>resizePolicy</b></a> () const</div>
+<li><div class="fn">void <a href="#515e61"><b>removeChild</b></a> ( QWidget * child ) </div>
+<li><div class="fn">virtual void <a href="#476636"><b>addChild</b></a> ( QWidget * child, int x=0, int y=0 ) </div>
+<li><div class="fn">virtual void <a href="#ec4750"><b>moveChild</b></a> ( QWidget * child, int x, int y ) </div>
+<li><div class="fn">int <a href="#cd52a5"><b>childX</b></a> ( QWidget * child ) </div>
+<li><div class="fn">int <a href="#1b28a7"><b>childY</b></a> ( QWidget * child ) </div>
+<li><div class="fn">bool childIsVisible ( QWidget * child ) <em>(obsolete)</em></div>
+<li><div class="fn">void showChild ( QWidget * child, bool yes=TRUE ) <em>(obsolete)</em></div>
+<li><div class="fn">enum <a href="#ScrollBarMode"><b>ScrollBarMode</b></a> { Auto, AlwaysOff, AlwaysOn }</div>
+<li><div class="fn">ScrollBarMode <a href="#8298bf"><b>vScrollBarMode</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#817b47"><b>setVScrollBarMode</b></a> ( ScrollBarMode ) </div>
+<li><div class="fn">ScrollBarMode <a href="#e383fb"><b>hScrollBarMode</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#aaf795"><b>setHScrollBarMode</b></a> ( ScrollBarMode ) </div>
+<li><div class="fn">QWidget* <a href="#37c56f"><b>cornerWidget</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#d72a9f"><b>setCornerWidget</b></a> ( QWidget * ) </div>
+<li><div class="fn">QScrollBar* <a href="#c4adc2"><b>horizontalScrollBar</b></a> () const</div>
+<li><div class="fn">QScrollBar* <a href="#68072c"><b>verticalScrollBar</b></a> () const</div>
+<li><div class="fn">QWidget* <a href="#26f2bf"><b>viewport</b></a> () const</div>
+<li><div class="fn">QWidget* <a href="#18a140"><b>clipper</b></a> () const</div>
+<li><div class="fn">int <a href="#60af2a"><b>visibleWidth</b></a> () const</div>
+<li><div class="fn">int <a href="#695914"><b>visibleHeight</b></a> () const</div>
+<li><div class="fn">int <a href="#96e59b"><b>contentsWidth</b></a> () const</div>
+<li><div class="fn">int <a href="#b016d7"><b>contentsHeight</b></a> () const</div>
+<li><div class="fn">int <a href="#be020d"><b>contentsX</b></a> () const</div>
+<li><div class="fn">int <a href="#459550"><b>contentsY</b></a> () const</div>
+<li><div class="fn">void <a href="#767cfe"><b>updateContents</b></a> ( int x, int y, int w, int h ) </div>
+<li><div class="fn">void <a href="#c1b0d5"><b>updateContents</b></a> ( const QRect &amp; r ) </div>
+<li><div class="fn">void <a href="#3d2c3b"><b>repaintContents</b></a> ( int x, int y, int w, int h, bool erase=TRUE ) </div>
+<li><div class="fn">void <a href="#e63ced"><b>repaintContents</b></a> ( const QRect &amp; r, bool erase=TRUE ) </div>
+<li><div class="fn">void <a href="#daa8c7"><b>contentsToViewport</b></a> ( int x, int y, int &amp; vx, int &amp; vy ) </div>
+<li><div class="fn">void <a href="#422e47"><b>viewportToContents</b></a> ( int vx, int vy, int &amp; x, int &amp; y ) </div>
+<li><div class="fn">QPoint <a href="#a6a60c"><b>contentsToViewport</b></a> ( const QPoint &amp; ) </div>
+<li><div class="fn">QPoint <a href="#a1f1cd"><b>viewportToContents</b></a> ( const QPoint &amp; ) </div>
+<li><div class="fn">void <a href="#1ed884"><b>enableClipper</b></a> ( bool y ) </div>
+<li><div class="fn">void <a href="#2ed211"><b>setStaticBackground</b></a> ( bool y ) </div>
+<li><div class="fn">bool <a href="#3ae9db"><b>hasStaticBackground</b></a> () const</div>
+<li><div class="fn">QSize <a href="#f6a3ab"><b>viewportSize</b></a> ( int, int ) const</div>
+<li><div class="fn">void <a href="#b80737"><b>setDragAutoScroll</b></a> ( bool b ) </div>
+<li><div class="fn">bool <a href="#aad0b8"><b>dragAutoScroll</b></a> () const</div>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class="fn">virtual void <a href="#c548b5"><b>resizeContents</b></a> ( int w, int h ) </div>
+<li><div class="fn">void <a href="#dfe2bd"><b>scrollBy</b></a> ( int dx, int dy ) </div>
+<li><div class="fn">virtual void <a href="#15a368"><b>setContentsPos</b></a> ( int x, int y ) </div>
+<li><div class="fn">void <a href="#523aa2"><b>ensureVisible</b></a> ( int x, int y ) </div>
+<li><div class="fn">void <a href="#7c6824"><b>ensureVisible</b></a> ( int x, int y, int xmargin, int ymargin ) </div>
+<li><div class="fn">void <a href="#8d0b10"><b>center</b></a> ( int x, int y ) </div>
+<li><div class="fn">void <a href="#72e42d"><b>center</b></a> ( int x, int y, float xmargin, float ymargin ) </div>
+<li><div class="fn">void <a href="#bea3e1"><b>updateScrollBars</b></a> () </div>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class="fn">void <a href="#479944"><b>contentsMoving</b></a> ( int x, int y ) </div>
+</ul>
+<h2>Protected Members</h2>
+<ul>
+<li><div class="fn">virtual bool <a href="#be68bd"><b>eventFilter</b></a> ( QObject *, QEvent * e ) </div>
+<li><div class="fn">virtual void <a href="#495587"><b>contentsMousePressEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#2aef88"><b>contentsMouseReleaseEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#95a0fd"><b>contentsMouseDoubleClickEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#31fb33"><b>contentsMouseMoveEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#51f465"><b>contentsDragEnterEvent</b></a> ( QDragEnterEvent * ) </div>
+<li><div class="fn">virtual void <a href="#5b452f"><b>contentsDragMoveEvent</b></a> ( QDragMoveEvent * ) </div>
+<li><div class="fn">virtual void <a href="#31a415"><b>contentsDragLeaveEvent</b></a> ( QDragLeaveEvent * ) </div>
+<li><div class="fn">virtual void <a href="#43ab2d"><b>contentsDropEvent</b></a> ( QDropEvent * ) </div>
+<li><div class="fn">virtual void <a href="#4ef2d5"><b>contentsWheelEvent</b></a> ( QWheelEvent * ) </div>
+<li><div class="fn">virtual void <a href="#ca8463"><b>viewportPaintEvent</b></a> ( QPaintEvent * ) </div>
+<li><div class="fn">virtual void <a href="#77c5ed"><b>viewportResizeEvent</b></a> ( QResizeEvent * ) </div>
+<li><div class="fn">virtual void <a href="#013843"><b>viewportMousePressEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#ff7b46"><b>viewportMouseReleaseEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#391534"><b>viewportMouseDoubleClickEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#d850f6"><b>viewportMouseMoveEvent</b></a> ( QMouseEvent * ) </div>
+<li><div class="fn">virtual void <a href="#817362"><b>viewportDragEnterEvent</b></a> ( QDragEnterEvent * ) </div>
+<li><div class="fn">virtual void <a href="#f54ca8"><b>viewportDragMoveEvent</b></a> ( QDragMoveEvent * ) </div>
+<li><div class="fn">virtual void <a href="#231869"><b>viewportDragLeaveEvent</b></a> ( QDragLeaveEvent * ) </div>
+<li><div class="fn">virtual void <a href="#69e0a9"><b>viewportDropEvent</b></a> ( QDropEvent * ) </div>
+<li><div class="fn">virtual void <a href="#af6ed9"><b>viewportWheelEvent</b></a> ( QWheelEvent * ) </div>
+<li><div class="fn">virtual void <a href="#d9fbf6"><b>drawContentsOffset</b></a> ( QPainter *, int ox, int oy, int cx, int cy, int cw, int ch ) </div>
+<li><div class="fn">virtual void <a href="#7548fb"><b>drawContents</b></a> ( QPainter *, int cx, int cy, int cw, int ch ) </div>
+<li><div class="fn">virtual void <a href="#75898e"><b>setMargins</b></a> ( int left, int top, int right, int bottom ) </div>
+<li><div class="fn">int <a href="#2609e7"><b>leftMargin</b></a> () const</div>
+<li><div class="fn">int <a href="#d685be"><b>topMargin</b></a> () const</div>
+<li><div class="fn">int <a href="#759562"><b>rightMargin</b></a> () const</div>
+<li><div class="fn">int <a href="#2b6d15"><b>bottomMargin</b></a> () const</div>
+<li><div class="fn">virtual void <a href="#92e700"><b>setHBarGeometry</b></a> ( QScrollBar &amp; hbar, int x, int y, int w, int h ) </div>
+<li><div class="fn">virtual void <a href="#bc955a"><b>setVBarGeometry</b></a> ( QScrollBar &amp; vbar, int x, int y, int w, int h ) </div>
+</ul>
+<h2>Properties</h2>
+<table border=1 cellpadding=3 cellspacing=0>
+<tr><th>Type<th>Name<th>READ<th>WRITE<th>Options
+<tr><td>ResizePolicy<td>resizePolicy<td>resizePolicy<td>setResizePolicy<td>&nbsp;
+<tr><td>ScrollBarMode<td>vScrollBarMode<td>vScrollBarMode<td>setVScrollBarMode<td>&nbsp;
+<tr><td>ScrollBarMode<td>hScrollBarMode<td>hScrollBarMode<td>setHScrollBarMode<td>&nbsp;
+<tr><td>int<td>visibleWidth<td>visibleWidth<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>visibleHeight<td>visibleHeight<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>contentsWidth<td>contentsWidth<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>contentsHeight<td>contentsHeight<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>contentsX<td>contentsX<td>&nbsp;<td>&nbsp;
+<tr><td>int<td>contentsY<td>contentsY<td>&nbsp;<td>&nbsp;
+<tr><td>bool<td>dragAutoScroll<td>dragAutoScroll<td>setDragAutoScroll<td>&nbsp;
+</table>
+<hr><h2><a name="details"></a>Detailed Description</h2>
+The QScrollView widget provides a scrolling area with on-demand scrollbars.
+<p>
+The QScrollView is a large canvas - potentially larger than the
+coordinate system normally supported by the underlying window system.
+This is important, as is is quite easy to go beyond such limitations
+(eg. many web pages are more than 32000 pixels high).  Additionally,
+the QScrollView can have QWidgets positioned on it that scroll around
+with the drawn content.  These subwidgets can also have positions
+outside the normal coordinate range (but they are still limited in
+size).
+<p>To provide content for the widget, inherit from QScrollView and
+reimplement <a href="#7548fb">drawContents</a>(), and use <a href="#c548b5">resizeContents</a>() to set the size
+of the viewed area.  Use <a href="#476636">addChild</a>() / <a href="#ec4750">moveChild</a>() to position widgets
+on the view.
+<p>To use QScrollView effectively, it is important to understand its
+widget structure in the three styles of usage: a single large child widget,
+a large panning area with some widgets, a large panning area with many widgets.
+<p><dl>
+<dt><b>One Big Widget</b>
+<dd>
+<p><img src=qscrollview-vp2.png>
+<p>The first, simplest usage of QScrollView depicted above is
+appropriate for scrolling areas
+which are <em>never</em> more than about 4000 pixels in either dimension (this
+is about the maximum reliable size on X11 servers).  In this usage, you
+just make one large child in the QScrollView.  The child should
+be a child of the <a href="#26f2bf">viewport</a>() of the scrollview, and be added with addChild():
+<pre>    <a href="qscrollview.html">QScrollView</a>* sv = new <a href="qscrollview.html">QScrollView</a>(...);
+    <a href="qvbox.html">QVBox</a>* big_box = new <a href="qvbox.html">QVBox</a>(sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(big_box);
+</pre>
+<p>You may go on to add arbitrary child widgets to the single child in
+the scrollview, as you would with any widget:
+<pre>    <a href="qlabel.html">QLabel</a>* child1 = new <a href="qlabel.html">QLabel</a>("CHILD", big_box);
+    <a href="qlabel.html">QLabel</a>* child2 = new <a href="qlabel.html">QLabel</a>("CHILD", big_box);
+    <a href="qlabel.html">QLabel</a>* child3 = new <a href="qlabel.html">QLabel</a>("CHILD", big_box);
+    ...
+</pre>
+<p>Here, the QScrollView has 4 children - the viewport(),
+the <a href="#68072c">verticalScrollBar</a>(), the <a href="#c4adc2">horizontalScrollBar</a>(), and
+a small <a href="#37c56f">cornerWidget</a>().  The viewport() has 1 child, the big <a href="qvbox.html">QVBox</a>.
+The QVBox has the three labels as child widgets.  When the view is scrolled,
+the QVBox is moved, and its children move with it as child widgets normally
+do.
+<p><dt><b>Very Big View, some Widgets</b>
+<dd>
+<p><img src=qscrollview-vp.png>
+<p>The second usage of QScrollView depicted above is appropriate when
+few, if any, widgets are on a very large scrolling area that is
+potentially larger than 4000 pixels in either dimension. In this
+usage, you call resizeContents() to set the size of the area, and
+reimplement drawContents() to paint the contents.  You may also add
+some widgets, by making them children of the viewport() and adding
+them with addChild() (this is the same as the process for the single
+large widget in the previous example): <pre>    <a href="qscrollview.html">QScrollView</a>* sv = new <a href="qscrollview.html">QScrollView</a>(...);
+    <a href="qlabel.html">QLabel</a>* child1 = new <a href="qlabel.html">QLabel</a>("CHILD", sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(child1);
+    <a href="qlabel.html">QLabel</a>* child2 = new <a href="qlabel.html">QLabel</a>("CHILD", sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(child2);
+    <a href="qlabel.html">QLabel</a>* child3 = new <a href="qlabel.html">QLabel</a>("CHILD", sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(child3);
+</pre>
+<p>Here, the QScrollView has the same 4 children - the viewport(),
+the verticalScrollBar(), the horizontalScrollBar(), and
+a small cornerWidget().  The viewport()
+has the three labels as child widgets.  When the view is scrolled,
+the scrollview moves the child widgets individually.
+<p><dt><b>Very Big View, many Widgets</b>
+<dd>
+<p><img src=qscrollview-cl.png>
+<p>The final usage of QScrollView depicted above is
+appropriate when many widgets are on a very large scrolling area
+that is potentially larger than 4000 pixels in either dimension. In this
+usage, you call resizeContents() to set the size of the area, and reimplement
+drawContents() to paint the contents.  You then call <a href="#1ed884">enableClipper</a>(TRUE)
+and add widgets, again
+by making them children of the viewport() and adding them with
+addChild():
+<pre>    <a href="qscrollview.html">QScrollView</a>* sv = new <a href="qscrollview.html">QScrollView</a>(...);
+    sv-&gt;<a href="#1ed884">enableClipper</a>(TRUE);
+    <a href="qlabel.html">QLabel</a>* child1 = new <a href="qlabel.html">QLabel</a>("CHILD", sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(child1);
+    <a href="qlabel.html">QLabel</a>* child2 = new <a href="qlabel.html">QLabel</a>("CHILD", sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(child2);
+    <a href="qlabel.html">QLabel</a>* child3 = new <a href="qlabel.html">QLabel</a>("CHILD", sv-&gt;<a href="#26f2bf">viewport</a>());
+    sv-&gt;<a href="#476636">addChild</a>(child3);
+</pre>
+<p>Here, the QScrollView has 4 children - the <a href="#18a140">clipper</a>() (<em>not</em> the
+viewport() this time), the verticalScrollBar(), the
+horizontalScrollBar(), and a small cornerWidget().  The clipper() has
+1 child - the viewport().  The viewport() has the three labels as
+child widgets.  When the view is scrolled, the viewport() is moved,
+and its children move with it as child widgets normally do.
+<p></dl>
+<p>Normally you will use the first or third method if you want any child
+widgets in the view.
+<p>Note that the widget you see in the scrolled area is the viewport()
+widget, not the QScrollView itself.  So, to turn mouse tracking on for
+example, use viewport()-><a href="qwidget.html#36406c">setMouseTracking</a>(TRUE).
+<p>To enable drag-and-drop, you would <a href="qwidget.html#8169cb">setAcceptDrops</a>(TRUE) on the
+QScrollView (since drag-and-drop events propagate to the parent), but
+to work out what logical position in the view, you would need to map
+the drop co-ordinate from being relative to the QScrollView to being
+relative to the contents - use the function <a href="#422e47">viewportToContents</a>() for this.
+<p>To handle mouse events on the scrolling area, subclass scrollview as
+you would subclass other widgets, but rather than overriding
+<a href="qwidget.html#2ecc04">mousePressEvent</a>(), reimplement <a href="#013843">viewportMousePressEvent</a>() instead (if
+you reimplement mousePressEvent() you'll only get called when part of the
+QScrollView is clicked - and the only such part is the "corner" (if
+you don't set a cornerWidget()) and the frame, everything else being
+covered up by the viewport, clipper, or scrollbars.
+<p>When you construct a QScrollView, some of the widget flags apply to the
+viewport(), instead of being sent to the <a href="qwidget.html">QWidget</a> constructor for the
+QScrollView. This applies to <code>WResizeNoErase, WNorthWestGravity, WRepaintNoErase</code> and <code>WPaintClever.</code> See <a href="qt.html#WidgetFlags">Qt::WidgetFlags</a> for
+documentation about these flags.  Here are some examples: <ul>
+<li> An image manipulation widget would use <code>WResizeNoErase|WNorthWestGravity,</code> because the widget draws all pixels
+itself and when the size increases, it only needs a paint event for
+the new part, since the old part remains unchanged.
+<li>A word processing widget might use <code>WResizeNoErase</code> and repaint
+itself line by line to get a less flickery resizing. If the widget is
+in a mode where no text justification can take place, it might use <code>WNorthWestGravity</code> too, so that it would only get a repaint for the
+newly visible parts.
+<li>A scrolling game widget where the background scrolls as the
+characters move might use <code>WRepaintNoErase</code> (in addition to <code>WNorthWestGravity</code> and <code>WResizeNoErase)</code> so that the window system
+background does not flash in and out during scrolling.
+</ul><p><b>Warning:</b> WResizeNoErase is currently set by default, i.e. you always
+have to clear the background manually in scrollview subclasses. This
+will change in a future version of Qt, and we recommend specifying the
+flag explicitly.
+<p><img src=qscrollview-m.png> <img src=qscrollview-w.png>
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#QScrollView">scrollview/scrollview.cpp</a>
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="ResizePolicy">QScrollView::ResizePolicy</a></h3>
+This enum type is used to control QScrollView's reaction to resize
+events.  There are four possible settings:<ul>
+<li> <code>Default</code> - QScrollView selects one of the other settings
+automatically when it has to.  In this version of Qt, QScrollView
+changes to <code>Manual</code> if you resize the contents with
+<a href="#c548b5">resizeContents</a>(), and to <code>AutoOne</code> if a child is added.
+<li> <code>Manual</code> - the view stays the size set by resizeContents().
+<li> <code>AutoOne</code> - if there is only child widget, the view stays
+the size of that widget.  Otherwise, the behaviour is undefined.
+<li> <code>AutoOneFit</code> - if there is only one child widget the view stays
+the size of that widget's <a href="#a1d9a6">sizeHint</a>(). If the scrollview is resized bigger
+than the child's sizeHint(), the child will be resized to fit.
+If there is more than one child, the behaviour is undefined.
+<p></ul>
+<h3 class="fn"><a name="ScrollBarMode">QScrollView::ScrollBarMode</a></h3>
+This enum type describes the various modes of QScrollView's scroll
+bars.  The defined modes are: <ul>
+<li> <code>Auto</code> - QScrollView shows a scrollbar when the content is
+too tall to fit and not else.  This is the default.
+<li> <code>AlwaysOff</code> - QScrollView never shows a scrollbar.
+<li> <code>AlwaysOn</code> - QScrollView always shows a scrollbar.
+<p></ul>
+<p>(The modes for the horizontal and vertical scroll bars are independent.).
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#QScrollView::ScrollBarMode">scrollview/scrollview.cpp</a>
+<hr><h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="6d0ad8"></a>QScrollView::QScrollView ( <a href="qwidget.html">QWidget</a> * parent=0, const char * name=0, WFlags f=0 )</h3>
+<p>Constructs a QScrollView with a <em>parent,</em> a <em>name</em> and widget
+flags <em>f.</em>
+<p>The widget flags <code>WNorthWestGravity, WRepaintNoErase</code> and <code>WPaintClever</code> are propagated to the <a href="#26f2bf">viewport</a>() widget. The other
+widget flags are propagated to the parent constructor as usual.
+<h3 class="fn"><a name="41f510"></a>QScrollView::~QScrollView ()</h3>
+<p>Destructs the QScrollView.  Any children added with <a href="#476636">addChild</a>()
+will be destructed.
+<h3 class="fn">void <a name="476636"></a>QScrollView::addChild ( <a href="qwidget.html">QWidget</a> * child, int x=0, int y=0 ) <code>[virtual]</code></h3>
+<p>Inserts <em>child</em> into the scrolled area positioned at (<em>x, y).</em>
+The position defaults to (0,0). If the child is already in the view,
+it is just moved.
+<p>You may want to call <a href="#1ed884">enableClipper</a>(TRUE) if you add a large number
+of widgets.
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#addChild">scrollview/scrollview.cpp</a>
+<h3 class="fn">int <a name="2b6d15"></a>QScrollView::bottomMargin () const <code>[protected]</code></h3>
+<p>Returns the current bottom margin.
+<p>See also  <a href="#75898e">setMargins</a>().
+<h3 class="fn">void <a name="8d0b10"></a>QScrollView::center ( int x, int y ) <code>[slot]</code></h3>
+<p>Scrolls the content so that the point (x,y) is in the
+center of visible area.
+<h3 class="fn">void <a name="72e42d"></a>QScrollView::center ( int x, int y, float xmargin, float ymargin ) <code>[slot]</code></h3>
+<p>Scrolls the content so that the point (x,y) is visible,
+with the given margins (as fractions of visible area).
+<p>eg.
+<ul>
+<li>Margin 0.0 allows (x,y) to be on edge of visible area.
+<li>Margin 0.5 ensures (x,y) is in middle 50% of visible area.
+<li>Margin 1.0 ensures (x,y) is in the center of the visible area.
+</ul>
+<h3 class="fn">bool <a name="2407ba"></a>QScrollView::childIsVisible ( <a href="qwidget.html">QWidget</a> * child )</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Returns TRUE if <em>child</em> is visible.  This is equivalent
+to child-><a href="qwidget.html#4d2aa7">isVisible</a>().
+<h3 class="fn">int <a name="cd52a5"></a>QScrollView::childX ( <a href="qwidget.html">QWidget</a> * child )</h3>
+<p>Returns the X position of the given child widget.
+Use this rather than <a href="qwidget.html#6f017a">QWidget::x</a>() for widgets added to the view.
+<h3 class="fn">int <a name="1b28a7"></a>QScrollView::childY ( <a href="qwidget.html">QWidget</a> * child )</h3>
+<p>Returns the Y position of the given child widget.
+Use this rather than <a href="qwidget.html#800909">QWidget::y</a>() for widgets added to the view.
+<h3 class="fn"><a href="qwidget.html">QWidget</a>* <a name="18a140"></a>QScrollView::clipper () const</h3>
+<p>Returns the clipper widget.
+Contents in the scrollview is ultimately clipped to be inside
+the clipper widget.
+<p>You should not need to access this.
+<p>See also  <a href="#60af2a">visibleWidth</a>() and <a href="#695914">visibleHeight</a>().
+<h3 class="fn">void <a name="51f465"></a>QScrollView::contentsDragEnterEvent ( <a href="qdragenterevent.html">QDragEnterEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#c8639f">dragEnterEvent</a>() - the drag position is translated to be a
+point on the contents.
+<h3 class="fn">void <a name="31a415"></a>QScrollView::contentsDragLeaveEvent ( <a href="qdragleaveevent.html">QDragLeaveEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#fdd48c">dragLeaveEvent</a>() - the drag position is translated to be a
+point on the contents.
+<h3 class="fn">void <a name="5b452f"></a>QScrollView::contentsDragMoveEvent ( <a href="qdragmoveevent.html">QDragMoveEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#3b47df">dragMoveEvent</a>() - the drag position is translated to be a
+point on the contents.
+<h3 class="fn">void <a name="43ab2d"></a>QScrollView::contentsDropEvent ( <a href="qdropevent.html">QDropEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#e9b4c3">dropEvent</a>() - the drop position is translated to be a
+point on the contents.
+<h3 class="fn">int <a name="b016d7"></a>QScrollView::contentsHeight () const</h3>
+<p>Returns the height of the contents area.
+<h3 class="fn">void <a name="95a0fd"></a>QScrollView::contentsMouseDoubleClickEvent ( <a href="qmouseevent.html">QMouseEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#e36586">mouseDoubleClickEvent</a>() - the click position is translated to be a
+point on the contents.
+<p>Reimplemented in <a href="qtable.html#202026">QTable</a> and <a href="qlistview.html#0bdad0">QListView</a>.
+<h3 class="fn">void <a name="31fb33"></a>QScrollView::contentsMouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#a51d92">mouseMoveEvent</a>() - the mouse position is translated to be a
+point on the contents.
+<p>Reimplemented in <a href="qtable.html#0e6bd9">QTable</a> and <a href="qlistview.html#f62cf3">QListView</a>.
+<h3 class="fn">void <a name="495587"></a>QScrollView::contentsMousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#2ecc04">mousePressEvent</a>() - the press position is translated to be a
+point on the contents.
+<p>Reimplemented in <a href="qtable.html#53ca0d">QTable</a> and <a href="qlistview.html#bcd36c">QListView</a>.
+<h3 class="fn">void <a name="2aef88"></a>QScrollView::contentsMouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="qwidget.html#9aa77f">mouseReleaseEvent</a>() - the release position is translated to be a
+point on the contents.
+<p>Reimplemented in <a href="qtable.html#30c747">QTable</a> and <a href="qlistview.html#a15942">QListView</a>.
+<h3 class="fn">void <a name="479944"></a>QScrollView::contentsMoving ( int x, int y ) <code>[signal]</code></h3>
+<p>This signal is emitted just before the contents is moved
+to the given position.
+<p>See also  <a href="#be020d">contentsX</a>() and <a href="#459550">contentsY</a>().
+<h3 class="fn"><a href="qpoint.html">QPoint</a> <a name="a6a60c"></a>QScrollView::contentsToViewport ( const <a href="qpoint.html">QPoint</a> &amp; p )</h3>
+<p>Returns the
+point <em>p</em>
+translated to
+a point on the <a href="#26f2bf">viewport</a>() widget.
+<h3 class="fn">void <a name="daa8c7"></a>QScrollView::contentsToViewport ( int x, int y, int &amp; vx, int &amp; vy )</h3>
+<p>Translates
+a point (<em>x, y)</em> in the contents
+to
+a point (<em>vx, vy)</em> on the <a href="#26f2bf">viewport</a>() widget.
+<h3 class="fn">void <a name="4ef2d5"></a>QScrollView::contentsWheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>This event handler is called whenever the QScrollView receives a
+<a href="#8244c7">wheelEvent</a>() - the mouse position is translated to be a
+point on the contents.
+<h3 class="fn">int <a name="96e59b"></a>QScrollView::contentsWidth () const</h3>
+<p>Returns the width of the contents area.
+<h3 class="fn">int <a name="be020d"></a>QScrollView::contentsX () const</h3>
+<p>Returns the X coordinate of the contents which is at the left
+edge of the viewport.
+<h3 class="fn">int <a name="459550"></a>QScrollView::contentsY () const</h3>
+<p>Returns the Y coordinate of the contents which is at the top
+edge of the viewport.
+<h3 class="fn"><a href="qwidget.html">QWidget</a>* <a name="37c56f"></a>QScrollView::cornerWidget () const</h3>
+<p>Returns the widget in the corner between the two scrollbars.
+<p>By default, no corner widget is present.
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#cornerWidget">scrollview/scrollview.cpp</a>
+<h3 class="fn">bool <a name="aad0b8"></a>QScrollView::dragAutoScroll () const</h3>
+<p>Returns TRUE if autoscrolling in drag move events is enabled, else
+FALSE.
+<p>See also  <a href="#b80737">setDragAutoScroll</a>().
+<h3 class="fn">void <a name="7548fb"></a>QScrollView::drawContents ( <a href="qpainter.html">QPainter</a> * p, int clipx, int clipy, int clipw, int cliph ) <code>[virtual protected]</code></h3>
+<p>Reimplement this method if you are viewing a drawing area rather
+than a widget.
+<p>The function should draw the rectangle (<em>clipx, clipy, clipw, cliph</em> ) of the contents, using painter <em>p.</em>  The clip rectangle is
+in the scroll views's coordinates.
+<p>For example:
+<pre>  {
+    // Fill a 40000 by 50000 rectangle at (100000,150000)
+
+    // Calculate the coordinates...
+    int x1 = 100000, y1 = 150000;
+    int x2 = x1+40000-1, y2 = y1+50000-1;
+
+    // Clip the coordinates so X/Windows will not have problems...
+    if (x1 &lt; clipx) x1=clipx;
+    if (y1 &lt; clipy) y1=clipy;
+    if (x2 &gt; clipx+clipw-1) x2=clipx+clipw-1;
+    if (y2 &gt; clipy+cliph-1) y2=clipy+cliph-1;
+
+    // Paint using the small coordinates...
+    if ( x2 &gt;= x1 &amp;&amp; y2 &gt;= y1 )
+        p-&gt;fillRect(x1, y1, x2-x1+1, y2-y1+1, red);
+  }
+</pre>
+<p>The clip rectangle and translation of the painter <em>p</em> is already set
+appropriately.
+<p>Reimplemented in <a href="qcanvasview.html#6184cb">QCanvasView</a> and <a href="qtable.html#7c58a9">QTable</a>.
+<h3 class="fn">void <a name="d9fbf6"></a>QScrollView::drawContentsOffset ( <a href="qpainter.html">QPainter</a> * p, int offsetx, int offsety, int clipx, int clipy, int clipw, int cliph ) <code>[virtual protected]</code></h3>
+<p>For backward compatibility only.
+It is easier to use <a href="#7548fb">drawContents</a>(<a href="qpainter.html">QPainter</a>*,int,int,int,int).
+<p>The default implementation translates the painter appropriately
+and calls drawContents(QPainter*,int,int,int,int).
+<p>Reimplemented in <a href="qlistview.html#4fb89f">QListView</a> and <a href="qtextview.html#7fd2a8">QTextView</a>.
+<h3 class="fn">void <a name="1ed884"></a>QScrollView::enableClipper ( bool y )</h3>
+<p>When large numbers of child widgets are in a scrollview, especially
+if they are close together, the scrolling performance can suffer
+greatly.  If you call enableClipper(TRUE), the scrollview will
+use an extra widget to group child widgets.
+<p>Note that you may only call enableClipper() prior to adding widgets.
+<p>For a full discussion, see the overview documentation of this
+class.
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#enableClipper">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="523aa2"></a>QScrollView::ensureVisible ( int x, int y ) <code>[slot]</code></h3>
+<p>Scrolls the content so that the point (x, y) is visible
+with at least 50-pixel margins (if possible, otherwise centered).
+<h3 class="fn">void <a name="7c6824"></a>QScrollView::ensureVisible ( int x, int y, int xmargin, int ymargin ) <code>[slot]</code></h3>
+<p>Scrolls the content so that the point (x, y) is visible
+with at least the given pixel margins (if possible, otherwise centered).
+<h3 class="fn">bool <a name="be68bd"></a>QScrollView::eventFilter ( <a href="qobject.html">QObject</a> * obj, <a href="qevent.html">QEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>This event filter ensures the scrollbars are updated when a single
+contents widget is resized, shown, hidden, or destroyed, and passes
+mouse events to the QScrollView.
+<p>Reimplemented from <a href="qobject.html#bd20fe">QObject.</a>
+<h3 class="fn">bool <a name="f61ea5"></a>QScrollView::focusNextPrevChild ( bool next ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#8d74a1">QWidget.</a>
+<h3 class="fn">void <a name="6b9a7a"></a>QScrollView::frameChanged () <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qframe.html#ad4c68">QFrame.</a>
+<h3 class="fn">QScrollView::ScrollBarMode <a name="e383fb"></a>QScrollView::hScrollBarMode() const</h3>
+<p>Returns the currently set mode for the horizontal scrollbar.
+<p>See also  <a href="#aaf795">setHScrollBarMode</a>().
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#hScrollBarMode">scrollview/scrollview.cpp</a>
+<h3 class="fn">bool <a name="3ae9db"></a>QScrollView::hasStaticBackground () const</h3>
+<p>Returns wether QScrollView uses a static background.
+<p>See also  <a href="#2ed211">setStaticBackground</a>().
+<h3 class="fn"><a href="qscrollbar.html">QScrollBar</a>* <a name="c4adc2"></a>QScrollView::horizontalScrollBar () const</h3>
+<p>Returns the component horizontal scrollbar.  It is made available to allow
+accelerators, autoscrolling, etc., and to allow changing
+of arrow scroll rates: bar->setSteps( rate, bar->pageStep() ).
+<p>It should not be otherwise manipulated.
+<p>This function never returns 0.
+<h3 class="fn">int <a name="2609e7"></a>QScrollView::leftMargin () const <code>[protected]</code></h3>
+<p>Returns the current left margin.
+<p>See also  <a href="#75898e">setMargins</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="b82dff"></a>QScrollView::minimumSizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#553e08">QWidget.</a>
+<h3 class="fn">void <a name="ec4750"></a>QScrollView::moveChild ( <a href="qwidget.html">QWidget</a> * child, int x, int y ) <code>[virtual]</code></h3>
+<p>Repositions <em>child</em> to (<em>x, y).</em>
+This functions the same as <a href="#476636">addChild</a>().
+<h3 class="fn">void <a name="730059"></a>QScrollView::removeChild ( <a href="qobject.html">QObject</a> * child ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qobject.html#516272">QObject.</a>
+<h3 class="fn">void <a name="515e61"></a>QScrollView::removeChild ( <a href="qwidget.html">QWidget</a> * child )</h3>
+<p>Removes a child from the scrolled area.  Note that this happens
+automatically if the child is deleted.
+<h3 class="fn">void <a name="3d2c3b"></a>QScrollView::repaintContents ( int x, int y, int w, int h, bool erase=TRUE )</h3>
+<p>Calls <a href="qwidget.html#d5cfc3">repaint</a>() on rectangle defined by <em>x, y, w, h,</em>
+translated appropriately.  If the rectangle in not visible,
+nothing is repainted.
+<p>See also  <a href="#767cfe">updateContents</a>().
+<h3 class="fn">void <a name="e63ced"></a>QScrollView::repaintContents ( const <a href="qrect.html">QRect</a> &amp; r, bool erase=TRUE )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<h3 class="fn">void <a name="3480d1"></a>QScrollView::resize ( const <a href="qsize.html">QSize</a> &amp; s )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Examples:
+ <a href="iconview-main-cpp.html#resize">iconview/main.cpp</a>
+ <a href="dirview-main-cpp.html#resize">dirview/main.cpp</a>
+<h3 class="fn">void <a name="4be606"></a>QScrollView::resize ( int w, int h )</h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<h3 class="fn">void <a name="c548b5"></a>QScrollView::resizeContents ( int w, int h ) <code>[virtual slot]</code></h3>
+<p>Set the size of the contents area to <em>w</em> pixels wide and <em>h</em>
+pixels high, and updates the viewport accordingly.
+<h3 class="fn">void <a name="89deb7"></a>QScrollView::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * event ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#7d375f">QWidget.</a>
+<h3 class="fn">QScrollView::ResizePolicy <a name="56a4c7"></a>QScrollView::resizePolicy() const</h3>
+<p>Returns the currently set <a href="#ResizePolicy">ResizePolicy</a>.
+<p>See also  <a href="#2cef65">setResizePolicy</a>() and <a href="#ResizePolicy">ResizePolicy</a>.
+<h3 class="fn">int <a name="759562"></a>QScrollView::rightMargin () const <code>[protected]</code></h3>
+<p>Returns the current right margin.
+<p>See also  <a href="#75898e">setMargins</a>().
+<h3 class="fn">void <a name="dfe2bd"></a>QScrollView::scrollBy ( int dx, int dy ) <code>[slot]</code></h3>
+<p>Scrolls the content by <em>x</em> to the left and <em>y</em> upwards.
+<h3 class="fn">void <a name="15a368"></a>QScrollView::setContentsPos ( int x, int y ) <code>[virtual slot]</code></h3>
+<p>Scrolls the content so that the point (x, y) is in the top-left corner.
+<p>Reimplemented in <a href="qlistview.html#8000a5">QListView</a>.
+<h3 class="fn">void <a name="d72a9f"></a>QScrollView::setCornerWidget ( <a href="qwidget.html">QWidget</a> * corner ) <code>[virtual]</code></h3>
+<p>Sets the widget in the corner between the two scrollbars.
+<p>You will probably also want to
+set at least one of the scrollbar modes to AlwaysOn.
+<p>Passing 0 shows no widget in the corner.
+<p>Any previous corner widget is hidden.
+<p>You may call setCornerWidget() with the same widget at different times.
+<p>All widgets set here will be deleted by the QScrollView when it destructs
+unless you separately
+reparent the widget after setting some other corner widget (or 0).
+<p>Any <em>newly</em> set widget should have no current parent.
+<p>By default, no corner widget is present.
+<p>See also  <a href="#817b47">setVScrollBarMode</a>() and <a href="#aaf795">setHScrollBarMode</a>().
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#setCornerWidget">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="b80737"></a>QScrollView::setDragAutoScroll ( bool b )</h3>
+<p>If <em>b</em> is set to TRUE, the QScrollView automatically scrolls the contents
+in drag move events if the user moves the cursor close to a border of the
+view. This of course only works id the viewport accepts drops!
+Specifying FALSE here disables this autoscroll feature.
+<h3 class="fn">void <a name="309e67"></a>QScrollView::setEnabled ( bool enable ) <code>[virtual slot]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4b103c">QWidget.</a>
+<h3 class="fn">void <a name="92e700"></a>QScrollView::setHBarGeometry ( <a href="qscrollbar.html">QScrollBar</a> &amp; hbar, int x, int y, int w, int h ) <code>[virtual protected]</code></h3>
+<p>Called when the horizontal scrollbar geometry changes.  This is provided
+as a protected function so that subclasses can do interesting things
+like providing extra buttons in some of the space normally used by the
+scrollbars.
+<p>The default implementation simply gives all the space to <em>hbar.</em>
+<p>See also  <a href="#bc955a">setVBarGeometry</a>().
+<h3 class="fn">void <a name="aaf795"></a>QScrollView::setHScrollBarMode ( <a href="qscrollview.html#ScrollBarMode">ScrollBarMode</a> mode )</h3>
+<p>Sets the mode for the horizontal scrollbar.
+<ul>
+<li> <code>Auto</code> (the default) shows a scrollbar when the content is too wide to fit.
+<li> <code>AlwaysOff</code> never shows a scrollbar.
+<li> <code>AlwaysOn</code> always shows a scrollbar.
+</ul>
+<p>See also  <a href="#e383fb">hScrollBarMode</a>() and <a href="#817b47">setVScrollBarMode</a>().
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#setHScrollBarMode">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="75898e"></a>QScrollView::setMargins ( int left, int top, int right, int bottom ) <code>[virtual protected]</code></h3>
+<p>Sets the margins around the scrolling area.  This is useful for
+applications such as spreadsheets with `locked' rows and columns.
+The marginal space is <em>inside</em> the <a href="qframe.html#1819f6">frameRect</a>() and is left blank -
+reimplement <a href="#7548fb">drawContents</a>() or put widgets in the unused area.
+<p>By default all margins are zero.
+<p>See also  <a href="#6b9a7a">frameChanged</a>().
+<h3 class="fn">void <a name="2cef65"></a>QScrollView::setResizePolicy ( <a href="qscrollview.html#ResizePolicy">ResizePolicy</a> r )</h3>
+<p>Sets the resize policy to <em>r.</em>
+<p>See also  <a href="#56a4c7">resizePolicy</a>() and <a href="#ResizePolicy">ResizePolicy</a>.
+<h3 class="fn">void <a name="2ed211"></a>QScrollView::setStaticBackground ( bool y )</h3>
+<p>Sets the scrollview to have a static background if <em>y</em> is TRUE, or a scrolling background otherwise. By default,
+the background is scrolling.
+<p>Beware that this mode is quite slow, as a full repaint of the visible area has to be triggered on every contents move.
+<p>See also  <a href="#3ae9db">hasStaticBackground</a>().
+<h3 class="fn">void <a name="bc955a"></a>QScrollView::setVBarGeometry ( <a href="qscrollbar.html">QScrollBar</a> &amp; vbar, int x, int y, int w, int h ) <code>[virtual protected]</code></h3>
+<p>Called when the vertical scrollbar geometry changes.  This is provided
+as a protected function so that subclasses can do interesting things
+like providing extra buttons in some of the space normally used by the
+scrollbars.
+<p>The default implementation simply gives all the space to <em>vbar.</em>
+<p>See also  <a href="#92e700">setHBarGeometry</a>().
+<h3 class="fn">void <a name="817b47"></a>QScrollView::setVScrollBarMode ( <a href="qscrollview.html#ScrollBarMode">ScrollBarMode</a> mode )</h3>
+<p>Sets the mode for the vertical scrollbar.
+<p>See also  <a href="#8298bf">vScrollBarMode</a>() and <a href="#aaf795">setHScrollBarMode</a>().
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#setVScrollBarMode">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="45ec27"></a>QScrollView::show () <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Examples:
+ <a href="iconview-main-cpp.html#show">iconview/main.cpp</a>
+<p>Reimplemented from <a href="qwidget.html#200ee5">QWidget.</a>
+<h3 class="fn">void <a name="a6ff60"></a>QScrollView::showChild ( <a href="qwidget.html">QWidget</a> * child, bool y=TRUE )</h3>
+<p><b>This function is obsolete.</b> It is provided to keep old source working, and will probably be removed in a future version of Qt.  We strongly advise against using it in new code.<p>
+<p>Sets the visibility of <em>child.</em> Equivalent to
+<a href="qwidget.html#200ee5">QWidget::show</a>() or <a href="qwidget.html#410481">QWidget::hide</a>().
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="a1d9a6"></a>QScrollView::sizeHint () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#4511d1">QWidget.</a>
+<h3 class="fn"><a href="qsizepolicy.html">QSizePolicy</a> <a name="31f6fc"></a>QScrollView::sizePolicy () const <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#23726d">QWidget.</a>
+<h3 class="fn">void <a name="5d82c4"></a>QScrollView::styleChange ( <a href="qstyle.html">QStyle</a> &amp; old ) <code>[virtual]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#5e2e23">QWidget.</a>
+<h3 class="fn">int <a name="d685be"></a>QScrollView::topMargin () const <code>[protected]</code></h3>
+<p>Returns the current top margin.
+<p>See also  <a href="#75898e">setMargins</a>().
+<h3 class="fn">void <a name="767cfe"></a>QScrollView::updateContents ( int x, int y, int w, int h )</h3>
+<p>Calls <a href="qwidget.html#f3f721">update</a>() on rectangle defined by <em>x, y, w, h,</em>
+translated appropriately.  If the rectangle in not visible,
+nothing is repainted.
+<p>See also  <a href="#3d2c3b">repaintContents</a>().
+<h3 class="fn">void <a name="c1b0d5"></a>QScrollView::updateContents ( const <a href="qrect.html">QRect</a> &amp; r )</h3>
+<p>This is an overloaded member function, provided for convenience.  It differs from the above function only in what argument(s) it accepts.
+<h3 class="fn">void <a name="bea3e1"></a>QScrollView::updateScrollBars () <code>[slot]</code></h3>
+<p>Updates scrollbars - all possibilities considered.  You should never
+need to call this in your code.
+<h3 class="fn">QScrollView::ScrollBarMode <a name="8298bf"></a>QScrollView::vScrollBarMode() const</h3>
+<p>Returns the currently set mode for the vertical scrollbar.
+<p>See also  <a href="#817b47">setVScrollBarMode</a>().
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#vScrollBarMode">scrollview/scrollview.cpp</a>
+<h3 class="fn"><a href="qscrollbar.html">QScrollBar</a>* <a name="68072c"></a>QScrollView::verticalScrollBar () const</h3>
+<p>Returns the component vertical scrollbar.  It is made available to allow
+accelerators, autoscrolling, etc., and to allow changing
+of arrow scroll rates: bar->setSteps( rate, bar->pageStep() ).
+<p>It should not be otherwise manipulated.
+<p>This function never returns 0.
+<h3 class="fn"><a href="qwidget.html">QWidget</a>* <a name="26f2bf"></a>QScrollView::viewport () const</h3>
+<p>Returns the viewport widget of the scrollview.  This is the widget
+containing the contents widget or which is the drawing area.
+<p>Examples:
+ <a href="scrollview-scrollview-cpp.html#viewport">scrollview/scrollview.cpp</a>
+<h3 class="fn">void <a name="817362"></a>QScrollView::viewportDragEnterEvent ( <a href="qdragenterevent.html">QDragEnterEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all drag enter
+events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#51f465">contentsDragEnterEvent</a>().
+<p>See also  <a href="qwidget.html#c8639f">QWidget::dragEnterEvent</a>().
+<h3 class="fn">void <a name="231869"></a>QScrollView::viewportDragLeaveEvent ( <a href="qdragleaveevent.html">QDragLeaveEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all drag leave
+events sent to the viewport.
+<p>The default implementation calls <a href="#31a415">contentsDragLeaveEvent</a>().
+<p>See also  <a href="qwidget.html#fdd48c">QWidget::dragLeaveEvent</a>().
+<h3 class="fn">void <a name="f54ca8"></a>QScrollView::viewportDragMoveEvent ( <a href="qdragmoveevent.html">QDragMoveEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all drag move
+events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#5b452f">contentsDragMoveEvent</a>().
+<p>See also  <a href="qwidget.html#3b47df">QWidget::dragMoveEvent</a>().
+<h3 class="fn">void <a name="69e0a9"></a>QScrollView::viewportDropEvent ( <a href="qdropevent.html">QDropEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all drop
+events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#43ab2d">contentsDropEvent</a>().
+<p>See also  <a href="qwidget.html#e9b4c3">QWidget::dropEvent</a>().
+<h3 class="fn">void <a name="391534"></a>QScrollView::viewportMouseDoubleClickEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all mouse
+double click events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#95a0fd">contentsMouseDoubleClickEvent</a>().
+<p>See also  <a href="qwidget.html#e36586">QWidget::mouseDoubleClickEvent</a>().
+<p>Reimplemented in <a href="qlistbox.html#06b4e9">QListBox</a>.
+<h3 class="fn">void <a name="d850f6"></a>QScrollView::viewportMouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all mouse
+move events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#31fb33">contentsMouseMoveEvent</a>().
+<p>See also  <a href="qwidget.html#a51d92">QWidget::mouseMoveEvent</a>().
+<p>Reimplemented in <a href="qtextbrowser.html#73358f">QTextBrowser</a>, <a href="qtextview.html#d01e49">QTextView</a> and <a href="qlistbox.html#8b41ba">QListBox</a>.
+<h3 class="fn">void <a name="013843"></a>QScrollView::viewportMousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents, this method receives all mouse
+press events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#495587">contentsMousePressEvent</a>().
+<p>See also  <a href="#495587">contentsMousePressEvent</a>() and <a href="qwidget.html#2ecc04">QWidget::mousePressEvent</a>().
+<p>Reimplemented in <a href="qlistbox.html#2e5e5e">QListBox</a>, <a href="qtextview.html#4cc80d">QTextView</a> and <a href="qtextbrowser.html#54715c">QTextBrowser</a>.
+<h3 class="fn">void <a name="ff7b46"></a>QScrollView::viewportMouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all mouse
+release events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#2aef88">contentsMouseReleaseEvent</a>().
+<p>See also  <a href="qwidget.html#9aa77f">QWidget::mouseReleaseEvent</a>().
+<p>Reimplemented in <a href="qtextbrowser.html#7ccf73">QTextBrowser</a>, <a href="qlistbox.html#78f328">QListBox</a> and <a href="qtextview.html#989864">QTextView</a>.
+<h3 class="fn">void <a name="ca8463"></a>QScrollView::viewportPaintEvent ( <a href="qpaintevent.html">QPaintEvent</a> * pe ) <code>[virtual protected]</code></h3>
+<p>This is a low-level painting routine that draws the viewport
+contents.  Reimplement this if <a href="#7548fb">drawContents</a>() is too high-level.
+(for example, if you don't want to open a <a href="qpainter.html">QPainter</a> on the viewport).
+<p>Reimplemented in <a href="qlistbox.html#0a90bd">QListBox</a>.
+<h3 class="fn">void <a name="77c5ed"></a>QScrollView::viewportResizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents, this method
+receives all resize events sent to the viewport.
+<p>See also  <a href="qwidget.html#7d375f">QWidget::resizeEvent</a>().
+<p>Reimplemented in <a href="qtextview.html#3602fa">QTextView</a>.
+<h3 class="fn"><a href="qsize.html">QSize</a> <a name="f6a3ab"></a>QScrollView::viewportSize ( int x, int y ) const</h3>
+<p>Returns the viewport size for size (<em>x, y).</em>
+<p>The viewport size depends on <em>x,y</em> (the size of the contents), the
+size of this widget, the modes of the horizontal and vertical scroll
+bars.
+<p>This function permits widgets that can trade vertical and horizontal
+space for each other to control scroll bar appearance better.  For
+example, a word processor or web browser can control the width of
+the right margin accurately, whether there needs to be a vertical
+scroll bar or not.
+<h3 class="fn"><a href="qpoint.html">QPoint</a> <a name="a1f1cd"></a>QScrollView::viewportToContents ( const <a href="qpoint.html">QPoint</a> &amp; vp )</h3>
+<p>Returns the
+point on the viewport <em>vp</em>
+translated to
+a point in the contents.
+<h3 class="fn">void <a name="422e47"></a>QScrollView::viewportToContents ( int vx, int vy, int &amp; x, int &amp; y )</h3>
+<p>Translates
+a point (<em>vx, vy)</em> on the <a href="#26f2bf">viewport</a>() widget
+to
+a point (<em>x, y)</em> in the contents.
+<h3 class="fn">void <a name="af6ed9"></a>QScrollView::viewportWheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>To provide simple processing of events on the contents,
+this method receives all wheel
+events sent to the viewport.
+<p>The default implementation translates the event and calls
+<a href="#4ef2d5">contentsWheelEvent</a>().
+<p>See also  <a href="qwidget.html#6f6c80">QWidget::wheelEvent</a>().
+<h3 class="fn">int <a name="695914"></a>QScrollView::visibleHeight () const</h3>
+<p>Returns the vertical amount of the content that is visible.
+<h3 class="fn">int <a name="60af2a"></a>QScrollView::visibleWidth () const</h3>
+<p>Returns the horizontal amount of the content that is visible.
+<h3 class="fn">void <a name="8244c7"></a>QScrollView::wheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * e ) <code>[virtual protected]</code></h3>
+<p>Reimplemented for internal reasons; the API is not affected.
+<p>Reimplemented from <a href="qwidget.html#6f6c80">QWidget.</a>
+<hr><p>
+Search the documentation, FAQ, qt-interest archive and more (uses
+<a href="http://www.trolltech.com">www.trolltech.com</a>):<br>
+<form method=post action="http://www.trolltech.com/search.cgi">
+<input type=hidden name="version" value="2.3.2"><nobr>
+<input size="50" name="search"><input type=submit value="Search">
+</nobr></form><hr><p>
+This file is part of the <a href="index.html">Qt toolkit</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com">Trolltech</a>, all rights reserved.<p><address><hr><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr>
+<td>Copyright © 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align="right"><div align="right">Qt version 2.3.2</div>
+</table></div></address></body></html>

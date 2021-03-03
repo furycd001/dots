@@ -1,0 +1,176 @@
+<!DOCTYPE UI><UI>
+<class>ListViewPreview</class><comment>*********************************************************************
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of Qt Designer.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+*********************************************************************</comment>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>ListViewPreview</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>213</width>
+            <height>201</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Listview</string>
+    </property>
+    <hbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>2</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget>
+            <class>QListView</class>
+            <column>
+                <property>
+                    <name>text</name>
+                    <string>Property</string>
+                </property>
+                <property>
+                    <name>clickable</name>
+                    <bool>true</bool>
+                </property>
+                <property>
+                    <name>resizeable</name>
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property>
+                    <name>text</name>
+                    <string>Type</string>
+                </property>
+                <property>
+                    <name>clickable</name>
+                    <bool>true</bool>
+                </property>
+                <property>
+                    <name>resizeable</name>
+                    <bool>true</bool>
+                </property>
+            </column>
+        <item>
+            <property>
+                <name>text</name>
+                <string>size</string>
+            </property>
+            <property>
+                <name>text</name>
+                <string>QSize</string>
+            </property>
+            <property>
+                <name>pixmap</name>
+                <pixmap></pixmap>
+            </property>
+            <property>
+                <name>pixmap</name>
+                <pixmap></pixmap>
+            </property>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>width</string>
+                </property>
+                <property>
+                    <name>text</name>
+                    <string>int</string>
+                </property>
+                <property>
+                    <name>pixmap</name>
+                    <pixmap></pixmap>
+                </property>
+                <property>
+                    <name>pixmap</name>
+                    <pixmap></pixmap>
+                </property>
+            </item>
+            <item>
+                <property>
+                    <name>text</name>
+                    <string>height</string>
+                </property>
+                <property>
+                    <name>text</name>
+                    <string>int</string>
+                </property>
+                <property>
+                    <name>pixmap</name>
+                    <pixmap></pixmap>
+                </property>
+                <property>
+                    <name>pixmap</name>
+                    <pixmap></pixmap>
+                </property>
+            </item>
+        </item>
+        <item>
+            <property>
+                <name>text</name>
+                <string>enabled</string>
+            </property>
+            <property>
+                <name>text</name>
+                <string>bool</string>
+            </property>
+            <property>
+                <name>pixmap</name>
+                <pixmap></pixmap>
+            </property>
+            <property>
+                <name>pixmap</name>
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property>
+                <name>text</name>
+                <string>name</string>
+            </property>
+            <property>
+                <name>text</name>
+                <string>QWidget</string>
+            </property>
+            <property>
+                <name>pixmap</name>
+                <pixmap></pixmap>
+            </property>
+            <property>
+                <name>pixmap</name>
+                <pixmap></pixmap>
+            </property>
+        </item>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>ListView2</cstring>
+            </property>
+        </widget>
+    </hbox>
+</widget>
+</UI>

@@ -1,0 +1,174 @@
+'\" t
+.TH QFontDialog 3qt "29 October 2001" "Trolltech AS" \" -*- nroff -*-
+.\" Copyright 1992-2001 Trolltech AS.  All rights reserved.  See the
+.\" license file included in the distribution for a complete license
+.\" statement.
+.\"
+.ad l
+.nh
+.SH NAME
+QFontDialog \- Dialog widget for selecting a text font
+.br
+.PP
+\fC#include <qfontdialog.h>\fR
+.PP
+Inherits QDialog.
+.PP
+.SS "Signals"
+.TP
+void \fBfontSelected\fR ( const QFont & font ) 
+.TP
+void \fBfontHighlighted\fR ( const QFont & font ) 
+.SS "Static Public Members"
+.TP
+QFont \fBgetFont\fR ( bool * ok, const QFont & def, QWidget * parent = 0, const char * name = 0 ) 
+.TP
+QFont \fBgetFont\fR ( bool * ok, QWidget * parent = 0, const char * name = 0 ) 
+.SS "Protected Members"
+.TP
+virtual bool \fBeventFilter\fR ( QObject *, QEvent * ) 
+.TP
+QListBox* \fBfamilyListBox\fR () const
+.TP
+virtual void \fBupdateFamilies\fR () 
+.TP
+QListBox* \fBstyleListBox\fR () const
+.TP
+virtual void \fBupdateStyles\fR () 
+.TP
+QListBox* \fBsizeListBox\fR () const
+.TP
+virtual void \fBupdateSizes\fR () 
+.TP
+QComboBox* \fBscriptCombo\fR () const
+.TP
+virtual void \fBupdateScripts\fR () 
+.SS "Protected Slots"
+.TP
+void \fBsizeChanged\fR ( const QString & ) 
+.SH DESCRIPTION
+The QFontDialog class provides a dialog widget for selecting a text font.
+.PP
+This dialog can be used to let the user choose a font with attributes and so on. Normally you may use the static convenience function getFont().
+.PP
+.ce 1
+.B "[Image Omitted]"
+.PP
+
+.ce 1
+.B "[Image Omitted]"
+.PP
+.SH MEMBER FUNCTION DOCUMENTATION
+.SH "bool QFontDialog::eventFilter ( QObject * o, QEvent * e ) \fC[virtual protected]\fR"
+Event filter to make up, down, pageup and pagedown work correctly in the line edits.
+.PP
+Reimplemented from QObject.
+.SH "QListBox * QFontDialog::familyListBox () const \fC[protected]\fR"
+Returns a pointer to the "font family" list box. This is usable mainly if you reimplement updateFontFamilies();.
+.SH "void QFontDialog::fontHighlighted ( const QFont & ) \fC[signal]\fR"
+This signal is emitted, when the user changed a setting in the dialog.
+.SH "void QFontDialog::fontSelected ( const QFont & ) \fC[signal]\fR"
+This signal is emitted, when the user has chosen a font and clicked ok.
+.SH "QFont QFontDialog::getFont ( bool * ok, QWidget * parent = 0,const char * name = 0 ) \fC[static]\fR"
+Opens a modal font dialog and returns the font selected by the user.
+.PP
+The \fIok\fR parameter is set to TRUE if the user clicked OK, and FALSE if the user clicked Cancel.
+.PP
+If the user clicks Cancel the Qt default font is returned.
+.PP
+This static function is less capable than the full QFontDialog object, but is convenient and easy to use.
+.PP
+Example:
+.PP
+.nf
+.br
+    // start at the current working directory and with *.cpp as filter
+.br
+    bool ok;
+.br
+    QFont f = QFontDialog::getFont( &ok, this );
+.br
+    if ( ok ) {
+.br
+        // the user selected a valid font
+.br
+    } else {
+.br
+        // the user cancelled the dialog
+.br
+    }
+.fi
+.SH "QFont QFontDialog::getFont ( bool * ok, const QFont & initial, QWidget * parent = 0, const char * name = 0 ) \fC[static]\fR"
+Opens a modal font dialog and returns the font selected by the user.
+.PP
+\fIinitial\fR is the initial selected font.
+.PP
+The \fIok\fR parameter is set to TRUE if the user clicked OK, and FALSE if the user clicked Cancel.
+.PP
+If the user clicks Cancel the \fIinitial\fR font is returned.
+.PP
+This static function is less capable than the full QFontDialog object, but is convenient and easy to use.
+.PP
+Example:
+.PP
+.nf
+.br
+    // start at the current working directory and with *.cpp as filter
+.br
+    bool ok;
+.br
+    QFont f = QFontDialog::getFont( &ok, QFont( "Times", 12 ), this );
+.br
+    if ( ok ) {
+.br
+        // the user selected a valid font
+.br
+    } else {
+.br
+        // the user cancelled the dialog
+.br
+    }
+.fi
+.PP
+Another example:
+.PP
+.nf
+.br
+    mywidget.setFont( QFontDialog::getFont( 0, mywidget.font() ) );
+.fi
+.SH "QComboBox * QFontDialog::scriptCombo () const \fC[protected]\fR"
+Returns a pointer to the "font style" list box. This is usable mainly if you reimplement updateFontStyles();.
+.SH "void QFontDialog::sizeChanged ( const QString & s ) \fC[protected slot]\fR"
+This slot is called if the user changes the font size.
+.SH "QListBox * QFontDialog::sizeListBox () const \fC[protected]\fR"
+Returns a pointer to the "font size" list box. This is usable mainly if you reimplement updateFontSizes();.
+.SH "QListBox * QFontDialog::styleListBox () const \fC[protected]\fR"
+Returns a pointer to the "font style" list box. This is usable mainly if you reimplement updateFontStyles();.
+.SH "void QFontDialog::updateFamilies () \fC[virtual protected]\fR"
+Update the contents of the "font family" list box. This function can be reimplemented if you have special requirements.
+.SH "void QFontDialog::updateScripts () \fC[virtual protected]\fR"
+Update the contents of the "font script" combo box. This function can be reimplemented if you have special requirements.
+.SH "void QFontDialog::updateSizes () \fC[virtual protected]\fR"
+Update the contents of the "font size" list box. This function can be reimplemented if you have special requirements.
+.SH "void QFontDialog::updateStyles () \fC[virtual protected]\fR"
+Update the contents of the "font style" list box.  This
+function can be reimplemented if you have special requirements.
+.SH "SEE ALSO"
+.BR http://doc.trolltech.com/qfontdialog.html
+.BR http://www.trolltech.com/faq/tech.html
+.SH COPYRIGHT
+Copyright 1992-2001 Trolltech AS, http://www.trolltech.com.  See the
+license file included in the distribution for a complete license
+statement.
+.SH AUTHOR
+Generated automatically from the source code.
+.SH BUGS
+If you find a bug in Qt, please report it as described in
+.BR http://doc.trolltech.com/bughowto.html .
+Good bug reports make our job much simpler. Thank you.
+.P
+In case of content or formattting problems with this manual page, please
+report them to
+.BR qt-bugs@trolltech.com .
+Please include the name of the manual page (qfontdialog.3qt) and the Qt
+version (2.3.2).

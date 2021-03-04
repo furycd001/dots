@@ -1,1 +1,0 @@
-../src/kernel/qfontmetrics.h

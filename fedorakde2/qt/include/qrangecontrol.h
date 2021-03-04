@@ -1,1 +1,0 @@
-../src/widgets/qrangecontrol.h

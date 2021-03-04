@@ -1,7 +1,0 @@
-kde2_icon(hi16-action-history_clear.png)
-kde2_icon(hi16-action-kde1.png)
-kde2_icon(hi16-action-kde2.png)
-kde2_icon(hi16-action-kde3.png)
-kde2_icon(hi16-action-kde4.png)
-kde2_icon(hi16-action-kde5.png)
-kde2_icon(hi16-action-kde6.png)

@@ -1,1 +1,0 @@
-../src/network/qsocketdevice.h

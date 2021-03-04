@@ -1,1 +1,0 @@
-../src/compat/qmetaobj.h

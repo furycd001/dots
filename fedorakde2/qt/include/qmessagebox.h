@@ -1,1 +1,0 @@
-../src/dialogs/qmessagebox.h

@@ -1,1 +1,0 @@
-../src/compat/qpaintdc.h

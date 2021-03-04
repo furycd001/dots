@@ -1,1 +1,0 @@
-../src/widgets/qplatinumstyle.h

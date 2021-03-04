@@ -1,1 +1,0 @@
-../src/widgets/qgrid.h

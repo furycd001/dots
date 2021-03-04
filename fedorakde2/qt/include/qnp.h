@@ -1,1 +1,0 @@
-../extensions/nsplugin/src/qnp.h

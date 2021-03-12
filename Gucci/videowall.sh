@@ -3,7 +3,7 @@
 
 
 sleep 4s && \
-xwinwrap -ni -fs -s -st -sp -b -nf -- mpv -profile wallpaper -wid WID --shuffle /home/furycd001/Terminal/MSI/MSI\ Videos/
+xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper -wid WID --shuffle /home/furycd001/Terminal/Feissi/
 
 
 # /home/furycd001/Terminal/Anastasiya\ Mehovaya/

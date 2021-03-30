@@ -24,4 +24,4 @@ This is my collection of xfwm & xfce4-notifyd themes that I have created....
 
 ----
 
-## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z44445F)

@@ -27,4 +27,4 @@ This is my Waterfox userchrome.css. It's based on the ever popular [**arc theme*
 
 ----
 
-## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z44445F)

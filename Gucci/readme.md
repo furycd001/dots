@@ -27,4 +27,4 @@ Here you'll find a collection of scripts that I use in my setup.
 
 ----
 
-## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z44445F)

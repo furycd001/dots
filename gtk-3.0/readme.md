@@ -7,4 +7,4 @@ This is my gtk.css for gtk 3.0. I use this to add padding to xfce4-terminal & to
 
 ----
 
-## [Love my work :? Why not buy me a coffee....](https://paypal.me/furycd001?locale.x=en_GB)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z44445F)

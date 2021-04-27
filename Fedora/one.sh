@@ -14,7 +14,7 @@ dnf upgrade -y && \
 
 # Install apps..
 dnf install -y \
-feh pidgin gimp ffmpeg mpv newsboat tmux alien file-roller xfce4-screenshooter \
+feh pidgin gimp ffmpeg mpv newsboat tmux alien git file-roller xfce4-screenshooter \
 libmpd libmpdclient ncmpcpp xwinwrap steam clipman mousepad evince simple-scan \
 VirtualBox virtualbox-guest-additions transmission filezilla asunder audacity \
 easytag xfce4-genmon-plugin xfce4-clipman-plugin htop retroarch retroarch-assets && \

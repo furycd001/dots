@@ -11,7 +11,7 @@ dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 
 # Enable RPM Sphere..
 wget https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-34-1.noarch.rpm && \
-dnf install -y ./r_rpmsphere-release-34-1.noarch.rpm && \
+rpm -U r_rpmsphere-release-34-1.noarch.rpm && \
 
 # Update system..
 dnf upgrade -y && \
@@ -36,18 +36,18 @@ mkdir /home/furycd001/Apps/RPM/ && cd /home/furycd001/Apps/RPM/ && \
 # Download discord.deb & convert to .rpm..
 wget https://discord.com/api/download?platform=linux&format=deb && \
 alien --to-rpm discord-0.0.14.deb && \
-dnf install -y ./discord-0.0.14.rpm && \
+rpm -U discord-0.0.14.rpm && \
 
 # Manually download and install applications..
 # Maybe "dnf localinstall"
 wget https://atom.io/download/rpm && \
-dnf install -y ./atom.x86_64.rpm && \
+rpm -U atom.x86_64.rpm && \
 wget https://www.gitkraken.com/download/linux-rpm && \
-dnf install -y ./gitkraken-amd64.tar.gz && \
+rpm -U gitkraken-amd64.tar.gz && \
 wget https://cdn.getpublii.com/Publii-0.38.1.rpm && \
-dnf install -y ./Publii-0.38.1.rpm && \
+rpm -U Publii-0.38.1.rpm && \
 wget https://zoom.us/client/latest/zoom_x86_64.rpm && \
-dnf install -y ./zoom_x86_64.rpm && \
+rpm -U zoom_x86_64.rpm && \
 
 # Install etcher..
 sudo sudo dnf config-manager --add-repo https://balena.io/etcher/static/etcher-rpm.repo && \
@@ -61,8 +61,7 @@ dnf clean packages && \
 
 # Create directories in home..
 cd /home/furycd001/ && \
-mkdir Documents/ Emulation/ Dots/ Downloads/ Gateway/ Markdown/ Music/ \
-Pictures/ Sites/ Steam/ Videos/ VirtualBox/ Terminal/ .fonts/ && \
+mkdir Emulation/ Dots/ Gateway/ Markdown/ Sites/ Steam/ VirtualBox/ Terminal/ .fonts/ && \
 
 echo [ PART.1 PACKAGE INSTALLATION HAS FINISHED !! ] && \
 echo  && \

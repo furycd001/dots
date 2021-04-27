@@ -18,7 +18,7 @@ dnf upgrade -y && \
 
 # Install apps..
 dnf install -y \
-feh pidgin gimp ffmpeg mpv newsboat tmux alien git file-roller xfce4-screenshooter \
+feh pidgin gimp ffmpeg mpv newsboat tmux git file-roller xfce4-screenshooter \
 libmpd libmpdclient ncmpcpp xwinwrap steam clipman mousepad evince simple-scan \
 VirtualBox virtualbox-guest-additions transmission filezilla asunder audacity \
 easytag xfce4-genmon-plugin xfce4-clipman-plugin htop retroarch retroarch-assets && \
@@ -28,15 +28,6 @@ dnf groupupdate -y sound-and-video && \
 
 # Install Nvidia stuff..
 dnf install -y gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-cuda
-
-# Make apps directory..
-mkdir /home/furycd001/Apps/ && cd /home/furycd001/Apps/ && \
-mkdir /home/furycd001/Apps/RPM/ && cd /home/furycd001/Apps/RPM/ && \
-
-# Download discord.deb & convert to .rpm..
-wget https://discord.com/api/download?platform=linux&format=deb && \
-alien --to-rpm discord-0.0.14.deb && \
-rpm -U discord-0.0.14.rpm && \
 
 # Manually download and install applications..
 # Maybe "dnf localinstall"
@@ -61,7 +52,13 @@ dnf clean packages && \
 
 # Create directories in home..
 cd /home/furycd001/ && \
-mkdir Emulation/ Dots/ Gateway/ Markdown/ Sites/ Steam/ VirtualBox/ Terminal/ .fonts/ && \
+mkdir Emulation/ Dots/ Gateway/ Markdown/ Sites/ Steam/ VirtualBox/ Terminal/ .fonts/ Apps/ && \
+
+# Install discord..
+cd Apps/ && mkdir RPM/ && cd RPM/ && \
+cp /home/furycd001/Dots/Fedora/discord-0.0.14-2.x86_64.rpm /home/furycd001/Apps/RPM/ && \
+rpm -U discord-0.0.14.rpm && \
+cd .. && \
 
 echo [ PART.1 PACKAGE INSTALLATION HAS FINISHED !! ] && \
 echo  && \

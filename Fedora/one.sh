@@ -7,7 +7,11 @@ if [ `whoami` != root ]; then
 fi
 
 # Enable rpmfusion..
-sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+
+# Enable RPM Sphere..
+wget https://github.com/rpmsphere/noarch/raw/master/r/rpmsphere-release-34-1.noarch.rpm && \
+dnf install -y ./r_rpmsphere-release-34-1.noarch.rpm && \
 
 # Update system..
 dnf upgrade -y && \
@@ -26,6 +30,7 @@ dnf groupupdate -y sound-and-video && \
 dnf install -y gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-cuda
 
 # Make apps directory..
+mkdir /home/furycd001/Apps/ && cd /home/furycd001/Apps/ && \
 mkdir /home/furycd001/Apps/RPM/ && cd /home/furycd001/Apps/RPM/ && \
 
 # Download discord.deb & convert to .rpm..
@@ -61,4 +66,4 @@ Pictures/ Sites/ Steam/ Videos/ VirtualBox/ Terminal/ .fonts/ && \
 
 echo [ PART.1 PACKAGE INSTALLATION HAS FINISHED !! ] && \
 echo  && \
-echo [ PLEASE CONNECT DUCK AND RUN PART.2 <without root> !! ]
+echo [ PLEASE CONNECT DUCK AND RUN PART.2 WITHOUT ROOT !! ]

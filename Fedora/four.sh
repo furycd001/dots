@@ -35,4 +35,4 @@ cp -r /media/furycd001/Reviziis/Sarah\ Hyland /home/furycd001/Terminal/ && \
 
 echo [ PART.4 COPYING TERMINAL FILES HAS FINISHED !! ] && \
 echo  && \
-echo [ PLEASE NOW RUN PART.4 (without root) !! ]
+echo [ EVERYTHING HAS FINISHED !! ]

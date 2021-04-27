@@ -15,4 +15,4 @@ rsync -aH --delete --info=progress2 /media/furycd001/Duck/usr-share-backgrounds/
 
 echo [ PART.3 COPYING BACKUP SCRIPTS HAS FINISHED !! ] && \
 echo  && \
-echo [ PLEASE NOW RUN PART.4 (without root) !! ]
+echo [ PLEASE NOW RUN PART.4 WITHOUT ROOT !! ]

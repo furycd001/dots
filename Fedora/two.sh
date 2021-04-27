@@ -49,4 +49,4 @@ rsync -aH --delete --info=progress2 /media/furycd001/Duck/.purple /home/furycd00
 
 echo [ PART.2 COPYING BACKUP FILES HAS FINISHED !! ] && \
 echo  && \
-echo [ PLEASE CONNECT REVIZIIS AND RUN PART.3 (with root) !! ]
+echo [ PLEASE CONNECT REVIZIIS AND RUN PART.3 WITH ROOT !! ]

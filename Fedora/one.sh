@@ -7,7 +7,7 @@ if [ `whoami` != root ]; then
 fi
 
 # Enable rpmfusion..
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
 
 # Update system..
 dnf upgrade -y && \
@@ -61,4 +61,4 @@ Pictures/ Sites/ Steam/ Videos/ VirtualBox/ Terminal/ .fonts/ && \
 
 echo [ PART.1 PACKAGE INSTALLATION HAS FINISHED !! ] && \
 echo  && \
-echo [ PLEASE CONNECT DUCK AND RUN PART.2 (without root) !! ]
+echo [ PLEASE CONNECT DUCK AND RUN PART.2 <without root> !! ]

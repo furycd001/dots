@@ -1,0 +1,34 @@
+/* New Tab Flash */
+:root{--newtab-textbox-background-color:#272b35;}
+
+/* Hide right click menu items */
+#context-bookmarklink, #context-savelinktopocket, #context-searchselect, #context-sendimage, #context-back, #context-forward, #context-reload, #context-bookmarkpage, #context-sep-navigation, #context-viewimageinfo, #inspect-separator, #context-inspect-a11y, #context-video-saveimage, #context-sendvideo, #context-viewpartialsource-selection, #context-print-selection, #context-sep-selectall, #context-viewinfo {
+  display: none !important;
+}
+
+/* Replace favicon on tabs with close button on hover */
+.tabbrowser-tab:not(:hover) .tab-close-button{ display:none; }
+.tabbrowser-tab:not([pinned]):hover .tab-close-button{ display:block !important; }
+
+
+.tabbrowser-tab:not([pinned]):hover  .tab-icon-image {
+  display: none !important;
+}
+
+.tabbrowser-tab:hover  .tab-throbber,
+.tabbrowser-tab:hover  .tab-icon-image,
+.tabbrowser-tab:hover .tab-sharing-icon-overlay,
+.tabbrowser-tab:hover  .tab-icon-overlay,
+.tabbrowser-tab:hover  .tab-label-container,
+.tabbrowser-tab:hover  .tab-icon-sound {
+   -moz-box-ordinal-group: 2 !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+  margin-left: -2px !important;
+  margin-right: 2px !important;
+}
+
+#appMenu-fxa-separator, toolbarseparator {
+  display: none !important;
+}

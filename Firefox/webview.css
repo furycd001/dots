@@ -35,7 +35,7 @@ browser[type=content] > html{
 }
 
 .tab-label-container {
-mask-image: linear-gradient(to left, transparent, black 0em) !important;
+mask-image: linear-gradient(to left, transparent, black 0em) !important; /
 }
 
 .tab-line {
@@ -221,6 +221,9 @@ background-color: #272b35 !important;
 	margin-top: 0px;
 	transition: margin-top 0.5s;
 }
+
+/* Hide scrollbar */
+*{ scrollbar-width: none !important }
 
 /* Hide right click menu items */
 <<<<<<< HEAD

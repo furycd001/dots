@@ -3,7 +3,7 @@
 
 
 sleep 4s && \
-xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper --shuffle -wid WID /home/furycd001/Downloads/videowall.m3u
+xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper --shuffle -wid WID ~/Pictures/vwall/ArianaGrandeVogue.mp4
 
 
 # /home/furycd001/Terminal/MSI/MSI\ Videos/

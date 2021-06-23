@@ -20,11 +20,18 @@ Just add the code below to your userContent.css file. It's that simple.
 
 ```css
 /* Newtab */
+/* Newtab */
 @-moz-document url("about:blank") {
     body {
         background-color: #272b35 !important;
     }
 }
+
+@-moz-document url("about:newtab") {
+          body {
+              background-color: #272b35 !important;
+          }
+      }
 ```
 
 > Firefox arc was originally converted from my old [**Waterfox userchrome.css.**](https://github.com/furycd001/dots/tree/master/waterfox) I wanted to still keep everything minimal, but have it be more useable. As always there's still a few things that need worked on, but it really is pretty complete as it is now & I'm super happy using it daily.
@@ -38,6 +45,15 @@ Just add the code below to your userContent.css file. It's that simple.
 ![alt text](https://i.imgur.com/iIMwjBA.jpg "Single")
 
 > Everything you should need is squished onto a single row. This is totally usable until you randomly decide to open like a gazillion tabs.
+>  
+> [ PLEASE NOTE THAT THIS IS CURRENTLY BROKEN AS OF VER.88/89 ]
+>  
+> [ I MAY FIX THIS IN THE FUTURE ]
+
+## Arc-proton
+![alt text](https://i.imgur.com/UzzKLwh.png "Arc-proton")
+
+> Arc-proton is a super minimal userChrome that makes use of **["this"](https://addons.mozilla.org/en-US/firefox/addon/arc-dark-theme-we/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)** theme.
 
 ----
 

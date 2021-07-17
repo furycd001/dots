@@ -28,7 +28,7 @@ distro=$(. /etc/lsb-release ; echo $DISTRIB_DESCRIPTION)
 kernel="$(uname -sr | sed 's/-.*//')"
 uptime="$(uptime -p | sed 's/up //')"
 shell="$(basename ${SHELL})"
-packages="$(dpkg --list | wc --lines)"
+packages="$(pacman -Q | wc -l)"
 wm="$(echo $wm_bloat | cut -d'"' -f 2)"
 
 

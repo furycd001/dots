@@ -3,7 +3,7 @@
 
 
 sleep 4s && \
-xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper --shuffle -wid WID ~/Pictures/vwall/imperia-furs.webm
+xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper --shuffle -wid WID ~/Terminal/vwall/
 
 
 # ~/Pictures/vwall/ArianaGrandeVogue.mp4

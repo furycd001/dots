@@ -2,17 +2,14 @@
 
 These are Firefox usercChrome.css that I have created. They are meant to be minimal & with the colors being based on the ever popular [**arc theme.**](https://github.com/horst3180/Arc-theme)
 
-## Arc..
-![alt text](https://i.imgur.com/2RUYodQ.jpg "Arc")
+## Arc-proton..
+![alt text](https://i.imgur.com/71OMjZx.png "Arc")
 
 #### Close buttons are hidden inside favicons.
-![alt text](https://i.imgur.com/WYLxKFN.jpg "Close Button")
+![alt text](https://imgur.com/Y2spqJY.png "Close Button")
 
 #### New Tab background color changed with the css posted at the bottom of the page.
-![alt text](https://i.imgur.com/wQtjAzZ.jpg "New Tab Page")
-
-#### Tabs are hidden if there is only one tab open.
-![alt text](https://i.imgur.com/19ZPHS6.jpg "Tabs Hidden")
+![alt text](https://imgur.com/Zpmgni6.png "New Tab Page")
 
 #### Changing the background color of new tabs.
 
@@ -33,6 +30,20 @@ Just add the code below to your userContent.css file. It's that simple.
           }
       }
 ```
+
+> I made this userchrome more minimal by pairing it with this **["ARC DARK"](https://addons.mozilla.org/en-GB/firefox/addon/arc-dark-theme-we/)** theme. Consider installing it for the userchrome to work correctly....
+
+## Arc-old..
+![alt text](https://i.imgur.com/2RUYodQ.jpg "Arc")
+
+#### Close buttons are hidden inside favicons.
+![alt text](https://i.imgur.com/WYLxKFN.jpg "Close Button")
+
+#### New Tab background color changed with the css posted at the bottom of the page.
+![alt text](https://i.imgur.com/wQtjAzZ.jpg "New Tab Page")
+
+#### Tabs are hidden if there is only one tab open.
+![alt text](https://i.imgur.com/19ZPHS6.jpg "Tabs Hidden")
 
 > Firefox arc was originally converted from my old [**Waterfox userchrome.css.**](https://github.com/furycd001/dots/tree/master/waterfox) I wanted to still keep everything minimal, but have it be more useable. As always there's still a few things that need worked on, but it really is pretty complete as it is now & I'm super happy using it daily.
 

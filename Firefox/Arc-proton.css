@@ -35,7 +35,7 @@
 
 #urlbar, #urlbar-container, #urlbar-input-container, #urlbar-background, #searchbar, .searchbar-textbox {
 	box-shadow: none !important;
-	background-color: #383c4a !important;
+	background-color: #272b35 !important;
 	border: none !important;
 }
 
@@ -56,5 +56,35 @@
 }
 
 #titlebar {
+  border: none !important;
+}
+
+/* CENTER URLBAR TEXT */
+#urlbar #urlbar-input {
+  text-align: center !important
+}
+
+/* Hide right click menu items */
+#context-bookmarklink, #context-savelinktopocket, #context-searchselect, #context-sendimage, #context-back, #context-forward, #context-reload, #context-bookmarkpage, #context-sep-navigation, #context-viewimageinfo, #inspect-separator, #context-inspect-a11y, #context-video-saveimage, #context-sendvideo, #context-viewpartialsource-selection, #context-print-selection, #context-sep-selectall, #context-viewinfo {
+  display: none !important;
+}
+
+/* HIDE ITEMS IN URLBAR */
+#tracking-protection-icon-container, #identity-icon-box {
+  display: none !important;
+}
+
+/* CHANGE BACKGROUND COLOR OF URLBAR AREAS */
+#PanelUI-button, #nav-bar-customization-target {
+  background-color: #272b35 !important;
+  border: none !important;
+}
+
+#navigator-toolbox {
+  background-color: #272b35 !important;
+  border: none !important;
+}
+
+.search-one-offs, .urlbarView-body-outer, .urlbarView-body-inner {
   border: none !important;
 }

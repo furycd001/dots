@@ -32,3 +32,29 @@
 #appMenu-fxa-separator, toolbarseparator {
   display: none !important;
 }
+
+#urlbar, #urlbar-container, #urlbar-input-container, #urlbar-background, #searchbar, .searchbar-textbox {
+	box-shadow: none !important;
+	background-color: #383c4a !important;
+	border: none !important;
+}
+
+#navigator-toolbox { --tabs-border-color: transparent !important; }
+
+#nav-bar{
+  border-inline: var(--uc-window-drag-space-width) solid var(--toolbar-bgcolor);
+}
+
+/* Remove border under navbar */
+#navigator-toolbox::after {
+  border-bottom: 0px !important;
+}
+
+/* remove some borders */
+#navigator-toolbox {
+  border: none !important;
+}
+
+#titlebar {
+  border: none !important;
+}

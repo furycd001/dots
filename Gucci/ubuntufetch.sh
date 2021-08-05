@@ -30,7 +30,7 @@ uptime="$(uptime -p | sed 's/up //')"
 shell="$(basename ${SHELL})"
 packages="$(dpkg --list | wc --lines)"
 wm="$(echo $wm_bloat | cut -d'"' -f 2)"
-
+de="$(echo $XDG_CURRENT_DESKTOP)"
 
 
 bold="$(tput bold)"
@@ -55,6 +55,7 @@ echo  && \
 cat <<EOF
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} OS: ${reset}${c0}${blue}  ${cr}${white}${distro}${reset}
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} KR: ${reset}${c0}${blue}  ${cr}${white}${kernel}${reset}
+${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} DE: ${reset}${c0}${blue}  ${cr}${white}${de}${reset}
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} WM: ${reset}${c0}${blue}  ${cr}${white}${wm}${reset}
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} TM: ${reset}${c0}${blue}  ${cr}${white}${term}${reset}
 ${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ    ${c0}${blue}${c0}${yellow} SH: ${reset}${c0}${blue}  ${cr}${white}${shell}${reset}

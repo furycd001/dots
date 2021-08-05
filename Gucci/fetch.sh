@@ -16,6 +16,7 @@ while [ ! "$term" ]; do
 	esac
 done
 
+# DE Name
 
 ## WM Name
 id_bloat=$(xprop -root _NET_SUPPORTING_WM_CHECK)

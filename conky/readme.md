@@ -55,9 +55,9 @@ Similar to top right only set to display on my external monitor & also show top 
 
 > Conky displaying on external monitor.
 
-![alt text](https://imgur.com/1ETzCQ3.png "Conky displaying top-right of screen")
+![alt text](https://imgur.com/ZaB6eQQ.png "Conky displaying top-right of screen")
 
-The only setup required for this one is to change **"xinerama_head"** to whatever number your monitor is....
+The last update part at the bottom works for any arch based distro, but I'm pretty sure you could get it working with Debian, Fedora or any other distro....
 
 ----
 
@@ -67,7 +67,7 @@ Running conky once inside a terminal..
 
 > Minimal conky displaying inside a notification.
 
-![alt text](https://i.imgur.com/Bz7TYzp.jpg "Conky displaying inside a terminal window")
+![alt text](https://imgur.com/PKjCur3.png "Conky displaying inside a terminal window")
 
 This conky is super simple & also super useful. Add it to a bash_alias & easily run it from anywhere, be it x or tty. You can also download my _"conkyterminal"_ script & combine it with a keybinding & the command below....
 

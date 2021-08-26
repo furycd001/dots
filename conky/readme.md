@@ -2,7 +2,7 @@
 
 My conky config's are usually simple & minimal. I don't really change my config very often, but when I do you'll be able to find it here....
 
-## Single line pipe..
+## Output bar..
 
 This is a single line that is set to output to console. The output is then piped to a txt file in /tmp/ which is then displayed in xfce4-panel using [**awk**](https://linux.die.net/man/1/awk) & [**xfce4-genmon-plugin.**](https://goodies.xfce.org/projects/panel-plugins/xfce4-genmon-plugin) The screenshot below shows my full desktop, but zoom in on the panel to get a closer look at my conky config. The script that I use during startup to pipe conky to a txt file can be found in my scripts folder labeled "conkypanel"....
 
@@ -85,7 +85,15 @@ Similar to top right only set to display on my external monitor & also show top 
 
 ![alt text](https://i.imgur.com/fAjpvS3.png "Conky displaying in center of external monitor")
 
-Originaly created to use with a lockscreen, but never got it working. Still like this config though so kept it. Again using **"xinerama_head"** for the external monitor....
+Originaly created to use with a lockscreen, but never got it working. Still like this config though so kept it. Using **"xinerama_head"** for the external monitor....
+
+----
+
+## Bar..
+
+A simple single line that is displayed in the top right of the screen..
+
+![alt text](https://i.imgur.com/qu8VF8q.png "Conky displaying top right of screen")
 
 ----
 

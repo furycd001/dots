@@ -2,4 +2,4 @@
 
 # Open images with imagemagick display....
 
-display -resize x1200 $1
+display -resize x1200 "$1"

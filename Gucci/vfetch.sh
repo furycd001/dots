@@ -64,11 +64,11 @@ t=$'\e[0m'
 clear && \
 echo  && \
 cat <<EOF
-${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ     ${reset}
-${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ     ${reset}
-${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ     ${reset}
-${c0}${cyan}     FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ     ${reset}
-${c0}${cyan}                                 ${reset}
+${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
+${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
+${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
+${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
+${c0}${cyan}                               ${reset}
 ${c0}${blue}${c0}${yellow}     OS: ${reset}${c0}${blue}  ${cr}${white}${distro}${reset}
 ${c0}${blue}${c0}${yellow}     KR: ${reset}${c0}${blue}  ${cr}${white}${kernel}${reset}
 ${c0}${blue}${c0}${yellow}     DE: ${reset}${c0}${blue}  ${cr}${white}${de}${reset}
@@ -82,8 +82,8 @@ EOF
 
 cat << EOF
 
-     $f0▀▀▀▀$t   $f1▀▀▀▀$t   $f2▀▀▀▀$t   $f3▀▀▀▀$t
-     $f4▀▀▀▀$t   $f5▀▀▀▀$t   $f6▀▀▀▀$t   $f7▀▀▀▀$t
+    $f0▀▀▀▀$t   $f1▀▀▀▀$t   $f2▀▀▀▀$t   $f3▀▀▀▀$t
+    $f4▀▀▀▀$t   $f5▀▀▀▀$t   $f6▀▀▀▀$t   $f7▀▀▀▀$t
 EOF
 for i in {0..7}; do echo -en "\e[$((30+$i))m${colors[i]} \e[0m  "; done
 echo && \

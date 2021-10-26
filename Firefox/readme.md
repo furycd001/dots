@@ -61,11 +61,6 @@ Just add the code below to your userContent.css file. It's that simple.
 >  
 > [ I MAY FIX THIS IN THE FUTURE ]
 
-## Arc-proton
-![alt text](https://i.imgur.com/UzzKLwh.png "Arc-proton")
-
-> Arc-proton is a super minimal userChrome that makes use of **["this"](https://addons.mozilla.org/en-US/firefox/addon/arc-dark-theme-we/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)** theme.
-
 ----
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z44445F)

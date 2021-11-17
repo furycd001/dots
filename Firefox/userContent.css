@@ -10,26 +10,3 @@
               background-color: #272b35 !important;
           }
       }
-      
-/* Imagetab */
-@-moz-document regexp("((.*\\.(png|jpg|jpeg|gif|tiff|bmp|ico|PNG|JPG|JPEG|GIF|TIFF|BMP|ICO))|(^data:image/.*)|(.*/attachment\.php[?]attachmentid=[0-9]+.*)|(about:logo))") {
-
-  /* site background */
-  html:not([id]):not([class]):not([lang]):not([dir]):not([xmlns]) >
-  body:not([id]):not([class]):not([lang]):not([dir]):not([style]):not([title]):not([bgcolor]):not([text]):not([link]):not([onload]) {
-    background-image: none !important; /* remove noisy background */
-    background-color: #272B35 !important; /* change background color */
-  }
-
-  /* transparent image background */
-  img.decoded {
-    background-image: none !important; /* remove noisy background */
-    background-color: #272B35 !important; /* change background color */
-  }
-
-  /* transparent image background when hovering (checkerboard) */
-  img.decoded:hover {
-    background-image: url('data:image/gif;base64,R0lGODlhFAAUAIABAP///wAAACH5BAEKAAEALAAAAAAUABQAAAIojI+gy+jBInhJLnrsxVBP7n1YyHVaSYKhh7Lq+VotPLo1TaW3HEtlAQA7') !important;
-    background-color: #272B35 !important; /* change background color (here: color of dark squares) */
-  }
-}

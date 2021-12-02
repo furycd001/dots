@@ -17,7 +17,6 @@ Just add the code below to your userContent.css file. It's that simple.
 
 ```css
 /* Newtab */
-/* Newtab */
 @-moz-document url("about:blank") {
     body {
         background-color: #272b35 !important;

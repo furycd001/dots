@@ -1,12 +1,19 @@
 /* Newtab */
-@-moz-document url("about:blank") {
-    body {
-        background-color: #272b35 !important;
+ @-moz-document url("about:blank") {
+     body {
+         background-color: #272b35 !important;
     }
 }
 
-@-moz-document url("about:newtab") {
-          body {
-              background-color: #272b35 !important;
-          }
-      }
+ @-moz-document url("about:newtab") {
+     body {
+         background-color: #272b35 !important;
+    }
+}
+
+/* Browser Toolbox */
+ @-moz-document url("chrome://devtools/content/inspector/index.xhtml") {
+     #inspector-splitter-box > .inspector-sidebar-splitter > .controlled {
+         visibility: collapse !important;
+    }
+}

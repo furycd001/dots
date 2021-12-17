@@ -64,27 +64,14 @@ t=$'\e[0m'
 clear && \
 echo  && \
 cat <<EOF
-${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
-${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
-${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
-${c0}${cyan}    FℲ FℲ FℲ FℲ FℲ FℲ FℲ FℲ    ${reset}
-${c0}${cyan}                               ${reset}
-${c0}${blue}${c0}${yellow}     OS: ${reset}${c0}${blue}  ${cr}${white}${distro}${reset}
-${c0}${blue}${c0}${yellow}     KR: ${reset}${c0}${blue}  ${cr}${white}${kernel}${reset}
-${c0}${blue}${c0}${yellow}     DE: ${reset}${c0}${blue}  ${cr}${white}${de}${reset}
-${c0}${blue}${c0}${yellow}     WM: ${reset}${c0}${blue}  ${cr}${white}${wm}${reset}
-${c0}${blue}${c0}${yellow}     TM: ${reset}${c0}${blue}  ${cr}${white}${term}${reset}
-${c0}${blue}${c0}${yellow}     SH: ${reset}${c0}${blue}  ${cr}${white}${shell}${reset}
-${c0}${blue}${c0}${yellow}     PK: ${reset}${c0}${blue}  ${cr}${white}${packages}${reset}
-${c0}${blue}${c0}${yellow}     UP: ${reset}${c0}${blue}  ${cr}${white}${uptime}${reset}
-
+${c0}${blue}${c0}${yellow}    $f0■■■■$t    OS: ${reset}${c0}${blue}  ${cr}${white}${distro}${reset}
+${c0}${blue}${c0}${yellow}    $f1■■■■$t    KR: ${reset}${c0}${blue}  ${cr}${white}${kernel}${reset}
+${c0}${blue}${c0}${yellow}    $f2■■■■$t    DE: ${reset}${c0}${blue}  ${cr}${white}${de}${reset}
+${c0}${blue}${c0}${yellow}    $f3■■■■$t    WM: ${reset}${c0}${blue}  ${cr}${white}${wm}${reset}
+${c0}${blue}${c0}${yellow}    $f4■■■■$t    TM: ${reset}${c0}${blue}  ${cr}${white}${term}${reset}
+${c0}${blue}${c0}${yellow}    $f5■■■■$t    SH: ${reset}${c0}${blue}  ${cr}${white}${shell}${reset}
+${c0}${blue}${c0}${yellow}    $f6■■■■$t    PK: ${reset}${c0}${blue}  ${cr}${white}${packages}${reset}
+${c0}${blue}${c0}${yellow}    $f7■■■■$t    UP: ${reset}${c0}${blue}  ${cr}${white}${uptime}${reset}
 EOF
-
-cat << EOF
-
-    $f0▀▀▀▀$t   $f1▀▀▀▀$t   $f2▀▀▀▀$t   $f3▀▀▀▀$t
-    $f4▀▀▀▀$t   $f5▀▀▀▀$t   $f6▀▀▀▀$t   $f7▀▀▀▀$t
-EOF
-for i in {0..7}; do echo -en "\e[$((30+$i))m${colors[i]} \e[0m  "; done
-echo && \
+echo  &&\
 echo

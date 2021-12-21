@@ -1,6 +1,7 @@
 # [ LINUX DOTFILES ]
 
 + **Firefox.**
++ **Icons**
 + **Scripts.**
 + **Conky.**
 + **Gtk-3.0**

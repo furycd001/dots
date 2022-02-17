@@ -64,14 +64,14 @@ t=$'\e[0m'
 clear && \
 echo  && \
 cat <<EOF
-${c0}${blue}${c0}${yellow}  OS: ${reset}${c0}${blue}  ${cr}${white}${distro}${reset}
-${c0}${blue}${c0}${yellow}  KR: ${reset}${c0}${blue}  ${cr}${white}${kernel}${reset}
-${c0}${blue}${c0}${yellow}  DE: ${reset}${c0}${blue}  ${cr}${white}${de}${reset}
-${c0}${blue}${c0}${yellow}  WM: ${reset}${c0}${blue}  ${cr}${white}${wm}${reset}
-${c0}${blue}${c0}${yellow}  TM: ${reset}${c0}${blue}  ${cr}${white}${term}${reset}
-${c0}${blue}${c0}${yellow}  SH: ${reset}${c0}${blue}  ${cr}${white}${shell}${reset}
-${c0}${blue}${c0}${yellow}  PK: ${reset}${c0}${blue}  ${cr}${white}${packages}${reset}
-${c0}${blue}${c0}${yellow}  UP: ${reset}${c0}${blue}  ${cr}${white}${uptime}${reset}
+  OS:   ${cr}${white}${distro}${reset}
+  KR:   ${cr}${white}${kernel}${reset}
+  DE:   ${cr}${white}${de}${reset}
+  WM:   ${cr}${white}${wm}${reset}
+  TM:   ${cr}${white}${term}${reset}
+  SH:   ${cr}${white}${shell}${reset}
+  PK:   ${cr}${white}${packages}${reset}
+  UP:   ${cr}${white}${uptime}${reset}
 
   $f0■■■■$t $f1■■■■$t $f2■■■■$t $f3■■■■$t
   $f4■■■■$t $f5■■■■$t $f6■■■■$t $f7■■■■$t

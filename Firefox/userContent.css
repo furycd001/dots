@@ -11,7 +11,7 @@
     }
 }
 
-/* Browser Toolbox */
+/* Hide sidebar in Browser Toolbox */
  @-moz-document url("chrome://devtools/content/inspector/index.xhtml") {
      #inspector-splitter-box > .inspector-sidebar-splitter > .controlled {
          visibility: collapse !important;

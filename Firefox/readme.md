@@ -3,15 +3,18 @@
 These are Firefox usercChrome.css that I have created. They are meant to be minimal & with the colors being based on the ever popular [**arc theme.**](https://github.com/horst3180/Arc-theme)
 
 ## Arc-proton..
-![alt text](https://i.imgur.com/71OMjZx.png "Arc")
+![alt text](https://imgur.com/vEE81mW.png "Arc")
 
-#### Close buttons are hidden inside favicons.
-![alt text](https://imgur.com/Y2spqJY.png "Close Button")
+#### Tabs are hidden because I now use [Tree Style Tabs](https://addons.mozilla.org/en-GB/firefox/addon/tree-style-tab/).
+![alt text](https://imgur.com/B5SDysm.png "Tree Style Tabs")
 
-#### New Tab background color changed with the css posted at the bottom of the page.
+#### New Tab background color.
 ![alt text](https://imgur.com/Zpmgni6.png "New Tab Page")
 
-#### Changing the background color of new tabs.
+#### View page source with changed background color.
+![alt text](https://i.imgur.com/VC1ycF4.png "View Page Source")
+
+#### Changing the background color of new tabs & page source.
 
 Just add the code below to your userContent.css file. It's that simple.
 
@@ -28,6 +31,21 @@ Just add the code below to your userContent.css file. It's that simple.
               background-color: #272b35 !important;
           }
       }
+
+/* Page Source */
+#viewsource {
+    background-color: #272B35 !important;
+}
+```
+
+#### Hiding the sidebar in the browser toolbox.
+```css
+/* Hide sidebar in Browser Toolbox */
+ @-moz-document url("chrome://devtools/content/inspector/index.xhtml") {
+     #inspector-splitter-box > .inspector-sidebar-splitter > .controlled {
+         visibility: collapse !important;
+    }
+}
 ```
 
 > I made this userchrome more minimal by pairing it with this **["ARC DARK"](https://addons.mozilla.org/en-GB/firefox/addon/arc-dark-theme-we/)** theme. Consider installing it for the userchrome to work correctly....

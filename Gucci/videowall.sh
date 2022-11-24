@@ -3,4 +3,4 @@
 
 
 sleep 4s && \
-xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper --shuffle -wid WID ~/Pictures/vwall/
+xwinwrap -ni -fs -s -st -sp -b -nf -- mpv --profile=wallpaper -wid %WID /home/furycd001/Terminal/Anastasiya/Lomaka/

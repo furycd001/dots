@@ -2,5 +2,5 @@
 
   if pgrep conky; then
     pkill conky; else
-    conky -c '/home/furycd001/Dots/conky/chanel.conf';
+    conky -c '/home/furycd001/Dots/conky/mnml.conf';
   fi

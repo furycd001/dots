@@ -9,3 +9,4 @@
 + **[Waterfox (unmaintained)](https://github.com/furycd001/dots/tree/master/waterfox)**
 + **[xfce4-terminal](https://github.com/furycd001/dots/tree/master/xfce4-terminal)**
 + **[xfwm & xfce4-notifyd themes](https://github.com/furycd001/dots/tree/master/xfwm)**
+

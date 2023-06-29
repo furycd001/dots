@@ -51,7 +51,6 @@ c1="${reset}${accent}"
 
 ## Output
 
-clear && \
 echo  && \
 cat <<EOF
 ${c0}${cyan}    FℲ FℲ FℲ FℲ    FℲ FℲ    ${c0}

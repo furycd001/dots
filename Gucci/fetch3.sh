@@ -61,7 +61,6 @@ t=$'\e[0m'
 
 ## Output
 
-clear && \
 echo  && \
 cat <<EOF
    OS  >>  ${white}${distro}${reset}

@@ -1,0 +1,24 @@
+#!/bin/env bash
+
+# Function to upscale a video to 4K resolution
+function upscale_to_4k() {
+    input_file="$1"
+    output_file="${input_file%.*}_4k.mp4"
+
+    ffmpeg -i "$input_file" -vf "scale=2160:3840" -c:a copy "$output_file"
+}
+
+# Check if FFmpeg is installed
+if ! command -v ffmpeg &> /dev/null; then
+    echo "FFmpeg is not installed. Please install FFmpeg first."
+    exit 1
+fi
+
+# Loop through all video files in the current working directory
+for file in *.{mp4,mov,avi,mkv,webm,flv,3gp}; do
+    if [ -f "$file" ]; then
+        upscale_to_4k "$file"
+    fi
+done
+
+echo "Upscaling complete!"

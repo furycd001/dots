@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Function to display usage instructions
+function show_usage {
+    echo "Usage: $0 [--video] <url>"
+    echo "  --video: Downloads only videos"
+    echo "  <url>:   The link to download"
+    exit 1
+}
+
+# Check for the presence of the "--video" flag
+if [ "$1" == "--video" ]; then
+    shift  # Remove the flag from arguments
+    gallery-dl --filter "extension in ('mp4')" "$@"
+elif [ $# -eq 1 ]; then
+    gallery-dl "$1"
+else
+    show_usage
+fi

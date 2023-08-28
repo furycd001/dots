@@ -2,16 +2,20 @@
 
 # Function to display usage instructions
 function show_usage {
-    echo "Usage: $0 [--video] <url>"
+    echo "Usage: [--video | --pictures] <url>"
     echo "  --video: Downloads only videos"
+    echo "  --pictures: Downloads only pictures"
     echo "  <url>:   The link to download"
     exit 1
 }
 
-# Check for the presence of the "--video" flag
+# Check for the presence of the "--video" or "--pictures" flag
 if [ "$1" == "--video" ]; then
     shift  # Remove the flag from arguments
-    gallery-dl --filter "extension in ('mp4')" "$@"
+    gallery-dl --filter "extension in ('mp4', 'm4v')" "$@"
+elif [ "$1" == "--pictures" ]; then
+    shift  # Remove the flag from arguments
+    gallery-dl --filter "extension in ('jpg', 'jpeg', 'png', 'gif', 'webm')" "$@"
 elif [ $# -eq 1 ]; then
     gallery-dl "$1"
 else

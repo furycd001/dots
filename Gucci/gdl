@@ -12,10 +12,10 @@ function show_usage {
 # Check for the presence of the "--video" or "--pictures" flag
 if [ "$1" == "--video" ]; then
     shift  # Remove the flag from arguments
-    gallery-dl --filter "extension in ('mp4', 'm4v')" "$@"
+    gallery-dl --filter "extension in ('mp4', 'm4v', 'webm')" "$@"
 elif [ "$1" == "--pictures" ]; then
     shift  # Remove the flag from arguments
-    gallery-dl --filter "extension in ('jpg', 'jpeg', 'png', 'gif', 'webm')" "$@"
+    gallery-dl --filter "extension in ('jpg', 'jpeg', 'png', 'gif', 'webp')" "$@"
 elif [ $# -eq 1 ]; then
     gallery-dl "$1"
 else

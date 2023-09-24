@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Define the path to the thumbnail cache directory
 cache_dir="$HOME/.cache/thumbnails/"

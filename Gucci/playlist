@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Enable tab completion for file paths
-read -e -p "Enter the path to the .m3u playlist file: " playlist_path
+read -e -p "Enter the playlist path: " playlist_path
 
 # Check if the playlist file exists
 if [ ! -f "$playlist_path" ]; then
@@ -19,6 +19,9 @@ mkdir -p "$download_dir"
 
 # Change to the directory containing the playlist file
 cd "$(dirname "$playlist_path")"
+
+# Copy the playlist file to the download directory
+cp "$playlist_path" "$download_dir"
 
 # Copy files listed in the playlist to the download directory
 while read -r line; do

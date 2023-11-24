@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+# Check if unzip command exists
+if ! command -v unzip &> /dev/null; then
+    echo "Error: 'unzip' command not found. Please install unzip."
+    exit 1
+fi
+
+# Create a subdirectory for each zip file and extract its contents
+for zipfile in *.zip; do
+    foldername="${zipfile%.zip}"
+    mkdir -p "$foldername"
+    unzip -q "$zipfile" -d "$foldername"
+    echo "Extracted: $zipfile -> $foldername"
+done

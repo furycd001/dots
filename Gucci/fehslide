@@ -1,0 +1,21 @@
+#!/bin/env bash
+
+# Path to your images folder
+image_folder="/path/to/folder/"
+
+# Function to set the wallpaper
+set_wallpaper() {
+    feh --bg-fill "$1"
+}
+
+# List of image files in the folder
+image_files=("$image_folder"/*)
+
+# Loop through images indefinitely
+while true; do
+    for image in "${image_files[@]}"; do
+        set_wallpaper "$image"
+        # Wait for the desired duration
+        sleep 22m
+    done
+done

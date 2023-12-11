@@ -1,0 +1,54 @@
+#!/bin/env bash
+
+while getopts ":ft" opt; do
+  case $opt in
+    f) from_webp=true ;;
+    t) to_webp=true ;;
+    \?) echo "Invalid option: -$OPTARG" >&2; exit 1;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+# If both options are provided or none, print usage
+if [[ "$from_webp" == "$to_webp" || ( -z "$from_webp" && -z "$to_webp" ) ]]; then
+  echo "Usage: $0 [-f] [-t] [file]"
+  echo "  -f: Convert from .webp to .jpg"
+  echo "  -t: Convert to .webp"
+  echo "  [file]: Optional. Specific file to convert. If not provided, converts all files in the current folder."
+  exit 1
+fi
+
+# Function to convert from .webp to .png
+convert_from_webp() {
+  local file="$1"
+  local filename="${file%.*}"
+  dwebp "$file" -o "${filename}.jpg"
+}
+
+# Function to convert to .webp
+convert_to_webp() {
+  local file="$1"
+  local filename="${file%.*}"
+  cwebp -q 80 "$file" -o "${filename}.webp"
+}
+
+# Check if a specific file is provided
+if [ -n "$1" ]; then
+  file="$1"
+  if [ "$from_webp" ]; then
+    convert_from_webp "$file"
+  elif [ "$to_webp" ]; then
+    convert_to_webp "$file"
+  fi
+else
+  # If no file is provided, convert all files in the current folder
+  files=(*)
+  for file in "${files[@]}"; do
+    if [ "$from_webp" ]; then
+      convert_from_webp "$file"
+    elif [ "$to_webp" ]; then
+      convert_to_webp "$file"
+    fi
+  done
+fi

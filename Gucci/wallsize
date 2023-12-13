@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Ensure the output folder exists
+output_folder="resized_images"
+mkdir -p "$output_folder"
+
+# Resize images to fit a larger resolution while maintaining aspect ratio
+for file in *.jpg; do
+output_file="$output_folder/${file%.jpg}_resized.jpg"
+    
+# Resize the image to fit the 1440x1800 resolution
+convert "$file" -resize 1440x3216^ -gravity center -extent 1440x3216 "$output_file"
+done

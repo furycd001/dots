@@ -1,54 +1,60 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
+# Function to display script usage
+usage() {
+    echo "Usage: $0 [-f] [-t]"
+    echo "Converts files between webp and jpg, png, heic, avif formats."
+    echo "  -f  Convert from webp to jpg."
+    echo "  -t  Convert to webp from jpg, png, heic, avif."
+    exit 1
+}
+
+# Initialize flags
+convert_from_webp=false
+convert_to_webp=false
+
+# Process command line options
 while getopts ":ft" opt; do
-  case $opt in
-    f) from_webp=true ;;
-    t) to_webp=true ;;
-    \?) echo "Invalid option: -$OPTARG" >&2; exit 1;;
-  esac
+    case ${opt} in
+        f)
+            convert_from_webp=true
+            ;;
+        t)
+            convert_to_webp=true
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            usage
+            ;;
+    esac
 done
 
-shift $((OPTIND-1))
+# Shift to get the remaining arguments
+shift $((OPTIND - 1))
 
-# If both options are provided or none, print usage
-if [[ "$from_webp" == "$to_webp" || ( -z "$from_webp" && -z "$to_webp" ) ]]; then
-  echo "Usage: $0 [-f] [-t] [file]"
-  echo "  -f: Convert from .webp to .jpg"
-  echo "  -t: Convert to .webp"
-  echo "  [file]: Optional. Specific file to convert. If not provided, converts all files in the current folder."
-  exit 1
+# Check if both flags are provided
+if $convert_from_webp && $convert_to_webp; then
+    echo "Error: Both -f and -t flags cannot be used together. Use -h for help."
+    exit 1
 fi
 
-# Function to convert from .webp to .png
-convert_from_webp() {
-  local file="$1"
-  local filename="${file%.*}"
-  dwebp "$file" -o "${filename}.jpg"
-}
+# Convert from webp to jpg
+if $convert_from_webp; then
+    for file in *.webp; do
+        dwebp ./"$file" -o ./"${file%.webp}.jpg"
+    done
+fi
 
-# Function to convert to .webp
-convert_to_webp() {
-  local file="$1"
-  local filename="${file%.*}"
-  cwebp -q 80 "$file" -o "${filename}.webp"
-}
-
-# Check if a specific file is provided
-if [ -n "$1" ]; then
-  file="$1"
-  if [ "$from_webp" ]; then
-    convert_from_webp "$file"
-  elif [ "$to_webp" ]; then
-    convert_to_webp "$file"
-  fi
-else
-  # If no file is provided, convert all files in the current folder
-  files=(*)
-  for file in "${files[@]}"; do
-    if [ "$from_webp" ]; then
-      convert_from_webp "$file"
-    elif [ "$to_webp" ]; then
-      convert_to_webp "$file"
-    fi
-  done
+# Convert to webp from jpg, png, heic, avif
+if $convert_to_webp; then
+    for file in *.{jpg,png,heic,avif}; do
+        case "${file##*.}" in
+            jpg | png | heic | avif)
+                cwebp -q 80 ./"$file" -o ./"${file%.*}.webp"
+                ;;
+            *)
+                echo "Skipping $file, unsupported format."
+                ;;
+        esac
+    done
 fi

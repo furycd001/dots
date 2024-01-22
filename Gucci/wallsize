@@ -17,6 +17,6 @@ fi
 for file in *.jpg; do
 output_file="$output_folder/${file%.jpg}_resized.jpg"
     
-# Resize the image to fit the 1440x1800 resolution
+# Resize the image to a provided resolution
 convert "$file" -resize $resolution^ -gravity center -extent $resolution "$output_file"
 done

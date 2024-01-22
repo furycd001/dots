@@ -4,10 +4,19 @@
 output_folder="resized_images"
 mkdir -p "$output_folder"
 
+# Prompt the user for resolution
+read -p "Resolution: " resolution
+
+# Check if the user provided a valid resolution
+if ! [[ $resolution =~ ^[0-9]+x[0-9]+$ ]]; then
+    echo "Invalid resolution format. Please run the script again and provide a valid resolution."
+    exit 1
+fi
+
 # Resize images to fit a larger resolution while maintaining aspect ratio
 for file in *.jpg; do
 output_file="$output_folder/${file%.jpg}_resized.jpg"
     
 # Resize the image to fit the 1440x1800 resolution
-convert "$file" -resize 1440x3216^ -gravity center -extent 1440x3216 "$output_file"
+convert "$file" -resize $resolution^ -gravity center -extent $resolution "$output_file"
 done

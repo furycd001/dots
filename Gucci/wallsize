@@ -14,8 +14,8 @@ if ! [[ $resolution =~ ^[0-9]+x[0-9]+$ ]]; then
 fi
 
 # Resize images to fit a larger resolution while maintaining aspect ratio
-for file in *.jpg; do
-output_file="$output_folder/${file%.jpg}_resized.jpg"
+for file in *.webp; do
+output_file="$output_folder/${file%.jpg}_resized.webp"
     
 # Resize the image to a provided resolution
 convert "$file" -resize $resolution^ -gravity center -extent $resolution "$output_file"

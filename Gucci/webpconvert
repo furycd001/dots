@@ -1,12 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # Function to display script usage
 usage() {
-    echo "Usage: $0 [-f] [-t]"
-    echo "Converts files between webp and jpg, png, heic, avif formats."
-    echo "  -f  Convert from webp to jpg."
-    echo "  -t  Convert to webp from jpg, png, heic, avif."
-    exit 1
+  echo "Usage: $0 [-f] [-t] [file]"
+  echo "Converts to and from WebP."
+  echo "  -f  Convert from WebP to JPEG."
+  echo "  -t  Convert to WebP from JPEG, PNG, or WebP."
+  echo "  file  Optional: Path to a single file to convert."
+  exit 1
 }
 
 # Initialize flags
@@ -15,46 +16,48 @@ convert_to_webp=false
 
 # Process command line options
 while getopts ":ft" opt; do
-    case ${opt} in
-        f)
-            convert_from_webp=true
-            ;;
-        t)
-            convert_to_webp=true
-            ;;
-        \?)
-            echo "Invalid option: -$OPTARG" >&2
-            usage
-            ;;
-    esac
+  case ${opt} in
+    f)
+      convert_from_webp=true
+      ;;
+    t)
+      convert_to_webp=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      usage
+      ;;
+  esac
 done
 
-# Shift to get the remaining arguments
-shift $((OPTIND - 1))
+# Shift remaining arguments to get the file path, if any
+shift $((OPTIND-1))
+file="$1"
 
-# Check if both flags are provided
-if $convert_from_webp && $convert_to_webp; then
-    echo "Error: Both -f and -t flags cannot be used together. Use -h for help."
-    exit 1
+# Ensure at least one conversion option is specified
+if ! $convert_from_webp && ! $convert_to_webp; then
+  echo "Error: Please specify at least one conversion option (-f or -t)" >&2
+  usage
 fi
 
-# Convert from webp to jpg
-if $convert_from_webp; then
-    for file in *.webp; do
-        dwebp ./"$file" -o ./"${file%.webp}.jpg"
-    done
-fi
-
-# Convert to webp from jpg, png, heic, avif
+# Convert files to WebP
 if $convert_to_webp; then
-    for file in *.{jpg,png,heic,avif}; do
-        case "${file##*.}" in
-            jpg | png | heic | avif)
-                cwebp -q 80 ./"$file" -o ./"${file%.*}.webp"
-                ;;
-            *)
-                echo "Skipping $file, unsupported format."
-                ;;
-        esac
+  if [[ -n "$file" ]]; then
+    cwebp -q 80 "$file" -o "${file%.*}.webp"
+  else
+    for file in *.jpg *.jpeg *.png *.webp; do
+      cwebp -q 80 "$file" -o "${file%.*}.webp"
     done
+  fi
+fi
+
+# Convert files from WebP
+if $convert_from_webp; then
+  if [[ -n "$file" ]]; then
+    dwebp "$file" -o "${file%.*}.jpg"  # Output as JPEG
+  else
+    for file in *.webp; do
+      dwebp "$file" -o "${file%.*}.jpg"  # Output as JPEG
+    done
+  fi
 fi

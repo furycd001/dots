@@ -54,10 +54,12 @@ fi
 # Convert files from WebP
 if $convert_from_webp; then
   if [[ -n "$file" ]]; then
-    dwebp "$file" -o "${file%.*}.jpg"  # Output as JPEG
+    dwebp "$file" -o "${file%.*}.jpg" && rm "$file"  # Output as JPEG and delete WebP
   else
     for file in *.webp; do
-      dwebp "$file" -o "${file%.*}.jpg"  # Output as JPEG
+      if dwebp "$file" -o "${file%.*}.jpg"; then  # Convert and check for success
+        rm "$file"  # Delete WebP if conversion successful
+      fi
     done
   fi
 fi

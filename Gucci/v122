@@ -11,5 +11,8 @@ elif [ "$current_volume" -eq 122 ]; then
     pactl set-sink-volume @DEFAULT_SINK@ 100%
     notify-send "Volume = 100%"
 else
-    notify-send "Unknown volume level: $current_volume%"
+  # Set volume to 100% regardless of unknown level
+  pactl set-sink-volume @DEFAULT_SINK@ 100%
+  # Send additional notification about setting to 100%
+  notify-send "Volume set to 100%"
 fi

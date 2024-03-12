@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Process the text file
+while IFS= read -r line; do
+  yt-dlp "$line"
+done < "$1"
+
+echo "DOWNLOADING FINISHED !!."

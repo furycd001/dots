@@ -1,0 +1,31 @@
+#!/bin/env bash
+
+# Get the current directory as the image directory
+image_dir="$PWD"
+
+# Define supported image formats (modify as needed)
+supported_formats=("*.jpg" "*.jpeg" "*.png" "*.avif" "*.webm")
+
+# Use fzf with feh preview to select and manage images
+chosen_image=$(find "$image_dir" -type f \( -name "${supported_formats[0]}" -o -name "${supported_formats[1]}" -o -name "${supported_formats[2]}" -o -name "${supported_formats[3]}" -o -name "${supported_formats[4]}" \) | fzf --preview="feh {}")
+
+if [ -n "$chosen_image" ]; then
+  # Display options for managing the chosen image
+  options=("View with feh" "Delete" "Cancel")
+  choice=$(echo "${options[@]}" | fzf)
+
+  if [[ $choice == "View with feh" ]]; then
+    feh "$chosen_image"
+  elif [[ $choice == "Delete" ]]; then
+    read -p "Are you sure you want to delete '$chosen_image'? (y/N) " confirmation
+
+    if [[ $confirmation =~ [Yy] ]]; then
+      rm "$chosen_image"
+      echo "Deleted '$chosen_image'"
+    else
+      echo "Deletion cancelled."
+    fi
+  fi
+else
+  echo "No image selected."
+fi

@@ -2,10 +2,11 @@
 
 # Function to display script usage
 usage() {
-  echo "Usage: $0 [-f] [-t] [file]"
-  echo "Converts to and from WebP."
+  echo "Usage: $0 [-f] [-t] [-a] [file]"
+  echo "Converts to and from WebP and AVIF."
   echo "  -f  Convert from WebP to JPEG."
   echo "  -t  Convert to WebP from JPEG, PNG, or WebP."
+  echo "  -a  Convert from AVIF to JPEG."
   echo "  file  Optional: Path to a single file to convert."
   exit 1
 }
@@ -13,15 +14,19 @@ usage() {
 # Initialize flags
 convert_from_webp=false
 convert_to_webp=false
+convert_from_avif=false
 
 # Process command line options
-while getopts ":ft" opt; do
+while getopts ":ft:a" opt; do
   case ${opt} in
     f)
       convert_from_webp=true
       ;;
     t)
       convert_to_webp=true
+      ;;
+    a)
+      convert_from_avif=true
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -35,8 +40,8 @@ shift $((OPTIND-1))
 file="$1"
 
 # Ensure at least one conversion option is specified
-if ! $convert_from_webp && ! $convert_to_webp; then
-  echo "Error: Please specify at least one conversion option (-f or -t)" >&2
+if ! $convert_from_webp && ! $convert_to_webp && ! $convert_from_avif; then
+  echo "Error: Please specify at least one conversion option (-f, -t, or -a)" >&2
   usage
 fi
 
@@ -62,4 +67,14 @@ if $convert_from_webp; then
       fi
     done
   fi
+fi
+
+# Convert files from AVIF
+if $convert_from_avif; then
+  for file in *.avif; do
+    if [ -f "$file" ]; then
+      convert "$file" "${file%.*}.jpg"
+      rm "$file"
+    fi
+  done
 fi

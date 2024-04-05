@@ -2,20 +2,30 @@
 
 # Function to display usage instructions
 function show_usage {
-    echo "Usage: [--video | --picture] <url>"
+    echo "Usage: [--video | --picture | --thumb] <url>"
     echo "  --video: Downloads only videos"
     echo "  --picture: Downloads only pictures"
+    echo "  --thumb: Downloads only thumbnails"
     echo "  <url>:   The link to download"
     exit 1
 }
 
-# Check for the presence of the "--video" or "--pictures" flag
+# Function to download thumbnails
+function download_thumbnail {
+    local url="$1"
+    yt-dlp --write-thumbnail --skip-download --cookies ~/.local/bin/insta.txt "$url"
+}
+
+# Check for the presence of the "--video", "--picture", or "--thumb" flag
 if [ "$1" == "--video" ]; then
     shift  # Remove the flag from arguments
     gallery-dl --filter "extension in ('mp4', 'm4v', 'webm')" "$@"
 elif [ "$1" == "--picture" ]; then
     shift  # Remove the flag from arguments
     gallery-dl --filter "extension in ('jpg', 'jpeg', 'png', 'gif', 'webp')" "$@"
+elif [ "$1" == "--thumb" ]; then
+    shift  # Remove the flag from arguments
+    download_thumbnail "$1"
 elif [ $# -eq 1 ]; then
     gallery-dl "$1"
 else

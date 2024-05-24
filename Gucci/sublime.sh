@@ -11,7 +11,7 @@ for ((;;)); {
 
 # Resize known windows
 for wID in $wIDs; {
-    xdotool windowsize $wID 1007 1080
+    xdotool windowsize $wID 1007 1140
 }
 
 # Moves known window

@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # Get the current volume level
-current_volume=$(pactl list sinks | grep 'Volume: front-left' | awk '{print $5}' | tr -d '%')
+current_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1 | tr -d '%')
 
 # Check the current volume level and adjust accordingly
 if [ "$current_volume" -eq 100 ]; then
@@ -11,8 +11,8 @@ elif [ "$current_volume" -eq 122 ]; then
     pactl set-sink-volume @DEFAULT_SINK@ 100%
     notify-send "Volume = 100%"
 else
-  # Set volume to 100% regardless of unknown level
-  pactl set-sink-volume @DEFAULT_SINK@ 100%
-  # Send additional notification about setting to 100%
-  notify-send "Volume set to 100%"
+    # Set volume to 100% regardless of unknown level
+    pactl set-sink-volume @DEFAULT_SINK@ 100%
+    # Send additional notification about setting to 100%
+    notify-send "Volume set to 100%"
 fi

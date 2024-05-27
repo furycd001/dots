@@ -15,7 +15,7 @@ for file in *.{jpg,jpeg,png}; do
         compressed_image_path="$output_dir/${filename_without_extension}_compressed.${filename##*.}"
 
         # Compress the image using ImageMagick and save it to the output directory
-        convert "$file" -quality 80 "$compressed_image_path"
+        magick "$file" -quality 100 "$compressed_image_path"
     fi
 done
 

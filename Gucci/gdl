@@ -13,7 +13,14 @@ function show_usage {
 # Function to download thumbnails
 function download_thumbnail {
     local url="$1"
-    yt-dlp --write-thumbnail --skip-download --cookies ~/.local/bin/insta.txt "$url"
+    if [[ "$url" == *"instagram"* ]]; then
+        yt-dlp --write-thumbnail --skip-download --cookies ~/.local/bin/insta.txt "$url"
+    elif [[ "$url" == *"x"* ]]; then
+        yt-dlp --write-thumbnail --skip-download --cookies ~/.local/bin/twitter.txt "$url"
+    else
+        echo "URL does not contain 'instagram' or 'twitter'. Unable to determine which cookies file to use."
+        exit 1
+    fi
 }
 
 # Check for the presence of the "--video", "--picture", or "--thumb" flag

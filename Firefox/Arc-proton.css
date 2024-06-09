@@ -34,9 +34,9 @@
 }
 
 #urlbar, #urlbar-container, #urlbar-input-container, #urlbar-background, #searchbar, .searchbar-textbox {
-  box-shadow: none !important;
-  background-color: #272b35 !important;
-  border: none !important;
+	box-shadow: none !important;
+	background-color: #272b35 !important;
+	border: none !important;
 }
 
 #navigator-toolbox { --tabs-border-color: transparent !important; }
@@ -165,12 +165,17 @@ hbox.tab-icon-sound {
 }
 
 .tab-icon-sound-label {
-  display: none !important;
+	display: none !important;
 }
 
 #TabsToolbar
 {
   visibility: collapse;
+}
+
+/* Hide a unwanted separator in the right click menu */
+menuseparator {
+  display: none !important;
 }
 
 /* Hide the new extensions button */
@@ -179,7 +184,8 @@ width: 0px !important;
 padding: 0px !important;
 }
 
-/* Hide a unwanted separator in the right click menu */
-menuseparator {
-  display: none !important;
+/* Add padding to sides of urlbar */
+.urlbar-input-box {
+  padding-left: 22px;
+  padding-right: 22px;
 }

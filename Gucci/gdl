@@ -14,11 +14,15 @@ function show_usage {
 function download_thumbnail {
     local url="$1"
     if [[ "$url" == *"instagram"* ]]; then
-        yt-dlp --write-thumbnail --skip-download --cookies ~/.local/bin/insta.txt "$url"
-    elif [[ "$url" == *"x"* ]]; then
-        yt-dlp --write-thumbnail --skip-download --cookies ~/.local/bin/twitter.txt "$url"
+        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download --cookies ~/.local/bin/insta.txt "$url"
+    elif [[ "$url" == *"x"* || "$url" == *"twitter"* ]]; then
+        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download --cookies  ~/.local/bin/twitter.txt "$url"
+    elif [[ "$url" == *"youtube"* || "$url" == *"youtube"* ]]; then
+        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download "$url"
+    elif [[ "$url" == *"tiktok"* ]]; then
+        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download "$url"
     else
-        echo "URL does not contain 'instagram' or 'twitter'. Unable to determine which cookies file to use."
+        echo "Unable to download thumbnail !!."
         exit 1
     fi
 }

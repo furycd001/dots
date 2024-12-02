@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# Define target dimensions
+target_width=1440
+target_height=3216
+
+# Create an output directory if it doesn't exist
+output_folder="./output"
+mkdir -p "$output_folder"
+
+# Path to sRGB color profile
+sRGB_profile="/usr/share/color/icc/colord/sRGB.icc"
+
+# Process each image in the current directory
+for img in *.jpg; do
+    if [[ -f "$img" ]]; then
+        # Get the base name of the image without the extension
+        base_name=$(basename "$img" .jpg)
+        
+        # Define paths for temporary and final images
+        temp_tile="$output_folder/${base_name}_tile_temp.png"
+        temp_tile_flipped="$output_folder/${base_name}_tile_temp_flipped.png"
+        tiled_output="$output_folder/${base_name}_tiled_output.png"
+        final_output="$output_folder/${base_name}_final.png"
+
+        # Extract the top portion of the image in color mode
+        magick "$img" -colorspace sRGB -gravity North -crop "${target_width}x22+0+0" +repage "$temp_tile"
+
+        # Ensure the extracted tile remains in full color
+        magick "$temp_tile" -colorspace sRGB -type TrueColor "$temp_tile"
+
+        # Create a flipped version of the tile
+        magick "$temp_tile" -flip -type TrueColor "$temp_tile_flipped"
+
+        # Initialize an empty RGB canvas with the target dimensions
+        magick -size "${target_width}x${target_height}" canvas:none -colorspace sRGB -type TrueColor "$tiled_output"
+
+        # Calculate the number of tiles needed
+        num_tiles=$((target_height / 22 + 1))
+
+        # Alternate placing the tiles in the target image
+        for ((i = 0; i < num_tiles; i++)); do
+            offset_y=$((i * 22))
+            tile_to_use="$temp_tile"
+            [[ $((i % 2)) -ne 0 ]] && tile_to_use="$temp_tile_flipped"
+
+            # Composite the tile, ensuring color is maintained
+            magick "$tiled_output" "$tile_to_use" -colorspace sRGB -type TrueColor -geometry +0+"$offset_y" -composite "$tiled_output"
+        done
+
+        # Apply 22% blur to the entire tiled output
+        magick "$tiled_output" -blur 0x22 -colorspace sRGB -type TrueColor "$tiled_output"
+
+        # Create the final output with the original image at the bottom
+        magick "$tiled_output" -colorspace sRGB \
+            "$img" -gravity South -composite -type TrueColor "$final_output"
+        
+        echo "Final image created: $final_output"
+
+        # Clean up temporary images
+        rm "$temp_tile" "$temp_tile_flipped" "$tiled_output"
+    fi
+done
+
+echo "All final images saved in the output folder."

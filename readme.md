@@ -1,8 +1,8 @@
 ![alt text](dotfiles.jpg "Linux Dotfiles")
 
 + **[Firefox](https://github.com/furycd001/dots/tree/master/Firefox)**
-+ **[Scripts](https://github.com/furycd001/dots/tree/master/Gucci)**
-+ **[Icons](master)**
++ **[Scripts](https://github.com/furycd001/dots/tree/master/Diva)**
++ **[Icons](https://github.com/furycd001/dots/tree/master/Icons)**
 + **[Conky](https://github.com/furycd001/dots/tree/master/conky)**
 + **[Gtk-3.0](https://github.com/furycd001/dots/tree/master/gtk-3.0)**
 + **[Ncmpcpp](https://github.com/furycd001/dots/tree/master/ncmpcpp)**

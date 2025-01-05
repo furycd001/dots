@@ -13,18 +13,23 @@ function show_usage {
 # Function to download thumbnails
 function download_thumbnail {
     local url="$1"
-    if [[ "$url" == *"instagram"* ]]; then
-        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download --cookies ~/.local/bin/insta.txt "$url"
-    elif [[ "$url" == *"x"* || "$url" == *"twitter"* ]]; then
-        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download --cookies  ~/.local/bin/twitter.txt "$url"
-    elif [[ "$url" == *"youtube"* || "$url" == *"youtube"* ]]; then
-        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download "$url"
-    elif [[ "$url" == *"tiktok"* ]]; then
-        yt-dlp --write-thumbnail --convert-thumbnails png --skip-download "$url"
+    local tmpdir=$(mktemp -d)  # Create a temporary directory for thumbnails
+
+    # Use yt-dlp to download thumbnails
+    yt-dlp --write-thumbnail --skip-download --convert-thumbnails png --output "${tmpdir}/%(title)s.%(ext)s" "$url" 2>/dev/null
+    
+    # Check for downloaded thumbnails
+    local best_thumbnail=$(ls -S "${tmpdir}"/*.png 2>/dev/null | head -n 1)
+    
+    if [[ -n "$best_thumbnail" ]]; then
+        mv "$best_thumbnail" ./  # Move the best thumbnail to the current directory
+        echo "Thumbnail downloaded and saved as: $(basename "$best_thumbnail")"
     else
-        echo "Unable to download thumbnail !!."
-        exit 1
+        echo "No thumbnails found."
     fi
+
+    # Clean up temporary directory
+    rm -rf "$tmpdir"
 }
 
 # Check for the presence of the "--video", "--picture", or "--thumb" flag

@@ -15,15 +15,17 @@ function download_thumbnail {
     local url="$1"
     local tmpdir=$(mktemp -d)  # Create a temporary directory for thumbnails
 
-    # Use yt-dlp to download thumbnails
-    yt-dlp --write-thumbnail --skip-download --convert-thumbnails png --output "${tmpdir}/%(title)s.%(ext)s" "$url" 2>/dev/null
+    # Use yt-dlp to download thumbnails with a unique filename
+    yt-dlp --write-thumbnail --skip-download --convert-thumbnails png --output "${tmpdir}/%(title)s [%(id)s].%(ext)s" "$url" 2>/dev/null
     
-    # Check for downloaded thumbnails
-    local best_thumbnail=$(ls -S "${tmpdir}"/*.png 2>/dev/null | head -n 1)
+    # Move all downloaded thumbnails to the current directory
+    local thumbnails=( "${tmpdir}"/*.png )
     
-    if [[ -n "$best_thumbnail" ]]; then
-        mv "$best_thumbnail" ./  # Move the best thumbnail to the current directory
-        echo "Thumbnail downloaded and saved as: $(basename "$best_thumbnail")"
+    if [[ -e "${thumbnails[0]}" ]]; then
+        for thumbnail in "${thumbnails[@]}"; do
+            mv "$thumbnail" ./  # Move each thumbnail to the current directory
+            echo "Thumbnail saved as: $(basename "$thumbnail")"
+        done
     else
         echo "No thumbnails found."
     fi

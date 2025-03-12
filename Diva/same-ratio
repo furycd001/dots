@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Folder where the script is run
+current_dir="$(pwd)"
+same_ratio_dir="$current_dir/ratio"
+
+# Create the "ratio" folder if it doesn't exist
+mkdir -p "$same_ratio_dir"
+
+# Define the target dimensions for the ratio check
+target_width=1080
+target_height=1920
+
+# Loop through image files (common formats)
+for img in *.{jpg,jpeg,png,webp}; do
+    # Skip if no file matches the pattern
+    [ -e "$img" ] || continue
+
+    # Get image dimensions (requires ImageMagick's "identify")
+    dimensions=$(identify -format "%wx%h" "$img" 2>/dev/null)
+    if [ -z "$dimensions" ]; then
+        echo "Skipping $img: Unable to determine dimensions."
+        continue
+    fi
+
+    # Extract width and height from the output (format: WxH)
+    width=$(echo "$dimensions" | cut -dx -f1)
+    height=$(echo "$dimensions" | cut -dx -f2)
+
+    # Check if the image's aspect ratio matches 1080:1920 using cross multiplication
+    if [ $(( width * target_height )) -eq $(( height * target_width )) ]; then
+        cp "$img" "$same_ratio_dir"
+        echo "Copied: $img"
+    fi
+done
+
+echo "Done!!"

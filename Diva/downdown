@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Global quit flag
+QUIT=0
+
+# Function to listen for the "q" key.
+quit_listener() {
+  while true; do
+    # Read a single character from the terminal
+    read -rsn1 key < /dev/tty
+    if [[ $key == "q" ]]; then
+      QUIT=1
+      echo -e "\nQuit requested. Finishing current download..."
+      break
+    fi
+  done
+}
+
+# Start the quit_listener in the background
+quit_listener &
+quit_pid=$!
+
+# Process the text file with download URLs
+while IFS= read -r line; do
+  yt-dlp -o "%(id)s.%(ext)s" "$line"
+  
+  # After each download, check if the quit flag is set
+  if [[ $QUIT -eq 1 ]]; then
+    break
+  fi
+done < "$1"
+
+# Clean up: kill the background listener if it's still running
+kill $quit_pid 2>/dev/null
+
+echo "DOWNLOADING FINISHED !!"

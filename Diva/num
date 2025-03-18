@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Use the first argument as the target directory, defaulting to the current directory.
+target_dir="${1:-.}"
+
+# Count visible and hidden directories (immediate children)
+visible_dirs=$(find "$target_dir" -mindepth 1 -maxdepth 1 -type d ! -name ".*" 2>/dev/null | wc -l)
+hidden_dirs=$(find "$target_dir" -mindepth 1 -maxdepth 1 -type d -name ".*" 2>/dev/null | wc -l)
+
+# Count visible and hidden files (immediate children)
+visible_files=$(find "$target_dir" -mindepth 1 -maxdepth 1 -type f ! -name ".*" 2>/dev/null | wc -l)
+hidden_files=$(find "$target_dir" -mindepth 1 -maxdepth 1 -type f -name ".*" 2>/dev/null | wc -l)
+
+# Check if the directory is completely empty (both visible and hidden)
+if [[ "$visible_dirs" -eq 0 && "$hidden_dirs" -eq 0 && "$visible_files" -eq 0 && "$hidden_files" -eq 0 ]]; then
+    echo "Directory is empty !!"
+    exit 0
+fi
+
+# Build the output string based on which counts exist.
+output=""
+
+if [[ $((visible_dirs + hidden_dirs)) -gt 0 ]]; then
+    output+="Dirs: ${visible_dirs} (${hidden_dirs})"
+fi
+
+if [[ $((visible_files + hidden_files)) -gt 0 ]]; then
+    # Add a separator if directory info is already added.
+    if [[ -n "$output" ]]; then
+        output+="  /  "
+    fi
+    output+="Files: ${visible_files} (${hidden_files})"
+fi
+
+echo "$output"

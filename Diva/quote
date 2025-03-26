@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Fetch a random quote from the quotable API
+response=$(curl -sk https://api.quotable.io/random)
+
+# Extract the quote and author
+quote=$(echo "$response" | jq -r '.content')
+author=$(echo "$response" | jq -r '.author')
+
+# Format the quote and author with padding and bold text
+formatted_quote="<b>$quote</b>\n\n<b>— $author</b>\n"
+
+# Display the notification with a blank title, formatted text, and equal spacing
+notify-send -u critical -t 10000 " " "$formatted_quote"

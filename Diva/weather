@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+CACHE_FILE="$HOME/.cache/weather_data.txt"
+API_KEY="012345678910111213141516171819202122"  # Replace with your actual key..
+LOCATION="Somewhere"  # Replace with your actual location..
+UNITS="metric"
+URL="https://api.openweathermap.org/data/2.5/weather?q=${LOCATION}&appid=${API_KEY}&units=${UNITS}"
+
+if [[ ! -f "$CACHE_FILE" || $(date -r "$CACHE_FILE" +%Y-%m-%d) != $(date +%Y-%m-%d) ]]; then
+    RESPONSE=$(curl -s "$URL")
+
+    TEMP=$(echo "$RESPONSE" | jq '.main.temp' | xargs printf "%.0f")
+    WIND_MS=$(echo "$RESPONSE" | jq '.wind.speed')
+
+    # convert m/s to km/h (1 m/s = 3.6 km/h)
+    WIND_KMH=$(echo "$WIND_MS * 3.6" | bc -l | xargs printf "%.1f")
+
+    if [[ -n "$TEMP" && -n "$WIND_KMH" ]]; then
+        echo "+${TEMP}°C ${WIND_KMH}km/h" > "$CACHE_FILE"
+    else
+        echo "weather unavailable" > "$CACHE_FILE"
+    fi
+fi
+
+cat "$CACHE_FILE"

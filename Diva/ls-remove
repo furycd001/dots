@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Deletes all files in the current folder that share the same name (ignoring extension) with files in the specified output folder....
+
+# Check for correct usage: the output folder must be provided as an argument.
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <output_folder>"
+    exit 1
+fi
+
+output_folder="$1"
+
+# Ensure the provided argument is a directory.
+if [ ! -d "$output_folder" ]; then
+    echo "Error: '$output_folder' is not a directory."
+    exit 1
+fi
+
+# Loop over every file in the output folder.
+for output_file in "$output_folder"/*; do
+    [ -e "$output_file" ] || continue
+
+    # Extract basename (filename without extension).
+    filename=$(basename "$output_file")
+    base="${filename%.*}"
+
+    # Find matching files in the current directory with same basename but different path.
+    for match in ./"$base".*; do
+        # Skip if no match
+        [ -e "$match" ] || continue
+        # Skip if this is the same file as the output
+        [ "$(realpath "$match")" = "$(realpath "$output_file")" ] && continue
+
+        echo "Removing: $match"
+        rm "$match"
+    done
+done

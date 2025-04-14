@@ -1,37 +1,67 @@
 #!/usr/bin/env bash
 
-# Deletes all files in the current folder that share the same name (ignoring extension) with files in the specified output folder....
+# Function to delete matching files based on base name
+delete_matching_files() {
+    local base="$1"
 
-# Check for correct usage: the output folder must be provided as an argument.
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <output_folder>"
-    exit 1
-fi
-
-output_folder="$1"
-
-# Ensure the provided argument is a directory.
-if [ ! -d "$output_folder" ]; then
-    echo "Error: '$output_folder' is not a directory."
-    exit 1
-fi
-
-# Loop over every file in the output folder.
-for output_file in "$output_folder"/*; do
-    [ -e "$output_file" ] || continue
-
-    # Extract basename (filename without extension).
-    filename=$(basename "$output_file")
-    base="${filename%.*}"
-
-    # Find matching files in the current directory with same basename but different path.
     for match in ./"$base".*; do
-        # Skip if no match
         [ -e "$match" ] || continue
-        # Skip if this is the same file as the output
-        [ "$(realpath "$match")" = "$(realpath "$output_file")" ] && continue
-
         echo "Removing: $match"
         rm "$match"
     done
-done
+}
+
+# Print formatted usage message
+print_usage() {
+    script_name="$(basename "$0")"
+    cat <<EOF
+Usage: $script_name [OPTION] <ARGUMENT>
+
+Options:
+  --f <filelist.txt>     Remove files matching names listed in the text file.
+  --d <output_folder>    Remove files matching names in the specified folder.
+
+Examples:
+  $script_name --f files.txt
+  $script_name --d /path/to/output_folder
+EOF
+}
+
+# Check for valid flags and arguments
+if [[ "$#" -ne 2 ]]; then
+    print_usage
+    exit 1
+fi
+
+flag="$1"
+value="$2"
+
+case "$flag" in
+    --f)
+        if [ ! -f "$value" ]; then
+            echo "Error: '$value' is not a valid file."
+            exit 1
+        fi
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            base="${line%.*}"
+            delete_matching_files "$base"
+        done < "$value"
+        ;;
+    --d)
+        if [ ! -d "$value" ]; then
+            echo "Error: '$value' is not a valid directory."
+            exit 1
+        fi
+        for output_file in "$value"/*; do
+            [ -e "$output_file" ] || continue
+            filename=$(basename "$output_file")
+            base="${filename%.*}"
+            delete_matching_files "$base"
+        done
+        ;;
+    *)
+        echo "Invalid option: $flag"
+        print_usage
+        exit 1
+        ;;
+esac

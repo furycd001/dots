@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Ensure the 'Str' folder exists
+if [[ ! -d "Str" ]]; then
+    echo "Error: 'Str' folder does not exist."
+    exit 1
+fi
+
+# Iterate over image files in the current directory
+shopt -s nullglob
+for img in *.{jpg,jpeg,png,gif,bmp,tiff}; do
+    # Get image dimensions using ImageMagick
+    dimensions=$(identify -format "%w %h" "$img" 2>/dev/null)
+
+    # Skip if identify failed
+    [[ $? -ne 0 || -z "$dimensions" ]] && continue
+
+    width=$(awk '{print $1}' <<< "$dimensions")
+    height=$(awk '{print $2}' <<< "$dimensions")
+
+    # Move if not horizontal (i.e., width < height)
+    if (( width < height )); then
+        mv "$img" "Str/"
+        echo "Moved (not horizontal): $img"
+    fi
+done
+
+echo "Sorting complete."

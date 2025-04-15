@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# Directory containing your images
+input_directory="." # Current directory containing your images
+# Directory to save resized images
+output_directory="./ratio" # Directory to save rounded images
+
+# Create output directory if it doesn't exist
+mkdir -p "$output_directory"
+
+# Check if the user provided a dimension and which dimension to use
+if [ $# -eq 0 ]; then
+    echo "No dimension specified. Please provide a dimension like '-h 800' or '-w 800'."
+    exit 1
+fi
+
+# Initialize variables
+resize_option=""
+resize_value=""
+
+# Parse command line options
+while getopts ":h:w:" opt; do
+  case ${opt} in
+    h )
+      resize_option="x"
+      resize_value="$OPTARG"
+      ;;
+    w )
+      resize_option=""
+      resize_value="$OPTARG"
+      ;;
+    \? )
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    : )
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Loop through all image files in the input directory
+for img in "$input_directory"/*.{jpg,jpeg,png,webp,avif}; do
+  if [ -f "$img" ]; then
+    # Extract the filename without extension
+    filename=$(basename "$img")
+
+    # Resize image to specified width or height while maintaining aspect ratio
+    magick "$img" -resize "${resize_option}${resize_value}" "$output_directory/$filename"
+  fi
+done
+
+echo "Resizing complete. Check the '$output_directory' directory."

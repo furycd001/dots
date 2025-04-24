@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
 
-# Function to delete matching files based on base name
+# Function to delete matching files based on base name prefix
 delete_matching_files() {
     local base="$1"
 
-    for match in ./"$base".*; do
+    # Match any file starting with the base followed by any characters and a dot-extension
+    for match in ./"$base"*.*; do
         [ -e "$match" ] || continue
-        echo "Removing: $match"
-        rm "$match"
+
+        # Extra safety: match only files whose name starts with the base (before first extension)
+        match_base="${match##*/}"         # remove path
+        match_base="${match_base%%.*}"    # extract base from match
+        if [[ "$match_base" == "$base"* ]]; then
+            echo "Removing: $match"
+            rm "$match"
+        fi
     done
 }
 

@@ -1,32 +1,35 @@
 #!/usr/bin/env bash
 
-# Function to delete matching files based on base name prefix
-delete_matching_files() {
+# Function to delete matching original files
+delete_original_file() {
     local base="$1"
+    local dir="$2"
 
-    # Match any file starting with the base followed by any characters and a dot-extension
-    for match in ./"$base"*.*; do
-        [ -e "$match" ] || continue
+    # Use nullglob to avoid literal globs
+    shopt -s nullglob
 
-        # Extra safety: match only files whose name starts with the base (before first extension)
-        match_base="${match##*/}"         # remove path
-        match_base="${match_base%%.*}"    # extract base from match
-        if [[ "$match_base" == "$base"* ]]; then
-            echo "Removing: $match"
-            rm "$match"
+    # Match files that start with base, excluding _resized, etc.
+    for file in "$dir"/"$base".*; do
+        filename=$(basename "$file")
+        if [[ "$filename" != *_resized.* ]]; then
+            echo "Removing: $file"
+            rm -v -- "$file"
         fi
     done
+
+    shopt -u nullglob
 }
 
-# Print formatted usage message
+# Print usage
 print_usage() {
+    local script_name
     script_name="$(basename "$0")"
     cat <<EOF
 Usage: $script_name [OPTION] <ARGUMENT>
 
 Options:
-  --f <filelist.txt>     Remove files matching names listed in the text file.
-  --d <output_folder>    Remove files matching names in the specified folder.
+  --f <filelist.txt>     Remove original files based on processed names in the list.
+  --d <output_folder>    Remove original files based on processed names in folder.
 
 Examples:
   $script_name --f files.txt
@@ -34,7 +37,7 @@ Examples:
 EOF
 }
 
-# Check for valid flags and arguments
+# Input validation
 if [[ "$#" -ne 2 ]]; then
     print_usage
     exit 1
@@ -42,28 +45,33 @@ fi
 
 flag="$1"
 value="$2"
+target_dir="."  # default location for originals to delete
 
 case "$flag" in
     --f)
-        if [ ! -f "$value" ]; then
+        if [[ ! -f "$value" ]]; then
             echo "Error: '$value' is not a valid file."
             exit 1
         fi
         while IFS= read -r line || [[ -n "$line" ]]; do
-            base="${line%.*}"
-            delete_matching_files "$base"
+            [[ -z "$line" ]] && continue
+            filename=$(basename "$line")
+            base="${filename%.*}"
+            base="${base%_resized}"  # strip suffix
+            delete_original_file "$base" "$target_dir"
         done < "$value"
         ;;
     --d)
-        if [ ! -d "$value" ]; then
+        if [[ ! -d "$value" ]]; then
             echo "Error: '$value' is not a valid directory."
             exit 1
         fi
-        for output_file in "$value"/*; do
-            [ -e "$output_file" ] || continue
-            filename=$(basename "$output_file")
+        for file in "$value"/*_resized.*; do
+            [[ -e "$file" ]] || continue
+            filename=$(basename "$file")
             base="${filename%.*}"
-            delete_matching_files "$base"
+            base="${base%_resized}"
+            delete_original_file "$base" "$target_dir"
         done
         ;;
     *)

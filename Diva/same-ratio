@@ -7,30 +7,39 @@ same_ratio_dir="$current_dir/ratio"
 # Create the "ratio" folder if it doesn't exist
 mkdir -p "$same_ratio_dir"
 
-# Define the target dimensions for the ratio check
+# Define the target dimensions and ratio
 target_width=1080
 target_height=1920
+target_ratio=$(awk "BEGIN {printf \"%.5f\", $target_width/$target_height}")
+
+# Define tolerances
+ratio_tolerance=0.005
+dimension_tolerance=5  # Allow small variation in dimensions
 
 # Loop through image files (common formats)
 for img in *.{jpg,jpeg,png,webp}; do
-    # Skip if no file matches the pattern
     [ -e "$img" ] || continue
 
-    # Get image dimensions (requires ImageMagick's "identify")
-    dimensions=$(identify -format "%wx%h" "$img" 2>/dev/null)
-    if [ -z "$dimensions" ]; then
-        echo "Skipping $img: Unable to determine dimensions."
-        continue
-    fi
+    # Get image dimensions using ImageMagick
+    dimensions=$(identify -format "%wx%h" "$img" 2>/dev/null) || continue
 
-    # Extract width and height from the output (format: WxH)
     width=$(echo "$dimensions" | cut -dx -f1)
     height=$(echo "$dimensions" | cut -dx -f2)
 
-    # Check if the image's aspect ratio matches 1080:1920 using cross multiplication
-    if [ $(( width * target_height )) -eq $(( height * target_width )) ]; then
-        cp "$img" "$same_ratio_dir"
-        echo "Copied: $img"
+    # Skip if height or width is significantly smaller than target
+    if (( width < target_width - dimension_tolerance )) || (( height < target_height - dimension_tolerance )); then
+        continue
+    fi
+
+    # Check aspect ratio
+    image_ratio=$(awk "BEGIN {printf \"%.5f\", $width/$height}")
+    diff=$(awk -v ir="$image_ratio" -v tr="$target_ratio" 'BEGIN {
+        d = ir - tr; if (d < 0) d = -d; printf "%.5f", d
+    }')
+
+    if (( $(echo "$diff < $ratio_tolerance" | bc -l) )); then
+        mv "$img" "$same_ratio_dir"
+        echo "Moved: $img"
     fi
 done
 

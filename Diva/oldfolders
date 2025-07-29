@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Always use the current working directory
+TARGET="."
+OUTPUT="$HOME/oldfolders.txt"
+CUTOFF_DATE=$(date -d "365 days ago" +%s)
+NOW=$(date +%s)
+
+# Temp file to hold unsorted data with timestamp prefix
+TMP=$(mktemp)
+
+while IFS= read -r -d '' dir; do
+    [[ "$dir" == "." ]] && continue
+
+    mtime=$(stat -c %Y "$dir" 2>/dev/null || echo 0)
+    if (( mtime < CUTOFF_DATE )); then
+        date_fmt=$(date -d "@$mtime" +%d-%m-%Y)
+
+        # Calculate age
+        years_since=$(( (NOW - mtime) / (365*24*3600) ))
+        months_since=$(( ((NOW - mtime) % (365*24*3600)) / (30*24*3600) ))
+        days_left=$(( ((NOW - mtime) % (30*24*3600)) / (24*3600) ))
+
+        age=""
+        [[ $years_since -gt 0 ]] && age+="${years_since}y "
+        [[ $months_since -gt 0 ]] && age+="${months_since}m "
+        [[ $days_left -gt 0 ]] && age+="${days_left}d"
+        age=$(echo "$age" | sed 's/ *$//')
+
+        # Prefix with sortable timestamp for accurate sorting
+        printf "%s\t%s  %s  %s\n" "$mtime" "$date_fmt" "$age" "$(realpath "$dir")" >> "$TMP"
+    fi
+done < <(find "$TARGET" -type d -print0)
+
+# Sort by timestamp then strip it
+if [[ -s "$TMP" ]]; then
+    sort -n "$TMP" | cut -f2- > "$OUTPUT"
+    echo "Saved to: $OUTPUT"
+else
+    echo "No old folders found."
+fi
+
+rm -f "$TMP"

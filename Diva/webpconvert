@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Function to display script usage
 usage() {
   echo "Usage: $0 [-f] [-t] [-a] [file_or_directory]"
   echo "Converts between WebP, AVIF, and JPEG/PNG."
@@ -11,12 +10,10 @@ usage() {
   exit 1
 }
 
-# Initialize flags
 convert_from_webp=false
 convert_to_webp=false
 convert_from_avif=false
 
-# Parse options
 while getopts "fta" opt; do
   case ${opt} in
     f) convert_from_webp=true ;;
@@ -27,54 +24,55 @@ while getopts "fta" opt; do
 done
 shift $((OPTIND-1))
 
-file_or_directory="${1:-.}"  # Default to current dir if nothing is passed
+file_or_directory="${1:-.}"  # Default to current dir
 
-# Ensure at least one conversion option is specified
 if ! $convert_from_webp && ! $convert_to_webp && ! $convert_from_avif; then
   echo "Error: Please specify at least one conversion option (-f, -t, or -a)" >&2
   usage
 fi
 
-# --- Conversion functions ---
 convert_to_webp_func() {
   local file="$1"
   [[ -f "$file" ]] || return
+  echo "Converting $file → ${file%.*}.webp"
   cwebp -q 80 "$file" -o "${file%.*}.webp"
 }
 
 convert_from_webp_func() {
   local file="$1"
   [[ -f "$file" ]] || return
+  echo "Converting $file → ${file%.*}.jpg"
   dwebp "$file" -o "${file%.*}.jpg" && rm "$file"
 }
 
 convert_from_avif_func() {
   local file="$1"
   [[ -f "$file" ]] || return
+  echo "Converting $file → ${file%.*}.jpg"
   magick "$file" "${file%.*}.jpg" && rm "$file"
 }
 
-# --- Processing logic ---
 process_files() {
-  local pattern="$1" func="$2"
+  local patterns=("$@") func
+  func="${patterns[-1]}"        # last arg is function name
+  unset 'patterns[-1]'
+
   if [[ -f "$file_or_directory" ]]; then
-    # Single file
     $func "$file_or_directory"
   elif [[ -d "$file_or_directory" ]]; then
-    # Directory
-    find "$file_or_directory" -type f -iname "$pattern" -exec bash -c '
-      func="$1"; shift
-      for f; do $func "$f"; done
-    ' _ "$func" {} +
+    shopt -s nullglob
+    for ext in "${patterns[@]}"; do
+      for f in "$file_or_directory"/*.$ext; do
+        $func "$f"
+      done
+    done
+    shopt -u nullglob
   else
     echo "Error: $file_or_directory is not a valid file or directory."
     exit 1
   fi
 }
 
-# Run conversions based on flags
-$convert_to_webp    && process_files "*.jpg" convert_to_webp_func
-$convert_to_webp    && process_files "*.jpeg" convert_to_webp_func
-$convert_to_webp    && process_files "*.png" convert_to_webp_func
-$convert_from_webp  && process_files "*.webp" convert_from_webp_func
-$convert_from_avif  && process_files "*.avif" convert_from_avif_func
+$convert_to_webp   && process_files jpg jpeg png convert_to_webp_func
+$convert_from_webp && process_files webp convert_from_webp_func
+$convert_from_avif && process_files avif convert_from_avif_func

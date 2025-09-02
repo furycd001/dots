@@ -1,13 +1,13 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # Function to display script usage
 usage() {
-  echo "Usage: $0 [-f] [-t] [-a] [file]"
-  echo "Converts to and from WebP and AVIF."
+  echo "Usage: $0 [-f] [-t] [-a] [file_or_directory]"
+  echo "Converts between WebP, AVIF, and JPEG/PNG."
   echo "  -f  Convert from WebP to JPEG."
-  echo "  -t  Convert to WebP from JPEG, PNG, or WebP."
+  echo "  -t  Convert to WebP from JPEG, PNG."
   echo "  -a  Convert from AVIF to JPEG."
-  echo "  file  Optional: Path to a single file to convert."
+  echo "  file_or_directory  Optional: Path to a single file or a directory to convert. Defaults to current dir."
   exit 1
 }
 
@@ -16,28 +16,18 @@ convert_from_webp=false
 convert_to_webp=false
 convert_from_avif=false
 
-# Process command line options
-while getopts ":ft:a" opt; do
+# Parse options
+while getopts "fta" opt; do
   case ${opt} in
-    f)
-      convert_from_webp=true
-      ;;
-    t)
-      convert_to_webp=true
-      ;;
-    a)
-      convert_from_avif=true
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      usage
-      ;;
+    f) convert_from_webp=true ;;
+    t) convert_to_webp=true ;;
+    a) convert_from_avif=true ;;
+    *) usage ;;
   esac
 done
-
-# Shift remaining arguments to get the file path, if any
 shift $((OPTIND-1))
-file="$1"
+
+file_or_directory="${1:-.}"  # Default to current dir if nothing is passed
 
 # Ensure at least one conversion option is specified
 if ! $convert_from_webp && ! $convert_to_webp && ! $convert_from_avif; then
@@ -45,36 +35,46 @@ if ! $convert_from_webp && ! $convert_to_webp && ! $convert_from_avif; then
   usage
 fi
 
-# Convert files to WebP
-if $convert_to_webp; then
-  if [[ -n "$file" ]]; then
-    cwebp -q 80 "$file" -o "${file%.*}.webp"
-  else
-    for file in *.jpg *.jpeg *.png *.webp; do
-      cwebp -q 80 "$file" -o "${file%.*}.webp"
-    done
-  fi
-fi
+# --- Conversion functions ---
+convert_to_webp_func() {
+  local file="$1"
+  [[ -f "$file" ]] || return
+  cwebp -q 80 "$file" -o "${file%.*}.webp"
+}
 
-# Convert files from WebP
-if $convert_from_webp; then
-  if [[ -n "$file" ]]; then
-    dwebp "$file" -o "${file%.*}.jpg" && rm "$file"  # Output as JPEG and delete WebP
-  else
-    for file in *.webp; do
-      if dwebp "$file" -o "${file%.*}.jpg"; then  # Convert and check for success
-        rm "$file"  # Delete WebP if conversion successful
-      fi
-    done
-  fi
-fi
+convert_from_webp_func() {
+  local file="$1"
+  [[ -f "$file" ]] || return
+  dwebp "$file" -o "${file%.*}.jpg" && rm "$file"
+}
 
-# Convert files from AVIF
-if $convert_from_avif; then
-  for file in *.avif; do
-    if [ -f "$file" ]; then
-      convert "$file" "${file%.*}.jpg"
-      rm "$file"
-    fi
-  done
-fi
+convert_from_avif_func() {
+  local file="$1"
+  [[ -f "$file" ]] || return
+  magick "$file" "${file%.*}.jpg" && rm "$file"
+}
+
+# --- Processing logic ---
+process_files() {
+  local pattern="$1" func="$2"
+  if [[ -f "$file_or_directory" ]]; then
+    # Single file
+    $func "$file_or_directory"
+  elif [[ -d "$file_or_directory" ]]; then
+    # Directory
+    find "$file_or_directory" -type f -iname "$pattern" -exec bash -c '
+      func="$1"; shift
+      for f; do $func "$f"; done
+    ' _ "$func" {} +
+  else
+    echo "Error: $file_or_directory is not a valid file or directory."
+    exit 1
+  fi
+}
+
+# Run conversions based on flags
+$convert_to_webp    && process_files "*.jpg" convert_to_webp_func
+$convert_to_webp    && process_files "*.jpeg" convert_to_webp_func
+$convert_to_webp    && process_files "*.png" convert_to_webp_func
+$convert_from_webp  && process_files "*.webp" convert_from_webp_func
+$convert_from_avif  && process_files "*.avif" convert_from_avif_func

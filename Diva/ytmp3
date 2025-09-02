@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Script to download YouTube videos as MP3s
+# Usage:
+#   ytmp3 urls.txt        # file with list of URLs
+#   ytmp3 https://...     # single URL
+
+# Check if argument was provided
+if [[ -z "$1" ]]; then
+    echo "Usage: $(basename "$0") <file.txt | url>"
+    exit 1
+fi
+
+input="$1"
+
+# Function to download a single URL
+download() {
+    yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" "$1"
+}
+
+# Handle file or URL input
+if [[ -f "$input" ]]; then
+    # File input
+    xargs -a "$input" -d '\n' -I {} yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" "{}"
+else
+    # Assume it's a URL
+    download "$input"
+fi

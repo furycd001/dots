@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+# Config
+SRC="/home/furycd001/Pictures/"
+DST="$HOME/.wallslide"
+NUM=40
+
+timestamp() { date '+%Y-%m-%d %H:%M:%S'; }
+
+{
+  echo "[$(timestamp)] aurora: starting"
+
+  # Ensure src exists
+  if [ ! -d "$SRC" ]; then
+    echo "[$(timestamp)] ERROR: Source directory does not exist: $SRC"
+    exit 1
+  fi
+
+  # Ensure destination exists
+  mkdir -p "$DST"
+
+  # Clear destination (remove everything inside, keep the directory)
+  # use find to be robust with many files and spaces
+  find "$DST" -mindepth 1 -exec rm -rf -- '{}' + || true
+  echo "[$(timestamp)] Cleared $DST"
+
+  # Count available files
+  total=$(find "$SRC" -type f -print0 | tr -cd '\0' | wc -c || true)
+  # convert null-count to file-count
+  total=$(( total ))
+  if [ "$total" -eq 0 ]; then
+    echo "[$(timestamp)] ERROR: No files found in source: $SRC"
+    exit 1
+  fi
+
+  # If fewer than NUM, reduce NUM
+  pick_num=$NUM
+  if [ "$total" -lt "$NUM" ]; then
+    pick_num=$total
+  fi
+
+  echo "[$(timestamp)] Found $total files, picking $pick_num at random"
+
+  # Use shuf if available (handles NUL-separated names)
+  if command -v shuf >/dev/null 2>&1; then
+    # find ... -print0 -> shuf -z -n -> xargs -0 cp
+    find "$SRC" -type f -print0 | shuf -z -n "$pick_num" | xargs -0 -I{} cp -a -- "{}" "$DST"/
+  else
+    # Fallback to python for random sampling
+    find "$SRC" -type f -print0 | python3 - "$pick_num" <<'PY' | xargs -0 -I{} cp -a -- "{}" "$DST"/
+import sys, random
+NUM = int(sys.argv[1])
+data = sys.stdin.buffer.read().split(b'\0')
+files = [f for f in data if f]
+if not files:
+    sys.exit(0)
+sel = random.sample(files, min(NUM, len(files)))
+sys.stdout.buffer.write(b'\0'.join(sel))
+PY
+  fi
+
+chmod +x ~/.local/bin/aurora

@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 
+# Launch Sublime Text in the background
+subl &
 
-# Run the command and fork it into the background, after grabbing its PID
-subl
+# Wait until the Sublime Text window appears
+while true; do
+    wIDs=$(xdotool search --onlyvisible --name "Sublime Text" 2>/dev/null)
+    if [[ -n "$wIDs" ]]; then
+        break
+    fi
+    sleep 0.2
+done
 
-# Poll until the command spawned a window, then get its window ID
-for ((;;)); {
-    wIDs=$(xdotool search --onlyvisible --name subl 2> /dev/null) && break
-}
+# Resize and move each found window
+for wID in $wIDs; do
+    # Resize window
+    xdotool windowsize "$wID" 1007 1140
 
-# Resize known windows
-for wID in $wIDs; {
-    xdotool windowsize $wID 1007 1140
-}
-
-# Moves known window
-sfor wID in $wIDs; {
-    xdotool windowmove $wID 1952 32
-}
+    # Moves known window
+    xdotool windowmove "$wID" 32 32
+done

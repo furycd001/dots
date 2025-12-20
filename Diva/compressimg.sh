@@ -10,7 +10,7 @@ mkdir -p "$OUTPUT_DIR"
 find . -maxdepth 1 -type f -regextype posix-extended \
     -iregex '.*\.(jpg|jpeg|png|webp)' -print0 | \
     xargs -0 -P "$THREADS" -I {} \
-    convert "{}" -quality "$QUALITY" "$OUTPUT_DIR/{}"
+    magick "{}" -quality "$QUALITY" "$OUTPUT_DIR/{}"
 
 COUNT=$(find "$OUTPUT_DIR" -type f | wc -l)
 echo "-------------------------------------------"

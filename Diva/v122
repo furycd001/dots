@@ -1,18 +1,24 @@
 #!/bin/env bash
 
 # Get the current volume level
+# Using the same extraction method you provided
 current_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1 | tr -d '%')
 
-# Check the current volume level and adjust accordingly
-if [ "$current_volume" -eq 100 ]; then
+# Logic Flow:
+# 1. If volume is 122 (or higher), turn it down to 100.
+# 2. If volume is 100 (or between 100 and 121), boost it to 122.
+# 3. If volume is anything else (meaning < 100), just reset to 100.
+
+if [ "$current_volume" -ge 122 ]; then
+    pactl set-sink-volume @DEFAULT_SINK@ 100%
+    notify-send "Volume reset to 100%"
+
+elif [ "$current_volume" -ge 100 ]; then
     pactl set-sink-volume @DEFAULT_SINK@ 122%
-    notify-send "Volume = 122%"
-elif [ "$current_volume" -eq 122 ]; then
-    pactl set-sink-volume @DEFAULT_SINK@ 100%
-    notify-send "Volume = 100%"
+    notify-send "Volume boosted to 122%"
+
 else
-    # Set volume to 100% regardless of unknown level
+    # This catches everything below 100 (e.g., 64%)
     pactl set-sink-volume @DEFAULT_SINK@ 100%
-    # Send additional notification about setting to 100%
-    notify-send "Volume set to 100%"
+    notify-send "Volume restored to 100%"
 fi

@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
+#
 # A script to rotate or flip multiple images and overwrite the original files
+#
+# This script supports custom thunar actions..
+#
+# Rotate 90° Clockwise: ~/.local/bin/imagerotate rotate90 %F
+# Rotate 90° Counterclockwise: ~/.local/bin/imagerotate rotate-90 %F
+# Rotate 180°: ~/.local/bin/imagerotate rotate180 %F
+# Flip Horizontally: ~/.local/bin/imagerotate flip-horizontally %F
+# Flip Vertically: ~/.local/bin/imagerotate flip-vertically %F
+#
+
 
 action="$1"
 
